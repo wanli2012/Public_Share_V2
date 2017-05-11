@@ -19,5 +19,7 @@ typedef void (^ReturnStringBlock)(NSString *str);
 @property (nonatomic, copy) ReturnStringBlock block;
 
 @property (nonatomic, strong)NSArray *dataSource;
+@property (nonatomic, strong)NSArray *typeIDArr;
+
 
 @end

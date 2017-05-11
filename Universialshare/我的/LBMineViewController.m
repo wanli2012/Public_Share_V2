@@ -38,6 +38,7 @@
 
 #import "LBMineCenterRegionQueryViewController.h"
 #import "GLMyCollectionController.h"
+#import "GLIncomeManagerController.h"
 
 @interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
     UIImageView *_imageviewLeft;
@@ -235,10 +236,11 @@
             {
                 if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
                     self.hidesBottomBarWhenPushed=YES;
-                    LBBelowTheLineViewController *vc=[[LBBelowTheLineViewController alloc]init];
-                    
+//                    LBBelowTheLineViewController *vc=[[LBBelowTheLineViewController alloc]init];
+                    GLIncomeManagerController *vc = [[GLIncomeManagerController alloc] init];
                     [self.navigationController pushViewController:vc animated:YES];
                     self.hidesBottomBarWhenPushed=NO;
+                    
                 }else{
                     self.hidesBottomBarWhenPushed=YES;
                     GLDirectDonationController *vc=[[GLDirectDonationController alloc]init];

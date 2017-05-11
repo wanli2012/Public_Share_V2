@@ -390,6 +390,11 @@
 		4A46111A1E9CC6370045824F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 4A4610011E9CC6360045824F /* README.md */; };
 		4A46111B1E9CC6370045824F /* UIImageView+CornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4610051E9CC6360045824F /* UIImageView+CornerRadius.m */; };
 		4A46111D1E9CCC010045824F /* Mine_sixPart.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A46111C1E9CCC010045824F /* Mine_sixPart.xcassets */; };
+		4A521F5D1EC451100028F2A2 /* GLIncomeManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A521F5B1EC451100028F2A2 /* GLIncomeManagerController.m */; };
+		4A521F5E1EC451100028F2A2 /* GLIncomeManagerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A521F5C1EC451100028F2A2 /* GLIncomeManagerController.xib */; };
+		4A521F621EC466500028F2A2 /* GLIncomeManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A521F601EC466500028F2A2 /* GLIncomeManagerCell.m */; };
+		4A521F631EC466500028F2A2 /* GLIncomeManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A521F611EC466500028F2A2 /* GLIncomeManagerCell.xib */; };
+		4A521F661EC474970028F2A2 /* GLIncomeManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A521F651EC474970028F2A2 /* GLIncomeManagerModel.m */; };
 		4A78C2161EA8918500771047 /* GLDonationRecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A78C2151EA8918500771047 /* GLDonationRecordController.xib */; };
 		4A8572EC1E977E7200A7A51E /* GLHourseOptionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8572EB1E977E7200A7A51E /* GLHourseOptionModel.m */; };
 		4A8572EF1E977E8500A7A51E /* GLHourseOptionFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8572EE1E977E8500A7A51E /* GLHourseOptionFrameModel.m */; };
@@ -1534,6 +1539,14 @@
 		4A4610041E9CC6360045824F /* UIImageView+CornerRadius.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CornerRadius.h"; sourceTree = "<group>"; };
 		4A4610051E9CC6360045824F /* UIImageView+CornerRadius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CornerRadius.m"; sourceTree = "<group>"; };
 		4A46111C1E9CCC010045824F /* Mine_sixPart.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine_sixPart.xcassets; sourceTree = "<group>"; };
+		4A521F5A1EC451100028F2A2 /* GLIncomeManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIncomeManagerController.h; sourceTree = "<group>"; };
+		4A521F5B1EC451100028F2A2 /* GLIncomeManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIncomeManagerController.m; sourceTree = "<group>"; };
+		4A521F5C1EC451100028F2A2 /* GLIncomeManagerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLIncomeManagerController.xib; sourceTree = "<group>"; };
+		4A521F5F1EC466500028F2A2 /* GLIncomeManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIncomeManagerCell.h; sourceTree = "<group>"; };
+		4A521F601EC466500028F2A2 /* GLIncomeManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIncomeManagerCell.m; sourceTree = "<group>"; };
+		4A521F611EC466500028F2A2 /* GLIncomeManagerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLIncomeManagerCell.xib; sourceTree = "<group>"; };
+		4A521F641EC474970028F2A2 /* GLIncomeManagerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIncomeManagerModel.h; sourceTree = "<group>"; };
+		4A521F651EC474970028F2A2 /* GLIncomeManagerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIncomeManagerModel.m; sourceTree = "<group>"; };
 		4A78C2151EA8918500771047 /* GLDonationRecordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLDonationRecordController.xib; sourceTree = "<group>"; };
 		4A8572EA1E977E7200A7A51E /* GLHourseOptionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLHourseOptionModel.h; sourceTree = "<group>"; };
 		4A8572EB1E977E7200A7A51E /* GLHourseOptionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLHourseOptionModel.m; sourceTree = "<group>"; };
@@ -3623,6 +3636,45 @@
 			path = CornerRadiusCategory;
 			sourceTree = "<group>";
 		};
+		4A521F561EC450860028F2A2 /* 收益管理 */ = {
+			isa = PBXGroup;
+			children = (
+				4A521F571EC450860028F2A2 /* Controller */,
+				4A521F581EC450860028F2A2 /* Model */,
+				4A521F591EC450860028F2A2 /* View */,
+			);
+			path = "收益管理";
+			sourceTree = "<group>";
+		};
+		4A521F571EC450860028F2A2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4A521F5A1EC451100028F2A2 /* GLIncomeManagerController.h */,
+				4A521F5B1EC451100028F2A2 /* GLIncomeManagerController.m */,
+				4A521F5C1EC451100028F2A2 /* GLIncomeManagerController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4A521F581EC450860028F2A2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4A521F641EC474970028F2A2 /* GLIncomeManagerModel.h */,
+				4A521F651EC474970028F2A2 /* GLIncomeManagerModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4A521F591EC450860028F2A2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A521F5F1EC466500028F2A2 /* GLIncomeManagerCell.h */,
+				4A521F601EC466500028F2A2 /* GLIncomeManagerCell.m */,
+				4A521F611EC466500028F2A2 /* GLIncomeManagerCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4AA0D5841EAEEC0600CB8F77 /* 分类页面 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4261,6 +4313,7 @@
 				4AAD25411EC188D70054FD06 /* 直捐 */,
 				4A07A87D1EA0BBF1005A9B67 /* 让利 */,
 				4AAD25A01EC1895D0054FD06 /* 我要收藏 */,
+				4A521F561EC450860028F2A2 /* 收益管理 */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -5392,6 +5445,7 @@
 				F923096F1E9B8BFF00ECDC94 /* LBMineCentermodifyAdressTableViewCell.xib in Resources */,
 				F906201C1E83C8770080E9D9 /* tabbarimage.xcassets in Resources */,
 				F923098A1E9B8BFF00ECDC94 /* LBMineViewController.xib in Resources */,
+				4A521F5E1EC451100028F2A2 /* GLIncomeManagerController.xib in Resources */,
 				4AAD25331EC188C90054FD06 /* GLBuyBackController.xib in Resources */,
 				4A78C2161EA8918500771047 /* GLDonationRecordController.xib in Resources */,
 				F923082F1E9B8B6B00ECDC94 /* Address.plist in Resources */,
@@ -5414,6 +5468,7 @@
 				4AA0D5BB1EAEF01D00CB8F77 /* GLClassifyView.xib in Resources */,
 				4A4608F01E9C9E6D0045824F /* GLRankingCell.xib in Resources */,
 				4A460D321E9CC2C50045824F /* GLShareView.xib in Resources */,
+				4A521F631EC466500028F2A2 /* GLIncomeManagerCell.xib in Resources */,
 				4A0162FF1EB0B90800C25DCC /* GLOrderGoodsCell.xib in Resources */,
 				4A0D97841E9729C100A26B84 /* GLOrderDetailController.xib in Resources */,
 				F966B3F81EAC8C8A007260FC /* LBShowSaleManAndBusinessViewController.xib in Resources */,
@@ -5803,6 +5858,7 @@
 				4AAD25841EC188F50054FD06 /* GLRecommendCell.m in Sources */,
 				4A4610A11E9CC6360045824F /* ZXDataMatrixHighLevelEncoder.m in Sources */,
 				4A46109F1E9CC6360045824F /* ZXDataMatrixEncoderContext.m in Sources */,
+				4A521F5D1EC451100028F2A2 /* GLIncomeManagerController.m in Sources */,
 				4A013CA11E9DCE1500BB3764 /* GLFirstPageRankingModel.m in Sources */,
 				F961A9C91E9C747700275F52 /* usermodelachivar.m in Sources */,
 				4A46110E1E9CC6370045824F /* ZXQRCode.m in Sources */,
@@ -5856,6 +5912,7 @@
 				F923096E1E9B8BFF00ECDC94 /* LBMineCentermodifyAdressTableViewCell.m in Sources */,
 				F961A9CC1E9C750300275F52 /* UILabel+UILabel_ChangeLineSpaceAndWordSpace.m in Sources */,
 				4A4610131E9CC6360045824F /* LBXScanNative.m in Sources */,
+				4A521F661EC474970028F2A2 /* GLIncomeManagerModel.m in Sources */,
 				F90620071E83C5D00080E9D9 /* LBLoginNavigationViewController.m in Sources */,
 				F923091C1E9B8BFF00ECDC94 /* LBMineCenterMyBalanceViewController.m in Sources */,
 				4A4609F71E9CB78E0045824F /* GLDonationController.m in Sources */,
@@ -5990,6 +6047,7 @@
 				4A460A5B1E9CC0310045824F /* ScanResultViewController.m in Sources */,
 				F94D31821EAF2EB300309029 /* LBRecommendedBusinessAuditViewController.m in Sources */,
 				4A46104D1E9CC6360045824F /* ZXAddressBookParsedResult.m in Sources */,
+				4A521F621EC466500028F2A2 /* GLIncomeManagerCell.m in Sources */,
 				4A4610661E9CC6360045824F /* ZXURIResultParser.m in Sources */,
 				4A4610B81E9CC6370045824F /* ZXAnyAIDecoder.m in Sources */,
 				4A4610821E9CC6360045824F /* ZXGridSampler.m in Sources */,
