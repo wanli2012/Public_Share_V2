@@ -207,7 +207,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (self.returnpushvc) {
-        self.returnpushvc(self.dataarr[indexPath.row]);
+        //self.returnpushvc(self.dataarr[indexPath.row]);
     }
     
 }
