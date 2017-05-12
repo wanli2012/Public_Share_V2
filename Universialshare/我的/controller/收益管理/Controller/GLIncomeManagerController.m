@@ -9,7 +9,6 @@
 #import "GLIncomeManagerController.h"
 #import "GLIncomeManagerCell.h"
 #import "GLIncomeManagerModel.h"
-#import "LBMineCenterDetailedView.h"
 #import "HWCalendar.h"
 
 
@@ -24,9 +23,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *queryBtn;
 @property (weak, nonatomic) IBOutlet UIButton *timeOneBtn;
 @property (weak, nonatomic) IBOutlet UIButton *timeTwoBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *timeOneBtnWidth;
 
 @property (assign, nonatomic)NSInteger timeBtIndex;//判断选择的按钮时哪一个
-@property (strong, nonatomic)LBMineCenterDetailedView *viewa;
 @property (strong, nonatomic)HWCalendar *Calendar;
 @property (strong, nonatomic)UIView *CalendarView;
 
@@ -47,14 +46,13 @@ static NSString *ID = @"GLIncomeManagerCell";
     self.timeOneBtn.layer.borderColor = YYSRGBColor(184, 184, 184, 0.3).CGColor;
     self.timeTwoBtn.layer.borderWidth = 1;
     self.timeTwoBtn.layer.borderColor = YYSRGBColor(184, 184, 184, 0.3).CGColor;
+    self.timeOneBtnWidth.constant = 85 * autoSizeScaleX;
     
-    self.tableView.estimatedRowHeight = 64;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"GLIncomeManagerCell" bundle:nil] forCellReuseIdentifier:ID];
     _model = [[GLIncomeManagerModel alloc] init];
     _model.name = @"你哈也的你大爷街";
     _model.address = @"天府三街中百大道天府三街中百街中";
-    
     
     [self.view addSubview:self.CalendarView];
     
@@ -87,7 +85,12 @@ static NSString *ID = @"GLIncomeManagerCell";
 }
 //查询
 - (IBAction)queryRequest:(id)sender {
-    if ([self.timeOneBtn.titleLabel.text isEqualToString:@"选择日期"]) {
+    if ([self.timeOneBtn.titleLabel.text isEqualToString:@"起始日期"]) {
+        [MBProgressHUD showError:@"还没有选择起始日期"];
+        return;
+    }
+    if([self.timeTwoBtn.titleLabel.text isEqualToString:@"截止日期"]){
+        [MBProgressHUD showError:@"还没有选择截止日期"];
         return;
     }
     
@@ -108,20 +111,27 @@ static NSString *ID = @"GLIncomeManagerCell";
 
 
 #pragma UITableviewDelegate UITableviewDataSource
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewAutomaticDimension;
-}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 4;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    GLIncomeManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
     
+    GLIncomeManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
     cell.nameLabel.text = _model.name;
     cell.addressLabel.text = _model.address;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+  
+        
+    self.tableView.estimatedRowHeight = 64;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    return self.tableView.rowHeight;
+    
+}
 #pragma mark - HWCalendarDelegate
 - (void)calendar:(HWCalendar *)calendar didClickSureButtonWithDate:(NSString *)date
 {
