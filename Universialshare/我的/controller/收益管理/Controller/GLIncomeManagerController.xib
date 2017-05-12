@@ -14,6 +14,7 @@
                 <outlet property="queryBtn" destination="iAf-yp-xIt" id="PwR-3E-ryb"/>
                 <outlet property="tableView" destination="ySS-ho-gbb" id="GhK-Ki-8uM"/>
                 <outlet property="timeOneBtn" destination="fL2-h8-JfM" id="1O2-kx-KCv"/>
+                <outlet property="timeOneBtnWidth" destination="CVg-07-cqa" id="zpt-y8-N45"/>
                 <outlet property="timeTwoBtn" destination="6pf-5b-OYU" id="YS6-dv-2cG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -44,7 +45,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6pf-5b-OYU">
                             <rect key="frame" x="135" y="17" width="85" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="2017-02-02">
+                            <state key="normal" title="截止日期">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -70,7 +71,7 @@
                                 <constraint firstAttribute="height" constant="30" id="ePB-j2-L3d"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="2017-02-02">
+                            <state key="normal" title="起始日期">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -110,7 +111,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21345678元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0Y-2Q-VhV">
                             <rect key="frame" x="140" y="15" width="96" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.93559116129999997" green="0.2449045181" blue="0.0002224964264" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商家销售总额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ndv-AD-dcl">
