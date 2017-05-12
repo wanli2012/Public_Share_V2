@@ -43,8 +43,21 @@ static NSString *ID = @"GLClassifyRecommendCell";
     
 }
 - (IBAction)ensureClick:(id)sender {
-    
-    self.block(_chooseStr);
+    BOOL isSelectedItem = NO;
+    for(int i = 0 ; i < self.cellArr.count ; i++) {
+        GLClassifyRecommendCell *cell = self.cellArr[i];
+        if (cell.status) {
+            self.block(_chooseStr);
+            isSelectedItem = YES;
+            break;
+        }
+        if(i == self.cellArr.count - 1){
+            isSelectedItem = NO;
+            [MBProgressHUD showError:@"请选择分类"];
+        }
+        
+    }
+
     
 }
 - (IBAction)resetClick:(id)sender {
@@ -71,6 +84,7 @@ static NSString *ID = @"GLClassifyRecommendCell";
     GLClassifyRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     cell.titleLabel.text = _dataSource[indexPath.row];
     [self.cellArr addObject:cell];
+//    NSLog(@"self.cellArr.count = %lu",self.cellArr.count);
     return  cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -87,7 +101,7 @@ static NSString *ID = @"GLClassifyRecommendCell";
         [cell.titleLabel setTextColor:[UIColor redColor]];
         cell.layer.borderWidth = 1;
         cell.layer.borderColor = [UIColor redColor].CGColor;
-        self.chooseStr = cell.titleLabel.text;
+        self.chooseStr = self.typeIDArr[indexPath.row];
     }
     cell.status = !cell.status;
 }

@@ -38,7 +38,7 @@
 
 #import "LBMineCenterRegionQueryViewController.h"
 #import "GLMyCollectionController.h"
-#import "LBRecommendedSalesmanViewController.h"
+#import "GLIncomeManagerController.h"
 
 @interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
     UIImageView *_imageviewLeft;
@@ -142,7 +142,7 @@
 
 //选择cell时
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER] || [[UserModel defaultUser].usrtype isEqualToString:THREESALER]) {
+    if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {
         switch (indexPath.row) {
             case 0:
             {
@@ -153,6 +153,7 @@
                 self.hidesBottomBarWhenPushed=NO;
                 
             }
+                
                 break;
             case 1:
             {
@@ -161,15 +162,19 @@
                 [self.navigationController pushViewController:vc animated:YES];
                 self.hidesBottomBarWhenPushed=NO;
             }
+                
                 break;
             case 2:
             {
                 if ([[UserModel defaultUser].usrtype isEqualToString:THREESALER]) {
-                     [MBProgressHUD showError:@"您暂无权限访问"];
+                    self.hidesBottomBarWhenPushed=YES;
+                    LBRecommendedBusinessAuditViewController *vc=[[LBRecommendedBusinessAuditViewController alloc]init];
+                    [self.navigationController pushViewController:vc animated:YES];
+                    self.hidesBottomBarWhenPushed=NO;
                 }else{
                 
                     self.hidesBottomBarWhenPushed=YES;
-                    LBRecommendedSalesmanViewController *vc=[[LBRecommendedSalesmanViewController alloc]init];
+                    LBRecommendedBusinessAuditViewController *vc=[[LBRecommendedBusinessAuditViewController alloc]init];
                     [self.navigationController pushViewController:vc animated:YES];
                     self.hidesBottomBarWhenPushed=NO;
                 }
@@ -231,10 +236,11 @@
             {
                 if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
                     self.hidesBottomBarWhenPushed=YES;
-                    LBBelowTheLineViewController *vc=[[LBBelowTheLineViewController alloc]init];
-                    
+//                    LBBelowTheLineViewController *vc=[[LBBelowTheLineViewController alloc]init];
+                    GLIncomeManagerController *vc = [[GLIncomeManagerController alloc] init];
                     [self.navigationController pushViewController:vc animated:YES];
                     self.hidesBottomBarWhenPushed=NO;
+                    
                 }else{
                     self.hidesBottomBarWhenPushed=YES;
                     GLDirectDonationController *vc=[[GLDirectDonationController alloc]init];
@@ -295,14 +301,14 @@
                 break;
             case 7:
             {
-            
+                {
                     self.hidesBottomBarWhenPushed=YES;
                     LBMineCenterMyBalanceViewController *vc=[[LBMineCenterMyBalanceViewController alloc]init];
                     vc.vcIndex = 2;
                     [self.navigationController pushViewController:vc animated:YES];
                     self.hidesBottomBarWhenPushed=NO;
                     
-                
+                }
                 
             }
                 break;

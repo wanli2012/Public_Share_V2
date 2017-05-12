@@ -18,6 +18,7 @@
     GLClassifyView *_contentV;
     LoadWaitView * _loadV;
     NSInteger _sortType;//排序方式:1 默认正序  2 倒序
+    NSString * _classifyType;//分类id
     
 }
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
@@ -35,6 +36,7 @@
 @property (nonatomic,strong)NodataView *nodataV;
 
 @property (nonatomic,strong)NSMutableArray *typeArr;
+@property (nonatomic, strong)NSMutableArray *typeIDArr;
 
 @end
 
@@ -119,7 +121,7 @@ static NSString *ID = @"GLClassifyCell";
     }
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"sel_rank"] = @(_sortType);
-    dict[@"sel_type"] = @"1";
+    dict[@"sel_type"] = _classifyType;
     dict[@"page"] = [NSString stringWithFormat:@"%ld",_page];
 
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
@@ -189,13 +191,15 @@ static NSString *ID = @"GLClassifyCell";
     _contentV = [[NSBundle mainBundle] loadNibNamed:@"GLClassifyView" owner:nil options:nil].lastObject;
     __weak typeof(self)weakSelf = self;
     _contentV.block = ^(NSString * str){
-//        NSLog(@"arr =  == = = =  = ===%@",str);
+        NSLog(@"arr =  == = = =  = ===%@",str);
+        _classifyType = str;
+        [weakSelf updateData:YES];
         [weakSelf dismiss];
+        
     };
     
     _contentV.frame = CGRectMake(SCREEN_WIDTH, 64, 0, SCREEN_HEIGHT - 64);
     [_maskV showViewWithContentView:_contentV];
-    
     
     [UIView animateWithDuration:0.3 animations:^{
         _contentV.frame = CGRectMake(64, 64 , SCREEN_WIDTH - 64, SCREEN_HEIGHT - 64);
@@ -215,10 +219,13 @@ static NSString *ID = @"GLClassifyCell";
             if ([[NSString stringWithFormat:@"%@",responseObject[@"data"]] rangeOfString:@"null"].location == NSNotFound ) {
                 for (NSDictionary *dic in responseObject[@"data"]) {
                     [self.typeArr addObject:dic[@"catename"]];
+                    [self.typeIDArr addObject:dic[@"cate_id"]];
                 }
                 _contentV.dataSource = self.typeArr;
+                _contentV.typeIDArr = self.typeIDArr;
             }else{
                 _contentV.dataSource = @[];
+                _contentV.typeIDArr = @[];
             }
             [_contentV.collectionView reloadData];
             
@@ -234,7 +241,6 @@ static NSString *ID = @"GLClassifyCell";
         self.nodataV.hidden = NO;
     }];
 
-    
 }
 
 #pragma UICollectionDelegate UICollectionDataSource
@@ -269,5 +275,11 @@ static NSString *ID = @"GLClassifyCell";
         _typeArr = [NSMutableArray array];
     }
     return _typeArr;
+}
+- (NSMutableArray *)typeIDArr{
+    if (!_typeIDArr) {
+        _typeIDArr = [NSMutableArray array];
+    }
+    return _typeIDArr;
 }
 @end
