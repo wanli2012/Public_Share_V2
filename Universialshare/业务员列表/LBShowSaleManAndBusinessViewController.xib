@@ -17,7 +17,7 @@
                 <outlet property="navigationV" destination="Pul-kd-HEO" id="Yqq-Pl-E1M"/>
                 <outlet property="saleBt" destination="oxv-tn-HlS" id="g43-jL-rdy"/>
                 <outlet property="shenheZBt" destination="Vgq-jx-zk8" id="OMP-I8-Q2A"/>
-                <outlet property="titleLb" destination="PfA-6c-bjL" id="KbD-x3-br3"/>
+                <outlet property="titleLb" destination="PfA-6c-bjL" id="AgL-0t-9vt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

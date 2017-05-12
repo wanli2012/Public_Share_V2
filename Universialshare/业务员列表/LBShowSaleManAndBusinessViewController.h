@@ -10,4 +10,7 @@
 
 @interface LBShowSaleManAndBusinessViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLb;
+
+
 @end
