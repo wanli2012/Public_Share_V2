@@ -495,6 +495,12 @@
 		F90620061E83C5D00080E9D9 /* BasetabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F90620021E83C5D00080E9D9 /* BasetabbarViewController.m */; };
 		F90620071E83C5D00080E9D9 /* LBLoginNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F90620041E83C5D00080E9D9 /* LBLoginNavigationViewController.m */; };
 		F906201C1E83C8770080E9D9 /* tabbarimage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F906201B1E83C8770080E9D9 /* tabbarimage.xcassets */; };
+		F91029C21EC5831300246D04 /* LBMySalesmanListFaildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91029C01EC5831300246D04 /* LBMySalesmanListFaildViewController.xib */; };
+		F91029C61EC5835B00246D04 /* LBMySalesmanListAuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91029C41EC5835B00246D04 /* LBMySalesmanListAuditViewController.m */; };
+		F91029C71EC5835B00246D04 /* LBMySalesmanListAuditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91029C51EC5835B00246D04 /* LBMySalesmanListAuditViewController.xib */; };
+		F91029CA1EC586FD00246D04 /* LBMySalesmanListFaildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91029C91EC586FD00246D04 /* LBMySalesmanListFaildViewController.m */; };
+		F91029CC1EC5966400246D04 /* LBMySalesmanListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91029CB1EC5966400246D04 /* LBMySalesmanListView.xib */; };
+		F91029D21EC59C0E00246D04 /* LBMySalesmanListView.m in Sources */ = {isa = PBXBuildFile; fileRef = F91029D11EC59C0E00246D04 /* LBMySalesmanListView.m */; };
 		F9121B181EB17CEC00DAB7A2 /* IncentiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9121B161EB17CEC00DAB7A2 /* IncentiveModel.m */; };
 		F9121B191EB17CEC00DAB7A2 /* IncentiveModel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9121B171EB17CEC00DAB7A2 /* IncentiveModel.xib */; };
 		F9121B1D1EB1DC4F00DAB7A2 /* LBMineStoreOrderingOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9121B1B1EB1DC4F00DAB7A2 /* LBMineStoreOrderingOneTableViewCell.m */; };
@@ -1716,6 +1722,15 @@
 		F906201B1E83C8770080E9D9 /* tabbarimage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = tabbarimage.xcassets; sourceTree = "<group>"; };
 		F906201D1E83CBAD0080E9D9 /* universialshare.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = universialshare.pch; sourceTree = "<group>"; };
 		F906201F1E83CC900080E9D9 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		F91029C01EC5831300246D04 /* LBMySalesmanListFaildViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMySalesmanListFaildViewController.xib; sourceTree = "<group>"; };
+		F91029C31EC5835B00246D04 /* LBMySalesmanListAuditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMySalesmanListAuditViewController.h; sourceTree = "<group>"; };
+		F91029C41EC5835B00246D04 /* LBMySalesmanListAuditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMySalesmanListAuditViewController.m; sourceTree = "<group>"; };
+		F91029C51EC5835B00246D04 /* LBMySalesmanListAuditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMySalesmanListAuditViewController.xib; sourceTree = "<group>"; };
+		F91029C81EC586FD00246D04 /* LBMySalesmanListFaildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMySalesmanListFaildViewController.h; sourceTree = "<group>"; };
+		F91029C91EC586FD00246D04 /* LBMySalesmanListFaildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMySalesmanListFaildViewController.m; sourceTree = "<group>"; };
+		F91029CB1EC5966400246D04 /* LBMySalesmanListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMySalesmanListView.xib; sourceTree = "<group>"; };
+		F91029D01EC59C0E00246D04 /* LBMySalesmanListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMySalesmanListView.h; sourceTree = "<group>"; };
+		F91029D11EC59C0E00246D04 /* LBMySalesmanListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMySalesmanListView.m; sourceTree = "<group>"; };
 		F9121B151EB17CEC00DAB7A2 /* IncentiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncentiveModel.h; sourceTree = "<group>"; };
 		F9121B161EB17CEC00DAB7A2 /* IncentiveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncentiveModel.m; sourceTree = "<group>"; };
 		F9121B171EB17CEC00DAB7A2 /* IncentiveModel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncentiveModel.xib; sourceTree = "<group>"; };
@@ -5137,6 +5152,12 @@
 		F966B3D91EAC7D46007260FC /* 业务员列表 */ = {
 			isa = PBXGroup;
 			children = (
+				F91029C31EC5835B00246D04 /* LBMySalesmanListAuditViewController.h */,
+				F91029C41EC5835B00246D04 /* LBMySalesmanListAuditViewController.m */,
+				F91029C51EC5835B00246D04 /* LBMySalesmanListAuditViewController.xib */,
+				F91029C81EC586FD00246D04 /* LBMySalesmanListFaildViewController.h */,
+				F91029C91EC586FD00246D04 /* LBMySalesmanListFaildViewController.m */,
+				F91029C01EC5831300246D04 /* LBMySalesmanListFaildViewController.xib */,
 				F966B3E41EAC7E7B007260FC /* LBMySalesmanListViewController.h */,
 				F966B3E51EAC7E7B007260FC /* LBMySalesmanListViewController.m */,
 				F966B3E61EAC7E7B007260FC /* LBMySalesmanListViewController.xib */,
@@ -5164,6 +5185,9 @@
 				F966B3FA1EAC911E007260FC /* LBMySalesmanListTableViewCell.h */,
 				F966B3FB1EAC911E007260FC /* LBMySalesmanListTableViewCell.m */,
 				F966B3FC1EAC911E007260FC /* LBMySalesmanListTableViewCell.xib */,
+				F91029D01EC59C0E00246D04 /* LBMySalesmanListView.h */,
+				F91029D11EC59C0E00246D04 /* LBMySalesmanListView.m */,
+				F91029CB1EC5966400246D04 /* LBMySalesmanListView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -5349,6 +5373,7 @@
 				4A4610321E9CC6360045824F /* iOS-social-analytics-releasenote.html in Resources */,
 				F92309881E9B8BFF00ECDC94 /* LBMineCenterPriviteInfoViewController.xib in Resources */,
 				4A0D977D1E9729C100A26B84 /* GLImage_textDetailCell.xib in Resources */,
+				F91029C71EC5835B00246D04 /* LBMySalesmanListAuditViewController.xib in Resources */,
 				4A4610221E9CC6360045824F /* UMSCommentInputControlleriPad.xib in Resources */,
 				4AD5514F1EB2E6C900C04062 /* GLSubmitChooseTimeView.xib in Resources */,
 				F9061FDB1E83C4730080E9D9 /* LaunchScreen.storyboard in Resources */,
@@ -5419,6 +5444,7 @@
 				4A0D97731E9729C100A26B84 /* GLHourseChangeNumCell.xib in Resources */,
 				F951C7751EB0C4AA0014A71D /* LBBelowTheLineViewController.xib in Resources */,
 				F92309581E9B8BFF00ECDC94 /* LBMyOrderPendingRefundViewController.xib in Resources */,
+				F91029C21EC5831300246D04 /* LBMySalesmanListFaildViewController.xib in Resources */,
 				F92309541E9B8BFF00ECDC94 /* LBMyOrderPendingEvaluationViewController.xib in Resources */,
 				F9434D561EC19046001C80A4 /* LBMineCenterWantToSignUpViewController.xib in Resources */,
 				F92309271E9B8BFF00ECDC94 /* LBMineCenterRechargeCashView.xib in Resources */,
@@ -5520,6 +5546,7 @@
 				4A46102B1E9CC6360045824F /* WeiboSDK.bundle in Resources */,
 				F92309741E9B8BFF00ECDC94 /* LBMineCenterChooseAreaViewController.xib in Resources */,
 				F966B3CB1EAC3D79007260FC /* LBMineCenterOrderDetailFiveTableViewCell.xib in Resources */,
+				F91029CC1EC5966400246D04 /* LBMySalesmanListView.xib in Resources */,
 				F951EB211EA1EFED00D6708E /* LBMineCenterUsualUnderOrderThreeViewController.xib in Resources */,
 				4AA0D5C51EAEF4CB00CB8F77 /* GLClassifyRecommendCell.xib in Resources */,
 				4A0D97681E9729C100A26B84 /* GLHourseDetailController.xib in Resources */,
@@ -5662,6 +5689,7 @@
 				F9126EF11EA0B042004785EA /* LBMineSystemMessageViewController.m in Sources */,
 				4A4610671E9CC6360045824F /* ZXURLTOResultParser.m in Sources */,
 				F966B4091EACA3FA007260FC /* LBMyBusinessListDetailTableViewCell.m in Sources */,
+				F91029CA1EC586FD00246D04 /* LBMySalesmanListFaildViewController.m in Sources */,
 				4A0162FA1EB0B6CE00C25DCC /* GLConfirmOrderModel.m in Sources */,
 				4A4609D81E9CB78E0045824F /* GLRecommendRecordController.m in Sources */,
 				4A46110B1E9CC6370045824F /* ZXQRCodeFinderPattern.m in Sources */,
@@ -6014,6 +6042,7 @@
 				4A4610DD1E9CC6370045824F /* ZXUPCAReader.m in Sources */,
 				F923091A1E9B8BFF00ECDC94 /* HWCalendar.m in Sources */,
 				4AAD25351EC188C90054FD06 /* GLBuyBackRecord_FailController.m in Sources */,
+				F91029D21EC59C0E00246D04 /* LBMySalesmanListView.m in Sources */,
 				4AA0D5A41EAEEC0600CB8F77 /* GLIntegralHeaderView.m in Sources */,
 				4AA0D5CD1EAF17A900CB8F77 /* GLClassifyHeaderView.m in Sources */,
 				4A4610AB1E9CC6360045824F /* ZXMaxiCodeReader.m in Sources */,
@@ -6100,6 +6129,7 @@
 				F92309321E9B8BFF00ECDC94 /* LBMineMessageHotPickViewController.m in Sources */,
 				4A4610691E9CC6360045824F /* ZXVEventResultParser.m in Sources */,
 				F91964EF1EB36C68008A8616 /* MerchantInformationModel.m in Sources */,
+				F91029C61EC5835B00246D04 /* LBMySalesmanListAuditViewController.m in Sources */,
 				4AAD25301EC188C90054FD06 /* GLBuyBackChooseController.m in Sources */,
 				4A0D977A1E9729C100A26B84 /* GLHourseOptionCell.m in Sources */,
 				4A46107C1E9CC6360045824F /* ZXByteArray.m in Sources */,

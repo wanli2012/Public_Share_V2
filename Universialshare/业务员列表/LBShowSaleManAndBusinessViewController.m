@@ -14,22 +14,27 @@
 #import "LBSaleManPersonInfoViewController.h"
 #import "LBViewProtocolViewController.h"
 #import <MapKit/MapKit.h>
+#import "LBMySalesmanListAuditViewController.h"
+#import "LBMySalesmanListFaildViewController.h"
+#import "LBMySalesmanListView.h"
 
 @interface LBShowSaleManAndBusinessViewController ()
 @property (weak, nonatomic) IBOutlet UIView *navigationV;
-@property (weak, nonatomic) IBOutlet UILabel *titleLb;
 @property (weak, nonatomic) IBOutlet UIView *buttonv;
 @property (weak, nonatomic) IBOutlet UIButton *saleBt;
 @property (weak, nonatomic) IBOutlet UIButton *businessBt;
 @property (weak, nonatomic) IBOutlet UIButton *shenheZBt;
 
-
-@property (strong, nonatomic)LBMyBusinessListViewController *businessListVc;
-@property (strong, nonatomic)LBMySalesmanListViewController *salesmanListVc;
+@property (strong, nonatomic)LBMySalesmanListAuditViewController *AuditVc;
+@property (strong, nonatomic)LBMySalesmanListViewController *scuessVc;
+@property (strong, nonatomic)LBMySalesmanListFaildViewController *faildVc;
 @property (nonatomic, strong)UIViewController *currentViewController;
 @property (nonatomic, strong)UIView *contentView;
-
 @property (nonatomic, strong)UIView *lineView;
+
+@property (strong, nonatomic)UIView *maskView;
+@property (strong, nonatomic)NSString *usertype;
+@property (strong, nonatomic)LBMySalesmanListView *mySalesmanListView;
 
 @end
 
@@ -40,24 +45,26 @@
     
     self.navigationController.navigationBar.hidden = YES;
     //    self.navigationItem.title = @"商家列表";
-        self.automaticallyAdjustsScrollViewInsets = NO;
+      self.automaticallyAdjustsScrollViewInsets = NO;
      [self.buttonv addSubview:self.lineView];
     
-    _businessListVc=[[LBMyBusinessListViewController alloc]init];
-    _salesmanListVc=[[LBMySalesmanListViewController alloc]init];
+    _AuditVc=[[LBMySalesmanListAuditViewController alloc]init];
+    _scuessVc=[[LBMySalesmanListViewController alloc]init];
+    _faildVc=[[LBMySalesmanListFaildViewController alloc]init];
     
     _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT-114)];
     [self.view addSubview:_contentView];
     
-    [self addChildViewController:_businessListVc];
-    [self addChildViewController:_salesmanListVc];
+    [self addChildViewController:_AuditVc];
+    [self addChildViewController:_scuessVc];
+    [self addChildViewController:_faildVc];
     
-    self.currentViewController = _salesmanListVc;
-    [self fitFrameForChildViewController:_salesmanListVc];
-    [self.contentView addSubview:_salesmanListVc.view];
+    self.currentViewController = _faildVc;
+    [self fitFrameForChildViewController:_faildVc];
+    [self.contentView addSubview:_faildVc.view];
     
     __weak typeof(self) weakself = self;
-    _salesmanListVc.returnpushvc = ^(NSDictionary *dic){
+    _scuessVc.returnpushvc = ^(NSDictionary *dic){
     
         if ([dic[@"saleman_type"] integerValue] == 8) {
 //            weakself.hidesBottomBarWhenPushed = YES;
@@ -73,48 +80,6 @@
             weakself.hidesBottomBarWhenPushed = NO;
         }
     };
-    _businessListVc.returnpushvc = ^(NSDictionary *dic){
-        
-        weakself.hidesBottomBarWhenPushed = YES;
-        LBMyBusinessListDetailViewController *vc=[[LBMyBusinessListDetailViewController alloc]init];
-        vc.dic = dic;
-        [weakself.navigationController pushViewController:vc animated:YES];
-        weakself.hidesBottomBarWhenPushed = NO;
-    };
-    
-    _salesmanListVc.returnpushinfovc = ^(NSInteger index){
-    
-        weakself.hidesBottomBarWhenPushed = YES;
-        LBSaleManPersonInfoViewController *vc=[[LBSaleManPersonInfoViewController alloc]init];
-        [weakself.navigationController pushViewController:vc animated:YES];
-        weakself.hidesBottomBarWhenPushed = NO;
-    
-    };
-    //去这里
-    _businessListVc.returnpushinfovc = ^(NSInteger index){
-        
-        double lat = 100.0;double lng = 100.0;
-        
-        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]])// -- 使用 canOpenURL 判断需要在info.plist 的 LSApplicationQueriesSchemes 添加 baidumap 。
-        {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"baidumap://map/geocoder?location=%f,%f&coord_type=bd09ll&src=webapp.rgeo.yourCompanyName.yourAppName",lat,lng]]];
-        }else{
-            //使用自带地图导航
-            
-            CLLocationCoordinate2D destCoordinate;
-            // 将数据传到反地址编码模型
-            destCoordinate = CLLocationCoordinate2DMake(lat,lng);
-            
-            MKMapItem *currentLocation =[MKMapItem mapItemForCurrentLocation];
-            
-            MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:destCoordinate addressDictionary:nil]];
-            
-            [MKMapItem openMapsWithItems:@[currentLocation,toLocation] launchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,
-                                                                                       MKLaunchOptionsShowsTrafficKey:[NSNumber numberWithBool:YES]}];
-        }
-        
-    };
-    
 }
 
 - (IBAction)salemanEvent:(UIButton *)sender {
@@ -128,8 +93,8 @@
         
     }];
     
-    [self transitionFromVC:self.currentViewController toviewController:_salesmanListVc];
-    [self fitFrameForChildViewController:_salesmanListVc];
+    [self transitionFromVC:self.currentViewController toviewController:_faildVc];
+    [self fitFrameForChildViewController:_faildVc];
 }
 
 
@@ -144,8 +109,8 @@
         
     }];
     
-    [self transitionFromVC:self.currentViewController toviewController:_businessListVc];
-    [self fitFrameForChildViewController:_businessListVc];
+    [self transitionFromVC:self.currentViewController toviewController:_scuessVc];
+    [self fitFrameForChildViewController:_scuessVc];
     
 }
 
@@ -160,15 +125,51 @@
         
     }];
     
+    [self transitionFromVC:self.currentViewController toviewController:_AuditVc];
+    [self fitFrameForChildViewController:_AuditVc];
+    
 }
-
+//帅选
 - (IBAction)shaixuanEvent:(UIButton *)sender {
     
-    
+    [[UIApplication sharedApplication].keyWindow addSubview:self.maskView];
+    [self.maskView addSubview:self.mySalesmanListView];
     
 }
+//移除maskview
+-(void)maskviewgesture{
+ 
+    [self.mySalesmanListView removeFromSuperview];
+    [self.maskView removeFromSuperview];
 
+}
+//选择推广员
+-(void)salegesture{
+    [self.mySalesmanListView removeFromSuperview];
+    [self.maskView removeFromSuperview];
+    self.titleLb.text = @"推广员";
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@1}];
 
+}
+//选择高级推广员
+-(void)supersalegesture{
+    [self.mySalesmanListView removeFromSuperview];
+    [self.maskView removeFromSuperview];
+    self.titleLb.text = @"高级推广员";
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@2}];
+
+}
+//选择商户
+-(void)storegesture{
+    [self.mySalesmanListView removeFromSuperview];
+    [self.maskView removeFromSuperview];
+   self.titleLb.text = @"商户";
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@3}];
+
+}
 
 - (void)fitFrameForChildViewController:(UIViewController *)childViewController{
     CGRect frame = self.contentView.frame;
@@ -199,6 +200,37 @@
     }
     
     return _lineView;
+    
+}
+
+-(LBMySalesmanListView*)mySalesmanListView{
+    
+    if (!_mySalesmanListView) {
+        _mySalesmanListView=[[NSBundle mainBundle]loadNibNamed:@"LBMySalesmanListView" owner:self options:nil].firstObject;
+        _mySalesmanListView.frame=CGRectMake(SCREEN_WIDTH - 140, 64, 130, 180);
+        _mySalesmanListView.alpha=1;
+        UITapGestureRecognizer *salegesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(salegesture)];
+        [_mySalesmanListView.saleview addGestureRecognizer:salegesture];
+        UITapGestureRecognizer *supersalegesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(supersalegesture)];
+        [_mySalesmanListView.superView addGestureRecognizer:supersalegesture];
+        UITapGestureRecognizer *storegesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(storegesture)];
+        [_mySalesmanListView.storeView addGestureRecognizer:storegesture];
+        
+    }
+    
+    return _mySalesmanListView;
+    
+}
+
+-(UIView*)maskView{
+    
+    if (!_maskView) {
+        _maskView=[[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        [_maskView setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.0f]];
+        UITapGestureRecognizer *maskvgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(maskviewgesture)];
+        [_maskView addGestureRecognizer:maskvgesture];
+    }
+    return _maskView;
     
 }
 

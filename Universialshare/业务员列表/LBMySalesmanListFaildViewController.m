@@ -1,36 +1,35 @@
 //
-//  LBMySalesmanListViewController.m
+//  LBMySalesmanListFaildViewController.m
 //  Universialshare
 //
-//  Created by 四川三君科技有限公司 on 2017/4/23.
+//  Created by 四川三君科技有限公司 on 2017/5/12.
 //  Copyright © 2017年 四川三君科技有限公司. All rights reserved.
 //
 
-#import "LBMySalesmanListViewController.h"
+#import "LBMySalesmanListFaildViewController.h"
 #import "LBMySalesmanListTableViewCell.h"
 #import "LBMySalesmanListDeatilViewController.h"
 #import "LBSaleManPersonInfoViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface LBMySalesmanListViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
+@interface LBMySalesmanListFaildViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic)NSMutableArray *dataarr;
 @property (strong, nonatomic)LoadWaitView *loadV;
 @property (assign, nonatomic)NSInteger page;//页数默认为1
 @property (assign, nonatomic)BOOL refreshType;//判断刷新状态 默认为no
 @property (strong, nonatomic)NodataView *nodataV;
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @end
 
-@implementation LBMySalesmanListViewController
+@implementation LBMySalesmanListFaildViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = NO;
     _page = 1;
     self.tableview.tableFooterView = [UIView new];
-    
+     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableview registerNib:[UINib nibWithNibName:@"LBMySalesmanListTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMySalesmanListTableViewCell"];
     
     //获取数据
@@ -70,7 +69,7 @@
     
     NSDictionary *dic=notification.userInfo;
     
-    NSLog(@"cccccc%@",dic);
+    NSLog(@"bbbbbb%@",dic);
     
 }
 -(void)initdatasource{
@@ -148,6 +147,7 @@
 //        
 //    }
 //    return self.dataarr.count;
+    
     self.nodataV.hidden = YES;
     return 5;
 }
@@ -189,11 +189,11 @@
 //    
 //    __weak typeof(self) weakself =self;
 //    cell.returntapgestureimage = ^(NSInteger index){
-//    
-////        if (weakself.returnpushinfovc) {
-////            weakself.returnpushinfovc(index);
-////        }
-//    
+//        
+//        //        if (weakself.returnpushinfovc) {
+//        //            weakself.returnpushinfovc(index);
+//        //        }
+//        
 //    };
     
     
