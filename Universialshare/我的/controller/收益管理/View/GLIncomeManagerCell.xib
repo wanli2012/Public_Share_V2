@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商家名称:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDA-qA-gpe">
@@ -75,11 +75,10 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总营业额" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ci-wV-ga6">
                                 <rect key="frame" x="13" y="6" width="54" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.36652925609999998" green="0.8058723807" blue="0.43994837999999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.095345510563380281" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="jzJ-Hh-eZu" firstAttribute="leading" secondItem="9UK-us-qwx" secondAttribute="leading" id="Qs6-lD-PH4"/>
                             <constraint firstAttribute="width" constant="80" id="SkV-G6-eac"/>
@@ -114,7 +113,7 @@
                 <outlet property="addressLabel" destination="61O-4U-31J" id="S2E-AT-g2b"/>
                 <outlet property="nameLabel" destination="9XB-RW-rQm" id="9Mm-W4-b2L"/>
             </connections>
-            <point key="canvasLocation" x="32" y="-62"/>
+            <point key="canvasLocation" x="81" y="-95"/>
         </tableViewCell>
     </objects>
 </document>
