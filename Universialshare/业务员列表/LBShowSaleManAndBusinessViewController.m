@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UIView *buttonv;
 @property (weak, nonatomic) IBOutlet UIButton *saleBt;
 @property (weak, nonatomic) IBOutlet UIButton *businessBt;
+@property (weak, nonatomic) IBOutlet UIButton *shenheZBt;
+
+
 @property (strong, nonatomic)LBMyBusinessListViewController *businessListVc;
 @property (strong, nonatomic)LBMySalesmanListViewController *salesmanListVc;
 @property (nonatomic, strong)UIViewController *currentViewController;
@@ -117,9 +120,10 @@
 - (IBAction)salemanEvent:(UIButton *)sender {
     
     [UIView animateWithDuration:0.3 animations:^{
-        self.lineView.frame = CGRectMake(0, 48, SCREEN_WIDTH / 2, 1);
+        self.lineView.frame = CGRectMake(0, 48, SCREEN_WIDTH / 3, 1);
         [self.saleBt setTitleColor:YYSRGBColor(44, 153, 46, 1) forState:UIControlStateNormal];
         [self.businessBt setTitleColor:YYSRGBColor(0, 0, 0, 1) forState:UIControlStateNormal];
+        [self.shenheZBt setTitleColor:YYSRGBColor(0, 0, 0, 1) forState:UIControlStateNormal];
     } completion:^(BOOL finished) {
         
     }];
@@ -132,9 +136,10 @@
 - (IBAction)businessEvent:(UIButton *)sender {
     
     [UIView animateWithDuration:0.3 animations:^{
-        self.lineView.frame = CGRectMake(SCREEN_WIDTH / 2, 48, SCREEN_WIDTH / 2, 1);
+        self.lineView.frame = CGRectMake(SCREEN_WIDTH/3 , 48, SCREEN_WIDTH / 3, 1);
         [self.businessBt setTitleColor:YYSRGBColor(44, 153, 46, 1) forState:UIControlStateNormal];
         [self.saleBt setTitleColor:YYSRGBColor(0, 0, 0, 1) forState:UIControlStateNormal];
+        [self.shenheZBt setTitleColor:YYSRGBColor(0, 0, 0, 1) forState:UIControlStateNormal];
     } completion:^(BOOL finished) {
         
     }];
@@ -143,6 +148,27 @@
     [self fitFrameForChildViewController:_businessListVc];
     
 }
+
+- (IBAction)shenhezhong:(UIButton *)sender {
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.lineView.frame = CGRectMake(SCREEN_WIDTH/3 * 2, 48, SCREEN_WIDTH / 3, 1);
+        [self.saleBt setTitleColor:YYSRGBColor(0, 0, 0, 1) forState:UIControlStateNormal];
+        [self.businessBt setTitleColor:YYSRGBColor(0, 0, 0, 1) forState:UIControlStateNormal];
+        [self.shenheZBt setTitleColor:YYSRGBColor(44, 153, 46, 1) forState:UIControlStateNormal];
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+}
+
+- (IBAction)shaixuanEvent:(UIButton *)sender {
+    
+    
+    
+}
+
+
 
 - (void)fitFrameForChildViewController:(UIViewController *)childViewController{
     CGRect frame = self.contentView.frame;
@@ -168,7 +194,7 @@
 -(UIView*)lineView{
     
     if (!_lineView) {
-        _lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 48, SCREEN_WIDTH / 2, 1)];
+        _lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 48, SCREEN_WIDTH / 3, 1)];
         _lineView.backgroundColor = YYSRGBColor(44, 153, 46, 1);
     }
     

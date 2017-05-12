@@ -37,7 +37,7 @@
 
     self.typeStr = @"0";
     _page = 1;
-    self.navigationItem.title = @"推荐业务员";
+    self.navigationItem.title = @"推荐员列表";
     self.view.backgroundColor=[UIColor whiteColor];
     self.navigationController.navigationBar.hidden = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
