@@ -35,7 +35,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="Lvg-Yw-PGT"/>
                     </constraints>
-                    <state key="normal" title="添加业务员">
+                    <state key="normal" title="添加推广员">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>

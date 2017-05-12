@@ -49,7 +49,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"添加业务员";
+    self.navigationItem.title = @"添加推广员";
     self.view.backgroundColor=[UIColor whiteColor];
     self.navigationController.navigationBar.hidden = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
