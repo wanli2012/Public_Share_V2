@@ -8,6 +8,7 @@
 
 #import "LBBelowTheLineViewController.h"
 #import "IncentiveModel.h"
+#import "LBBelowTheLineListViewController.h"
 
 @interface LBBelowTheLineViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
 
@@ -64,6 +65,16 @@
     
     self.yuliuTf.text = randomNumber;
     
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"记录"] style:UIBarButtonItemStylePlain target:self action:@selector(checkrecorderEvent)];
+    self.navigationItem.rightBarButtonItem=item;
+    
+}
+
+-(void)checkrecorderEvent{
+    self.hidesBottomBarWhenPushed = YES;
+    LBBelowTheLineListViewController *vc=[[LBBelowTheLineListViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 //重新生成生成预留信息

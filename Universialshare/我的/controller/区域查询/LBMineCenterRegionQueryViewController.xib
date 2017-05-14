@@ -12,16 +12,19 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBMineCenterRegionQueryViewController">
             <connections>
+                <outlet property="areaLb" destination="ndS-ON-XY8" id="u2x-6k-MeZ"/>
                 <outlet property="baseview" destination="7Y9-o4-Qki" id="e1z-8D-t6m"/>
                 <outlet property="chechBt" destination="xXt-0e-8JN" id="GDg-Gw-fNE"/>
+                <outlet property="cityLb" destination="fA6-L2-W3R" id="981-NM-eUR"/>
                 <outlet property="headerImage" destination="nSB-5X-fin" id="LPh-1X-6Yk"/>
+                <outlet property="provinceLb" destination="ccc-wi-vi8" id="QFj-xf-l12"/>
                 <outlet property="signUpBt" destination="jmo-Wj-Daz" id="nr4-FO-7eA"/>
                 <outlet property="tableview" destination="3Bm-SF-yrw" id="fHA-nd-M4S"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -41,7 +44,7 @@
                                                 <constraint firstAttribute="width" constant="18" id="rGT-eL-AGT"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="四川省" textAlignment="right" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccc-wi-vi8">
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不限" textAlignment="right" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccc-wi-vi8">
                                             <rect key="frame" x="0.0" y="20" width="61.5" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="Hfk-9y-kJ8"/>
@@ -74,7 +77,7 @@
                                                 <constraint firstAttribute="width" constant="18" id="zUl-Pi-CBg"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成都市" textAlignment="right" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fA6-L2-W3R">
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不限" textAlignment="right" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fA6-L2-W3R">
                                             <rect key="frame" x="0.0" y="20" width="62" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="3fb-Ge-tXx"/>
@@ -107,7 +110,7 @@
                                                 <constraint firstAttribute="width" constant="18" id="hZV-Gb-IEZ"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="武侯区" textAlignment="right" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndS-ON-XY8">
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不限" textAlignment="right" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndS-ON-XY8">
                                             <rect key="frame" x="0.0" y="20" width="61.5" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="4tx-QH-wPd"/>
@@ -174,7 +177,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmo-Wj-Daz">
-                    <rect key="frame" x="10" y="607" width="355" height="40"/>
+                    <rect key="frame" x="10" y="617" width="355" height="40"/>
                     <color key="backgroundColor" red="0.14404621719999999" green="0.60565376280000005" blue="0.14635491370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="jJV-bg-abX"/>
@@ -187,7 +190,7 @@
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Bm-SF-yrw">
-                    <rect key="frame" x="0.0" y="144" width="375" height="453"/>
+                    <rect key="frame" x="0.0" y="144" width="375" height="463"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <imageView key="tableHeaderView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="XRPlaceholder" id="nSB-5X-fin">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
@@ -204,7 +207,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="jmo-Wj-Daz" secondAttribute="trailing" constant="10" id="3AY-Q6-kC7"/>
                 <constraint firstAttribute="trailing" secondItem="3Bm-SF-yrw" secondAttribute="trailing" id="8Mt-cb-Bjm"/>
-                <constraint firstAttribute="bottom" secondItem="jmo-Wj-Daz" secondAttribute="bottom" constant="20" id="8x2-QM-g6Z"/>
+                <constraint firstAttribute="bottom" secondItem="jmo-Wj-Daz" secondAttribute="bottom" constant="10" id="8x2-QM-g6Z"/>
                 <constraint firstItem="7Y9-o4-Qki" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="D5s-aG-Hve"/>
                 <constraint firstItem="3Bm-SF-yrw" firstAttribute="top" secondItem="7Y9-o4-Qki" secondAttribute="bottom" constant="10" id="LcN-dc-etV"/>
                 <constraint firstItem="jmo-Wj-Daz" firstAttribute="top" secondItem="3Bm-SF-yrw" secondAttribute="bottom" constant="10" id="MAq-eC-yjM"/>
@@ -213,6 +216,7 @@
                 <constraint firstItem="3Bm-SF-yrw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sDU-mr-l42"/>
                 <constraint firstAttribute="trailing" secondItem="7Y9-o4-Qki" secondAttribute="trailing" constant="10" id="vju-pn-fZ4"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="35.5" y="53.5"/>
         </view>
         <tapGestureRecognizer id="3Oj-q8-whV">

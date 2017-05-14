@@ -11,11 +11,19 @@
 @interface LBMineCenterRegionQueryTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIView *agenceView;
-
 @property (weak, nonatomic) IBOutlet UIView *baseview;
 @property (weak, nonatomic) IBOutlet UILabel *adreesLb;
-@property (weak, nonatomic) IBOutlet UILabel *moneyLb;
+@property (weak, nonatomic) IBOutlet UILabel *agenceLb;
 
-@property (weak, nonatomic) IBOutlet UIImageView *headimage;
+@property (weak, nonatomic) IBOutlet UILabel *serviceNumLb;
+@property (weak, nonatomic) IBOutlet UILabel *serviceMoneyLb;
+@property (weak, nonatomic) IBOutlet UILabel *industryNumLb;
+@property (weak, nonatomic) IBOutlet UILabel *industryMoneyLb;
+
+
+@property (weak, nonatomic) IBOutlet UIImageView *industryImage;
+@property (weak, nonatomic) IBOutlet UILabel *industryAgenclb;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topconstrait;
+
 
 @end

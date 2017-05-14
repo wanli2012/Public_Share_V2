@@ -85,9 +85,6 @@
     [self.view addSubview:self.incentiveModelMaskV];
     [self.incentiveModelMaskV addSubview:self.incentiveModelV];
     
-    UITapGestureRecognizer *incentiveModelMaskVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(incentiveModelMaskVtapgestureLb)];
-    [self.incentiveModelMaskV addGestureRecognizer:incentiveModelMaskVgesture];
-    
 }
 //选择省份
 - (IBAction)choseProvince:(UITapGestureRecognizer *)sender {
@@ -429,6 +426,8 @@
     if (!_incentiveModelMaskV) {
         _incentiveModelMaskV=[[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
         _incentiveModelMaskV.backgroundColor=[UIColor clearColor];
+        UITapGestureRecognizer *incentiveModelMaskVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(incentiveModelMaskVtapgestureLb)];
+        [_incentiveModelMaskV addGestureRecognizer:incentiveModelMaskVgesture];
     }
     
     return _incentiveModelMaskV;
