@@ -487,7 +487,8 @@
 		4AD5514D1EB2E6B600C04062 /* GLSubmitChooseTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD5514C1EB2E6B600C04062 /* GLSubmitChooseTimeView.m */; };
 		4AD5514F1EB2E6C900C04062 /* GLSubmitChooseTimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD5514E1EB2E6C900C04062 /* GLSubmitChooseTimeView.xib */; };
 		4AD551521EB36E4D00C04062 /* SYDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD551511EB36E4D00C04062 /* SYDatePicker.m */; };
-		4AE3546A1EC7EF5800BF60CC /* GLConfirmOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE354691EC7EF5800BF60CC /* GLConfirmOrderModel.m */; };
+		4AE3546E1EC7F44700BF60CC /* GLConfirmOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE3546D1EC7F44700BF60CC /* GLConfirmOrderModel.m */; };
+		4AE354701EC7F7CD00BF60CC /* 我的.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AE3546F1EC7F7CD00BF60CC /* 我的.xcassets */; };
 		4AFAB8C71EBD9A4500CCFDCE /* GLSetup_VersionInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAB8C51EBD9A4500CCFDCE /* GLSetup_VersionInfoController.m */; };
 		4AFAB8C81EBD9A4500CCFDCE /* GLSetup_VersionInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFAB8C61EBD9A4500CCFDCE /* GLSetup_VersionInfoController.xib */; };
 		4F9D6A29F2E5B95EBA14BE59 /* Pods_Universialshare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83AB1B0045A3996493D9CF8 /* Pods_Universialshare.framework */; };
@@ -917,8 +918,6 @@
 		4A2F51EB1EC7084000ECA95D /* GLBottomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLBottomCell.h; sourceTree = "<group>"; };
 		4A2F51EC1EC7084000ECA95D /* GLBottomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLBottomCell.m; sourceTree = "<group>"; };
 		4A2F51ED1EC7084000ECA95D /* GLBottomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLBottomCell.xib; sourceTree = "<group>"; };
-		4A2F51EE1EC7084000ECA95D /* GLConfirmOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLConfirmOrderModel.h; sourceTree = "<group>"; };
-		4A2F51EF1EC7084000ECA95D /* GLConfirmOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLConfirmOrderModel.m; sourceTree = "<group>"; };
 		4A2F51F01EC7084000ECA95D /* GLEvaluateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLEvaluateCell.h; sourceTree = "<group>"; };
 		4A2F51F11EC7084000ECA95D /* GLEvaluateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLEvaluateCell.m; sourceTree = "<group>"; };
 		4A2F51F21EC7084000ECA95D /* GLEvaluateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLEvaluateCell.xib; sourceTree = "<group>"; };
@@ -1712,8 +1711,9 @@
 		4AD5514E1EB2E6C900C04062 /* GLSubmitChooseTimeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLSubmitChooseTimeView.xib; sourceTree = "<group>"; };
 		4AD551501EB36E4D00C04062 /* SYDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYDatePicker.h; sourceTree = "<group>"; };
 		4AD551511EB36E4D00C04062 /* SYDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYDatePicker.m; sourceTree = "<group>"; };
-		4AE354681EC7EF5800BF60CC /* GLConfirmOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLConfirmOrderModel.h; sourceTree = "<group>"; };
-		4AE354691EC7EF5800BF60CC /* GLConfirmOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLConfirmOrderModel.m; sourceTree = "<group>"; };
+		4AE3546C1EC7F44700BF60CC /* GLConfirmOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLConfirmOrderModel.h; sourceTree = "<group>"; };
+		4AE3546D1EC7F44700BF60CC /* GLConfirmOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLConfirmOrderModel.m; sourceTree = "<group>"; };
+		4AE3546F1EC7F7CD00BF60CC /* 我的.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "我的.xcassets"; sourceTree = "<group>"; };
 		4AFAB8C41EBD9A4500CCFDCE /* GLSetup_VersionInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSetup_VersionInfoController.h; sourceTree = "<group>"; };
 		4AFAB8C51EBD9A4500CCFDCE /* GLSetup_VersionInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLSetup_VersionInfoController.m; sourceTree = "<group>"; };
 		4AFAB8C61EBD9A4500CCFDCE /* GLSetup_VersionInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLSetup_VersionInfoController.xib; sourceTree = "<group>"; };
@@ -2385,7 +2385,7 @@
 			isa = PBXGroup;
 			children = (
 				4A2A00B01EC70D9400052CA7 /* Controller */,
-				4A2A00B71EC70D9400052CA7 /* Model */,
+				4AE3546B1EC7F44700BF60CC /* Model */,
 				4A2A00BA1EC70D9400052CA7 /* View */,
 			);
 			path = "订单";
@@ -2402,13 +2402,6 @@
 				4A2A00B61EC70D9400052CA7 /* GLOrderDetailController.xib */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		4A2A00B71EC70D9400052CA7 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		4A2A00BA1EC70D9400052CA7 /* View */ = {
@@ -2509,13 +2502,9 @@
 		4A2F51EA1EC7084000ECA95D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4AE354681EC7EF5800BF60CC /* GLConfirmOrderModel.h */,
-				4AE354691EC7EF5800BF60CC /* GLConfirmOrderModel.m */,
 				4A2F51EB1EC7084000ECA95D /* GLBottomCell.h */,
 				4A2F51EC1EC7084000ECA95D /* GLBottomCell.m */,
 				4A2F51ED1EC7084000ECA95D /* GLBottomCell.xib */,
-				4A2F51EE1EC7084000ECA95D /* GLConfirmOrderModel.h */,
-				4A2F51EF1EC7084000ECA95D /* GLConfirmOrderModel.m */,
 				4A2F51F01EC7084000ECA95D /* GLEvaluateCell.h */,
 				4A2F51F11EC7084000ECA95D /* GLEvaluateCell.m */,
 				4A2F51F21EC7084000ECA95D /* GLEvaluateCell.xib */,
@@ -4104,6 +4093,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4AE3546B1EC7F44700BF60CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4AE3546C1EC7F44700BF60CC /* GLConfirmOrderModel.h */,
+				4AE3546D1EC7F44700BF60CC /* GLConfirmOrderModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		4AEE9EC41E94FEBA004FFDB9 /* 登录注册 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4251,6 +4249,7 @@
 				F958C0811EA4A3F9003C9CFB /* personCenter.xcassets */,
 				F9520A121EADD74D00B4D665 /* MerchantSubmission.xcassets */,
 				4AA0D5FC1EAF675300CB8F77 /* Integral_Mall.xcassets */,
+				4AE3546F1EC7F7CD00BF60CC /* 我的.xcassets */,
 			);
 			path = "图片资源";
 			sourceTree = "<group>";
@@ -5443,6 +5442,7 @@
 				F91029C71EC5835B00246D04 /* LBMySalesmanListAuditViewController.xib in Resources */,
 				4A4610221E9CC6360045824F /* UMSCommentInputControlleriPad.xib in Resources */,
 				4A2F52171EC7084000ECA95D /* GLBottomCell.xib in Resources */,
+				4AE354701EC7F7CD00BF60CC /* 我的.xcassets in Resources */,
 				4AD5514F1EB2E6C900C04062 /* GLSubmitChooseTimeView.xib in Resources */,
 				F9061FDB1E83C4730080E9D9 /* LaunchScreen.storyboard in Resources */,
 				4AA0D5AD1EAEEC8400CB8F77 /* LBIntegralMallViewController.xib in Resources */,
@@ -5805,6 +5805,7 @@
 				4A4610411E9CC6360045824F /* ZXAztecCode.m in Sources */,
 				F92309551E9B8BFF00ECDC94 /* LBMyOrderPendingPaymentViewController.m in Sources */,
 				4AAD25371EC188C90054FD06 /* GLBuyBackRecordController.m in Sources */,
+				4AE3546E1EC7F44700BF60CC /* GLConfirmOrderModel.m in Sources */,
 				F94D6E281E9E074300412E64 /* SelectUserTypeView.m in Sources */,
 				4A4610801E9CC6360045824F /* ZXDetectorResult.m in Sources */,
 				4AAD25391EC188C90054FD06 /* GLBankCardModel.m in Sources */,
@@ -6261,7 +6262,6 @@
 				4A46106B1E9CC6360045824F /* ZXVINResultParser.m in Sources */,
 				4A4610A21E9CC6360045824F /* ZXDataMatrixSymbolInfo.m in Sources */,
 				4A0D978E1E9729C100A26B84 /* GLHomeRecommendCell.m in Sources */,
-				4AE3546A1EC7EF5800BF60CC /* GLConfirmOrderModel.m in Sources */,
 				4A4610B21E9CC6370045824F /* ZXAI01393xDecoder.m in Sources */,
 				F9121B1D1EB1DC4F00DAB7A2 /* LBMineStoreOrderingOneTableViewCell.m in Sources */,
 				4A46106C1E9CC6360045824F /* ZXWifiParsedResult.m in Sources */,
