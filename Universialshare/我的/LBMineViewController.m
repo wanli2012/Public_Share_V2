@@ -192,8 +192,12 @@
                 break;
             case 4:
             {
+//                self.hidesBottomBarWhenPushed=YES;
+//                GLDonationController *vc=[[GLDonationController alloc]init];
+//                [self.navigationController pushViewController:vc animated:YES];
+//                self.hidesBottomBarWhenPushed=NO;
                 self.hidesBottomBarWhenPushed=YES;
-                GLDonationController *vc=[[GLDonationController alloc]init];
+                LBMineCenterRegionQueryViewController *vc=[[LBMineCenterRegionQueryViewController alloc]init];
                 [self.navigationController pushViewController:vc animated:YES];
                 self.hidesBottomBarWhenPushed=NO;
             }
@@ -204,6 +208,7 @@
                 GLRecommendController *vc=[[GLRecommendController alloc]init];
                 [self.navigationController pushViewController:vc animated:YES];
                 self.hidesBottomBarWhenPushed=NO;
+                
             }
                 break;
                 
@@ -242,8 +247,7 @@
             {
                 if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
                     self.hidesBottomBarWhenPushed=YES;
-//                    LBBelowTheLineViewController *vc=[[LBBelowTheLineViewController alloc]init];
-                    GLIncomeManagerController *vc = [[GLIncomeManagerController alloc] init];
+                    LBBelowTheLineViewController *vc=[[LBBelowTheLineViewController alloc]init];
                     [self.navigationController pushViewController:vc animated:YES];
                     self.hidesBottomBarWhenPushed=NO;
                     
@@ -462,16 +466,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 //消息
 - (IBAction)messagebutton:(UIButton *)sender {
     
-    
     self.hidesBottomBarWhenPushed=YES;
-    LBMineCenterRegionQueryViewController *vc=[[LBMineCenterRegionQueryViewController alloc]init];
+    LBMineMessageViewController *vc=[[LBMineMessageViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed=NO;
-    
-//    self.hidesBottomBarWhenPushed=YES;
-//    LBMineMessageViewController *vc=[[LBMineMessageViewController alloc]init];
-//    [self.navigationController pushViewController:vc animated:YES];
-//    self.hidesBottomBarWhenPushed=NO;
     
 }
 
