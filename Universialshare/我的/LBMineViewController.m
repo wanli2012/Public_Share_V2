@@ -40,6 +40,8 @@
 #import "GLMyCollectionController.h"
 #import "GLIncomeManagerController.h"
 #import "GLMemberManagerController.h"
+#import "GLMerchant_IncomeController.h"
+#import "GLMerchat_StoreController.h"
 
 
 @interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
@@ -258,8 +260,17 @@
             case 2:
             {
                 self.hidesBottomBarWhenPushed=YES;
-                GLMine_MyBeansController *vc=[[GLMine_MyBeansController alloc]init];
-                [self.navigationController pushViewController:vc animated:YES];
+                if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
+                    
+                    GLMerchant_IncomeController *vc = [[GLMerchant_IncomeController alloc] init];
+                    [self.navigationController pushViewController:vc animated:YES];
+                    
+                }else{
+                    
+                    GLMine_MyBeansController *vc=[[GLMine_MyBeansController alloc]init];
+                    [self.navigationController pushViewController:vc animated:YES];
+                    
+                }
                 self.hidesBottomBarWhenPushed=NO;
                 
             }
@@ -267,9 +278,17 @@
             case 3:
             {
                 self.hidesBottomBarWhenPushed=YES;
+                if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
+                    
+                    GLMerchat_StoreController *vc = [[GLMerchat_StoreController alloc] init];
+                    [self.navigationController pushViewController:vc animated:YES];
+                    
+                }else{
+
                 GLBuyBackController *vc=[[GLBuyBackController alloc]init];
                 
                 [self.navigationController pushViewController:vc animated:YES];
+                }
                 self.hidesBottomBarWhenPushed=NO;
             }
                 break;

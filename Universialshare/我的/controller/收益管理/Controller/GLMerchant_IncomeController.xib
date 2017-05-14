@@ -28,7 +28,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fI2-Xk-zst">
                     <rect key="frame" x="0.0" y="64" width="375" height="100"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cw6-Oo-2zW">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="XRPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Cw6-Oo-2zW">
                             <rect key="frame" x="167.5" y="10" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="j4M-Zy-Yan"/>
@@ -85,6 +85,9 @@
                             <state key="normal" title="截止日期">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="timeChoose:" destination="-1" eventType="touchUpInside" id="LkI-dB-hfx"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaz-RA-DgE">
                             <rect key="frame" x="285" y="17" width="80" height="30"/>
@@ -93,7 +96,10 @@
                                 <constraint firstAttribute="width" constant="80" id="4mo-7X-3oX"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="查询"/>
+                            <state key="normal" title="搜索"/>
+                            <connections>
+                                <action selector="query:" destination="-1" eventType="touchUpInside" id="Oka-vR-JQs"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayZ-Dh-C7r">
                             <rect key="frame" x="10" y="17" width="85" height="30"/>
@@ -105,6 +111,9 @@
                             <state key="normal" title="起始日期">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="timeChoose:" destination="-1" eventType="touchUpInside" id="Agf-Qf-qxf"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -126,7 +135,7 @@
                         <constraint firstItem="9J9-6b-y2C" firstAttribute="leading" secondItem="ayZ-Dh-C7r" secondAttribute="trailing" constant="10" id="z8K-Uj-dja"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IMh-ce-D7u">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IMh-ce-D7u">
                     <rect key="frame" x="0.0" y="231" width="375" height="436"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -153,4 +162,7 @@
             <point key="canvasLocation" x="55.5" y="54.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="XRPlaceholder" width="391" height="220"/>
+    </resources>
 </document>
