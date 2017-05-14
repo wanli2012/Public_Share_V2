@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -126,6 +126,15 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="572-u1-tfi">
                             <rect key="frame" x="10" y="190" width="355" height="40"/>
                             <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y3j-Fy-9lA">
+                                    <rect key="frame" x="5" y="0.0" width="260" height="40"/>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="C4i-gW-Li3"/>
+                                    </connections>
+                                </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PIc-4a-u4h">
                                     <rect key="frame" x="265" y="0.0" width="90" height="40"/>
                                     <color key="backgroundColor" red="0.7691993117" green="0.19067090749999999" blue="0.036488793790000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -140,26 +149,17 @@
                                         <action selector="getnewcode:" destination="-1" eventType="touchUpInside" id="gs4-i8-Col"/>
                                     </connections>
                                 </button>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y3j-Fy-9lA">
-                                    <rect key="frame" x="5" y="0.0" width="260" height="40"/>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="-1" id="C4i-gW-Li3"/>
-                                    </connections>
-                                </textField>
                             </subviews>
                             <color key="backgroundColor" red="0.84304517509999999" green="0.84319037200000002" blue="0.84303599600000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstItem="PIc-4a-u4h" firstAttribute="top" secondItem="572-u1-tfi" secondAttribute="top" id="2T2-Qo-8Jc"/>
-                                <constraint firstAttribute="trailing" secondItem="PIc-4a-u4h" secondAttribute="trailing" id="61n-Ke-XHk"/>
+                                <constraint firstAttribute="bottom" secondItem="PIc-4a-u4h" secondAttribute="bottom" id="Drd-Hd-r4f"/>
                                 <constraint firstItem="Y3j-Fy-9lA" firstAttribute="top" secondItem="572-u1-tfi" secondAttribute="top" id="DzR-4O-ipi"/>
+                                <constraint firstAttribute="trailing" secondItem="PIc-4a-u4h" secondAttribute="trailing" id="Jax-EA-XKN"/>
                                 <constraint firstAttribute="bottom" secondItem="Y3j-Fy-9lA" secondAttribute="bottom" id="Pmd-rt-f9p"/>
+                                <constraint firstItem="PIc-4a-u4h" firstAttribute="leading" secondItem="Y3j-Fy-9lA" secondAttribute="trailing" id="REt-ot-bOk"/>
                                 <constraint firstAttribute="height" constant="40" id="S8V-8t-ykE"/>
                                 <constraint firstItem="Y3j-Fy-9lA" firstAttribute="leading" secondItem="572-u1-tfi" secondAttribute="leading" constant="5" id="WbA-Il-fra"/>
-                                <constraint firstAttribute="bottom" secondItem="PIc-4a-u4h" secondAttribute="bottom" id="bxL-mC-rkf"/>
-                                <constraint firstItem="PIc-4a-u4h" firstAttribute="leading" secondItem="Y3j-Fy-9lA" secondAttribute="trailing" id="lWk-rT-zYh"/>
+                                <constraint firstItem="PIc-4a-u4h" firstAttribute="top" secondItem="572-u1-tfi" secondAttribute="top" id="dVM-Py-AHU"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2cH-7t-Ldl">

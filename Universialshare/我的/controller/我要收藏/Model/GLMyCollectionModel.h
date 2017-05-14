@@ -10,12 +10,18 @@
 
 @interface GLMyCollectionModel : NSObject
 
-@property (nonatomic, copy)NSString *name;
+@property (nonatomic, copy)NSString *name;//商品名
 
-@property (nonatomic, copy)NSString *detail;
+@property (nonatomic, copy)NSString *info;//详情
 
-@property (nonatomic, copy)NSString *price;
+@property (nonatomic, copy)NSString *price;//价格
 
-@property (nonatomic, copy)NSString *pic;
+@property (nonatomic, copy)NSString *discount;//优惠,折扣
+
+@property (nonatomic, copy)NSString *goodsID;//商品ID
+
+@property (nonatomic, copy)NSString *goods_id;//商品id
+
+@property (nonatomic, copy)NSString *thumb;//图片url
 
 @end

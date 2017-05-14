@@ -65,11 +65,13 @@
     _ishidecotr=NO;
     return self;
 }
+
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext{
     
     return 0.5;
     
 }
+
 -(void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext{
     
     if ([_vcstr isEqualToString:@"LBMineCenterSafeModifySecondSecretViewController"]) {

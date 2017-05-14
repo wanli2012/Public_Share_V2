@@ -34,14 +34,12 @@
 
 -(void)LBMineCenterSafeBindPhonePopVc{
 
-   
     GLLoginController *loginVC = [[GLLoginController alloc] init];
     BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
     nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:nav animated:YES completion:nil];
     
 }
-
 
 - (IBAction)modfyPhone:(UIButton *)sender {
     

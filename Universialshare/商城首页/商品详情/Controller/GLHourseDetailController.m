@@ -68,6 +68,13 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     [super viewDidLoad];
     _status = 1;
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightBtn.frame = CGRectMake(0, 0, 80, 44);
+    [rightBtn setImage:[UIImage imageNamed:@"XRPlaceholder"] forState:UIControlStateNormal];
+    [rightBtn addTarget:self  action:@selector(myCollection) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
 //    self.navigationItem.title = @"房子详情";
     _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 160)
                                                           delegate:self
@@ -134,7 +141,29 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     }];
     
 }
+//收藏
+- (void)myCollection {
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"GID"] = self.goods_id;
 
+    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"shop/addMyCollect" paramDic:@{@"goods_id":self.goods_id} finish:^(id responseObject) {
+        
+        [_loadV removeloadview];
+        NSLog(@"responseObject = %@",responseObject);
+        if ([responseObject[@"code"] integerValue] == 1){
+        
+        }
+    
+        [MBProgressHUD showError:responseObject[@"message"]];
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        
+    }];
+}
 //积分兑换
 - (IBAction)exchange:(id)sender {
     self.hidesBottomBarWhenPushed = YES;

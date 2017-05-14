@@ -39,6 +39,8 @@
 #import "LBMineCenterRegionQueryViewController.h"
 #import "GLMyCollectionController.h"
 #import "GLIncomeManagerController.h"
+#import "GLMemberManagerController.h"
+
 
 @interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
     UIImageView *_imageviewLeft;
@@ -219,6 +221,11 @@
                     GLMyHeartController *vc=[[GLMyHeartController alloc]init];
                     [self.navigationController pushViewController:vc animated:YES];
                     self.hidesBottomBarWhenPushed=NO;
+                }else if([[UserModel defaultUser].groupId isEqualToString:Retailer]){
+                    self.hidesBottomBarWhenPushed=YES;
+                    GLMemberManagerController *vc = [[GLMemberManagerController alloc] init];
+                    [self.navigationController pushViewController:vc animated:YES];
+                    self.hidesBottomBarWhenPushed=NO;
                 }else{
                     self.hidesBottomBarWhenPushed=YES;
                     GLNoneOfDonationController *vc = [[GLNoneOfDonationController alloc] init];
@@ -269,7 +276,8 @@
             case 4:
             {
                 self.hidesBottomBarWhenPushed=YES;
-                GLDonationController *vc=[[GLDonationController alloc]init];
+//                GLDonationController *vc=[[GLDonationController alloc]init];
+                GLMyCollectionController *vc = [[GLMyCollectionController alloc] init];
                 
                 [self.navigationController pushViewController:vc animated:YES];
                 self.hidesBottomBarWhenPushed=NO;

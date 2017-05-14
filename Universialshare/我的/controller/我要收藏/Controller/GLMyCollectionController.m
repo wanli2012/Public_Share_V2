@@ -8,12 +8,19 @@
 
 #import "GLMyCollectionController.h"
 #import "GLMyCollectionCell.h"
+#import "GLMyCollectionModel.h"
 
 @interface GLMyCollectionController ()<UITableViewDelegate,UITableViewDataSource>
+{
+    int _page;//页数
+    LoadWaitView *_loadV;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong)NSMutableArray *models;
+
+@property (nonatomic ,strong)NodataView *nodataV;
 
 @end
 
@@ -22,25 +29,106 @@ static NSString *ID = @"GLMyCollectionCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"我的收藏";
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMyCollectionCell" bundle:nil] forCellReuseIdentifier:ID];
+    
+    [self.tableView addSubview:self.nodataV];
+    self.nodataV.hidden = YES;
+
+    
+    
+    __weak __typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf updateData:YES];
+        
+    }];
+    
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf updateData:NO];
+    }];
+    
+    // 设置文字
+    [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
+    
+    [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
+    
+    [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
+    
+    
+    self.tableView.mj_header = header;
+    self.tableView.mj_footer = footer;
+    [self updateData:YES];
+}
+- (void)endRefresh {
+    [self.tableView.mj_footer endRefreshing];
+    [self.tableView.mj_header endRefreshing];
+    
 }
 
+- (void)updateData:(BOOL)status {
+    
+    if (status) {
+        
+        _page = 1;
+        [self.models removeAllObjects];
+        
+    }else{
+        _page ++;
+    }
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"page"] = [NSString stringWithFormat:@"%d",_page];
+    
+    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"shop/myCollection_list" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        [self endRefresh];
+         NSLog(@"%@",dict);
+                NSLog(@"%@",responseObject);
+        if ([responseObject[@"code"] integerValue] == 1) {
+            
+            for (NSDictionary *dict in responseObject[@"data"]) {
+                GLMyCollectionModel *model = [GLMyCollectionModel mj_objectWithKeyValues:dict];
+                [_models addObject:model];
+            }
+            
+        }else if([responseObject[@"code"] integerValue] == 3){
+            
+            [MBProgressHUD showError:@"已经没有更多数据了"];
+        }
+        
+        
+        [self.tableView reloadData];
+    } enError:^(NSError *error) {
+        [self endRefresh];
+        [_loadV removeloadview];
+        self.nodataV.hidden = NO;
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
+}
 - (NSMutableArray *)models{
     
     if (!_models) {
         
         _models = [NSMutableArray array];
-        
-        for (int i =0; i <3; i++) {
-            [_models addObject:[NSString stringWithFormat:@"%d",i]];
-        }
+     
     }
     return _models;
 }
-
+-(NodataView*)nodataV{
+    
+    if (!_nodataV) {
+        _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
+        _nodataV.frame = CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT - 114);
+    }
+    return _nodataV;
+    
+}
 #pragma UITableViewDelegate UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -50,6 +138,7 @@ static NSString *ID = @"GLMyCollectionCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GLMyCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.model = self.models[indexPath.row];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -83,11 +172,36 @@ static NSString *ID = @"GLMyCollectionCell";
         
         [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             
-            NSLog(@"删除");
             
-            [self.models removeObjectAtIndex:indexPath.row];
+            GLMyCollectionModel *model = self.models[indexPath.row];
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            dict[@"token"] = [UserModel defaultUser].token;
+            dict[@"uid"] = [UserModel defaultUser].uid;
+            dict[@"GID"] = model.goods_id;
             
-            [self.tableView reloadData];
+            _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+            [NetworkManager requestPOSTWithURLStr:@"shop/delMyCollect" paramDic:dict finish:^(id responseObject) {
+                [_loadV removeloadview];
+                [self endRefresh];
+
+                if ([responseObject[@"code"] integerValue] == 1) {
+                    
+                    [MBProgressHUD showSuccess:responseObject[@"message"]];
+                    
+                    [self.models removeObjectAtIndex:indexPath.row];
+                    
+                }else{
+                    
+                    [MBProgressHUD showSuccess:responseObject[@"message"]];
+
+                }
+                [self.tableView reloadData];
+        
+            } enError:^(NSError *error) {
+                [_loadV removeloadview];
+                [MBProgressHUD showError:error.localizedDescription];
+            }];
+
             
         }]];
         [self presentViewController:alertController animated:YES completion:nil];

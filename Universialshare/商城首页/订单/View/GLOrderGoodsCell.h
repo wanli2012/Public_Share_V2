@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GLConfirmOrderModel.h"
+@class GLConfirmOrderModel;
 
 @interface GLOrderGoodsCell : UITableViewCell
 

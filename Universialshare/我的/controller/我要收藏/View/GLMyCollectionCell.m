@@ -14,8 +14,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *picImageV;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *discountLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
 @end
 
@@ -28,12 +29,16 @@
     self.bgView.clipsToBounds = YES;
 }
 
-//- (void)setModel:(GLMyCollectionModel *)model{
-//    _model = model;
-//    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
-//    self.nameLabel.text = model.name;
-//    self.detailLabel.text = model.detail;
-//    self.priceLabel.text = model.price;
-//}
+- (void)setModel:(GLMyCollectionModel *)model{
+    _model = model;
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+    if (self.picImageV.image == nil) {
+        self.picImageV.image = [UIImage imageNamed:@"XRPlaceholder"];
+    }
+    self.nameLabel.text = model.name;
+    self.detailLabel.text = model.info;
+    self.discountLabel.text = model.discount;
+    self.priceLabel.text = model.price;
+}
 
 @end
