@@ -39,10 +39,16 @@
 
 - (void)setModel:(GLRecommendRecordModel *)model {
     _model = model;
-//    self.pictureV.image = [UIImage imageNamed:model.picture];
-//    self.realnameLabel.text = model.username;
-//    self.dateLabel.text = model.reg_time;
-//    self.amountLabel.text = model.uid;
+
+    self.nameLabel.text = model.username;
+    self.xiaofeiLabel.text = model.total_money;
+    self.jinagliLabel.text = model.zyf_money;
+    self.phoneNumLabel.text = model.phone;
+    self.IDLabel.text = model.uid;
+    if ([model.group_id integerValue] == [OrdinaryUser integerValue]) {
+        
+    }
+    self.levelLabel.text = model.group_id;
 }
 
 

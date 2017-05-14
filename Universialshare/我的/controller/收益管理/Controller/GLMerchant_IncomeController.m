@@ -1,29 +1,26 @@
 //
-//  GLIncomeManagerController.m
+//  GLMerchant_IncomeController.m
 //  Universialshare
 //
-//  Created by 龚磊 on 2017/5/11.
+//  Created by 龚磊 on 2017/5/14.
 //  Copyright © 2017年 四川三君科技有限公司. All rights reserved.
 //
 
-#import "GLIncomeManagerController.h"
-#import "GLIncomeManagerCell.h"
-#import "GLIncomeManagerModel.h"
+#import "GLMerchant_IncomeController.h"
+#import "GLMerchant_IncomeCell.h"
 #import "HWCalendar.h"
 
-
-
-
-
-@interface GLIncomeManagerController ()<UITableViewDelegate,UITableViewDataSource,HWCalendarDelegate>
+@interface GLMerchant_IncomeController ()<HWCalendarDelegate>
 {
-    GLIncomeManagerModel *_model;
+    
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIButton *queryBtn;
 @property (weak, nonatomic) IBOutlet UIButton *timeOneBtn;
 @property (weak, nonatomic) IBOutlet UIButton *timeTwoBtn;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *timeOneBtnWidth;
+@property (weak, nonatomic) IBOutlet UIButton *queryBtn;
+@property (weak, nonatomic) IBOutlet UILabel *sumLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageV;
+
 
 @property (assign, nonatomic)NSInteger timeBtIndex;//判断选择的按钮时哪一个
 @property (strong, nonatomic)HWCalendar *Calendar;
@@ -31,60 +28,24 @@
 
 @end
 
-static NSString *ID = @"GLIncomeManagerCell";
-@implementation GLIncomeManagerController
+static NSString *ID = @"GLMerchant_IncomeCell";
+@implementation GLMerchant_IncomeController
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
+    self.navigationItem.title = @"收益";
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.hidden = NO;
-    self.navigationItem.title = @"收益管理";
-    
-    self.queryBtn.layer.cornerRadius = 5.f;
-    self.queryBtn.clipsToBounds = YES;
-    self.timeOneBtn.layer.borderWidth = 1;
-    self.timeOneBtn.layer.borderColor = YYSRGBColor(184, 184, 184, 0.3).CGColor;
-    self.timeTwoBtn.layer.borderWidth = 1;
-    self.timeTwoBtn.layer.borderColor = YYSRGBColor(184, 184, 184, 0.3).CGColor;
-    self.timeOneBtnWidth.constant = 85 * autoSizeScaleX;
-    
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"GLIncomeManagerCell" bundle:nil] forCellReuseIdentifier:ID];
-    _model = [[GLIncomeManagerModel alloc] init];
-    _model.name = @"你哈也的你大爷街";
-    _model.address = @"天府三街中百大道天府三街中百街中";
+    [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     
     [self.view addSubview:self.CalendarView];
     
     self.CalendarView.hidden = YES;
     
     [self.CalendarView addSubview:self.Calendar];
-    
-    __weak typeof(self) weakself = self;
-    _Calendar.returnCancel = ^(){
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            weakself.CalendarView.hidden = YES;
-        });
-    };
-    
-
-    [self.tableView reloadData];
 }
-
-//选择日期
-- (IBAction)timeChoose:(id)sender {
-    if (sender == self.timeOneBtn) {
-        _timeBtIndex = 1;
-    }else{
-        _timeBtIndex = 2;
-    }
-    self.CalendarView.hidden = NO;
-    [_Calendar show];
-
-}
-//查询
-- (IBAction)queryRequest:(id)sender {
+//查询 搜索
+- (IBAction)query:(id)sender {
     if ([self.timeOneBtn.titleLabel.text isEqualToString:@"起始日期"]) {
         [MBProgressHUD showError:@"还没有选择起始日期"];
         return;
@@ -107,8 +68,17 @@ static NSString *ID = @"GLIncomeManagerCell";
     }
 
 }
+//时间选择
+- (IBAction)timeChoose:(UIButton *)sender {
+    if (sender == self.timeOneBtn) {
+        _timeBtIndex = 1;
+    }else{
+        _timeBtIndex = 2;
+    }
+    self.CalendarView.hidden = NO;
+    [_Calendar show];
 
-
+}
 
 #pragma UITableviewDelegate UITableviewDataSource
 
@@ -117,21 +87,23 @@ static NSString *ID = @"GLIncomeManagerCell";
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    GLIncomeManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
-    cell.nameLabel.text = _model.name;
-    cell.addressLabel.text = _model.address;
+    GLMerchant_IncomeCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
+    
+//    cell.nameLabel.text = _model.name;
+//    cell.addressLabel.text = _model.address;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-  
-        
-    self.tableView.estimatedRowHeight = 64;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-   
-    return self.tableView.rowHeight;
+    
+    
+//    self.tableView.estimatedRowHeight = 64;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
+//    return self.tableView.rowHeight;
+    return 100;
     
 }
+
 #pragma mark - HWCalendarDelegate
 - (void)calendar:(HWCalendar *)calendar didClickSureButtonWithDate:(NSString *)date
 {

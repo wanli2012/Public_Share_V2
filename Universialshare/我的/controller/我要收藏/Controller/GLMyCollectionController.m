@@ -88,10 +88,9 @@ static NSString *ID = @"GLMyCollectionCell";
     [NetworkManager requestPOSTWithURLStr:@"shop/myCollection_list" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
-         NSLog(@"%@",dict);
-                NSLog(@"%@",responseObject);
+
         if ([responseObject[@"code"] integerValue] == 1) {
-            
+//            NSLog(@"%@",responseObject);
             for (NSDictionary *dict in responseObject[@"data"]) {
                 GLMyCollectionModel *model = [GLMyCollectionModel mj_objectWithKeyValues:dict];
                 [_models addObject:model];
@@ -142,7 +141,10 @@ static NSString *ID = @"GLMyCollectionCell";
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
+//    self.tableView.estimatedRowHeight = 10;
+//    return self.tableView.rowHeight;
+    return 120;
 }
 
 
