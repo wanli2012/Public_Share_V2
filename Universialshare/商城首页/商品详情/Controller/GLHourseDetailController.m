@@ -68,9 +68,9 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     [super viewDidLoad];
     _status = 1;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
+    //自定义右键
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightBtn.frame = CGRectMake(0, 0, 80, 44);
+    rightBtn.frame = CGRectMake(0, 0, 40, 44);
     [rightBtn setImage:[UIImage imageNamed:@"XRPlaceholder"] forState:UIControlStateNormal];
     [rightBtn addTarget:self  action:@selector(myCollection) forControlEvents:UIControlEventTouchUpInside];
     
@@ -150,10 +150,11 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     dict[@"GID"] = self.goods_id;
 
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/addMyCollect" paramDic:@{@"goods_id":self.goods_id} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"shop/addMyCollect" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
-        NSLog(@"responseObject = %@",responseObject);
+//        NSLog(@"dict = %@",dict);
+//        NSLog(@"responseObject = %@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1){
         
         }

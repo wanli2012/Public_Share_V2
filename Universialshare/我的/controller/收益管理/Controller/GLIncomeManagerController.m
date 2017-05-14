@@ -128,7 +128,7 @@ static NSString *ID = @"GLIncomeManagerCell";
         
     self.tableView.estimatedRowHeight = 64;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
+   
     return self.tableView.rowHeight;
     
 }

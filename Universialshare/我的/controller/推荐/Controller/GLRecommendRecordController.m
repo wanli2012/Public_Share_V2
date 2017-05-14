@@ -96,43 +96,43 @@ static NSString *ID = @"GLRecommendRcordCell";
         _page ++;
     }
     
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-//    dict[@"token"] = [UserModel defaultUser].token;
-//    dict[@"uid"] = [UserModel defaultUser].uid;
-//    dict[@"page"] = [NSString stringWithFormat:@"%ld",_page];
-//    
-//    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-//    [NetworkManager requestPOSTWithURLStr:@"user/rec_all_list" paramDic:dict finish:^(id responseObject) {
-//        [_loadV removeloadview];
-//         [self endRefresh];
-//        if ([responseObject[@"code"] integerValue] == 1) {
-//            
-//            for (NSDictionary *dict in responseObject[@"data"]) {
-//                
-//                GLRecommendRecordModel *model = [GLRecommendRecordModel mj_objectWithKeyValues:dict];
-//                [self.models addObject:model];
-//            }
-//
-//        }else{
-//            
-//            if (_models.count != 0){
-//                
-//                [MBProgressHUD showError:@"已经没有更多数据了!"];
-//            }
-//        }
-//        
-//        if (self.models.count <= 0 ) {
-//            self.nodataV.hidden = NO;
-//        }else{
-//            self.nodataV.hidden = YES;
-//        }
-//        [self.tableView reloadData];
-//        
-//    } enError:^(NSError *error) {
-//        [_loadV removeloadview];
-//        [self endRefresh];
-//        self.nodataV.hidden = NO;
-//    }];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"page"] = [NSString stringWithFormat:@"%ld",_page];
+    
+    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"user/rec_all_list" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+         [self endRefresh];
+        if ([responseObject[@"code"] integerValue] == 1) {
+//            NSLog(@"%@",responseObject);
+            for (NSDictionary *dict in responseObject[@"data"]) {
+                
+                GLRecommendRecordModel *model = [GLRecommendRecordModel mj_objectWithKeyValues:dict];
+                [self.models addObject:model];
+            }
+
+        }else{
+            
+            if (_models.count != 0){
+                
+                [MBProgressHUD showError:@"已经没有更多数据了!"];
+            }
+        }
+        
+        if (self.models.count <= 0 ) {
+            self.nodataV.hidden = NO;
+        }else{
+            self.nodataV.hidden = YES;
+        }
+        [self.tableView reloadData];
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [self endRefresh];
+        self.nodataV.hidden = NO;
+    }];
 }
 
 - (void)endRefresh {
@@ -153,13 +153,14 @@ static NSString *ID = @"GLRecommendRcordCell";
     return 2;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    return self.models.count;
-    return 2;
+
+    return self.models.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     GLRecommendRcordCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-//    cell.model = self.models[indexPath.row];
+    cell.model = self.models[indexPath.row];
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
