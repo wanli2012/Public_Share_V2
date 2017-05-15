@@ -8,6 +8,7 @@
 
 #import "GLMerchat_StoreController.h"
 #import "GLMerchat_StoreCell.h"
+#import "GLAddStoreController.h"
 
 
 @interface GLMerchat_StoreController ()<GLMerchat_StoreCellDelegate>
@@ -33,10 +34,17 @@ static NSString *ID = @"GLMerchat_StoreCell";
     self.navigationController.navigationBar.hidden = YES;
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
 }
+
+
 - (IBAction)back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)addStore:(id)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLAddStoreController *addVC = [[GLAddStoreController alloc] init];
+    [self.navigationController pushViewController:addVC animated:YES];
+    
 }
 #pragma UITableviewDelegate UITableviewDataSource
 
@@ -50,6 +58,7 @@ static NSString *ID = @"GLMerchat_StoreCell";
 //    //    cell.nameLabel.text = _model.name;
 //    //    cell.addressLabel.text = _model.address;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.delegate = self;
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -64,9 +73,9 @@ static NSString *ID = @"GLMerchat_StoreCell";
 
 - (void)cellClick:(NSInteger)index{
     if (index == 1) {
-        
+        NSLog(@"暂停营业");
     }else{
-        
+        NSLog(@"修改密码");
     }
 }
 

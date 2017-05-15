@@ -497,6 +497,8 @@
 		4AE354831EC8482500BF60CC /* GLMerchat_StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE354811EC8482500BF60CC /* GLMerchat_StoreController.xib */; };
 		4AE354871EC84BC300BF60CC /* GLMerchat_StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE354851EC84BC300BF60CC /* GLMerchat_StoreCell.m */; };
 		4AE354881EC84BC300BF60CC /* GLMerchat_StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE354861EC84BC300BF60CC /* GLMerchat_StoreCell.xib */; };
+		4AE3548C1EC85E6C00BF60CC /* GLAddStoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE3548A1EC85E6C00BF60CC /* GLAddStoreController.m */; };
+		4AE3548D1EC85E6C00BF60CC /* GLAddStoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE3548B1EC85E6C00BF60CC /* GLAddStoreController.xib */; };
 		4AFAB8C71EBD9A4500CCFDCE /* GLSetup_VersionInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAB8C51EBD9A4500CCFDCE /* GLSetup_VersionInfoController.m */; };
 		4AFAB8C81EBD9A4500CCFDCE /* GLSetup_VersionInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFAB8C61EBD9A4500CCFDCE /* GLSetup_VersionInfoController.xib */; };
 		4F9D6A29F2E5B95EBA14BE59 /* Pods_Universialshare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83AB1B0045A3996493D9CF8 /* Pods_Universialshare.framework */; };
@@ -1744,6 +1746,9 @@
 		4AE354841EC84BC300BF60CC /* GLMerchat_StoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMerchat_StoreCell.h; sourceTree = "<group>"; };
 		4AE354851EC84BC300BF60CC /* GLMerchat_StoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMerchat_StoreCell.m; sourceTree = "<group>"; };
 		4AE354861EC84BC300BF60CC /* GLMerchat_StoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMerchat_StoreCell.xib; sourceTree = "<group>"; };
+		4AE354891EC85E6C00BF60CC /* GLAddStoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLAddStoreController.h; sourceTree = "<group>"; };
+		4AE3548A1EC85E6C00BF60CC /* GLAddStoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLAddStoreController.m; sourceTree = "<group>"; };
+		4AE3548B1EC85E6C00BF60CC /* GLAddStoreController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLAddStoreController.xib; sourceTree = "<group>"; };
 		4AFAB8C41EBD9A4500CCFDCE /* GLSetup_VersionInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSetup_VersionInfoController.h; sourceTree = "<group>"; };
 		4AFAB8C51EBD9A4500CCFDCE /* GLSetup_VersionInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLSetup_VersionInfoController.m; sourceTree = "<group>"; };
 		4AFAB8C61EBD9A4500CCFDCE /* GLSetup_VersionInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLSetup_VersionInfoController.xib; sourceTree = "<group>"; };
@@ -4169,6 +4174,9 @@
 				4AE3547F1EC8482500BF60CC /* GLMerchat_StoreController.h */,
 				4AE354801EC8482500BF60CC /* GLMerchat_StoreController.m */,
 				4AE354811EC8482500BF60CC /* GLMerchat_StoreController.xib */,
+				4AE354891EC85E6C00BF60CC /* GLAddStoreController.h */,
+				4AE3548A1EC85E6C00BF60CC /* GLAddStoreController.m */,
+				4AE3548B1EC85E6C00BF60CC /* GLAddStoreController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5593,6 +5601,7 @@
 				F92309801E9B8BFF00ECDC94 /* LBMineCenterSafeSecondSecretViewController.xib in Resources */,
 				4AAD25381EC188C90054FD06 /* GLBuyBackRecordController.xib in Resources */,
 				F9126EBD1EA05692004785EA /* GLMine_InfoController.xib in Resources */,
+				4AE3548D1EC85E6C00BF60CC /* GLAddStoreController.xib in Resources */,
 				4A4610261E9CC6360045824F /* UMSnsAccountViewController.xib in Resources */,
 				4AAD25831EC188F50054FD06 /* GLReceiveBeansCell.xib in Resources */,
 				4A4610341E9CC6360045824F /* ios-social-sdk-comment-detail.html in Resources */,
@@ -6161,6 +6170,7 @@
 				F92309851E9B8BFF00ECDC94 /* LBMineCenterSafeChangePhoneViewController.m in Sources */,
 				4A4610DE1E9CC6370045824F /* ZXUPCAWriter.m in Sources */,
 				F92309591E9B8BFF00ECDC94 /* LBMyOrderEveluationSucessCollectionViewCell.m in Sources */,
+				4AE3548C1EC85E6C00BF60CC /* GLAddStoreController.m in Sources */,
 				F966B3F21EAC7FBA007260FC /* LBNybusinessListTableViewCell.m in Sources */,
 				F966B3FD1EAC911E007260FC /* LBMySalesmanListTableViewCell.m in Sources */,
 				4A4611171E9CC6370045824F /* ZXQRCodeWriter.m in Sources */,
