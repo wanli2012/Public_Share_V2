@@ -39,6 +39,10 @@
 		4A0D97941E9729C100A26B84 /* GLTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0D975E1E9729C100A26B84 /* GLTopCell.m */; };
 		4A0D97951E9729C100A26B84 /* GLTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0D975F1E9729C100A26B84 /* GLTopCell.xib */; };
 		4A1D78ED1EADF81900374386 /* GLCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1D78EC1EADF81900374386 /* GLCityModel.m */; };
+		4A1FE7321EC978FB0000A357 /* GLRecommendStoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FE7301EC978FB0000A357 /* GLRecommendStoreController.m */; };
+		4A1FE7331EC978FB0000A357 /* GLRecommendStoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1FE7311EC978FB0000A357 /* GLRecommendStoreController.xib */; };
+		4A1FE73B1EC9811E0000A357 /* GLNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FE7391EC9811E0000A357 /* GLNearbyViewController.m */; };
+		4A1FE73C1EC9811E0000A357 /* GLNearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1FE73A1EC9811E0000A357 /* GLNearbyViewController.xib */; };
 		4A2A00C11EC70D9400052CA7 /* GLConfirmOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2A00B21EC70D9400052CA7 /* GLConfirmOrderController.m */; };
 		4A2A00C21EC70D9400052CA7 /* GLConfirmOrderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2A00B31EC70D9400052CA7 /* GLConfirmOrderController.xib */; };
 		4A2A00C31EC70D9400052CA7 /* GLOrderDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2A00B51EC70D9400052CA7 /* GLOrderDetailController.m */; };
@@ -895,6 +899,12 @@
 		4A0D975F1E9729C100A26B84 /* GLTopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLTopCell.xib; sourceTree = "<group>"; };
 		4A1D78EB1EADF81900374386 /* GLCityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCityModel.h; sourceTree = "<group>"; };
 		4A1D78EC1EADF81900374386 /* GLCityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLCityModel.m; sourceTree = "<group>"; };
+		4A1FE72F1EC978FB0000A357 /* GLRecommendStoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRecommendStoreController.h; sourceTree = "<group>"; };
+		4A1FE7301EC978FB0000A357 /* GLRecommendStoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLRecommendStoreController.m; sourceTree = "<group>"; };
+		4A1FE7311EC978FB0000A357 /* GLRecommendStoreController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLRecommendStoreController.xib; sourceTree = "<group>"; };
+		4A1FE7381EC9811E0000A357 /* GLNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearbyViewController.h; sourceTree = "<group>"; };
+		4A1FE7391EC9811E0000A357 /* GLNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearbyViewController.m; sourceTree = "<group>"; };
+		4A1FE73A1EC9811E0000A357 /* GLNearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearbyViewController.xib; sourceTree = "<group>"; };
 		4A203DA81E9F646500DF22F7 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		4A2A00B11EC70D9400052CA7 /* GLConfirmOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLConfirmOrderController.h; sourceTree = "<group>"; };
 		4A2A00B21EC70D9400052CA7 /* GLConfirmOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLConfirmOrderController.m; sourceTree = "<group>"; };
@@ -2429,6 +2439,74 @@
 				4A0D975F1E9729C100A26B84 /* GLTopCell.xib */,
 			);
 			path = "首页";
+			sourceTree = "<group>";
+		};
+		4A1FE72B1EC9424C0000A357 /* 我要推店 */ = {
+			isa = PBXGroup;
+			children = (
+				4A1FE72C1EC9424C0000A357 /* Controller */,
+				4A1FE72D1EC9424C0000A357 /* Model */,
+				4A1FE72E1EC9424C0000A357 /* View */,
+			);
+			path = "我要推店";
+			sourceTree = "<group>";
+		};
+		4A1FE72C1EC9424C0000A357 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4A1FE72F1EC978FB0000A357 /* GLRecommendStoreController.h */,
+				4A1FE7301EC978FB0000A357 /* GLRecommendStoreController.m */,
+				4A1FE7311EC978FB0000A357 /* GLRecommendStoreController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4A1FE72D1EC9424C0000A357 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4A1FE72E1EC9424C0000A357 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4A1FE7341EC9810E0000A357 /* 搜附近 */ = {
+			isa = PBXGroup;
+			children = (
+				4A1FE7351EC9810E0000A357 /* Controller */,
+				4A1FE7361EC9810E0000A357 /* Model */,
+				4A1FE7371EC9810E0000A357 /* View */,
+			);
+			path = "搜附近";
+			sourceTree = "<group>";
+		};
+		4A1FE7351EC9810E0000A357 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4A1FE7381EC9811E0000A357 /* GLNearbyViewController.h */,
+				4A1FE7391EC9811E0000A357 /* GLNearbyViewController.m */,
+				4A1FE73A1EC9811E0000A357 /* GLNearbyViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4A1FE7361EC9810E0000A357 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4A1FE7371EC9810E0000A357 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		4A2A00AF1EC70D9400052CA7 /* 订单 */ = {
@@ -4264,6 +4342,7 @@
 				F97644D01EA5B66300AFA22B /* RSA密钥 */,
 				4A460D9B1E9CC6350045824F /* 三方库 */,
 				4A4608CF1E9C9E6D0045824F /* 首页 */,
+				4A1FE7341EC9810E0000A357 /* 搜附近 */,
 				4AEE9EC41E94FEBA004FFDB9 /* 登录注册 */,
 				4A4608F51E9CA0880045824F /* 积分商城 */,
 				4A0D97031E9729C100A26B84 /* 商城首页 */,
@@ -4497,6 +4576,7 @@
 				4AAD25A01EC1895D0054FD06 /* 我要收藏 */,
 				4A521F561EC450860028F2A2 /* 收益管理 */,
 				4A2F51C01EC6E3E100ECA95D /* 会员管理 */,
+				4A1FE72B1EC9424C0000A357 /* 我要推店 */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -5574,6 +5654,7 @@
 				4AE3547A1EC83AAB00BF60CC /* GLMerchant_IncomeCell.xib in Resources */,
 				4AD5514F1EB2E6C900C04062 /* GLSubmitChooseTimeView.xib in Resources */,
 				F9061FDB1E83C4730080E9D9 /* LaunchScreen.storyboard in Resources */,
+				4A1FE7331EC978FB0000A357 /* GLRecommendStoreController.xib in Resources */,
 				4AA0D5AD1EAEEC8400CB8F77 /* LBIntegralMallViewController.xib in Resources */,
 				F94D319D1EAF3FC300309029 /* LBRecommendedBusinessAuditOneTableViewCell.xib in Resources */,
 				4A0D978D1E9729C100A26B84 /* GLHomePageController.xib in Resources */,
@@ -5762,6 +5843,7 @@
 				F912749D1EA0E64B00B7A539 /* LBMineStoreTodayOrderingViewController.xib in Resources */,
 				F9126EF71EA0B086004785EA /* LBMineSystemMessageTableViewCell.xib in Resources */,
 				F966B3B71EAC3BB8007260FC /* LBMineCenterOrderDetailOneTableViewCell.xib in Resources */,
+				4A1FE73C1EC9811E0000A357 /* GLNearbyViewController.xib in Resources */,
 				4A4610211E9CC6360045824F /* UMSCommentInputController.xib in Resources */,
 				4A2F52201EC7084100ECA95D /* GLHourseChangeNumCell.xib in Resources */,
 				F923097A1E9B8BFF00ECDC94 /* LBMineCenterAccountSafeViewController.xib in Resources */,
@@ -5893,6 +5975,7 @@
 				F94D31E81EAF7EE200309029 /* LBWaitOrdersHeaderView.m in Sources */,
 				F923098B1E9B8BFF00ECDC94 /* MineCollectionHeaderV.m in Sources */,
 				F966B3BB1EAC3D3E007260FC /* LBMineCenterOrderDetailTwoTableViewCell.m in Sources */,
+				4A1FE73B1EC9811E0000A357 /* GLNearbyViewController.m in Sources */,
 				4A4610961E9CC6360045824F /* ZXDataMatrixDecodedBitStreamParser.m in Sources */,
 				4A4610B71E9CC6370045824F /* ZXAI01weightDecoder.m in Sources */,
 				F9126EF11EA0B042004785EA /* LBMineSystemMessageViewController.m in Sources */,
@@ -6337,6 +6420,7 @@
 				4A0D97921E9729C100A26B84 /* GLHotCell.m in Sources */,
 				4A4610491E9CC6360045824F /* ZXAztecWriter.m in Sources */,
 				F961A9D61E9C75AF00275F52 /* predicateModel.m in Sources */,
+				4A1FE7321EC978FB0000A357 /* GLRecommendStoreController.m in Sources */,
 				F923092C1E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeDetailViewController.m in Sources */,
 				4A46104C1E9CC6360045824F /* ZXAddressBookDoCoMoResultParser.m in Sources */,
 				4AE354821EC8482500BF60CC /* GLMerchat_StoreController.m in Sources */,
