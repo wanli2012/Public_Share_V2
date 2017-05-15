@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="GLNearby_RecommendMerchatCollectionCell">
+            <rect key="frame" x="0.0" y="0.0" width="138" height="120"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="138" height="120"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="XRPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="KVK-wS-3lX">
+                        <rect key="frame" x="10" y="10" width="118" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="wjO-gC-0fb"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成都市美成都市美服饰品店成都" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqt-fe-PUx">
+                        <rect key="frame" x="10" y="80" width="118" height="29"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="lU0-dD-HN0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="KVK-wS-3lX" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="6wB-4k-t7F"/>
+                <constraint firstItem="Tqt-fe-PUx" firstAttribute="top" secondItem="KVK-wS-3lX" secondAttribute="bottom" constant="10" id="Nj6-IP-7Xa"/>
+                <constraint firstItem="Tqt-fe-PUx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="aIt-ps-1qK"/>
+                <constraint firstAttribute="trailing" secondItem="KVK-wS-3lX" secondAttribute="trailing" constant="10" id="jYp-4Z-sBq"/>
+                <constraint firstAttribute="trailing" secondItem="Tqt-fe-PUx" secondAttribute="trailing" constant="10" id="kR4-Jo-Hj8"/>
+                <constraint firstItem="KVK-wS-3lX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="oOH-6Z-04o"/>
+            </constraints>
+            <size key="customSize" width="138" height="115"/>
+            <point key="canvasLocation" x="84" y="-19"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="XRPlaceholder" width="391" height="220"/>
+    </resources>
+</document>
