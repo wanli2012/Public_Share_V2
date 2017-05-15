@@ -10,4 +10,16 @@
 
 @interface LBProductManagementTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *imagev;
+@property (weak, nonatomic) IBOutlet UIImageView *imageT;
+@property (weak, nonatomic) IBOutlet UILabel *modelLb;
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLb;
+@property (weak, nonatomic) IBOutlet UILabel *productNameLb;
+@property (weak, nonatomic) IBOutlet UILabel *numLb;
+@property (weak, nonatomic) IBOutlet UILabel *moneyLb;
+@property (weak, nonatomic) IBOutlet UIView *editView;
+@property (weak, nonatomic) IBOutlet UILabel *editLb;
+
+
 @end
