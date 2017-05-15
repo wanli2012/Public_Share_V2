@@ -828,6 +828,8 @@
 		F97F09D91EC9402A000D3B30 /* LBProductManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09D71EC9402A000D3B30 /* LBProductManagementViewController.xib */; };
 		F97F09DD1EC9406D000D3B30 /* LBProductManagementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F09DB1EC9406D000D3B30 /* LBProductManagementTableViewCell.m */; };
 		F97F09DE1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09DC1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib */; };
+		F97F09E21EC98AEA000D3B30 /* LBAddMineProductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F09E01EC98AEA000D3B30 /* LBAddMineProductionViewController.m */; };
+		F97F09E31EC98AEA000D3B30 /* LBAddMineProductionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09E11EC98AEA000D3B30 /* LBAddMineProductionViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2259,6 +2261,9 @@
 		F97F09DA1EC9406D000D3B30 /* LBProductManagementTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBProductManagementTableViewCell.h; sourceTree = "<group>"; };
 		F97F09DB1EC9406D000D3B30 /* LBProductManagementTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBProductManagementTableViewCell.m; sourceTree = "<group>"; };
 		F97F09DC1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBProductManagementTableViewCell.xib; sourceTree = "<group>"; };
+		F97F09DF1EC98AEA000D3B30 /* LBAddMineProductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBAddMineProductionViewController.h; sourceTree = "<group>"; };
+		F97F09E01EC98AEA000D3B30 /* LBAddMineProductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBAddMineProductionViewController.m; sourceTree = "<group>"; };
+		F97F09E11EC98AEA000D3B30 /* LBAddMineProductionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBAddMineProductionViewController.xib; sourceTree = "<group>"; };
 		FC2B7A4A425FAC91F43C98C0 /* Pods-Universialshare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Universialshare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Universialshare/Pods-Universialshare.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5512,6 +5517,9 @@
 				F97F09D51EC9402A000D3B30 /* LBProductManagementViewController.h */,
 				F97F09D61EC9402A000D3B30 /* LBProductManagementViewController.m */,
 				F97F09D71EC9402A000D3B30 /* LBProductManagementViewController.xib */,
+				F97F09DF1EC98AEA000D3B30 /* LBAddMineProductionViewController.h */,
+				F97F09E01EC98AEA000D3B30 /* LBAddMineProductionViewController.m */,
+				F97F09E11EC98AEA000D3B30 /* LBAddMineProductionViewController.xib */,
 				F97F09D41EC93FA9000D3B30 /* view */,
 			);
 			path = "产品管理";
@@ -5888,6 +5896,7 @@
 				4A2F51D71EC6FF9900ECA95D /* GLConsumerRecordCell.xib in Resources */,
 				4AA0D5A71EAEEC0600CB8F77 /* GLIntegralMallTopCell.xib in Resources */,
 				F961AA1E1E9CDD3400275F52 /* LoginIdentityView.xib in Resources */,
+				F97F09E31EC98AEA000D3B30 /* LBAddMineProductionViewController.xib in Resources */,
 				F966B3ED1EAC7E97007260FC /* LBMySalesmanListDeatilViewController.xib in Resources */,
 				4AE354881EC84BC300BF60CC /* GLMerchat_StoreCell.xib in Resources */,
 				4AFAB8C81EBD9A4500CCFDCE /* GLSetup_VersionInfoController.xib in Resources */,
@@ -6266,6 +6275,7 @@
 				4A4610E41E9CC6370045824F /* ZXUPCEReader.m in Sources */,
 				4A4610AD1E9CC6360045824F /* ZXGenericMultipleBarcodeReader.m in Sources */,
 				F923096C1E9B8BFF00ECDC94 /* LBSetUpViewController.m in Sources */,
+				F97F09E21EC98AEA000D3B30 /* LBAddMineProductionViewController.m in Sources */,
 				4A4610161E9CC6360045824F /* LBXScanVideoZoomView.m in Sources */,
 				F9520A1E1EADF40600B4D665 /* LBViewProtocolViewController.m in Sources */,
 				4A4611121E9CC6370045824F /* ZXQRCodeMatrixUtil.m in Sources */,

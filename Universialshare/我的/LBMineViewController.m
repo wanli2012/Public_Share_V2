@@ -42,6 +42,7 @@
 #import "GLMemberManagerController.h"
 #import "GLMerchant_IncomeController.h"
 #import "GLMerchat_StoreController.h"
+#import "LBProductManagementViewController.h"
 
 
 @interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
@@ -306,7 +307,7 @@
                     
                 }else{
                     //区域查询
-                    LBMineCenterRegionQueryViewController *vc = [[LBMineCenterRegionQueryViewController alloc] init];
+                    LBProductManagementViewController *vc = [[LBProductManagementViewController alloc] init];
                     [self.navigationController pushViewController:vc animated:YES];
                 }
                 self.hidesBottomBarWhenPushed=NO;

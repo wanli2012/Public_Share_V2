@@ -13,10 +13,23 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
    
+    self.buttonOne.layer.cornerRadius = 4;
+    self.buttonOne.clipsToBounds = YES;
     
+    self.buttonTwo.layer.cornerRadius = 4;
+    self.buttonTwo.clipsToBounds = YES;
     
 }
 
+- (IBAction)buttonOneEvent:(UIButton *)sender {
+    
+    [self.delegete LBProductManagementButtonOne:self.rowIndex];
+}
+
+- (IBAction)buttonTwoEvent:(UIButton *)sender {
+    
+    [self.delegete LBProductManagementButtonTwo:self.rowIndex];
+}
 
 
 @end

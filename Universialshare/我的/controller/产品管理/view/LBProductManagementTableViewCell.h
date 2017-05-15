@@ -8,18 +8,31 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol LBProductManagementDelegete <NSObject>
+
+-(void)LBProductManagementButtonOne:(NSInteger)index;
+-(void)LBProductManagementButtonTwo:(NSInteger)index;
+
+@end
+
 @interface LBProductManagementTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *imagev;
 @property (weak, nonatomic) IBOutlet UIImageView *imageT;
 @property (weak, nonatomic) IBOutlet UILabel *modelLb;
 
-@property (weak, nonatomic) IBOutlet UILabel *nameLb;
 @property (weak, nonatomic) IBOutlet UILabel *productNameLb;
 @property (weak, nonatomic) IBOutlet UILabel *numLb;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLb;
 @property (weak, nonatomic) IBOutlet UIView *editView;
-@property (weak, nonatomic) IBOutlet UILabel *editLb;
 
+@property (weak, nonatomic) IBOutlet UIButton *buttonOne;
+@property (weak, nonatomic) IBOutlet UIButton *buttonTwo;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *centerXconstant;
+
+@property (assign, nonatomic) NSInteger rowIndex;
+@property (assign, nonatomic) id<LBProductManagementDelegete> delegete;
 
 @end
