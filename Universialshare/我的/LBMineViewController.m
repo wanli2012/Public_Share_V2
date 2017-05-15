@@ -162,7 +162,7 @@
             case 1:
             {
                 self.hidesBottomBarWhenPushed=YES;
-                GLDirectDonationController *vc=[[GLDirectDonationController alloc]init];
+                GLIncomeManagerController *vc=[[GLIncomeManagerController alloc]init];
                 [self.navigationController pushViewController:vc animated:YES];
                 self.hidesBottomBarWhenPushed=NO;
             }
@@ -304,14 +304,9 @@
                     GLMyCollectionController *vc = [[GLMyCollectionController alloc] init];
                     [self.navigationController pushViewController:vc animated:YES];
                     
-                }else if([[UserModel defaultUser].groupId isEqualToString:Retailer]){
+                }else{
                     //区域查询
                     LBMineCenterRegionQueryViewController *vc = [[LBMineCenterRegionQueryViewController alloc] init];
-                    [self.navigationController pushViewController:vc animated:YES];
-                    
-                }else{
-                    //产品管理
-                    GLNoneOfDonationController *vc = [[GLNoneOfDonationController alloc] init];
                     [self.navigationController pushViewController:vc animated:YES];
                 }
                 self.hidesBottomBarWhenPushed=NO;
@@ -519,13 +514,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
             _titlearr=[NSArray arrayWithObjects:@"会员管理",@"我要下单",@"米柜",@"兑换",@"产品管理",@"推荐",@"余额",@"营业额",@"我的积分", nil];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
-           _titlearr=[NSArray arrayWithObjects:@"积分",@"直捐",@"我的米柜",@"兑换",@"转赠",@"我要推荐",@"余额",@"营业额",@"我的积分", nil];
+           _titlearr=[NSArray arrayWithObjects:@"积分",@"我要推店",@"米柜",@"兑换",@"我的收藏",@"推荐",@"余额",@"营业额",@"我的积分", nil];
         }
         else if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {
-            _titlearr=[NSArray arrayWithObjects:@"开通商家",@"直捐",@"开通推广员",@"兑换",@"转赠",@"我要推荐", nil];
+            _titlearr=[NSArray arrayWithObjects:@"开通商家",@"收益管理",@"开通推广员",@"兑换",@"区域查询",@"推荐", nil];
         }
         else if ([[UserModel defaultUser].usrtype isEqualToString:THREESALER]) {
-           _titlearr=[NSArray arrayWithObjects:@"开通商家",@"直捐",@"开通推广员",@"兑换",@"转赠",@"我要推荐", nil];
+           _titlearr=[NSArray arrayWithObjects:@"开通商家",@"收益管理",@"开通推广员",@"兑换",@"区域查询",@"推荐", nil];
         }
     }
     return _titlearr;

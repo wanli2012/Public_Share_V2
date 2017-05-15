@@ -21,6 +21,8 @@
 #import "LBMineStoreOrderingViewController.h"
 #import "LBMyBusinessListViewController.h"
 
+#import "GLNearbyViewController.h"
+
 @interface BasetabbarViewController ()<UITabBarControllerDelegate>
 
 @end
@@ -54,7 +56,10 @@
     LBShowSaleManAndBusinessViewController *ManAndBusinessVc = [[LBShowSaleManAndBusinessViewController alloc] init];
     LBMyBusinessListViewController *businessVc=[[LBMyBusinessListViewController alloc]init];
    
-     BaseNavigationViewController *firstNav = [[BaseNavigationViewController alloc] initWithRootViewController:firstVC];
+    //搜附近
+    GLNearbyViewController *nearbyVC = [[GLNearbyViewController alloc] init];
+    
+    BaseNavigationViewController *firstNav = [[BaseNavigationViewController alloc] initWithRootViewController:firstVC];
     BaseNavigationViewController *Homenav = [[BaseNavigationViewController alloc] initWithRootViewController:Homevc];
     BaseNavigationViewController *IntegralMallnav = [[BaseNavigationViewController alloc] initWithRootViewController:IntegralMallvc];
     BaseNavigationViewController *minenav = [[BaseNavigationViewController alloc] initWithRootViewController:minevc];
@@ -62,12 +67,13 @@
     BaseNavigationViewController *ManAndBusinessNav = [[BaseNavigationViewController alloc] initWithRootViewController:ManAndBusinessVc];
     BaseNavigationViewController *myordersNav = [[BaseNavigationViewController alloc] initWithRootViewController:myodresvc];
     BaseNavigationViewController *businessNav = [[BaseNavigationViewController alloc] initWithRootViewController:businessVc];
-   
+    BaseNavigationViewController *nearbyNav = [[BaseNavigationViewController alloc] initWithRootViewController:nearbyVC];
    
     firstVC.title = @"首页";
     Homevc.title=@"消费商城";
     IntegralMallvc.title=@"积分商城";
     minevc.title=@"我的";
+    
 
     firstVC.tabBarItem = [self barTitle:@"首页" image:@"home_page_normal"  selectImage:@"home_page_select"];
     Homevc.tabBarItem = [self barTitle:@"消费商城" image:@"消费商城未选中状态" selectImage:@"消费商城"];
@@ -76,6 +82,7 @@
     ManAndBusinessVc.tabBarItem = [self barTitle:@"推广员" image:@"推广员未选中" selectImage:@"推广员选中"];
     myodresvc.tabBarItem = [self barTitle:@"订单" image:@"消费商城未选中状态" selectImage:@"消费商城"];
     businessNav.tabBarItem = [self barTitle:@"商家" image:@"消费商城未选中状态" selectImage:@"消费商城"];
+    nearbyNav.tabBarItem = [self barTitle:@"搜附近" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
     
     if ([UserModel defaultUser].loginstatus == YES) {//登录状态
         if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {//一级业务员和二级业务员
@@ -83,7 +90,7 @@
         }else if ([[UserModel defaultUser].usrtype isEqualToString:THREESALER]){//三级业务员
             self.viewControllers = @[firstNav, businessNav, minenav];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]){//普通用户
-            self.viewControllers = @[firstNav, IntegralMallnav, minenav];
+            self.viewControllers = @[firstNav,nearbyNav, IntegralMallnav, minenav];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]){//商家
             self.viewControllers = @[firstNav, myordersNav, IntegralMallnav, minenav];
         }
