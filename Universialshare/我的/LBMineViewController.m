@@ -299,11 +299,23 @@
             case 4:
             {
                 self.hidesBottomBarWhenPushed=YES;
-//                GLDonationController *vc=[[GLDonationController alloc]init];
-                GLMyCollectionController *vc = [[GLMyCollectionController alloc] init];
-                
-                [self.navigationController pushViewController:vc animated:YES];
+                if ([[UserModel defaultUser].groupId isEqualToString:OrdinaryUser]) {
+                    //收藏
+                    GLMyCollectionController *vc = [[GLMyCollectionController alloc] init];
+                    [self.navigationController pushViewController:vc animated:YES];
+                    
+                }else if([[UserModel defaultUser].groupId isEqualToString:Retailer]){
+                    //区域查询
+                    LBMineCenterRegionQueryViewController *vc = [[LBMineCenterRegionQueryViewController alloc] init];
+                    [self.navigationController pushViewController:vc animated:YES];
+                    
+                }else{
+                    //产品管理
+                    GLNoneOfDonationController *vc = [[GLNoneOfDonationController alloc] init];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
                 self.hidesBottomBarWhenPushed=NO;
+
             }
                 break;
             case 5:

@@ -18,6 +18,7 @@
 @interface GLIncomeManagerController ()<UITableViewDelegate,UITableViewDataSource,HWCalendarDelegate>
 {
     GLIncomeManagerModel *_model;
+    LoadWaitView *_loadV;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *queryBtn;
@@ -29,6 +30,9 @@
 @property (strong, nonatomic)HWCalendar *Calendar;
 @property (strong, nonatomic)UIView *CalendarView;
 
+@property (nonatomic, assign)int page;
+@property (nonatomic, strong)NSMutableArray *models;
+@property (nonatomic ,strong)NodataView *nodataV;
 @end
 
 static NSString *ID = @"GLIncomeManagerCell";
@@ -69,7 +73,28 @@ static NSString *ID = @"GLIncomeManagerCell";
     };
     
 
-    [self.tableView reloadData];
+    __weak __typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf updateData:YES];
+        
+    }];
+    
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf updateData:NO];
+    }];
+    
+    // 设置文字
+    [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
+    
+    [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
+    
+    [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
+    
+    
+    self.tableView.mj_header = header;
+    self.tableView.mj_footer = footer;
+    [self updateData:YES];
 }
 
 //选择日期
@@ -82,6 +107,58 @@ static NSString *ID = @"GLIncomeManagerCell";
     self.CalendarView.hidden = NO;
     [_Calendar show];
 
+}
+
+- (void)endRefresh {
+    [self.tableView.mj_footer endRefreshing];
+    [self.tableView.mj_header endRefreshing];
+    
+}
+
+- (void)updateData:(BOOL)status {
+    
+    if (status) {
+        
+        _page = 1;
+        [self.models removeAllObjects];
+        
+    }else{
+        _page ++;
+    }
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"page"] = [NSString stringWithFormat:@"%d",_page];
+    dict[@"starttime"] = [NSString stringWithFormat:@""];
+    dict[@"endtime"] = [NSString stringWithFormat:@""];
+    
+    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"user/myRl_list" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        [self endRefresh];
+        //        NSLog(@"%@",responseObject);
+        if ([responseObject[@"code"] integerValue] == 1) {
+            
+            for (NSDictionary *dict in responseObject[@"data"]) {
+//                GLNoneOfDonationModel *model = [GLNoneOfDonationModel mj_objectWithKeyValues:dict];
+//                [_models addObject:model];
+            }
+
+            
+        }else if([responseObject[@"code"] integerValue] == 3){
+            
+            [MBProgressHUD showError:@"已经没有更多数据了"];
+        }
+        
+        
+        [self.tableView reloadData];
+    } enError:^(NSError *error) {
+        [self endRefresh];
+        [_loadV removeloadview];
+        self.nodataV.hidden = NO;
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
 }
 //查询
 - (IBAction)queryRequest:(id)sender {
@@ -99,10 +176,17 @@ static NSString *ID = @"GLIncomeManagerCell";
     NSDate *date1 = [dateFormatter dateFromString:self.timeOneBtn.titleLabel.text];
     NSDate *date2 = [dateFormatter dateFromString:self.timeTwoBtn.titleLabel.text];
     if ([[NSString stringWithFormat:@"%d",[self compareOneDay:date1 withAnotherDay:date2]] isEqualToString:@"1"]) {
+        
         NSLog(@"date1 > date2");
+        
     }else if ([[NSString stringWithFormat:@"%d",[self compareOneDay:date1 withAnotherDay:date2]] isEqualToString:@"-1"]){
+        
         NSLog(@"date1 < date2");
+        
+        [self updateData:YES];
+
     }else{
+        
         NSLog(@"date1 = date2");
     }
 
