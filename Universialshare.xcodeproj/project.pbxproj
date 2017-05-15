@@ -824,6 +824,10 @@
 		F97644D91EA5BAEA00AFA22B /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = F97644D81EA5BAEA00AFA22B /* RSAEncryptor.m */; };
 		F97644DE1EA608EC00AFA22B /* LBImprovePersonalDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97644DC1EA608EC00AFA22B /* LBImprovePersonalDataViewController.m */; };
 		F97644DF1EA608EC00AFA22B /* LBImprovePersonalDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97644DD1EA608EC00AFA22B /* LBImprovePersonalDataViewController.xib */; };
+		F97F09D81EC9402A000D3B30 /* LBProductManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F09D61EC9402A000D3B30 /* LBProductManagementViewController.m */; };
+		F97F09D91EC9402A000D3B30 /* LBProductManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09D71EC9402A000D3B30 /* LBProductManagementViewController.xib */; };
+		F97F09DD1EC9406D000D3B30 /* LBProductManagementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F09DB1EC9406D000D3B30 /* LBProductManagementTableViewCell.m */; };
+		F97F09DE1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09DC1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2249,6 +2253,12 @@
 		F97644DB1EA608EC00AFA22B /* LBImprovePersonalDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBImprovePersonalDataViewController.h; sourceTree = "<group>"; };
 		F97644DC1EA608EC00AFA22B /* LBImprovePersonalDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBImprovePersonalDataViewController.m; sourceTree = "<group>"; };
 		F97644DD1EA608EC00AFA22B /* LBImprovePersonalDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBImprovePersonalDataViewController.xib; sourceTree = "<group>"; };
+		F97F09D51EC9402A000D3B30 /* LBProductManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBProductManagementViewController.h; sourceTree = "<group>"; };
+		F97F09D61EC9402A000D3B30 /* LBProductManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBProductManagementViewController.m; sourceTree = "<group>"; };
+		F97F09D71EC9402A000D3B30 /* LBProductManagementViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBProductManagementViewController.xib; sourceTree = "<group>"; };
+		F97F09DA1EC9406D000D3B30 /* LBProductManagementTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBProductManagementTableViewCell.h; sourceTree = "<group>"; };
+		F97F09DB1EC9406D000D3B30 /* LBProductManagementTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBProductManagementTableViewCell.m; sourceTree = "<group>"; };
+		F97F09DC1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBProductManagementTableViewCell.xib; sourceTree = "<group>"; };
 		FC2B7A4A425FAC91F43C98C0 /* Pods-Universialshare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Universialshare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Universialshare/Pods-Universialshare.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -4538,6 +4548,7 @@
 		F92308331E9B8BFE00ECDC94 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				F97F09D31EC93F40000D3B30 /* 产品管理 */,
 				F9434D451EC16D78001C80A4 /* 区域查询 */,
 				F951C7701EB0C46C0014A71D /* 线下下单 */,
 				F94D31DA1EAF716D00309029 /* 待收货 */,
@@ -5495,6 +5506,27 @@
 			path = "完善个人资料";
 			sourceTree = "<group>";
 		};
+		F97F09D31EC93F40000D3B30 /* 产品管理 */ = {
+			isa = PBXGroup;
+			children = (
+				F97F09D51EC9402A000D3B30 /* LBProductManagementViewController.h */,
+				F97F09D61EC9402A000D3B30 /* LBProductManagementViewController.m */,
+				F97F09D71EC9402A000D3B30 /* LBProductManagementViewController.xib */,
+				F97F09D41EC93FA9000D3B30 /* view */,
+			);
+			path = "产品管理";
+			sourceTree = "<group>";
+		};
+		F97F09D41EC93FA9000D3B30 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				F97F09DA1EC9406D000D3B30 /* LBProductManagementTableViewCell.h */,
+				F97F09DB1EC9406D000D3B30 /* LBProductManagementTableViewCell.m */,
+				F97F09DC1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -5700,6 +5732,7 @@
 				F9121B231EB2044300DAB7A2 /* LBMyOrderAlreadyPaymentViewController.xib in Resources */,
 				4AAD252F1EC188C90054FD06 /* GLBuyBackChooseCardController.xib in Resources */,
 				4A460A081E9CB8050045824F /* LoadWaitView.xib in Resources */,
+				F97F09DE1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib in Resources */,
 				F951EB0C1EA1E70900D6708E /* LBMineSelectCustomerTypeView.xib in Resources */,
 				4A0D97891E9729C100A26B84 /* GLShoppingCartController.xib in Resources */,
 				4A4610251E9CC6360045824F /* UMSLoginViewController.xib in Resources */,
@@ -5834,6 +5867,7 @@
 				F9564DF91EC84C4F007F3677 /* LBSelectRegionalAgentView.xib in Resources */,
 				4AA0D5FD1EAF675300CB8F77 /* Integral_Mall.xcassets in Resources */,
 				F923095E1E9B8BFF00ECDC94 /* LBMyOrderListTableViewCell.xib in Resources */,
+				F97F09D91EC9402A000D3B30 /* LBProductManagementViewController.xib in Resources */,
 				4A2F51CD1EC6E5F600ECA95D /* GLMemberManagerCell.xib in Resources */,
 				4A4608F21E9C9E6D0045824F /* GLRankingView.xib in Resources */,
 				F95150891EC06F9100BDCF53 /* https.cer in Resources */,
@@ -6143,6 +6177,7 @@
 				4AAD25841EC188F50054FD06 /* GLRecommendCell.m in Sources */,
 				4A4610A11E9CC6360045824F /* ZXDataMatrixHighLevelEncoder.m in Sources */,
 				4A46109F1E9CC6360045824F /* ZXDataMatrixEncoderContext.m in Sources */,
+				F97F09DD1EC9406D000D3B30 /* LBProductManagementTableViewCell.m in Sources */,
 				4A2F52271EC7084100ECA95D /* GLImage_textDetailCell.m in Sources */,
 				4A521F5D1EC451100028F2A2 /* GLIncomeManagerController.m in Sources */,
 				4A013CA11E9DCE1500BB3764 /* GLFirstPageRankingModel.m in Sources */,
@@ -6288,6 +6323,7 @@
 				4A4608E91E9C9E6D0045824F /* GLDailyView.m in Sources */,
 				4AAD25321EC188C90054FD06 /* GLBuyBackController.m in Sources */,
 				F92309401E9B8BFF00ECDC94 /* LBMinecenterSeverceNoticeHeaderView.m in Sources */,
+				F97F09D81EC9402A000D3B30 /* LBProductManagementViewController.m in Sources */,
 				4A4610C41E9CC6370045824F /* ZXRSSExpandedRow.m in Sources */,
 				F92309511E9B8BFF00ECDC94 /* LBMyOrderAlreadyCompletedViewController.m in Sources */,
 				4AA0D5C41EAEF4CB00CB8F77 /* GLClassifyRecommendCell.m in Sources */,
