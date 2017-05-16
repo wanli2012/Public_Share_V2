@@ -22,6 +22,19 @@
     self.bgView.layer.cornerRadius = 5.f;
     self.bgView.layer.borderColor = YYSRGBColor(184, 184, 184, 0.2).CGColor;
     self.bgView.clipsToBounds = YES;
+    [self changeColor];
 }
-
+- (void)setIsChangeColor:(BOOL)isChangeColor{
+    
+    if (self.isChangeColor == YES) {
+        self.bgView.backgroundColor = [UIColor greenColor];
+        self.titleLabel.textColor = [UIColor whiteColor];
+    }else{
+        self.bgView.backgroundColor = [UIColor whiteColor];
+        self.titleLabel.textColor = [UIColor darkGrayColor];
+        
+    }
+}
+- (void)changeColor {
+}
 @end

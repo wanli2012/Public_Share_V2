@@ -50,6 +50,7 @@
         [self setupDefaultProperties];
         //初始化两个CollectionView
         [self setupCollectionView];
+        
     }
     return self;
 }
@@ -57,7 +58,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
     
     if (self.tagTitleModelArray.count!=0) {
         [self resetSelectedIndex];
@@ -67,8 +67,10 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    self.tagCollectionView.frame = CGRectMake(0, 0, XBScreenWidth, self.tagViewHeight);
-    self.pageCollectionView.frame = CGRectMake(0, self.tagViewHeight , XBScreenWidth, self.view.frame.size.height - self.tagViewHeight );
+    self.tagCollectionView.frame = CGRectMake(0, self.yFloat, XBScreenWidth, self.tagViewHeight);
+    self.pageCollectionView.frame = CGRectMake(0, self.tagViewHeight + self.yFloat , XBScreenWidth, self.view.frame.size.height - self.tagViewHeight * 2 );
+
+    self.tagCollectionView.backgroundColor = [UIColor redColor];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -180,7 +182,7 @@
         }
         [self addChildViewController:cachedViewController];
         [cell configCellWithController:cachedViewController];
-        
+        NSLog(@"cachedViewController = %@",NSStringFromCGRect(cachedViewController.view.frame));
         return cell;
     }
     return nil;
@@ -324,7 +326,8 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.001f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.tagCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] animated:animated scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
         
-        [self.pageCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:UICollectionViewScrollPositionRight animated:animated];    });
+        [self.pageCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:UICollectionViewScrollPositionRight animated:animated];
+    });
 }
 
 

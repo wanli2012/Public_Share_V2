@@ -26,7 +26,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="tt7-1X-bjh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Mb1-cM-RoC"/>
                 <constraint firstAttribute="bottom" secondItem="tt7-1X-bjh" secondAttribute="bottom" id="avs-8o-eUF"/>

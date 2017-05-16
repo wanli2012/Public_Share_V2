@@ -84,6 +84,8 @@
     businessNav.tabBarItem = [self barTitle:@"商家" image:@"消费商城未选中状态" selectImage:@"消费商城"];
     nearbyNav.tabBarItem = [self barTitle:@"搜附近" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
     
+    [UserModel defaultUser].loginstatus = YES;
+    [UserModel defaultUser].usrtype = OrdinaryUser;
     if ([UserModel defaultUser].loginstatus == YES) {//登录状态
         if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {//一级业务员和二级业务员
             self.viewControllers = @[firstNav, ManAndBusinessNav, minenav];

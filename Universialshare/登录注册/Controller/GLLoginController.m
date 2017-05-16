@@ -136,14 +136,18 @@
 -(void)surebuttonEvent{
     
 
-//    if (![self.usertype isEqualToString:OrdinaryUser]) {
-//        [UserModel defaultUser].usrtype = self.usertype;
-//        [UserModel defaultUser].loginstatus = YES;
-//        [usermodelachivar achive];
-//        [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
-//        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-//        return;
-//    }
+    if (![self.usertype isEqualToString:OrdinaryUser]) {
+        [UserModel defaultUser].usrtype = self.usertype;
+        [UserModel defaultUser].loginstatus = YES;
+        [usermodelachivar achive];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
+
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     

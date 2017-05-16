@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^typeBlock)(NSString *typeID);
+typedef void(^typeBlock)(NSString *typeID,NSInteger headerViewHeight);
 
 @interface GLNearby_ClassifyHeaderView : UIView
 
