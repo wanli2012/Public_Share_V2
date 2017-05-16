@@ -735,6 +735,9 @@
 		F94D6E291E9E074300412E64 /* SelectUserTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94D6E271E9E074300412E64 /* SelectUserTypeView.xib */; };
 		F94D6E2B1E9E2A6D00412E64 /* setUp.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F94D6E2A1E9E2A6D00412E64 /* setUp.xcassets */; };
 		F95150891EC06F9100BDCF53 /* https.cer in Resources */ = {isa = PBXBuildFile; fileRef = F95150881EC06F9100BDCF53 /* https.cer */; };
+		F9516DE01ECA8C76009F015D /* LBStoreMoreInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9516DDE1ECA8C76009F015D /* LBStoreMoreInfomationViewController.m */; };
+		F9516DE11ECA8C76009F015D /* LBStoreMoreInfomationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9516DDF1ECA8C76009F015D /* LBStoreMoreInfomationViewController.xib */; };
+		F9516DE51ECAA129009F015D /* MXNavigationBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F9516DE41ECAA129009F015D /* MXNavigationBarManager.m */; };
 		F951C76C1EB02DF10014A71D /* LBWaitOrdersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F951C76B1EB02DF10014A71D /* LBWaitOrdersModel.m */; };
 		F951C76F1EB02E050014A71D /* LBWaitOrdersListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F951C76E1EB02E050014A71D /* LBWaitOrdersListModel.m */; };
 		F951C7741EB0C4AA0014A71D /* LBBelowTheLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F951C7721EB0C4AA0014A71D /* LBBelowTheLineViewController.m */; };
@@ -2128,6 +2131,11 @@
 		F94D6E271E9E074300412E64 /* SelectUserTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectUserTypeView.xib; sourceTree = "<group>"; };
 		F94D6E2A1E9E2A6D00412E64 /* setUp.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = setUp.xcassets; sourceTree = "<group>"; };
 		F95150881EC06F9100BDCF53 /* https.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = https.cer; sourceTree = "<group>"; };
+		F9516DDD1ECA8C76009F015D /* LBStoreMoreInfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBStoreMoreInfomationViewController.h; sourceTree = "<group>"; };
+		F9516DDE1ECA8C76009F015D /* LBStoreMoreInfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBStoreMoreInfomationViewController.m; sourceTree = "<group>"; };
+		F9516DDF1ECA8C76009F015D /* LBStoreMoreInfomationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBStoreMoreInfomationViewController.xib; sourceTree = "<group>"; };
+		F9516DE31ECAA129009F015D /* MXNavigationBarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXNavigationBarManager.h; sourceTree = "<group>"; };
+		F9516DE41ECAA129009F015D /* MXNavigationBarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXNavigationBarManager.m; sourceTree = "<group>"; };
 		F951C76A1EB02DF10014A71D /* LBWaitOrdersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBWaitOrdersModel.h; sourceTree = "<group>"; };
 		F951C76B1EB02DF10014A71D /* LBWaitOrdersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBWaitOrdersModel.m; sourceTree = "<group>"; };
 		F951C76D1EB02E050014A71D /* LBWaitOrdersListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBWaitOrdersListModel.h; sourceTree = "<group>"; };
@@ -2514,8 +2522,8 @@
 			isa = PBXGroup;
 			children = (
 				4A5F66861ECA89FA0048F339 /* 主页 */,
-				4A5F66841ECA89FA0048F339 /* 商店详情 */,
-				4A5F66851ECA89FA0048F339 /* 商品详情 */,
+				F9516DD51ECA8BE8009F015D /* 商店详情 */,
+				F9516DD61ECA8BE8009F015D /* 产品详情 */,
 			);
 			path = "搜附近";
 			sourceTree = "<group>";
@@ -2914,6 +2922,7 @@
 				4A460DCF1E9CC6350045824F /* umeng_ios_social_sdk_5.2.1_arm64_custom */,
 				4A460E161E9CC6350045824F /* ZXingObjC */,
 				4A4610001E9CC6360045824F /* ZYCornerRadius */,
+				F9516DE21ECAA129009F015D /* MXNavigationBarManager */,
 			);
 			path = "三方库";
 			sourceTree = "<group>";
@@ -3891,22 +3900,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		4A5F66841ECA89FA0048F339 /* 商店详情 */ = {
-			isa = PBXGroup;
-			children = (
-				4A5F66AD1ECA8B170048F339 /* Controller */,
-			);
-			path = "商店详情";
-			sourceTree = "<group>";
-		};
-		4A5F66851ECA89FA0048F339 /* 商品详情 */ = {
-			isa = PBXGroup;
-			children = (
-				4A5F66AE1ECA8B210048F339 /* Controller */,
-			);
-			path = "商品详情";
-			sourceTree = "<group>";
-		};
 		4A5F66861ECA89FA0048F339 /* 主页 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3957,20 +3950,6 @@
 				4A5F669E1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		4A5F66AD1ECA8B170048F339 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		4A5F66AE1ECA8B210048F339 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		4AA0D5841EAEEC0600CB8F77 /* 分类页面 */ = {
@@ -5275,6 +5254,80 @@
 			path = "忘记密码";
 			sourceTree = "<group>";
 		};
+		F9516DD51ECA8BE8009F015D /* 商店详情 */ = {
+			isa = PBXGroup;
+			children = (
+				F9516DD71ECA8C23009F015D /* controller */,
+				F9516DD81ECA8C23009F015D /* model */,
+				F9516DD91ECA8C23009F015D /* view */,
+			);
+			path = "商店详情";
+			sourceTree = "<group>";
+		};
+		F9516DD61ECA8BE8009F015D /* 产品详情 */ = {
+			isa = PBXGroup;
+			children = (
+				F9516DDA1ECA8C49009F015D /* controller */,
+				F9516DDB1ECA8C49009F015D /* model */,
+				F9516DDC1ECA8C49009F015D /* view */,
+			);
+			path = "产品详情";
+			sourceTree = "<group>";
+		};
+		F9516DD71ECA8C23009F015D /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				F9516DDD1ECA8C76009F015D /* LBStoreMoreInfomationViewController.h */,
+				F9516DDE1ECA8C76009F015D /* LBStoreMoreInfomationViewController.m */,
+				F9516DDF1ECA8C76009F015D /* LBStoreMoreInfomationViewController.xib */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		F9516DD81ECA8C23009F015D /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		F9516DD91ECA8C23009F015D /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		F9516DDA1ECA8C49009F015D /* controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		F9516DDB1ECA8C49009F015D /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		F9516DDC1ECA8C49009F015D /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		F9516DE21ECAA129009F015D /* MXNavigationBarManager */ = {
+			isa = PBXGroup;
+			children = (
+				F9516DE31ECAA129009F015D /* MXNavigationBarManager.h */,
+				F9516DE41ECAA129009F015D /* MXNavigationBarManager.m */,
+			);
+			path = MXNavigationBarManager;
+			sourceTree = "<group>";
+		};
 		F951C7691EB02DB80014A71D /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -5863,6 +5916,7 @@
 				F9061FD61E83C4730080E9D9 /* Main.storyboard in Resources */,
 				F966B3C61EAC3D64007260FC /* LBMineCenterOrderDetailFourTableViewCell.xib in Resources */,
 				F94A33FA1EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.xib in Resources */,
+				F9516DE11ECA8C76009F015D /* LBStoreMoreInfomationViewController.xib in Resources */,
 				4AAD255B1EC188D70054FD06 /* GLDirectDnationView.xib in Resources */,
 				4A46103B1E9CC6360045824F /* ios-social-sdk-share-quick.html in Resources */,
 				4AAD25541EC188D70054FD06 /* GLDirectDnationRecordController.xib in Resources */,
@@ -6198,6 +6252,7 @@
 				F951C76C1EB02DF10014A71D /* LBWaitOrdersModel.m in Sources */,
 				4AAD25571EC188D70054FD06 /* GLDirectDonationModel.m in Sources */,
 				4A4610ED1E9CC6370045824F /* ZXPDF417DecodedBitStreamParser.m in Sources */,
+				F9516DE01ECA8C76009F015D /* LBStoreMoreInfomationViewController.m in Sources */,
 				4A4610D01E9CC6370045824F /* ZXCode39Writer.m in Sources */,
 				F9126EEA1EA0599B004785EA /* RouteAnnotation.mm in Sources */,
 				4A4610561E9CC6360045824F /* ZXGeoParsedResult.m in Sources */,
@@ -6612,6 +6667,7 @@
 				4A46109C1E9CC6360045824F /* ZXDataMatrixC40Encoder.m in Sources */,
 				4A2F51D61EC6FF9900ECA95D /* GLConsumerRecordCell.m in Sources */,
 				F966B3D41EAC3DAF007260FC /* LBMineCenterOrderDetailSevenTableViewCell.m in Sources */,
+				F9516DE51ECAA129009F015D /* MXNavigationBarManager.m in Sources */,
 				4A4610FB1E9CC6370045824F /* ZXPDF417Reader.m in Sources */,
 				4A4610E11E9CC6370045824F /* ZXUPCEANExtensionSupport.m in Sources */,
 				4A46104E1E9CC6360045824F /* ZXBizcardResultParser.m in Sources */,
