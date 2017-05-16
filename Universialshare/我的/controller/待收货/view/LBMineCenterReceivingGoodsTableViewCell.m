@@ -23,10 +23,6 @@
 //    self.SeeBt.layer.borderColor = YYSRGBColor(191, 0, 0, 1).CGColor;
 }
 
-
-
-
-
 -(void)setWaitOrdersListModel:(LBWaitOrdersListModel *)WaitOrdersListModel{
 
     if (_WaitOrdersListModel != WaitOrdersListModel) {
