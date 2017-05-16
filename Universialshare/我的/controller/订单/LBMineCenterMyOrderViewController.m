@@ -65,7 +65,6 @@
                             [LBMyOrderAlreadyCompletedViewController class],
                             [LBMyOrderPendingPaymentViewController class],
                             [LBMyOrderAlreadyPaymentViewController class],
-                            
                             ];
     
     self.normalTitleColor = [UIColor blackColor];

@@ -420,6 +420,15 @@
 		4A5F66AA1ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F669B1ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.xib */; };
 		4A5F66AB1ECA89FA0048F339 /* GLNearby_SectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F669D1ECA89FA0048F339 /* GLNearby_SectionHeaderView.m */; };
 		4A5F66AC1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F669E1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib */; };
+		4A5F66B71ECA93AC0048F339 /* GLNearby_EatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F66B51ECA93AC0048F339 /* GLNearby_EatController.m */; };
+		4A5F66B81ECA93AC0048F339 /* GLNearby_EatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F66B61ECA93AC0048F339 /* GLNearby_EatController.xib */; };
+		4A5F66BC1ECA93C50048F339 /* GLNearby_LiveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F66BA1ECA93C50048F339 /* GLNearby_LiveController.m */; };
+		4A5F66BD1ECA93C50048F339 /* GLNearby_LiveController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F66BB1ECA93C50048F339 /* GLNearby_LiveController.xib */; };
+		4A5F66C11ECA93D70048F339 /* GLNearby_PlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F66BF1ECA93D70048F339 /* GLNearby_PlayController.m */; };
+		4A5F66C21ECA93D70048F339 /* GLNearby_PlayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F66C01ECA93D70048F339 /* GLNearby_PlayController.xib */; };
+		4A5F66C61ECA93E70048F339 /* GLNearby_AllController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F66C41ECA93E70048F339 /* GLNearby_AllController.m */; };
+		4A5F66C71ECA93E70048F339 /* GLNearby_AllController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F66C51ECA93E70048F339 /* GLNearby_AllController.xib */; };
+		4A5F670F1ECAE52D0048F339 /* SlideTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F670E1ECAE52D0048F339 /* SlideTabBarView.m */; };
 		4A78C2161EA8918500771047 /* GLDonationRecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A78C2151EA8918500771047 /* GLDonationRecordController.xib */; };
 		4AA0D5A21EAEEC0600CB8F77 /* GLIntegralGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0D5941EAEEC0600CB8F77 /* GLIntegralGoodsCell.m */; };
 		4AA0D5A31EAEEC0600CB8F77 /* GLIntegralGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA0D5951EAEEC0600CB8F77 /* GLIntegralGoodsCell.xib */; };
@@ -1656,6 +1665,20 @@
 		4A5F669C1ECA89FA0048F339 /* GLNearby_SectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_SectionHeaderView.h; sourceTree = "<group>"; };
 		4A5F669D1ECA89FA0048F339 /* GLNearby_SectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_SectionHeaderView.m; sourceTree = "<group>"; };
 		4A5F669E1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_SectionHeaderView.xib; sourceTree = "<group>"; };
+		4A5F66B41ECA93AC0048F339 /* GLNearby_EatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_EatController.h; sourceTree = "<group>"; };
+		4A5F66B51ECA93AC0048F339 /* GLNearby_EatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_EatController.m; sourceTree = "<group>"; };
+		4A5F66B61ECA93AC0048F339 /* GLNearby_EatController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_EatController.xib; sourceTree = "<group>"; };
+		4A5F66B91ECA93C50048F339 /* GLNearby_LiveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_LiveController.h; sourceTree = "<group>"; };
+		4A5F66BA1ECA93C50048F339 /* GLNearby_LiveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_LiveController.m; sourceTree = "<group>"; };
+		4A5F66BB1ECA93C50048F339 /* GLNearby_LiveController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_LiveController.xib; sourceTree = "<group>"; };
+		4A5F66BE1ECA93D70048F339 /* GLNearby_PlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_PlayController.h; sourceTree = "<group>"; };
+		4A5F66BF1ECA93D70048F339 /* GLNearby_PlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_PlayController.m; sourceTree = "<group>"; };
+		4A5F66C01ECA93D70048F339 /* GLNearby_PlayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_PlayController.xib; sourceTree = "<group>"; };
+		4A5F66C31ECA93E70048F339 /* GLNearby_AllController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_AllController.h; sourceTree = "<group>"; };
+		4A5F66C41ECA93E70048F339 /* GLNearby_AllController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_AllController.m; sourceTree = "<group>"; };
+		4A5F66C51ECA93E70048F339 /* GLNearby_AllController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_AllController.xib; sourceTree = "<group>"; };
+		4A5F670D1ECAE52D0048F339 /* SlideTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideTabBarView.h; sourceTree = "<group>"; };
+		4A5F670E1ECAE52D0048F339 /* SlideTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideTabBarView.m; sourceTree = "<group>"; };
 		4A78C2151EA8918500771047 /* GLDonationRecordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLDonationRecordController.xib; sourceTree = "<group>"; };
 		4AA0D5931EAEEC0600CB8F77 /* GLIntegralGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIntegralGoodsCell.h; sourceTree = "<group>"; };
 		4AA0D5941EAEEC0600CB8F77 /* GLIntegralGoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIntegralGoodsCell.m; sourceTree = "<group>"; };
@@ -3951,9 +3974,23 @@
 		4A5F66871ECA89FA0048F339 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4A5F670D1ECAE52D0048F339 /* SlideTabBarView.h */,
+				4A5F670E1ECAE52D0048F339 /* SlideTabBarView.m */,
 				4A5F66881ECA89FA0048F339 /* GLNearbyViewController.h */,
 				4A5F66891ECA89FA0048F339 /* GLNearbyViewController.m */,
 				4A5F668A1ECA89FA0048F339 /* GLNearbyViewController.xib */,
+				4A5F66B41ECA93AC0048F339 /* GLNearby_EatController.h */,
+				4A5F66B51ECA93AC0048F339 /* GLNearby_EatController.m */,
+				4A5F66B61ECA93AC0048F339 /* GLNearby_EatController.xib */,
+				4A5F66B91ECA93C50048F339 /* GLNearby_LiveController.h */,
+				4A5F66BA1ECA93C50048F339 /* GLNearby_LiveController.m */,
+				4A5F66BB1ECA93C50048F339 /* GLNearby_LiveController.xib */,
+				4A5F66BE1ECA93D70048F339 /* GLNearby_PlayController.h */,
+				4A5F66BF1ECA93D70048F339 /* GLNearby_PlayController.m */,
+				4A5F66C01ECA93D70048F339 /* GLNearby_PlayController.xib */,
+				4A5F66C31ECA93E70048F339 /* GLNearby_AllController.h */,
+				4A5F66C41ECA93E70048F339 /* GLNearby_AllController.m */,
+				4A5F66C51ECA93E70048F339 /* GLNearby_AllController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5967,6 +6004,7 @@
 				F92309821E9B8BFF00ECDC94 /* LBMineCenterModifyLoginSecretViewController.xib in Resources */,
 				F966B3E31EAC7E38007260FC /* LBMyBusinessListDetailViewController.xib in Resources */,
 				F923096F1E9B8BFF00ECDC94 /* LBMineCentermodifyAdressTableViewCell.xib in Resources */,
+				4A5F66B81ECA93AC0048F339 /* GLNearby_EatController.xib in Resources */,
 				4A2A00C71EC70D9400052CA7 /* GLOrderGoodsCell.xib in Resources */,
 				F906201C1E83C8770080E9D9 /* tabbarimage.xcassets in Resources */,
 				F923098A1E9B8BFF00ECDC94 /* LBMineViewController.xib in Resources */,
@@ -6035,6 +6073,7 @@
 				4A0D97951E9729C100A26B84 /* GLTopCell.xib in Resources */,
 				4AAD25561EC188D70054FD06 /* GLDirectDonationController.xib in Resources */,
 				F92309311E9B8BFF00ECDC94 /* LBMineCenterserviceNoticeViewController.xib in Resources */,
+				4A5F66BD1ECA93C50048F339 /* GLNearby_LiveController.xib in Resources */,
 				4AA0D5A31EAEEC0600CB8F77 /* GLIntegralGoodsCell.xib in Resources */,
 				4AAD25811EC188F50054FD06 /* GLEncourageBeansCell.xib in Resources */,
 				F94D31E31EAF716D00309029 /* LBMineCenterReceivingGoodsViewController.xib in Resources */,
@@ -6043,6 +6082,7 @@
 				F92309931E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.xib in Resources */,
 				F966B4101EACB0C0007260FC /* LBSaleManPersonInfoViewController.xib in Resources */,
 				4AAD253E1EC188C90054FD06 /* GLBuyBackChooseBankView.xib in Resources */,
+				4A5F66C21ECA93D70048F339 /* GLNearby_PlayController.xib in Resources */,
 				F92309561E9B8BFF00ECDC94 /* LBMyOrderPendingPaymentViewController.xib in Resources */,
 				F923096D1E9B8BFF00ECDC94 /* LBSetUpViewController.xib in Resources */,
 				F966B40A1EACA3FA007260FC /* LBMyBusinessListDetailTableViewCell.xib in Resources */,
@@ -6111,6 +6151,7 @@
 				4A2F51D71EC6FF9900ECA95D /* GLConsumerRecordCell.xib in Resources */,
 				4AA0D5A71EAEEC0600CB8F77 /* GLIntegralMallTopCell.xib in Resources */,
 				F961AA1E1E9CDD3400275F52 /* LoginIdentityView.xib in Resources */,
+				4A5F66C71ECA93E70048F339 /* GLNearby_AllController.xib in Resources */,
 				F97F09E31EC98AEA000D3B30 /* LBAddMineProductionViewController.xib in Resources */,
 				F966B3ED1EAC7E97007260FC /* LBMySalesmanListDeatilViewController.xib in Resources */,
 				4AE354881EC84BC300BF60CC /* GLMerchat_StoreCell.xib in Resources */,
@@ -6361,6 +6402,7 @@
 				4A4610971E9CC6360045824F /* ZXDataMatrixDecoder.m in Sources */,
 				F92309891E9B8BFF00ECDC94 /* LBMineViewController.m in Sources */,
 				F92309921E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.m in Sources */,
+				4A5F66BC1ECA93C50048F339 /* GLNearby_LiveController.m in Sources */,
 				F923097F1E9B8BFF00ECDC94 /* LBMineCenterSafeSecondSecretViewController.m in Sources */,
 				4A4610B41E9CC6370045824F /* ZXAI013x0xDecoder.m in Sources */,
 				4A1D78ED1EADF81900374386 /* GLCityModel.m in Sources */,
@@ -6433,6 +6475,7 @@
 				4A4610D61E9CC6370045824F /* ZXEANManufacturerOrgSupport.m in Sources */,
 				4AAD259B1EC189070054FD06 /* GLTweleveFourController.m in Sources */,
 				4A4611001E9CC6370045824F /* ZXQRCodeDataMask.m in Sources */,
+				4A5F66C11ECA93D70048F339 /* GLNearby_PlayController.m in Sources */,
 				F92309711E9B8BFF00ECDC94 /* LBMineCenterAddAdreassViewController.m in Sources */,
 				F92309261E9B8BFF00ECDC94 /* LBMineCenterRechargeCashView.m in Sources */,
 				4A4610A51E9CC6360045824F /* ZXDataMatrixX12Encoder.m in Sources */,
@@ -6483,6 +6526,7 @@
 				F92309851E9B8BFF00ECDC94 /* LBMineCenterSafeChangePhoneViewController.m in Sources */,
 				4A4610DE1E9CC6370045824F /* ZXUPCAWriter.m in Sources */,
 				F92309591E9B8BFF00ECDC94 /* LBMyOrderEveluationSucessCollectionViewCell.m in Sources */,
+				4A5F66B71ECA93AC0048F339 /* GLNearby_EatController.m in Sources */,
 				4AE3548C1EC85E6C00BF60CC /* GLAddStoreController.m in Sources */,
 				F966B3F21EAC7FBA007260FC /* LBNybusinessListTableViewCell.m in Sources */,
 				F9516DF31ECAD6C5009F015D /* LBStoreDetailHotProductTableViewCell.m in Sources */,
@@ -6540,6 +6584,7 @@
 				4A4610CB1E9CC6370045824F /* ZXCodaBarReader.m in Sources */,
 				4A4611111E9CC6370045824F /* ZXQRCodeMaskUtil.m in Sources */,
 				4A4610521E9CC6360045824F /* ZXEmailAddressResultParser.m in Sources */,
+				4A5F66C61ECA93E70048F339 /* GLNearby_AllController.m in Sources */,
 				4AAD257E1EC188F50054FD06 /* GLReceiveBeansModel.m in Sources */,
 				F966B3DD1EAC7E0C007260FC /* LBMyBusinessListViewController.m in Sources */,
 				F92309361E9B8BFF00ECDC94 /* LBMineMessageViewController.m in Sources */,
@@ -6713,6 +6758,7 @@
 				F966B3C51EAC3D64007260FC /* LBMineCenterOrderDetailFourTableViewCell.m in Sources */,
 				4A0D97941E9729C100A26B84 /* GLTopCell.m in Sources */,
 				4A46104B1E9CC6360045824F /* ZXAddressBookAUResultParser.m in Sources */,
+				4A5F670F1ECAE52D0048F339 /* SlideTabBarView.m in Sources */,
 				F92309451E9B8BFF00ECDC94 /* LBMineMessageHotPickOneTableViewCell.m in Sources */,
 				4A2F521F1EC7084000ECA95D /* GLHourseChangeNumCell.m in Sources */,
 				4A4610B11E9CC6370045824F /* ZXAI01392xDecoder.m in Sources */,

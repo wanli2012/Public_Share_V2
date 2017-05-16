@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+//#import "XBScrollPageController.h"
 
 @interface GLNearbyViewController : UIViewController
 
