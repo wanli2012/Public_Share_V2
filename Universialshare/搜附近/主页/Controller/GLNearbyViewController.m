@@ -41,6 +41,10 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         NSLog(@"typeID = %@",typeID);
     };
     
+    
+    
+    [self classifyChoose:self.eatBtn];
+    
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     [self.tableView registerNib:[UINib nibWithNibName:ID2 bundle:nil] forCellReuseIdentifier:ID2];
 
@@ -51,6 +55,11 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 }
 //选择分类
 - (IBAction)classifyChoose:(UIButton *)sender {
+    [self.eatBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.liveBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.playBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.allBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [sender setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
     if (sender == self.eatBtn) {
         NSLog(@"美食");
     }else if (sender == self.liveBtn){

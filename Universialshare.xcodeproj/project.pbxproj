@@ -41,20 +41,6 @@
 		4A1D78ED1EADF81900374386 /* GLCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1D78EC1EADF81900374386 /* GLCityModel.m */; };
 		4A1FE7321EC978FB0000A357 /* GLRecommendStoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FE7301EC978FB0000A357 /* GLRecommendStoreController.m */; };
 		4A1FE7331EC978FB0000A357 /* GLRecommendStoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1FE7311EC978FB0000A357 /* GLRecommendStoreController.xib */; };
-		4A1FE73B1EC9811E0000A357 /* GLNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FE7391EC9811E0000A357 /* GLNearbyViewController.m */; };
-		4A1FE73C1EC9811E0000A357 /* GLNearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1FE73A1EC9811E0000A357 /* GLNearbyViewController.xib */; };
-		4A25B3771EC98F9000EBE5DA /* GLNearby_ClassifyConcollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A25B3751EC98F9000EBE5DA /* GLNearby_ClassifyConcollectionCell.m */; };
-		4A25B3781EC98F9000EBE5DA /* GLNearby_ClassifyConcollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A25B3761EC98F9000EBE5DA /* GLNearby_ClassifyConcollectionCell.xib */; };
-		4A25B37B1EC9942D00EBE5DA /* GLNearby_ClassifyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A25B37A1EC9942D00EBE5DA /* GLNearby_ClassifyHeaderView.m */; };
-		4A25B37D1EC999BF00EBE5DA /* GLNearby_ClassifyHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A25B37C1EC999BF00EBE5DA /* GLNearby_ClassifyHeaderView.xib */; };
-		4A25B3811EC99BE800EBE5DA /* GLNearby_classifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A25B37F1EC99BE800EBE5DA /* GLNearby_classifyCell.m */; };
-		4A25B3821EC99BE800EBE5DA /* GLNearby_classifyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A25B3801EC99BE800EBE5DA /* GLNearby_classifyCell.xib */; };
-		4A25B3851EC9A6A700EBE5DA /* GLNearby_SectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A25B3841EC9A6A700EBE5DA /* GLNearby_SectionHeaderView.m */; };
-		4A25B3871EC9A6B800EBE5DA /* GLNearby_SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A25B3861EC9A6B800EBE5DA /* GLNearby_SectionHeaderView.xib */; };
-		4A25B38B1EC9AC6400EBE5DA /* GLNearby_RecommendMerchatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A25B3891EC9AC6400EBE5DA /* GLNearby_RecommendMerchatCell.m */; };
-		4A25B38C1EC9AC6400EBE5DA /* GLNearby_RecommendMerchatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A25B38A1EC9AC6400EBE5DA /* GLNearby_RecommendMerchatCell.xib */; };
-		4A25B3901EC9AF8600EBE5DA /* GLNearby_RecommendMerchatCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A25B38E1EC9AF8600EBE5DA /* GLNearby_RecommendMerchatCollectionCell.m */; };
-		4A25B3911EC9AF8600EBE5DA /* GLNearby_RecommendMerchatCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A25B38F1EC9AF8600EBE5DA /* GLNearby_RecommendMerchatCollectionCell.xib */; };
 		4A2A00C11EC70D9400052CA7 /* GLConfirmOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2A00B21EC70D9400052CA7 /* GLConfirmOrderController.m */; };
 		4A2A00C21EC70D9400052CA7 /* GLConfirmOrderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2A00B31EC70D9400052CA7 /* GLConfirmOrderController.xib */; };
 		4A2A00C31EC70D9400052CA7 /* GLOrderDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2A00B51EC70D9400052CA7 /* GLOrderDetailController.m */; };
@@ -420,6 +406,20 @@
 		4A521F621EC466500028F2A2 /* GLIncomeManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A521F601EC466500028F2A2 /* GLIncomeManagerCell.m */; };
 		4A521F631EC466500028F2A2 /* GLIncomeManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A521F611EC466500028F2A2 /* GLIncomeManagerCell.xib */; };
 		4A521F661EC474970028F2A2 /* GLIncomeManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A521F651EC474970028F2A2 /* GLIncomeManagerModel.m */; };
+		4A5F669F1ECA89FA0048F339 /* GLNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F66891ECA89FA0048F339 /* GLNearbyViewController.m */; };
+		4A5F66A01ECA89FA0048F339 /* GLNearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F668A1ECA89FA0048F339 /* GLNearbyViewController.xib */; };
+		4A5F66A11ECA89FA0048F339 /* GLNearby_classifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F668E1ECA89FA0048F339 /* GLNearby_classifyCell.m */; };
+		4A5F66A21ECA89FA0048F339 /* GLNearby_classifyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F668F1ECA89FA0048F339 /* GLNearby_classifyCell.xib */; };
+		4A5F66A31ECA89FA0048F339 /* GLNearby_ClassifyConcollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F66911ECA89FA0048F339 /* GLNearby_ClassifyConcollectionCell.m */; };
+		4A5F66A41ECA89FA0048F339 /* GLNearby_ClassifyConcollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F66921ECA89FA0048F339 /* GLNearby_ClassifyConcollectionCell.xib */; };
+		4A5F66A51ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F66941ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.m */; };
+		4A5F66A61ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F66951ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.xib */; };
+		4A5F66A71ECA89FA0048F339 /* GLNearby_RecommendMerchatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F66971ECA89FA0048F339 /* GLNearby_RecommendMerchatCell.m */; };
+		4A5F66A81ECA89FA0048F339 /* GLNearby_RecommendMerchatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F66981ECA89FA0048F339 /* GLNearby_RecommendMerchatCell.xib */; };
+		4A5F66A91ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F669A1ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.m */; };
+		4A5F66AA1ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F669B1ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.xib */; };
+		4A5F66AB1ECA89FA0048F339 /* GLNearby_SectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F669D1ECA89FA0048F339 /* GLNearby_SectionHeaderView.m */; };
+		4A5F66AC1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F669E1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib */; };
 		4A78C2161EA8918500771047 /* GLDonationRecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A78C2151EA8918500771047 /* GLDonationRecordController.xib */; };
 		4AA0D5A21EAEEC0600CB8F77 /* GLIntegralGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0D5941EAEEC0600CB8F77 /* GLIntegralGoodsCell.m */; };
 		4AA0D5A31EAEEC0600CB8F77 /* GLIntegralGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA0D5951EAEEC0600CB8F77 /* GLIntegralGoodsCell.xib */; };
@@ -916,28 +916,7 @@
 		4A1FE72F1EC978FB0000A357 /* GLRecommendStoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRecommendStoreController.h; sourceTree = "<group>"; };
 		4A1FE7301EC978FB0000A357 /* GLRecommendStoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLRecommendStoreController.m; sourceTree = "<group>"; };
 		4A1FE7311EC978FB0000A357 /* GLRecommendStoreController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLRecommendStoreController.xib; sourceTree = "<group>"; };
-		4A1FE7381EC9811E0000A357 /* GLNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearbyViewController.h; sourceTree = "<group>"; };
-		4A1FE7391EC9811E0000A357 /* GLNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearbyViewController.m; sourceTree = "<group>"; };
-		4A1FE73A1EC9811E0000A357 /* GLNearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearbyViewController.xib; sourceTree = "<group>"; };
 		4A203DA81E9F646500DF22F7 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
-		4A25B3741EC98F9000EBE5DA /* GLNearby_ClassifyConcollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_ClassifyConcollectionCell.h; sourceTree = "<group>"; };
-		4A25B3751EC98F9000EBE5DA /* GLNearby_ClassifyConcollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_ClassifyConcollectionCell.m; sourceTree = "<group>"; };
-		4A25B3761EC98F9000EBE5DA /* GLNearby_ClassifyConcollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_ClassifyConcollectionCell.xib; sourceTree = "<group>"; };
-		4A25B3791EC9942D00EBE5DA /* GLNearby_ClassifyHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_ClassifyHeaderView.h; sourceTree = "<group>"; };
-		4A25B37A1EC9942D00EBE5DA /* GLNearby_ClassifyHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_ClassifyHeaderView.m; sourceTree = "<group>"; };
-		4A25B37C1EC999BF00EBE5DA /* GLNearby_ClassifyHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_ClassifyHeaderView.xib; sourceTree = "<group>"; };
-		4A25B37E1EC99BE800EBE5DA /* GLNearby_classifyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_classifyCell.h; sourceTree = "<group>"; };
-		4A25B37F1EC99BE800EBE5DA /* GLNearby_classifyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_classifyCell.m; sourceTree = "<group>"; };
-		4A25B3801EC99BE800EBE5DA /* GLNearby_classifyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_classifyCell.xib; sourceTree = "<group>"; };
-		4A25B3831EC9A6A700EBE5DA /* GLNearby_SectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_SectionHeaderView.h; sourceTree = "<group>"; };
-		4A25B3841EC9A6A700EBE5DA /* GLNearby_SectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_SectionHeaderView.m; sourceTree = "<group>"; };
-		4A25B3861EC9A6B800EBE5DA /* GLNearby_SectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_SectionHeaderView.xib; sourceTree = "<group>"; };
-		4A25B3881EC9AC6400EBE5DA /* GLNearby_RecommendMerchatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_RecommendMerchatCell.h; sourceTree = "<group>"; };
-		4A25B3891EC9AC6400EBE5DA /* GLNearby_RecommendMerchatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_RecommendMerchatCell.m; sourceTree = "<group>"; };
-		4A25B38A1EC9AC6400EBE5DA /* GLNearby_RecommendMerchatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_RecommendMerchatCell.xib; sourceTree = "<group>"; };
-		4A25B38D1EC9AF8600EBE5DA /* GLNearby_RecommendMerchatCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_RecommendMerchatCollectionCell.h; sourceTree = "<group>"; };
-		4A25B38E1EC9AF8600EBE5DA /* GLNearby_RecommendMerchatCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_RecommendMerchatCollectionCell.m; sourceTree = "<group>"; };
-		4A25B38F1EC9AF8600EBE5DA /* GLNearby_RecommendMerchatCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_RecommendMerchatCollectionCell.xib; sourceTree = "<group>"; };
 		4A2A00B11EC70D9400052CA7 /* GLConfirmOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLConfirmOrderController.h; sourceTree = "<group>"; };
 		4A2A00B21EC70D9400052CA7 /* GLConfirmOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLConfirmOrderController.m; sourceTree = "<group>"; };
 		4A2A00B31EC70D9400052CA7 /* GLConfirmOrderController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLConfirmOrderController.xib; sourceTree = "<group>"; };
@@ -1638,6 +1617,27 @@
 		4A521F611EC466500028F2A2 /* GLIncomeManagerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLIncomeManagerCell.xib; sourceTree = "<group>"; };
 		4A521F641EC474970028F2A2 /* GLIncomeManagerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIncomeManagerModel.h; sourceTree = "<group>"; };
 		4A521F651EC474970028F2A2 /* GLIncomeManagerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIncomeManagerModel.m; sourceTree = "<group>"; };
+		4A5F66881ECA89FA0048F339 /* GLNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearbyViewController.h; sourceTree = "<group>"; };
+		4A5F66891ECA89FA0048F339 /* GLNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearbyViewController.m; sourceTree = "<group>"; };
+		4A5F668A1ECA89FA0048F339 /* GLNearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearbyViewController.xib; sourceTree = "<group>"; };
+		4A5F668D1ECA89FA0048F339 /* GLNearby_classifyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_classifyCell.h; sourceTree = "<group>"; };
+		4A5F668E1ECA89FA0048F339 /* GLNearby_classifyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_classifyCell.m; sourceTree = "<group>"; };
+		4A5F668F1ECA89FA0048F339 /* GLNearby_classifyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_classifyCell.xib; sourceTree = "<group>"; };
+		4A5F66901ECA89FA0048F339 /* GLNearby_ClassifyConcollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_ClassifyConcollectionCell.h; sourceTree = "<group>"; };
+		4A5F66911ECA89FA0048F339 /* GLNearby_ClassifyConcollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_ClassifyConcollectionCell.m; sourceTree = "<group>"; };
+		4A5F66921ECA89FA0048F339 /* GLNearby_ClassifyConcollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_ClassifyConcollectionCell.xib; sourceTree = "<group>"; };
+		4A5F66931ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_ClassifyHeaderView.h; sourceTree = "<group>"; };
+		4A5F66941ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_ClassifyHeaderView.m; sourceTree = "<group>"; };
+		4A5F66951ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_ClassifyHeaderView.xib; sourceTree = "<group>"; };
+		4A5F66961ECA89FA0048F339 /* GLNearby_RecommendMerchatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_RecommendMerchatCell.h; sourceTree = "<group>"; };
+		4A5F66971ECA89FA0048F339 /* GLNearby_RecommendMerchatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_RecommendMerchatCell.m; sourceTree = "<group>"; };
+		4A5F66981ECA89FA0048F339 /* GLNearby_RecommendMerchatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_RecommendMerchatCell.xib; sourceTree = "<group>"; };
+		4A5F66991ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_RecommendMerchatCollectionCell.h; sourceTree = "<group>"; };
+		4A5F669A1ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_RecommendMerchatCollectionCell.m; sourceTree = "<group>"; };
+		4A5F669B1ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_RecommendMerchatCollectionCell.xib; sourceTree = "<group>"; };
+		4A5F669C1ECA89FA0048F339 /* GLNearby_SectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_SectionHeaderView.h; sourceTree = "<group>"; };
+		4A5F669D1ECA89FA0048F339 /* GLNearby_SectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_SectionHeaderView.m; sourceTree = "<group>"; };
+		4A5F669E1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_SectionHeaderView.xib; sourceTree = "<group>"; };
 		4A78C2151EA8918500771047 /* GLDonationRecordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLDonationRecordController.xib; sourceTree = "<group>"; };
 		4AA0D5931EAEEC0600CB8F77 /* GLIntegralGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIntegralGoodsCell.h; sourceTree = "<group>"; };
 		4AA0D5941EAEEC0600CB8F77 /* GLIntegralGoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIntegralGoodsCell.m; sourceTree = "<group>"; };
@@ -2513,53 +2513,11 @@
 		4A1FE7341EC9810E0000A357 /* 搜附近 */ = {
 			isa = PBXGroup;
 			children = (
-				4A1FE7351EC9810E0000A357 /* Controller */,
-				4A1FE7361EC9810E0000A357 /* Model */,
-				4A1FE7371EC9810E0000A357 /* View */,
+				4A5F66861ECA89FA0048F339 /* 主页 */,
+				4A5F66841ECA89FA0048F339 /* 商店详情 */,
+				4A5F66851ECA89FA0048F339 /* 商品详情 */,
 			);
 			path = "搜附近";
-			sourceTree = "<group>";
-		};
-		4A1FE7351EC9810E0000A357 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				4A1FE7381EC9811E0000A357 /* GLNearbyViewController.h */,
-				4A1FE7391EC9811E0000A357 /* GLNearbyViewController.m */,
-				4A1FE73A1EC9811E0000A357 /* GLNearbyViewController.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		4A1FE7361EC9810E0000A357 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		4A1FE7371EC9810E0000A357 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				4A25B3791EC9942D00EBE5DA /* GLNearby_ClassifyHeaderView.h */,
-				4A25B37A1EC9942D00EBE5DA /* GLNearby_ClassifyHeaderView.m */,
-				4A25B37C1EC999BF00EBE5DA /* GLNearby_ClassifyHeaderView.xib */,
-				4A25B3741EC98F9000EBE5DA /* GLNearby_ClassifyConcollectionCell.h */,
-				4A25B3751EC98F9000EBE5DA /* GLNearby_ClassifyConcollectionCell.m */,
-				4A25B3761EC98F9000EBE5DA /* GLNearby_ClassifyConcollectionCell.xib */,
-				4A25B3831EC9A6A700EBE5DA /* GLNearby_SectionHeaderView.h */,
-				4A25B3841EC9A6A700EBE5DA /* GLNearby_SectionHeaderView.m */,
-				4A25B3861EC9A6B800EBE5DA /* GLNearby_SectionHeaderView.xib */,
-				4A25B3881EC9AC6400EBE5DA /* GLNearby_RecommendMerchatCell.h */,
-				4A25B3891EC9AC6400EBE5DA /* GLNearby_RecommendMerchatCell.m */,
-				4A25B38A1EC9AC6400EBE5DA /* GLNearby_RecommendMerchatCell.xib */,
-				4A25B38D1EC9AF8600EBE5DA /* GLNearby_RecommendMerchatCollectionCell.h */,
-				4A25B38E1EC9AF8600EBE5DA /* GLNearby_RecommendMerchatCollectionCell.m */,
-				4A25B38F1EC9AF8600EBE5DA /* GLNearby_RecommendMerchatCollectionCell.xib */,
-				4A25B37E1EC99BE800EBE5DA /* GLNearby_classifyCell.h */,
-				4A25B37F1EC99BE800EBE5DA /* GLNearby_classifyCell.m */,
-				4A25B3801EC99BE800EBE5DA /* GLNearby_classifyCell.xib */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		4A2A00AF1EC70D9400052CA7 /* 订单 */ = {
@@ -3929,6 +3887,72 @@
 				4AE354761EC83AAB00BF60CC /* GLMerchant_IncomeCell.h */,
 				4AE354771EC83AAB00BF60CC /* GLMerchant_IncomeCell.m */,
 				4AE354781EC83AAB00BF60CC /* GLMerchant_IncomeCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4A5F66841ECA89FA0048F339 /* 商店详情 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "商店详情";
+			sourceTree = "<group>";
+		};
+		4A5F66851ECA89FA0048F339 /* 商品详情 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "商品详情";
+			sourceTree = "<group>";
+		};
+		4A5F66861ECA89FA0048F339 /* 主页 */ = {
+			isa = PBXGroup;
+			children = (
+				4A5F66871ECA89FA0048F339 /* Controller */,
+				4A5F668B1ECA89FA0048F339 /* Model */,
+				4A5F668C1ECA89FA0048F339 /* View */,
+			);
+			path = "主页";
+			sourceTree = "<group>";
+		};
+		4A5F66871ECA89FA0048F339 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4A5F66881ECA89FA0048F339 /* GLNearbyViewController.h */,
+				4A5F66891ECA89FA0048F339 /* GLNearbyViewController.m */,
+				4A5F668A1ECA89FA0048F339 /* GLNearbyViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4A5F668B1ECA89FA0048F339 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4A5F668C1ECA89FA0048F339 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A5F668D1ECA89FA0048F339 /* GLNearby_classifyCell.h */,
+				4A5F668E1ECA89FA0048F339 /* GLNearby_classifyCell.m */,
+				4A5F668F1ECA89FA0048F339 /* GLNearby_classifyCell.xib */,
+				4A5F66901ECA89FA0048F339 /* GLNearby_ClassifyConcollectionCell.h */,
+				4A5F66911ECA89FA0048F339 /* GLNearby_ClassifyConcollectionCell.m */,
+				4A5F66921ECA89FA0048F339 /* GLNearby_ClassifyConcollectionCell.xib */,
+				4A5F66931ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.h */,
+				4A5F66941ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.m */,
+				4A5F66951ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.xib */,
+				4A5F66961ECA89FA0048F339 /* GLNearby_RecommendMerchatCell.h */,
+				4A5F66971ECA89FA0048F339 /* GLNearby_RecommendMerchatCell.m */,
+				4A5F66981ECA89FA0048F339 /* GLNearby_RecommendMerchatCell.xib */,
+				4A5F66991ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.h */,
+				4A5F669A1ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.m */,
+				4A5F669B1ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.xib */,
+				4A5F669C1ECA89FA0048F339 /* GLNearby_SectionHeaderView.h */,
+				4A5F669D1ECA89FA0048F339 /* GLNearby_SectionHeaderView.m */,
+				4A5F669E1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5699,7 +5723,6 @@
 				4A46103C1E9CC6360045824F /* ios-social-sdk-socialbar.html in Resources */,
 				F92309291E9B8BFF00ECDC94 /* LBMineCenterAddBankCardViewController.xib in Resources */,
 				F92309421E9B8BFF00ECDC94 /* LBMineCenterseverceNoticeTableViewCell.xib in Resources */,
-				4A25B3911EC9AF8600EBE5DA /* GLNearby_RecommendMerchatCollectionCell.xib in Resources */,
 				4A4610311E9CC6360045824F /* README.txt in Resources */,
 				F923091D1E9B8BFF00ECDC94 /* LBMineCenterMyBalanceViewController.xib in Resources */,
 				4A4610321E9CC6360045824F /* iOS-social-analytics-releasenote.html in Resources */,
@@ -5724,6 +5747,7 @@
 				F923098F1E9B8BFF00ECDC94 /* LBMineCenterCollectionViewCell.xib in Resources */,
 				4A4610061E9CC6360045824F /* CodeScan.bundle in Resources */,
 				4A4610231E9CC6360045824F /* UMShareEditViewController.xib in Resources */,
+				4A5F66AC1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib in Resources */,
 				F966B3D51EAC3DAF007260FC /* LBMineCenterOrderDetailSevenTableViewCell.xib in Resources */,
 				4AAD25851EC188F50054FD06 /* GLRecommendCell.xib in Resources */,
 				4AE354751EC837A100BF60CC /* GLMerchant_IncomeController.xib in Resources */,
@@ -5734,12 +5758,10 @@
 				4A07A88A1EA0BBF1005A9B67 /* GLNoneOfDonationController.xib in Resources */,
 				4A46103D1E9CC6360045824F /* markdown.css in Resources */,
 				F9126EED1EA059A9004785EA /* mapapi.bundle in Resources */,
-				4A25B38C1EC9AC6400EBE5DA /* GLNearby_RecommendMerchatCell.xib in Resources */,
 				F92309721E9B8BFF00ECDC94 /* LBMineCenterAddAdreassViewController.xib in Resources */,
 				F91274A21EA0E66000B7A539 /* LBMineStoreHistoryOrderingViewController.xib in Resources */,
 				F92309801E9B8BFF00ECDC94 /* LBMineCenterSafeSecondSecretViewController.xib in Resources */,
 				4AAD25381EC188C90054FD06 /* GLBuyBackRecordController.xib in Resources */,
-				4A25B3871EC9A6B800EBE5DA /* GLNearby_SectionHeaderView.xib in Resources */,
 				F9126EBD1EA05692004785EA /* GLMine_InfoController.xib in Resources */,
 				4AE3548D1EC85E6C00BF60CC /* GLAddStoreController.xib in Resources */,
 				4A4610261E9CC6360045824F /* UMSnsAccountViewController.xib in Resources */,
@@ -5762,6 +5784,7 @@
 				4A46101E1E9CC6360045824F /* UMSocialLocalizable.strings in Resources */,
 				F92309521E9B8BFF00ECDC94 /* LBMyOrderAlreadyCompletedViewController.xib in Resources */,
 				F951EB1C1EA1EFD700D6708E /* LBMineCenterUsualUnderOrderTwoViewController.xib in Resources */,
+				4A5F66A81ECA89FA0048F339 /* GLNearby_RecommendMerchatCell.xib in Resources */,
 				F92309861E9B8BFF00ECDC94 /* LBMineCenterSafeChangePhoneViewController.xib in Resources */,
 				F92309911E9B8BFF00ECDC94 /* LBMineCenterinfoTableViewCell.xib in Resources */,
 				4A4610281E9CC6360045824F /* UMSocialSDKResourcesNew.bundle in Resources */,
@@ -5819,6 +5842,7 @@
 				4A78C2161EA8918500771047 /* GLDonationRecordController.xib in Resources */,
 				F923082F1E9B8B6B00ECDC94 /* Address.plist in Resources */,
 				4A2A00C91EC70D9400052CA7 /* GLOrderPayView.xib in Resources */,
+				4A5F66A01ECA89FA0048F339 /* GLNearbyViewController.xib in Resources */,
 				F966B3D01EAC3D96007260FC /* LBMineCenterOrderDetailSixTableViewCell.xib in Resources */,
 				F9061FD61E83C4730080E9D9 /* Main.storyboard in Resources */,
 				F966B3C61EAC3D64007260FC /* LBMineCenterOrderDetailFourTableViewCell.xib in Resources */,
@@ -5829,9 +5853,10 @@
 				4A460A0A1E9CB8050045824F /* NodataView.xib in Resources */,
 				4A46103A1E9CC6360045824F /* ios-social-sdk-share-detail.html in Resources */,
 				F9520A111EAD9EE300B4D665 /* LBMerchantSubmissionThreeViewController.xib in Resources */,
+				4A5F66AA1ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.xib in Resources */,
 				4A4610201E9CC6360045824F /* UMSCommentDetailController.xib in Resources */,
+				4A5F66A41ECA89FA0048F339 /* GLNearby_ClassifyConcollectionCell.xib in Resources */,
 				4A0D978F1E9729C100A26B84 /* GLHomeRecommendCell.xib in Resources */,
-				4A25B3781EC98F9000EBE5DA /* GLNearby_ClassifyConcollectionCell.xib in Resources */,
 				4A0D978B1E9729C100A26B84 /* GLShoppingCell.xib in Resources */,
 				4AA0D5BB1EAEF01D00CB8F77 /* GLClassifyView.xib in Resources */,
 				4A4608F01E9C9E6D0045824F /* GLRankingCell.xib in Resources */,
@@ -5892,7 +5917,6 @@
 				F91029CC1EC5966400246D04 /* LBMySalesmanListView.xib in Resources */,
 				F951EB211EA1EFED00D6708E /* LBMineCenterUsualUnderOrderThreeViewController.xib in Resources */,
 				F9564DFE1EC86217007F3677 /* LBBelowTheLineListViewController.xib in Resources */,
-				4A25B3821EC99BE800EBE5DA /* GLNearby_classifyCell.xib in Resources */,
 				4AA0D5C51EAEF4CB00CB8F77 /* GLClassifyRecommendCell.xib in Resources */,
 				F923093F1E9B8BFF00ECDC94 /* LBMineCenterHotPickView.xib in Resources */,
 				4A07A88D1EA0BBF1005A9B67 /* GLNoneOfDonationCell.xib in Resources */,
@@ -5904,7 +5928,6 @@
 				F912749D1EA0E64B00B7A539 /* LBMineStoreTodayOrderingViewController.xib in Resources */,
 				F9126EF71EA0B086004785EA /* LBMineSystemMessageTableViewCell.xib in Resources */,
 				F966B3B71EAC3BB8007260FC /* LBMineCenterOrderDetailOneTableViewCell.xib in Resources */,
-				4A1FE73C1EC9811E0000A357 /* GLNearbyViewController.xib in Resources */,
 				4A4610211E9CC6360045824F /* UMSCommentInputController.xib in Resources */,
 				4A2F52201EC7084100ECA95D /* GLHourseChangeNumCell.xib in Resources */,
 				F923097A1E9B8BFF00ECDC94 /* LBMineCenterAccountSafeViewController.xib in Resources */,
@@ -5929,7 +5952,7 @@
 				4AA0D5FD1EAF675300CB8F77 /* Integral_Mall.xcassets in Resources */,
 				F923095E1E9B8BFF00ECDC94 /* LBMyOrderListTableViewCell.xib in Resources */,
 				F97F09D91EC9402A000D3B30 /* LBProductManagementViewController.xib in Resources */,
-				4A25B37D1EC999BF00EBE5DA /* GLNearby_ClassifyHeaderView.xib in Resources */,
+				4A5F66A61ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.xib in Resources */,
 				4A2F51CD1EC6E5F600ECA95D /* GLMemberManagerCell.xib in Resources */,
 				4A4608F21E9C9E6D0045824F /* GLRankingView.xib in Resources */,
 				F95150891EC06F9100BDCF53 /* https.cer in Resources */,
@@ -5953,6 +5976,7 @@
 				F97F09E31EC98AEA000D3B30 /* LBAddMineProductionViewController.xib in Resources */,
 				F966B3ED1EAC7E97007260FC /* LBMySalesmanListDeatilViewController.xib in Resources */,
 				4AE354881EC84BC300BF60CC /* GLMerchat_StoreCell.xib in Resources */,
+				4A5F66A21ECA89FA0048F339 /* GLNearby_classifyCell.xib in Resources */,
 				4AFAB8C81EBD9A4500CCFDCE /* GLSetup_VersionInfoController.xib in Resources */,
 				F966B3DE1EAC7E0C007260FC /* LBMyBusinessListViewController.xib in Resources */,
 				4A4610371E9CC6360045824F /* ios-social-sdk-login-detail.html in Resources */,
@@ -6038,7 +6062,6 @@
 				F94D31E81EAF7EE200309029 /* LBWaitOrdersHeaderView.m in Sources */,
 				F923098B1E9B8BFF00ECDC94 /* MineCollectionHeaderV.m in Sources */,
 				F966B3BB1EAC3D3E007260FC /* LBMineCenterOrderDetailTwoTableViewCell.m in Sources */,
-				4A1FE73B1EC9811E0000A357 /* GLNearbyViewController.m in Sources */,
 				4A4610961E9CC6360045824F /* ZXDataMatrixDecodedBitStreamParser.m in Sources */,
 				4A4610B71E9CC6370045824F /* ZXAI01weightDecoder.m in Sources */,
 				F9126EF11EA0B042004785EA /* LBMineSystemMessageViewController.m in Sources */,
@@ -6119,6 +6142,7 @@
 				4A4610721E9CC6360045824F /* ZXMonochromeRectangleDetector.m in Sources */,
 				4AAD259C1EC189070054FD06 /* GLTwelevePersentController.m in Sources */,
 				4A4610F51E9CC6370045824F /* ZXPDF417BarcodeMatrix.m in Sources */,
+				4A5F66A91ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.m in Sources */,
 				4A4610631E9CC6360045824F /* ZXTelResultParser.m in Sources */,
 				4A2F52211EC7084100ECA95D /* GLHourseDetailFirstCell.m in Sources */,
 				4A2F52251EC7084100ECA95D /* GLHourseOptionCell.m in Sources */,
@@ -6203,6 +6227,7 @@
 				4A46110D1E9CC6370045824F /* ZXQRCodeFinderPatternInfo.m in Sources */,
 				4A4610FC1E9CC6370045824F /* ZXPDF417ResultMetadata.m in Sources */,
 				4AAD25581EC188D70054FD06 /* GLDirectDnationRecordCell.m in Sources */,
+				4A5F66A71ECA89FA0048F339 /* GLNearby_RecommendMerchatCell.m in Sources */,
 				4A4610F71E9CC6370045824F /* ZXPDF417Dimensions.m in Sources */,
 				F961AA2B1E9CE17800275F52 /* LBMerchantcreditViewController.m in Sources */,
 				4A4610DB1E9CC6370045824F /* ZXOneDimensionalCodeWriter.m in Sources */,
@@ -6227,8 +6252,8 @@
 				4AAD25AC1EC18BFF0054FD06 /* GLMyCollectionCell.m in Sources */,
 				4A4610B61E9CC6370045824F /* ZXAI01decoder.m in Sources */,
 				4A4611151E9CC6370045824F /* ZXQRCodeMultiReader.m in Sources */,
-				4A25B3771EC98F9000EBE5DA /* GLNearby_ClassifyConcollectionCell.m in Sources */,
 				F923091B1E9B8BFF00ECDC94 /* HWOptionButton.m in Sources */,
+				4A5F66A31ECA89FA0048F339 /* GLNearby_ClassifyConcollectionCell.m in Sources */,
 				F92309471E9B8BFF00ECDC94 /* LBMineMessageHotPickTableViewCell.m in Sources */,
 				4A4609D91E9CB78E0045824F /* GLRecommendRecordModel.m in Sources */,
 				4A46106E1E9CC6360045824F /* ZXCapture.m in Sources */,
@@ -6260,7 +6285,6 @@
 				4A460A071E9CB8050045824F /* LoadWaitView.m in Sources */,
 				F923097B1E9B8BFF00ECDC94 /* LBMineCenterSafeForgetSecondSecretViewController.m in Sources */,
 				4A4610AF1E9CC6370045824F /* ZXAI013103decoder.m in Sources */,
-				4A25B3901EC9AF8600EBE5DA /* GLNearby_RecommendMerchatCollectionCell.m in Sources */,
 				F966B4031EAC9BC4007260FC /* LBMySalesmanListDeatilTableViewCell.m in Sources */,
 				4A4610611E9CC6360045824F /* ZXSMTPResultParser.m in Sources */,
 				F92309411E9B8BFF00ECDC94 /* LBMineCenterseverceNoticeTableViewCell.m in Sources */,
@@ -6281,7 +6305,6 @@
 				4A460A5D1E9CC0310045824F /* SubLBXScanViewController.m in Sources */,
 				4A2F521D1EC7084000ECA95D /* GLHomeLiveCell.m in Sources */,
 				F9520A281EAE170400B4D665 /* LBMineStoreAllOrdersViewController.m in Sources */,
-				4A25B3811EC99BE800EBE5DA /* GLNearby_classifyCell.m in Sources */,
 				4A46105A1E9CC6360045824F /* ZXParsedResult.m in Sources */,
 				4A4610841E9CC6360045824F /* ZXIntArray.m in Sources */,
 				F951C7741EB0C4AA0014A71D /* LBBelowTheLineViewController.m in Sources */,
@@ -6375,7 +6398,6 @@
 				4A4611111E9CC6370045824F /* ZXQRCodeMaskUtil.m in Sources */,
 				4A4610521E9CC6360045824F /* ZXEmailAddressResultParser.m in Sources */,
 				4AAD257E1EC188F50054FD06 /* GLReceiveBeansModel.m in Sources */,
-				4A25B3851EC9A6A700EBE5DA /* GLNearby_SectionHeaderView.m in Sources */,
 				F966B3DD1EAC7E0C007260FC /* LBMyBusinessListViewController.m in Sources */,
 				F92309361E9B8BFF00ECDC94 /* LBMineMessageViewController.m in Sources */,
 				4A4610861E9CC6360045824F /* ZXStringUtils.m in Sources */,
@@ -6445,8 +6467,10 @@
 				4A460A5B1E9CC0310045824F /* ScanResultViewController.m in Sources */,
 				F94D31821EAF2EB300309029 /* LBRecommendedBusinessAuditViewController.m in Sources */,
 				4A46104D1E9CC6360045824F /* ZXAddressBookParsedResult.m in Sources */,
+				4A5F669F1ECA89FA0048F339 /* GLNearbyViewController.m in Sources */,
 				4A521F621EC466500028F2A2 /* GLIncomeManagerCell.m in Sources */,
 				4A4610661E9CC6360045824F /* ZXURIResultParser.m in Sources */,
+				4A5F66AB1ECA89FA0048F339 /* GLNearby_SectionHeaderView.m in Sources */,
 				4A4610B81E9CC6370045824F /* ZXAnyAIDecoder.m in Sources */,
 				4A4610821E9CC6360045824F /* ZXGridSampler.m in Sources */,
 				4A4610EA1E9CC6370045824F /* ZXPDF417BoundingBox.m in Sources */,
@@ -6478,7 +6502,6 @@
 				F9564DFD1EC86217007F3677 /* LBBelowTheLineListViewController.m in Sources */,
 				4A4611161E9CC6370045824F /* ZXQRCodeReader.m in Sources */,
 				F90620051E83C5D00080E9D9 /* BaseNavigationViewController.m in Sources */,
-				4A25B38B1EC9AC6400EBE5DA /* GLNearby_RecommendMerchatCell.m in Sources */,
 				4A46100F1E9CC6360045824F /* LBXAlertAction.m in Sources */,
 				4A46103F1E9CC6360045824F /* ZXAztecDetector.m in Sources */,
 				4A4608F31E9C9E6D0045824F /* GLRewardView.m in Sources */,
@@ -6547,7 +6570,7 @@
 				4A2F521F1EC7084000ECA95D /* GLHourseChangeNumCell.m in Sources */,
 				4A4610B11E9CC6370045824F /* ZXAI01392xDecoder.m in Sources */,
 				F966B3F71EAC8C8A007260FC /* LBShowSaleManAndBusinessViewController.m in Sources */,
-				4A25B37B1EC9942D00EBE5DA /* GLNearby_ClassifyHeaderView.m in Sources */,
+				4A5F66A51ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.m in Sources */,
 				F923092A1E9B8BFF00ECDC94 /* LBMineCenterBalanceRechargeViewController.m in Sources */,
 				F966B3E21EAC7E38007260FC /* LBMyBusinessListDetailViewController.m in Sources */,
 				4AE354741EC837A100BF60CC /* GLMerchant_IncomeController.m in Sources */,
@@ -6561,6 +6584,7 @@
 				4A2A00C81EC70D9400052CA7 /* GLOrderPayView.m in Sources */,
 				F9520A101EAD9EE300B4D665 /* LBMerchantSubmissionThreeViewController.m in Sources */,
 				4A4610741E9CC6360045824F /* ZXGenericGF.m in Sources */,
+				4A5F66A11ECA89FA0048F339 /* GLNearby_classifyCell.m in Sources */,
 				4A46106B1E9CC6360045824F /* ZXVINResultParser.m in Sources */,
 				4A4610A21E9CC6360045824F /* ZXDataMatrixSymbolInfo.m in Sources */,
 				4A0D978E1E9729C100A26B84 /* GLHomeRecommendCell.m in Sources */,
