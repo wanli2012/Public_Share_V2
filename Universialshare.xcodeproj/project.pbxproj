@@ -3894,6 +3894,7 @@
 		4A5F66841ECA89FA0048F339 /* 商店详情 */ = {
 			isa = PBXGroup;
 			children = (
+				4A5F66AD1ECA8B170048F339 /* Controller */,
 			);
 			path = "商店详情";
 			sourceTree = "<group>";
@@ -3901,6 +3902,7 @@
 		4A5F66851ECA89FA0048F339 /* 商品详情 */ = {
 			isa = PBXGroup;
 			children = (
+				4A5F66AE1ECA8B210048F339 /* Controller */,
 			);
 			path = "商品详情";
 			sourceTree = "<group>";
@@ -3955,6 +3957,20 @@
 				4A5F669E1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		4A5F66AD1ECA8B170048F339 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4A5F66AE1ECA8B210048F339 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		4AA0D5841EAEEC0600CB8F77 /* 分类页面 */ = {

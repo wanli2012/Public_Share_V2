@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *liveBtn;
 @property (weak, nonatomic) IBOutlet UIButton *playBtn;
 @property (weak, nonatomic) IBOutlet UIButton *allBtn;
+
+@property (nonatomic, strong)UIView *indicatorV;
 @end
 
 static NSString *ID = @"GLNearby_classifyCell";
@@ -44,7 +46,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     
     
     [self classifyChoose:self.eatBtn];
-    
+    [self setIndicator];
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     [self.tableView registerNib:[UINib nibWithNibName:ID2 bundle:nil] forCellReuseIdentifier:ID2];
 
@@ -52,6 +54,11 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+}
+
+//指示器 (类型下面的小条)
+- (void)setIndicator {
+    
 }
 //选择分类
 - (IBAction)classifyChoose:(UIButton *)sender {
@@ -62,6 +69,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     [sender setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
     if (sender == self.eatBtn) {
         NSLog(@"美食");
+//        self.indicatorV.frame = CGRectMake(0, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
     }else if (sender == self.liveBtn){
         NSLog(@"酒店");
     }else if(sender == self.playBtn){
@@ -144,5 +152,11 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     self.hidesBottomBarWhenPushed = NO;
 }
 
+- (UIView *)indicatorV{
+    if (!_indicatorV) {
+        _indicatorV = [[UIView alloc] init];
+    }
+    return _indicatorV;
+}
 
 @end
