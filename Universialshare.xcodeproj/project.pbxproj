@@ -735,6 +735,8 @@
 		F94D6E291E9E074300412E64 /* SelectUserTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94D6E271E9E074300412E64 /* SelectUserTypeView.xib */; };
 		F94D6E2B1E9E2A6D00412E64 /* setUp.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F94D6E2A1E9E2A6D00412E64 /* setUp.xcassets */; };
 		F95150891EC06F9100BDCF53 /* https.cer in Resources */ = {isa = PBXBuildFile; fileRef = F95150881EC06F9100BDCF53 /* https.cer */; };
+		F9516DD31ECA8AD0009F015D /* LBStoreMoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9516DD11ECA8AD0009F015D /* LBStoreMoreInformationViewController.m */; };
+		F9516DD41ECA8AD0009F015D /* LBStoreMoreInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9516DD21ECA8AD0009F015D /* LBStoreMoreInformationViewController.xib */; };
 		F951C76C1EB02DF10014A71D /* LBWaitOrdersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F951C76B1EB02DF10014A71D /* LBWaitOrdersModel.m */; };
 		F951C76F1EB02E050014A71D /* LBWaitOrdersListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F951C76E1EB02E050014A71D /* LBWaitOrdersListModel.m */; };
 		F951C7741EB0C4AA0014A71D /* LBBelowTheLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F951C7721EB0C4AA0014A71D /* LBBelowTheLineViewController.m */; };
@@ -2128,6 +2130,9 @@
 		F94D6E271E9E074300412E64 /* SelectUserTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectUserTypeView.xib; sourceTree = "<group>"; };
 		F94D6E2A1E9E2A6D00412E64 /* setUp.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = setUp.xcassets; sourceTree = "<group>"; };
 		F95150881EC06F9100BDCF53 /* https.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = https.cer; sourceTree = "<group>"; };
+		F9516DD01ECA8AD0009F015D /* LBStoreMoreInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBStoreMoreInformationViewController.h; path = "Universialshare/我的/controller/产品管理/LBStoreMoreInformationViewController.h"; sourceTree = SOURCE_ROOT; };
+		F9516DD11ECA8AD0009F015D /* LBStoreMoreInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBStoreMoreInformationViewController.m; path = "Universialshare/我的/controller/产品管理/LBStoreMoreInformationViewController.m"; sourceTree = SOURCE_ROOT; };
+		F9516DD21ECA8AD0009F015D /* LBStoreMoreInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LBStoreMoreInformationViewController.xib; path = "Universialshare/我的/controller/产品管理/LBStoreMoreInformationViewController.xib"; sourceTree = SOURCE_ROOT; };
 		F951C76A1EB02DF10014A71D /* LBWaitOrdersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBWaitOrdersModel.h; sourceTree = "<group>"; };
 		F951C76B1EB02DF10014A71D /* LBWaitOrdersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBWaitOrdersModel.m; sourceTree = "<group>"; };
 		F951C76D1EB02E050014A71D /* LBWaitOrdersListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBWaitOrdersListModel.h; sourceTree = "<group>"; };
@@ -3894,6 +3899,9 @@
 		4A5F66841ECA89FA0048F339 /* 商店详情 */ = {
 			isa = PBXGroup;
 			children = (
+				F9516DD01ECA8AD0009F015D /* LBStoreMoreInformationViewController.h */,
+				F9516DD11ECA8AD0009F015D /* LBStoreMoreInformationViewController.m */,
+				F9516DD21ECA8AD0009F015D /* LBStoreMoreInformationViewController.xib */,
 			);
 			path = "商店详情";
 			sourceTree = "<group>";
@@ -5754,6 +5762,7 @@
 				4A4609FD1E9CB78E0045824F /* GLDonationMaskView.xib in Resources */,
 				F961AA331E9CE1D200275F52 /* LBMoreOperateView.xib in Resources */,
 				4AA0D5B31EAEEC8E00CB8F77 /* GLIntegraClassifyController.xib in Resources */,
+				F9516DD41ECA8AD0009F015D /* LBStoreMoreInformationViewController.xib in Resources */,
 				F94D31981EAF3AED00309029 /* LBRecommendedBusinessAuditTableViewCell.xib in Resources */,
 				4A07A88A1EA0BBF1005A9B67 /* GLNoneOfDonationController.xib in Resources */,
 				4A46103D1E9CC6360045824F /* markdown.css in Resources */,
@@ -6097,6 +6106,7 @@
 				F923095B1E9B8BFF00ECDC94 /* LBMyOrderEveluationSucessOneCollectionViewCell.m in Sources */,
 				4AA0D5B91EAEF00F00CB8F77 /* GLClassifyView.m in Sources */,
 				4A4610641E9CC6360045824F /* ZXTextParsedResult.m in Sources */,
+				F9516DD31ECA8AD0009F015D /* LBStoreMoreInformationViewController.m in Sources */,
 				4A46111B1E9CC6370045824F /* UIImageView+CornerRadius.m in Sources */,
 				4A4610181E9CC6360045824F /* LBXScanViewController.m in Sources */,
 				4A46106F1E9CC6360045824F /* ZXCGImageLuminanceSource.m in Sources */,
