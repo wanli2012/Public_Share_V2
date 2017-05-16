@@ -44,6 +44,8 @@
 #import "GLMerchat_StoreController.h"
 #import "LBProductManagementViewController.h"
 
+#import "LBStoreMoreInfomationViewController.h"//商店详情
+
 
 @interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
     UIImageView *_imageviewLeft;
@@ -474,8 +476,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 //消息
 - (IBAction)messagebutton:(UIButton *)sender {
     
+//    self.hidesBottomBarWhenPushed=YES;
+//    LBMineMessageViewController *vc=[[LBMineMessageViewController alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
+//    self.hidesBottomBarWhenPushed=NO;
+    
     self.hidesBottomBarWhenPushed=YES;
-    LBMineMessageViewController *vc=[[LBMineMessageViewController alloc]init];
+    LBStoreMoreInfomationViewController *vc=[[LBStoreMoreInfomationViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed=NO;
     

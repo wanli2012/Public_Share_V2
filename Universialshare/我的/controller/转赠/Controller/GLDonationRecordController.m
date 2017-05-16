@@ -102,7 +102,7 @@ static NSString *ID = @"GLDonationRecordCell";
     NSMutableDictionary *dit = [NSMutableDictionary dictionary];
     dit[@"token"] = [UserModel defaultUser].token;
     dit[@"uid"] = [UserModel defaultUser].uid;
-    dit[@"page"] = [NSString stringWithFormat:@"%ld",_page];
+    dit[@"page"] = [NSString stringWithFormat:@"%ld",(long)_page];
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"user/give_list" paramDic:dit finish:^(id responseObject) {
