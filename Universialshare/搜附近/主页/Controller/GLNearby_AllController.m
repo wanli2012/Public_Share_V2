@@ -19,6 +19,7 @@
 
 static NSString *ID = @"GLNearby_classifyCell";
 static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
+
 @implementation GLNearby_AllController
 
 - (void)viewDidLoad {
