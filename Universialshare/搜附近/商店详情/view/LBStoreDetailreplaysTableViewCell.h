@@ -1,0 +1,18 @@
+//
+//  LBStoreDetailreplaysTableViewCell.h
+//  Universialshare
+//
+//  Created by 四川三君科技有限公司 on 2017/5/16.
+//  Copyright © 2017年 四川三君科技有限公司. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface LBStoreDetailreplaysTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *imagev;
+@property (weak, nonatomic) IBOutlet UILabel *nameLb;
+@property (weak, nonatomic) IBOutlet UIImageView *starImage;
+@property (weak, nonatomic) IBOutlet UILabel *contentLb;
+@property (weak, nonatomic) IBOutlet UILabel *timeLb;
+
+@end
