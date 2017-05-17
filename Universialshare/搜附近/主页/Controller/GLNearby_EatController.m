@@ -11,6 +11,9 @@
 #import "GLNearby_classifyCell.h"
 #import "GLNearby_SectionHeaderView.h"
 #import "GLNearby_RecommendMerchatCell.h"
+#import "GLNearby_MerchatListController.h"
+#import "GLNearbyViewController.h"
+
 
 @interface GLNearby_EatController ()
 {
@@ -25,13 +28,11 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 //    self.automaticallyAdjustsScrollViewInsets = NO;
-//    self.view.backgroundColor = [UIColor redColor];
+
     GLNearby_ClassifyHeaderView *headerV = [[GLNearby_ClassifyHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 70)];
     self.tableView.tableHeaderView = headerV;
     
-
     __weak typeof(self) weakSelf = self;
  
     headerV.block = ^(NSString *typeID,NSInteger count){
@@ -56,8 +57,27 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     [self.tableView registerNib:[UINib nibWithNibName:ID2 bundle:nil] forCellReuseIdentifier:ID2];
 }
-- (void)more:(id)sender {
-    NSLog(@"查看更多");
+
+- (UIViewController *)viewController {
+    for (UIView *view = self.view; view; view = view.superview) {
+        UIResponder *nextResponder = [view nextResponder];
+        if ([nextResponder isKindOfClass:[GLNearbyViewController class]]) {
+            return (GLNearbyViewController *)nextResponder;
+        }
+    }
+    return nil;
+}
+- (void)more:(NSInteger )index {
+    self.viewController.hidesBottomBarWhenPushed = YES;
+    GLNearby_MerchatListController *merchatVC = [[GLNearby_MerchatListController alloc] init];
+    if (index == 0) {
+        
+    }else{
+        
+    }
+    [self.viewController.navigationController pushViewController:merchatVC animated:YES];
+    self.viewController.hidesBottomBarWhenPushed = NO;
+    
 }
 #pragma UITableviewDelegate UITableviewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -81,11 +101,14 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     
     if (section == 0) {
         headV.titleLabel.text = @"推荐商家";
-        [headV.moreBtn addTarget:self action:@selector(more:) forControlEvents:UIControlEventTouchUpInside];
+        [headV.moreBtn setTitle:@"查看更多" forState:UIControlStateNormal];
+        headV.index = 0;
     }else{
         headV.titleLabel.text = @"附近商家";
-        [headV.moreBtn addTarget:self action:@selector(more:) forControlEvents:UIControlEventTouchUpInside];
+        [headV.moreBtn setTitle:@"查看全部" forState:UIControlStateNormal];
+        headV.index = 1;
     }
+    [headV.moreBtn addTarget:self action:@selector(more:) forControlEvents:UIControlEventTouchUpInside];
     
     return headV;
 }

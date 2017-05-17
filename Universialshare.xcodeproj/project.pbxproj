@@ -87,6 +87,10 @@
 		4A2F52291EC7084100ECA95D /* GLTwoButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2F52091EC7084000ECA95D /* GLTwoButtonCell.m */; };
 		4A2F522A1EC7084100ECA95D /* GLTwoButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F520A1EC7084000ECA95D /* GLTwoButtonCell.xib */; };
 		4A2F522B1EC7084100ECA95D /* TypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2F520C1EC7084000ECA95D /* TypeView.m */; };
+		4A3D17B01ECC507B00F85A3B /* GLRecommendStroe_RecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3D17AE1ECC507B00F85A3B /* GLRecommendStroe_RecordController.m */; };
+		4A3D17B11ECC507B00F85A3B /* GLRecommendStroe_RecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3D17AF1ECC507B00F85A3B /* GLRecommendStroe_RecordController.xib */; };
+		4A3D17B51ECC514400F85A3B /* GLRecommendStore_RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3D17B31ECC514400F85A3B /* GLRecommendStore_RecordCell.m */; };
+		4A3D17B61ECC514400F85A3B /* GLRecommendStore_RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3D17B41ECC514400F85A3B /* GLRecommendStore_RecordCell.xib */; };
 		4A3E60881EAD8CC8000E2E17 /* GLSubmitFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E60841EAD8CC8000E2E17 /* GLSubmitFirstController.m */; };
 		4A3E60891EAD8CC8000E2E17 /* GLSubmitFirstController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3E60851EAD8CC8000E2E17 /* GLSubmitFirstController.xib */; };
 		4A3E608D1EAD97E6000E2E17 /* GLSubmitSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E608B1EAD97E6000E2E17 /* GLSubmitSecondController.m */; };
@@ -526,6 +530,10 @@
 		4AE3548D1EC85E6C00BF60CC /* GLAddStoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE3548B1EC85E6C00BF60CC /* GLAddStoreController.xib */; };
 		4AFAB8C71EBD9A4500CCFDCE /* GLSetup_VersionInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAB8C51EBD9A4500CCFDCE /* GLSetup_VersionInfoController.m */; };
 		4AFAB8C81EBD9A4500CCFDCE /* GLSetup_VersionInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFAB8C61EBD9A4500CCFDCE /* GLSetup_VersionInfoController.xib */; };
+		4AFFA52C1ECBDA57004FDEA7 /* GLNearby_MerchatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFA52A1ECBDA57004FDEA7 /* GLNearby_MerchatListController.m */; };
+		4AFFA52D1ECBDA57004FDEA7 /* GLNearby_MerchatListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFFA52B1ECBDA57004FDEA7 /* GLNearby_MerchatListController.xib */; };
+		4AFFA5311ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFA52F1ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.m */; };
+		4AFFA5321ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFFA5301ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.xib */; };
 		4F9D6A29F2E5B95EBA14BE59 /* Pods_Universialshare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83AB1B0045A3996493D9CF8 /* Pods_Universialshare.framework */; };
 		F9061FCD1E83C4720080E9D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9061FCC1E83C4720080E9D9 /* main.m */; };
 		F9061FD01E83C4720080E9D9 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = F9061FCF1E83C4720080E9D9 /* AppDelegate.mm */; };
@@ -1015,6 +1023,12 @@
 		4A2F520A1EC7084000ECA95D /* GLTwoButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLTwoButtonCell.xib; sourceTree = "<group>"; };
 		4A2F520B1EC7084000ECA95D /* TypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeView.h; sourceTree = "<group>"; };
 		4A2F520C1EC7084000ECA95D /* TypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeView.m; sourceTree = "<group>"; };
+		4A3D17AD1ECC507B00F85A3B /* GLRecommendStroe_RecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRecommendStroe_RecordController.h; sourceTree = "<group>"; };
+		4A3D17AE1ECC507B00F85A3B /* GLRecommendStroe_RecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLRecommendStroe_RecordController.m; sourceTree = "<group>"; };
+		4A3D17AF1ECC507B00F85A3B /* GLRecommendStroe_RecordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLRecommendStroe_RecordController.xib; sourceTree = "<group>"; };
+		4A3D17B21ECC514400F85A3B /* GLRecommendStore_RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRecommendStore_RecordCell.h; sourceTree = "<group>"; };
+		4A3D17B31ECC514400F85A3B /* GLRecommendStore_RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLRecommendStore_RecordCell.m; sourceTree = "<group>"; };
+		4A3D17B41ECC514400F85A3B /* GLRecommendStore_RecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLRecommendStore_RecordCell.xib; sourceTree = "<group>"; };
 		4A3E60831EAD8CC8000E2E17 /* GLSubmitFirstController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSubmitFirstController.h; sourceTree = "<group>"; };
 		4A3E60841EAD8CC8000E2E17 /* GLSubmitFirstController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLSubmitFirstController.m; sourceTree = "<group>"; };
 		4A3E60851EAD8CC8000E2E17 /* GLSubmitFirstController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLSubmitFirstController.xib; sourceTree = "<group>"; };
@@ -1835,6 +1849,12 @@
 		4AFAB8C41EBD9A4500CCFDCE /* GLSetup_VersionInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSetup_VersionInfoController.h; sourceTree = "<group>"; };
 		4AFAB8C51EBD9A4500CCFDCE /* GLSetup_VersionInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLSetup_VersionInfoController.m; sourceTree = "<group>"; };
 		4AFAB8C61EBD9A4500CCFDCE /* GLSetup_VersionInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLSetup_VersionInfoController.xib; sourceTree = "<group>"; };
+		4AFFA5291ECBDA57004FDEA7 /* GLNearby_MerchatListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_MerchatListController.h; sourceTree = "<group>"; };
+		4AFFA52A1ECBDA57004FDEA7 /* GLNearby_MerchatListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_MerchatListController.m; sourceTree = "<group>"; };
+		4AFFA52B1ECBDA57004FDEA7 /* GLNearby_MerchatListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_MerchatListController.xib; sourceTree = "<group>"; };
+		4AFFA52E1ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_MerchatListCell.h; sourceTree = "<group>"; };
+		4AFFA52F1ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_MerchatListCell.m; sourceTree = "<group>"; };
+		4AFFA5301ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_MerchatListCell.xib; sourceTree = "<group>"; };
 		5F26EB2407F06AA6E9CA0664 /* Pods-Universialshare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Universialshare.release.xcconfig"; path = "Pods/Target Support Files/Pods-Universialshare/Pods-Universialshare.release.xcconfig"; sourceTree = "<group>"; };
 		C83AB1B0045A3996493D9CF8 /* Pods_Universialshare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Universialshare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9061FC81E83C4720080E9D9 /* Universialshare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Universialshare.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2561,6 +2581,9 @@
 				4A1FE72F1EC978FB0000A357 /* GLRecommendStoreController.h */,
 				4A1FE7301EC978FB0000A357 /* GLRecommendStoreController.m */,
 				4A1FE7311EC978FB0000A357 /* GLRecommendStoreController.xib */,
+				4A3D17AD1ECC507B00F85A3B /* GLRecommendStroe_RecordController.h */,
+				4A3D17AE1ECC507B00F85A3B /* GLRecommendStroe_RecordController.m */,
+				4A3D17AF1ECC507B00F85A3B /* GLRecommendStroe_RecordController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2575,6 +2598,9 @@
 		4A1FE72E1EC9424C0000A357 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4A3D17B21ECC514400F85A3B /* GLRecommendStore_RecordCell.h */,
+				4A3D17B31ECC514400F85A3B /* GLRecommendStore_RecordCell.m */,
+				4A3D17B41ECC514400F85A3B /* GLRecommendStore_RecordCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2583,6 +2609,7 @@
 			isa = PBXGroup;
 			children = (
 				4A5F66861ECA89FA0048F339 /* 主页 */,
+				4AFFA5251ECBDA3F004FDEA7 /* 商家列表 */,
 				F9516DD51ECA8BE8009F015D /* 商店详情 */,
 				F9516DD61ECA8BE8009F015D /* 产品详情 */,
 			);
@@ -4431,6 +4458,43 @@
 			path = "登录注册";
 			sourceTree = "<group>";
 		};
+		4AFFA5251ECBDA3F004FDEA7 /* 商家列表 */ = {
+			isa = PBXGroup;
+			children = (
+				4AFFA5261ECBDA3F004FDEA7 /* Controller */,
+				4AFFA5271ECBDA3F004FDEA7 /* Model */,
+				4AFFA5281ECBDA3F004FDEA7 /* View */,
+			);
+			path = "商家列表";
+			sourceTree = "<group>";
+		};
+		4AFFA5261ECBDA3F004FDEA7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4AFFA5291ECBDA57004FDEA7 /* GLNearby_MerchatListController.h */,
+				4AFFA52A1ECBDA57004FDEA7 /* GLNearby_MerchatListController.m */,
+				4AFFA52B1ECBDA57004FDEA7 /* GLNearby_MerchatListController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4AFFA5271ECBDA3F004FDEA7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4AFFA5281ECBDA3F004FDEA7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4AFFA52E1ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.h */,
+				4AFFA52F1ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.m */,
+				4AFFA5301ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		BB2598459FE627C586E51511 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -5887,6 +5951,7 @@
 			files = (
 				F92309461E9B8BFF00ECDC94 /* LBMineMessageHotPickOneTableViewCell.xib in Resources */,
 				F923095A1E9B8BFF00ECDC94 /* LBMyOrderEveluationSucessCollectionViewCell.xib in Resources */,
+				4AFFA52D1ECBDA57004FDEA7 /* GLNearby_MerchatListController.xib in Resources */,
 				4A46103C1E9CC6360045824F /* ios-social-sdk-socialbar.html in Resources */,
 				F92309291E9B8BFF00ECDC94 /* LBMineCenterAddBankCardViewController.xib in Resources */,
 				F92309421E9B8BFF00ECDC94 /* LBMineCenterseverceNoticeTableViewCell.xib in Resources */,
@@ -5910,6 +5975,7 @@
 				4A2F522A1EC7084100ECA95D /* GLTwoButtonCell.xib in Resources */,
 				F923091F1E9B8BFF00ECDC94 /* LBMineCenterDetailedView.xib in Resources */,
 				F966B4161EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.xib in Resources */,
+				4A3D17B11ECC507B00F85A3B /* GLRecommendStroe_RecordController.xib in Resources */,
 				F9516E0B1ECB068D009F015D /* LBStoreProductDetailInfoTableViewCell.xib in Resources */,
 				4A2A00C21EC70D9400052CA7 /* GLConfirmOrderController.xib in Resources */,
 				F9516DF41ECAD6C5009F015D /* LBStoreDetailHotProductTableViewCell.xib in Resources */,
@@ -5976,6 +6042,7 @@
 				4AAD25591EC188D70054FD06 /* GLDirectDnationRecordCell.xib in Resources */,
 				F951C7751EB0C4AA0014A71D /* LBBelowTheLineViewController.xib in Resources */,
 				F92309581E9B8BFF00ECDC94 /* LBMyOrderPendingRefundViewController.xib in Resources */,
+				4A3D17B61ECC514400F85A3B /* GLRecommendStore_RecordCell.xib in Resources */,
 				4A2F521C1EC7084000ECA95D /* GLGoodsInfoCell.xib in Resources */,
 				F91029C21EC5831300246D04 /* LBMySalesmanListFaildViewController.xib in Resources */,
 				F92309541E9B8BFF00ECDC94 /* LBMyOrderPendingEvaluationViewController.xib in Resources */,
@@ -6133,6 +6200,7 @@
 				4A2F51CD1EC6E5F600ECA95D /* GLMemberManagerCell.xib in Resources */,
 				4A4608F21E9C9E6D0045824F /* GLRankingView.xib in Resources */,
 				F95150891EC06F9100BDCF53 /* https.cer in Resources */,
+				4AFFA5321ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.xib in Resources */,
 				F961AA1C1E9CDD3400275F52 /* GLRegisterController.xib in Resources */,
 				F958C0821EA4A3F9003C9CFB /* personCenter.xcassets in Resources */,
 				4A013CAE1E9E1A2800BB3764 /* LBHomepopinfoView.xib in Resources */,
@@ -6384,6 +6452,7 @@
 				F92309771E9B8BFF00ECDC94 /* LBMineCentermodifyAdressViewController.m in Sources */,
 				4AA0D5A61EAEEC0600CB8F77 /* GLIntegralMallTopCell.m in Sources */,
 				4AAD25361EC188C90054FD06 /* GLBuyBackRecord_FinishController.m in Sources */,
+				4AFFA52C1ECBDA57004FDEA7 /* GLNearby_MerchatListController.m in Sources */,
 				4A4610831E9CC6360045824F /* ZXHybridBinarizer.m in Sources */,
 				F9516DEE1ECAD416009F015D /* LBStoreDetailAdressTableViewCell.m in Sources */,
 				4A4610C21E9CC6370045824F /* ZXRSSExpandedPair.m in Sources */,
@@ -6612,6 +6681,7 @@
 				4A0162E91EB029BA00C25DCC /* GLCityChooseController.m in Sources */,
 				4AA0D5A21EAEEC0600CB8F77 /* GLIntegralGoodsCell.m in Sources */,
 				4A2F51D11EC6FE2900ECA95D /* GLConsumerRecordController.m in Sources */,
+				4AFFA5311ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.m in Sources */,
 				F92309201E9B8BFF00ECDC94 /* LBMineCenterMyBalabceTableViewCell.m in Sources */,
 				4A4610DD1E9CC6370045824F /* ZXUPCAReader.m in Sources */,
 				F923091A1E9B8BFF00ECDC94 /* HWCalendar.m in Sources */,
@@ -6634,6 +6704,7 @@
 				4AB508CD1EB190A20057EB3B /* GLShoppingCartModel.m in Sources */,
 				F9061FD31E83C4730080E9D9 /* ViewController.m in Sources */,
 				4A0D978A1E9729C100A26B84 /* GLShoppingCell.m in Sources */,
+				4A3D17B01ECC507B00F85A3B /* GLRecommendStroe_RecordController.m in Sources */,
 				F9520A0E1EAD9EE300B4D665 /* LBMerchantSubmissionFourViewController.m in Sources */,
 				4AAD253D1EC188C90054FD06 /* GLBuyBackChooseBankView.m in Sources */,
 				4A4610931E9CC6360045824F /* ZXRGBLuminanceSource.m in Sources */,
@@ -6692,6 +6763,7 @@
 				4A4611161E9CC6370045824F /* ZXQRCodeReader.m in Sources */,
 				F90620051E83C5D00080E9D9 /* BaseNavigationViewController.m in Sources */,
 				4A46100F1E9CC6360045824F /* LBXAlertAction.m in Sources */,
+				4A3D17B51ECC514400F85A3B /* GLRecommendStore_RecordCell.m in Sources */,
 				4A46103F1E9CC6360045824F /* ZXAztecDetector.m in Sources */,
 				4A4608F31E9C9E6D0045824F /* GLRewardView.m in Sources */,
 				4A013CA41E9DCE2800BB3764 /* GLFirstPageRewardModel.m in Sources */,

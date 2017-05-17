@@ -48,10 +48,11 @@
 
 @implementation SlideTabBarView
 
--(instancetype)initWithFrame:(CGRect)frame WithCount: (NSInteger) count{
+-(instancetype)initWithFrame:(CGRect)frame WithCount: (int) count{
     self = [super initWithFrame:frame];
     
     if (self) {
+        
         _mViewFrame = frame;
         _tabCount = count;
         _topViews = [[NSMutableArray alloc] init];
@@ -108,20 +109,19 @@
     }
 }
 
-
 #pragma mark -- 实例化ScrollView
 -(void) initScrollView{
-    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, _mViewFrame.origin.y, _mViewFrame.size.width, _mViewFrame.size.height - TOPHEIGHT)];
-    _scrollView.contentSize = CGSizeMake(_mViewFrame.size.width * _tabCount, _mViewFrame.size.height - 60);
+
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, TOPHEIGHT, _mViewFrame.size.width, _mViewFrame.size.height - TOPHEIGHT)];
+    _scrollView.contentSize = CGSizeMake(_mViewFrame.size.width * _tabCount, _mViewFrame.size.height - TOPHEIGHT);
     _scrollView.backgroundColor = [UIColor whiteColor];
-    
+    _scrollView.showsVerticalScrollIndicator = NO;
+    _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.pagingEnabled = YES;
     
     _scrollView.delegate = self;
     [self addSubview:_scrollView];
 }
-
-
 
 #pragma mark -- 实例化顶部的tab
 
@@ -194,6 +194,8 @@ GLNearby_EatController *eat;
 GLNearby_LiveController *live;
 GLNearby_PlayController *play;
 GLNearby_AllController *all;
+
+
 - (UIViewController *)viewController {
     for (UIView *view = self; view; view = view.superview) {
         UIResponder *nextResponder = [view nextResponder];
@@ -207,22 +209,20 @@ GLNearby_AllController *all;
     
     for (int i = 0; i < _tabCount; i ++) {
         
-        
         if (i == 0) {
             
             eat = [[GLNearby_EatController alloc] init];
             [self.viewController addChildViewController:eat];
             eat.view.yy_width = SCREEN_WIDTH;
-            eat.view.frame = CGRectMake(YYSScreenW*i, 0, YYSScreenW, YYSScreenH);
+            eat.view.frame = CGRectMake(YYSScreenW*i, 0, YYSScreenW, _scrollView.yy_height);
             [_scrollTableViews addObject:eat.view];
             [_scrollView addSubview:eat.view];
 
-            
         } else if (i == 1) {
             live = [[GLNearby_LiveController alloc] init];
             [self.viewController addChildViewController:live];
             live.view.yy_width = YYSScreenW;
-            live.view.frame = CGRectMake(YYSScreenW*i, 0, YYSScreenW, YYSScreenH);
+            live.view.frame = CGRectMake(YYSScreenW*i, 0, YYSScreenW, _scrollView.yy_height);
             [_scrollTableViews addObject:live.view];
             [_scrollView addSubview:live.view];
             
@@ -230,7 +230,7 @@ GLNearby_AllController *all;
             play = [[GLNearby_PlayController alloc] init];
             [self.viewController addChildViewController:play];
             play.view.yy_width = YYSScreenW;
-            play.view.frame = CGRectMake(YYSScreenW*i, 0, YYSScreenW, YYSScreenH);
+            play.view.frame = CGRectMake(YYSScreenW*i, 0, YYSScreenW, _scrollView.yy_height);
             [_scrollTableViews addObject:play.view];
             [_scrollView addSubview:play.view];
             
@@ -238,7 +238,7 @@ GLNearby_AllController *all;
             all = [[GLNearby_AllController alloc] init];
             [self.viewController addChildViewController:all];
             all.view.yy_width = YYSScreenW;
-            all.view.frame = CGRectMake(YYSScreenW*i, 0, YYSScreenW, YYSScreenH);
+            all.view.frame = CGRectMake(YYSScreenW*i, 0, YYSScreenW, _scrollView.yy_height);
             [_scrollTableViews addObject:all.view];
             [_scrollView addSubview:all.view];
         
@@ -257,7 +257,7 @@ GLNearby_AllController *all;
     
     int tabviewTag = pageNumber % _tabCount;
     
-    CGRect tableNewFrame = CGRectMake(pageNumber * _mViewFrame.size.width, 0, _mViewFrame.size.width, _mViewFrame.size.height);
+    CGRect tableNewFrame = CGRectMake(pageNumber * _mViewFrame.size.width, 0, _mViewFrame.size.width, _mViewFrame.size.height - TOPHEIGHT);
     
     UIView *view = _scrollTableViews[tabviewTag];
 //    NSLog(@"%@",_scrollTableViews[tabviewTag]);
@@ -346,23 +346,16 @@ GLNearby_AllController *all;
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if ([_scrollView isEqual:scrollView]) {
         CGRect frame = _slideView.frame;
-        
-        if (self.tabCount <= _tabCount) {
+        if (self.tabCount <= 4) {
              frame.origin.x = scrollView.contentOffset.x/_tabCount;
         } else {
              frame.origin.x = scrollView.contentOffset.x/4;
             
         }
-        
-       
+
         _slideView.frame = frame;
     }
     
 }
-
-
-
-
-
 
 @end

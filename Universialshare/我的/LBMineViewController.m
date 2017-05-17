@@ -43,6 +43,7 @@
 #import "GLMerchant_IncomeController.h"
 #import "GLMerchat_StoreController.h"
 #import "LBProductManagementViewController.h"
+#import "GLRecommendStoreController.h"
 
 #import "LBStoreMoreInfomationViewController.h"//商店详情
 
@@ -256,9 +257,9 @@
                     
                 }else{
                     self.hidesBottomBarWhenPushed=YES;
-                    GLDirectDonationController *vc=[[GLDirectDonationController alloc]init];
+                    GLRecommendStoreController *vc1=[[GLRecommendStoreController alloc]init];
                     
-                    [self.navigationController pushViewController:vc animated:YES];
+                    [self.navigationController pushViewController:vc1 animated:YES];
                     self.hidesBottomBarWhenPushed=NO;
                 }
             }

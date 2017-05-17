@@ -15,6 +15,7 @@
 @end
 
 @implementation GLSet_MaskVeiw
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

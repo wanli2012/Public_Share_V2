@@ -10,6 +10,6 @@
 
 @interface SlideTabBarView : UIView
 
-@property (assign) NSInteger tabCount;
--(instancetype)initWithFrame:(CGRect)frame WithCount: (NSInteger) count;
+@property (assign) int tabCount;
+-(instancetype)initWithFrame:(CGRect)frame WithCount: (int) count;
 @end

@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="XRPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="FCh-Pl-qYx">
-                        <rect key="frame" x="10" y="10" width="100" height="87.5"/>
+                        <rect key="frame" x="10" y="10" width="100" height="88"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="mhx-s0-1yX"/>
                         </constraints>
@@ -51,7 +51,6 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="VFM-C2-anV" secondAttribute="bottom" constant="10" id="2wb-ur-Kcl"/>
                     <constraint firstAttribute="bottom" secondItem="FCh-Pl-qYx" secondAttribute="bottom" constant="10" id="5Wo-Q7-ZyR"/>
                     <constraint firstItem="VFM-C2-anV" firstAttribute="leading" secondItem="7b6-yK-W3T" secondAttribute="leading" id="AcG-Yb-CxO"/>
                     <constraint firstAttribute="trailing" secondItem="hgH-1Y-SVN" secondAttribute="trailing" constant="10" id="AnA-g3-Jkl"/>

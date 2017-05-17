@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLNearbyViewController">
             <connections>
+                <outlet property="cityBtn" destination="x5F-X8-yYe" id="0iH-lq-xah"/>
+                <outlet property="searchView" destination="wsc-Eq-btn" id="MgF-lW-0da"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -32,6 +34,9 @@
                             <state key="normal" title="成都">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="cityChoose:" destination="-1" eventType="touchUpInside" id="F17-y4-s7o"/>
+                            </connections>
                         </button>
                         <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wsc-Eq-btn">
                             <rect key="frame" x="90" y="30" width="159" height="24"/>

@@ -13,17 +13,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GLNearby_SectionHeaderView">
-            <rect key="frame" x="0.0" y="0.0" width="421" height="89"/>
+            <rect key="frame" x="0.0" y="0.0" width="261" height="41"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="XRPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="1BK-y6-0bn">
-                    <rect key="frame" x="162.5" y="37.5" width="13.5" height="13"/>
+                    <rect key="frame" x="107.5" y="13.5" width="13.5" height="13"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="1BK-y6-0bn" secondAttribute="height" id="VSO-Bd-66b"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐商家" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Joo-WZ-mZX">
-                    <rect key="frame" x="186" y="36" width="49.5" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Joo-WZ-mZX">
+                    <rect key="frame" x="131" y="12" width="0.0" height="17"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="17" id="0qC-R5-9dx"/>
                     </constraints>
@@ -32,14 +32,17 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ki-lK-V4K">
-                    <rect key="frame" x="366" y="0.0" width="45" height="89"/>
+                    <rect key="frame" x="201" y="0.0" width="60" height="41"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="1yj-Y4-y7r"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <state key="normal" title="查看更多">
+                    <state key="normal">
                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="466-3X-27Q">
-                    <rect key="frame" x="0.0" y="88" width="421" height="1"/>
+                    <rect key="frame" x="0.0" y="40" width="261" height="1"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="VMq-LJ-Dok"/>
@@ -51,12 +54,12 @@
                 <constraint firstItem="Joo-WZ-mZX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="1ch-ei-duU"/>
                 <constraint firstItem="1BK-y6-0bn" firstAttribute="centerY" secondItem="Joo-WZ-mZX" secondAttribute="centerY" id="B1T-uL-aVK"/>
                 <constraint firstAttribute="trailing" secondItem="466-3X-27Q" secondAttribute="trailing" id="GCw-LI-T4P"/>
-                <constraint firstAttribute="trailing" secondItem="3Ki-lK-V4K" secondAttribute="trailing" constant="10" id="GGz-qw-uTD"/>
                 <constraint firstItem="1BK-y6-0bn" firstAttribute="height" secondItem="Joo-WZ-mZX" secondAttribute="height" constant="-4" id="Y9Q-Ci-tVc"/>
                 <constraint firstAttribute="bottom" secondItem="466-3X-27Q" secondAttribute="bottom" id="d02-Sd-UZg"/>
                 <constraint firstItem="Joo-WZ-mZX" firstAttribute="leading" secondItem="1BK-y6-0bn" secondAttribute="trailing" constant="10" id="d1F-q0-kea"/>
                 <constraint firstItem="3Ki-lK-V4K" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gbh-91-Biy"/>
                 <constraint firstItem="Joo-WZ-mZX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="kks-F3-5Fg"/>
+                <constraint firstAttribute="trailing" secondItem="3Ki-lK-V4K" secondAttribute="trailing" id="lvg-uw-VOR"/>
                 <constraint firstAttribute="bottom" secondItem="3Ki-lK-V4K" secondAttribute="bottom" id="m6G-cM-04T"/>
                 <constraint firstItem="466-3X-27Q" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vaa-J3-T5s"/>
             </constraints>
@@ -66,7 +69,7 @@
                 <outlet property="moreBtn" destination="3Ki-lK-V4K" id="RQ3-c1-fc1"/>
                 <outlet property="titleLabel" destination="Joo-WZ-mZX" id="Q03-pP-jyx"/>
             </connections>
-            <point key="canvasLocation" x="-19" y="147"/>
+            <point key="canvasLocation" x="53.5" y="90.5"/>
         </view>
     </objects>
     <resources>

@@ -7,9 +7,11 @@
 
 #import "GLNearbyViewController.h"
 #import "SlideTabBarView.h"
-
+#import "GLCityChooseController.h"
 
 @interface GLNearbyViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *cityBtn;
+@property (weak, nonatomic) IBOutlet UIView *searchView;
 
 @end
 
@@ -17,14 +19,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.navigationController.navigationBar.hidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    SlideTabBarView *slide = [[SlideTabBarView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT) WithCount:4];
+    
+    self.searchView.layer.cornerRadius = 5.f;
+    self.searchView.clipsToBounds = YES;
+    SlideTabBarView *slide = [[SlideTabBarView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 49 - 64) WithCount:4];
     [self.view addSubview:slide];
 
 }
 
-
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+//    self.tabBarController.tabBar.hidden = YES;
+    self.navigationController.navigationBar.hidden = YES;
+}
+- (IBAction)cityChoose:(id)sender {
+    GLCityChooseController *cityVC = [[GLCityChooseController alloc] init];
+    __weak typeof(self) weakSelf = self;
+    cityVC.block = ^(NSString *city){
+        [weakSelf.cityBtn setTitle:city forState:UIControlStateNormal];
+    };
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:cityVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
 
 
 @end

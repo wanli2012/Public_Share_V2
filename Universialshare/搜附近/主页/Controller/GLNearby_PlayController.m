@@ -12,6 +12,8 @@
 #import "GLNearby_classifyCell.h"
 #import "GLNearby_SectionHeaderView.h"
 #import "GLNearby_RecommendMerchatCell.h"
+#import "GLNearbyViewController.h"
+#import "GLNearby_MerchatListController.h"
 
 @interface GLNearby_PlayController ()
 
@@ -29,21 +31,51 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     //    self.view.backgroundColor = [UIColor redColor];
     GLNearby_ClassifyHeaderView *headerV = [[GLNearby_ClassifyHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 70)];
     self.tableView.tableHeaderView = headerV;
-    
     __weak typeof(self) weakSelf = self;
     
-//    headerV.block = ^(NSString *typeID,CGFloat height){
-//        NSLog(@"typeID = %@",typeID);
-//        if (height != 0) {
-//            weakSelf.tableView.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 70);
-//        }
-//    };
+    headerV.block = ^(NSString *typeID,NSInteger count){
+        NSLog(@"typeID = %@",typeID);
+        
+        if ([typeID isEqualToString:@"全部"]) {
+            
+            if (count % 4 == 0) {
+                
+                weakSelf.tableView.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, count/4 * 30 + 10);
+            }else{
+                weakSelf.tableView.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, (count/4 +1) * 30 + 10);
+            }
+        }
+        if([typeID isEqualToString:@"收起"]){
+            weakSelf.tableView.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 70);
+        }
+        [weakSelf.tableView reloadData];
+        
+    };
     
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     [self.tableView registerNib:[UINib nibWithNibName:ID2 bundle:nil] forCellReuseIdentifier:ID2];
 }
-- (void)more:(id)sender {
-    NSLog(@"查看更多");
+
+- (UIViewController *)viewController {
+    for (UIView *view = self.view; view; view = view.superview) {
+        UIResponder *nextResponder = [view nextResponder];
+        if ([nextResponder isKindOfClass:[GLNearbyViewController class]]) {
+            return (GLNearbyViewController *)nextResponder;
+        }
+    }
+    return nil;
+}
+- (void)more:(NSInteger )index {
+    self.viewController.hidesBottomBarWhenPushed = YES;
+    GLNearby_MerchatListController *merchatVC = [[GLNearby_MerchatListController alloc] init];
+    if (index == 0) {
+        
+    }else{
+        
+    }
+    [self.viewController.navigationController pushViewController:merchatVC animated:YES];
+    self.viewController.hidesBottomBarWhenPushed = NO;
+    
 }
 #pragma UITableviewDelegate UITableviewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
