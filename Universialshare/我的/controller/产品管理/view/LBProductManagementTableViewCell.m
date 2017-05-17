@@ -18,7 +18,6 @@
     
     self.buttonTwo.layer.cornerRadius = 4;
     self.buttonTwo.clipsToBounds = YES;
-    
 }
 
 - (IBAction)buttonOneEvent:(UIButton *)sender {

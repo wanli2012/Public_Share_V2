@@ -8,7 +8,7 @@
 
 #import "LBAddMineProductionViewController.h"
 
-@interface LBAddMineProductionViewController ()<UIActionSheetDelegate,UIAlertViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface LBAddMineProductionViewController ()<UIActionSheetDelegate,UIAlertViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextViewDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentW;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentH;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViwH;
@@ -16,8 +16,22 @@
 @property (weak, nonatomic) IBOutlet UIButton *submitBt;//提交
 @property (weak, nonatomic) IBOutlet UIView *imageView;
 @property (strong, nonatomic)NSMutableArray *imageArr;
-
 @property (assign, nonatomic)NSInteger deleteImageIndex;//删除图片
+
+@property (weak, nonatomic) IBOutlet UITextField *nameTf;
+@property (weak, nonatomic) IBOutlet UIButton *selectBtOne;
+@property (weak, nonatomic) IBOutlet UIButton *selectBtTwo;
+@property (weak, nonatomic) IBOutlet UIButton *selectBtThree;
+@property (weak, nonatomic) IBOutlet UITextField *UnitPriceTf;
+@property (weak, nonatomic) IBOutlet UITextView *productdesTv;
+@property (weak, nonatomic) IBOutlet UITextField *numTf;
+
+@property (weak, nonatomic) IBOutlet UITextField *freightTf;
+@property (weak, nonatomic) IBOutlet UITextField *favorablePriceTf;
+@property (weak, nonatomic) IBOutlet UISwitch *isShelvesBt;
+
+@property (assign, nonatomic)NSInteger stype;//分红类型
+@property (assign, nonatomic)NSInteger indexShelves;//是否上架
 
 @end
 
@@ -30,8 +44,147 @@
     self.navigationItem.title = @"添加产品";
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    self.stype = 1;
+    self.indexShelves = 1;
+    
     [self refreshimageview];
     
+}
+
+//选择20%
+- (IBAction)tappercentTweTy:(UITapGestureRecognizer *)sender {
+     self.stype = 1;
+    [self.selectBtOne setImage:[UIImage imageNamed:@"添加产品选中"] forState:UIControlStateNormal];
+    [self.selectBtTwo setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
+    [self.selectBtThree setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
+    
+}
+//选择10%
+- (IBAction)tapgestureTen:(UITapGestureRecognizer *)sender {
+     self.stype = 2;
+    [self.selectBtOne setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
+    [self.selectBtTwo setImage:[UIImage imageNamed:@"添加产品选中"] forState:UIControlStateNormal];
+    [self.selectBtThree setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
+}
+//选择50%
+- (IBAction)tapgestureFive:(UITapGestureRecognizer *)sender {
+     self.stype = 3;
+    [self.selectBtOne setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
+    [self.selectBtTwo setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
+    [self.selectBtThree setImage:[UIImage imageNamed:@"添加产品选中"] forState:UIControlStateNormal];
+}
+
+- (IBAction)isShelvesEvent:(UISwitch *)sender {
+    
+    if (sender.isOn) {
+        self.indexShelves = 1;
+    }else{
+       self.indexShelves = 2;
+    
+    }
+    
+}
+//提交
+- (IBAction)submitinfomation:(UIButton *)sender {
+    
+    if (self.nameTf.text.length <= 0) {
+        [MBProgressHUD showError:@"请输入商品名"];
+        return;
+    }
+    if (self.UnitPriceTf.text.length <= 0) {
+        [MBProgressHUD showError:@"请输入商品单价"];
+        return;
+    }
+    if (self.productdesTv.text.length <= 0) {
+        [MBProgressHUD showError:@"请输入商品描述"];
+        return;
+    }
+    if (self.numTf.text.length <= 0) {
+        [MBProgressHUD showError:@"请输入商品库存"];
+        return;
+    }
+    if (self.freightTf.text.length <= 0) {
+        [MBProgressHUD showError:@"请输入运费"];
+        return;
+    }
+    if (self.favorablePriceTf.text.length <= 0) {
+        [MBProgressHUD showError:@"请输入优惠价格"];
+        return;
+    }
+    if (self.imageArr.count <= 1) {
+        [MBProgressHUD showError:@"至少上传一张图片"];
+        return;
+    }
+
+    NSDictionary *dict = @{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token,@"goods_name":self.nameTf.text,@"rl_type_id":[NSNumber numberWithInteger:self.stype],@"goods_info":self.productdesTv.text,@"status":[NSNumber numberWithInteger:self.indexShelves],@"price":self.UnitPriceTf.text,@"discount":self.favorablePriceTf.text,@"sendPrice":self.freightTf.text,@"total_num":self.numTf.text,@"count":[NSNumber numberWithInteger:self.imageArr.count - 1]};
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
+    manager.requestSerializer.timeoutInterval = 20;
+    // 加上这行代码，https ssl 验证。
+    [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
+    [manager POST:[NSString stringWithFormat:@"%@user/openOne",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        //将图片以表单形式上传
+        
+        for (int i = 0; i < self.imageArr.count - 1; i ++) {
+            
+            NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+            formatter.dateFormat=@"yyyyMMddHHmmss";
+            NSString *str=[formatter stringFromDate:[NSDate date]];
+            NSString *fileName=[NSString stringWithFormat:@"%@%d.png",str,i];
+            UIImageView *imaev = (UIImageView*)self.imageArr[i];
+            NSData *data = UIImagePNGRepresentation(imaev.image);
+            [formData appendPartWithFileData:data name:[NSString stringWithFormat:@"%d",i] fileName:fileName mimeType:@"image/png"];
+        }
+        
+    }progress:^(NSProgress *uploadProgress){
+        
+        [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+        [SVProgressHUD setCornerRadius:8.0];
+        
+    }success:^(NSURLSessionDataTask *task, id responseObject) {
+        [SVProgressHUD dismiss];
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([dic[@"code"]integerValue]==1) {
+            
+            [MBProgressHUD showError:dic[@"message"]];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }else{
+            [MBProgressHUD showError:dic[@"message"]];
+        }
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [SVProgressHUD dismiss];
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
+
+    
+
+}
+
+
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+
+    if (textField == self.nameTf && [string isEqualToString:@"\n"]) {
+        [self.UnitPriceTf becomeFirstResponder];
+        return NO;
+    }
+
+    return YES;
+
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+
+    if (textView == self.productdesTv && [text isEqualToString:@"\n"]) {
+        [self.numTf becomeFirstResponder];
+        return NO;
+    }
+
+    return YES;
+
 }
 
 -(void)refreshimageview{
@@ -65,10 +218,10 @@
     
     if (self.imageArr.count > 3) {
         self.imageViwH.constant = 210;
-        self.contentH.constant = 610;
+        self.contentH.constant = 750 + 110;
     }else{
         self.imageViwH.constant = 210;
-        self.contentH.constant = 500;
+        self.contentH.constant = 750;
     }
 
 }
@@ -79,8 +232,8 @@
     UIImageView *imaev = (UIImageView*)gesture.view;
     
     if (imaev.tag == self.imageArr.count) {
-        if (self.imageArr.count == 6) {
-            [MBProgressHUD showError:@"最多只能上传5张"];
+        if (self.imageArr.count == 4) {
+            [MBProgressHUD showError:@"最多只能上传3张"];
             return;
         }
         UIActionSheet* actionSheet = [[UIActionSheet alloc]initWithTitle:@"请选择图片来源" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"去相册选择",@"用相机拍照", nil];
@@ -189,7 +342,7 @@
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     self.contentW.constant = SCREEN_WIDTH;
-    self.contentH.constant = 500;
+    self.contentH.constant = 750;
     self.imageViwH.constant = 100;
     
     self.submitBt.layer.cornerRadius = 4;
