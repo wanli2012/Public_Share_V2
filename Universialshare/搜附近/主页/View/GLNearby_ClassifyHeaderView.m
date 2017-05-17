@@ -106,7 +106,7 @@ static NSString *ID = @"GLNearby_ClassifyConcollectionCell";
         cell.titleLabel.textColor = [UIColor darkGrayColor];
     }
     
-    self.block(cell.titleLabel.text,self.dataSource.count);
+//    self.block(cell.titleLabel.text,self.dataSource.count);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{

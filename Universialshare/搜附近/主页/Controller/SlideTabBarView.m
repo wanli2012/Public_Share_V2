@@ -78,9 +78,9 @@
 #pragma mark -- 初始化滑动的指示View
 -(void) initSlideView{
     
-    CGFloat width = _mViewFrame.size.width / 4;
+    CGFloat width = _mViewFrame.size.width / _tabCount;
     
-    if(self.tabCount <=4){
+    if(self.tabCount <=_tabCount){
         width = _mViewFrame.size.width / self.tabCount;
     }
 
@@ -126,10 +126,10 @@
 #pragma mark -- 实例化顶部的tab
 
 -(void) initTopTabs{
-    CGFloat width = _mViewFrame.size.width / 4;
+    CGFloat width = _mViewFrame.size.width / _tabCount;
     NSArray *name1 = @[@"美食",@"酒店",@"娱乐",@"全部"];
 
-    if(self.tabCount <=4){
+    if(self.tabCount <= 4 ){
         width = _mViewFrame.size.width / self.tabCount;
     }
     
@@ -205,7 +205,7 @@ GLNearby_AllController *all;
 }
 -(void) initDownTables{
     
-    for (int i = 0; i < 6; i ++) {
+    for (int i = 0; i < _tabCount; i ++) {
         
         
         if (i == 0) {
@@ -255,7 +255,7 @@ GLNearby_AllController *all;
     
     [self changeBackColorWithPage:pageNumber];
     
-    int tabviewTag = pageNumber % 4;
+    int tabviewTag = pageNumber % _tabCount;
     
     CGRect tableNewFrame = CGRectMake(pageNumber * _mViewFrame.size.width, 0, _mViewFrame.size.width, _mViewFrame.size.height);
     
@@ -347,7 +347,7 @@ GLNearby_AllController *all;
     if ([_scrollView isEqual:scrollView]) {
         CGRect frame = _slideView.frame;
         
-        if (self.tabCount <= 4) {
+        if (self.tabCount <= _tabCount) {
              frame.origin.x = scrollView.contentOffset.x/_tabCount;
         } else {
              frame.origin.x = scrollView.contentOffset.x/4;
