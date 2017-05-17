@@ -64,9 +64,7 @@
     self.tableview.mj_footer = footer;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.editButton];
-    
     [self initdatasource];
-    
 }
 
 -(void)initdatasource{
@@ -115,6 +113,89 @@
         
     }];
     
+
+}
+//商品管理
+-(void)setStoreGoods:(NSInteger)index strid:(int)strid  buttonindex:(NSInteger)buttonindex status:(int)status row:(NSInteger)row{
+
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"shop/setStoreGoods" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"goods_id" :[NSNumber numberWithInteger:strid],@"status" :[NSNumber numberWithInteger:status]} finish:^(id responseObject) {
+        [_loadV removeloadview];
+       
+        if ([responseObject[@"code"] integerValue]==1) {
+            [MBProgressHUD showError:responseObject[@"message"]];
+            
+            if (buttonindex == 1) {
+                switch (index) {
+                    case 1:
+                    {
+                        self.dataarr[row][@"status"] = @"2";
+                    }
+                        break;
+                    case 2:
+                    {
+                        [self.dataarr removeObjectAtIndex:row];
+                    }
+                        break;
+                    case 3:
+                    {
+                        self.dataarr[row][@"status"] = @"4";
+                    }
+                        break;
+                    case 4:
+                    {
+                        self.dataarr[row][@"status"] = @"3";
+                    }
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }else{
+                switch (index) {
+                    case 1:
+                    {
+                        
+                    }
+                        break;
+                    case 2:
+                    {
+                        
+                    }
+                        break;
+                    case 3:
+                    {
+                        [self.dataarr removeObjectAtIndex:row];
+                    }
+                        break;
+                    case 4:
+                    {
+                        [self.dataarr removeObjectAtIndex:row];
+                    }
+                        break;
+                        
+                    default:
+                        break;
+                }
+            
+            }
+            
+            [self.tableview reloadData];
+            
+        }else if ([responseObject[@"code"] integerValue]==3){
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
+            [self.tableview reloadData];
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+            [self.tableview reloadData];
+            
+        }
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
 
 }
 
@@ -198,21 +279,25 @@
     
     if ([self.dataarr[indexPath.row][@"status"]integerValue] == 1) {
         cell.imageT.image = [UIImage imageNamed:@"审核中"];
+        cell.centerXconstant.constant = 0;
         cell.buttonOne.hidden = NO;
         cell.buttonTwo.hidden = YES;
         [cell.buttonOne setTitle:@"停止审核" forState:UIControlStateNormal];
     }else if ([self.dataarr[indexPath.row][@"status"]integerValue] == 2){
+        cell.centerXconstant.constant = 0;
         cell.buttonOne.hidden = NO;
         cell.buttonTwo.hidden = YES;
         cell.imageT.image = [UIImage imageNamed:@"审核失败"];
         [cell.buttonOne setTitle:@"删除" forState:UIControlStateNormal];
     }else if ([self.dataarr[indexPath.row][@"status"]integerValue] == 3){
+        cell.centerXconstant.constant = -50;
         cell.buttonOne.hidden = NO;
         cell.buttonTwo.hidden = NO;
         cell.imageT.image = [UIImage imageNamed:@"审核通过"];
         [cell.buttonOne setTitle:@"下架" forState:UIControlStateNormal];
         [cell.buttonTwo setTitle:@"删除" forState:UIControlStateNormal];
     }else if ([self.dataarr[indexPath.row][@"status"]integerValue] == 4){
+        cell.centerXconstant.constant = -50;
         cell.buttonOne.hidden = NO;
         cell.buttonTwo.hidden = NO;
         cell.imageT.image = [UIImage imageNamed:@"已下架"];
@@ -222,8 +307,8 @@
     
     [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"熊"]] ;
     cell.productNameLb.text = [NSString stringWithFormat:@"商品名称:%@",self.dataarr[indexPath.row][@"name"]];
-    cell.productNameLb.text = [NSString stringWithFormat:@"商品数量:%@",self.dataarr[indexPath.row][@"num"]];
-    cell.productNameLb.text = [NSString stringWithFormat:@"商品价格:¥%@",self.dataarr[indexPath.row][@"price"]];
+    cell.numLb.text = [NSString stringWithFormat:@"商品数量:%@",self.dataarr[indexPath.row][@"num"]];
+    cell.moneyLb.text = [NSString stringWithFormat:@"商品价格:¥%@",self.dataarr[indexPath.row][@"price"]];
     
     if ([_editBoolArr[indexPath.row]boolValue] == NO) {
         
@@ -255,17 +340,65 @@
 }
 
 #pragma mark --- LBProductManagementDelegete
-
 -(void)LBProductManagementButtonOne:(NSInteger)index{
 
-
+    switch ([self.dataarr[index][@"status"]integerValue]) {
+        case 1:
+        {
+           [self setStoreGoods:[self.dataarr[index][@"status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:1 status:4 row:index];
+        }
+            break;
+        case 2:
+        {
+             [self setStoreGoods:[self.dataarr[index][@"status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:1 status:1 row:index];
+        }
+            break;
+        case 3:
+        {
+            [self setStoreGoods:[self.dataarr[index][@"status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:1 status:3 row:index];
+        }
+            break;
+        case 4:
+        {
+            [self setStoreGoods:[self.dataarr[index][@"status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:1 status:2 row:index];
+        }
+            break;
+            
+        default:
+            break;
+    }
 
 }
 
+
+
 -(void)LBProductManagementButtonTwo:(NSInteger)index{
 
-
-
+    switch ([self.dataarr[index][@"status"]integerValue]) {
+        case 1:
+        {
+           
+        }
+            break;
+        case 2:
+        {
+            
+        }
+            break;
+        case 3:
+        {
+            [self setStoreGoods:[self.dataarr[index][@"status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:2 status:1 row:index];
+        }
+            break;
+        case 4:
+        {
+            [self setStoreGoods:[self.dataarr[index][@"status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:2 status:1 row:index];
+        }
+            break;
+            
+        default:
+            break;
+    }
 
 
 }
