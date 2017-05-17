@@ -91,6 +91,8 @@
 		4A3D17B11ECC507B00F85A3B /* GLRecommendStroe_RecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3D17AF1ECC507B00F85A3B /* GLRecommendStroe_RecordController.xib */; };
 		4A3D17B51ECC514400F85A3B /* GLRecommendStore_RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3D17B31ECC514400F85A3B /* GLRecommendStore_RecordCell.m */; };
 		4A3D17B61ECC514400F85A3B /* GLRecommendStore_RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3D17B41ECC514400F85A3B /* GLRecommendStore_RecordCell.xib */; };
+		4A3D17BA1ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3D17B81ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.m */; };
+		4A3D17BB1ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3D17B91ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.xib */; };
 		4A3E60881EAD8CC8000E2E17 /* GLSubmitFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E60841EAD8CC8000E2E17 /* GLSubmitFirstController.m */; };
 		4A3E60891EAD8CC8000E2E17 /* GLSubmitFirstController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3E60851EAD8CC8000E2E17 /* GLSubmitFirstController.xib */; };
 		4A3E608D1EAD97E6000E2E17 /* GLSubmitSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E608B1EAD97E6000E2E17 /* GLSubmitSecondController.m */; };
@@ -1029,6 +1031,9 @@
 		4A3D17B21ECC514400F85A3B /* GLRecommendStore_RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRecommendStore_RecordCell.h; sourceTree = "<group>"; };
 		4A3D17B31ECC514400F85A3B /* GLRecommendStore_RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLRecommendStore_RecordCell.m; sourceTree = "<group>"; };
 		4A3D17B41ECC514400F85A3B /* GLRecommendStore_RecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLRecommendStore_RecordCell.xib; sourceTree = "<group>"; };
+		4A3D17B71ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRecommendStroe_RecordDateCell.h; sourceTree = "<group>"; };
+		4A3D17B81ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLRecommendStroe_RecordDateCell.m; sourceTree = "<group>"; };
+		4A3D17B91ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLRecommendStroe_RecordDateCell.xib; sourceTree = "<group>"; };
 		4A3E60831EAD8CC8000E2E17 /* GLSubmitFirstController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSubmitFirstController.h; sourceTree = "<group>"; };
 		4A3E60841EAD8CC8000E2E17 /* GLSubmitFirstController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLSubmitFirstController.m; sourceTree = "<group>"; };
 		4A3E60851EAD8CC8000E2E17 /* GLSubmitFirstController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLSubmitFirstController.xib; sourceTree = "<group>"; };
@@ -2601,6 +2606,9 @@
 				4A3D17B21ECC514400F85A3B /* GLRecommendStore_RecordCell.h */,
 				4A3D17B31ECC514400F85A3B /* GLRecommendStore_RecordCell.m */,
 				4A3D17B41ECC514400F85A3B /* GLRecommendStore_RecordCell.xib */,
+				4A3D17B71ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.h */,
+				4A3D17B81ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.m */,
+				4A3D17B91ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6143,6 +6151,7 @@
 				4A5F66BD1ECA93C50048F339 /* GLNearby_LiveController.xib in Resources */,
 				4AA0D5A31EAEEC0600CB8F77 /* GLIntegralGoodsCell.xib in Resources */,
 				4AAD25811EC188F50054FD06 /* GLEncourageBeansCell.xib in Resources */,
+				4A3D17BB1ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.xib in Resources */,
 				F94D31E31EAF716D00309029 /* LBMineCenterReceivingGoodsViewController.xib in Resources */,
 				4A2F520E1EC7084000ECA95D /* GLHomeLiveChooseController.xib in Resources */,
 				F94D31831EAF2EB300309029 /* LBRecommendedBusinessAuditViewController.xib in Resources */,
@@ -6638,6 +6647,7 @@
 				4A4610D21E9CC6370045824F /* ZXEAN13Reader.m in Sources */,
 				4A46107D1E9CC6360045824F /* ZXCharacterSetECI.m in Sources */,
 				4AA0D6011EAF693D00CB8F77 /* GLintegralGoodsModel.m in Sources */,
+				4A3D17BA1ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.m in Sources */,
 				F9121B2D1EB21BC500DAB7A2 /* LBMyOrdersHeaderView.m in Sources */,
 				4A46100E1E9CC6360045824F /* UIAlertView+LBXAlertAction.m in Sources */,
 				4A4610D51E9CC6370045824F /* ZXEAN8Writer.m in Sources */,
