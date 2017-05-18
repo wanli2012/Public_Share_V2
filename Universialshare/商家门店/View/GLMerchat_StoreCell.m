@@ -30,11 +30,11 @@
 
 - (IBAction)click:(UIButton *)sender {
     
-    if ([self.delegate respondsToSelector:@selector(cellClick:)]) {
+    if ([self.delegate respondsToSelector:@selector(cellClick:indexPath:)]) {
         if (sender == self.suspendBtn) {
-            [self.delegate cellClick:1];
+            [self.delegate cellClick:1 indexPath:self.indexPath];
         }else{
-            [self.delegate cellClick:2];
+            [self.delegate cellClick:2 indexPath:self.indexPath];
         }
     }
 }

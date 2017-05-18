@@ -11,7 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLRecommendStroe_RecordController">
             <connections>
-                <outlet property="collectionView" destination="mu2-SS-qgx" id="S5I-2E-Dla"/>
+                <outlet property="monthLabel" destination="fO5-2V-RL2" id="kaI-tA-c7F"/>
+                <outlet property="queryBtn" destination="S1Q-gW-Ahj" id="M7R-YI-2bf"/>
                 <outlet property="tableView" destination="50B-BM-yFD" id="lbR-Je-0FH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -22,54 +23,83 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="50B-BM-yFD">
-                    <rect key="frame" x="5" y="144" width="365" height="518"/>
+                    <rect key="frame" x="5" y="139" width="365" height="523"/>
                     <color key="backgroundColor" red="0.92146831750000002" green="0.92162626979999995" blue="0.92145836349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="EXw-Ej-r4w"/>
                         <outlet property="delegate" destination="-1" id="AaE-Ea-65f"/>
                     </connections>
                 </tableView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="mu2-SS-qgx">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gg0-vq-bu8">
                     <rect key="frame" x="0.0" y="74" width="375" height="60"/>
-                    <color key="backgroundColor" red="0.88225668668746948" green="0.88240832090377808" blue="0.88224714994430542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择月份:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbp-vQ-iK5">
+                            <rect key="frame" x="10" y="22.5" width="70.5" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="70.5" id="5wW-dn-oXg"/>
+                                <constraint firstAttribute="height" constant="16" id="69i-F7-B0t"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择月份" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fO5-2V-RL2">
+                            <rect key="frame" x="85.5" y="22" width="209.5" height="16"/>
+                            <gestureRecognizers/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="vJk-40-2M0" appends="YES" id="qI0-AM-rZN"/>
+                            </connections>
+                        </label>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1Q-gW-Ahj">
+                            <rect key="frame" x="305" y="15.5" width="60" height="29"/>
+                            <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="Axh-Re-rwF"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="查询">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="query:" destination="-1" eventType="touchUpInside" id="wvV-Rm-IcR"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="mGH-hW-tL4"/>
+                        <constraint firstItem="fO5-2V-RL2" firstAttribute="centerY" secondItem="zbp-vQ-iK5" secondAttribute="centerY" id="0XW-H9-5VR"/>
+                        <constraint firstAttribute="height" constant="60" id="9I7-9z-mRh"/>
+                        <constraint firstItem="zbp-vQ-iK5" firstAttribute="leading" secondItem="gg0-vq-bu8" secondAttribute="leading" constant="10" id="FkH-iK-vhS"/>
+                        <constraint firstAttribute="trailing" secondItem="S1Q-gW-Ahj" secondAttribute="trailing" constant="10" id="IA9-Cz-Fsz"/>
+                        <constraint firstItem="zbp-vQ-iK5" firstAttribute="centerY" secondItem="gg0-vq-bu8" secondAttribute="centerY" id="QJG-Ip-ppz"/>
+                        <constraint firstItem="S1Q-gW-Ahj" firstAttribute="centerY" secondItem="gg0-vq-bu8" secondAttribute="centerY" id="Xcb-uq-HU7"/>
+                        <constraint firstItem="S1Q-gW-Ahj" firstAttribute="leading" secondItem="fO5-2V-RL2" secondAttribute="trailing" constant="10" id="jVI-v3-CtF"/>
+                        <constraint firstItem="fO5-2V-RL2" firstAttribute="leading" secondItem="zbp-vQ-iK5" secondAttribute="trailing" constant="5" id="rhn-WJ-kur"/>
+                        <constraint firstItem="fO5-2V-RL2" firstAttribute="height" secondItem="zbp-vQ-iK5" secondAttribute="height" id="vje-Ru-dAo"/>
                     </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sm6-Kk-9p3">
-                        <size key="itemSize" width="50" height="50"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="pyK-96-ai6"/>
-                        <outlet property="delegate" destination="-1" id="B4w-js-Asf"/>
-                    </connections>
-                </collectionView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PyC-31-oo4">
-                    <rect key="frame" x="185" y="124" width="5" height="20"/>
-                    <color key="backgroundColor" red="0.67154017857142856" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="5" id="jUc-NO-JXp"/>
-                        <constraint firstAttribute="height" constant="20" id="ldc-a9-vdg"/>
-                    </constraints>
-                </imageView>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.92146831750869751" green="0.92162626981735229" blue="0.92145836353302002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="50B-BM-yFD" firstAttribute="top" secondItem="gg0-vq-bu8" secondAttribute="bottom" constant="5" id="8hc-7e-7b6"/>
                 <constraint firstAttribute="bottom" secondItem="50B-BM-yFD" secondAttribute="bottom" constant="5" id="9oG-dY-pXy"/>
-                <constraint firstAttribute="trailing" secondItem="mu2-SS-qgx" secondAttribute="trailing" id="IwO-rh-dlV"/>
+                <constraint firstAttribute="trailing" secondItem="gg0-vq-bu8" secondAttribute="trailing" id="Hfm-EE-9Og"/>
                 <constraint firstItem="50B-BM-yFD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="R4z-hZ-wsC"/>
+                <constraint firstItem="gg0-vq-bu8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="SdD-hd-dbn"/>
+                <constraint firstItem="gg0-vq-bu8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aBg-yg-VCM"/>
                 <constraint firstAttribute="trailing" secondItem="50B-BM-yFD" secondAttribute="trailing" constant="5" id="ddM-Z7-Mc5"/>
-                <constraint firstItem="PyC-31-oo4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fMK-Cw-364"/>
-                <constraint firstItem="50B-BM-yFD" firstAttribute="top" secondItem="mu2-SS-qgx" secondAttribute="bottom" constant="10" id="gYi-Hs-pap"/>
-                <constraint firstItem="mu2-SS-qgx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="jPp-fW-EKA"/>
-                <constraint firstItem="50B-BM-yFD" firstAttribute="top" secondItem="PyC-31-oo4" secondAttribute="bottom" id="uZ0-gy-5pQ"/>
-                <constraint firstItem="mu2-SS-qgx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zDR-SP-xF7"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="57.5" y="-39.5"/>
         </view>
+        <tapGestureRecognizer id="vJk-40-2M0">
+            <connections>
+                <action selector="monthChoose:" destination="-1" id="CY7-gl-aNz"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>
