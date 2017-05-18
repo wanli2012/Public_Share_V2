@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLNearby_MerchatListModel.h"
 
 @interface GLNearby_MerchatListCell : UITableViewCell
+
+@property (nonatomic, strong)GLNearby_MerchatListModel *model;
 
 @end

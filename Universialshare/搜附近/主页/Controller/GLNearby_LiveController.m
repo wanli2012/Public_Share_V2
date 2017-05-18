@@ -14,8 +14,16 @@
 #import "GLNearby_MerchatListController.h"
 #import "GLNearbyViewController.h"
 
-@interface GLNearby_LiveController ()
+#import "GLNearby_TradeOneModel.h"
+#import "GLNearby_NearShopModel.h"
 
+@interface GLNearby_LiveController ()
+{
+    //    BOOL _isAll;
+    LoadWaitView *_loadV;
+}
+@property (nonatomic, strong)NSMutableArray *nearModels;
+@property (nonatomic, strong)NSMutableArray *tradeTwoModels;
 
 @end
 
@@ -25,37 +33,68 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     //    self.automaticallyAdjustsScrollViewInsets = NO;
-    //    self.view.backgroundColor = [UIColor redColor];
-    GLNearby_ClassifyHeaderView *headerV = [[GLNearby_ClassifyHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 70)];
-    self.tableView.tableHeaderView = headerV;
-    
-    __weak typeof(self) weakSelf = self;
-    
-    headerV.block = ^(NSString *typeID,NSInteger count){
-        NSLog(@"typeID = %@",typeID);
-        
-        if ([typeID isEqualToString:@"全部"]) {
-            
-            if (count % 4 == 0) {
-                
-                weakSelf.tableView.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, count/4 * 30 + 10);
-            }else{
-                weakSelf.tableView.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, (count/4 +1) * 30 + 10);
-            }
-        }
-        if([typeID isEqualToString:@"收起"]){
-            weakSelf.tableView.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 70);
-        }
-        [weakSelf.tableView reloadData];
-        
-    };
     
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     [self.tableView registerNib:[UINib nibWithNibName:ID2 bundle:nil] forCellReuseIdentifier:ID2];
+    [self postRequest];
 }
+- (void)postRequest {
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"trade_id"] = @2;
+    dict[@"lng"] = @104.0841100000;
+    dict[@"lat"] = @30.6568320000;
+    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
 
+    [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        if ([responseObject[@"code"] integerValue] == 1){
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                
+                for (NSDictionary *dic  in responseObject[@"data"][@"near_shop"]) {
+                    GLNearby_NearShopModel *model = [GLNearby_NearShopModel mj_objectWithKeyValues:dic];
+                    [self.nearModels addObject:model];
+                }
+                for (NSDictionary *dic  in responseObject[@"data"][@"two_trade_data"]) {
+                    GLNearby_TradeOneModel *model = [GLNearby_TradeOneModel mj_objectWithKeyValues:dic];
+                    [self.tradeTwoModels addObject:model];
+                }
+                
+                GLNearby_ClassifyHeaderView *headerV = [[GLNearby_ClassifyHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 70)];
+                self.tableView.tableHeaderView = headerV;
+                headerV.dataSource = self.tradeTwoModels;
+                
+                __weak typeof(self) weakSelf = self;
+                
+                headerV.block = ^(NSString *typeID,NSInteger count){
+                    NSLog(@"typeID = %@",typeID);
+                    
+                    if ([typeID isEqualToString:@"全部"]) {
+                        
+                        if (count % 4 == 0) {
+                            
+                            weakSelf.tableView.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, count/4 * 30 + 10);
+                        }else{
+                            weakSelf.tableView.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, (count/4 +1) * 30 + 10);
+                        }
+                    }
+                    if([typeID isEqualToString:@"收起"]){
+                        weakSelf.tableView.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 70);
+                    }
+                    [weakSelf.tableView reloadData];
+                    
+                };
+                
+            }
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.description];
+    }];
+    
+}
 - (UIViewController *)viewController {
     for (UIView *view = self.view; view; view = view.superview) {
         UIResponder *nextResponder = [view nextResponder];
@@ -86,12 +125,12 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         return 1;
     }else{
         
-        return 8;
+        return self.nearModels.count;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30;
+    return 30 *autoSizeScaleY;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -100,10 +139,11 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     if (section == 0) {
         headV.titleLabel.text = @"推荐商家";
         [headV.moreBtn setTitle:@"查看更多" forState:UIControlStateNormal];
-//        [headV.moreBtn addTarget:self action:@selector(more:) forControlEvents:UIControlEventTouchUpInside];
+        headV.index = 0;
     }else{
         headV.titleLabel.text = @"附近商家";
         [headV.moreBtn setTitle:@"查看全部" forState:UIControlStateNormal];
+        headV.index = 1;
     }
     [headV.moreBtn addTarget:self action:@selector(more:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -118,6 +158,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         
         GLNearby_classifyCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
         cell.selectionStyle = 0;
+        cell.model = self.nearModels[indexPath.row];
         return cell;
         
     }
@@ -135,6 +176,20 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     self.hidesBottomBarWhenPushed = YES;
     
     self.hidesBottomBarWhenPushed = NO;
+}
+
+
+- (NSMutableArray *)nearModels{
+    if (!_nearModels) {
+        _nearModels = [NSMutableArray array];
+    }
+    return _nearModels;
+}
+- (NSMutableArray *)tradeTwoModels{
+    if (!_tradeTwoModels) {
+        _tradeTwoModels = [NSMutableArray array];
+    }
+    return _tradeTwoModels;
 }
 
 @end

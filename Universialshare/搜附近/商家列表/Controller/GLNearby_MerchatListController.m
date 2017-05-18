@@ -10,6 +10,7 @@
 #import "GLNearby_MerchatListCell.h"
 #import "GLSet_MaskVeiw.h"
 #import "GLHomeLiveChooseController.h"
+#import "GLNearby_MerchatListModel.h"
 
 @interface GLNearby_MerchatListController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -24,6 +25,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *classifyBtn;
 @property (weak, nonatomic) IBOutlet UIButton *sortBtn;
 @property (weak, nonatomic) IBOutlet UIView *topView;
+
+@property (nonatomic, strong)NSMutableArray *models;
+@property (nonatomic, assign)NSInteger page;
 
 @end
 
@@ -55,6 +59,33 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
+    _page = 1;
+    [self postRequest];
+}
+- (void)postRequest {
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"trade_id"] = @1;
+    dict[@"sort"] = @(1);
+    dict[@"lng"] = @116.011111;
+    dict[@"lat"] = @31.1111210;
+    dict[@"page"] = @(_page);
+    [NetworkManager requestPOSTWithURLStr:@"shop/getMoreNearRecShop" paramDic:dict finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == 1){
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                
+                for (NSDictionary *dic  in responseObject[@"data"]) {
+                    GLNearby_MerchatListModel *model = [GLNearby_MerchatListModel mj_objectWithKeyValues:dic];
+                    [self.models addObject:model];
+                }
+            }
+        }
+        
+    } enError:^(NSError *error) {
+        [MBProgressHUD showError:error.description];
+    }];
+    
 }
 - (void)dealloc {
     
@@ -153,7 +184,6 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 
     }
     
-    
     [_chooseVC.tableView reloadData];
 }
 #pragma UITableviewDelegate UITableviewDataSource
@@ -161,17 +191,23 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
- 
     return 8;
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GLNearby_MerchatListCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    cell.model = self.models[indexPath.row];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 110;
 }
 
+
+- (NSMutableArray *)models{
+    if (!_models) {
+        _models = [NSMutableArray array];
+    }
+    return _models;
+}
 @end

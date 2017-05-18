@@ -8,11 +8,12 @@
 
 #import "GLNearby_ClassifyHeaderView.h"
 #import "GLNearby_ClassifyConcollectionCell.h"
+#import "GLNearby_TradeOneModel.h"
 
 @interface GLNearby_ClassifyHeaderView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong)UICollectionView *collectionView;
 
-@property (nonatomic, strong)NSMutableArray *dataSource;
+
 @property (nonatomic, strong)NSMutableArray *tempDataSource;
 
 @property (nonatomic, strong)NSMutableArray *isSeletedArr;
@@ -56,11 +57,13 @@ static NSString *ID = @"GLNearby_ClassifyConcollectionCell";
    
     GLNearby_ClassifyConcollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
 //    cell.isChangeColor = self.isSeletedArr[indexPath.row];
-
+    
     if (self.dataSource.count >8) {
         cell.titleLabel.text = self.tempDataSource[indexPath.row];
     }else{
-        cell.titleLabel.text = self.dataSource[indexPath.row];
+        
+        GLNearby_TradeOneModel *model = self.dataSource[indexPath.row];
+        cell.titleLabel.text = model.trade_name;
     }
     
     return cell;
@@ -133,21 +136,14 @@ static NSString *ID = @"GLNearby_ClassifyConcollectionCell";
     }
     return _collectionView;
 }
-- (NSMutableArray *)dataSource{
-    if (!_dataSource) {
-        _dataSource = [[NSMutableArray alloc] init];
-         NSArray *arr = [NSArray arrayWithObjects:@"美食",@"美酒",@"美女",@"7天",@"宜家",@"KTV",@"台球",@"网吧",@"ddd" ,@"ddde" ,@"ewww" ,nil];
-        [_dataSource addObjectsFromArray:arr];
 
-    }
-    return _dataSource;
-}
 - (NSMutableArray *)tempDataSource{
     if (!_tempDataSource) {
         _tempDataSource = [NSMutableArray array];
         if (self.dataSource.count > 8) {
             for (int i = 0; i < 7; i++) {
-                [_tempDataSource addObject:self.dataSource[i]];
+                GLNearby_TradeOneModel *model = self.dataSource[i];
+                [_tempDataSource addObject:model.trade_name];
             }
             [_tempDataSource addObject:@"全部"];
         }

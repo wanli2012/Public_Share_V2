@@ -10,4 +10,6 @@
 
 @interface GLNearby_MerchatListController : UIViewController
 
+@property (nonatomic, assign)NSInteger index;
+
 @end

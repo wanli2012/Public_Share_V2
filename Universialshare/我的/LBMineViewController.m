@@ -298,7 +298,7 @@
             case 4:
             {
                 self.hidesBottomBarWhenPushed=YES;
-                if ([[UserModel defaultUser].groupId isEqualToString:OrdinaryUser]) {
+                if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
                     //收藏
                     GLMyCollectionController *vc = [[GLMyCollectionController alloc] init];
                     [self.navigationController pushViewController:vc animated:YES];

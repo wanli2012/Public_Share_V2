@@ -14,8 +14,12 @@
 #import "GLNearbyViewController.h"
 #import "GLNearby_MerchatListController.h"
 
-@interface GLNearby_AllController ()
+#import "GLNearby_NearShopModel.h"
 
+@interface GLNearby_AllController ()
+{
+    LoadWaitView *_loadV;
+}
 
 @end
 
@@ -30,7 +34,31 @@ static NSString *ID = @"GLNearby_classifyCell";
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
 
 }
+- (void)postRequest {
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"lng"] = @104.0841100000;
+    dict[@"lat"] = @30.6568320000;
+    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
 
+    [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        if ([responseObject[@"code"] integerValue] == 1){
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                
+                for (NSDictionary *dic  in responseObject[@"data"]) {
+                    
+                }
+                
+            }
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.description];
+    }];
+    
+}
 - (UIViewController *)viewController {
     for (UIView *view = self.view; view; view = view.superview) {
         UIResponder *nextResponder = [view nextResponder];

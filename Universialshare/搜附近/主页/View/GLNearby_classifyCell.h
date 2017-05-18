@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLNearby_NearShopModel.h"
 
 @interface GLNearby_classifyCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+@property (nonatomic, strong)GLNearby_NearShopModel *model;
 
 @end

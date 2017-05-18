@@ -18,12 +18,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="340" height="107"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="XRPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="FCh-Pl-qYx">
-                        <rect key="frame" x="10" y="10" width="100" height="88"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="100" id="mhx-s0-1yX"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成都市美美美服饰店" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7b6-yK-W3T">
                         <rect key="frame" x="120" y="10" width="129" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -42,6 +36,12 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="XRPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="FCh-Pl-qYx">
+                        <rect key="frame" x="10" y="10" width="100" height="87.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="mhx-s0-1yX"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已售1000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFM-C2-anV">
                         <rect key="frame" x="120" y="84" width="70" height="13.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -65,6 +65,13 @@
                     <constraint firstItem="VFM-C2-anV" firstAttribute="top" secondItem="6Z2-US-Dn2" secondAttribute="bottom" constant="10" id="suf-qy-LRx"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="addressLabel" destination="hgH-1Y-SVN" id="CEK-h2-iJ0"/>
+                <outlet property="nameLabel" destination="7b6-yK-W3T" id="Rw3-ac-D0N"/>
+                <outlet property="numberLabel" destination="VFM-C2-anV" id="eBg-Bm-khC"/>
+                <outlet property="phoneLabel" destination="6Z2-US-Dn2" id="BFN-UB-KZP"/>
+                <outlet property="picImageV" destination="FCh-Pl-qYx" id="t7Y-oc-jqk"/>
+            </connections>
             <point key="canvasLocation" x="59" y="55.5"/>
         </tableViewCell>
     </objects>

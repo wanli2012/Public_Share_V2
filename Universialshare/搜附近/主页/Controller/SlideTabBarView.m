@@ -11,6 +11,7 @@
 #import "GLNearby_LiveController.h"
 #import "GLNearby_PlayController.h"
 #import "GLNearby_AllController.h"
+#import "GLNearby_TradeOneModel.h"
 
 #define TOPHEIGHT 40
 #define YYSScreenW  [UIScreen mainScreen].bounds.size.width
@@ -48,7 +49,7 @@
 
 @implementation SlideTabBarView
 
--(instancetype)initWithFrame:(CGRect)frame WithCount: (int) count{
+-(instancetype)initWithFrame:(CGRect)frame WithCount: (int) count WithTitles:(NSArray *)titles{
     self = [super initWithFrame:frame];
     
     if (self) {
@@ -57,6 +58,7 @@
         _tabCount = count;
         _topViews = [[NSMutableArray alloc] init];
         _scrollTableViews = [[NSMutableArray alloc] init];
+        _models = titles;
         
         [self initDataSource];
         
@@ -127,9 +129,14 @@
 
 -(void) initTopTabs{
     CGFloat width = _mViewFrame.size.width / _tabCount;
-    NSArray *name1 = @[@"美食",@"酒店",@"娱乐",@"全部"];
+    NSMutableArray *name1 = [NSMutableArray array];
+    for (int i = 0 ;i < self.models.count; i++) {
+        GLNearby_TradeOneModel *model = self.models[i];
+        [name1 addObject:model.trade_name];
+    }
+    [name1 addObject:@"全部"];
 
-    if(self.tabCount <= 4 ){
+    if(self.tabCount <= 6 ){
         width = _mViewFrame.size.width / self.tabCount;
     }
     
@@ -145,8 +152,8 @@
     
     _topScrollView.delegate = self;
     
-    if (_tabCount >= 4) {
-        _topScrollView.contentSize = CGSizeMake(width * _tabCount, TOPHEIGHT);
+    if (_tabCount >= 6) {
+        _topScrollView.contentSize = CGSizeMake(100 * _tabCount, TOPHEIGHT);
 
     } else {
         _topScrollView.contentSize = CGSizeMake(_mViewFrame.size.width, TOPHEIGHT);

@@ -10,6 +10,8 @@
 
 @interface SlideTabBarView : UIView
 
+@property (nonatomic, strong)NSArray *models;
+
 @property (assign) int tabCount;
--(instancetype)initWithFrame:(CGRect)frame WithCount: (int) count;
+-(instancetype)initWithFrame:(CGRect)frame WithCount: (int) count WithTitles:(NSArray *)titles;
 @end
