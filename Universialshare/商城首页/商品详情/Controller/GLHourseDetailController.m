@@ -148,6 +148,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"GID"] = self.goods_id;
+    dict[@"type"] = @(self.type);
 
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/addMyCollect" paramDic:dict finish:^(id responseObject) {
@@ -181,6 +182,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"goods_id"] = self.goods_id;
+    dict[@"type"] = @(self.type);
     //取出 数量
     GLHourseChangeNumCell *cell = [self.tableView cellForRowAtIndexPath:_indexPath];
     _sum = [cell.sumLabel.text integerValue];

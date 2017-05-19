@@ -19,7 +19,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成都市美美美服饰店" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7b6-yK-W3T">
-                        <rect key="frame" x="120" y="10" width="129" height="17"/>
+                        <rect key="frame" x="120" y="10" width="210" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="61j-76-i7V"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -48,6 +51,12 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已售1000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxH-DS-RCg">
+                        <rect key="frame" x="266" y="85" width="64" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
@@ -57,9 +66,12 @@
                     <constraint firstItem="FCh-Pl-qYx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="HAx-LB-VG9"/>
                     <constraint firstItem="6Z2-US-Dn2" firstAttribute="leading" secondItem="7b6-yK-W3T" secondAttribute="leading" id="KiL-WG-oLj"/>
                     <constraint firstItem="7b6-yK-W3T" firstAttribute="top" secondItem="FCh-Pl-qYx" secondAttribute="top" id="Kje-QS-Qv7"/>
+                    <constraint firstAttribute="trailing" secondItem="7b6-yK-W3T" secondAttribute="trailing" constant="10" id="P1j-rg-g48"/>
                     <constraint firstItem="FCh-Pl-qYx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Sbi-79-cbr"/>
                     <constraint firstItem="6Z2-US-Dn2" firstAttribute="top" secondItem="hgH-1Y-SVN" secondAttribute="bottom" constant="10" id="ab2-Wg-gQN"/>
                     <constraint firstItem="hgH-1Y-SVN" firstAttribute="top" secondItem="7b6-yK-W3T" secondAttribute="bottom" constant="10" id="kDW-4a-4eg"/>
+                    <constraint firstAttribute="trailing" secondItem="bxH-DS-RCg" secondAttribute="trailing" constant="10" id="lmC-tO-YM5"/>
+                    <constraint firstItem="bxH-DS-RCg" firstAttribute="centerY" secondItem="VFM-C2-anV" secondAttribute="centerY" id="mUA-dB-x9c"/>
                     <constraint firstItem="hgH-1Y-SVN" firstAttribute="leading" secondItem="7b6-yK-W3T" secondAttribute="leading" id="rdP-yS-ayB"/>
                     <constraint firstItem="7b6-yK-W3T" firstAttribute="leading" secondItem="FCh-Pl-qYx" secondAttribute="trailing" constant="10" id="s4r-9P-d4W"/>
                     <constraint firstItem="VFM-C2-anV" firstAttribute="top" secondItem="6Z2-US-Dn2" secondAttribute="bottom" constant="10" id="suf-qy-LRx"/>
@@ -67,6 +79,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="addressLabel" destination="hgH-1Y-SVN" id="CEK-h2-iJ0"/>
+                <outlet property="distanceLabel" destination="bxH-DS-RCg" id="Bpq-nB-bOV"/>
                 <outlet property="nameLabel" destination="7b6-yK-W3T" id="Rw3-ac-D0N"/>
                 <outlet property="numberLabel" destination="VFM-C2-anV" id="eBg-Bm-khC"/>
                 <outlet property="phoneLabel" destination="6Z2-US-Dn2" id="BFN-UB-KZP"/>

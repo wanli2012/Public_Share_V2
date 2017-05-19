@@ -28,6 +28,11 @@
     cell.textLabel.text = self.dataSource[indexPath.row];
     return cell;
 }
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    self.block(cell.textLabel.text);
+    
+}
 
 @end

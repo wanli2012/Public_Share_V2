@@ -7,7 +7,7 @@
 
 #import "GLNearbyViewController.h"
 #import "SlideTabBarView.h"
-#import "GLCityChooseController.h"
+//#import "GLCityChooseController.h"
 #import "GLNearby_TradeOneModel.h"
 
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
@@ -26,6 +26,9 @@
 
 //@property (strong, nonatomic)NodataView *nodataV;
 @property (nonatomic, assign) CLLocationCoordinate2D coors2; // 纬度
+@property (nonatomic, copy)NSString *latitude;
+@property (nonatomic, copy)NSString *longitude;
+
 @property (strong , nonatomic)BMKReverseGeoCodeOption *option;//地址
 
 //@property (assign , nonatomic)BOOL locationB;//判断是否定位 默认为NO
@@ -50,7 +53,7 @@
     _mapView.userTrackingMode = BMKUserTrackingModeNone;//设置定位的状态
     
     
-    [self postRequest];
+//    [self postRequest];
 }
 - (void)postRequest {
     
@@ -59,13 +62,13 @@
 //        [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == 1){
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-                
+//                NSLog(@"responseObject = %@",responseObject);
                 for (NSDictionary *dic  in responseObject[@"data"][@"trade"]) {
                     GLNearby_TradeOneModel *model = [GLNearby_TradeOneModel mj_objectWithKeyValues:dic];
                     [self.models addObject:model];
                 }
-                
-                SlideTabBarView *slideV = [[SlideTabBarView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 49-64) WithCount:4 WithTitles:self.models];
+                [GLNearby_Model defaultUser].trades = self.models;
+                SlideTabBarView *slideV = [[SlideTabBarView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 49-64) WithCount:4];
                 [self.view addSubview:slideV];
                
             }
@@ -78,16 +81,17 @@
     
 }
 
-- (IBAction)cityChoose:(id)sender {
-    GLCityChooseController *cityVC = [[GLCityChooseController alloc] init];
-    __weak typeof(self) weakSelf = self;
-    cityVC.block = ^(NSString *city){
-        [weakSelf.cityBtn setTitle:city forState:UIControlStateNormal];
-    };
-    self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:cityVC animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
-}
+//- (IBAction)cityChoose:(id)sender {
+//    
+//    GLCityChooseController *cityVC = [[GLCityChooseController alloc] init];
+//    __weak typeof(self) weakSelf = self;
+//    cityVC.block = ^(NSString *city){
+//        [weakSelf.cityBtn setTitle:city forState:UIControlStateNormal];
+//    };
+//    self.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:cityVC animated:YES];
+//    self.hidesBottomBarWhenPushed = NO;
+//}
 -(void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
@@ -108,7 +112,14 @@
     
     self.coors2 = userLocation.location.coordinate;
 //    self.locationB=YES;
+
+    
+    
+    [GLNearby_Model defaultUser].latitude = [NSString stringWithFormat:@"%f",self.coors2.latitude];
+    [GLNearby_Model defaultUser].longitude = [NSString stringWithFormat:@"%f",self.coors2.longitude];
+    
     //加载数据
+
     [self postRequest];
     // 将数据传到反地址编码模型
     self.option.reverseGeoPoint = CLLocationCoordinate2DMake( userLocation.location.coordinate.latitude,  userLocation.location.coordinate.longitude);

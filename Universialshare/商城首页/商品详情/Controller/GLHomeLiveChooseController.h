@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^returnChooseValueBlock)(NSString *value);
 @interface GLHomeLiveChooseController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong)NSArray *dataSource;
+
+@property (nonatomic, copy) returnChooseValueBlock block;
 
 @end

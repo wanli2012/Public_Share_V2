@@ -20,4 +20,8 @@
 
 @property (nonatomic, copy)NSString *limit;
 
+@property (nonatomic, copy)NSString *address;
+
+@property (nonatomic, copy)NSString *phone;
+
 @end

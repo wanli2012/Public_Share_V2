@@ -25,6 +25,6 @@
 #import "RSAEncryptor.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
-
+#import "GLNearby_Model.h"
 
 #endif /* universialshare_pch */

@@ -12,4 +12,19 @@
 
 @property (nonatomic, assign)NSInteger index;
 
+@property (nonatomic, copy)NSString  *trade_id;
+
+@property (nonatomic, copy)NSString  *two_trade_id;
+
+@property (nonatomic, copy)NSString  *limit;
+
+@property (nonatomic, copy)NSString  *city_id;
+
+@property (nonatomic, copy)NSString  *sort;
+
+@property (nonatomic, copy)NSString  *lng;
+
+@property (nonatomic, copy)NSString  *lat;
+
+
 @end

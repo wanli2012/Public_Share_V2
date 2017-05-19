@@ -25,6 +25,7 @@
 @property (nonatomic, strong)NSMutableArray *nearModels;
 @property (nonatomic, strong)NSMutableArray *tradeTwoModels;
 
+
 @end
 
 static NSString *ID = @"GLNearby_classifyCell";
@@ -42,10 +43,10 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 - (void)postRequest {
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[@"trade_id"] = @2;
-    dict[@"lng"] = @104.0841100000;
-    dict[@"lat"] = @30.6568320000;
-    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades[1];
+    dict[@"trade_id"] = model.trade_id;
+    dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
+    dict[@"lat"] = [GLNearby_Model defaultUser].latitude;    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
 
     [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
@@ -85,7 +86,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                     [weakSelf.tableView reloadData];
                     
                 };
-                
+                [self.tableView reloadData];
             }
         }
         

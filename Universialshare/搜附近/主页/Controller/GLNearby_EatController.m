@@ -25,6 +25,8 @@
 @property (nonatomic, strong)NSMutableArray *nearModels;
 @property (nonatomic, strong)NSMutableArray *tradeTwoModels;
 
+
+
 @end
 
 static NSString *ID = @"GLNearby_classifyCell";
@@ -42,14 +44,19 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 - (void)postRequest {
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[@"trade_id"] = @1;
-    dict[@"lng"] = @104.0841100000;
-    dict[@"lat"] = @30.6568320000;
+    GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades[0];
+    dict[@"trade_id"] = model.trade_id;
+    dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
+    dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
+  
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
+        
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == 1){
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                
+                [GLNearby_Model defaultUser].city_id = responseObject[@"city_id"];
                 
                 for (NSDictionary *dic  in responseObject[@"data"][@"near_shop"]) {
                     GLNearby_NearShopModel *model = [GLNearby_NearShopModel mj_objectWithKeyValues:dic];
@@ -84,6 +91,8 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                     [weakSelf.tableView reloadData];
                     
                 };
+                
+                [self.tableView reloadData];
 
             }
         }
@@ -107,7 +116,13 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     self.viewController.hidesBottomBarWhenPushed = YES;
     GLNearby_MerchatListController *merchatVC = [[GLNearby_MerchatListController alloc] init];
 
+    GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades[0];
     merchatVC.index = index;
+    merchatVC.trade_id = model.trade_id;
+    merchatVC.city_id = [GLNearby_Model defaultUser].city_id;
+    
+
+//    merchatVC.city_id = [NSString stringWithFormat:@"%@",];
   
     [self.viewController.navigationController pushViewController:merchatVC animated:YES];
     self.viewController.hidesBottomBarWhenPushed = NO;
@@ -124,6 +139,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         
         return self.nearModels.count;
     }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

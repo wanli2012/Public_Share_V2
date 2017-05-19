@@ -38,6 +38,7 @@
 		4A0D97931E9729C100A26B84 /* GLHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0D975C1E9729C100A26B84 /* GLHotCell.xib */; };
 		4A0D97941E9729C100A26B84 /* GLTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0D975E1E9729C100A26B84 /* GLTopCell.m */; };
 		4A0D97951E9729C100A26B84 /* GLTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0D975F1E9729C100A26B84 /* GLTopCell.xib */; };
+		4A1586011ECED787002488F5 /* GLNearby_Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1586001ECED787002488F5 /* GLNearby_Model.m */; };
 		4A16C63A1ECD7C7C00DF2E5E /* GLNearby_TradeOneModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A16C6391ECD7C7C00DF2E5E /* GLNearby_TradeOneModel.m */; };
 		4A16C63D1ECD842100DF2E5E /* GLNearby_NearShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A16C63C1ECD842100DF2E5E /* GLNearby_NearShopModel.m */; };
 		4A16C6401ECDAECC00DF2E5E /* GLNearby_MerchatListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A16C63F1ECDAECC00DF2E5E /* GLNearby_MerchatListModel.m */; };
@@ -953,6 +954,8 @@
 		4A0D975D1E9729C100A26B84 /* GLTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLTopCell.h; sourceTree = "<group>"; };
 		4A0D975E1E9729C100A26B84 /* GLTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLTopCell.m; sourceTree = "<group>"; };
 		4A0D975F1E9729C100A26B84 /* GLTopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLTopCell.xib; sourceTree = "<group>"; };
+		4A1585FF1ECED787002488F5 /* GLNearby_Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_Model.h; sourceTree = "<group>"; };
+		4A1586001ECED787002488F5 /* GLNearby_Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_Model.m; sourceTree = "<group>"; };
 		4A16C6381ECD7C7C00DF2E5E /* GLNearby_TradeOneModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_TradeOneModel.h; sourceTree = "<group>"; };
 		4A16C6391ECD7C7C00DF2E5E /* GLNearby_TradeOneModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_TradeOneModel.m; sourceTree = "<group>"; };
 		4A16C63B1ECD842100DF2E5E /* GLNearby_NearShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_NearShopModel.h; sourceTree = "<group>"; };
@@ -4049,6 +4052,8 @@
 		4A5F668B1ECA89FA0048F339 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4A1585FF1ECED787002488F5 /* GLNearby_Model.h */,
+				4A1586001ECED787002488F5 /* GLNearby_Model.m */,
 				4A16C6381ECD7C7C00DF2E5E /* GLNearby_TradeOneModel.h */,
 				4A16C6391ECD7C7C00DF2E5E /* GLNearby_TradeOneModel.m */,
 				4A16C63B1ECD842100DF2E5E /* GLNearby_NearShopModel.h */,
@@ -6385,6 +6390,7 @@
 				4A4611071E9CC6370045824F /* ZXQRCodeVersion.m in Sources */,
 				F923095B1E9B8BFF00ECDC94 /* LBMyOrderEveluationSucessOneCollectionViewCell.m in Sources */,
 				4AA0D5B91EAEF00F00CB8F77 /* GLClassifyView.m in Sources */,
+				4A1586011ECED787002488F5 /* GLNearby_Model.m in Sources */,
 				4A4610641E9CC6360045824F /* ZXTextParsedResult.m in Sources */,
 				4A46111B1E9CC6370045824F /* UIImageView+CornerRadius.m in Sources */,
 				4A4610181E9CC6360045824F /* LBXScanViewController.m in Sources */,
