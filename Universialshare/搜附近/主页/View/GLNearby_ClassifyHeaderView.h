@@ -14,4 +14,6 @@ typedef void(^typeBlock)(NSString *typeID,NSInteger headerViewHeight);
 
 @property (nonatomic, copy) typeBlock block;
 
+@property (nonatomic, strong)NSMutableArray *dataSource;
+
 @end

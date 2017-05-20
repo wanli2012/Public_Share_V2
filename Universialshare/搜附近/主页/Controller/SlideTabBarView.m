@@ -11,6 +11,8 @@
 #import "GLNearby_LiveController.h"
 #import "GLNearby_PlayController.h"
 #import "GLNearby_AllController.h"
+#import "GLNearby_TradeOneModel.h"
+
 
 #define TOPHEIGHT 40
 #define YYSScreenW  [UIScreen mainScreen].bounds.size.width
@@ -44,12 +46,17 @@
 ///@brife 上方的ScrollView
 @property (strong, nonatomic) UIScrollView *topScrollView;
 
+//经纬度
+@property (nonatomic, copy)NSString *latitude;
+@property (nonatomic, copy)NSString *longitude;
+@property (nonatomic, strong)NSArray *trade_idModels;
+
 @end
 
 @implementation SlideTabBarView
 
 -(instancetype)initWithFrame:(CGRect)frame WithCount: (int) count{
-    self = [super initWithFrame:frame];
+    self = [super initWithFrame:frame ];
     
     if (self) {
         
@@ -127,9 +134,14 @@
 
 -(void) initTopTabs{
     CGFloat width = _mViewFrame.size.width / _tabCount;
-    NSArray *name1 = @[@"美食",@"酒店",@"娱乐",@"全部"];
-
-    if(self.tabCount <= 4 ){
+    NSMutableArray *name1 = [NSMutableArray array];
+    for (int i = 0 ;i < [GLNearby_Model defaultUser].trades.count; i++) {
+        GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades[i];
+        [name1 addObject:model.trade_name];
+    }
+    [name1 addObject:@"全部"];
+    
+    if(self.tabCount <= 6 ){
         width = _mViewFrame.size.width / self.tabCount;
     }
     
@@ -145,8 +157,8 @@
     
     _topScrollView.delegate = self;
     
-    if (_tabCount >= 4) {
-        _topScrollView.contentSize = CGSizeMake(width * _tabCount, TOPHEIGHT);
+    if (_tabCount >= 6) {
+        _topScrollView.contentSize = CGSizeMake(100 * _tabCount, TOPHEIGHT);
 
     } else {
         _topScrollView.contentSize = CGSizeMake(_mViewFrame.size.width, TOPHEIGHT);
@@ -207,11 +219,18 @@ GLNearby_AllController *all;
 }
 -(void) initDownTables{
     
+    NSMutableArray *trade_idArr = [NSMutableArray array];
+    for (int i = 0 ;i < [GLNearby_Model defaultUser].trades.count; i++) {
+        GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades[i];
+        [trade_idArr addObject:model.trade_id];
+    }
+
     for (int i = 0; i < _tabCount; i ++) {
         
         if (i == 0) {
             
             eat = [[GLNearby_EatController alloc] init];
+  
             [self.viewController addChildViewController:eat];
             eat.view.yy_width = SCREEN_WIDTH;
             eat.view.frame = CGRectMake(YYSScreenW*i, 0, YYSScreenW, _scrollView.yy_height);
@@ -220,6 +239,7 @@ GLNearby_AllController *all;
 
         } else if (i == 1) {
             live = [[GLNearby_LiveController alloc] init];
+
             [self.viewController addChildViewController:live];
             live.view.yy_width = YYSScreenW;
             live.view.frame = CGRectMake(YYSScreenW*i, 0, YYSScreenW, _scrollView.yy_height);
@@ -228,6 +248,7 @@ GLNearby_AllController *all;
             
         }else if (i == 2) {
             play = [[GLNearby_PlayController alloc] init];
+   
             [self.viewController addChildViewController:play];
             play.view.yy_width = YYSScreenW;
             play.view.frame = CGRectMake(YYSScreenW*i, 0, YYSScreenW, _scrollView.yy_height);
@@ -236,6 +257,7 @@ GLNearby_AllController *all;
             
         }else {
             all = [[GLNearby_AllController alloc] init];
+   
             [self.viewController addChildViewController:all];
             all.view.yy_width = YYSScreenW;
             all.view.frame = CGRectMake(YYSScreenW*i, 0, YYSScreenW, _scrollView.yy_height);
@@ -243,7 +265,6 @@ GLNearby_AllController *all;
             [_scrollView addSubview:all.view];
         
         }
-        
         
     }
     

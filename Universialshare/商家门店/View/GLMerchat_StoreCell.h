@@ -11,12 +11,14 @@
 @protocol GLMerchat_StoreCellDelegate <NSObject>
 
 //index 1:暂停营业   2:修改密码
-- (void)cellClick:(NSInteger )index;
+- (void)cellClick:(NSInteger )index indexPath:(NSIndexPath *)indexPath;
 
 @end
 
 @interface GLMerchat_StoreCell : UITableViewCell
 
 @property (nonatomic, assign)id<GLMerchat_StoreCellDelegate> delegate;
+
+@property (nonatomic, strong)NSIndexPath *indexPath;
 
 @end

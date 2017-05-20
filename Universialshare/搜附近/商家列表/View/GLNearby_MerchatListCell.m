@@ -7,6 +7,7 @@
 //
 
 #import "GLNearby_MerchatListCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface GLNearby_MerchatListCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *picImageV;
@@ -32,6 +33,18 @@
 - (IBAction)mapToHere:(id)sender {
 }
 
-
+- (void)setModel:(GLNearby_MerchatListModel *)model{
+    _model = model;
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.store_pic] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+    if (self.picImageV.image == nil) {
+        self.picImageV.image = [UIImage imageNamed:@"XRPlaceholder"];
+    }
+    self.nameLabel.text = model.shop_name;
+    self.adressLabel.text = model.address;
+    self.phoneNumLabel.text = model.phone;
+    self.contentLabel.text = model.total_money;
+    self.distanceLabel.text = model.limit;
+    
+}
 
 @end

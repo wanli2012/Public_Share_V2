@@ -14,7 +14,7 @@
 @interface GLMerchat_StoreController ()<GLMerchat_StoreCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
-@property (weak, nonatomic) IBOutlet UIView *searchView;
+
 @property (weak, nonatomic) IBOutlet UIButton *addStoreBtn;
 
 @end
@@ -24,26 +24,20 @@ static NSString *ID = @"GLMerchat_StoreCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.searchView.layer.cornerRadius = self.searchView.yy_height/2;
-    self.searchView.clipsToBounds = YES;
-    
-    self.addStoreBtn.layer.cornerRadius = 5.f;
-    self.searchView.clipsToBounds = YES;
-    
-    self.navigationController.navigationBar.hidden = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
 }
-
-
-- (IBAction)back:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
 }
+
 - (IBAction)addStore:(id)sender {
     
     self.hidesBottomBarWhenPushed = YES;
     GLAddStoreController *addVC = [[GLAddStoreController alloc] init];
     [self.navigationController pushViewController:addVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
     
 }
 #pragma UITableviewDelegate UITableviewDataSource
@@ -59,6 +53,7 @@ static NSString *ID = @"GLMerchat_StoreCell";
 //    //    cell.addressLabel.text = _model.address;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
+    cell.indexPath = indexPath;
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -71,11 +66,56 @@ static NSString *ID = @"GLMerchat_StoreCell";
 
 #pragma GLMerchat_StoreCellDelegate
 
-- (void)cellClick:(NSInteger)index{
+- (void)cellClick:(NSInteger)index indexPath:(NSIndexPath *)indexPath{
     if (index == 1) {
-        NSLog(@"暂停营业");
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"暂停营业" message:@"请输入密码" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
+            
+        }];
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//                    UITextField *login = alertController.textFields.firstObject;
+//                    UITextField *password = alertController.textFields.lastObject;
+           NSLog(@"暂停营业");
+        
+        }];
+        [alertController addAction:cancelAction];
+        [alertController addAction:okAction];
+        
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = @"请输入密码";
+            textField.secureTextEntry = YES;
+        }];
+        [self presentViewController:alertController animated:YES completion:nil];
+        
     }else{
-        NSLog(@"修改密码");
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改密码" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
+            
+        }];
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            //                    UITextField *login = alertController.textFields.firstObject;
+            //                    UITextField *password = alertController.textFields.lastObject;
+            NSLog(@"修改密码");
+            
+        }];
+        [alertController addAction:cancelAction];
+        [alertController addAction:okAction];
+        
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = @"请输入原密码";
+            textField.secureTextEntry = YES;
+        }];
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = @"请输入新密码";
+            textField.secureTextEntry = YES;
+        }];
+        [self presentViewController:alertController animated:YES completion:nil];
+
     }
 }
 

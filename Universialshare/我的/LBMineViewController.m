@@ -287,24 +287,19 @@
             case 3:
             {
                 self.hidesBottomBarWhenPushed=YES;
-                if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
-                    
-                    GLMerchat_StoreController *vc = [[GLMerchat_StoreController alloc] init];
-                    [self.navigationController pushViewController:vc animated:YES];
-                    
-                }else{
+               
 
                 GLBuyBackController *vc=[[GLBuyBackController alloc]init];
                 
                 [self.navigationController pushViewController:vc animated:YES];
                 }
                 self.hidesBottomBarWhenPushed=NO;
-            }
+            
                 break;
             case 4:
             {
                 self.hidesBottomBarWhenPushed=YES;
-                if ([[UserModel defaultUser].groupId isEqualToString:OrdinaryUser]) {
+                if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
                     //收藏
                     GLMyCollectionController *vc = [[GLMyCollectionController alloc] init];
                     [self.navigationController pushViewController:vc animated:YES];

@@ -22,6 +22,7 @@
 #import "LBMyBusinessListViewController.h"
 
 #import "GLNearbyViewController.h"
+#import "GLMerchat_StoreController.h"
 
 @interface BasetabbarViewController ()<UITabBarControllerDelegate>
 
@@ -58,6 +59,8 @@
    
     //搜附近
     GLNearbyViewController *nearbyVC = [[GLNearbyViewController alloc] init];
+    //门店
+    GLMerchat_StoreController *storeVC = [[GLMerchat_StoreController alloc] init];
     
     BaseNavigationViewController *firstNav = [[BaseNavigationViewController alloc] initWithRootViewController:firstVC];
     BaseNavigationViewController *Homenav = [[BaseNavigationViewController alloc] initWithRootViewController:Homevc];
@@ -68,12 +71,13 @@
     BaseNavigationViewController *myordersNav = [[BaseNavigationViewController alloc] initWithRootViewController:myodresvc];
     BaseNavigationViewController *businessNav = [[BaseNavigationViewController alloc] initWithRootViewController:businessVc];
     BaseNavigationViewController *nearbyNav = [[BaseNavigationViewController alloc] initWithRootViewController:nearbyVC];
-   
+   BaseNavigationViewController *storeNav = [[BaseNavigationViewController alloc] initWithRootViewController:storeVC];
+    
     firstVC.title = @"首页";
     Homevc.title=@"消费商城";
     IntegralMallvc.title=@"积分商城";
     minevc.title=@"我的";
-    
+//    storeVC.title = @"门店";
 
     firstVC.tabBarItem = [self barTitle:@"首页" image:@"home_page_normal"  selectImage:@"home_page_select"];
     Homevc.tabBarItem = [self barTitle:@"消费商城" image:@"消费商城未选中状态" selectImage:@"消费商城"];
@@ -83,7 +87,12 @@
     myodresvc.tabBarItem = [self barTitle:@"订单" image:@"消费商城未选中状态" selectImage:@"消费商城"];
     businessNav.tabBarItem = [self barTitle:@"商家" image:@"消费商城未选中状态" selectImage:@"消费商城"];
     nearbyNav.tabBarItem = [self barTitle:@"搜附近" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
+    storeNav.tabBarItem = [self barTitle:@"门店" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
     
+//    [UserModel defaultUser].usrtype = Retailer;
+//    [UserModel defaultUser].loginstatus = YES;
+//
+//    [usermodelachivar achive];
     if ([UserModel defaultUser].loginstatus == YES) {//登录状态
         if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {//一级业务员和二级业务员
             self.viewControllers = @[firstNav, ManAndBusinessNav, minenav];
@@ -92,7 +101,7 @@
         }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]){//普通用户
             self.viewControllers = @[firstNav,nearbyNav, IntegralMallnav, minenav];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]){//商家
-            self.viewControllers = @[firstNav, myordersNav, IntegralMallnav, minenav];
+            self.viewControllers = @[firstNav, storeNav, minenav];
         }
     }else{//退出状态
         self.viewControllers = @[firstNav, IntegralMallnav, minenav];

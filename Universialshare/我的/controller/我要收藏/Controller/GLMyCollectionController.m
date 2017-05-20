@@ -83,6 +83,7 @@ static NSString *ID = @"GLMyCollectionCell";
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"page"] = [NSString stringWithFormat:@"%d",_page];
+//    dict[@"type"] = @(self.type);
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/myCollection_list" paramDic:dict finish:^(id responseObject) {

@@ -11,5 +11,9 @@
 @interface GLNearby_EatController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+////经纬度
+//@property (nonatomic, copy)NSString *latitude;
+//@property (nonatomic, copy)NSString *longitude;
+//
+//@property (nonatomic, copy)NSString *trade_id;
 @end

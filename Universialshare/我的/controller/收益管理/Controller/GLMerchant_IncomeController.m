@@ -150,6 +150,14 @@ static NSString *ID = @"GLMerchant_IncomeCell";
         _Calendar=[[HWCalendar alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH , (SCREEN_WIDTH * 0.8)/7 * 9.5)];
         _Calendar.delegate = self;
         _Calendar.showTimePicker = YES;
+        
+        __weak typeof(self) weakself = self;
+        _Calendar.returnCancel = ^(){
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                weakself.CalendarView.hidden = YES;
+            });
+
+        };
     }
     return _Calendar;
 }

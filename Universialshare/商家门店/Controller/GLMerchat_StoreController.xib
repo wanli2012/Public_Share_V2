@@ -6,15 +6,12 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMerchat_StoreController">
             <connections>
-                <outlet property="addStoreBtn" destination="Zez-pD-gNC" id="7du-Ea-Zh7"/>
-                <outlet property="backBtn" destination="Zqf-zV-Rkv" id="8o8-Ss-jZC"/>
-                <outlet property="searchView" destination="DgK-j1-HCk" id="2MO-dt-gmy"/>
+                <outlet property="addStoreBtn" destination="Zqf-zV-Rkv" id="w2a-GP-uTL"/>
                 <outlet property="tableView" destination="25X-NO-GTN" id="kVt-GA-yTp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,21 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zez-pD-gNC">
-                    <rect key="frame" x="10" y="617" width="355" height="40"/>
-                    <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="ZDq-Tv-4Sh"/>
-                    </constraints>
-                    <state key="normal" title="新增店铺">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="addStore:" destination="-1" eventType="touchUpInside" id="vex-H9-Smb"/>
-                    </connections>
-                </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="25X-NO-GTN">
-                    <rect key="frame" x="0.0" y="64" width="375" height="543"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Bet-bK-KLi"/>
@@ -49,75 +33,43 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zqf-zV-Rkv">
-                            <rect key="frame" x="0.0" y="20" width="40" height="44"/>
+                            <rect key="frame" x="335" y="20" width="40" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="sTw-tE-zDZ"/>
                                 <constraint firstAttribute="height" constant="44" id="x1N-2w-pah"/>
                             </constraints>
-                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="15" maxY="10"/>
-                            <state key="normal" image="iv_back"/>
+                            <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                            <state key="normal" image="增加符号"/>
                             <connections>
-                                <action selector="back:" destination="-1" eventType="touchUpInside" id="jPh-e7-obE"/>
+                                <action selector="addStore:" destination="-1" eventType="touchUpInside" id="F4T-WC-IpB"/>
                             </connections>
                         </button>
-                        <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DgK-j1-HCk">
-                            <rect key="frame" x="60" y="29" width="255" height="26"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="搜索" translatesAutoresizingMaskIntoConstraints="NO" id="MUc-WN-niq">
-                                    <rect key="frame" x="10" y="6" width="14" height="14"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="14" id="6zr-wg-Tfv"/>
-                                        <constraint firstAttribute="width" secondItem="MUc-WN-niq" secondAttribute="height" multiplier="1:1" id="NLK-xj-brE"/>
-                                    </constraints>
-                                </imageView>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入商品名或ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2O0-z3-Fp2">
-                                    <rect key="frame" x="34" y="0.0" width="221" height="26"/>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="-1" id="fhC-Zd-s5c"/>
-                                    </connections>
-                                </textField>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="2O0-z3-Fp2" firstAttribute="leading" secondItem="MUc-WN-niq" secondAttribute="trailing" constant="10" id="7Du-89-4gF"/>
-                                <constraint firstAttribute="bottom" secondItem="2O0-z3-Fp2" secondAttribute="bottom" id="9zN-wF-CSv"/>
-                                <constraint firstItem="MUc-WN-niq" firstAttribute="leading" secondItem="DgK-j1-HCk" secondAttribute="leading" constant="10" id="M03-a8-0pI"/>
-                                <constraint firstItem="2O0-z3-Fp2" firstAttribute="top" secondItem="DgK-j1-HCk" secondAttribute="top" id="Mt8-Ze-Aua"/>
-                                <constraint firstAttribute="trailing" secondItem="2O0-z3-Fp2" secondAttribute="trailing" id="Wxh-K7-Ro4"/>
-                                <constraint firstAttribute="bottom" secondItem="2O0-z3-Fp2" secondAttribute="bottom" id="g2s-1V-cAI"/>
-                                <constraint firstAttribute="trailing" secondItem="2O0-z3-Fp2" secondAttribute="trailing" id="gGi-zj-wRz"/>
-                                <constraint firstItem="MUc-WN-niq" firstAttribute="centerY" secondItem="DgK-j1-HCk" secondAttribute="centerY" id="jZ8-K4-YmF"/>
-                                <constraint firstItem="2O0-z3-Fp2" firstAttribute="top" secondItem="DgK-j1-HCk" secondAttribute="top" id="y2W-8f-HLE"/>
-                            </constraints>
-                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="门  店" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivs-qO-dyc">
+                            <rect key="frame" x="166.5" y="32.5" width="41.5" height="19.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="DgK-j1-HCk" firstAttribute="height" secondItem="Zqf-zV-Rkv" secondAttribute="height" constant="-18" id="JCA-tU-QAU"/>
-                        <constraint firstItem="DgK-j1-HCk" firstAttribute="centerY" secondItem="Zqf-zV-Rkv" secondAttribute="centerY" id="YXc-e8-lus"/>
-                        <constraint firstItem="Zqf-zV-Rkv" firstAttribute="leading" secondItem="VD7-f5-9xB" secondAttribute="leading" id="Yz8-IO-LJJ"/>
-                        <constraint firstItem="DgK-j1-HCk" firstAttribute="width" secondItem="VD7-f5-9xB" secondAttribute="width" constant="-120" id="s7Z-vX-hND"/>
+                        <constraint firstItem="ivs-qO-dyc" firstAttribute="centerX" secondItem="VD7-f5-9xB" secondAttribute="centerX" id="HF1-8Z-EbN"/>
+                        <constraint firstAttribute="trailing" secondItem="Zqf-zV-Rkv" secondAttribute="trailing" id="oAw-0r-xfz"/>
                         <constraint firstAttribute="height" constant="64" id="us9-Kc-ys9"/>
                         <constraint firstAttribute="bottom" secondItem="Zqf-zV-Rkv" secondAttribute="bottom" id="ust-4g-6CH"/>
-                        <constraint firstItem="DgK-j1-HCk" firstAttribute="centerX" secondItem="VD7-f5-9xB" secondAttribute="centerX" id="voA-Qc-kGO"/>
+                        <constraint firstItem="ivs-qO-dyc" firstAttribute="centerY" secondItem="Zqf-zV-Rkv" secondAttribute="centerY" id="w91-6S-ozv"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Zez-pD-gNC" firstAttribute="top" secondItem="25X-NO-GTN" secondAttribute="bottom" constant="10" id="BTm-Wi-xyR"/>
                 <constraint firstItem="25X-NO-GTN" firstAttribute="top" secondItem="VD7-f5-9xB" secondAttribute="bottom" id="Czh-RN-d90"/>
                 <constraint firstItem="VD7-f5-9xB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JDa-Lv-OGD"/>
                 <constraint firstItem="VD7-f5-9xB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="KFn-95-IxH"/>
-                <constraint firstAttribute="bottom" secondItem="Zez-pD-gNC" secondAttribute="bottom" constant="10" id="ZnJ-GX-fwf"/>
                 <constraint firstItem="25X-NO-GTN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ajy-ob-veT"/>
+                <constraint firstAttribute="bottom" secondItem="25X-NO-GTN" secondAttribute="bottom" constant="49" id="bMc-eF-R8H"/>
                 <constraint firstAttribute="trailing" secondItem="VD7-f5-9xB" secondAttribute="trailing" id="bdy-ro-Dcn"/>
                 <constraint firstAttribute="trailing" secondItem="25X-NO-GTN" secondAttribute="trailing" id="fV2-I9-XI4"/>
-                <constraint firstAttribute="trailing" secondItem="Zez-pD-gNC" secondAttribute="trailing" constant="10" id="fbF-ht-hOF"/>
-                <constraint firstItem="Zez-pD-gNC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="oQg-fH-30U"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -125,7 +77,6 @@
         </view>
     </objects>
     <resources>
-        <image name="iv_back" width="13" height="25"/>
-        <image name="搜索" width="15" height="14"/>
+        <image name="增加符号" width="20" height="20"/>
     </resources>
 </document>
