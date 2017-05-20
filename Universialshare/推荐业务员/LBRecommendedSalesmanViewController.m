@@ -204,10 +204,7 @@
             return;
         }
     }
-    if (self.nameTf.text.length <=0 ) {
-        [MBProgressHUD showError:@"请输入姓名"];
-        return;
-    }
+   
     if (self.yanzTf.text.length <=0 ) {
         [MBProgressHUD showError:@"请输入验证码"];
         return;
@@ -244,7 +241,7 @@
     
      NSString *encryptsecret = [RSAEncryptor encryptString:self.secrestTf.text publicKey:public_RSA];
     
-    NSDictionary *dic = @{@"uid":[UserModel defaultUser].uid,@"token":[UserModel defaultUser].token,@"phone":self.phonetf.text,@"yzm":self.yanzTf.text,@"truename":self.nameTf.text,@"grade":self.levelStr,@"province":_provinceArr[_ischosePro][@"province_code"],@"city":_provinceArr[_ischosePro][@"city"][_ischoseCity][@"city_code"],@"country":_provinceArr[_ischosePro][@"city"][_ischoseCity][@"country"][_ischoseArea][@"country_code"],@"password":encryptsecret};
+    NSDictionary *dic = @{@"uid":[UserModel defaultUser].uid,@"token":[UserModel defaultUser].token,@"phone":self.phonetf.text,@"yzm":self.yanzTf.text,@"grade":self.levelStr,@"province":_provinceArr[_ischosePro][@"province_code"],@"city":_provinceArr[_ischosePro][@"city"][_ischoseCity][@"city_code"],@"country":_provinceArr[_ischosePro][@"city"][_ischoseCity][@"country"][_ischoseArea][@"country_code"],@"password":encryptsecret};
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"user/addSaler" paramDic:dic finish:^(id responseObject) {

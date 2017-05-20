@@ -46,6 +46,7 @@
 #import "GLRecommendStoreController.h"
 
 #import "LBStoreMoreInfomationViewController.h"//商店详情
+#import "LBMineCenterMYOrderEvaluationDetailViewController.h"//评论商品
 
 
 @interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
@@ -472,6 +473,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     LBSetUpViewController *vc=[[LBSetUpViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed=NO;
+   
+    /*
+    self.hidesBottomBarWhenPushed=YES;
+    LBMineCenterMYOrderEvaluationDetailViewController *vc=[[LBMineCenterMYOrderEvaluationDetailViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed=NO;
+     */
 }
 
 //消息

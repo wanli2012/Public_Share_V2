@@ -10,4 +10,6 @@
 
 @interface LBMineCenterMYOrderEvaluationDetailViewController : UIViewController
 
+@property(nonatomic,strong)NSArray *arr;
+
 @end

@@ -16,9 +16,15 @@
 #import <MapKit/MapKit.h>
 #import "LBMySalesmanListAuditViewController.h"
 #import "LBMySalesmanListFaildViewController.h"
-#import "LBMySalesmanListView.h"
+#import "CommonMenuView.h"
+#import "UIView+AdjustFrame.h"
 
 @interface LBShowSaleManAndBusinessViewController ()
+{
+    NSArray *_dataArray;
+}
+@property (nonatomic,assign) BOOL flag;
+@property (nonatomic,assign) int itemCount;
 @property (weak, nonatomic) IBOutlet UIView *navigationV;
 @property (weak, nonatomic) IBOutlet UIView *buttonv;
 @property (weak, nonatomic) IBOutlet UIButton *saleBt;
@@ -32,9 +38,8 @@
 @property (nonatomic, strong)UIView *contentView;
 @property (nonatomic, strong)UIView *lineView;
 
-@property (strong, nonatomic)UIView *maskView;
 @property (strong, nonatomic)NSString *usertype;
-@property (strong, nonatomic)LBMySalesmanListView *mySalesmanListView;
+
 
 @end
 
@@ -42,7 +47,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+     self.flag = YES;
     self.navigationController.navigationBar.hidden = YES;
     //    self.navigationItem.title = @"商家列表";
       self.automaticallyAdjustsScrollViewInsets = NO;
@@ -80,6 +85,32 @@
             weakself.hidesBottomBarWhenPushed = NO;
         }
     };
+    
+    
+    NSDictionary *dict1 = @{@"imageName" : @"密码",
+                            @"itemName" : @"推广员"
+                            };
+    NSDictionary *dict2 = @{@"imageName" : @"密码",
+                            @"itemName" : @"高级推广员"
+                            };
+    NSDictionary *dict3 = @{@"imageName" : @"密码",
+                            @"itemName" : @"商户"
+                            };
+    
+     NSArray *dataArray = @[dict1,dict2,dict3];
+    
+    _dataArray = dataArray;
+    
+    __weak __typeof(&*self)weakSelf = self;
+    
+    /**
+     *  创建普通的MenuView，frame可以传递空值，宽度默认120，高度自适应
+     */
+    [CommonMenuView createMenuWithFrame:CGRectMake(0, 0, 130, 0) target:self dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
+        [weakSelf doSomething:(NSString *)str tag:(NSInteger)tag]; // do something
+    } backViewTap:^{
+        weakSelf.flag = YES; // 这里的目的是，让rightButton点击，可再次pop出menu
+    }];
 }
 
 - (IBAction)salemanEvent:(UIButton *)sender {
@@ -132,43 +163,20 @@
 //帅选
 - (IBAction)shaixuanEvent:(UIButton *)sender {
     
-    [[UIApplication sharedApplication].keyWindow addSubview:self.maskView];
-    [self.maskView addSubview:self.mySalesmanListView];
+    //[[UIApplication sharedApplication].keyWindow addSubview:self.maskView];
+    //[self.maskView addSubview:self.mySalesmanListView];
+    [self popMenu:CGPointMake(SCREEN_WIDTH-30, 50)];
     
 }
-//移除maskview
--(void)maskviewgesture{
- 
-    [self.mySalesmanListView removeFromSuperview];
-    [self.maskView removeFromSuperview];
 
-}
-//选择推广员
--(void)salegesture{
-    [self.mySalesmanListView removeFromSuperview];
-    [self.maskView removeFromSuperview];
-    self.titleLb.text = @"推广员";
-    
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@1}];
-
-}
-//选择高级推广员
--(void)supersalegesture{
-    [self.mySalesmanListView removeFromSuperview];
-    [self.maskView removeFromSuperview];
-    self.titleLb.text = @"高级推广员";
-    
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@2}];
-
-}
-//选择商户
--(void)storegesture{
-    [self.mySalesmanListView removeFromSuperview];
-    [self.maskView removeFromSuperview];
-   self.titleLb.text = @"商户";
-    
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@3}];
-
+- (void)popMenu:(CGPoint)point{
+    if (self.flag) {
+        [CommonMenuView showMenuAtPoint:point];
+        self.flag = NO;
+    }else{
+        [CommonMenuView hidden];
+        self.flag = YES;
+    }
 }
 
 - (void)fitFrameForChildViewController:(UIViewController *)childViewController{
@@ -191,6 +199,28 @@
     
     
 }
+#pragma mark -- 回调事件(自定义)
+- (void)doSomething:(NSString *)str tag:(NSInteger)tag{
+    self.titleLb.text = str;
+    switch (tag) {
+        case 1:
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@1}];
+            break;
+        case 2:
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@2}];
+            break;
+        case 3:
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@3}];
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+    [CommonMenuView hidden];
+    self.flag = YES;
+}
 
 -(UIView*)lineView{
     
@@ -203,35 +233,8 @@
     
 }
 
--(LBMySalesmanListView*)mySalesmanListView{
-    
-    if (!_mySalesmanListView) {
-        _mySalesmanListView=[[NSBundle mainBundle]loadNibNamed:@"LBMySalesmanListView" owner:self options:nil].firstObject;
-        _mySalesmanListView.frame=CGRectMake(SCREEN_WIDTH - 140, 64, 130, 180);
-        _mySalesmanListView.alpha=1;
-        UITapGestureRecognizer *salegesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(salegesture)];
-        [_mySalesmanListView.saleview addGestureRecognizer:salegesture];
-        UITapGestureRecognizer *supersalegesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(supersalegesture)];
-        [_mySalesmanListView.superView addGestureRecognizer:supersalegesture];
-        UITapGestureRecognizer *storegesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(storegesture)];
-        [_mySalesmanListView.storeView addGestureRecognizer:storegesture];
-        
-    }
-    
-    return _mySalesmanListView;
-    
+#pragma mark -- dealloc:释放菜单
+- (void)dealloc{
+    [CommonMenuView clearMenu];   // 移除菜单
 }
-
--(UIView*)maskView{
-    
-    if (!_maskView) {
-        _maskView=[[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-        [_maskView setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.0f]];
-        UITapGestureRecognizer *maskvgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(maskviewgesture)];
-        [_maskView addGestureRecognizer:maskvgesture];
-    }
-    return _maskView;
-    
-}
-
 @end

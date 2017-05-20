@@ -51,7 +51,7 @@
 
 -(void)checkMoreInfo{
 
-
+    [self.delegete checkmoreinfo:self.index];
 
 }
 

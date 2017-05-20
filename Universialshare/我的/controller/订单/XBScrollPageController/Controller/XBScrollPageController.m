@@ -68,9 +68,9 @@
 {
     [super viewDidLayoutSubviews];
     self.tagCollectionView.frame = CGRectMake(0, self.yFloat, XBScreenWidth, self.tagViewHeight);
-    self.pageCollectionView.frame = CGRectMake(0, self.tagViewHeight + self.yFloat , XBScreenWidth, self.view.frame.size.height - self.tagViewHeight * 2 );
+    self.pageCollectionView.frame = CGRectMake(0, self.tagViewHeight + self.yFloat , XBScreenWidth, self.view.frame.size.height - self.tagViewHeight);
 
-    self.tagCollectionView.backgroundColor = [UIColor redColor];
+    self.tagCollectionView.backgroundColor = [UIColor whiteColor];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

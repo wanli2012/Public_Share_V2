@@ -16,14 +16,19 @@
 #import "LBStoreDetailreplaysTableViewCell.h"
 #import "LBStoreDetailRecomendTableViewCell.h"
 #import "LBStoreProductDetailInfoViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <MapKit/MapKit.h>
+#import "LBPayTheBillViewController.h"
 
 static const CGFloat headerImageHeight = 150.0f;
 
-@interface LBStoreMoreInfomationViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
+@interface LBStoreMoreInfomationViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,LBStoreDetailAdressDelegete,LBStoreDetailNameDelegete,LBStoreDetailHeaderViewDelegete>
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (nonatomic, strong)SDCycleScrollView *cycleScrollView;
 @property (nonatomic, strong)UIButton *shareButton;
-
+@property (strong, nonatomic)LoadWaitView *loadV;
+@property (strong, nonatomic)NSDictionary *dataDic;
+@property (strong, nonatomic)NSArray *lovedataArr;//数组
 @property (nonatomic, assign)BOOL  HideNavagation;//是否需要恢复自定义导航栏
 
 @end
@@ -55,6 +60,46 @@ static const CGFloat headerImageHeight = 150.0f;
     self.navigationItem.rightBarButtonItem=item;
     
      [self initBarManager];
+     [self initdatasource];//请求数据
+}
+
+-(void)initdatasource{
+
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"shop/goToShop" paramDic:@{@"shop_id":@"412"} finish:^(id responseObject) {
+        [_loadV removeloadview];
+        if ([responseObject[@"code"] integerValue]==1) {
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                self.dataDic = responseObject[@"data"];
+                self.lovedataArr = self.dataDic[@"love_data"];
+                NSMutableArray *imagearr=[NSMutableArray array];
+                
+                if (![self.dataDic[@"shop_data"][@"pic1"] isEqual:[NSNull null]]) {
+                    [imagearr addObject:self.dataDic[@"shop_data"][@"pic1"]];
+                }
+                if (![self.dataDic[@"shop_data"][@"pic2"] isEqual:[NSNull null]]) {
+                    [imagearr addObject:self.dataDic[@"shop_data"][@"pic2"]];
+                }
+                if (![self.dataDic[@"shop_data"][@"pic3"] isEqual:[NSNull null]]) {
+                    [imagearr addObject:self.dataDic[@"shop_data"][@"pic3"]];
+                }
+                
+                self.cycleScrollView.imageURLStringsGroup = imagearr;
+                
+                [self.tableview reloadData];
+            }
+
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+            
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+
 }
 
 - (void)initBarManager {
@@ -101,6 +146,7 @@ static const CGFloat headerImageHeight = 150.0f;
     
     if (self.HideNavagation == NO) {
         [MXNavigationBarManager reStoreToCustomNavigationBar:self];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
     }
     
 }
@@ -115,8 +161,10 @@ static const CGFloat headerImageHeight = 150.0f;
 #pragma mark - Table view data source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
-    return 4;
+    if (self.dataDic.count > 0) {
+        return 4;
+    }
+    return 0;
     
 }
 
@@ -125,11 +173,12 @@ static const CGFloat headerImageHeight = 150.0f;
     if (section == 0) {
         return 2;
     }else if (section == 1){
-        return 3;
+        //return [self.dataDic[@"goods_data"]count];
+        return 1;
     }else if (section == 2){
-        return 3;
+        return [self.dataDic[@"com_data"]count];
     }else if (section == 3){
-        return 2;
+        return self.lovedataArr.count;
     }
     return 0;
 }
@@ -166,26 +215,59 @@ static const CGFloat headerImageHeight = 150.0f;
         if (indexPath.row == 0) {
             LBStoreDetailNameTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreDetailNameTableViewCell" forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.scoreLb.text = [NSString stringWithFormat:@"%@分",self.dataDic[@"shop_data"][@"pj_mark"]];
+            cell.starView.progress = [self.dataDic[@"shop_data"][@"pj_mark"] integerValue];
+            cell.storeNameLb.text = [NSString stringWithFormat:@"%@分",self.dataDic[@"shop_data"][@"shop_name"]];
+            cell.delegete=self;
+            
             return cell;
         }else{
             LBStoreDetailAdressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreDetailAdressTableViewCell" forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.adressLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"shop_data"][@"address"]];
+            cell.phone.text = [NSString stringWithFormat:@"%@",self.dataDic[@"shop_data"][@"phone"]];
+            cell.delegete = self;
              return cell;
         }
         
     }else if (indexPath.section == 1){
         LBStoreDetailHotProductTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreDetailHotProductTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        /*
+        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
+        cell.nameLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_name"]];
+        cell.moneyLb.text = [NSString stringWithFormat:@"¥%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_price"]];
+        cell.descrebLb.text = [NSString stringWithFormat:@"¥%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_info"]];
+        */
+        
          return cell;
     
     }else if (indexPath.section == 2){
         LBStoreDetailreplaysTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreDetailreplaysTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.starView.progress = [self.dataDic[@"com_data"][indexPath.row][@"mark"] integerValue];
+        cell.nameLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"user_name"]];
+        cell.contentLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"comment"]];
+        cell.timeLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"addtime"]];
+        [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
+        
          return cell;
         
     }else if (indexPath.section == 3){
         LBStoreDetailRecomendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreDetailRecomendTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.lovedataArr[indexPath.row][@"store_pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
+        cell.nameLb.text = [NSString stringWithFormat:@"%@",self.lovedataArr[indexPath.row][@"shop_name"]];
+         cell.descrebLb.text = [NSString stringWithFormat:@"%@",self.lovedataArr[indexPath.row][@"shop_type"]];
+        cell.styeLb.text = [NSString stringWithFormat:@"%@",self.lovedataArr[indexPath.row][@"shop_area"]];
+        
+        if ([self.lovedataArr[indexPath.row][@"limit"] integerValue] >=0 && [self.lovedataArr[indexPath.row][@"limit"] integerValue] < 1000) {
+            cell.distanceLb.text = [NSString stringWithFormat:@"%@m",self.lovedataArr[indexPath.row][@"limit"]];
+        }else if ([self.lovedataArr[indexPath.row][@"limit"] integerValue] >= 1000){
+           
+            cell.distanceLb.text = [NSString stringWithFormat:@"%.1fkm",[self.lovedataArr[indexPath.row][@"limit"] floatValue]/1000];
+        }
+        
          return cell;
         
     }
@@ -210,18 +292,37 @@ static const CGFloat headerImageHeight = 150.0f;
         headerview = [[LBStoreDetailHeaderView alloc] initWithReuseIdentifier:@"LBStoreDetailHeaderView"];
         
     }
-    
+    headerview.delegete = self;
+    headerview.index = section;
     if (section == 0){
         headerview.titleLb.hidden = YES;
         headerview.moreBt.hidden = YES;
     }else if (section == 1){
-       headerview.titleLb.text = @"热卖商品";
-       headerview.moreBt.hidden = YES;
+        if (self.dataDic.count > 0 ) {
+            headerview.titleLb.text = [NSString stringWithFormat:@"热卖商品 (%u)",[self.dataDic[@"com_data"] count]];
+    
+        }else{
+            headerview.titleLb.text = @"热卖商品 (0)";
+            
+        }
+        headerview.moreBt.hidden = NO;
+        [headerview.moreBt setTitle:@"查看全部" forState:UIControlStateNormal];
        headerview.titleLb.hidden = NO;
     }else if (section == 2){
-        headerview.titleLb.text = @"评论";
+        if (self.dataDic.count > 0 ) {
+            headerview.titleLb.text = [NSString stringWithFormat:@"评论 (%u)",[self.dataDic[@"com_data"] count]];
+            if ([self.dataDic[@"pl_count"]integerValue] > 3) {
+                headerview.moreBt.hidden = NO;
+            }else{
+                headerview.moreBt.hidden = YES;
+            }
+            
+        }else{
+            headerview.titleLb.text = @"评论 (0)";
+            headerview.moreBt.hidden = YES;
+        }
+        
         [headerview.moreBt setTitle:@"查看更多" forState:UIControlStateNormal];
-        headerview.moreBt.hidden = NO;
         headerview.titleLb.hidden = NO;
     }else if (section == 3){
         [headerview.moreBt setTitle:@"换一批" forState:UIControlStateNormal];
@@ -236,19 +337,116 @@ static const CGFloat headerImageHeight = 150.0f;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     if (indexPath.section == 1) {
-        self.HideNavagation = YES;
+        self.HideNavagation = NO;
         self.hidesBottomBarWhenPushed = YES;
         LBStoreProductDetailInfoViewController *vc=[[LBStoreProductDetailInfoViewController alloc]init];
+        //vc.goodname = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_name"]];
+        vc.storename = [NSString stringWithFormat:@"%@分",self.dataDic[@"shop_data"][@"shop_name"]];
         [self.navigationController pushViewController:vc animated:YES];
     }
 
 }
 
 
+-(void)checkmoreinfo:(NSInteger)index{
+
+    switch (index) {
+        case 1://查看商品
+            
+            break;
+        case 2://查看评论
+            
+            break;
+        case 3://换一批
+            [self BatchStore];
+            break;
+            
+        default:
+            break;
+    }
+
+
+}
+//换一批商店
+-(void)BatchStore{
+
+    CGFloat lat = [self.dataDic[@"shop_data"][@"lat"] floatValue ];
+    CGFloat lng = [self.dataDic[@"shop_data"][@"lng"] floatValue ];
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"shop/goToShop" paramDic:@{@"shop_id":@"412",@"lat":[NSNumber numberWithFloat:lat],@"lng":[NSNumber numberWithFloat:lng]} finish:^(id responseObject) {
+        [_loadV removeloadview];
+        if ([responseObject[@"code"] integerValue]==1) {
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                
+                self.lovedataArr = responseObject[@"data"][@"love_data"];
+                
+                [self.tableview reloadData];
+            }
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+            
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+
+
+}
+
 //分享
 -(void)shareStoreAdress{
 
 
+}
+
+#pragma mark --- LBStoreDetailAdressDelegete
+//打电话
+-(void)takePhne{
+
+    NSString *phonestr = [NSString stringWithFormat:@"%@",self.dataDic[@"shop_data"][@"phone"]];
+    if ([phonestr isEqual:[NSNull null]] || phonestr.length <= 0) {
+        [MBProgressHUD showError:@"电话号不存在"];
+        return;
+    }
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phonestr]]]; //拨号
+
+}
+//取这里
+-(void)gotheremap{
+    CGFloat lat = [self.dataDic[@"shop_data"][@"lat"] floatValue ];
+    CGFloat lng = [self.dataDic[@"shop_data"][@"lng"] floatValue ];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]])// -- 使用 canOpenURL 判断需要在info.plist 的 LSApplicationQueriesSchemes 添加 baidumap 。
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"baidumap://map/geocoder?location=%f,%f&coord_type=bd09ll&src=webapp.rgeo.yourCompanyName.yourAppName",lat,lng]]];
+    }else{
+        //使用自带地图导航
+        
+        CLLocationCoordinate2D destCoordinate;
+        // 将数据传到反地址编码模型
+        destCoordinate = CLLocationCoordinate2DMake(lat,lng);
+        
+        MKMapItem *currentLocation =[MKMapItem mapItemForCurrentLocation];
+        
+        MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:destCoordinate addressDictionary:nil]];
+        
+        [MKMapItem openMapsWithItems:@[currentLocation,toLocation] launchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,
+                                                                                   MKLaunchOptionsShowsTrafficKey:[NSNumber numberWithBool:YES]}];
+    }
+
+}
+
+#pragma mark -- LBStoreDetailNameDelegete
+//我要买单
+-(void)payTheBill{
+    self.hidesBottomBarWhenPushed = YES;
+    LBPayTheBillViewController *vc=[[LBPayTheBillViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(SDCycleScrollView*)cycleScrollView
@@ -283,6 +481,22 @@ static const CGFloat headerImageHeight = 150.0f;
  
     return _shareButton;
 
+}
+
+-(NSDictionary*)dataDic{
+
+    if (!_dataDic) {
+        _dataDic=[NSDictionary dictionary];
+    }
+
+    return _dataDic;
+}
+
+-(NSArray*)lovedataArr{
+    if (!_lovedataArr) {
+        _lovedataArr=[NSArray array];
+    }
+    return _lovedataArr;
 }
 
 @end

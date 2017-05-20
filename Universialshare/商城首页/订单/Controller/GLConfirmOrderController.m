@@ -72,6 +72,12 @@ static NSString *ID = @"GLOrderGoodsCell";
      [self postRequest];
     
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.hidden = NO;
+
+}
 - (void)dealloc{
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -86,7 +92,6 @@ static NSString *ID = @"GLOrderGoodsCell";
     [NetworkManager requestPOSTWithURLStr:@"shop/address_list" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
-        NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1){
 
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {

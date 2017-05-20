@@ -11,6 +11,10 @@
 #import "LBStoreProductDetailInfoTableViewCell.h"
 #import "LBStoreDetailreplaysTableViewCell.h"
 #import "LBStoreDetailHeaderView.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "GLShoppingCartController.h"
+#import "GLConfirmOrderController.h"
+#import "MXNavigationBarManager.h"
 
 @interface LBStoreProductDetailInfoViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,CAAnimationDelegate>
 {
@@ -26,8 +30,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *shareBt;
 @property (weak, nonatomic) IBOutlet UIButton *carbutton;
 @property (weak, nonatomic) IBOutlet UIButton *addcarBt;
-
+@property (strong, nonatomic)LoadWaitView *loadV;
 @property (nonatomic,strong) UIBezierPath *path;
+@property (strong, nonatomic)NSDictionary *dataDic;
 
 @end
 
@@ -35,10 +40,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.navigationController.navigationBar.hidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
-
+    self.titileLb.text = self.goodname;
     self.tableView.tableHeaderView = self.cycleScrollView;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"LBStoreProductDetailInfoTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBStoreProductDetailInfoTableViewCell"];
@@ -58,16 +61,56 @@
     if (_cnt == 0) {
         _cntLabel.hidden = YES;
     }
+    [self initdatasource];//请求数据
+}
+
+-(void)initdatasource{
     
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsDetailByGoodsID" paramDic:@{@"goods_id":@"110"} finish:^(id responseObject) {
+        [_loadV removeloadview];
+        if ([responseObject[@"code"] integerValue]==1) {
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                self.dataDic = responseObject[@"data"];
+                self.cycleScrollView.imageURLStringsGroup = self.dataDic[@"img_arr"];
+                [self.tableView reloadData];
+            }
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+            
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
     
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+    
+    [MXNavigationBarManager reStoreToCustomNavigationBar:self];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+}
 
 #pragma mark - Table view data source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 2;
+    if (self.dataDic.count > 0) {
+        return 2;
+    }
+    return 0;
     
 }
 
@@ -76,7 +119,7 @@
     if (section == 0) {
         return 1;
     }else if (section == 1){
-        return 3;
+        return [self.dataDic[@"com_data"]count];
     }
     return 0;
 }
@@ -105,11 +148,23 @@
         
         LBStoreProductDetailInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreProductDetailInfoTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+       cell.namelb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"name"]];
+        cell.storelb.text = [NSString stringWithFormat:@"%@",self.storename];
+        cell.moneyLb.text = [NSString stringWithFormat:@"打折%@",self.dataDic[@"goods_data"][@"discount"]];
+        cell.yuanjiLb.text = [NSString stringWithFormat:@"原价%@",self.dataDic[@"goods_data"][@"price"]];
+        cell.infolb.text = [NSString stringWithFormat:@"已选:%@",self.dataDic[@"goods_data"][@"info"]];
+        
         return cell;
         
     }else if (indexPath.section == 1){
         LBStoreDetailreplaysTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreDetailreplaysTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.starView.progress = [self.dataDic[@"com_data"][indexPath.row][@"mark"] integerValue];
+        cell.nameLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"user_name"]];
+        cell.contentLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"comment"]];
+        cell.timeLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"addtime"]];
+        [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
         return cell;
         
     }
@@ -137,9 +192,19 @@
         headerview.titleLb.hidden = YES;
         headerview.moreBt.hidden = YES;
     }else if (section == 1){
+        if (self.dataDic.count > 0 ) {
+            headerview.titleLb.text = [NSString stringWithFormat:@"评论 (%u)",[self.dataDic[@"com_data"] count]];
+            if ([self.dataDic[@"pl_count"]integerValue] > 3) {
+                headerview.moreBt.hidden = NO;
+            }else{
+                headerview.moreBt.hidden = YES;
+            }
+            
+        }else{
+            headerview.titleLb.text = @"评论 (0)";
+            headerview.moreBt.hidden = YES;
+        }
         [headerview.moreBt setTitle:@"查看更多" forState:UIControlStateNormal];
-        headerview.titleLb.text = @"看小伙伴怎么说";
-        headerview.moreBt.hidden = NO;
         headerview.titleLb.hidden = NO;
     }
     
@@ -160,14 +225,102 @@
     
     
 }
+//立即购买
+- (IBAction)amoentbuy:(UIButton *)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLConfirmOrderController *vc=[[GLConfirmOrderController alloc]init];
+    vc.goods_id = self.goodId;
+    vc.goods_count = @"1";
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+//进入购物车
+- (IBAction)enterCarBuyList:(UIButton *)sender {
+    _cnt = 0;
+    _cntLabel.hidden = NO;
+    self.hidesBottomBarWhenPushed = YES;
+    GLShoppingCartController *vc=[[GLShoppingCartController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+//收藏
+- (IBAction)productColletion:(UIButton *)sender {
+    if ([UserModel defaultUser].loginstatus == YES) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"token"] = [UserModel defaultUser].token;
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"GID"] = self.goodId;
+        dict[@"type"] = @(2);
+        
+        _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+        [NetworkManager requestPOSTWithURLStr:@"shop/addMyCollect" paramDic:dict finish:^(id responseObject) {
+            
+            [_loadV removeloadview];
+            if ([responseObject[@"code"] integerValue] == 1){
+                
+                 [MBProgressHUD showSuccess:@"收藏成功"];
+                
+            }else{
+                
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
+            
+            [self.tableView reloadData];
+            
+        } enError:^(NSError *error) {
+            [_loadV removeloadview];
+            
+        }];
+    }else{
+        [MBProgressHUD showSuccess:@"请先登录"];
+    }
+    
+}
 
 - (IBAction)addBuyCarEvent:(UIButton *)sender {
+    
+    if ([UserModel defaultUser].loginstatus == YES) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"token"] = [UserModel defaultUser].token;
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"goods_id"] = self.goodId;
+        dict[@"count"] = @(1);
+        dict[@"type"] = @(2);
+        
+        _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+        [NetworkManager requestPOSTWithURLStr:@"shop/addCart" paramDic:dict finish:^(id responseObject) {
+            
+            [_loadV removeloadview];
+            if ([responseObject[@"code"] integerValue] == 1){
+                
+                [self addbuycarannimation];
+                
+            }else{
+                
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
+            
+            [self.tableView reloadData];
+            
+        } enError:^(NSError *error) {
+            [_loadV removeloadview];
+            
+        }];
+    }else{
+        [MBProgressHUD showSuccess:@"请先登录"];
+    }
+    
+}
+
+-(void)addbuycarannimation{
+
     UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
     CGRect rect=[self.addcarBt convertRect: self.addcarBt.bounds toView:window];
     
     self.addcarBt.backgroundColor=[UIColor grayColor];
     self.addcarBt.enabled = NO;
-   
+    
     //起点
     CGPoint startPoint = CGPointMake(rect.origin.x, rect.origin.y);
     //控点
@@ -184,27 +337,27 @@
     layer.masksToBounds = YES;
     [self.view.layer addSublayer:layer];
     
-//    //创建关键帧
-//    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-//    animation.delegate = self;
-//    //动画时间
-//    animation.duration = 1;
-//    
-//    //当动画完成，停留到结束位置
-//    animation.removedOnCompletion = NO;
-//    animation.fillMode = kCAFillModeForwards;
-//    
-//    //当方法名字遇到create,new,copy,retain，都需要管理内存
-//    CGMutablePathRef path = CGPathCreateMutable();
-//    //设置起点
-//    CGPathMoveToPoint(path, NULL, startPoint.x, startPoint.y);
-//    CGPathAddQuadCurveToPoint(path, NULL, controlPoint.x, controlPoint.y, 25, SCREEN_HEIGHT - 25);
-//    //设置动画路径
-//    animation.path = path;
-//    //执行动画
-//    [layer addAnimation:animation forKey:@"addCar"];
-//    //释放路径
-//    CGPathRelease(path);
+    //    //创建关键帧
+    //    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    //    animation.delegate = self;
+    //    //动画时间
+    //    animation.duration = 1;
+    //
+    //    //当动画完成，停留到结束位置
+    //    animation.removedOnCompletion = NO;
+    //    animation.fillMode = kCAFillModeForwards;
+    //
+    //    //当方法名字遇到create,new,copy,retain，都需要管理内存
+    //    CGMutablePathRef path = CGPathCreateMutable();
+    //    //设置起点
+    //    CGPathMoveToPoint(path, NULL, startPoint.x, startPoint.y);
+    //    CGPathAddQuadCurveToPoint(path, NULL, controlPoint.x, controlPoint.y, 25, SCREEN_HEIGHT - 25);
+    //    //设置动画路径
+    //    animation.path = path;
+    //    //执行动画
+    //    [layer addAnimation:animation forKey:@"addCar"];
+    //    //释放路径
+    //    CGPathRelease(path);
     
     _path = [UIBezierPath bezierPath];
     [_path moveToPoint:startPoint];
@@ -233,8 +386,7 @@
     groups.fillMode=kCAFillModeForwards;
     groups.delegate = self;
     [layer addAnimation:groups forKey:@"addCar"];
-    
-    
+
 }
 
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
@@ -281,6 +433,13 @@
     
 }
 
-
+-(NSDictionary*)dataDic{
+    
+    if (!_dataDic) {
+        _dataDic=[NSDictionary dictionary];
+    }
+    
+    return _dataDic;
+}
 
 @end

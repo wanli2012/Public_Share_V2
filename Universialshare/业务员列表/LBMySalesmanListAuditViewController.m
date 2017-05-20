@@ -71,7 +71,6 @@
 
     NSDictionary *dic=notification.userInfo;
 
-    NSLog(@"aaaaaa%@",dic);
 
 }
 

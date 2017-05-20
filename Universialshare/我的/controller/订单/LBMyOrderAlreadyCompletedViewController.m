@@ -39,8 +39,8 @@
     
     [self.tableview registerNib:[UINib nibWithNibName:@"LBMyOrderListTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMyOrderListTableViewCell"];
     _page = 1;
-//    [self initdatasource];
-//    [self.tableview addSubview:self.nodataV];
+    [self initdatasource];
+    [self.tableview addSubview:self.nodataV];
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
@@ -135,24 +135,23 @@
     
     [self initdatasource];
 }
-//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-//    if (self.dataarr.count > 0 ) {
-//        
-//        self.nodataV.hidden = YES;
-//    }else{
-//        self.nodataV.hidden = NO;
-//        
-//    }
-//    
-//    return self.dataarr.count;
-//    
-//}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (self.dataarr.count > 0 ) {
+        
+        self.nodataV.hidden = YES;
+    }else{
+        self.nodataV.hidden = NO;
+        
+    }
+    
+    return self.dataarr.count;
+    
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-//    LBMyOrdersModel *model=self.dataarr[section];
-//    return model.isExpanded?model.MyOrdersListModel.count:0;
-    return 4;
+    LBMyOrdersModel *model=self.dataarr[section];
+    return model.isExpanded?model.MyOrdersListModel.count:0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -173,9 +172,9 @@
    
     cell.index = indexPath.row;
     
-//    LBMyOrdersModel *model= (LBMyOrdersModel*)self.dataarr[indexPath.section];
-//    
-//    cell.myorderlistModel = model.MyOrdersListModel[indexPath.row];
+    LBMyOrdersModel *model= (LBMyOrdersModel*)self.dataarr[indexPath.section];
+    
+    cell.myorderlistModel = model.MyOrdersListModel[indexPath.row];
     
    
     
@@ -187,8 +186,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    LBMineCenterOrderDetailViewController *vc=[[LBMineCenterOrderDetailViewController alloc]init];
-//    [self.navigationController pushViewController:vc animated:YES];
+    LBMineCenterOrderDetailViewController *vc=[[LBMineCenterOrderDetailViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
     
     
 }
@@ -209,8 +208,8 @@
         
     }
     
-//    LBMyOrdersModel *sectionModel = self.dataarr[section];
-//    headerview.sectionModel = sectionModel;
+    LBMyOrdersModel *sectionModel = self.dataarr[section];
+    headerview.sectionModel = sectionModel;
     headerview.expandCallback = ^(BOOL isExpanded) {
         
         [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];

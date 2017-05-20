@@ -8,11 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LBStoreDetailAdressDelegete <NSObject>
+
+-(void)gotheremap;
+-(void)takePhne;
+
+@end
+
+
 @interface LBStoreDetailAdressTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *adressLb;
 @property (weak, nonatomic) IBOutlet UIButton *Bobt;
 @property (weak, nonatomic) IBOutlet UIButton *phoneBt;
-
+@property (weak, nonatomic) IBOutlet UILabel *phone;
+@property (assign, nonatomic)id<LBStoreDetailAdressDelegete> delegete;
 
 @end

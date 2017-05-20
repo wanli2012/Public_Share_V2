@@ -15,9 +15,13 @@
     // Initialization code
     self.buyBt.layer.cornerRadius = 4;
     self.buyBt.clipsToBounds = YES;
+    self.starView.enabled = NO;
+    self.starView.type = LCStarRatingViewCountingTypeFloat;
 }
 //我要购买
 - (IBAction)buyEvent:(UIButton *)sender {
+    
+    [self.delegete payTheBill];
 }
 
 

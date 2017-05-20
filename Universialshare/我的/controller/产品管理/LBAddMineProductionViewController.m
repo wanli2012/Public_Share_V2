@@ -122,7 +122,7 @@
     manager.requestSerializer.timeoutInterval = 20;
     // 加上这行代码，https ssl 验证。
     [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
-    [manager POST:[NSString stringWithFormat:@"%@user/openOne",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:[NSString stringWithFormat:@"%@shop/addShopGoods",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         //将图片以表单形式上传
         
         for (int i = 0; i < self.imageArr.count - 1; i ++) {
@@ -131,9 +131,7 @@
             formatter.dateFormat=@"yyyyMMddHHmmss";
             NSString *str=[formatter stringFromDate:[NSDate date]];
             NSString *fileName=[NSString stringWithFormat:@"%@%d.png",str,i];
-            UIImageView *imaev = (UIImageView*)self.imageArr[i];
-            NSData *data = UIImagePNGRepresentation(imaev.image);
-            [formData appendPartWithFileData:data name:[NSString stringWithFormat:@"%d",i] fileName:fileName mimeType:@"image/png"];
+            [formData appendPartWithFileData:self.imageArr[i] name:[NSString stringWithFormat:@"%d",i] fileName:fileName mimeType:@"image/png"];
         }
         
     }progress:^(NSProgress *uploadProgress){
@@ -149,7 +147,7 @@
         if ([dic[@"code"]integerValue]==1) {
             
             [MBProgressHUD showError:dic[@"message"]];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:YES];
         }else{
             [MBProgressHUD showError:dic[@"message"]];
         }
@@ -215,13 +213,12 @@
         
     }
     
-    
     if (self.imageArr.count > 3) {
         self.imageViwH.constant = 210;
-        self.contentH.constant = 750 + 110;
+        self.contentH.constant = 700 + 110;
     }else{
         self.imageViwH.constant = 210;
-        self.contentH.constant = 750;
+        self.contentH.constant = 700;
     }
 
 }
@@ -342,7 +339,7 @@
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     self.contentW.constant = SCREEN_WIDTH;
-    self.contentH.constant = 750;
+    self.contentH.constant = 700;
     self.imageViwH.constant = 100;
     
     self.submitBt.layer.cornerRadius = 4;

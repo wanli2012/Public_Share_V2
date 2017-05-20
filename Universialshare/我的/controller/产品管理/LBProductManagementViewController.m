@@ -46,12 +46,11 @@
         
     }];
     
-        MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             [weakSelf footerrefresh];
             // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
-        }];
-    
-    
+    }];
+
     // 设置文字
     
     [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
@@ -68,7 +67,6 @@
 }
 
 -(void)initdatasource{
-
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/getStoreGoodsList" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page]} finish:^(id responseObject) {
         [_loadV removeloadview];
@@ -97,7 +95,9 @@
             [self.tableview reloadData];
             
         }else if ([responseObject[@"code"] integerValue]==3){
-            
+            if (_refreshType == NO) {
+                [self.dataarr removeAllObjects];
+            }
             [MBProgressHUD showError:responseObject[@"message"]];
             [self.tableview reloadData];
         }else{
@@ -112,8 +112,6 @@
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
-    
-
 }
 //商品管理
 -(void)setStoreGoods:(NSInteger)index strid:(int)strid  buttonindex:(NSInteger)buttonindex status:(int)status row:(NSInteger)row{
@@ -126,58 +124,40 @@
             [MBProgressHUD showError:responseObject[@"message"]];
             
             if (buttonindex == 1) {
-                switch (index) {
-                    case 1:
-                    {
-                        self.dataarr[row][@"status"] = @"2";
-                    }
-                        break;
-                    case 2:
-                    {
-                        [self.dataarr removeObjectAtIndex:row];
-                    }
-                        break;
-                    case 3:
-                    {
-                        self.dataarr[row][@"status"] = @"4";
-                    }
-                        break;
-                    case 4:
-                    {
-                        self.dataarr[row][@"status"] = @"3";
-                    }
-                        break;
-                        
-                    default:
-                        break;
+                //3未审核
+                if (index == 3) {
+                    NSMutableDictionary * mDict = [NSMutableDictionary dictionaryWithDictionary:self.dataarr[row]];
+                    mDict[@"sh_status"] = @"1";
+                    [self.dataarr replaceObjectAtIndex:row withObject:mDict];
+
+                }else if (index == 1){ //1 审核失败
+                    [self.dataarr removeObjectAtIndex:row];
+                    
+                }else if (index == 2 && [self.dataarr[row][@"status"]integerValue] == 1){//2审核成功  1 上架
+                    
+                    NSMutableDictionary * mDict = [NSMutableDictionary dictionaryWithDictionary:self.dataarr[row]];
+                    mDict[@"status"] = @"2";
+                    [self.dataarr replaceObjectAtIndex:row withObject:mDict];
+                    
+                }else if (index == 2 && [self.dataarr[row][@"status"]integerValue] == 2){//2审核成功  1 下架
+                    
+                    [self.dataarr removeObjectAtIndex:row];
                 }
             }else{
-                switch (index) {
-                    case 1:
-                    {
-                        
-                    }
-                        break;
-                    case 2:
-                    {
-                        
-                    }
-                        break;
-                    case 3:
-                    {
-                        [self.dataarr removeObjectAtIndex:row];
-                    }
-                        break;
-                    case 4:
-                    {
-                        [self.dataarr removeObjectAtIndex:row];
-                    }
-                        break;
-                        
-                    default:
-                        break;
+                //3未审核
+                if (index == 3) {
+                    
+                    
+                }else if (index == 1){ //1 审核失败
+                    
+                    
+                }else if (index == 2 && [self.dataarr[row][@"status"]integerValue] == 1){//2审核成功  1 上架
+                    
+                    [self.dataarr removeObjectAtIndex:row];
+
+                }else if (index == 2 && [self.dataarr[row][@"status"]integerValue] == 2){//2审核成功  1 下架
+                    
                 }
-            
             }
             
             [self.tableview reloadData];
@@ -277,35 +257,35 @@
         cell.modelLb.text = [NSString stringWithFormat:@"奖金: 5%%"];
     }
     
-    if ([self.dataarr[indexPath.row][@"status"]integerValue] == 1) {
+    if ([self.dataarr[indexPath.row][@"sh_status"]integerValue] == 3) {
         cell.imageT.image = [UIImage imageNamed:@"审核中"];
         cell.centerXconstant.constant = 0;
         cell.buttonOne.hidden = NO;
         cell.buttonTwo.hidden = YES;
         [cell.buttonOne setTitle:@"停止审核" forState:UIControlStateNormal];
-    }else if ([self.dataarr[indexPath.row][@"status"]integerValue] == 2){
+    }else if ([self.dataarr[indexPath.row][@"sh_status"]integerValue] == 1){
         cell.centerXconstant.constant = 0;
         cell.buttonOne.hidden = NO;
         cell.buttonTwo.hidden = YES;
         cell.imageT.image = [UIImage imageNamed:@"审核失败"];
         [cell.buttonOne setTitle:@"删除" forState:UIControlStateNormal];
-    }else if ([self.dataarr[indexPath.row][@"status"]integerValue] == 3){
+    }else if ([self.dataarr[indexPath.row][@"sh_status"]integerValue] == 2 && [self.dataarr[indexPath.row][@"status"]integerValue] == 1){
         cell.centerXconstant.constant = -50;
         cell.buttonOne.hidden = NO;
         cell.buttonTwo.hidden = NO;
         cell.imageT.image = [UIImage imageNamed:@"审核通过"];
         [cell.buttonOne setTitle:@"下架" forState:UIControlStateNormal];
         [cell.buttonTwo setTitle:@"删除" forState:UIControlStateNormal];
-    }else if ([self.dataarr[indexPath.row][@"status"]integerValue] == 4){
-        cell.centerXconstant.constant = -50;
+    }else if ([self.dataarr[indexPath.row][@"sh_status"]integerValue] == 2 && [self.dataarr[indexPath.row][@"status"]integerValue] == 2){
+        cell.centerXconstant.constant = 0;
         cell.buttonOne.hidden = NO;
-        cell.buttonTwo.hidden = NO;
+        cell.buttonTwo.hidden = YES;
         cell.imageT.image = [UIImage imageNamed:@"已下架"];
-        [cell.buttonOne setTitle:@"重新上架" forState:UIControlStateNormal];
-        [cell.buttonTwo setTitle:@"删除" forState:UIControlStateNormal];
+        [cell.buttonOne setTitle:@"删除" forState:UIControlStateNormal];
     }
     
-    [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"熊"]] ;
+    [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates] ;
+
     cell.productNameLb.text = [NSString stringWithFormat:@"商品名称:%@",self.dataarr[indexPath.row][@"name"]];
     cell.numLb.text = [NSString stringWithFormat:@"商品数量:%@",self.dataarr[indexPath.row][@"num"]];
     cell.moneyLb.text = [NSString stringWithFormat:@"商品价格:¥%@",self.dataarr[indexPath.row][@"price"]];
@@ -320,8 +300,6 @@
     return cell;
     
 }
-
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
@@ -342,30 +320,25 @@
 #pragma mark --- LBProductManagementDelegete
 -(void)LBProductManagementButtonOne:(NSInteger)index{
 
-    switch ([self.dataarr[index][@"status"]integerValue]) {
-        case 1:
-        {
-           [self setStoreGoods:[self.dataarr[index][@"status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:1 status:4 row:index];
-        }
-            break;
-        case 2:
-        {
-             [self setStoreGoods:[self.dataarr[index][@"status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:1 status:1 row:index];
-        }
-            break;
-        case 3:
-        {
-            [self setStoreGoods:[self.dataarr[index][@"status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:1 status:3 row:index];
-        }
-            break;
-        case 4:
-        {
-            [self setStoreGoods:[self.dataarr[index][@"status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:1 status:2 row:index];
-        }
-            break;
-            
-        default:
-            break;
+    
+    //3未审核
+    if ([self.dataarr[index][@"sh_status"]integerValue] == 3) {
+        //4停止审核
+       [self setStoreGoods:[self.dataarr[index][@"sh_status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:1 status:4 row:index];
+        
+    }else if ([self.dataarr[index][@"sh_status"]integerValue] == 1){ //1 审核失败
+        
+       [self setStoreGoods:[self.dataarr[index][@"sh_status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:1 status:1 row:index];
+        
+    }else if ([self.dataarr[index][@"sh_status"]integerValue] == 2 && [self.dataarr[index][@"status"]integerValue] == 1){//2审核成功  1 上架
+        
+        [self setStoreGoods:[self.dataarr[index][@"sh_status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:1 status:3 row:index];
+        
+        
+    }else if ([self.dataarr[index][@"sh_status"]integerValue] == 2 && [self.dataarr[index][@"status"]integerValue] == 2){//2审核成功  1 下架
+        
+        [self setStoreGoods:[self.dataarr[index][@"sh_status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:1 status:1 row:index];
+       
     }
 
 }
@@ -374,30 +347,22 @@
 
 -(void)LBProductManagementButtonTwo:(NSInteger)index{
 
-    switch ([self.dataarr[index][@"status"]integerValue]) {
-        case 1:
-        {
-           
-        }
-            break;
-        case 2:
-        {
-            
-        }
-            break;
-        case 3:
-        {
-            [self setStoreGoods:[self.dataarr[index][@"status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:2 status:1 row:index];
-        }
-            break;
-        case 4:
-        {
-            [self setStoreGoods:[self.dataarr[index][@"status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:2 status:1 row:index];
-        }
-            break;
-            
-        default:
-            break;
+    
+    //3未审核
+    if ([self.dataarr[index][@"sh_status"]integerValue] == 3) {
+       
+        
+    }else if ([self.dataarr[index][@"sh_status"]integerValue] == 1){ //1 审核失败
+        
+        
+    }else if ([self.dataarr[index][@"sh_status"]integerValue] == 2 && [self.dataarr[index][@"status"]integerValue] == 1){//2审核成功  1 上架
+        
+        [self setStoreGoods:[self.dataarr[index][@"sh_status"]integerValue] strid:[self.dataarr[index][@"goods_id"]intValue] buttonindex:2 status:1 row:index];
+        
+        
+    }else if ([self.dataarr[index][@"sh_status"]integerValue] == 2 && [self.dataarr[index][@"status"]integerValue] == 2){//2审核成功  1 下架
+        
+        
     }
 
 
