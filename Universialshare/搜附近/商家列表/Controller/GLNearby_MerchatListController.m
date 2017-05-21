@@ -12,6 +12,7 @@
 #import "GLHomeLiveChooseController.h"
 #import "GLNearby_MerchatListModel.h"
 #import "GLCityChooseController.h"
+#import "GLNearby_TradeOneModel.h"
 
 @interface GLNearby_MerchatListController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -78,15 +79,15 @@ static NSString *ID = @"GLNearby_MerchatListCell";
         _page ++;
     }
     
+//    GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades;
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[@"trade_id"];
-    dict[@"two_trade_id"] = self.two_trade_id;
+    dict[@"trade_id"] = self.trade_id;
     dict[@"limit"] = self.limit;
-    dict[@"city_id"] = self.city_id;
     dict[@"sort"] = self.sort;
-    dict[@"lng"] = self.lng;
-    dict[@"lat"] = self.lat;
+    dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
+    dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
     dict[@"page"] = @(self.page);
+    
     [NetworkManager requestPOSTWithURLStr:@"shop/getMoreNearRecShop" paramDic:dict finish:^(id responseObject) {
         
         [self endRefresh];
