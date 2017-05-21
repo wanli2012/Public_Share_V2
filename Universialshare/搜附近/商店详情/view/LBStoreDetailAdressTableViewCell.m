@@ -17,9 +17,14 @@
 }
 //打电话
 - (IBAction)phonebuttonEvent:(UIButton *)sender {
+    
+    [self.delegete takePhne];
 }
 //去这里
 - (IBAction)gowhereButtonEvent:(UIButton *)sender {
+    
+    [self.delegete gotheremap];
+    
 }
 
 @end

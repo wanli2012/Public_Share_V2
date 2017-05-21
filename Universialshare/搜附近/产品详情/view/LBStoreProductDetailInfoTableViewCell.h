@@ -10,4 +10,11 @@
 
 @interface LBStoreProductDetailInfoTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *namelb;
+@property (weak, nonatomic) IBOutlet UILabel *storelb;
+@property (weak, nonatomic) IBOutlet UILabel *moneyLb;
+@property (weak, nonatomic) IBOutlet UILabel *infolb;
+@property (weak, nonatomic) IBOutlet UILabel *yuanjiLb;
+
+
 @end

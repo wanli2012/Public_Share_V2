@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LCStarRatingView.h"
 
 @interface LBStoreDetailreplaysTableViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *imagev;
 @property (weak, nonatomic) IBOutlet UILabel *nameLb;
-@property (weak, nonatomic) IBOutlet UIImageView *starImage;
 @property (weak, nonatomic) IBOutlet UILabel *contentLb;
 @property (weak, nonatomic) IBOutlet UILabel *timeLb;
+@property (weak, nonatomic) IBOutlet LCStarRatingView *starView;
 
 @end

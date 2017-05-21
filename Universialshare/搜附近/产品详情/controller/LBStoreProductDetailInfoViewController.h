@@ -10,4 +10,7 @@
 
 @interface LBStoreProductDetailInfoViewController : UIViewController
 
+@property(nonatomic , strong)NSString *goodId;
+@property(nonatomic , strong)NSString *goodname;
+@property(nonatomic , strong)NSString *storename;
 @end

@@ -12,7 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-   
+    self.starView.enabled = NO;
+    self.starView.type = LCStarRatingViewCountingTypeFloat;
 }
 
 

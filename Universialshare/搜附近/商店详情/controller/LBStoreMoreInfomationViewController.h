@@ -10,4 +10,6 @@
 
 @interface LBStoreMoreInfomationViewController : UIViewController
 
+@property(nonatomic , strong)NSString *storeId;
+
 @end

@@ -72,6 +72,12 @@ static NSString *ID = @"GLOrderGoodsCell";
      [self postRequest];
     
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.hidden = NO;
+
+}
 - (void)dealloc{
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -86,7 +92,6 @@ static NSString *ID = @"GLOrderGoodsCell";
     [NetworkManager requestPOSTWithURLStr:@"shop/address_list" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
-//        NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1){
 
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
@@ -118,7 +123,7 @@ static NSString *ID = @"GLOrderGoodsCell";
         
         [_loadV removeloadview];
 //        NSLog(@"dict = %@",dict);
-//        NSLog(@"responseObject = %@",responseObject);
+        NSLog(@"responseObject = %@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1){
             
             self.totalSumLabel.text = [NSString stringWithFormat:@"合计:¥%@",responseObject[@"data"][@"all_realy_price"]];

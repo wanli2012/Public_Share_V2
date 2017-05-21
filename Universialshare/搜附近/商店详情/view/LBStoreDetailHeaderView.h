@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol LBStoreDetailHeaderViewDelegete <NSObject>
+-(void)checkmoreinfo:(NSInteger)index;
+@end
 @interface LBStoreDetailHeaderView : UITableViewHeaderFooterView
 
 @property(nonatomic , strong) UIView *baseView;
 @property(nonatomic , strong) UILabel *titleLb;//类型标题
 @property(nonatomic , strong) UIButton *moreBt;//查看更多
+@property (assign, nonatomic)id<LBStoreDetailHeaderViewDelegete> delegete;
+@property (assign, nonatomic)NSInteger index;
 
 @end

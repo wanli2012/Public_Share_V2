@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TEz-hq-6dC">
-                        <rect key="frame" x="0.0" y="69" width="320" height="1"/>
+                        <rect key="frame" x="0.0" y="68" width="320" height="1"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="mvu-Ar-Diu"/>
@@ -43,13 +43,6 @@
                         <color key="textColor" red="0.35682046410000001" green="0.35688710210000002" blue="0.356816262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="三颗心" translatesAutoresizingMaskIntoConstraints="NO" id="hyq-cX-KBl">
-                        <rect key="frame" x="143" y="10" width="60" height="15"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="60" id="IW9-mh-Pw4"/>
-                            <constraint firstAttribute="height" constant="15" id="M5b-AJ-An0"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="鞋穿着很舒服是我的最佳选择鞋穿着很舒服是我的最" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bby-yu-ASu">
                         <rect key="frame" x="48" y="30" width="262" height="16"/>
                         <constraints>
@@ -69,9 +62,28 @@
                         <color key="textColor" red="0.35682046410000001" green="0.35688710210000002" blue="0.356816262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gBR-oQ-B82" customClass="LCStarRatingView">
+                        <rect key="frame" x="148" y="12" width="60" height="12"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="Mei-qa-fGF"/>
+                            <constraint firstAttribute="height" constant="12" id="oyn-4U-iuY"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="starMargin">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="starColor">
+                                <color key="value" red="0.94475358720000002" green="0.5738770366" blue="0.29629895090000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="starPlaceHolderColor">
+                                <color key="value" red="0.78052580360000001" green="0.77263885740000005" blue="0.76827877759999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="hyq-cX-KBl" firstAttribute="leading" secondItem="7fb-NB-e5j" secondAttribute="trailing" constant="5" id="4Nn-rS-0sy"/>
+                    <constraint firstItem="gBR-oQ-B82" firstAttribute="centerY" secondItem="7fb-NB-e5j" secondAttribute="centerY" id="0zl-WK-WXw"/>
                     <constraint firstItem="pKI-JX-WP3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="NQc-ej-alP"/>
                     <constraint firstAttribute="bottom" secondItem="TEz-hq-6dC" secondAttribute="bottom" id="Q1w-Qk-HEE"/>
                     <constraint firstItem="Bby-yu-ASu" firstAttribute="top" secondItem="7fb-NB-e5j" secondAttribute="bottom" constant="5" id="QmA-gs-UcB"/>
@@ -79,10 +91,10 @@
                     <constraint firstAttribute="bottom" secondItem="Bby-yu-ASu" secondAttribute="bottom" constant="23" id="RGy-es-aYQ"/>
                     <constraint firstAttribute="trailing" secondItem="dzg-Lh-tqQ" secondAttribute="trailing" constant="10" id="U1g-9a-Zkf"/>
                     <constraint firstItem="pKI-JX-WP3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="bzi-Ae-gxz"/>
-                    <constraint firstItem="hyq-cX-KBl" firstAttribute="centerY" secondItem="7fb-NB-e5j" secondAttribute="centerY" id="f1c-9z-F4C"/>
                     <constraint firstItem="Bby-yu-ASu" firstAttribute="leading" secondItem="7fb-NB-e5j" secondAttribute="leading" id="fuT-bY-UBr"/>
                     <constraint firstItem="7fb-NB-e5j" firstAttribute="top" secondItem="pKI-JX-WP3" secondAttribute="top" id="gyF-sW-Mfc"/>
                     <constraint firstItem="dzg-Lh-tqQ" firstAttribute="top" secondItem="Bby-yu-ASu" secondAttribute="bottom" constant="2" id="m5k-hd-ma3"/>
+                    <constraint firstItem="gBR-oQ-B82" firstAttribute="leading" secondItem="7fb-NB-e5j" secondAttribute="trailing" constant="10" id="oFs-1A-abY"/>
                     <constraint firstItem="7fb-NB-e5j" firstAttribute="leading" secondItem="pKI-JX-WP3" secondAttribute="trailing" constant="8" id="qIb-jX-Sj7"/>
                     <constraint firstAttribute="trailing" secondItem="TEz-hq-6dC" secondAttribute="trailing" id="wTd-rP-T3f"/>
                     <constraint firstAttribute="trailing" secondItem="Bby-yu-ASu" secondAttribute="trailing" constant="10" id="x7H-d7-cBo"/>
@@ -92,13 +104,12 @@
                 <outlet property="contentLb" destination="Bby-yu-ASu" id="5Qw-xj-bYv"/>
                 <outlet property="imagev" destination="pKI-JX-WP3" id="A0x-it-n3i"/>
                 <outlet property="nameLb" destination="7fb-NB-e5j" id="EjQ-hV-Uq8"/>
-                <outlet property="starImage" destination="hyq-cX-KBl" id="xtj-pF-c3R"/>
+                <outlet property="starView" destination="gBR-oQ-B82" id="FEE-yV-l8R"/>
                 <outlet property="timeLb" destination="dzg-Lh-tqQ" id="x0g-qL-DAu"/>
             </connections>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="三颗心" width="90" height="26"/>
         <image name="熊" width="180" height="180"/>
     </resources>
 </document>

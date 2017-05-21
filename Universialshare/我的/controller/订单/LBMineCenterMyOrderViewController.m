@@ -48,7 +48,7 @@
 -(void)addviewcontrol{
     
     //设置自定义属性
-    self.tagItemSize = CGSizeMake(SCREEN_WIDTH / 3, 49);
+    self.tagItemSize = CGSizeMake(SCREEN_WIDTH / 4, 49);
 
 //    LBMyOrderAlreadyCompletedViewController *vc1=[[LBMyOrderAlreadyCompletedViewController alloc]init];
 //    LBMyOrderPendingPaymentViewController *vc2=[[LBMyOrderPendingPaymentViewController alloc]init];
@@ -58,12 +58,14 @@
     NSArray *titleArray = @[
                             @"已完成",
                             @"待付款",
+                            @"待评价",
                             @"已付款",
                             ];
     
     NSArray *classNames = @[
                             [LBMyOrderAlreadyCompletedViewController class],
                             [LBMyOrderPendingPaymentViewController class],
+                            [LBMyOrderPendingEvaluationViewController class],
                             [LBMyOrderAlreadyPaymentViewController class],
                             ];
     

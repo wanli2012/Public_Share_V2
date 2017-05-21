@@ -65,8 +65,19 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="原价" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbj-Xq-Gup">
+                        <rect key="frame" x="75" y="62" width="30" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="jjA-iv-5IS"/>
+                            <constraint firstAttribute="height" constant="20" id="yxG-VN-yWz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Wbj-Xq-Gup" firstAttribute="leading" secondItem="bqt-Ke-7d1" secondAttribute="trailing" constant="5" id="3SD-j8-aRh"/>
                     <constraint firstAttribute="trailing" secondItem="CsC-Yt-oCj" secondAttribute="trailing" constant="10" id="3xa-yc-rCu"/>
                     <constraint firstItem="WAL-mN-bjZ" firstAttribute="top" secondItem="bqt-Ke-7d1" secondAttribute="bottom" constant="10" id="5cG-fu-Ll5"/>
                     <constraint firstItem="Hl7-zZ-OFy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Ai1-t0-xpu"/>
@@ -76,6 +87,7 @@
                     <constraint firstAttribute="trailing" secondItem="XKH-JP-fMf" secondAttribute="trailing" constant="10" id="MCO-sb-KKR"/>
                     <constraint firstItem="CsC-Yt-oCj" firstAttribute="leading" secondItem="Hl7-zZ-OFy" secondAttribute="trailing" id="bQO-aW-Q2V"/>
                     <constraint firstItem="WAL-mN-bjZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="d47-48-ez8"/>
+                    <constraint firstItem="Wbj-Xq-Gup" firstAttribute="centerY" secondItem="bqt-Ke-7d1" secondAttribute="centerY" id="elf-6s-uMb"/>
                     <constraint firstItem="XKH-JP-fMf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="gyL-N5-cVZ"/>
                     <constraint firstItem="bqt-Ke-7d1" firstAttribute="top" secondItem="CsC-Yt-oCj" secondAttribute="bottom" constant="10" id="iSB-JS-z5B"/>
                     <constraint firstAttribute="bottom" secondItem="WAL-mN-bjZ" secondAttribute="bottom" constant="12" id="kHd-lI-WZD"/>
@@ -83,6 +95,13 @@
                     <constraint firstAttribute="trailing" secondItem="WAL-mN-bjZ" secondAttribute="trailing" constant="10" id="v4X-79-0t0"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="infolb" destination="WAL-mN-bjZ" id="EuY-j4-cQu"/>
+                <outlet property="moneyLb" destination="bqt-Ke-7d1" id="tXW-0g-aUX"/>
+                <outlet property="namelb" destination="XKH-JP-fMf" id="9Iz-a5-upv"/>
+                <outlet property="storelb" destination="CsC-Yt-oCj" id="vCn-Lh-6Vv"/>
+                <outlet property="yuanjiLb" destination="Wbj-Xq-Gup" id="aZk-oi-tYI"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>
