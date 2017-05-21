@@ -39,4 +39,8 @@
 @property (nonatomic, copy)NSString *limit;
 
 @property (nonatomic, copy)NSString *phone;
+
+
+@property (nonatomic, copy)NSString *pic;
+
 @end

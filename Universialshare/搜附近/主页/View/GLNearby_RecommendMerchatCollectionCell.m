@@ -7,6 +7,13 @@
 //
 
 #import "GLNearby_RecommendMerchatCollectionCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
+@interface GLNearby_RecommendMerchatCollectionCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *picImageV;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
+@end
 
 @implementation GLNearby_RecommendMerchatCollectionCell
 
@@ -14,6 +21,7 @@
     [super awakeFromNib];
     // Initialization code
 }
+
 //- (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
 //    [self setNeedsLayout];
 //    [self layoutIfNeeded];
@@ -23,4 +31,13 @@
 //    layoutAttributes.frame = newFrame;
 //    return layoutAttributes;
 //}
+
+- (void)setModel:(GLNearby_NearShopModel *)model{
+    _model = model;
+    self.nameLabel.text = model.shop_name;
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+    if (self.picImageV.image == nil) {
+        self.picImageV.image = [UIImage imageNamed:@"XRPlaceholder"];
+    }
+}
 @end

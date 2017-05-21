@@ -29,7 +29,6 @@ static NSString *ID = @"GLCityChooseCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"城市";
-//    self.navigationController.navigationBar.hidden = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"GLCityChooseCell" bundle:nil] forCellReuseIdentifier:ID];
     [self postRequest];
@@ -43,7 +42,6 @@ static NSString *ID = @"GLCityChooseCell";
     [NetworkManager requestPOSTWithURLStr:@"shop/getCityListByLetter" paramDic:@{} finish:^(id responseObject) {
         
         [_loadV removeloadview];
-//                NSLog(@"responseObject = %@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1){
 
             self.data = responseObject[@"data"];
@@ -72,7 +70,7 @@ static NSString *ID = @"GLCityChooseCell";
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *dic = self.data[indexPath.section][@"ct"][indexPath.row];
-     self.block(dic[@"name"]);
+     self.block(dic[@"name"],dic[@"code"]);
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

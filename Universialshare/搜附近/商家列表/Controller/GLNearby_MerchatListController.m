@@ -44,6 +44,19 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
+    [self.sortBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 30)];
+    [self.sortBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 70, 0, 0)];
+    
+    [self.classifyBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 30)];
+    [self.classifyBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 70, 0, 0)];
+    
+    [self.cityBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 30)];
+    [self.cityBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 70, 0, 0)];
+    
+    self.sort = @"1";
+    if (self.index == 11) {
+        [self.cityBtn setTitle:@"距离" forState:UIControlStateNormal];
+    }
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
@@ -82,14 +95,20 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 //    GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades;
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"trade_id"] = self.trade_id;
+    dict[@"city_id"] = self.city_id;
     dict[@"limit"] = self.limit;
     dict[@"sort"] = self.sort;
-    dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
-    dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
     dict[@"page"] = @(self.page);
+    dict[@"two_trade_id"] = self.two_trade_id;
     
-    [NetworkManager requestPOSTWithURLStr:@"shop/getMoreNearRecShop" paramDic:dict finish:^(id responseObject) {
+    if (self.index == 11) {
         
+        dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
+        dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
+    }
+    NSLog(@"%@",dict);
+    [NetworkManager requestPOSTWithURLStr:@"shop/getMoreNearRecShop" paramDic:dict finish:^(id responseObject) {
+//        NSLog(@"responseObject= =%@",responseObject);
         [self endRefresh];
         if ([responseObject[@"code"] integerValue] == 1){
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
@@ -99,9 +118,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                     [self.models addObject:model];
                 }
                 
-                [self.tableView reloadData];
             }
         }
+        [self.tableView reloadData];
         
     } enError:^(NSError *error) {
         [self endRefresh];
@@ -160,18 +179,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 
  
 }
-//城市选择
-- (IBAction)cityChoose:(id)sender {
-    self.hidesBottomBarWhenPushed = YES;
-    GLCityChooseController *cityVC = [[GLCityChooseController alloc] init];
-    __weak typeof(self) weakSelf = self;
-    cityVC.block = ^(NSString *city){
-        [weakSelf.cityBtn setTitle:city forState:UIControlStateNormal];
-    };
-    self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:cityVC animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
-}
+
 
 //选择
 - (IBAction)choose:(UIButton *)sender {
@@ -199,23 +207,67 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     sender.imageView.transform = CGAffineTransformMakeRotation(M_PI);
     __weak __typeof(self)weakSelf = self;
     switch (sender.tag) {
-//        case 10:
-//        {
-//            _chooseVC.dataSource = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"dd"];
-//            _chooseVC.block = ^(NSString *value){
-//                [weakSelf.cityBtn setTitle:value forState:UIControlStateNormal];
-//                [weakSelf updateData:YES];
-//                [weakSelf dismiss];
-//            };
-//         
-//        }
-//            break;
+        case 10:
+        {
+            if (self.index == 10) {
+                self.hidesBottomBarWhenPushed = YES;
+                GLCityChooseController *cityVC = [[GLCityChooseController alloc] init];
+        
+                cityVC.block = ^(NSString *city,NSString *city_id){
+                    [weakSelf.cityBtn setTitle:city forState:UIControlStateNormal];
+                    [GLNearby_Model defaultUser].city_id = city_id;
+                    [weakSelf updateData:YES];
+                    [weakSelf dismiss];
+                };
+                self.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:cityVC animated:YES];
+//                self.hidesBottomBarWhenPushed = NO;
+
+            }else{
+                _chooseVC.dataSource = @[@"1Km",@"3Km",@"10Km",@"全城"];
+                _chooseVC.block = ^(NSString *value){
+                    [weakSelf.cityBtn setTitle:value forState:UIControlStateNormal];
+                    if ([value isEqualToString:@"1Km"]) {
+                        
+                        weakSelf.limit = @"1";
+                    }else if ([value isEqualToString:@"3Km"]){
+                         weakSelf.limit = @"3";
+                    }else if ([value isEqualToString:@"10Km"]){
+                        weakSelf.limit = @"10";
+                    }else{
+                        weakSelf.limit = @"";
+                    }
+                    [weakSelf updateData:YES];
+                    [weakSelf dismiss];
+                };
+
+            }
+         
+        }
+            break;
         case 11:
         {
-           
-            _chooseVC.dataSource = @[@"11",@"22"];
+            NSMutableArray *tempArr = [NSMutableArray array];
+            NSMutableArray *two_trade_idArr = [NSMutableArray array];
+            for (int i = 0; i < self.typeArr.count; i ++) {
+                GLNearby_TradeOneModel *model = self.typeArr[i];
+                [tempArr addObject:model.trade_name];
+                [two_trade_idArr addObject:model.trade_id];
+            }
+            [tempArr addObject:@"不限"];
+            [two_trade_idArr addObject:@""];
+            _chooseVC.dataSource = tempArr;
             _chooseVC.block = ^(NSString *value){
                 [weakSelf.classifyBtn setTitle:value forState:UIControlStateNormal];
+                for (int i = 0; i < self.typeArr.count; i ++) {
+                    if ([value isEqualToString:tempArr[i]]) {
+                        weakSelf.two_trade_id = two_trade_idArr[i];
+                    }
+                   
+                }
+                if ([value isEqualToString:@"不限"]) {
+                    weakSelf.two_trade_id = @"";
+                }
                 [weakSelf updateData:YES];
                 [weakSelf dismiss];
             };
@@ -223,9 +275,18 @@ static NSString *ID = @"GLNearby_MerchatListCell";
             break;
         case 12:
         {
-            _chooseVC.dataSource = @[@"111",@"222",@"333",@"444"];
+            _chooseVC.dataSource = @[@"智能排序",@"好评优先",@"离我最近"];
             _chooseVC.block = ^(NSString *value){
                 [weakSelf.sortBtn setTitle:value forState:UIControlStateNormal];
+                if ([value isEqualToString:@"智能排序"]) {
+                    
+                    weakSelf.sort = @"1";
+                }else if ([value isEqualToString:@"好评优先"]){
+                    weakSelf.sort = @"2";
+                }else if ([value isEqualToString:@"离我最近"]){
+                    weakSelf.sort = @"3";
+                }
+
                 [weakSelf updateData:YES];
                 [weakSelf dismiss];
             };
@@ -261,9 +322,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     [_chooseVC.tableView reloadData];
 }
 #pragma UITableviewDelegate UITableviewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return self.models.count;
@@ -273,8 +332,15 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     GLNearby_MerchatListCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    cell.model = self.models[indexPath.row];
+    if (self.models.count != 0) {
+        
+        cell.model = self.models[indexPath.row];
+    }
     cell.selectionStyle = 0;
+    cell.distanceLabel.hidden = YES;
+    if ([self.sort integerValue] == 3) {
+        cell.distanceLabel.hidden = NO;
+    }
     
     return cell;
 }

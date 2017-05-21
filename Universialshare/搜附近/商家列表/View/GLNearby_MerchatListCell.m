@@ -11,7 +11,7 @@
 
 @interface GLNearby_MerchatListCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *picImageV;
-@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *adressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneNumLabel;
@@ -27,7 +27,7 @@
     // Initialization code
     
     self.picImageV.layer.cornerRadius = 5.f;
-    self.picImageV.clipsToBounds = YES;
+    self.mapBtn.layer.cornerRadius = 5.f;
     
 }
 - (IBAction)mapToHere:(id)sender {
@@ -40,10 +40,10 @@
         self.picImageV.image = [UIImage imageNamed:@"XRPlaceholder"];
     }
     self.nameLabel.text = model.shop_name;
-    self.adressLabel.text = model.address;
-    self.phoneNumLabel.text = model.phone;
+    self.adressLabel.text = [NSString stringWithFormat:@"地址:%@",model.shop_address];
+    self.phoneNumLabel.text = [NSString stringWithFormat:@"电话:%@", model.phone];
     self.contentLabel.text = model.total_money;
-    self.distanceLabel.text = model.limit;
+    self.distanceLabel.text = [NSString stringWithFormat:@"距离%@m", model.limit];
     
 }
 

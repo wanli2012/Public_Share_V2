@@ -104,7 +104,7 @@
             self.viewControllers = @[firstNav, storeNav, minenav];
         }
     }else{//退出状态
-        self.viewControllers = @[firstNav, IntegralMallnav, minenav];
+        self.viewControllers = @[firstNav,nearbyNav,IntegralMallnav, minenav];
     }
     
     self.selectedIndex=0;
@@ -127,7 +127,7 @@
 {
     
   
-    if (viewController == [tabBarController.viewControllers objectAtIndex:2]) {
+    if (viewController == [tabBarController.viewControllers objectAtIndex:3]) {
        
         if ([UserModel defaultUser].loginstatus == YES) {
             

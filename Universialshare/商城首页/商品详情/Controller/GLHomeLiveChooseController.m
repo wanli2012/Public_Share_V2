@@ -31,6 +31,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
     self.block(cell.textLabel.text);
     
 }
