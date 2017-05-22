@@ -101,7 +101,6 @@
 
 -(void)ishidekeyboard{
     [self.view endEditing:YES];
-
 }
 
 -(void)submitevaluationinfo:(NSInteger)index{
@@ -120,7 +119,7 @@
     [NetworkManager requestPOSTWithURLStr:@"user/order_mark_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"mark" :[NSNumber numberWithFloat:model.starValue] , @"comment":model.conentlb,@"order_goods_id":model.order_goods_id} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
-            
+            [MBProgressHUD showError:@"评论成功"];
 
         }else if ([responseObject[@"code"] integerValue]==3){
             
