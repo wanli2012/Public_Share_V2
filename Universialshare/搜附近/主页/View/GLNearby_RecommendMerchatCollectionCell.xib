@@ -45,6 +45,10 @@
                 <constraint firstItem="KVK-wS-3lX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="oOH-6Z-04o"/>
             </constraints>
             <size key="customSize" width="138" height="115"/>
+            <connections>
+                <outlet property="nameLabel" destination="Tqt-fe-PUx" id="kp5-5s-JVF"/>
+                <outlet property="picImageV" destination="KVK-wS-3lX" id="D3g-ND-d1h"/>
+            </connections>
             <point key="canvasLocation" x="84" y="-19"/>
         </collectionViewCell>
     </objects>

@@ -51,13 +51,10 @@
     _mapView.zoomLevel=20;//地图级别
     [self.locService startUserLocationService];
     _mapView.userTrackingMode = BMKUserTrackingModeNone;//设置定位的状态
-    
-    
-//    [self postRequest];
 }
 - (void)postRequest {
     
-//    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.];
+//  _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.];
     [NetworkManager requestPOSTWithURLStr:@"shop/getTradeId" paramDic:@{} finish:^(id responseObject) {
 //        [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == 1){

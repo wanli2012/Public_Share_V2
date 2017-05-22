@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^choseCityBlock)(NSString *str);
+typedef void (^choseCityBlock)(NSString *str,NSString *city_id);
 
 @interface GLCityChooseController : UIViewController
 

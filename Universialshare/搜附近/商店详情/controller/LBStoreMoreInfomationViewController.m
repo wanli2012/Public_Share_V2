@@ -299,7 +299,7 @@ static const CGFloat headerImageHeight = 150.0f;
         headerview.moreBt.hidden = YES;
     }else if (section == 1){
         if (self.dataDic.count > 0 ) {
-            headerview.titleLb.text = [NSString stringWithFormat:@"热卖商品 (%u)",[self.dataDic[@"com_data"] count]];
+            headerview.titleLb.text = [NSString stringWithFormat:@"热卖商品 (%lu)",[self.dataDic[@"com_data"] count]];
     
         }else{
             headerview.titleLb.text = @"热卖商品 (0)";
@@ -310,7 +310,7 @@ static const CGFloat headerImageHeight = 150.0f;
        headerview.titleLb.hidden = NO;
     }else if (section == 2){
         if (self.dataDic.count > 0 ) {
-            headerview.titleLb.text = [NSString stringWithFormat:@"评论 (%u)",[self.dataDic[@"com_data"] count]];
+            headerview.titleLb.text = [NSString stringWithFormat:@"评论 (%lu)",[self.dataDic[@"com_data"] count]];
             if ([self.dataDic[@"pl_count"]integerValue] > 3) {
                 headerview.moreBt.hidden = NO;
             }else{

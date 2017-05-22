@@ -200,7 +200,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 //    cityViewController.title = @"城市";
     GLCityChooseController *cityVC = [[GLCityChooseController alloc] init];
     __weak typeof(self) weakSelf = self;
-    cityVC.block = ^(NSString *city){
+    cityVC.block = ^(NSString *city,NSString *city_id){
         [weakSelf.cityBtn setTitle:city forState:UIControlStateNormal];
     };
     self.hidesBottomBarWhenPushed = YES;

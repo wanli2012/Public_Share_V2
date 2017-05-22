@@ -19,12 +19,13 @@
 
 @interface GLNearby_LiveController ()
 {
-    //    BOOL _isAll;
     LoadWaitView *_loadV;
+    NSString *_two_trade_id;
 }
 @property (nonatomic, strong)NSMutableArray *nearModels;
 @property (nonatomic, strong)NSMutableArray *tradeTwoModels;
 
+@property (nonatomic, copy)NSString *city_id;
 
 @end
 
@@ -46,13 +47,17 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades[1];
     dict[@"trade_id"] = model.trade_id;
     dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
-    dict[@"lat"] = [GLNearby_Model defaultUser].latitude;    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-
+    dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
+    
+    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
+        
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == 1){
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 
+                self.city_id = responseObject[@"city_id"];
+                [GLNearby_Model defaultUser].city_id = responseObject[@"city_id"];
                 for (NSDictionary *dic  in responseObject[@"data"][@"near_shop"]) {
                     GLNearby_NearShopModel *model = [GLNearby_NearShopModel mj_objectWithKeyValues:dic];
                     [self.nearModels addObject:model];
@@ -76,20 +81,74 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                         if (count % 4 == 0) {
                             
                             weakSelf.tableView.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, count/4 * 30 + 10);
+                            
                         }else{
+                            
                             weakSelf.tableView.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, (count/4 +1) * 30 + 10);
                         }
-                    }
-                    if([typeID isEqualToString:@"收起"]){
+                    }else if([typeID isEqualToString:@"收起"]){
                         weakSelf.tableView.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 70);
+                    }else{
+                        
+                        for (int i = 0; i < self.tradeTwoModels.count; i ++) {
+                            GLNearby_TradeOneModel *model = self.tradeTwoModels[i];
+                            if ([typeID isEqualToString:model.trade_name]) {
+                                _two_trade_id = model.trade_id;
+                            }
+                        }
+                        
+                        [weakSelf refreshRequest];
                     }
+                    
                     [weakSelf.tableView reloadData];
                     
                 };
+                
                 [self.tableView reloadData];
+                
             }
         }
         
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.description];
+    }];
+    
+}
+- (void)refreshRequest {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades[1];
+    dict[@"trade_id"] = model.trade_id;
+    dict[@"trade_two_id"] = _two_trade_id;
+    dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
+    dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
+    
+    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
+        
+        [_loadV removeloadview];
+        if ([responseObject[@"code"] integerValue] == 1){
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                
+                [self.nearModels removeAllObjects];
+                [self.tradeTwoModels removeAllObjects];
+                
+                self.city_id = responseObject[@"city_id"];
+                
+                [GLNearby_Model defaultUser].city_id = responseObject[@"city_id"];
+                for (NSDictionary *dic  in responseObject[@"data"][@"near_shop"]) {
+                    GLNearby_NearShopModel *model = [GLNearby_NearShopModel mj_objectWithKeyValues:dic];
+                    [self.nearModels addObject:model];
+                }
+                for (NSDictionary *dic  in responseObject[@"data"][@"two_trade_data"]) {
+                    GLNearby_TradeOneModel *model = [GLNearby_TradeOneModel mj_objectWithKeyValues:dic];
+                    [self.tradeTwoModels addObject:model];
+                }
+                
+                
+            }
+        }
+        [self.tableView reloadData];
     } enError:^(NSError *error) {
         [_loadV removeloadview];
         [MBProgressHUD showError:error.description];
@@ -105,14 +164,15 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     }
     return nil;
 }
-- (void)more:(NSInteger )index {
+- (void)more:(UIButton * )btn {
     self.viewController.hidesBottomBarWhenPushed = YES;
     GLNearby_MerchatListController *merchatVC = [[GLNearby_MerchatListController alloc] init];
-    if (index == 0) {
-        
-    }else{
-        
-    }
+    
+    GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades[1];
+    merchatVC.index = btn.tag;
+    merchatVC.typeArr = self.tradeTwoModels;
+    merchatVC.city_id = self.city_id;
+    merchatVC.trade_id = model.trade_id;
     [self.viewController.navigationController pushViewController:merchatVC animated:YES];
     self.viewController.hidesBottomBarWhenPushed = NO;
     
@@ -128,10 +188,11 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         
         return self.nearModels.count;
     }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30 *autoSizeScaleY;
+    return 30 * autoSizeScaleY;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -140,11 +201,12 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     if (section == 0) {
         headV.titleLabel.text = @"推荐商家";
         [headV.moreBtn setTitle:@"查看更多" forState:UIControlStateNormal];
-        headV.index = 0;
+        headV.moreBtn.tag = 10;
     }else{
         headV.titleLabel.text = @"附近商家";
         [headV.moreBtn setTitle:@"查看全部" forState:UIControlStateNormal];
-        headV.index = 1;
+        headV.moreBtn.tag = 11;
+        
     }
     [headV.moreBtn addTarget:self action:@selector(more:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -167,7 +229,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return 120 *autoSizeScaleY;
+        return 130 *autoSizeScaleY;
     }else{
         
         return 110 *autoSizeScaleY;
@@ -192,5 +254,4 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     }
     return _tradeTwoModels;
 }
-
 @end

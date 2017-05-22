@@ -12,5 +12,5 @@
 @interface GLNearby_MerchatListCell : UITableViewCell
 
 @property (nonatomic, strong)GLNearby_MerchatListModel *model;
-
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @end

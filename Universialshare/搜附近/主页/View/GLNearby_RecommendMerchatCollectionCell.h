@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLNearby_NearShopModel.h"
 
 @interface GLNearby_RecommendMerchatCollectionCell : UICollectionViewCell
+
+@property (nonatomic, strong)GLNearby_NearShopModel *model;
 
 @end

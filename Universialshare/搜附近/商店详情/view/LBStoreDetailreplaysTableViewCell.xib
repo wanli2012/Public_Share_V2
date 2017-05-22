@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,28 +11,20 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LBStoreDetailreplaysTableViewCell" id="KGk-i7-Jjw" customClass="LBStoreDetailreplaysTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LBStoreDetailreplaysTableViewCell" rowHeight="83" id="KGk-i7-Jjw" customClass="LBStoreDetailreplaysTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="330" height="83"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <rect key="frame" x="0.0" y="0.0" width="330" height="82.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TEz-hq-6dC">
-                        <rect key="frame" x="0.0" y="68" width="320" height="1"/>
+                        <rect key="frame" x="0.0" y="81.5" width="330" height="1"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="mvu-Ar-Diu"/>
                         </constraints>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="熊" translatesAutoresizingMaskIntoConstraints="NO" id="pKI-JX-WP3">
-                        <rect key="frame" x="10" y="10" width="30" height="30"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="30" id="e0A-Bf-rcs"/>
-                            <constraint firstAttribute="height" constant="30" id="h9c-V0-Gha"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="悬崖边的金鱼公主" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fb-NB-e5j">
                         <rect key="frame" x="48" y="10" width="90" height="15"/>
                         <constraints>
@@ -44,7 +36,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="鞋穿着很舒服是我的最佳选择鞋穿着很舒服是我的最" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bby-yu-ASu">
-                        <rect key="frame" x="48" y="30" width="262" height="16"/>
+                        <rect key="frame" x="48" y="30" width="272" height="29.5"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="7Ck-HN-vbC"/>
                         </constraints>
@@ -53,7 +45,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-01-01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzg-Lh-tqQ">
-                        <rect key="frame" x="249" y="48" width="61" height="15"/>
+                        <rect key="frame" x="259" y="61.5" width="61" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="PFh-Pi-CGA"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="ZkK-Le-wsT"/>
@@ -81,6 +73,14 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="熊" translatesAutoresizingMaskIntoConstraints="NO" id="pKI-JX-WP3">
+                        <rect key="frame" x="10" y="10" width="30" height="30"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="e0A-Bf-rcs"/>
+                            <constraint firstAttribute="height" constant="30" id="h9c-V0-Gha"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="gBR-oQ-B82" firstAttribute="centerY" secondItem="7fb-NB-e5j" secondAttribute="centerY" id="0zl-WK-WXw"/>
@@ -107,6 +107,7 @@
                 <outlet property="starView" destination="gBR-oQ-B82" id="FEE-yV-l8R"/>
                 <outlet property="timeLb" destination="dzg-Lh-tqQ" id="x0g-qL-DAu"/>
             </connections>
+            <point key="canvasLocation" x="39" y="173.5"/>
         </tableViewCell>
     </objects>
     <resources>

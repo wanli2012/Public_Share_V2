@@ -26,5 +26,6 @@
 
 @property (nonatomic, copy)NSString  *lat;
 
+@property (nonatomic, strong)NSArray *typeArr;
 
 @end

@@ -10,4 +10,6 @@
 
 @interface GLNearby_RecommendMerchatCell : UITableViewCell
 
+@property (nonatomic, strong)NSArray *models;
+
 @end

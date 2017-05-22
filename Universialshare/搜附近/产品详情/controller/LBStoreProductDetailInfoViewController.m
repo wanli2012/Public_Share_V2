@@ -15,6 +15,7 @@
 #import "GLShoppingCartController.h"
 #import "GLConfirmOrderController.h"
 #import "MXNavigationBarManager.h"
+#import "GLStoreProductCommentController.h"
 
 @interface LBStoreProductDetailInfoViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,CAAnimationDelegate>
 {
@@ -41,6 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.navigationItem.title = @"产品详情";
     self.titileLb.text = self.goodname;
     self.tableView.tableHeaderView = self.cycleScrollView;
     
@@ -193,18 +195,20 @@
         headerview.moreBt.hidden = YES;
     }else if (section == 1){
         if (self.dataDic.count > 0 ) {
-            headerview.titleLb.text = [NSString stringWithFormat:@"评论 (%u)",[self.dataDic[@"com_data"] count]];
-            if ([self.dataDic[@"pl_count"]integerValue] > 3) {
+            headerview.titleLb.text = [NSString stringWithFormat:@"评论 (%lu)",[self.dataDic[@"com_data"] count]];
                 headerview.moreBt.hidden = NO;
-            }else{
-                headerview.moreBt.hidden = YES;
-            }
+//            if ([self.dataDic[@"pl_count"]integerValue] > 3) {
+//                 headerview.moreBt.hidden = NO;
+//            }else{
+//                headerview.moreBt.hidden = YES;
+//            }
             
         }else{
             headerview.titleLb.text = @"评论 (0)";
             headerview.moreBt.hidden = YES;
         }
         [headerview.moreBt setTitle:@"查看更多" forState:UIControlStateNormal];
+        [headerview.moreBt addTarget:self action:@selector(checkMore:) forControlEvents:UIControlEventTouchUpInside];
         headerview.titleLb.hidden = NO;
     }
     
@@ -224,6 +228,12 @@
 - (IBAction)sharebuttonEvent:(UIButton *)sender {
     
     
+}
+//查看更多
+- (void)checkMore:(id)sender{
+    self.hidesBottomBarWhenPushed = YES;
+    GLStoreProductCommentController *commentVC = [[GLStoreProductCommentController alloc] init];
+    [self.navigationController pushViewController:commentVC animated:YES];
 }
 //立即购买
 - (IBAction)amoentbuy:(UIButton *)sender {
