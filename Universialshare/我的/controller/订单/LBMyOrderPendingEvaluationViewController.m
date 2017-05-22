@@ -74,7 +74,6 @@
             if (_refreshType == NO) {
                 [self.dataarr removeAllObjects];
             }
-            
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 [self.dataarr addObjectsFromArray:responseObject[@"data"]];
             }
@@ -82,13 +81,11 @@
             [self.tableview reloadData];
             
         }else if ([responseObject[@"code"] integerValue]==3){
-            
+
             [MBProgressHUD showError:responseObject[@"message"]];
             
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
-            
-            
         }
     } enError:^(NSError *error) {
         [_loadV removeloadview];
@@ -97,7 +94,6 @@
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
-    
     
 }
 

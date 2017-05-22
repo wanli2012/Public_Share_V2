@@ -19,5 +19,8 @@
 @property (assign, nonatomic)CGFloat  starValue;
 @property (strong, nonatomic)NSString  *conentlb;
 @property(nonatomic,strong)NSString *order_goods_id;
+@property(nonatomic,strong)NSString *mark;
+@property(nonatomic,strong)NSString *is_comment;
+@property(nonatomic,strong)NSString *reply;
 
 @end
