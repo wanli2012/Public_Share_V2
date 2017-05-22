@@ -11,7 +11,6 @@
 @interface GLMerchat_CommentCell()
 
 
-
 @end
 
 @implementation GLMerchat_CommentCell

@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMerchat_CommentController">
             <connections>
-                <outlet property="tableView" destination="6VF-8Q-rfA" id="r7Z-t6-x04"/>
+                <outlet property="collectionView" destination="ffs-NY-7ra" id="8uH-7p-pxz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,24 +20,54 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6VF-8Q-rfA">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ffs-NY-7ra">
+                    <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                    <color key="backgroundColor" red="0.72156862745098038" green="0.72336632013320923" blue="0.72336632013320923" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CKc-sI-aH3">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="ClS-mr-3CX"/>
-                        <outlet property="delegate" destination="-1" id="lxb-Km-AWI"/>
+                        <outlet property="dataSource" destination="-1" id="Q9J-Ic-3sF"/>
+                        <outlet property="delegate" destination="-1" id="WEC-Pf-7Vq"/>
                     </connections>
-                </tableView>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xzF-YR-IdR">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商  品" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47x-VQ-GYW">
+                            <rect key="frame" x="168" y="30" width="39" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="P2X-tW-Xx4"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="47x-VQ-GYW" firstAttribute="centerX" secondItem="xzF-YR-IdR" secondAttribute="centerX" id="aZG-yX-vQb"/>
+                        <constraint firstItem="47x-VQ-GYW" firstAttribute="top" secondItem="xzF-YR-IdR" secondAttribute="top" constant="30" id="skI-25-QU0"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="6VF-8Q-rfA" secondAttribute="bottom" id="D0b-Ih-rzL"/>
-                <constraint firstItem="6VF-8Q-rfA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="FRe-In-Yrg"/>
-                <constraint firstItem="6VF-8Q-rfA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OA7-o5-cVB"/>
-                <constraint firstAttribute="trailing" secondItem="6VF-8Q-rfA" secondAttribute="trailing" id="iZo-8i-YKI"/>
+                <constraint firstItem="ffs-NY-7ra" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EY3-QQ-c9L"/>
+                <constraint firstAttribute="bottom" secondItem="ffs-NY-7ra" secondAttribute="bottom" constant="49" id="GuM-4A-uxi"/>
+                <constraint firstItem="ffs-NY-7ra" firstAttribute="top" secondItem="xzF-YR-IdR" secondAttribute="bottom" id="OwB-BG-bri"/>
+                <constraint firstItem="xzF-YR-IdR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iwn-sY-ttI"/>
+                <constraint firstItem="ffs-NY-7ra" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="lLn-bP-PQX"/>
+                <constraint firstAttribute="trailing" secondItem="ffs-NY-7ra" secondAttribute="trailing" id="qNi-oc-O2p"/>
+                <constraint firstAttribute="trailing" secondItem="xzF-YR-IdR" secondAttribute="trailing" id="uXj-hz-FSs"/>
+                <constraint firstItem="xzF-YR-IdR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zyK-Xh-KWX"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="33.5" y="58.5"/>
         </view>
     </objects>
 </document>

@@ -412,7 +412,7 @@
         }
         CATransition *animation = [CATransition animation];
         animation.duration = 0.25f;
-        _cntLabel.text = [NSString stringWithFormat:@"%d",_cnt];
+        _cntLabel.text = [NSString stringWithFormat:@"%ld",_cnt];
         [_cntLabel.layer addAnimation:animation forKey:nil];
         
         CABasicAnimation *shakeAnimation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
