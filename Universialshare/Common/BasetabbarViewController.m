@@ -96,7 +96,7 @@
     commentNav.tabBarItem = [self barTitle:@"商品" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
 //    [UserModel defaultUser].usrtype = Retailer;
 //    [UserModel defaultUser].loginstatus = YES;
-//
+
 //    [usermodelachivar achive];
     if ([UserModel defaultUser].loginstatus == YES) {//登录状态
         if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {//一级业务员和二级业务员

@@ -143,7 +143,12 @@
             <connections>
                 <outlet property="bgView" destination="GnI-mi-OcK" id="iWb-ti-EgJ"/>
                 <outlet property="commentBtn" destination="AdP-sw-EEo" id="h19-5u-BCZ"/>
-                <outlet property="replyLabel" destination="pOc-BZ-gAd" id="Jnh-AK-PMf"/>
+                <outlet property="contentLabel" destination="p11-Eg-RhM" id="rv5-gQ-XoM"/>
+                <outlet property="dateLabel" destination="Dq4-dW-g1B" id="SZs-IK-VH3"/>
+                <outlet property="nameLabel" destination="19X-Ls-Oud" id="vw4-7C-O3w"/>
+                <outlet property="picImageV" destination="Wzt-Mq-MPM" id="8Ls-xk-DPL"/>
+                <outlet property="replyLabel" destination="pOc-BZ-gAd" id="8XV-R7-KkY"/>
+                <outlet property="starView" destination="8Kp-KZ-SYG" id="nWn-wy-reA"/>
             </connections>
             <point key="canvasLocation" x="-17" y="-179"/>
         </tableViewCell>

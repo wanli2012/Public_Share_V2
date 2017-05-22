@@ -12,13 +12,26 @@
 #import "SDCycleScrollView.h"
 
 @interface GLMerchat_CommentTableController ()<SDCycleScrollViewDelegate,GLMerchat_CommentCellDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+{
+    LoadWaitView *_loadV;
+    NSInteger _index;
+}
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong)NSMutableArray *models;
+
+@property (nonatomic,strong)NSMutableArray *models;
+
+@property (nonatomic,strong)NSMutableDictionary *dataDic;
+
+@property (nonatomic,assign)NSInteger page;
+
+@property (nonatomic,strong)NodataView *nodataV;
+
 @property (nonatomic, strong)UIView *headerView;
 @property (nonatomic, strong)SDCycleScrollView *cycleScrollView;
 @property (nonatomic, strong)UIView *commentView;
 @property (nonatomic, strong)UITextField *commentTF;
+
 @end
 
 static NSString *ID = @"GLMerchat_CommentCell";
@@ -30,8 +43,94 @@ static NSString *ID = @"GLMerchat_CommentCell";
     self.navigationController.navigationBar.hidden = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
-    [self setupHeaderView];
-    self.tableView.tableHeaderView = self.headerView;
+    
+    __weak __typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf updateData:YES];
+        
+    }];
+    
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf updateData:NO];
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+    }];
+    
+    // 设置文字
+    [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
+    
+    [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
+    
+    [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
+    
+    
+    self.tableView.mj_header = header;
+    self.tableView.mj_footer = footer;
+    [self updateData:YES];
+    
+}
+
+- (void)updateData:(BOOL)status {
+    if (status) {
+        
+        self.page = 1;
+        [self.models removeAllObjects];
+        
+    }else{
+        _page ++;
+        
+    }
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"page"] = [NSString stringWithFormat:@"%ld",_page];
+    dict[@"goods_id"] = self.goods_id;
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsCommentList" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        [self endRefresh];
+//        NSLog(@"%@",responseObject);
+        if ([responseObject[@"code"] integerValue]==1) {
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                
+                for (NSDictionary *dic in responseObject[@"data"][@"reply"]) {
+                    GLMerchat_CommentModel *model = [GLMerchat_CommentModel mj_objectWithKeyValues:dic];
+                    [_models addObject:model];
+                }
+                self.dataDic = responseObject[@"data"];
+                
+                [self setupHeaderView];
+                self.tableView.tableHeaderView = self.headerView;
+
+                [self.tableView reloadData];
+            }
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+            
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [self endRefresh];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+    
+}
+- (void)endRefresh {
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+}
+-(NodataView*)nodataV{
+    
+    if (!_nodataV) {
+        _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-114-49);
+    }
+    return _nodataV;
     
 }
 - (void)setupHeaderView {
@@ -44,7 +143,8 @@ static NSString *ID = @"GLMerchat_CommentCell";
     nameLabel.numberOfLines = 0; // 需要把显示行数设置成无限制
     nameLabel.font = [UIFont systemFontOfSize:13];
     nameLabel.textAlignment = NSTextAlignmentLeft;
-    nameLabel.text = @"梁朝伟 刘德华 你大爷梁 你大爷梁朝伟 刘德华 你大爷梁朝伟 刘德华 你大爷 ";
+//    nameLabel.text = @"梁朝伟 刘德华 你大爷梁 你大爷梁朝伟 刘德华 你大爷梁朝伟 刘德华 你大爷 ";
+    nameLabel.text = self.dataDic[@"goods_name"];
     CGSize nameSize =  [self sizeWithStr:nameLabel.text font:nameLabel.font];
     nameLabel.frame = CGRectMake(10, CGRectGetMaxY(self.cycleScrollView.frame) + 10, SCREEN_WIDTH - 20, nameSize.height);
     
@@ -54,7 +154,8 @@ static NSString *ID = @"GLMerchat_CommentCell";
     detailLabel.numberOfLines = 0; // 需要把显示行数设置成无限制
     detailLabel.font = [UIFont systemFontOfSize:11];
     detailLabel.textAlignment = NSTextAlignmentLeft;
-    detailLabel.text = @"这是一款宇宙最爆款的东西,虽然我也不知道这是个什么玩意儿我也不知道这是个什么玩意儿";
+    detailLabel.text = [NSString stringWithFormat:@"描述:%@",self.dataDic[@"info"]];
+//    detailLabel.text = @"这是一款宇宙最爆款的东西,虽然我也不知道这是个什么玩意儿我也不知道这是个什么玩意儿";
     CGSize detailSize =  [self sizeWithStr:detailLabel.text font:detailLabel.font];
     detailLabel.frame = CGRectMake(10, CGRectGetMaxY(nameLabel.frame) + 10, SCREEN_WIDTH - 20, detailSize.height);
 
@@ -64,7 +165,8 @@ static NSString *ID = @"GLMerchat_CommentCell";
     priceLabel.numberOfLines = 0; // 需要把显示行数设置成无限制
     priceLabel.font = [UIFont systemFontOfSize:13];
     priceLabel.textAlignment = NSTextAlignmentLeft;
-    priceLabel.text = @"¥ 3434";
+//    priceLabel.text = @"¥ 3434";
+    priceLabel.text = [NSString stringWithFormat:@"¥ %@",self.dataDic[@"goods_price"]];
     priceLabel.frame = CGRectMake(10, CGRectGetMaxY(detailLabel.frame) + 10, SCREEN_WIDTH/2 - 10,20);
 
     //评价数
@@ -73,7 +175,8 @@ static NSString *ID = @"GLMerchat_CommentCell";
     commentLabel.numberOfLines = 0; // 需要把显示行数设置成无限制
     commentLabel.font = [UIFont systemFontOfSize:12];
     commentLabel.textAlignment = NSTextAlignmentRight;
-    commentLabel.text = @"评价:12";
+//    commentLabel.text = @"评价:12";
+    commentLabel.text = [NSString stringWithFormat:@"评论:%@",self.dataDic[@"all_total"]];
     commentLabel.frame = CGRectMake(SCREEN_WIDTH/2, priceLabel.yy_y, SCREEN_WIDTH/2 - 10,20);
     
     //计算headerView 高度
@@ -97,7 +200,7 @@ static NSString *ID = @"GLMerchat_CommentCell";
 {
     CGRect rect = [string boundingRectWithSize:CGSizeMake(320, 8000)//限制最大的宽度和高度
                                        options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesFontLeading  |NSStringDrawingUsesLineFragmentOrigin//采用换行模式
-                                    attributes:@{NSFontAttributeName: font}//传人的字体字典
+                                    attributes:@{NSFontAttributeName:font}//传人的字体字典
                                        context:nil];
     
     return rect.size;
@@ -156,8 +259,8 @@ static NSString *ID = @"GLMerchat_CommentCell";
     
 }
 
-- (void)comment{
-    
+- (void)comment:(NSInteger)index{
+    _index = index;
     self.commentView.alpha = 1;
     [self.view addSubview:self.commentView];
     [_commentTF becomeFirstResponder];
@@ -165,9 +268,36 @@ static NSString *ID = @"GLMerchat_CommentCell";
 #pragma uitextfieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    NSLog(@"点击了搜索");
+//    NSLog(@"点击了搜索");
+    GLMerchat_CommentModel *model = self.models[_index];
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"comment_id"] = model.comment_id;
+    dict[@"content"] = _commentTF.text;
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"shop/ShopSetReplyComment" paramDic:dict finish:^(id responseObject) {
+        
+        [_loadV removeloadview];
+
+        [MBProgressHUD showError:responseObject[@"message"]];
+        if ([responseObject[@"code"] integerValue] == 1) {
+            [self updateData:YES];
+        }
+        
+    } enError:^(NSError *error) {
+        
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+
     self.commentView.alpha = 0;
     [self.commentTF resignFirstResponder];
+    
+    
     return YES;
 }
 #pragma mark - Table view data source
@@ -191,8 +321,9 @@ static NSString *ID = @"GLMerchat_CommentCell";
     cell.model = self.models[indexPath.row];
     cell.selectionStyle = 0;
     cell.delegate = self;
-    return cell;
+    cell.index = indexPath.row;
     
+    return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    [self.commentView removeFromSuperview];
@@ -203,18 +334,14 @@ static NSString *ID = @"GLMerchat_CommentCell";
     if (!_models) {
         _models = [NSMutableArray array];
 
-        for (int i = 0; i < 8; i++) {
-            GLMerchat_CommentModel *model = [[GLMerchat_CommentModel alloc] init];
-            if (i < 4) {
-                model.index = 1;
-                model.reply = @"";
-            }else{
-                model.index = 2;
-                model.reply = @"对方是否舒服撒打发十多个发生嘎嘎嘎方是否舒服撒打发十多个发生嘎方是否舒服撒打发十多个发生嘎方是否舒服撒打发十多个发生嘎方是否舒服撒打发十多个发生嘎方是否舒服撒打发十多个发生嘎";
-            }
-            [_models addObject:model];
-        }
     }
     return _models;
+}
+- (NSMutableDictionary *)dataDic{
+    if (!_dataDic) {
+        _dataDic = [NSMutableDictionary dictionary];
+        
+    }
+    return _dataDic;
 }
 @end

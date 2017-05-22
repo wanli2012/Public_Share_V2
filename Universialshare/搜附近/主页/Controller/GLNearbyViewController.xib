@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLNearbyViewController">
             <connections>
                 <outlet property="cityBtn" destination="x5F-X8-yYe" id="0iH-lq-xah"/>
+                <outlet property="searchTextF" destination="kcb-KZ-RHV" id="Txs-pa-kcI"/>
                 <outlet property="searchView" destination="wsc-Eq-btn" id="MgF-lW-0da"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -50,9 +51,13 @@
                                 </imageView>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入商品名或ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kcb-KZ-RHV">
                                     <rect key="frame" x="34" y="0.0" width="125" height="24"/>
+                                    <gestureRecognizers/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="Lcg-Pg-zPa" appends="YES" id="mn9-zM-ixt"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -92,6 +97,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="34" y="-321"/>
         </view>
+        <tapGestureRecognizer id="Lcg-Pg-zPa">
+            <connections>
+                <action selector="search:" destination="-1" id="ATQ-w7-wAK"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="搜索" width="15" height="14"/>

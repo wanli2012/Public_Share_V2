@@ -1,5 +1,5 @@
 //
-//  GLMerchat_CommentTableController.h
+//  GLNearby_SearchController.h
 //  Universialshare
 //
 //  Created by 龚磊 on 2017/5/22.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GLMerchat_CommentTableController : UIViewController
-
-@property (nonatomic, copy)NSString *goods_id;
+@interface GLNearby_SearchController : UIViewController
 
 @end

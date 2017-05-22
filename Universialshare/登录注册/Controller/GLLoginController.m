@@ -141,7 +141,7 @@
      NSString *encryptsecret = [RSAEncryptor encryptString:self.scretTf.text publicKey:public_RSA];
 //    NSLog(@"%@",encryptsecret);
     [NetworkManager requestPOSTWithURLStr:@"user/login" paramDic:@{@"userphone":self.phone.text,@"password":encryptsecret,@"groupID":self.usertype} finish:^(id responseObject) {
-        
+//        NSLog(@"responseObject = %@",responseObject);
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             
