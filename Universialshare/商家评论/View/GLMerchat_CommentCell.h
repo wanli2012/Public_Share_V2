@@ -7,18 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GLStoreProductCommentModel.h"
+#import "GLMerchat_CommentModel.h"
 
-@protocol  GLStoreProductCommentCellDelegate <NSObject>
+@protocol  GLMerchat_CommentCellDelegate <NSObject>
 
 - (void)comment;
 
 @end
-@interface GLStoreProductCommentCell : UITableViewCell
+@interface GLMerchat_CommentCell : UITableViewCell
 
-@property (nonatomic, strong)GLStoreProductCommentModel *model;
+@property (nonatomic, strong)GLMerchat_CommentModel *model;
 
-@property (nonatomic, assign)id<GLStoreProductCommentCellDelegate> delegate;
+@property (nonatomic, assign)id<GLMerchat_CommentCellDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UILabel *replyLabel;

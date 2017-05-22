@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GLStoreProductCommentModel : NSObject
+@interface GLMerchat_CommentModel : NSObject
 
 @property (nonatomic, assign)NSInteger index;
 

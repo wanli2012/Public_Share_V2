@@ -42,8 +42,12 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本店主营:男装 女装 童装" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="926-T7-mKM">
-                        <rect key="frame" x="100" y="86" width="150" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本店主" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="926-T7-mKM">
+                        <rect key="frame" x="100" y="86" width="37" height="14.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14.5" id="4kv-K4-syk"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="37" id="pHz-gV-sOH"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -64,7 +68,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.6km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQj-b0-Ds1">
-                        <rect key="frame" x="269" y="88" width="32.5" height="13.5"/>
+                        <rect key="frame" x="277.5" y="88" width="32.5" height="13.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -86,7 +90,6 @@
                     <constraint firstItem="AQj-b0-Ds1" firstAttribute="top" secondItem="CtF-Bw-XzB" secondAttribute="bottom" constant="10" id="EXy-I6-fhV"/>
                     <constraint firstItem="ABP-ey-abD" firstAttribute="leading" secondItem="UMO-CQ-WaP" secondAttribute="trailing" constant="10" id="Goz-sB-WgP"/>
                     <constraint firstItem="ABP-ey-abD" firstAttribute="top" secondItem="UMO-CQ-WaP" secondAttribute="top" id="J5n-IW-SCf"/>
-                    <constraint firstItem="AQj-b0-Ds1" firstAttribute="centerX" secondItem="CtF-Bw-XzB" secondAttribute="centerX" id="KQy-pf-mGY"/>
                     <constraint firstItem="oO7-Dh-d1s" firstAttribute="leading" secondItem="c5J-oB-m3Z" secondAttribute="leading" id="Kdr-Pd-XuT"/>
                     <constraint firstAttribute="bottom" secondItem="C9z-Tp-wS0" secondAttribute="bottom" id="LsW-Iw-oUG"/>
                     <constraint firstItem="UMO-CQ-WaP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="RS2-hH-rfS"/>
@@ -97,9 +100,9 @@
                     <constraint firstAttribute="trailing" secondItem="ABP-ey-abD" secondAttribute="trailing" constant="10" id="hhE-Jc-6J0"/>
                     <constraint firstItem="CtF-Bw-XzB" firstAttribute="centerY" secondItem="oO7-Dh-d1s" secondAttribute="centerY" id="lkX-Eo-jd7"/>
                     <constraint firstAttribute="trailing" secondItem="C9z-Tp-wS0" secondAttribute="trailing" constant="10" id="mcS-lM-fn9"/>
+                    <constraint firstAttribute="trailing" secondItem="AQj-b0-Ds1" secondAttribute="trailing" constant="10" id="rNE-z5-OAx"/>
                     <constraint firstItem="C9z-Tp-wS0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="rak-Nu-lvH"/>
                     <constraint firstItem="CtF-Bw-XzB" firstAttribute="leading" secondItem="oO7-Dh-d1s" secondAttribute="trailing" constant="10" id="waE-Gd-SJj"/>
-                    <constraint firstItem="926-T7-mKM" firstAttribute="trailing" secondItem="oO7-Dh-d1s" secondAttribute="trailing" id="ycp-0j-OYr"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

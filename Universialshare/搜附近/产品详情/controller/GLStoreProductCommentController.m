@@ -7,13 +7,14 @@
 //
 
 #import "GLStoreProductCommentController.h"
-#import "GLStoreProductCommentCell.h"
+//#import "GLStoreProductCommentCell.h"
+#import "LBStoreDetailreplaysTableViewCell.h"
 
-@interface GLStoreProductCommentController ()<GLStoreProductCommentCellDelegate>
+@interface GLStoreProductCommentController ()
 @property (nonatomic, strong)NSMutableArray *models;
 @end
 
-static NSString *ID = @"GLStoreProductCommentCell";
+static NSString *ID = @"LBStoreDetailreplaysTableViewCell";
 @implementation GLStoreProductCommentController
 
 - (void)viewDidLoad {
@@ -44,11 +45,12 @@ static NSString *ID = @"GLStoreProductCommentCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    GLStoreProductCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
+    LBStoreDetailreplaysTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.delegate = self;
+//    cell.delegate = self;
   
-    cell.model = self.models[indexPath.row];
+//    cell.model = self.models[indexPath.row];
+    
    //        cell.starView.progress = [self.dataDic[@"com_data"][indexPath.row][@"mark"] integerValue];
 //        cell.nameLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"user_name"]];
 //        cell.contentLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"comment"]];
@@ -59,23 +61,23 @@ static NSString *ID = @"GLStoreProductCommentCell";
 
 }
 
-- (NSMutableArray *)models{
-    if (!_models) {
-        _models = [NSMutableArray array];
-        
-        for (int i = 0; i < 8; i++) {
-            GLStoreProductCommentModel *model = [[GLStoreProductCommentModel alloc] init];
-            if (i < 4) {
-                model.index = 1;
-                model.reply = @"";
-            }else{
-                model.index = 2;
-                model.reply = @"对方是否舒服撒打发十多个发生嘎嘎嘎方是否舒服撒打发十多个发生嘎方是否舒服撒打发十多个发生嘎方是否舒服撒打发十多个发生嘎方是否舒服撒打发十多个发生嘎方是否舒服撒打发十多个发生嘎";
-            }
-            [_models addObject:model];
-        }
-    }
-    return _models;
-}
+//- (NSMutableArray *)models{
+//    if (!_models) {
+//        _models = [NSMutableArray array];
+//        
+//        for (int i = 0; i < 8; i++) {
+//            LBStoreDetailreplaysTableViewCell *model = [[GLStoreProductCommentModel alloc] init];
+//            if (i < 4) {
+//                model.index = 1;
+//                model.reply = @"";
+//            }else{
+//                model.index = 2;
+//                model.reply = @"对方是否舒服撒打发十多个发生嘎嘎嘎方是否舒服撒打发十多个发生嘎方是否舒服撒打发十多个发生嘎方是否舒服撒打发十多个发生嘎方是否舒服撒打发十多个发生嘎方是否舒服撒打发十多个发生嘎";
+//            }
+//            [_models addObject:model];
+//        }
+//    }
+//    return _models;
+//}
 
 @end

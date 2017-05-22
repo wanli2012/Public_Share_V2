@@ -43,7 +43,13 @@
     self.adressLabel.text = [NSString stringWithFormat:@"地址:%@",model.shop_address];
     self.phoneNumLabel.text = [NSString stringWithFormat:@"电话:%@", model.phone];
     self.contentLabel.text = model.total_money;
-    self.distanceLabel.text = [NSString stringWithFormat:@"距离%@m", model.limit];
+    if ([model.limit floatValue] > 1000) {
+        self.distanceLabel.text = [NSString stringWithFormat:@"%.2fKm", [model.limit floatValue] / 1000];
+
+    }else{
+        
+        self.distanceLabel.text = [NSString stringWithFormat:@"%@m", model.limit];
+    }
     
 }
 
