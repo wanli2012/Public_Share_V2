@@ -61,6 +61,8 @@
     GLNearbyViewController *nearbyVC = [[GLNearbyViewController alloc] init];
     //门店
     GLMerchat_StoreController *storeVC = [[GLMerchat_StoreController alloc] init];
+    //商家用 评论
+    
     
     BaseNavigationViewController *firstNav = [[BaseNavigationViewController alloc] initWithRootViewController:firstVC];
     BaseNavigationViewController *Homenav = [[BaseNavigationViewController alloc] initWithRootViewController:Homevc];

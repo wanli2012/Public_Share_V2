@@ -93,7 +93,7 @@
     }
 
     _slideView = [[UIView alloc] initWithFrame:CGRectMake(0, TOPHEIGHT - 5, width, 2)];
-    [_slideView setBackgroundColor:YYSRGBColor(0, 222, 0,1)];
+    [_slideView setBackgroundColor:YYSRGBColor(40, 150, 58,1)];
     [_topScrollView addSubview:_slideView];
 }
 
@@ -180,13 +180,13 @@
         
         UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 35)];
         label1.text = name1[i];
-        label1.textColor = YYSRGBColor(85, 85, 85,1);
+        label1.textColor = YYSRGBColor(40, 150, 58,1);
         label1.textAlignment = NSTextAlignmentCenter;
         label1.font = [UIFont systemFontOfSize:15];
         [view addSubview:label1];
 
         if (i == 0) {
-            label1.textColor = YYSRGBColor(0, 222, 0,1);
+            label1.textColor = YYSRGBColor(40, 150, 58,1);
         }
         
         [view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabButton:)]];
@@ -299,7 +299,7 @@ GLNearby_AllController *all;
             if (i == currentPage) {
                 label.textColor = YYSGlobalColor;
             } else {
-                label.textColor = YYSRGBColor(85, 85, 85,1);
+                label.textColor = YYSRGBColor(40, 150, 58,1);
             }
         }
         

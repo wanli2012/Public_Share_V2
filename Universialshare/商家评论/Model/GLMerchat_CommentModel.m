@@ -6,8 +6,8 @@
 //  Copyright © 2017年 四川三君科技有限公司. All rights reserved.
 //
 
-#import "GLStoreProductCommentModel.h"
+#import "GLMerchat_CommentModel.h"
 
-@implementation GLStoreProductCommentModel
+@implementation GLMerchat_CommentModel
 
 @end

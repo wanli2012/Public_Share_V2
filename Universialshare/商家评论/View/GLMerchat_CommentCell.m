@@ -6,15 +6,15 @@
 //  Copyright © 2017年 四川三君科技有限公司. All rights reserved.
 //
 
-#import "GLStoreProductCommentCell.h"
+#import "GLMerchat_CommentCell.h"
 
-@interface GLStoreProductCommentCell()
+@interface GLMerchat_CommentCell()
 
 
 
 @end
 
-@implementation GLStoreProductCommentCell
+@implementation GLMerchat_CommentCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -31,7 +31,7 @@
         [self.delegate comment];
     }
 }
-- (void)setModel:(GLStoreProductCommentModel *)model{
+- (void)setModel:(GLMerchat_CommentModel *)model{
     _model = model;
     self.replyLabel.text = model.reply;
     if (model.index == 1) {
