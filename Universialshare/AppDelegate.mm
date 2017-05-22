@@ -12,7 +12,6 @@
 #import "IQKeyboardManager.h"
 #import "BaseNavigationViewController.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
-
 #import "UMSocial.h"
 #import "UMSocialSinaSSOHandler.h"
 #import "UMSocialWechatHandler.h"
@@ -31,7 +30,6 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
     
      //GLLoginController *loginVC = [[GLLoginController alloc] init];
     //BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
@@ -52,16 +50,19 @@
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:WEIBO_APPKEY
                                               secret:WEIBO_SECRET
                                          RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-
-    return YES;
-}
--(BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
     
-    NSLog(@"method is called");
 
     return YES;
 }
+
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    // 登录需要编写
+    [UMSocialSnsService applicationDidBecomeActive];
+}
+
+
 #pragma mark - 键盘高度处理
 - (void)iqKeyboardShowOrHide {
     IQKeyboardManager *manager = [IQKeyboardManager sharedManager];

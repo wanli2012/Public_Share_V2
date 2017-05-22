@@ -9,6 +9,7 @@
 #import "LBMineCenterMYOrderEvaluationDetailViewController.h"
 #import "LBMineCenterMYOrderEvaluationDetailTableViewCell.h"
 #import "orderEvaluationModel.h"
+#import "LBMyOrderlistHeaderFooterView.h"
 
 @interface LBMineCenterMYOrderEvaluationDetailViewController ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,LBMineCenterMYOrderEvaluationDetailDelegete>
 
@@ -46,6 +47,9 @@
         model.moneylb = [NSString stringWithFormat:@"%@",self.arr[i][@"goods_price"]];
         model.infolb = [NSString stringWithFormat:@"%@",self.arr[i][@"goods_info"]];
         model.sizelb = [NSString stringWithFormat:@"%@",self.arr[i][@"shop_name"]];
+        model.mark = [NSString stringWithFormat:@"%@",self.arr[i][@"mark"]];
+        model.is_comment = [NSString stringWithFormat:@"%@",self.arr[i][@"is_comment"]];
+        model.reply = [NSString stringWithFormat:@"%@",self.arr[i][@"reply"]];
         
         [self.dataArr addObject:model];
     }
@@ -55,13 +59,13 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 1;
+     return self.dataArr.count;
     
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.dataArr.count;
+    return 1;
 }
 
 
@@ -69,8 +73,18 @@
     
     orderEvaluationModel *model = self.dataArr[indexPath.row];
     
-    return model.isexpand == YES ? 350:110;
-    
+    if ([model.is_comment integerValue] == 0) {
+        return model.isexpand == YES ? 350:110;
+    }else if ([model.is_comment integerValue] == 1 || [model.is_comment integerValue] == 2){
+        if (model.isexpand == YES) {
+            self.tableview.estimatedRowHeight = 180;
+            self.tableview.rowHeight = UITableViewAutomaticDimension;
+            return UITableViewAutomaticDimension;
+        }else{
+            return 110;
+        }
+    }
+    return 0;
 }
 
 
@@ -86,8 +100,29 @@
     cell.orderEvaluationModel = model;
     
     return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 118;
     
 }
+
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    LBMyOrderlistHeaderFooterView *headerview = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LBMyOrderlistHeaderFooterView"];
+    
+    if (!headerview) {
+        headerview = [[LBMyOrderlistHeaderFooterView alloc] initWithReuseIdentifier:@"LBMyOrderlistHeaderFooterView"];
+        
+    }
+    __weak typeof(self) weakself = self;
+    
+    
+    return headerview;
+}
+
 
 #pragma mark ---- LBMineCenterMYOrderEvaluationDetailDelegete
 
@@ -96,6 +131,7 @@
     orderEvaluationModel *model = self.dataArr[index];
     model.isexpand = !model.isexpand;
     [self.tableview reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:index inSection:0], nil] withRowAnimation:UITableViewRowAnimationFade];
+    //[self.tableview reloadData];
     
 }
 

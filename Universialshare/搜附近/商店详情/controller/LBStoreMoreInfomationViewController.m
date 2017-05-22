@@ -30,6 +30,7 @@ static const CGFloat headerImageHeight = 150.0f;
 @property (strong, nonatomic)NSDictionary *dataDic;
 @property (strong, nonatomic)NSArray *lovedataArr;//数组
 @property (nonatomic, assign)BOOL  HideNavagation;//是否需要恢复自定义导航栏
+@property(assign , nonatomic)CGPoint offset;//记录偏移
 
 @end
 
@@ -60,7 +61,11 @@ static const CGFloat headerImageHeight = 150.0f;
     self.navigationItem.rightBarButtonItem=item;
     
      [self initBarManager];
-     [self initdatasource];//请求数据
+    
+    if (self.dataDic.count <= 0) {
+        [self initdatasource];//请求数据
+    }
+
 }
 
 -(void)initdatasource{
@@ -121,14 +126,14 @@ static const CGFloat headerImageHeight = 150.0f;
     }
    
     //获取偏移量
-    CGPoint offset = scrollView.contentOffset;
+     _offset = scrollView.contentOffset;
 
     //判断是否改变
-    if (offset.y < -headerImageHeight) {
+    if (_offset.y < -headerImageHeight) {
         CGRect rect = self.cycleScrollView.frame;
         //我们只需要改变图片的y值和高度即可
-        rect.origin.y = offset.y;
-        rect.size.height =  -offset.y ;
+        rect.origin.y = _offset.y;
+        rect.size.height =  -_offset.y ;
         self.cycleScrollView.frame = rect;
         
     }
@@ -144,17 +149,27 @@ static const CGFloat headerImageHeight = 150.0f;
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
-    if (self.HideNavagation == NO) {
-        [MXNavigationBarManager reStoreToCustomNavigationBar:self];
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
-    }
+
+    [MXNavigationBarManager reStoreToCustomNavigationBar:self];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
+    
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
      self.navigationController.navigationBar.hidden = NO;
-    self.HideNavagation = NO;
+    [self.tableview setContentOffset:CGPointMake(0,-headerImageHeight) animated:NO];
+    if (self.HideNavagation == YES) {
+            //[self viewDidLoad];
+        [MXNavigationBarManager managerWithController:self];
+        if (self.offset.y <= 0) {
+            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:(self.offset.y+headerImageHeight)/headerImageHeight],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
+        }else{
+            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
+        }
+        //[MXNavigationBarManager changeAlphaWithCurrentOffset:self.offset.y];
+    }
    
 }
 
@@ -298,27 +313,27 @@ static const CGFloat headerImageHeight = 150.0f;
         headerview.titleLb.hidden = YES;
         headerview.moreBt.hidden = YES;
     }else if (section == 1){
-        if (self.dataDic.count > 0 ) {
-            headerview.titleLb.text = [NSString stringWithFormat:@"热卖商品 (%lu)",[self.dataDic[@"com_data"] count]];
-    
-        }else{
-            headerview.titleLb.text = @"热卖商品 (0)";
-            
-        }
+//        if (self.dataDic.count > 0 ) {
+//            headerview.titleLb.text = [NSString stringWithFormat:@"热卖商品 (%u)",[self.dataDic[@"com_data"] count]];
+//    
+//        }else{
+           headerview.titleLb.text = @"热卖商品";
+//            
+//        }
         headerview.moreBt.hidden = NO;
         [headerview.moreBt setTitle:@"查看全部" forState:UIControlStateNormal];
        headerview.titleLb.hidden = NO;
     }else if (section == 2){
         if (self.dataDic.count > 0 ) {
-            headerview.titleLb.text = [NSString stringWithFormat:@"评论 (%lu)",[self.dataDic[@"com_data"] count]];
+            headerview.titleLb.text = [NSString stringWithFormat:@"热门评论 (%u)",[self.dataDic[@"com_data"] count]];
             if ([self.dataDic[@"pl_count"]integerValue] > 3) {
-                headerview.moreBt.hidden = NO;
+                headerview.moreBt.hidden = YES;
             }else{
                 headerview.moreBt.hidden = YES;
             }
             
         }else{
-            headerview.titleLb.text = @"评论 (0)";
+            headerview.titleLb.text = @"热门评论 (0)";
             headerview.moreBt.hidden = YES;
         }
         
@@ -337,7 +352,7 @@ static const CGFloat headerImageHeight = 150.0f;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     if (indexPath.section == 1) {
-        self.HideNavagation = NO;
+        self.HideNavagation = YES;
         self.hidesBottomBarWhenPushed = YES;
         LBStoreProductDetailInfoViewController *vc=[[LBStoreProductDetailInfoViewController alloc]init];
         //vc.goodname = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_name"]];

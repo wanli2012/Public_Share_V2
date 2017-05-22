@@ -908,6 +908,9 @@
 		F97F09DE1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09DC1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib */; };
 		F97F09E21EC98AEA000D3B30 /* LBAddMineProductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F09E01EC98AEA000D3B30 /* LBAddMineProductionViewController.m */; };
 		F97F09E31EC98AEA000D3B30 /* LBAddMineProductionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09E11EC98AEA000D3B30 /* LBAddMineProductionViewController.xib */; };
+		F9F780451ED2E7C900A498D6 /* LBMyOrderlistHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F780441ED2E7C900A498D6 /* LBMyOrderlistHeaderFooterView.m */; };
+		F9F780491ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F780471ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.m */; };
+		F9F7804A1ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F780481ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2471,6 +2474,11 @@
 		F97F09DF1EC98AEA000D3B30 /* LBAddMineProductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBAddMineProductionViewController.h; sourceTree = "<group>"; };
 		F97F09E01EC98AEA000D3B30 /* LBAddMineProductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBAddMineProductionViewController.m; sourceTree = "<group>"; };
 		F97F09E11EC98AEA000D3B30 /* LBAddMineProductionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBAddMineProductionViewController.xib; sourceTree = "<group>"; };
+		F9F780431ED2E7C900A498D6 /* LBMyOrderlistHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMyOrderlistHeaderFooterView.h; sourceTree = "<group>"; };
+		F9F780441ED2E7C900A498D6 /* LBMyOrderlistHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMyOrderlistHeaderFooterView.m; sourceTree = "<group>"; };
+		F9F780461ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterMYOrderEvaluationDetailOneTableViewCell.h; sourceTree = "<group>"; };
+		F9F780471ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterMYOrderEvaluationDetailOneTableViewCell.m; sourceTree = "<group>"; };
+		F9F780481ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterMYOrderEvaluationDetailOneTableViewCell.xib; sourceTree = "<group>"; };
 		FC2B7A4A425FAC91F43C98C0 /* Pods-Universialshare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Universialshare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Universialshare/Pods-Universialshare.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5830,6 +5838,11 @@
 				F9643F1D1ECFEB3A001B707B /* LBMineCenterMYOrderEvaluationDetailTableViewCell.h */,
 				F9643F1E1ECFEB3A001B707B /* LBMineCenterMYOrderEvaluationDetailTableViewCell.m */,
 				F9643F1F1ECFEB3A001B707B /* LBMineCenterMYOrderEvaluationDetailTableViewCell.xib */,
+				F9F780431ED2E7C900A498D6 /* LBMyOrderlistHeaderFooterView.h */,
+				F9F780441ED2E7C900A498D6 /* LBMyOrderlistHeaderFooterView.m */,
+				F9F780461ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.h */,
+				F9F780471ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.m */,
+				F9F780481ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -6232,6 +6245,7 @@
 				4A3E60891EAD8CC8000E2E17 /* GLSubmitFirstController.xib in Resources */,
 				F9516E061ECB0084009F015D /* LBStoreProductDetailInfoViewController.xib in Resources */,
 				F9121B191EB17CEC00DAB7A2 /* IncentiveModel.xib in Resources */,
+				F9F7804A1ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.xib in Resources */,
 				F961AA2E1E9CE17800275F52 /* LBUserKonwViewController.xib in Resources */,
 				F923097E1E9B8BFF00ECDC94 /* LBMineCenterSafeModifySecondSecretViewController.xib in Resources */,
 				F9520A1F1EADF40600B4D665 /* LBViewProtocolViewController.xib in Resources */,
@@ -6935,6 +6949,7 @@
 				4AAD253D1EC188C90054FD06 /* GLBuyBackChooseBankView.m in Sources */,
 				4A4610931E9CC6360045824F /* ZXRGBLuminanceSource.m in Sources */,
 				F92309791E9B8BFF00ECDC94 /* LBMineCenterAccountSafeViewController.m in Sources */,
+				F9F780491ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.m in Sources */,
 				F92309681E9B8BFF00ECDC94 /* LBMyOrderEvaluationSucessViewController.m in Sources */,
 				4A4610D71E9CC6370045824F /* ZXITFReader.m in Sources */,
 				4A4610E91E9CC6370045824F /* ZXPDF417BarcodeValue.m in Sources */,
@@ -6982,6 +6997,7 @@
 				4A46107E1E9CC6360045824F /* ZXDecoderResult.m in Sources */,
 				4A4610F11E9CC6370045824F /* ZXPDF417ScanningDecoder.m in Sources */,
 				F966B3CF1EAC3D96007260FC /* LBMineCenterOrderDetailSixTableViewCell.m in Sources */,
+				F9F780451ED2E7C900A498D6 /* LBMyOrderlistHeaderFooterView.m in Sources */,
 				4A4610731E9CC6360045824F /* ZXWhiteRectangleDetector.m in Sources */,
 				4A4610981E9CC6360045824F /* ZXDataMatrixVersion.m in Sources */,
 				F923098D1E9B8BFF00ECDC94 /* LBMineCenterHotPickModelF.m in Sources */,
@@ -7261,6 +7277,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Universialshare/三方库/umeng_ios_social_sdk_5.2.1_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Universialshare",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Universialshare/universialshare.pch";
@@ -7274,6 +7291,8 @@
 					"$(PROJECT_DIR)/Universialshare/三方库/umeng_ios_social_sdk_5.2.1_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/Universialshare/三方库/umeng_ios_social_sdk_5.2.1_arm64_custom/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Universialshare/Lib",
+					"$(PROJECT_DIR)/Universialshare",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -7315,6 +7334,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Universialshare/三方库/umeng_ios_social_sdk_5.2.1_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Universialshare",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Universialshare/universialshare.pch";
@@ -7328,6 +7348,8 @@
 					"$(PROJECT_DIR)/Universialshare/三方库/umeng_ios_social_sdk_5.2.1_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/Universialshare/三方库/umeng_ios_social_sdk_5.2.1_arm64_custom/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Universialshare/Lib",
+					"$(PROJECT_DIR)/Universialshare",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

@@ -34,7 +34,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.navigationItem.title = @"支付";
     
 }
 

@@ -126,8 +126,17 @@
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
     
-  
-    if (viewController == [tabBarController.viewControllers objectAtIndex:3]) {
+    int index;
+    if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
+        index = 3;
+    }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]){
+        index = 2;
+    }else if ([[UserModel defaultUser].usrtype isEqualToString:@"0"]){
+        index = 3;
+    }else{
+        index = 3;
+    }
+    if (viewController == [tabBarController.viewControllers objectAtIndex:index]) {
        
         if ([UserModel defaultUser].loginstatus == YES) {
             

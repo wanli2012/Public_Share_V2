@@ -39,4 +39,9 @@
 @property (assign, nonatomic)NSInteger index;
 @property (strong, nonatomic)orderEvaluationModel *orderEvaluationModel;
 
+@property (weak, nonatomic) IBOutlet UILabel *baseviewrepaly;
+@property (weak, nonatomic) IBOutlet LCStarRatingView *baseviewstar;
+@property (weak, nonatomic) IBOutlet UIView *baseview1;
+@property (weak, nonatomic) IBOutlet UILabel *showlb;
+
 @end
