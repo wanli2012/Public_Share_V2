@@ -36,6 +36,7 @@
 @property (strong, nonatomic)NSDictionary *dataDic;
 @property (weak, nonatomic) IBOutlet UIImageView *collectionimage;
 @property (assign, nonatomic) NSInteger pl_count;
+@property (assign, nonatomic) NSInteger is_collection;//是否收藏
 
 @end
 
@@ -70,7 +71,13 @@
 -(void)initdatasource{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsDetailByGoodsID" paramDic:@{@"goods_id":@"110"} finish:^(id responseObject) {
+    NSDictionary *dic ;
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dic =@{@"goods_id":@"110",@"uid":[UserModel defaultUser].uid,@"token":[UserModel defaultUser].token};
+    }else{
+        dic =@{@"goods_id":@"110"};
+    }
+    [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsDetailByGoodsID" paramDic:dic finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
@@ -84,6 +91,8 @@
                 }else{
                     self.collectionimage.image = [UIImage imageNamed:@"collect_select_icon"];
                 }
+                self.is_collection = [self.dataDic[@"goods_data"][@"is_collection"]integerValue];
+                
                 [self.tableView reloadData];
             }
             
@@ -263,7 +272,10 @@
 }
 //立即购买
 - (IBAction)amoentbuy:(UIButton *)sender {
-    
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [MBProgressHUD showError:@"请先登录"];
+        return;
+    }
     self.hidesBottomBarWhenPushed = YES;
     GLConfirmOrderController *vc=[[GLConfirmOrderController alloc]init];
     vc.goods_id = self.goodId;
@@ -282,9 +294,13 @@
 }
 //收藏
 - (IBAction)productColletion:(UITapGestureRecognizer *)sender {
-    
-    if ([self.dataDic[@"goods_data"][@"is_collection"]integerValue] == 0) {
-        if ([UserModel defaultUser].loginstatus == YES) {
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [MBProgressHUD showError:@"请先登录"];
+        return;
+    }
+
+    if (self.is_collection  == 0) {
+ 
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
             dict[@"token"] = [UserModel defaultUser].token;
             dict[@"uid"] = [UserModel defaultUser].uid;
@@ -296,7 +312,8 @@
                 
                 [_loadV removeloadview];
                 if ([responseObject[@"code"] integerValue] == 1){
-                    
+                    self.collectionimage.image = [UIImage imageNamed:@"collect_select_icon"];
+                    self.is_collection = 1;
                     [MBProgressHUD showSuccess:@"收藏成功"];
                     
                 }else{
@@ -310,18 +327,43 @@
                 [_loadV removeloadview];
                 
             }];
-        }else{
-            [MBProgressHUD showSuccess:@"请先登录"];
-        }
+       
     }else{
-        
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"token"] = [UserModel defaultUser].token;
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"GID"] = self.goodId;
+
+        _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+        [NetworkManager requestPOSTWithURLStr:@"shop/delMyCollect" paramDic:dict finish:^(id responseObject) {
+            
+            [_loadV removeloadview];
+            if ([responseObject[@"code"] integerValue] == 1){
+                self.collectionimage.image = [UIImage imageNamed:@"collect_icon"];
+                self.is_collection = 0;
+                [MBProgressHUD showSuccess:@"取消收藏成功"];
+                
+            }else{
+                
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
+            
+            [self.tableView reloadData];
+            
+        } enError:^(NSError *error) {
+            [_loadV removeloadview];
+            
+        }];
     }
     
 }
 
 - (IBAction)addBuyCarEvent:(UIButton *)sender {
-    
-    if ([UserModel defaultUser].loginstatus == YES) {
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [MBProgressHUD showError:@"请先登录"];
+        return;
+    }
+
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[@"token"] = [UserModel defaultUser].token;
         dict[@"uid"] = [UserModel defaultUser].uid;
@@ -348,9 +390,6 @@
             [_loadV removeloadview];
             
         }];
-    }else{
-        [MBProgressHUD showSuccess:@"请先登录"];
-    }
     
 }
 //分享商品
