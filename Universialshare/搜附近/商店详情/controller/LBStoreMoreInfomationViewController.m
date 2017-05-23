@@ -20,7 +20,7 @@
 #import <MapKit/MapKit.h>
 #import "LBPayTheBillViewController.h"
 
-static const CGFloat headerImageHeight = 150.0f;
+static const CGFloat headerImageHeight = 180.0f;
 
 @interface LBStoreMoreInfomationViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,LBStoreDetailAdressDelegete,LBStoreDetailNameDelegete,LBStoreDetailHeaderViewDelegete>
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -113,7 +113,7 @@ static const CGFloat headerImageHeight = 150.0f;
     [MXNavigationBarManager setBarColor:TABBARTITLE_COLOR];
     //[MXNavigationBarManager setStatusBarStyle:UIStatusBarStyleDefault];
     [MXNavigationBarManager setZeroAlphaOffset:-headerImageHeight];
-    [MXNavigationBarManager setFullAlphaOffset:-headerImageHeight + 150];
+    [MXNavigationBarManager setFullAlphaOffset:-headerImageHeight + 180];
     //[MXNavigationBarManager setFullAlphaBarStyle:UIStatusBarStyleLightContent];
 }
 
@@ -475,6 +475,7 @@ static const CGFloat headerImageHeight = 150.0f;
 //我要买单
 -(void)payTheBill{
     self.hidesBottomBarWhenPushed = YES;
+    self.HideNavagation = YES;
     LBPayTheBillViewController *vc=[[LBPayTheBillViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }

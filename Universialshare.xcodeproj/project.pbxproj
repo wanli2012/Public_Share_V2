@@ -571,6 +571,9 @@
 		F90620061E83C5D00080E9D9 /* BasetabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F90620021E83C5D00080E9D9 /* BasetabbarViewController.m */; };
 		F90620071E83C5D00080E9D9 /* LBLoginNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F90620041E83C5D00080E9D9 /* LBLoginNavigationViewController.m */; };
 		F906201C1E83C8770080E9D9 /* tabbarimage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F906201B1E83C8770080E9D9 /* tabbarimage.xcassets */; };
+		F90B991E1ED417FC00E75C95 /* formattime.m in Sources */ = {isa = PBXBuildFile; fileRef = F90B991D1ED417FC00E75C95 /* formattime.m */; };
+		F90B99221ED419C500E75C95 /* LBCheckMoreHotProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F90B99201ED419C500E75C95 /* LBCheckMoreHotProductViewController.m */; };
+		F90B99231ED419C500E75C95 /* LBCheckMoreHotProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F90B99211ED419C500E75C95 /* LBCheckMoreHotProductViewController.xib */; };
 		F9101B341ECEFBCC0079BB2E /* LBPayTheBillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9101B321ECEFBCC0079BB2E /* LBPayTheBillViewController.m */; };
 		F9101B351ECEFBCC0079BB2E /* LBPayTheBillViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9101B331ECEFBCC0079BB2E /* LBPayTheBillViewController.xib */; };
 		F91029C21EC5831300246D04 /* LBMySalesmanListFaildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91029C01EC5831300246D04 /* LBMySalesmanListFaildViewController.xib */; };
@@ -1969,6 +1972,11 @@
 		F906201B1E83C8770080E9D9 /* tabbarimage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = tabbarimage.xcassets; sourceTree = "<group>"; };
 		F906201D1E83CBAD0080E9D9 /* universialshare.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = universialshare.pch; sourceTree = "<group>"; };
 		F906201F1E83CC900080E9D9 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		F90B991C1ED417FC00E75C95 /* formattime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = formattime.h; sourceTree = "<group>"; };
+		F90B991D1ED417FC00E75C95 /* formattime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = formattime.m; sourceTree = "<group>"; };
+		F90B991F1ED419C500E75C95 /* LBCheckMoreHotProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBCheckMoreHotProductViewController.h; sourceTree = "<group>"; };
+		F90B99201ED419C500E75C95 /* LBCheckMoreHotProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBCheckMoreHotProductViewController.m; sourceTree = "<group>"; };
+		F90B99211ED419C500E75C95 /* LBCheckMoreHotProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBCheckMoreHotProductViewController.xib; sourceTree = "<group>"; };
 		F9101B311ECEFBCC0079BB2E /* LBPayTheBillViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPayTheBillViewController.h; sourceTree = "<group>"; };
 		F9101B321ECEFBCC0079BB2E /* LBPayTheBillViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPayTheBillViewController.m; sourceTree = "<group>"; };
 		F9101B331ECEFBCC0079BB2E /* LBPayTheBillViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBPayTheBillViewController.xib; sourceTree = "<group>"; };
@@ -2574,6 +2582,8 @@
 		4A0023EF1E84AD6700B2A9FE /* Tool(工具类) */ = {
 			isa = PBXGroup;
 			children = (
+				F90B991C1ED417FC00E75C95 /* formattime.h */,
+				F90B991D1ED417FC00E75C95 /* formattime.m */,
 				F961A9CD1E9C75AF00275F52 /* GetLabelBounds.h */,
 				F961A9CE1E9C75AF00275F52 /* GetLabelBounds.m */,
 				F961A9CF1E9C75AF00275F52 /* predicateModel.h */,
@@ -5665,6 +5675,9 @@
 				F9516DDD1ECA8C76009F015D /* LBStoreMoreInfomationViewController.h */,
 				F9516DDE1ECA8C76009F015D /* LBStoreMoreInfomationViewController.m */,
 				F9516DDF1ECA8C76009F015D /* LBStoreMoreInfomationViewController.xib */,
+				F90B991F1ED419C500E75C95 /* LBCheckMoreHotProductViewController.h */,
+				F90B99201ED419C500E75C95 /* LBCheckMoreHotProductViewController.m */,
+				F90B99211ED419C500E75C95 /* LBCheckMoreHotProductViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -6262,6 +6275,7 @@
 				F91029C71EC5835B00246D04 /* LBMySalesmanListAuditViewController.xib in Resources */,
 				4A4610221E9CC6360045824F /* UMSCommentInputControlleriPad.xib in Resources */,
 				4A2F52171EC7084000ECA95D /* GLBottomCell.xib in Resources */,
+				F90B99231ED419C500E75C95 /* LBCheckMoreHotProductViewController.xib in Resources */,
 				4AE354701EC7F7CD00BF60CC /* 我的.xcassets in Resources */,
 				4AE3547A1EC83AAB00BF60CC /* GLMerchant_IncomeCell.xib in Resources */,
 				4AD5514F1EB2E6C900C04062 /* GLSubmitChooseTimeView.xib in Resources */,
@@ -6826,6 +6840,7 @@
 				4A46104A1E9CC6360045824F /* ZXAbstractDoCoMoResultParser.m in Sources */,
 				4AAD25AC1EC18BFF0054FD06 /* GLMyCollectionCell.m in Sources */,
 				4A4610B61E9CC6370045824F /* ZXAI01decoder.m in Sources */,
+				F90B99221ED419C500E75C95 /* LBCheckMoreHotProductViewController.m in Sources */,
 				4A4611151E9CC6370045824F /* ZXQRCodeMultiReader.m in Sources */,
 				F923091B1E9B8BFF00ECDC94 /* HWOptionButton.m in Sources */,
 				4A5F66A31ECA89FA0048F339 /* GLNearby_ClassifyConcollectionCell.m in Sources */,
@@ -6877,6 +6892,7 @@
 				F92309301E9B8BFF00ECDC94 /* LBMineCenterserviceNoticeViewController.m in Sources */,
 				F94A33F91EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.m in Sources */,
 				4AAD25821EC188F50054FD06 /* GLReceiveBeansCell.m in Sources */,
+				F90B991E1ED417FC00E75C95 /* formattime.m in Sources */,
 				4A16C63A1ECD7C7C00DF2E5E /* GLNearby_TradeOneModel.m in Sources */,
 				F961AA291E9CE17800275F52 /* LBConsumptionSeriesViewController.m in Sources */,
 				F923091E1E9B8BFF00ECDC94 /* LBMineCenterDetailedView.m in Sources */,

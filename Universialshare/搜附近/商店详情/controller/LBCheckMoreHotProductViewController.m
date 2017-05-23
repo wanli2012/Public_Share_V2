@@ -1,33 +1,34 @@
 //
-//  GLStoreProductCommentController.m
+//  LBCheckMoreHotProductViewController.m
 //  Universialshare
 //
-//  Created by 龚磊 on 2017/5/21.
+//  Created by 四川三君科技有限公司 on 2017/5/23.
 //  Copyright © 2017年 四川三君科技有限公司. All rights reserved.
 //
 
-#import "GLStoreProductCommentController.h"
-//#import "GLStoreProductCommentCell.h"
-#import "LBStoreDetailreplaysTableViewCell.h"
+#import "LBCheckMoreHotProductViewController.h"
+#import "LBStoreDetailHotProductTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "formattime.h"
+#import "LBStoreProductDetailInfoViewController.h"
 
-@interface GLStoreProductCommentController ()
+@interface LBCheckMoreHotProductViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (nonatomic, strong)NSMutableArray *models;
 @property (strong, nonatomic)LoadWaitView *loadV;
 @property (assign, nonatomic)NSInteger page;//页数默认为1
 @property (assign, nonatomic)BOOL refreshType;//判断刷新状态 默认为no
+
 @end
 
-static NSString *ID = @"LBStoreDetailreplaysTableViewCell";
-@implementation GLStoreProductCommentController
+static NSString *ID = @"LBStoreDetailHotProductTableViewCell";
+@implementation LBCheckMoreHotProductViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"评论";
-    self.navigationController.navigationBar.hidden = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
+    self.navigationItem.title = @"商品列表";
+    
+    [self.tableview registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     _page = 1;
     [self initdatasource];
     
@@ -53,17 +54,16 @@ static NSString *ID = @"LBStoreDetailreplaysTableViewCell";
     [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
     
     
-    self.tableView.mj_header = header;
-    self.tableView.mj_footer = footer;
-    
+    self.tableview.mj_header = header;
+    self.tableview.mj_footer = footer;
 }
 - (void)initdatasource{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsCommentListAsUser" paramDic:@{@"goods_id":@"110",@"page":[NSNumber numberWithInteger:_page]} finish:^(id responseObject) {
         [_loadV removeloadview];
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
+        [self.tableview.mj_header endRefreshing];
+        [self.tableview.mj_footer endRefreshing];
         if ([responseObject[@"code"] integerValue]==1) {
             
             if (_refreshType == NO) {
@@ -72,14 +72,14 @@ static NSString *ID = @"LBStoreDetailreplaysTableViewCell";
                     [self.models addObjectsFromArray:responseObject[@"data"][@"reply"]];
                 }
                 
-                [self.tableView reloadData];
+                [self.tableview reloadData];
             }else{
                 
                 if (![responseObject[@"data"][@"reply"] isEqual:[NSNull null]]) {
                     [self.models addObjectsFromArray:responseObject[@"data"][@"reply"]];
                 }
                 
-                [self.tableView reloadData];
+                [self.tableview reloadData];
                 
             }
             
@@ -95,8 +95,8 @@ static NSString *ID = @"LBStoreDetailreplaysTableViewCell";
         
     } enError:^(NSError *error) {
         [_loadV removeloadview];
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
+        [self.tableview.mj_header endRefreshing];
+        [self.tableview.mj_footer endRefreshing];
         [MBProgressHUD showError:error.localizedDescription];
         
         
@@ -129,40 +129,31 @@ static NSString *ID = @"LBStoreDetailreplaysTableViewCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    self.tableView.estimatedRowHeight = 75;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
-    return self.tableView.rowHeight;
+    return 70;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    LBStoreDetailreplaysTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
+    
+    LBStoreDetailHotProductTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreDetailHotProductTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.starView.progress = [self.models[indexPath.row][@"mark"] integerValue];
-    cell.nameLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"user_name"]];
-    cell.contentLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"comment"]];
-    cell.timeLb.text = [formattime formateTimeYM:self.models[indexPath.row][@"addtime"]];
-    [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.models[indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
-    if ([self.models[indexPath.row][@"is_comment"] integerValue] == 2) {
-        cell.replyLb.hidden = NO;
-        cell.replyLb.text = [NSString stringWithFormat:@"商家回复:%@",self.models[indexPath.row][@"reply"]];
-        cell.constaritH.constant = 15;
-        cell.constraitTop.constant = 0;
-        
-    }else{
-        cell.replyLb.hidden = YES;
-        cell.replyLb.text = @"";
-        cell.constaritH.constant = 0;
-        cell.constraitTop.constant = 6;
-        
-    }
     
-    if ([cell.nameLb.text rangeOfString:@"null"].location != NSNotFound) {
-        cell.nameLb.text = @"无名";
-    }
+     [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.models[indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
+     cell.nameLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"goods_name"]];
+     cell.moneyLb.text = [NSString stringWithFormat:@"¥%@",self.models[indexPath.row][@"goods_price"]];
+     cell.descrebLb.text = [NSString stringWithFormat:@"¥%@",self.models[indexPath.row][@"goods_info"]];
     
-        return cell;
+    
+    return cell;
+    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    self.hidesBottomBarWhenPushed = YES;
+    LBStoreProductDetailInfoViewController *vc=[[LBStoreProductDetailInfoViewController alloc]init];
+    //vc.goodname = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_name"]];
+    //vc.storename = [NSString stringWithFormat:@"%@分",self.dataDic[@"shop_data"][@"shop_name"]];
+    [self.navigationController pushViewController:vc animated:YES];
 
 }
 
@@ -172,5 +163,7 @@ static NSString *ID = @"LBStoreDetailreplaysTableViewCell";
     }
     return _models;
 }
+
+
 
 @end
