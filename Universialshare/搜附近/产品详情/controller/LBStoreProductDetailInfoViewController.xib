@@ -14,7 +14,7 @@
                 <outlet property="addcarBt" destination="fLc-bA-AWW" id="Tx6-qQ-fAv"/>
                 <outlet property="backbutton" destination="lJL-EK-4oL" id="YLF-Fg-xrt"/>
                 <outlet property="carbutton" destination="e0a-BI-uhC" id="GJX-ea-za7"/>
-                <outlet property="shareBt" destination="CGH-ZO-NT5" id="fVa-ZB-lZv"/>
+                <outlet property="collectionimage" destination="qt3-nG-OtM" id="HQI-UK-Ati"/>
                 <outlet property="tableView" destination="50W-rs-TaR" id="ZeK-xe-boW"/>
                 <outlet property="titileLb" destination="XMH-Oa-mHo" id="qyr-8W-KfK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -67,31 +67,31 @@
                                 <action selector="enterCarBuyList:" destination="-1" eventType="touchUpInside" id="eWo-9b-mvo"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HtE-iK-ImK">
-                            <rect key="frame" x="60" y="10" width="30" height="30"/>
+                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="collect_icon" translatesAutoresizingMaskIntoConstraints="NO" id="qt3-nG-OtM">
+                            <rect key="frame" x="70" y="14" width="23" height="23"/>
+                            <gestureRecognizers/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="30" id="VbF-9C-ddH"/>
-                                <constraint firstAttribute="height" constant="30" id="sfe-rj-AG3"/>
+                                <constraint firstAttribute="width" constant="23" id="19r-kE-G8L"/>
+                                <constraint firstAttribute="height" constant="23" id="49K-RZ-kPP"/>
                             </constraints>
-                            <state key="normal" image="一颗心"/>
                             <connections>
-                                <action selector="productColletion:" destination="-1" eventType="touchUpInside" id="DCh-Rm-sRd"/>
+                                <outletCollection property="gestureRecognizers" destination="xrV-Pg-RhY" appends="YES" id="pq1-Rg-cJP"/>
                             </connections>
-                        </button>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.96033936738967896" green="0.97251003980636597" blue="0.9807325005531311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="fLc-bA-AWW" firstAttribute="top" secondItem="kJ4-d4-Kbj" secondAttribute="top" id="1Iw-Pb-KYF"/>
+                        <constraint firstItem="qt3-nG-OtM" firstAttribute="centerY" secondItem="e0a-BI-uhC" secondAttribute="centerY" id="1Ko-ge-KaA"/>
                         <constraint firstAttribute="bottom" secondItem="fLc-bA-AWW" secondAttribute="bottom" id="JyC-DE-bjZ"/>
                         <constraint firstAttribute="bottom" secondItem="cVm-JP-UO5" secondAttribute="bottom" id="NaC-OJ-Zx7"/>
+                        <constraint firstItem="qt3-nG-OtM" firstAttribute="leading" secondItem="e0a-BI-uhC" secondAttribute="trailing" constant="30" id="NlQ-yp-xhn"/>
                         <constraint firstAttribute="height" constant="50" id="b1W-LB-deT"/>
-                        <constraint firstItem="HtE-iK-ImK" firstAttribute="centerY" secondItem="kJ4-d4-Kbj" secondAttribute="centerY" id="hLx-vT-Dql"/>
                         <constraint firstItem="cVm-JP-UO5" firstAttribute="leading" secondItem="fLc-bA-AWW" secondAttribute="trailing" id="kxk-ey-edg"/>
                         <constraint firstItem="e0a-BI-uhC" firstAttribute="leading" secondItem="kJ4-d4-Kbj" secondAttribute="leading" constant="10" id="nYZ-fb-Bc5"/>
                         <constraint firstItem="e0a-BI-uhC" firstAttribute="centerY" secondItem="kJ4-d4-Kbj" secondAttribute="centerY" id="vb5-qb-uKQ"/>
                         <constraint firstAttribute="trailing" secondItem="cVm-JP-UO5" secondAttribute="trailing" id="wCx-4p-XWA"/>
                         <constraint firstItem="cVm-JP-UO5" firstAttribute="top" secondItem="kJ4-d4-Kbj" secondAttribute="top" id="wUS-5q-cQy"/>
-                        <constraint firstItem="HtE-iK-ImK" firstAttribute="leading" secondItem="e0a-BI-uhC" secondAttribute="trailing" constant="20" id="xLW-Fs-0si"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="50W-rs-TaR">
@@ -118,7 +118,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品名称" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMH-Oa-mHo">
-                            <rect key="frame" x="45" y="29" width="225" height="20"/>
+                            <rect key="frame" x="45" y="29" width="232" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="0gr-5A-e6w"/>
                             </constraints>
@@ -126,28 +126,27 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGH-ZO-NT5">
-                            <rect key="frame" x="280" y="24" width="30" height="30"/>
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="share_icon" translatesAutoresizingMaskIntoConstraints="NO" id="GFm-1N-XFL">
+                            <rect key="frame" x="287" y="28" width="23" height="23"/>
+                            <gestureRecognizers/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="30" id="Xvv-Tk-xxa"/>
-                                <constraint firstAttribute="height" constant="30" id="f3c-Hd-fKt"/>
+                                <constraint firstAttribute="width" constant="23" id="EO4-TX-BkW"/>
+                                <constraint firstAttribute="height" constant="23" id="jBm-n2-D0q"/>
                             </constraints>
-                            <inset key="imageEdgeInsets" minX="5" minY="3" maxX="0.0" maxY="3"/>
-                            <state key="normal" image="一颗心"/>
                             <connections>
-                                <action selector="sharebuttonEvent:" destination="-1" eventType="touchUpInside" id="0fx-dh-WsR"/>
+                                <outletCollection property="gestureRecognizers" destination="oIV-ry-vFw" appends="YES" id="Nkp-O8-uGb"/>
                             </connections>
-                        </button>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.14404621719999999" green="0.60565376280000005" blue="0.14635491370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="CGH-ZO-NT5" firstAttribute="leading" secondItem="XMH-Oa-mHo" secondAttribute="trailing" constant="10" id="0V1-Bi-ht9"/>
                         <constraint firstItem="lJL-EK-4oL" firstAttribute="leading" secondItem="rM4-Yo-eJD" secondAttribute="leading" constant="10" id="9By-DH-QSr"/>
-                        <constraint firstItem="CGH-ZO-NT5" firstAttribute="centerY" secondItem="lJL-EK-4oL" secondAttribute="centerY" id="RP2-qR-Xvo"/>
+                        <constraint firstItem="GFm-1N-XFL" firstAttribute="centerY" secondItem="lJL-EK-4oL" secondAttribute="centerY" id="NLr-UP-Of5"/>
                         <constraint firstAttribute="bottom" secondItem="lJL-EK-4oL" secondAttribute="bottom" constant="10" id="YUg-Cm-W7t"/>
                         <constraint firstItem="XMH-Oa-mHo" firstAttribute="leading" secondItem="lJL-EK-4oL" secondAttribute="trailing" constant="10" id="jAW-Y8-lMi"/>
+                        <constraint firstAttribute="trailing" secondItem="GFm-1N-XFL" secondAttribute="trailing" constant="10" id="jgN-17-dbC"/>
+                        <constraint firstItem="GFm-1N-XFL" firstAttribute="leading" secondItem="XMH-Oa-mHo" secondAttribute="trailing" constant="10" id="s1Q-sT-EWI"/>
                         <constraint firstItem="XMH-Oa-mHo" firstAttribute="centerY" secondItem="lJL-EK-4oL" secondAttribute="centerY" id="wcT-au-jDb"/>
-                        <constraint firstAttribute="trailing" secondItem="CGH-ZO-NT5" secondAttribute="trailing" constant="10" id="xwe-2u-LJL"/>
                     </constraints>
                 </view>
             </subviews>
@@ -168,10 +167,21 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="35" y="54.5"/>
         </view>
+        <tapGestureRecognizer id="xrV-Pg-RhY">
+            <connections>
+                <action selector="productColletion:" destination="-1" id="e4V-js-IuM"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="oIV-ry-vFw">
+            <connections>
+                <action selector="tapgestureShareproduct:" destination="-1" id="kgs-2Y-v1A"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="collect_icon" width="16" height="16"/>
         <image name="iv_back" width="13" height="25"/>
-        <image name="一颗心" width="27" height="26"/>
+        <image name="share_icon" width="15" height="13"/>
         <image name="购物车" width="20" height="20"/>
     </resources>
 </document>
