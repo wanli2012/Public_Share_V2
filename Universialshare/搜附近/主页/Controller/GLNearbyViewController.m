@@ -7,15 +7,16 @@
 
 #import "GLNearbyViewController.h"
 #import "SlideTabBarView.h"
-//#import "GLCityChooseController.h"
 #import "GLNearby_TradeOneModel.h"
+#import "GLNearby_SearchController.h"
 
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 #import <BaiduMapAPI_Search/BMKSearchComponent.h>
 
-@interface GLNearbyViewController ()
+
+@interface GLNearbyViewController ()<UITextFieldDelegate>
 {
     LoadWaitView *_loadV;
     
@@ -23,17 +24,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *cityBtn;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (nonatomic, strong)NSMutableArray *models;
+@property (weak, nonatomic) IBOutlet UITextField *searchTextF;
 
-//@property (strong, nonatomic)NodataView *nodataV;
 @property (nonatomic, assign) CLLocationCoordinate2D coors2; // 纬度
 @property (nonatomic, copy)NSString *latitude;
 @property (nonatomic, copy)NSString *longitude;
 
 @property (strong , nonatomic)BMKReverseGeoCodeOption *option;//地址
 
-//@property (assign , nonatomic)BOOL locationB;//判断是否定位 默认为NO
-//@property (assign, nonatomic)NSInteger page;//页数默认为0
-//@property (assign, nonatomic)BOOL refreshType;//判断刷新状态 默认为no
 @end
 
 @implementation GLNearbyViewController
@@ -54,9 +52,8 @@
 }
 - (void)postRequest {
     
-//  _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.];
     [NetworkManager requestPOSTWithURLStr:@"shop/getTradeId" paramDic:@{} finish:^(id responseObject) {
-//        [_loadV removeloadview];
+
         if ([responseObject[@"code"] integerValue] == 1){
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
 //                NSLog(@"responseObject = %@",responseObject);
@@ -72,28 +69,17 @@
         }
         
     } enError:^(NSError *error) {
-//        [_loadV removeloadview];
+
         [MBProgressHUD showError:error.description];
     }];
     
 }
 
-//- (IBAction)cityChoose:(id)sender {
-//    
-//    GLCityChooseController *cityVC = [[GLCityChooseController alloc] init];
-//    __weak typeof(self) weakSelf = self;
-//    cityVC.block = ^(NSString *city){
-//        [weakSelf.cityBtn setTitle:city forState:UIControlStateNormal];
-//    };
-//    self.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:cityVC animated:YES];
-//    self.hidesBottomBarWhenPushed = NO;
-//}
+
 -(void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-  
 
 }
 -(void)viewWillDisappear:(BOOL)animated {
@@ -101,17 +87,17 @@
     _mapView.delegate = nil; // 不用时，置nil
     _locService.delegate = nil;
 }
+- (IBAction)search:(id)sender {
+    self.hidesBottomBarWhenPushed = YES;
+    GLNearby_SearchController *searchVC = [[GLNearby_SearchController alloc] init];
+    [self presentViewController:searchVC animated:NO completion:nil];
+
+}
 
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-    //    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
-    //[_mapView updateLocationData:userLocation];
-    
     self.coors2 = userLocation.location.coordinate;
-//    self.locationB=YES;
 
-    
-    
     [GLNearby_Model defaultUser].latitude = [NSString stringWithFormat:@"%f",self.coors2.latitude];
     [GLNearby_Model defaultUser].longitude = [NSString stringWithFormat:@"%f",self.coors2.longitude];
     
@@ -126,6 +112,15 @@
     [_locService stopUserLocationService];
     
 }
+#pragma UITextFieldDelegate
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+//    self.hidesBottomBarWhenPushed = YES;
+//    GLNearby_SearchController *searchVC = [[GLNearby_SearchController alloc] init];
+//    [self presentViewController:searchVC animated:NO completion:nil];
+//    
+//    return YES;
+//}
+
 #pragma mark 代理方法返回反地理编码结果
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
 {

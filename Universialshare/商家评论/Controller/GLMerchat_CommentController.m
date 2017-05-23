@@ -7,44 +7,160 @@
 //
 
 #import "GLMerchat_CommentController.h"
-#import "GLMerchat_CommentModel.h"
-#import "GLMerchat_CommentCell.h"
+#import "GLMerchat_CommentGoodsModel.h"
+#import "GLMerchat_CommentGoodCell.h"
+#import "GLMerchat_CommentTableController.h"
 
-@interface GLMerchat_CommentController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@interface GLMerchat_CommentController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+{
+    LoadWaitView *_loadV;
+}
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
+
+@property (nonatomic,strong)NSMutableArray *models;
+
+@property (nonatomic,assign)NSInteger page;
+
+@property (nonatomic,strong)NodataView *nodataV;
 @end
 
-static NSString *ID = @"GLMerchat_CommentCell";
+static NSString *ID = @"GLMerchat_CommentGoodCell";
 @implementation GLMerchat_CommentController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
-}
-#pragma UITableviewDelegate UITableviewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.collectionView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellWithReuseIdentifier:ID];
+    
+    __weak __typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf updateData:YES];
+        
+    }];
+    
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf updateData:NO];
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+    }];
+    
+    // 设置文字
+    [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
+    
+    [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
+    
+    [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
+    
+    
+    self.collectionView.mj_header = header;
+    self.collectionView.mj_footer = footer;
+    [self updateData:YES];
     
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    GLMerchat_CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+- (void)updateData:(BOOL)status {
+    if (status) {
+        
+        self.page = 1;
+        [self.models removeAllObjects];
+        
+    }else{
+        _page ++;
+        
+    }
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"page"] = [NSString stringWithFormat:@"%ld",_page];
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"shop/getArealyCommentGoodsList" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        [self endRefresh];
+        if ([responseObject[@"code"] integerValue]==1) {
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                for (NSDictionary *dic in responseObject[@"data"]) {
+                    GLMerchat_CommentGoodsModel *model = [GLMerchat_CommentGoodsModel mj_objectWithKeyValues:dic];
+                    [_models addObject:model];
+                }
+               
+               
+                [self.collectionView reloadData];
+            }
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+            
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [self endRefresh];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+    
+}
+- (void)endRefresh {
+    [self.collectionView.mj_header endRefreshing];
+    [self.collectionView.mj_footer endRefreshing];
+}
+-(NodataView*)nodataV{
+    
+    if (!_nodataV) {
+        _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-114-49);
+    }
+    return _nodataV;
+    
+}
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
+#pragma UICollectionViewDelegate UICollectionViewDataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.models.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    GLMerchat_CommentGoodCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
+    cell.model = self.models[indexPath.row];
     return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
- 
-        
-    return 110 *autoSizeScaleY;
-    
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//选择了某个cell
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     self.hidesBottomBarWhenPushed = YES;
-    
+    GLMerchat_CommentTableController *commentVC = [[GLMerchat_CommentTableController alloc] init];
+    GLMerchat_CommentGoodsModel *model = self.models[indexPath.row];
+    commentVC.goods_id = model.goods_id;
+    [self.navigationController pushViewController:commentVC animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
+//定义每个UICollectionViewCell 的大小
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return CGSizeMake(SCREEN_WIDTH / 2 - 0.5, 150);
+}
+//每个section中不同的行之间的行间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 1;
+}
+//每个item之间的间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 1;
+}
 
-
-
+- (NSMutableArray *)models{
+    if (!_models) {
+        _models = [NSMutableArray array];
+    }
+    return _models;
+}
 @end

@@ -11,9 +11,10 @@
 
 @protocol  GLMerchat_CommentCellDelegate <NSObject>
 
-- (void)comment;
+- (void)comment:(NSInteger)index;
 
 @end
+
 @interface GLMerchat_CommentCell : UITableViewCell
 
 @property (nonatomic, strong)GLMerchat_CommentModel *model;
@@ -24,4 +25,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *replyLabel;
 
 @property (nonatomic, assign)NSInteger index;
+
 @end
