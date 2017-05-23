@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLg-pJ-f7i">
@@ -28,14 +28,13 @@
                                     <constraint firstAttribute="height" constant="18" id="ZUz-3g-27E"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ady-QB-Tn1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ady-QB-Tn1">
                                 <rect key="frame" x="275" y="17" width="35" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="dIY-I0-C8r"/>
                                     <constraint firstAttribute="height" constant="30" id="oAQ-Lv-hSw"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="☎️"/>
+                                <state key="normal" image="phone_icon"/>
                                 <connections>
                                     <action selector="phonebuttonEvent:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5KI-PQ-mlC"/>
                                 </connections>
@@ -48,15 +47,15 @@
                                     <constraint firstAttribute="height" constant="30" id="V7H-P8-Bh9"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8x6-Ab-JOt">
-                                <rect key="frame" x="204" y="20" width="60" height="25"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8x6-Ab-JOt">
+                                <rect key="frame" x="204" y="20.5" width="60" height="24"/>
                                 <color key="backgroundColor" red="0.10655537992715836" green="0.61749500036239624" blue="0.77621930837631226" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="FFr-4a-FLP"/>
+                                    <constraint firstAttribute="height" constant="24" id="FFr-4a-FLP"/>
                                     <constraint firstAttribute="width" constant="60" id="lSJ-0p-lsZ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <state key="normal" title="到这里">
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -119,6 +118,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="phone_icon" width="14" height="14"/>
         <image name="定位" width="11" height="11"/>
     </resources>
 </document>

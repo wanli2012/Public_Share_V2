@@ -12,4 +12,7 @@
 
 @property(nonatomic , strong)NSString *storeId;
 
+@property(nonatomic , assign)CGFloat lat;
+@property(nonatomic , assign)CGFloat lng;
+
 @end

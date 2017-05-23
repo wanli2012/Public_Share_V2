@@ -10,6 +10,8 @@
 #import "LBMineCenterMYOrderEvaluationDetailTableViewCell.h"
 #import "orderEvaluationModel.h"
 #import "LBMyOrderlistHeaderFooterView.h"
+#import "LBMineCenterMYOrderEvaluationDetailOneTableViewCell.h"
+#import "LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.h"
 
 @interface LBMineCenterMYOrderEvaluationDetailViewController ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,LBMineCenterMYOrderEvaluationDetailDelegete>
 
@@ -32,6 +34,8 @@
     self.tableview.tableFooterView = [UIView new];
     
     [self.tableview registerNib:[UINib nibWithNibName:@"LBMineCenterMYOrderEvaluationDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMineCenterMYOrderEvaluationDetailTableViewCell"];
+     [self.tableview registerNib:[UINib nibWithNibName:@"LBMineCenterMYOrderEvaluationDetailOneTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMineCenterMYOrderEvaluationDetailOneTableViewCell"];
+    [self.tableview registerNib:[UINib nibWithNibName:@"LBMineCenterMYOrderEvaluationDetailTwoTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMineCenterMYOrderEvaluationDetailTwoTableViewCell"];
     
     [self initdatasorce];
 }
@@ -50,6 +54,7 @@
         model.mark = [NSString stringWithFormat:@"%@",self.arr[i][@"mark"]];
         model.is_comment = [NSString stringWithFormat:@"%@",self.arr[i][@"is_comment"]];
         model.reply = [NSString stringWithFormat:@"%@",self.arr[i][@"reply"]];
+        model.conment = [NSString stringWithFormat:@"%@",self.arr[i][@"comment"]];
         
         [self.dataArr addObject:model];
     }
@@ -60,28 +65,38 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
      return self.dataArr.count;
-    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    orderEvaluationModel *model = self.dataArr[section];
+    
+    return model.isexpand == YES ? 1:0;
+    
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    orderEvaluationModel *model = self.dataArr[indexPath.row];
+    orderEvaluationModel *model = self.dataArr[indexPath.section];
     
     if ([model.is_comment integerValue] == 0) {
-        return model.isexpand == YES ? 350:110;
-    }else if ([model.is_comment integerValue] == 1 || [model.is_comment integerValue] == 2){
+        return model.isexpand == YES ? 200:0;
+    }else if ([model.is_comment integerValue] == 1){
         if (model.isexpand == YES) {
-            self.tableview.estimatedRowHeight = 180;
+            self.tableview.estimatedRowHeight = 70;
             self.tableview.rowHeight = UITableViewAutomaticDimension;
             return UITableViewAutomaticDimension;
         }else{
-            return 110;
+            return 0;
+        }
+    }else if ([model.is_comment integerValue] == 2){
+        if (model.isexpand == YES) {
+            self.tableview.estimatedRowHeight = 105;
+            self.tableview.rowHeight = UITableViewAutomaticDimension;
+            return UITableViewAutomaticDimension;
+        }else{
+            return 0;
         }
     }
     return 0;
@@ -90,21 +105,38 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    orderEvaluationModel *model = self.dataArr[indexPath.section];
+
+    if ([model.is_comment integerValue] == 0) {
+        LBMineCenterMYOrderEvaluationDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBMineCenterMYOrderEvaluationDetailTableViewCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.index=indexPath.section;
+        cell.delegete = self;
+        cell.orderEvaluationModel = model;
+        return cell;
+    }else if ([model.is_comment integerValue] == 1 ) {
+        LBMineCenterMYOrderEvaluationDetailTwoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBMineCenterMYOrderEvaluationDetailTwoTableViewCell" forIndexPath:indexPath];
+        cell.starview.progress = [model.mark floatValue];
+        cell.contentlb.text = model.conment;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+        
+    }else if ([model.is_comment integerValue] == 2) {
+        LBMineCenterMYOrderEvaluationDetailOneTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBMineCenterMYOrderEvaluationDetailOneTableViewCell" forIndexPath:indexPath];
+        cell.starview.progress = [model.mark floatValue];
+        cell.contentlb.text = model.conment;
+        cell.replayLb.text = model.reply;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+        
+    }
     
-    LBMineCenterMYOrderEvaluationDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBMineCenterMYOrderEvaluationDetailTableViewCell" forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //[cell.payBt setTitle:@"申请退款" forState:UIControlStateNormal];
-    cell.index=indexPath.row;
-    cell.delegete = self;
-    orderEvaluationModel *model = self.dataArr[indexPath.row];
-    cell.orderEvaluationModel = model;
-    
-    return cell;
+    return [[UITableViewCell alloc]init];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    return 118;
+    return 110;
     
 }
 
@@ -117,8 +149,39 @@
         headerview = [[LBMyOrderlistHeaderFooterView alloc] initWithReuseIdentifier:@"LBMyOrderlistHeaderFooterView"];
         
     }
+    headerview.index = section;
+    orderEvaluationModel *model = self.dataArr[headerview.index];
     __weak typeof(self) weakself = self;
+    headerview.orderName.text = model.namelb;
+    headerview.orderinfo.text = model.infolb;
+    headerview.orderstore.text = model.sizelb;
     
+    if ([model.is_comment integerValue] == 0) {
+        headerview.typelabel.text = @"发表评论";
+        
+    }else if ([model.is_comment integerValue] == 1 || [model.is_comment integerValue] == 2) {
+
+        headerview.typelabel.text = @"已评论";
+    }
+    
+    headerview.retrunshowsection = ^(NSInteger sectiona,LBMyOrderlistHeaderFooterView *headview){
+    
+        model.isexpand = !model.isexpand;
+        
+        if (model.isexpand == YES) {
+            
+            headview.imagevo.transform = CGAffineTransformIdentity;
+            
+        }else{
+        
+            CGAffineTransform cgaffine = CGAffineTransformMakeRotation(M_PI);
+            headview.imagevo.transform = cgaffine;
+        }
+        
+        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:sectiona];
+        [weakself.tableview reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+        
+    };
     
     return headerview;
 }
@@ -150,12 +213,16 @@
         [MBProgressHUD showError:@"请写点感受吧"];
         return;
     }
-    
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/order_mark_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"mark" :[NSNumber numberWithFloat:model.starValue] , @"comment":model.conentlb,@"order_goods_id":model.order_goods_id} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"shop/saveUserComment" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"mark" :[NSNumber numberWithFloat:model.starValue] , @"comment":model.conentlb,@"order_goods_id":model.order_goods_id} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
+            model.is_comment = @"1";
+            model.conment = model.conentlb;
+            model.mark = [NSString stringWithFormat:@"%f",model.starValue];
             [MBProgressHUD showError:@"评论成功"];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"LBMyOrderPendingEvaluationViewController" object:nil userInfo:@{@"mark":model.mark,@"comment":model.conment}];
+            [self.tableview reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:index inSection:0], nil] withRowAnimation:UITableViewRowAnimationFade];
 
         }else if ([responseObject[@"code"] integerValue]==3){
             
@@ -164,16 +231,12 @@
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
             
-            
         }
     } enError:^(NSError *error) {
         [_loadV removeloadview];
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
-    
-    
-
 }
 
 -(NSMutableArray*)dataArr{

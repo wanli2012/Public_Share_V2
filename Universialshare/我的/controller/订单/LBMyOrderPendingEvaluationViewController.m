@@ -20,6 +20,8 @@
 @property (assign, nonatomic)BOOL refreshType;//判断刷新状态 默认为no
 @property (strong, nonatomic)NodataView *nodataV;
 
+@property (assign, nonatomic)NSInteger refreshindex;//刷新下标
+
 @end
 
 @implementation LBMyOrderPendingEvaluationViewController
@@ -59,6 +61,8 @@
     
     self.tableview.mj_header = header;
     self.tableview.mj_footer = footer;
+    //评论成功刷新数据源
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshdatasource:) name:@"LBMyOrderPendingEvaluationViewController" object:nil];
     
 }
 
@@ -141,12 +145,12 @@
     cell.deleteBt.hidden = YES;
     [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"thumb"]]] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
     cell.namelb.text = [NSString stringWithFormat:@"订单号:%@",self.dataarr[indexPath.row][@"order_num"]];
-     cell.numlb.text = [NSString stringWithFormat:@"总价:¥%@",self.dataarr[indexPath.row][@"order_money"]];
-     cell.priceLb.text = [NSString stringWithFormat:@"数量:%@",self.dataarr[indexPath.row][@"total"]];
+    cell.numlb.text = [NSString stringWithFormat:@"总价:¥%@",self.dataarr[indexPath.row][@"order_money"]];
+    cell.priceLb.text = [NSString stringWithFormat:@"数量:%@",self.dataarr[indexPath.row][@"total"]];
     
     __weak typeof(self)  weakself = self;
     cell.retunpaybutton = ^(NSInteger index){
-        
+        _refreshindex = index;
         LBMineCenterMYOrderEvaluationDetailViewController *vc=[[LBMineCenterMYOrderEvaluationDetailViewController alloc]init];
         vc.arr = weakself.dataarr[index][@"goods_data"];
         [weakself.navigationController pushViewController:vc animated:YES];
@@ -161,6 +165,24 @@
     
     
     
+}
+
+-(void)refreshdatasource:(NSNotification*)noti{
+   
+    NSDictionary *dic = noti.userInfo;
+
+    NSMutableDictionary *dic1=[NSMutableDictionary dictionaryWithDictionary:self.dataarr[_refreshindex]];
+    
+    dic1[@"is_comment"] = @"1";
+    dic1[@"mark"] = dic[@"mark"];
+    dic1[@"comment"] = dic[@"comment"];
+    
+    [self.dataarr replaceObjectAtIndex:_refreshindex withObject:dic1];
+    
+    [self.tableview reloadData];
+    
+    
+
 }
 
 -(NSMutableArray *)dataarr{

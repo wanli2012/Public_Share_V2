@@ -42,7 +42,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.title = @"产品详情";
     self.titileLb.text = self.goodname;
     self.tableView.tableHeaderView = self.cycleScrollView;
     
@@ -75,6 +74,7 @@
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 self.dataDic = responseObject[@"data"];
                 self.cycleScrollView.imageURLStringsGroup = self.dataDic[@"img_arr"];
+                self.titileLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"name"]];
                 [self.tableView reloadData];
             }
             
@@ -167,6 +167,18 @@
         cell.contentLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"comment"]];
         cell.timeLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"addtime"]];
         [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
+        if ([self.dataDic[@"com_data"][indexPath.row][@"is_comment"] integerValue] == 2) {
+            cell.replyLb.hidden = NO;
+            cell.replyLb.text = [NSString stringWithFormat:@"商家回复:%@",self.dataDic[@"com_data"][indexPath.row][@"reply"]];
+            cell.constaritH.constant = 15;
+            cell.constraitTop.constant = 0;
+        }else{
+            cell.replyLb.hidden = YES;
+            cell.replyLb.text = @"";
+            cell.constaritH.constant = 0;
+            cell.constraitTop.constant = 6;
+            
+        }
         return cell;
         
     }
@@ -195,7 +207,7 @@
         headerview.moreBt.hidden = YES;
     }else if (section == 1){
         if (self.dataDic.count > 0 ) {
-            headerview.titleLb.text = [NSString stringWithFormat:@"评论 (%lu)",[self.dataDic[@"com_data"] count]];
+            headerview.titleLb.text = [NSString stringWithFormat:@"评论 (%u)",[self.dataDic[@"com_data"] count]];
                 headerview.moreBt.hidden = NO;
 //            if ([self.dataDic[@"pl_count"]integerValue] > 3) {
 //                 headerview.moreBt.hidden = NO;
@@ -248,7 +260,7 @@
 //进入购物车
 - (IBAction)enterCarBuyList:(UIButton *)sender {
     _cnt = 0;
-    _cntLabel.hidden = NO;
+    _cntLabel.hidden = YES;
     self.hidesBottomBarWhenPushed = YES;
     GLShoppingCartController *vc=[[GLShoppingCartController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
@@ -426,7 +438,7 @@
 -(SDCycleScrollView*)cycleScrollView
 {
     if (!_cycleScrollView) {
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)
                                                               delegate:self
                                                       placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
         

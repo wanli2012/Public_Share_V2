@@ -1,5 +1,5 @@
 //
-//  LBMineCenterMYOrderEvaluationDetailOneTableViewCell.h
+//  LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.h
 //  Universialshare
 //
 //  Created by 四川三君科技有限公司 on 2017/5/22.
@@ -9,11 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "LCStarRatingView.h"
 
-@interface LBMineCenterMYOrderEvaluationDetailOneTableViewCell : UITableViewCell
-
+@interface LBMineCenterMYOrderEvaluationDetailTwoTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet LCStarRatingView *starview;
-@property (weak, nonatomic) IBOutlet UILabel *replayLb;
-
 @property (weak, nonatomic) IBOutlet UILabel *contentlb;
 
 @end
