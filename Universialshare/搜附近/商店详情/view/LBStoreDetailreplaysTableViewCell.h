@@ -16,5 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentLb;
 @property (weak, nonatomic) IBOutlet UILabel *timeLb;
 @property (weak, nonatomic) IBOutlet LCStarRatingView *starView;
+@property (weak, nonatomic) IBOutlet UILabel *replyLb;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constaritH;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraitTop;
 
 @end

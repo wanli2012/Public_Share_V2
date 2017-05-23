@@ -12,14 +12,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LBMineCenterMYOrderEvaluationDetailOneTableViewCell" id="KGk-i7-Jjw" customClass="LBMineCenterMYOrderEvaluationDetailOneTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="105"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="104"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7I3-Vm-TFY">
-                        <rect key="frame" x="0.0" y="1" width="320" height="68"/>
+                        <rect key="frame" x="0.0" y="1" width="320" height="103"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评论" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9FP-gf-0lQ">
                                 <rect key="frame" x="10" y="10" width="30" height="20"/>
@@ -66,17 +66,41 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商家回复" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBV-1G-1Ys">
+                                <rect key="frame" x="10" y="70" width="60" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="B7W-8o-xW0"/>
+                                    <constraint firstAttribute="height" constant="20" id="o9f-Yz-FxP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cI-eV-xWY">
+                                <rect key="frame" x="80" y="70" width="230" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="uK9-Me-viO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="M4E-Yp-Ksg" firstAttribute="leading" secondItem="7I3-Vm-TFY" secondAttribute="leading" constant="10" id="0VA-u4-b8J"/>
                             <constraint firstItem="CGH-MK-tAW" firstAttribute="leading" secondItem="9FP-gf-0lQ" secondAttribute="trailing" constant="10" id="3YR-WM-Aiz"/>
+                            <constraint firstAttribute="trailing" secondItem="0cI-eV-xWY" secondAttribute="trailing" constant="10" id="7KD-ag-yQx"/>
+                            <constraint firstItem="eBV-1G-1Ys" firstAttribute="leading" secondItem="7I3-Vm-TFY" secondAttribute="leading" constant="10" id="B2n-bc-0Td"/>
                             <constraint firstItem="M4E-Yp-Ksg" firstAttribute="top" secondItem="9FP-gf-0lQ" secondAttribute="bottom" constant="10" id="EAM-H1-8R1"/>
+                            <constraint firstItem="0cI-eV-xWY" firstAttribute="top" secondItem="eBV-1G-1Ys" secondAttribute="top" id="F1o-UN-cuU"/>
                             <constraint firstItem="9FP-gf-0lQ" firstAttribute="top" secondItem="7I3-Vm-TFY" secondAttribute="top" constant="10" id="Fv8-CY-RIi"/>
                             <constraint firstAttribute="trailing" secondItem="AEn-7L-wDe" secondAttribute="trailing" constant="10" id="MI0-Nj-L9J"/>
+                            <constraint firstItem="eBV-1G-1Ys" firstAttribute="top" secondItem="AEn-7L-wDe" secondAttribute="bottom" constant="10" id="Sfp-kM-lum"/>
                             <constraint firstItem="CGH-MK-tAW" firstAttribute="centerY" secondItem="9FP-gf-0lQ" secondAttribute="centerY" id="VER-kS-mGI"/>
-                            <constraint firstAttribute="bottom" secondItem="AEn-7L-wDe" secondAttribute="bottom" constant="7.5" id="aFX-xn-IkO"/>
+                            <constraint firstAttribute="bottom" secondItem="0cI-eV-xWY" secondAttribute="bottom" constant="12.5" id="aS3-Jg-OZP"/>
                             <constraint firstItem="AEn-7L-wDe" firstAttribute="top" secondItem="M4E-Yp-Ksg" secondAttribute="top" id="cwa-Bx-Zzg"/>
+                            <constraint firstItem="0cI-eV-xWY" firstAttribute="leading" secondItem="eBV-1G-1Ys" secondAttribute="trailing" constant="10" id="fvD-5U-puY"/>
                             <constraint firstItem="9FP-gf-0lQ" firstAttribute="leading" secondItem="7I3-Vm-TFY" secondAttribute="leading" constant="10" id="oft-TL-ZCm"/>
                             <constraint firstItem="AEn-7L-wDe" firstAttribute="leading" secondItem="M4E-Yp-Ksg" secondAttribute="trailing" constant="10" id="wME-tQ-jFZ"/>
                         </constraints>
@@ -90,6 +114,11 @@
                     <constraint firstAttribute="trailing" secondItem="7I3-Vm-TFY" secondAttribute="trailing" id="cq8-nQ-thb"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="contentlb" destination="AEn-7L-wDe" id="i0b-H7-UAu"/>
+                <outlet property="replayLb" destination="0cI-eV-xWY" id="vTo-Dy-K7F"/>
+                <outlet property="starview" destination="CGH-MK-tAW" id="DOA-Bo-uEu"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

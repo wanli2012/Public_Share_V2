@@ -14,6 +14,9 @@
     [super awakeFromNib];
     self.Bobt.layer.cornerRadius = 4;
     self.Bobt.clipsToBounds = YES;
+    
+    UIImage *buttonImage = [UIImage  imageNamed:@"dzq_button"];
+    [self.Bobt  setBackgroundImage:buttonImage  forState:UIControlStateNormal];
 }
 //打电话
 - (IBAction)phonebuttonEvent:(UIButton *)sender {

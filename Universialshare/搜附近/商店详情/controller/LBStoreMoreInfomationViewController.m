@@ -40,7 +40,6 @@ static const CGFloat headerImageHeight = 150.0f;
     [super viewDidLoad];
   
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.title = @"商店名称";
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:0],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
 
@@ -71,7 +70,7 @@ static const CGFloat headerImageHeight = 150.0f;
 -(void)initdatasource{
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/goToShop" paramDic:@{@"shop_id":@"412"} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"shop/goToShop" paramDic:@{@"shop_id":@"412",@"lat":[NSNumber numberWithFloat:self.lat],@"lng":[NSNumber numberWithFloat:self.lng]} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
@@ -90,6 +89,8 @@ static const CGFloat headerImageHeight = 150.0f;
                 }
                 
                 self.cycleScrollView.imageURLStringsGroup = imagearr;
+                
+                 self.navigationItem.title = [NSString stringWithFormat:@"%@分",self.dataDic[@"shop_data"][@"shop_name"]];
                 
                 [self.tableview reloadData];
             }
@@ -260,11 +261,25 @@ static const CGFloat headerImageHeight = 150.0f;
     }else if (indexPath.section == 2){
         LBStoreDetailreplaysTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreDetailreplaysTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         cell.starView.progress = [self.dataDic[@"com_data"][indexPath.row][@"mark"] integerValue];
         cell.nameLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"user_name"]];
         cell.contentLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"comment"]];
         cell.timeLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"addtime"]];
         [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
+        
+        if ([self.dataDic[@"com_data"][indexPath.row][@"is_comment"] integerValue] == 2) {
+            cell.replyLb.hidden = NO;
+            cell.replyLb.text = [NSString stringWithFormat:@"商家回复:%@",self.dataDic[@"com_data"][indexPath.row][@"reply"]];
+            cell.constaritH.constant = 15;
+            cell.constraitTop.constant = 0;
+        }else{
+            cell.replyLb.hidden = YES;
+            cell.replyLb.text = @"";
+            cell.constaritH.constant = 0;
+            cell.constraitTop.constant = 6;
+        
+        }
         
          return cell;
         

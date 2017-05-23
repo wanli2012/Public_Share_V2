@@ -22,5 +22,6 @@
 @property(nonatomic,strong)NSString *mark;
 @property(nonatomic,strong)NSString *is_comment;
 @property(nonatomic,strong)NSString *reply;
+@property(nonatomic,strong)NSString *conment;
 
 @end

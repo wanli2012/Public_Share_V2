@@ -21,10 +21,9 @@
     self.submitbt.layer.borderWidth = 1;
     self.submitbt.layer.borderColor = TABBARTITLE_COLOR.CGColor;
     self.starview.progress = 0;
-    UITapGestureRecognizer *tapgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgestureview)];
     self.textview.delegate = self;
-    [self.headview addGestureRecognizer:tapgesture];
-    self.baseviewstar.enabled = NO;
+
+
 }
 
 -(void)tapgestureview{
@@ -36,27 +35,10 @@
 -(void)setOrderEvaluationModel:(orderEvaluationModel *)orderEvaluationModel{
     _orderEvaluationModel = orderEvaluationModel;
     
-    if ([_orderEvaluationModel.is_comment integerValue] == 0) {
-        self.baseView.hidden = NO;
-        self.baseview1.hidden = YES;
-        self.showlb.text = @"发表评论";
         self.starview.progress = _orderEvaluationModel.starValue;
         self.textview.text = _orderEvaluationModel.conentlb;
-        [self.imagev sd_setImageWithURL:[NSURL URLWithString:_orderEvaluationModel.imageurl] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
-        self.moenyLb.text = [NSString stringWithFormat:@"¥%@",_orderEvaluationModel.moneylb];
-        self.namelb.text = _orderEvaluationModel.namelb;
-        self.infilb.text=_orderEvaluationModel.infolb;
-        self.sizelb.text=_orderEvaluationModel.sizelb;
-        
-        if (_orderEvaluationModel.isexpand == YES) {
-            self.baseView.hidden=NO;
-            self.underimage.transform = CGAffineTransformIdentity;
-        }else{
-            self.baseView.hidden=YES;
-            CGAffineTransform transform= CGAffineTransformMakeRotation(M_PI);
-            self.underimage.transform = transform;
-        }
-        
+    
+    
         self.starview.progressDidChangedByUser=^(CGFloat progress){
             _orderEvaluationModel.starValue = progress;
         };
@@ -67,21 +49,7 @@
             self.placeholderLb.hidden = NO;
         }
         
-    }else if ([_orderEvaluationModel.is_comment integerValue] == 1 || [_orderEvaluationModel.is_comment integerValue] == 2){
-         self.baseview1.hidden = NO;
-         self.baseView.hidden = YES;
-        self.showlb.text = @"已评论";
-        self.baseviewstar.progress = [_orderEvaluationModel.mark floatValue];
-        self.baseviewrepaly.text = _orderEvaluationModel.reply;
-        if (_orderEvaluationModel.isexpand == YES) {
-            self.baseview1.hidden=NO;
-            self.underimage.transform = CGAffineTransformIdentity;
-        }else{
-            self.baseview1.hidden=YES;
-            CGAffineTransform transform= CGAffineTransformMakeRotation(M_PI);
-            self.underimage.transform = transform;
-        }
-    }
+    
 }
 
 -(void)textViewDidBeginEditing:(UITextView *)textView{
