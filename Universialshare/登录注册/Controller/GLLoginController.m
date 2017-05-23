@@ -75,6 +75,10 @@
     self.usertype = OrdinaryUser;
 
 }
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
+}
 //注册
 - (IBAction)registerClick:(id)sender {
     GLRegisterController *registerVC = [[GLRegisterController alloc] init];
