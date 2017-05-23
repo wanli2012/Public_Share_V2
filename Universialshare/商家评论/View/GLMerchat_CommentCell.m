@@ -48,10 +48,10 @@
     self.contentLabel.text = model.comment;
     self.starView.progress = [model.mark integerValue];
     
-    if (model.reply.length == 0) {
+    if ([model.is_comment integerValue] == 1) {
         _bgView.hidden = YES;
         _commentBtn.hidden = NO;
-        _replyLabel.text = model.reply;
+        _replyLabel.text = @"";
         
     }else{
         self.replyLabel.text = [NSString stringWithFormat:@"商家回复:%@",model.reply];

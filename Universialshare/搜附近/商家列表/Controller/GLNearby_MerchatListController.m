@@ -162,6 +162,8 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 }
 - (void)viewWillAppear:(BOOL)animated{
     
+    self.navigationController.navigationBar.hidden = NO;
+    
     UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
     CGRect rect=[self.topView convertRect:self.topView.bounds toView:window];
     

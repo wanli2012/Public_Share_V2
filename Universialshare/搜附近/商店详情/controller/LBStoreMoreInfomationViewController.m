@@ -19,10 +19,18 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <MapKit/MapKit.h>
 #import "LBPayTheBillViewController.h"
+#import "UMSocial.h"
+#import <Social/Social.h>
+#import "GLShareView.h"
+#import "GLSet_MaskVeiw.h"
 
 static const CGFloat headerImageHeight = 150.0f;
 
 @interface LBStoreMoreInfomationViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,LBStoreDetailAdressDelegete,LBStoreDetailNameDelegete,LBStoreDetailHeaderViewDelegete>
+{
+    GLShareView *_shareV;
+    GLSet_MaskVeiw *_maskV;
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (nonatomic, strong)SDCycleScrollView *cycleScrollView;
 @property (nonatomic, strong)UIButton *shareButton;
@@ -430,10 +438,55 @@ static const CGFloat headerImageHeight = 150.0f;
 
 //分享
 -(void)shareStoreAdress{
+    
+    CGFloat shareVH = SCREEN_HEIGHT /5;
+    
+    if (_shareV == nil) {
+        
+        _shareV = [[NSBundle mainBundle] loadNibNamed:@"GLShareView" owner:nil options:nil].lastObject;
+        _shareV.frame = CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, 0);
+        [_shareV.weiboShareBtn addTarget:self action:@selector(shareClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_shareV.weixinShareBtn addTarget:self action:@selector(shareClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_shareV.friendShareBtn addTarget:self action:@selector(shareClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_shareV];
+    }
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        
+        _shareV.frame = CGRectMake(0, SCREEN_HEIGHT - shareVH, SCREEN_WIDTH, shareVH);
+    }];
 
-
+    
 }
 
+- (void)shareClick:(UIButton *)sender {
+    
+    if (sender == _shareV.weiboShareBtn) {
+        [self shareTo:@[UMShareToSina]];
+    }else if (sender == _shareV.weixinShareBtn){
+        [self shareTo:@[UMShareToWechatSession]];
+    }else if (sender == _shareV.friendShareBtn){
+        [self shareTo:@[UMShareToWechatTimeline]];
+    }
+    
+}
+- (void)shareTo:(NSArray *)type{
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name];
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"大众共享";
+    
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"大众共享";
+    
+    [UMSocialData defaultData].extConfig.sinaData.urlResource.url = [NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name];
+    //    [UMSocialData defaultData].extConfig.sinaData.title = @"加入我们吧";
+    
+    UIImage *image=[UIImage imageNamed:@"mine_logo"];
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:type content:[NSString stringWithFormat:@"大众共享，让每一个有心参与公益事业的人都能参与进来(用safari浏览器打开)%@",[NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name]] image:image location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            
+        }
+    }];
+}
 #pragma mark --- LBStoreDetailAdressDelegete
 //打电话
 -(void)takePhne{

@@ -291,21 +291,19 @@ GLNearby_AllController *all;
 //    [view. reloadData];
 }
 
-
 - (void) changeBackColorWithPage: (NSInteger) currentPage {
     for (int i = 0; i < _topViews.count; i ++) {
         UIView *tempView = _topViews[i];
         for (UILabel *label in [tempView subviews]) {
             if (i == currentPage) {
-                label.textColor = YYSGlobalColor;
-            } else {
                 label.textColor = YYSRGBColor(40, 150, 58,1);
+            } else {
+                label.textColor = [UIColor darkGrayColor];
             }
         }
         
     }
 }
-
 
 #pragma mark -- scrollView的代理方法
 

@@ -13,6 +13,7 @@
 #import "GLNearby_RecommendMerchatCell.h"
 #import "GLNearby_MerchatListController.h"
 #import "GLNearbyViewController.h"
+#import "LBStoreMoreInfomationViewController.h"
 
 #import "GLNearby_TradeOneModel.h"
 #import "GLNearby_NearShopModel.h"
@@ -186,7 +187,8 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         return 1;
     }else{
         
-        return self.nearModels.count;
+//        return self.nearModels.count;
+        return 0;
     }
     
 }
@@ -236,9 +238,17 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.hidesBottomBarWhenPushed = YES;
     
-    self.hidesBottomBarWhenPushed = NO;
+    self.viewController.hidesBottomBarWhenPushed = YES;
+    
+    LBStoreMoreInfomationViewController *store = [[LBStoreMoreInfomationViewController alloc] init];
+    store.lat = [[GLNearby_Model defaultUser].latitude floatValue];
+    store.lng = [[GLNearby_Model defaultUser].longitude floatValue];
+    GLNearby_NearShopModel *model = self.nearModels[indexPath.row];
+    store.storeId = model.shop_id;
+    
+    [self.viewController.navigationController pushViewController:store animated:YES];
+    self.viewController.hidesBottomBarWhenPushed = NO;
 }
 
 
