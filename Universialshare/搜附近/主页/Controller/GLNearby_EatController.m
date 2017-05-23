@@ -13,6 +13,7 @@
 #import "GLNearby_RecommendMerchatCell.h"
 #import "GLNearby_MerchatListController.h"
 #import "GLNearbyViewController.h"
+#import "LBStoreMoreInfomationViewController.h"
 
 #import "GLNearby_TradeOneModel.h"
 #import "GLNearby_NearShopModel.h"
@@ -243,10 +244,12 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.hidesBottomBarWhenPushed = YES;
+    LBStoreMoreInfomationViewController *store = [[LBStoreMoreInfomationViewController alloc] init];
+    [self.navigationController pushViewController:store animated:YES];
+    store.
     
     self.hidesBottomBarWhenPushed = NO;
 }
-
 
 - (NSMutableArray *)nearModels{
     if (!_nearModels) {

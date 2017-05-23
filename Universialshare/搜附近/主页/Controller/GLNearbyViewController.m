@@ -88,10 +88,11 @@
     _locService.delegate = nil;
 }
 - (IBAction)search:(id)sender {
-    self.hidesBottomBarWhenPushed = YES;
+//    self.hidesBottomBarWhenPushed = YES;
     GLNearby_SearchController *searchVC = [[GLNearby_SearchController alloc] init];
     [self presentViewController:searchVC animated:NO completion:nil];
 
+//    [self.navigationController pushViewController:searchVC animated:NO];
 }
 
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation

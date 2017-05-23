@@ -40,7 +40,7 @@
                             </connections>
                         </button>
                         <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wsc-Eq-btn">
-                            <rect key="frame" x="90" y="30" width="159" height="24"/>
+                            <rect key="frame" x="70" y="30" width="199" height="24"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="搜索" translatesAutoresizingMaskIntoConstraints="NO" id="lPw-nS-4My">
                                     <rect key="frame" x="10" y="5" width="14" height="14"/>
@@ -49,18 +49,16 @@
                                         <constraint firstAttribute="width" constant="14" id="y4G-BK-7uO"/>
                                     </constraints>
                                 </imageView>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入商品名或ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kcb-KZ-RHV">
-                                    <rect key="frame" x="34" y="0.0" width="125" height="24"/>
+                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入商品名或ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kcb-KZ-RHV">
+                                    <rect key="frame" x="34" y="0.0" width="165" height="24"/>
                                     <gestureRecognizers/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outletCollection property="gestureRecognizers" destination="Lcg-Pg-zPa" appends="YES" id="mn9-zM-ixt"/>
-                                    </connections>
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="kcb-KZ-RHV" secondAttribute="bottom" id="0j4-Vq-Ghk"/>
                                 <constraint firstItem="kcb-KZ-RHV" firstAttribute="top" secondItem="wsc-Eq-btn" secondAttribute="top" id="3WQ-YZ-qyz"/>
@@ -72,6 +70,9 @@
                                 <constraint firstItem="lPw-nS-4My" firstAttribute="centerY" secondItem="wsc-Eq-btn" secondAttribute="centerY" id="xlc-Kp-57w"/>
                                 <constraint firstItem="kcb-KZ-RHV" firstAttribute="top" secondItem="wsc-Eq-btn" secondAttribute="top" id="yZU-1u-PhI"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="l0U-Lv-HWA" appends="YES" id="IWf-OG-Fcu"/>
+                            </connections>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -79,9 +80,9 @@
                         <constraint firstItem="x5F-X8-yYe" firstAttribute="leading" secondItem="xAs-x6-HFY" secondAttribute="leading" constant="5" id="0Fv-Gh-K2S"/>
                         <constraint firstItem="wsc-Eq-btn" firstAttribute="centerX" secondItem="xAs-x6-HFY" secondAttribute="centerX" id="51x-Dh-3uD"/>
                         <constraint firstItem="x5F-X8-yYe" firstAttribute="top" secondItem="xAs-x6-HFY" secondAttribute="top" constant="20" id="DFJ-kW-UgK"/>
-                        <constraint firstItem="wsc-Eq-btn" firstAttribute="width" secondItem="xAs-x6-HFY" secondAttribute="width" constant="-180" id="Kln-Ll-FnX"/>
                         <constraint firstAttribute="bottom" secondItem="x5F-X8-yYe" secondAttribute="bottom" id="NpD-CQ-L9M"/>
                         <constraint firstItem="wsc-Eq-btn" firstAttribute="height" secondItem="x5F-X8-yYe" secondAttribute="height" constant="-20" id="YnV-nA-228"/>
+                        <constraint firstItem="wsc-Eq-btn" firstAttribute="leading" secondItem="x5F-X8-yYe" secondAttribute="trailing" constant="5" id="cvk-8z-mJg"/>
                         <constraint firstItem="wsc-Eq-btn" firstAttribute="centerY" secondItem="x5F-X8-yYe" secondAttribute="centerY" id="dK7-AB-jL2"/>
                         <constraint firstAttribute="height" constant="64" id="wV8-sY-eZ0"/>
                     </constraints>
@@ -97,9 +98,9 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="34" y="-321"/>
         </view>
-        <tapGestureRecognizer id="Lcg-Pg-zPa">
+        <tapGestureRecognizer id="l0U-Lv-HWA">
             <connections>
-                <action selector="search:" destination="-1" id="ATQ-w7-wAK"/>
+                <action selector="search:" destination="-1" id="MTg-dI-hlK"/>
             </connections>
         </tapGestureRecognizer>
     </objects>
