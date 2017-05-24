@@ -180,7 +180,7 @@
         
         UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 35)];
         label1.text = name1[i];
-        label1.textColor = YYSRGBColor(40, 150, 58,1);
+        label1.textColor = [UIColor darkGrayColor];
         label1.textAlignment = NSTextAlignmentCenter;
         label1.font = [UIFont systemFontOfSize:15];
         [view addSubview:label1];

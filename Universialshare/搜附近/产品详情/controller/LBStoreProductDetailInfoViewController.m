@@ -278,6 +278,7 @@
     }
     self.hidesBottomBarWhenPushed = YES;
     GLConfirmOrderController *vc=[[GLConfirmOrderController alloc]init];
+    self.goodId = @"110";
     vc.goods_id = self.goodId;
     vc.goods_count = @"1";
     [self.navigationController pushViewController:vc animated:YES];
