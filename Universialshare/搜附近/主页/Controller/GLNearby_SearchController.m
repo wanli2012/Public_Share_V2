@@ -8,6 +8,7 @@
 
 #import "GLNearby_SearchController.h"
 #import "GLNearby_classifyCell.h"
+#import "LBStoreMoreInfomationViewController.h"
 
 @interface GLNearby_SearchController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
@@ -87,7 +88,7 @@ static NSString *ID = @"GLNearby_classifyCell";
 //        NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue]==1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-                [GLNearby_Model defaultUser].city_id = responseObject[@"city_id"];
+                
                 for (NSDictionary *dic  in responseObject[@"data"][@"shop_data"]) {
                     GLNearby_NearShopModel *model = [GLNearby_NearShopModel mj_objectWithKeyValues:dic];
                     [self.nearModels addObject:model];
@@ -125,7 +126,7 @@ static NSString *ID = @"GLNearby_classifyCell";
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    
+    self.navigationController.navigationBar.hidden = YES;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
     [UIView animateWithDuration:0.3 animations:^{
         
@@ -144,7 +145,7 @@ static NSString *ID = @"GLNearby_classifyCell";
 
 - (IBAction)cancel:(id)sender {
 
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 #pragma UITextFieldDelegate
@@ -168,12 +169,25 @@ static NSString *ID = @"GLNearby_classifyCell";
     
     GLNearby_classifyCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     cell.model = self.nearModels[indexPath.row];
-    
+    cell.selectionStyle = 0;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return 110;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.hidesBottomBarWhenPushed = YES;
+    
+    LBStoreMoreInfomationViewController *store = [[LBStoreMoreInfomationViewController alloc] init];
+    store.lat = [[GLNearby_Model defaultUser].latitude floatValue];
+    store.lng = [[GLNearby_Model defaultUser].longitude floatValue];
+    GLNearby_NearShopModel *model = self.nearModels[indexPath.row];
+    store.storeId = model.shop_id;
+    
+    [self.navigationController pushViewController:store animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma 懒加载

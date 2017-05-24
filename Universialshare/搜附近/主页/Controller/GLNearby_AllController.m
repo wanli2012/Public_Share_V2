@@ -13,6 +13,7 @@
 #import "GLNearby_RecommendMerchatCell.h"
 #import "GLNearbyViewController.h"
 #import "GLNearby_MerchatListController.h"
+#import "LBStoreMoreInfomationViewController.h"
 
 #import "GLNearby_NearShopModel.h"
 
@@ -21,6 +22,10 @@
     LoadWaitView *_loadV;
 }
 @property (nonatomic, strong)NSMutableArray *models;
+
+@property (nonatomic,assign)NSInteger page;
+
+@property (nonatomic,strong)NodataView *nodataV;
 
 @end
 
@@ -33,37 +38,94 @@ static NSString *ID = @"GLNearby_classifyCell";
     [super viewDidLoad];
 
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
-    [self postRequest];
 
+    __weak __typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf updateData:YES];
+        
+    }];
+    
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        
+        [weakSelf updateData:NO];
+       
+    }];
+    
+    // 设置文字
+    [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
+    
+    [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
+    
+    [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
+    
+    self.tableView.mj_header = header;
+    self.tableView.mj_footer = footer;
+    [self updateData:YES];
+    
 }
-- (void)postRequest {
+
+- (void)updateData:(BOOL)status {
+    if (status) {
+        
+        self.page = 1;
+        [self.models removeAllObjects];
+        
+    }else{
+        _page ++;
+        
+    }
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
     dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
-    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-
-    [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
+    dict[@"page"] = [NSString stringWithFormat:@"%ld",_page];
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"shop/searchNearShopByContent" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
-
-        if ([responseObject[@"code"] integerValue] == 1){
+        [self endRefresh];
+        //        NSLog(@"dict = %@",dict);
+        //        NSLog(@"%@",responseObject);
+        if ([responseObject[@"code"] integerValue]==1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-                
-                for (NSDictionary *dic  in responseObject[@"data"][@"near_shop"]) {
+                for (NSDictionary *dic  in responseObject[@"data"][@"shop_data"]) {
                     GLNearby_NearShopModel *model = [GLNearby_NearShopModel mj_objectWithKeyValues:dic];
-                    
                     [self.models addObject:model];
                 }
+                
                 [self.tableView reloadData];
             }
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+            
         }
         
     } enError:^(NSError *error) {
         [_loadV removeloadview];
-        [MBProgressHUD showError:error.description];
+        [self endRefresh];
+        [MBProgressHUD showError:error.localizedDescription];
+        
     }];
     
 }
+- (void)endRefresh {
+    
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+    
+}
+-(NodataView*)nodataV{
+    
+    if (!_nodataV) {
+        _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-114-49);
+    }
+    return _nodataV;
+    
+}
+
 - (UIViewController *)viewController {
     for (UIView *view = self.view; view; view = view.superview) {
         UIResponder *nextResponder = [view nextResponder];
@@ -73,19 +135,7 @@ static NSString *ID = @"GLNearby_classifyCell";
     }
     return nil;
 }
-- (void)more:(NSInteger )index {
-    
-    self.viewController.hidesBottomBarWhenPushed = YES;
-    GLNearby_MerchatListController *merchatVC = [[GLNearby_MerchatListController alloc] init];
-    if (index == 0) {
-        
-    }else{
-  
-    }
-    [self.viewController.navigationController pushViewController:merchatVC animated:YES];
-    self.viewController.hidesBottomBarWhenPushed = NO;
-    
-}
+
 #pragma UITableviewDelegate UITableviewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -104,13 +154,21 @@ static NSString *ID = @"GLNearby_classifyCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         
-        return 110 *autoSizeScaleY;
+    return 110 *autoSizeScaleY;
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.hidesBottomBarWhenPushed = YES;
     
-    self.hidesBottomBarWhenPushed = NO;
+    self.viewController.hidesBottomBarWhenPushed = YES;
+    
+    LBStoreMoreInfomationViewController *store = [[LBStoreMoreInfomationViewController alloc] init];
+    store.lat = [[GLNearby_Model defaultUser].latitude floatValue];
+    store.lng = [[GLNearby_Model defaultUser].longitude floatValue];
+    GLNearby_NearShopModel *model = self.models[indexPath.row];
+    store.storeId = model.shop_id;
+    
+    [self.viewController.navigationController pushViewController:store animated:YES];
+    self.viewController.hidesBottomBarWhenPushed = NO;
 }
 
 - (NSMutableArray *)models{

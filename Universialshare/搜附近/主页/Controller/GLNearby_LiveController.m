@@ -13,6 +13,7 @@
 #import "GLNearby_RecommendMerchatCell.h"
 #import "GLNearby_MerchatListController.h"
 #import "GLNearbyViewController.h"
+#import "LBStoreMoreInfomationViewController.h"
 
 #import "GLNearby_TradeOneModel.h"
 #import "GLNearby_NearShopModel.h"
@@ -24,6 +25,7 @@
 }
 @property (nonatomic, strong)NSMutableArray *nearModels;
 @property (nonatomic, strong)NSMutableArray *tradeTwoModels;
+@property (nonatomic, strong)NSMutableArray *recommendModels;
 
 @property (nonatomic, copy)NSString *city_id;
 
@@ -65,6 +67,10 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                 for (NSDictionary *dic  in responseObject[@"data"][@"two_trade_data"]) {
                     GLNearby_TradeOneModel *model = [GLNearby_TradeOneModel mj_objectWithKeyValues:dic];
                     [self.tradeTwoModels addObject:model];
+                }
+                for (NSDictionary *dic in responseObject[@"data"][@"tj_shop"]) {
+                    GLNearby_NearShopModel *model = [GLNearby_NearShopModel mj_objectWithKeyValues:dic];
+                    [self.recommendModels addObject:model];
                 }
                 
                 GLNearby_ClassifyHeaderView *headerV = [[GLNearby_ClassifyHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 70)];
@@ -145,7 +151,6 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                     [self.tradeTwoModels addObject:model];
                 }
                 
-                
             }
         }
         [self.tableView reloadData];
@@ -183,9 +188,14 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
-        return 1;
+        if(self.recommendModels.count == 0){
+            return 0;
+        }else{
+            
+            return 1;
+        }
     }else{
-        
+//        NSLog(@"self.nearModels.count = %lu",self.nearModels.count);
         return self.nearModels.count;
     }
     
@@ -216,6 +226,8 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     if (indexPath.section == 0) {
         GLNearby_RecommendMerchatCell *cell = [tableView dequeueReusableCellWithIdentifier:ID2];
         cell.selectionStyle = 0;
+        cell.models = self.recommendModels;
+        [cell.collectionView reloadData];
         return cell;
     }else{
         
@@ -236,11 +248,18 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.hidesBottomBarWhenPushed = YES;
     
-    self.hidesBottomBarWhenPushed = NO;
+    self.viewController.hidesBottomBarWhenPushed = YES;
+    
+    LBStoreMoreInfomationViewController *store = [[LBStoreMoreInfomationViewController alloc] init];
+    store.lat = [[GLNearby_Model defaultUser].latitude floatValue];
+    store.lng = [[GLNearby_Model defaultUser].longitude floatValue];
+    GLNearby_NearShopModel *model = self.nearModels[indexPath.row];
+    store.storeId = model.shop_id;
+    
+    [self.viewController.navigationController pushViewController:store animated:YES];
+    self.viewController.hidesBottomBarWhenPushed = NO;
 }
-
 
 - (NSMutableArray *)nearModels{
     if (!_nearModels) {
@@ -253,5 +272,10 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         _tradeTwoModels = [NSMutableArray array];
     }
     return _tradeTwoModels;
+}- (NSMutableArray *)recommendModels{
+    if (!_recommendModels) {
+        _recommendModels = [NSMutableArray array];
+    }
+    return _recommendModels;
 }
 @end

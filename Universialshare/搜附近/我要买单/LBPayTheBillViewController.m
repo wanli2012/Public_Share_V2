@@ -44,6 +44,9 @@
     self.navigationController.navigationBar.hidden = NO;
 
 }
+- (IBAction)ensurePay:(id)sender {
+    
+}
 
 - (IBAction)tapgestureMethod:(UITapGestureRecognizer *)sender {
     TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"温馨提示" message:@"请选择支付方式"];

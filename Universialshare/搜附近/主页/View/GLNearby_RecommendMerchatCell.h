@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong)NSArray *models;
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 @end

@@ -31,6 +31,8 @@
 @property (nonatomic, copy)NSString *longitude;
 
 @property (strong , nonatomic)BMKReverseGeoCodeOption *option;//地址
+@property (nonatomic, strong)SlideTabBarView *slideV;
+@property (nonatomic, strong)UIView *placeHolderView;
 
 @end
 
@@ -62,25 +64,24 @@
                     [self.models addObject:model];
                 }
                 [GLNearby_Model defaultUser].trades = self.models;
-                SlideTabBarView *slideV = [[SlideTabBarView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 49-64) WithCount:4];
-                [self.view addSubview:slideV];
-               
+                
+                [self.view addSubview:self.slideV];
             }
         }
         
     } enError:^(NSError *error) {
 
+        [self.view addSubview:self.placeHolderView];
         [MBProgressHUD showError:error.description];
     }];
     
 }
 
-
 -(void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-
+    
 }
 -(void)viewWillDisappear:(BOOL)animated {
     [_mapView viewWillDisappear];
@@ -88,11 +89,11 @@
     _locService.delegate = nil;
 }
 - (IBAction)search:(id)sender {
-//    self.hidesBottomBarWhenPushed = YES;
+    self.hidesBottomBarWhenPushed = YES;
     GLNearby_SearchController *searchVC = [[GLNearby_SearchController alloc] init];
-    [self presentViewController:searchVC animated:NO completion:nil];
+//    [self presentViewController:searchVC animated:NO completion:nil];
 
-//    [self.navigationController pushViewController:searchVC animated:NO];
+    [self.navigationController pushViewController:searchVC animated:NO];
 }
 
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
@@ -178,4 +179,37 @@
     }
     return _locService;
 }
+
+- (SlideTabBarView *)slideV{
+    if (!_slideV) {
+        _slideV = [[SlideTabBarView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 49-64) WithCount:4];
+    }
+    return _slideV;
+}
+- (UIView *)placeHolderView{
+    if (!_placeHolderView) {
+        _placeHolderView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 49-64)];
+        CGFloat height = 120;
+        CGFloat width = 120;
+        UIImageView *imageV = [[UIImageView alloc] init];
+        imageV.frame = CGRectMake((_placeHolderView.yy_width - width)/2, (_placeHolderView.yy_height - height)/2, 120, 120);
+        imageV.center = _placeHolderView.center;
+        imageV.image = [UIImage imageNamed:@"XRPlaceholder"];
+        imageV.userInteractionEnabled = NO;
+        
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imageV.frame) + 30, _placeHolderView.yy_width, 20)];
+        label.text = @"点击重新加载";
+        label.textColor = [UIColor lightGrayColor];
+        label.font = [UIFont systemFontOfSize:12];
+        label.textAlignment = NSTextAlignmentCenter;
+        
+        [_placeHolderView addSubview:imageV];
+        [_placeHolderView addSubview:label];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(postRequest)];
+        [_placeHolderView addGestureRecognizer:tap];
+        
+    }
+    return _placeHolderView;
+}
+
 @end

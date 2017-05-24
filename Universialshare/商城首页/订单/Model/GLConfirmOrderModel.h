@@ -29,4 +29,5 @@
 @property (nonatomic, strong)NSString *cart_type;
 
 @property (nonatomic, strong)NSString *cart_url;
+
 @end

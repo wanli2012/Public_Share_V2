@@ -8,10 +8,11 @@
 
 #import "GLNearby_RecommendMerchatCell.h"
 #import "GLNearby_RecommendMerchatCollectionCell.h"
+#import "LBStoreMoreInfomationViewController.h"
+#import "GLNearbyViewController.h"
 
 @interface GLNearby_RecommendMerchatCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
 
@@ -24,7 +25,15 @@ static NSString *ID = @"GLNearby_RecommendMerchatCollectionCell";
     [self.collectionView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellWithReuseIdentifier:ID];
 
 }
-
+- (UIViewController *)viewController {
+    for (UIView *view = self; view; view = view.superview) {
+        UIResponder *nextResponder = [view nextResponder];
+        if ([nextResponder isKindOfClass:[GLNearbyViewController class]]) {
+            return (GLNearbyViewController *)nextResponder;
+        }
+    }
+    return nil;
+}
 #pragma UICollectionViewDelegete UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
@@ -42,7 +51,20 @@ static NSString *ID = @"GLNearby_RecommendMerchatCollectionCell";
     
     return CGSizeMake(SCREEN_WIDTH / 3, 130);
 }
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [self viewController].hidesBottomBarWhenPushed = YES;
+    LBStoreMoreInfomationViewController *store = [[LBStoreMoreInfomationViewController alloc] init];
+    
+    [[self viewController].navigationController pushViewController:store animated:YES];
+    store.lat = [[GLNearby_Model defaultUser].latitude floatValue];
+    store.lng = [[GLNearby_Model defaultUser].longitude floatValue];
+    GLNearby_NearShopModel *model = self.models[indexPath.row];
+    store.storeId = model.shop_id;
+    
+    [self viewController].hidesBottomBarWhenPushed = NO;
 
+}
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     CGFloat jx=0.0f;

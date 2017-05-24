@@ -19,11 +19,18 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <MapKit/MapKit.h>
 #import "LBPayTheBillViewController.h"
-#import "LBCheckMoreHotProductViewController.h"
+#import "UMSocial.h"
+#import <Social/Social.h>
+#import "GLShareView.h"
+#import "GLSet_MaskVeiw.h"
 
 static const CGFloat headerImageHeight = 180.0f;
 
 @interface LBStoreMoreInfomationViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,LBStoreDetailAdressDelegete,LBStoreDetailNameDelegete,LBStoreDetailHeaderViewDelegete>
+{
+    GLShareView *_shareV;
+    GLSet_MaskVeiw *_maskV;
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (nonatomic, strong)SDCycleScrollView *cycleScrollView;
 @property (nonatomic, strong)UIButton *shareButton;
@@ -329,11 +336,16 @@ static const CGFloat headerImageHeight = 180.0f;
         headerview.titleLb.hidden = YES;
         headerview.moreBt.hidden = YES;
     }else if (section == 1){
-
-        headerview.titleLb.text = @"热卖商品";
+//        if (self.dataDic.count > 0 ) {
+//            headerview.titleLb.text = [NSString stringWithFormat:@"热卖商品 (%u)",[self.dataDic[@"com_data"] count]];
+//    
+//        }else{
+           headerview.titleLb.text = @"热卖商品";
+//            
+//        }
         headerview.moreBt.hidden = NO;
         [headerview.moreBt setTitle:@"查看全部" forState:UIControlStateNormal];
-        headerview.titleLb.hidden = NO;
+       headerview.titleLb.hidden = NO;
     }else if (section == 2){
         if (self.dataDic.count > 0 ) {
             headerview.titleLb.text = [NSString stringWithFormat:@"热门评论 (%u)",[self.dataDic[@"com_data"] count]];
@@ -373,17 +385,13 @@ static const CGFloat headerImageHeight = 180.0f;
 
 }
 
+
 -(void)checkmoreinfo:(NSInteger)index{
 
     switch (index) {
         case 1://查看商品
-        {
-            self.hidesBottomBarWhenPushed = YES;
-            self.HideNavagation = YES;
-            LBCheckMoreHotProductViewController *vc =[[LBCheckMoreHotProductViewController alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
+            
             break;
-        }
         case 2://查看评论
             
             break;
@@ -430,10 +438,55 @@ static const CGFloat headerImageHeight = 180.0f;
 
 //分享
 -(void)shareStoreAdress{
+    
+    CGFloat shareVH = SCREEN_HEIGHT /5;
+    
+    if (_shareV == nil) {
+        
+        _shareV = [[NSBundle mainBundle] loadNibNamed:@"GLShareView" owner:nil options:nil].lastObject;
+        _shareV.frame = CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, 0);
+        [_shareV.weiboShareBtn addTarget:self action:@selector(shareClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_shareV.weixinShareBtn addTarget:self action:@selector(shareClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_shareV.friendShareBtn addTarget:self action:@selector(shareClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_shareV];
+    }
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        
+        _shareV.frame = CGRectMake(0, SCREEN_HEIGHT - shareVH, SCREEN_WIDTH, shareVH);
+    }];
 
-
+    
 }
 
+- (void)shareClick:(UIButton *)sender {
+    
+    if (sender == _shareV.weiboShareBtn) {
+        [self shareTo:@[UMShareToSina]];
+    }else if (sender == _shareV.weixinShareBtn){
+        [self shareTo:@[UMShareToWechatSession]];
+    }else if (sender == _shareV.friendShareBtn){
+        [self shareTo:@[UMShareToWechatTimeline]];
+    }
+    
+}
+- (void)shareTo:(NSArray *)type{
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name];
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"大众共享";
+    
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"大众共享";
+    
+    [UMSocialData defaultData].extConfig.sinaData.urlResource.url = [NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name];
+    //    [UMSocialData defaultData].extConfig.sinaData.title = @"加入我们吧";
+    
+    UIImage *image=[UIImage imageNamed:@"mine_logo"];
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:type content:[NSString stringWithFormat:@"大众共享，让每一个有心参与公益事业的人都能参与进来(用safari浏览器打开)%@",[NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name]] image:image location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            
+        }
+    }];
+}
 #pragma mark --- LBStoreDetailAdressDelegete
 //打电话
 -(void)takePhne{
