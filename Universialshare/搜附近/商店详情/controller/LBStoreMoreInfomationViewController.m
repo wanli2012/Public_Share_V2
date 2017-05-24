@@ -72,7 +72,12 @@ static const CGFloat headerImageHeight = 180.0f;
     if (self.dataDic.count <= 0) {
         [self initdatasource];//请求数据
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
 
+}
+- (void)dealloc{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)initdatasource{
@@ -348,7 +353,7 @@ static const CGFloat headerImageHeight = 180.0f;
        headerview.titleLb.hidden = NO;
     }else if (section == 2){
         if (self.dataDic.count > 0 ) {
-            headerview.titleLb.text = [NSString stringWithFormat:@"热门评论 (%u)",[self.dataDic[@"com_data"] count]];
+            headerview.titleLb.text = [NSString stringWithFormat:@"热门评论 (%lu)",[self.dataDic[@"com_data"] count]];
             if ([self.dataDic[@"pl_count"]integerValue] > 3) {
                 headerview.moreBt.hidden = YES;
             }else{
@@ -433,23 +438,38 @@ static const CGFloat headerImageHeight = 180.0f;
         
     }];
 
-
 }
-
+//分享页面消失
+- (void)dismiss{
+    CGFloat shareVH = SCREEN_HEIGHT /5;
+    [UIView animateWithDuration:0.2 animations:^{
+        
+        _shareV.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, shareVH);
+        
+    } completion:^(BOOL finished) {
+        
+        [_maskV removeFromSuperview];
+    }];
+}
 //分享
 -(void)shareStoreAdress{
     
     CGFloat shareVH = SCREEN_HEIGHT /5;
     
-    if (_shareV == nil) {
+    if (_maskV == nil) {
         
+        _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        
+        _maskV.bgView.alpha = 0.4;
+
         _shareV = [[NSBundle mainBundle] loadNibNamed:@"GLShareView" owner:nil options:nil].lastObject;
         _shareV.frame = CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, 0);
         [_shareV.weiboShareBtn addTarget:self action:@selector(shareClick:) forControlEvents:UIControlEventTouchUpInside];
         [_shareV.weixinShareBtn addTarget:self action:@selector(shareClick:) forControlEvents:UIControlEventTouchUpInside];
         [_shareV.friendShareBtn addTarget:self action:@selector(shareClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:_shareV];
+//        [self.view addSubview:_maskV];
     }
+    [_maskV showViewWithContentView:_shareV];
     
     [UIView animateWithDuration:0.2 animations:^{
         

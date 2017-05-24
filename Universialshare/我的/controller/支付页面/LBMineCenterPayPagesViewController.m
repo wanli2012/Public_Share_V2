@@ -219,7 +219,7 @@
     if (!_dataarr) {
         
         if (self.payType == 1) {
-            _dataarr=[NSArray arrayWithObjects:@{@"image":@"余额",@"title":@"余额支付"},@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"}, nil];
+            _dataarr=[NSArray arrayWithObjects:@{@"image":@"余额",@"title":@"米子支付"},@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"}, nil];
         }else if (self.payType == 2){
         
            _dataarr=[NSArray arrayWithObjects:@{@"image":@"支付积分",@"title":@"积分支付"}, nil];
