@@ -14,4 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
+
+
 @end

@@ -216,8 +216,8 @@
         
         LBMineCenterPayPagesViewController *vc=[[LBMineCenterPayPagesViewController alloc]init];
         LBMyOrdersModel *model = self.dataarr[section];
-        vc.orderNum =  model.order_num;
-        vc.orderScore = model.order_money;
+        vc.order_sn =  model.order_num;
+        vc.orderPrice = model.order_money;
         vc.order_id = model.order_id;
         vc.payType = [model.order_type intValue];
         vc.useableScore = self.useableScore;

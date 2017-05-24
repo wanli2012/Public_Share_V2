@@ -46,9 +46,9 @@
     self.tableview.tableFooterView = [UIView new];
     [self.tableview registerNib:[UINib nibWithNibName:@"LBMineCenterPayPagesTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMineCenterPayPagesTableViewCell"];
     
-    self.ordercode.text = self.orderNum;
-    self.orderMoney.text = self.orderScore;
-    
+    self.ordercode.text = self.order_sn;
+    self.orderMoney.text = self.orderPrice;
+    self.payType = 1;
     if (self.payType == 1) {
         self.orderMTitleLb.text = @"订单金额:";
         self.orderType.text = @"消费订单";
@@ -65,6 +65,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postRepuest:) name:@"input_PasswordNotification" object:nil];
+
     
 }
 
@@ -164,8 +165,57 @@
     
  
 }
-- (void)postRepuest:(NSNotification *)sender {
+- (void)ricePay:(NSNotification *)sender {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    
+    NSString *orderID = [NSString stringWithFormat:@"%@_%@_%@",self.order_sh,self.order_id,self.order_sn];
+    //    NSString *uid = [RSAEncryptor encryptString:[UserModel defaultUser].uid publicKey:public_RSA];
+    //    dict[@"uid"] = uid;
+    dict[@"order_id"] = [RSAEncryptor encryptString:orderID publicKey:public_RSA];
+;
+    if (self.selectIndex == 0) {
+        
+        dict[@"type"] = @4;
+    }else{
+        dict[@"type"] = @4;
+    }
+    dict[@"uid"] = [UserModel defaultUser].uid;
+//    dict[@"order_id"] = self.order_id;
+    dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
 
+    [NetworkManager requestPOSTWithURLStr:@"shop/ricePayCoupons" paramDic:dict finish:^(id responseObject) {
+        
+        [_loadV removeloadview];
+
+        if ([responseObject[@"code"] integerValue] == 1){
+            
+            self.hidesBottomBarWhenPushed = YES;
+            
+            [MBProgressHUD showSuccess:responseObject[@"message"]];
+            
+            if(self.pushIndex == 1){
+                
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                
+            }else{
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            
+            self.hidesBottomBarWhenPushed = NO;
+            
+        }else{
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+         [self dismiss];
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        
+    }];
+
+}
+- (void)integralPay:(NSNotification *)sender {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     
@@ -173,7 +223,7 @@
     //    NSString *uid = [RSAEncryptor encryptString:[UserModel defaultUser].uid publicKey:public_RSA];
     //    dict[@"uid"] = uid;
     //    dict[@"order_id"] = orderID;
-
+    
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"order_id"] = self.order_id;
     dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
@@ -184,9 +234,9 @@
         [_loadV removeloadview];
         
         [self dismiss];
-//        NSLog(@"%@",responseObject);
+        //        NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1){
-
+            
             
             self.hidesBottomBarWhenPushed = YES;
             
@@ -211,13 +261,42 @@
         [_loadV removeloadview];
         
     }];
+
+}
+
+//支付请求
+- (void)postRepuest:(NSNotification *)sender {
+
+    if (self.payType == 2) {
+        
+        //米劵支付(积分)
+        [self integralPay:sender];
+        
+    }else{
+        
+        if (self.selectIndex == 0) {
+            
+            //米子支付
+            [self ricePay:sender];
+            
+        }else if (self.selectIndex == 1){
+            //支付宝支付
+            
+        }else{
+            //微信支付
+            
+        }
+    }
+    
+    
+    
     
 }
 
 -(NSArray*)dataarr{
 
     if (!_dataarr) {
-        
+        self.payType = 1;
         if (self.payType == 1) {
             _dataarr=[NSArray arrayWithObjects:@{@"image":@"余额",@"title":@"米子支付"},@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"}, nil];
         }else if (self.payType == 2){
