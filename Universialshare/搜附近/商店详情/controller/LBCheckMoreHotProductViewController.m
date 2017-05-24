@@ -147,7 +147,7 @@ static NSString *ID = @"LBStoreDetailHotProductTableViewCell";
      [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.models[indexPath.row][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
      cell.nameLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"name"]];
      cell.moneyLb.text = [NSString stringWithFormat:@"¥%@",self.models[indexPath.row][@"price"]];
-     cell.descrebLb.text = [NSString stringWithFormat:@"¥%@",self.models[indexPath.row][@"goods_info"]];
+     cell.descrebLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"goods_info"]];
     
     
     return cell;
@@ -158,8 +158,8 @@ static NSString *ID = @"LBStoreDetailHotProductTableViewCell";
 
     self.hidesBottomBarWhenPushed = YES;
     LBStoreProductDetailInfoViewController *vc=[[LBStoreProductDetailInfoViewController alloc]init];
-    //vc.goodname = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_name"]];
-    //vc.storename = [NSString stringWithFormat:@"%@分",self.dataDic[@"shop_data"][@"shop_name"]];
+    vc.goodname = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"name"]];
+    vc.storename = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"shop_name"]];
     [self.navigationController pushViewController:vc animated:YES];
 
 }

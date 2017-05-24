@@ -24,4 +24,6 @@
 
 @property (nonatomic, copy)NSString *thumb;//图片url
 
+@property (nonatomic, copy)NSString *shop_name;//商店名
+
 @end

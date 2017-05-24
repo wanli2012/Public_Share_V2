@@ -9,6 +9,7 @@
 #import "GLMyCollectionController.h"
 #import "GLMyCollectionCell.h"
 #import "GLMyCollectionModel.h"
+#import "LBStoreProductDetailInfoViewController.h"
 
 @interface GLMyCollectionController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -21,6 +22,7 @@
 @property (nonatomic, strong)NSMutableArray *models;
 
 @property (nonatomic ,strong)NodataView *nodataV;
+@property (assign, nonatomic) NSInteger isdelete;//是否需要移除下标
 
 @end
 
@@ -61,6 +63,8 @@ static NSString *ID = @"GLMyCollectionCell";
     self.tableView.mj_header = header;
     self.tableView.mj_footer = footer;
     [self updateData:YES];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removedatasource) name:@"GLMyCollectionController" object:nil];
 }
 - (void)endRefresh {
     [self.tableView.mj_footer endRefreshing];
@@ -219,6 +223,31 @@ static NSString *ID = @"GLMyCollectionCell";
 - (BOOL)tableView: (UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    self.isdelete = indexPath.row;
+    self.hidesBottomBarWhenPushed = YES;
+    LBStoreProductDetailInfoViewController *vc=[[LBStoreProductDetailInfoViewController alloc]init];
+    GLMyCollectionModel *model = self.models[indexPath.row];
+    vc.goodId = model.goods_id;
+    vc.goodname = model.name;
+    vc.storename = model.shop_name;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+
+}
+
+-(void)removedatasource{
+    [self.models removeObjectAtIndex:self.isdelete];
+    [self.tableView reloadData];
+
+
 }
 
 @end

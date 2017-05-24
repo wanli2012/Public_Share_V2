@@ -15,6 +15,7 @@
 #import "UMSocial.h"
 #import "UMSocialSinaSSOHandler.h"
 #import "UMSocialWechatHandler.h"
+#import "yindaotuViewController.h"
 
 @interface AppDelegate ()
 
@@ -30,12 +31,14 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isdirect1"] isEqualToString:@"YES"]) {
+        
+        self.window.rootViewController = [[BasetabbarViewController alloc]init];
+        
+    }else{
+        self.window.rootViewController = [[yindaotuViewController alloc]init];
+    }
     
-     //GLLoginController *loginVC = [[GLLoginController alloc] init];
-    //BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
-   
-    //self.window.rootViewController = nav;
-     self.window.rootViewController = [[BasetabbarViewController alloc]init];
     
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc]init];

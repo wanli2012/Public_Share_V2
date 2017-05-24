@@ -96,6 +96,13 @@
     self.orderCode.text = [NSString stringWithFormat:@"订单号:%@" , _sectionModel.order_num];
      self.orderTime.text = [NSString stringWithFormat:@"下单时间:%@" , _sectionModel.addtime];
     
+    if ([_sectionModel.order_type integerValue] == 1) {
+        self.orderStaues.text = @"订单类型:消费订单";
+    }else if ([_sectionModel.order_type integerValue] == 2){
+        self.orderStaues.text = @"订单类型:其他订单";
+    
+    }
+    
 }
 
 

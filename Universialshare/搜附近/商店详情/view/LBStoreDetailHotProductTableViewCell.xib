@@ -28,26 +28,26 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥628" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Isp-rf-990">
-                                <rect key="frame" x="273" y="24" width="37" height="20"/>
+                                <rect key="frame" x="277" y="24" width="33" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="G3K-gO-HgL"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="Ral-Yt-TDG"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.95097905400000005" green="0.33397951720000002" blue="0.118920289" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="NIKE经典复古运动鞋" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Raj-qK-uGH">
-                                <rect key="frame" x="80" y="10" width="183" height="20"/>
+                                <rect key="frame" x="80" y="10" width="187" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="ArA-gS-tYm"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="低帮鞋BLACK W5555" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zWY-aD-3p8">
-                                <rect key="frame" x="80" y="35" width="183" height="15"/>
+                                <rect key="frame" x="80" y="35" width="187" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="rfF-Wr-Pmb"/>
                                 </constraints>
