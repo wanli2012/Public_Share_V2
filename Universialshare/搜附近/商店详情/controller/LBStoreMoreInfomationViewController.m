@@ -23,6 +23,8 @@
 #import <Social/Social.h>
 #import "GLShareView.h"
 #import "GLSet_MaskVeiw.h"
+#import "LBCheckMoreHotProductViewController.h"
+#import "JZAlbumViewController.h"
 
 static const CGFloat headerImageHeight = 180.0f;
 
@@ -353,7 +355,7 @@ static const CGFloat headerImageHeight = 180.0f;
        headerview.titleLb.hidden = NO;
     }else if (section == 2){
         if (self.dataDic.count > 0 ) {
-            headerview.titleLb.text = [NSString stringWithFormat:@"热门评论 (%lu)",[self.dataDic[@"com_data"] count]];
+            headerview.titleLb.text = [NSString stringWithFormat:@"热门评论 (%u)",[self.dataDic[@"com_data"] count]];
             if ([self.dataDic[@"pl_count"]integerValue] > 3) {
                 headerview.moreBt.hidden = YES;
             }else{
@@ -386,6 +388,13 @@ static const CGFloat headerImageHeight = 180.0f;
         //vc.goodname = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_name"]];
         vc.storename = [NSString stringWithFormat:@"%@分",self.dataDic[@"shop_data"][@"shop_name"]];
         [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.section == 3){
+        self.hidesBottomBarWhenPushed = YES;
+        self.HideNavagation = YES;
+        LBStoreMoreInfomationViewController *vc=[[LBStoreMoreInfomationViewController alloc]init];
+        vc.storeId = self.dataDic[@"love_data"][indexPath.row][@"shop_id"];
+        [self.navigationController pushViewController:vc animated:YES];
+    
     }
 
 }
@@ -395,7 +404,12 @@ static const CGFloat headerImageHeight = 180.0f;
 
     switch (index) {
         case 1://查看商品
-            
+        {
+            self.hidesBottomBarWhenPushed = YES;
+            self.HideNavagation = YES;
+            LBCheckMoreHotProductViewController *vc=[[LBCheckMoreHotProductViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             break;
         case 2://查看评论
             
@@ -552,6 +566,17 @@ static const CGFloat headerImageHeight = 180.0f;
     LBPayTheBillViewController *vc=[[LBPayTheBillViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+#pragma mark -- SDCycleScrollViewDelegate
+/** 点击图片回调 */
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+  
+    self.HideNavagation = YES;
+    JZAlbumViewController *jzAlbumVC = [[JZAlbumViewController alloc]init];
+    jzAlbumVC.currentIndex =index;//这个参数表示当前图片的index，默认是0
+    jzAlbumVC.imgArr = [self.cycleScrollView.imageURLStringsGroup copy];//图片数组，可以是url，也可以是UIImage
+    [self presentViewController:jzAlbumVC animated:NO completion:nil];
+
+}
 
 -(SDCycleScrollView*)cycleScrollView
 {
@@ -562,7 +587,6 @@ static const CGFloat headerImageHeight = 180.0f;
         
         _cycleScrollView.localizationImageNamesGroup = @[];
         
-        _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
         _cycleScrollView.titleLabelBackgroundColor = [UIColor groupTableViewBackgroundColor];// 图片对应的标题的 背景色。（因为没有设标题）
         

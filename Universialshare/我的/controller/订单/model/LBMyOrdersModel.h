@@ -14,7 +14,7 @@
 @property (copy, nonatomic)NSString *order_money;
 @property (copy, nonatomic)NSString *addtime;
 @property (copy, nonatomic)NSString *order_num;
-@property (copy, nonatomic)NSString *order_type;
+@property (copy, nonatomic)NSString *order_type;//1消费订单 (支付宝，微信，米子，面对面) 2其他订单(米券)
 @property (copy, nonatomic)NSString *realy_price;
 @property (copy, nonatomic)NSString *total;
 @property (copy, nonatomic)NSString *mark;

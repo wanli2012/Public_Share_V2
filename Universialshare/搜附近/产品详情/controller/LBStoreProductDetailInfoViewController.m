@@ -20,6 +20,7 @@
 #import <Social/Social.h>
 #import "GLShareView.h"
 #import "GLSet_MaskVeiw.h"
+#import "JZAlbumViewController.h"
 
 @interface LBStoreProductDetailInfoViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,CAAnimationDelegate>
 {
@@ -82,7 +83,6 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
 
 -(void)initdatasource{
     
@@ -169,7 +169,7 @@
         
         
     }else if (indexPath.section == 1){
-        self.tableView.estimatedRowHeight = 75;
+        self.tableView.estimatedRowHeight = 90;
         self.tableView.rowHeight = UITableViewAutomaticDimension;
         return UITableViewAutomaticDimension;
         
@@ -186,7 +186,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
        cell.namelb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"name"]];
         cell.storelb.text = [NSString stringWithFormat:@"%@",self.storename];
-        cell.moneyLb.text = [NSString stringWithFormat:@"打折%@",self.dataDic[@"goods_data"][@"discount"]];
+        
+        cell.moneyLb.text = [NSString stringWithFormat:@"现价%@",self.dataDic[@"goods_data"][@"discount"]];
         cell.yuanjiLb.text = [NSString stringWithFormat:@"原价%@",self.dataDic[@"goods_data"][@"price"]];
         cell.infolb.text = [NSString stringWithFormat:@"已选:%@",self.dataDic[@"goods_data"][@"info"]];
         
@@ -359,6 +360,7 @@
             if ([responseObject[@"code"] integerValue] == 1){
                 self.collectionimage.image = [UIImage imageNamed:@"collect_icon"];
                 self.is_collection = 0;
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"GLMyCollectionController" object:nil];
                 [MBProgressHUD showSuccess:@"取消收藏成功"];
                 
             }else{
@@ -375,6 +377,7 @@
     }
     
 }
+//加入购物车
 
 - (IBAction)addBuyCarEvent:(UIButton *)sender {
     if ([UserModel defaultUser].loginstatus == NO) {
@@ -580,6 +583,15 @@
         [self.carbutton.layer addAnimation:shakeAnimation forKey:nil];
     }
 }
+
+-(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+
+    JZAlbumViewController *jzAlbumVC = [[JZAlbumViewController alloc]init];
+    jzAlbumVC.currentIndex =index;//这个参数表示当前图片的index，默认是0
+    jzAlbumVC.imgArr = [self.cycleScrollView.imageURLStringsGroup mutableCopy];
+    [self presentViewController:jzAlbumVC animated:NO completion:nil];
+
+}
 -(SDCycleScrollView*)cycleScrollView
 {
     if (!_cycleScrollView) {
@@ -588,8 +600,7 @@
                                                       placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
         
         _cycleScrollView.localizationImageNamesGroup = @[];
-        
-        _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
+
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
         _cycleScrollView.titleLabelBackgroundColor = [UIColor groupTableViewBackgroundColor];// 图片对应的标题的 背景色。（因为没有设标题）
         
