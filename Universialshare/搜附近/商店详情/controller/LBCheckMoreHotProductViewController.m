@@ -57,10 +57,17 @@ static NSString *ID = @"LBStoreDetailHotProductTableViewCell";
     self.tableview.mj_header = header;
     self.tableview.mj_footer = footer;
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.hidden = NO;
+
+}
 - (void)initdatasource{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsCommentListAsUser" paramDic:@{@"goods_id":@"110",@"page":[NSNumber numberWithInteger:_page]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"shop/UsergetStoreGoodsList" paramDic:@{@"shop_id":@"412",@"page":[NSNumber numberWithInteger:_page]} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
@@ -68,15 +75,15 @@ static NSString *ID = @"LBStoreDetailHotProductTableViewCell";
             
             if (_refreshType == NO) {
                 [self.models removeAllObjects];
-                if (![responseObject[@"data"][@"reply"] isEqual:[NSNull null]]) {
-                    [self.models addObjectsFromArray:responseObject[@"data"][@"reply"]];
+                if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                    [self.models addObjectsFromArray:responseObject[@"data"]];
                 }
                 
                 [self.tableview reloadData];
             }else{
                 
-                if (![responseObject[@"data"][@"reply"] isEqual:[NSNull null]]) {
-                    [self.models addObjectsFromArray:responseObject[@"data"][@"reply"]];
+                if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                    [self.models addObjectsFromArray:responseObject[@"data"]];
                 }
                 
                 [self.tableview reloadData];
@@ -137,9 +144,9 @@ static NSString *ID = @"LBStoreDetailHotProductTableViewCell";
     LBStoreDetailHotProductTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreDetailHotProductTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-     [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.models[indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
-     cell.nameLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"goods_name"]];
-     cell.moneyLb.text = [NSString stringWithFormat:@"¥%@",self.models[indexPath.row][@"goods_price"]];
+     [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.models[indexPath.row][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
+     cell.nameLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"name"]];
+     cell.moneyLb.text = [NSString stringWithFormat:@"¥%@",self.models[indexPath.row][@"price"]];
      cell.descrebLb.text = [NSString stringWithFormat:@"¥%@",self.models[indexPath.row][@"goods_info"]];
     
     

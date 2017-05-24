@@ -19,6 +19,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <MapKit/MapKit.h>
 #import "LBPayTheBillViewController.h"
+#import "LBCheckMoreHotProductViewController.h"
 
 static const CGFloat headerImageHeight = 180.0f;
 
@@ -328,16 +329,11 @@ static const CGFloat headerImageHeight = 180.0f;
         headerview.titleLb.hidden = YES;
         headerview.moreBt.hidden = YES;
     }else if (section == 1){
-//        if (self.dataDic.count > 0 ) {
-//            headerview.titleLb.text = [NSString stringWithFormat:@"热卖商品 (%u)",[self.dataDic[@"com_data"] count]];
-//    
-//        }else{
-           headerview.titleLb.text = @"热卖商品";
-//            
-//        }
+
+        headerview.titleLb.text = @"热卖商品";
         headerview.moreBt.hidden = NO;
         [headerview.moreBt setTitle:@"查看全部" forState:UIControlStateNormal];
-       headerview.titleLb.hidden = NO;
+        headerview.titleLb.hidden = NO;
     }else if (section == 2){
         if (self.dataDic.count > 0 ) {
             headerview.titleLb.text = [NSString stringWithFormat:@"热门评论 (%u)",[self.dataDic[@"com_data"] count]];
@@ -377,13 +373,17 @@ static const CGFloat headerImageHeight = 180.0f;
 
 }
 
-
 -(void)checkmoreinfo:(NSInteger)index{
 
     switch (index) {
         case 1://查看商品
-            
+        {
+            self.hidesBottomBarWhenPushed = YES;
+            self.HideNavagation = YES;
+            LBCheckMoreHotProductViewController *vc =[[LBCheckMoreHotProductViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
             break;
+        }
         case 2://查看评论
             
             break;
