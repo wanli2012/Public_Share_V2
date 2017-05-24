@@ -34,6 +34,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *picImageV;
 @property (weak, nonatomic) IBOutlet UIImageView *picImageV2;
 @property (weak, nonatomic) IBOutlet UIImageView *picImageV3;
+
+@property (weak, nonatomic) IBOutlet UIImageView *licenseImageV;
+
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 
 //@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
@@ -174,6 +177,24 @@
     [self.navigationController pushViewController:mapVC animated:YES];
 }
 
+- (IBAction)pictureProcessing:(UITapGestureRecognizer *)sender {
+    NSLog(@"图片点击了");
+    if (sender.view == self.IDImageV) {
+        
+    }else if(sender.view == self.IDImageV2){
+        
+    }else if(sender.view == self.signImageV){
+        
+    }else if(sender.view == self.picImageV){
+        
+    }else if(sender.view == self.picImageV2){
+        
+    }else if(sender.view == self.picImageV3){
+        
+    }else if(sender.view == self.licenseImageV){
+        
+    }
+}
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     if (textField == self.phoneTF && [string isEqualToString:@"\n"]) {

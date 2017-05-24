@@ -21,6 +21,7 @@
                 <outlet property="ensurePwdTF" destination="btC-sI-6WT" id="czC-Yo-W6c"/>
                 <outlet property="legalPersonNameTF" destination="cEr-sh-goD" id="0cZ-Az-kTZ"/>
                 <outlet property="legalPhoneTF" destination="3w6-qF-FwD" id="ktu-9h-W7N"/>
+                <outlet property="licenseImageV" destination="KrB-bJ-xOY" id="xsV-mr-lMn"/>
                 <outlet property="licenseTF" destination="ngh-KU-dPa" id="d8n-kz-dyt"/>
                 <outlet property="mapAddressLabel" destination="oKD-Pt-G3C" id="wi7-uc-hTk"/>
                 <outlet property="passwordTF" destination="WEC-Vz-cJW" id="Mjb-b3-mqE"/>
@@ -521,7 +522,7 @@
                                                 <outletCollection property="gestureRecognizers" destination="RaM-on-73S" appends="YES" id="gj9-Lb-1uG"/>
                                             </connections>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="门店招牌(1张)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5q-Mf-wH3">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="营业执照(1张)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5q-Mf-wH3">
                                             <rect key="frame" x="10" y="408" width="81.5" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
@@ -688,13 +689,41 @@
                 <action selector="mapAddressChoose:" destination="-1" id="5AZ-J9-y8y"/>
             </connections>
         </tapGestureRecognizer>
-        <tapGestureRecognizer id="Rsc-Wh-A63"/>
-        <tapGestureRecognizer id="9dZ-7O-L3j"/>
-        <tapGestureRecognizer id="qf1-yC-kF5"/>
-        <tapGestureRecognizer id="SHx-Rm-zOY"/>
-        <tapGestureRecognizer id="A2f-Mk-EdY"/>
-        <tapGestureRecognizer id="RaM-on-73S"/>
-        <tapGestureRecognizer id="OzN-iq-KZm"/>
+        <tapGestureRecognizer id="Rsc-Wh-A63">
+            <connections>
+                <action selector="pictureProcessing:" destination="-1" id="585-j0-dmA"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="9dZ-7O-L3j">
+            <connections>
+                <action selector="pictureProcessing:" destination="-1" id="LdP-5S-q3j"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="qf1-yC-kF5">
+            <connections>
+                <action selector="pictureProcessing:" destination="-1" id="x63-9N-kZY"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="SHx-Rm-zOY">
+            <connections>
+                <action selector="pictureProcessing:" destination="-1" id="5aP-Xn-LHt"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="A2f-Mk-EdY">
+            <connections>
+                <action selector="pictureProcessing:" destination="-1" id="rVf-1J-mdw"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="RaM-on-73S">
+            <connections>
+                <action selector="pictureProcessing:" destination="-1" id="Bad-fj-lRW"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="OzN-iq-KZm">
+            <connections>
+                <action selector="pictureProcessing:" destination="-1" id="7Yq-ys-lel"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="下选三角形" width="8" height="5"/>

@@ -138,14 +138,16 @@
         index = 2;
     }else if ([[UserModel defaultUser].usrtype isEqualToString:@"0"]){
         index = 3;
-    }else{
+    }else if ([UserModel defaultUser].usrtype == nil || [UserModel defaultUser].usrtype.length <= 0 ){
         index = 3;
+    }else{
+        index = 2;
     }
     if (viewController == [tabBarController.viewControllers objectAtIndex:index]) {
        
         if ([UserModel defaultUser].loginstatus == YES) {
             
-            if ([[UserModel defaultUser].idcard isEqualToString:@""]) {
+            if ([[UserModel defaultUser].AudiThrough isEqualToString:@"0"] || [[UserModel defaultUser].AudiThrough isEqualToString:@"3"]) {
                 
                 LBImprovePersonalDataViewController *infoVC = [[LBImprovePersonalDataViewController alloc] init];
                 infoVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;

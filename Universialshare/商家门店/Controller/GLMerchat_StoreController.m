@@ -12,10 +12,22 @@
 
 
 @interface GLMerchat_StoreController ()<GLMerchat_StoreCellDelegate>
+{
+    
+    LoadWaitView *_loadV;
+    
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
 
 @property (weak, nonatomic) IBOutlet UIButton *addStoreBtn;
+
+
+@property (nonatomic,strong)NSMutableArray *models;
+
+@property (nonatomic,assign)NSInteger page;
+
+@property (nonatomic,strong)NodataView *nodataV;
 
 @end
 
@@ -26,6 +38,90 @@ static NSString *ID = @"GLMerchat_StoreCell";
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
+    
+    __weak __typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf updateData:YES];
+        
+    }];
+    
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf updateData:NO];
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+    }];
+    
+    // 设置文字
+    [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
+    
+    [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
+    
+    [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
+    
+    
+    self.tableView.mj_header = header;
+    self.tableView.mj_footer = footer;
+    [self updateData:YES];
+    
+}
+
+- (void)updateData:(BOOL)status {
+    if (status) {
+        
+        self.page = 1;
+        [self.models removeAllObjects];
+        
+    }else{
+        _page ++;
+        
+    }
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"page"] = [NSString stringWithFormat:@"%ld",_page];
+//    dict[@"shop_name"] = [NSString stringWithFormat:@"%ld",_page];
+
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"shop/getSonStoreList" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        [self endRefresh];
+        NSLog(@"%@",responseObject);
+        if ([responseObject[@"code"] integerValue]==1) {
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+//                for (NSDictionary *dic in responseObject[@"data"]) {
+//                    GLMerchat_CommentGoodsModel *model = [GLMerchat_CommentGoodsModel mj_objectWithKeyValues:dic];
+//                    [_models addObject:model];
+//                }
+                
+                [self.tableView reloadData];
+            }
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+            
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [self endRefresh];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+    
+}
+- (void)endRefresh {
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+}
+-(NodataView*)nodataV{
+    
+    if (!_nodataV) {
+        _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-114-49);
+    }
+    return _nodataV;
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
