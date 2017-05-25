@@ -7,8 +7,15 @@
 //
 
 #import "LBAddMineProductionViewController.h"
+#import "editorMaskPresentationController.h"
+#import "LBAddrecomdManChooseAreaViewController.h"
+#import "QQTagView.h"
 
-@interface LBAddMineProductionViewController ()<UIActionSheetDelegate,UIAlertViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextViewDelegate,UITextFieldDelegate>
+@interface LBAddMineProductionViewController ()<UIActionSheetDelegate,UIAlertViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextViewDelegate,UITextFieldDelegate,UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning,QQTagViewDelegate>
+{
+    BOOL      _ishidecotr;//判断是否隐藏弹出控制器
+    LoadWaitView *_loadV;
+}
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentW;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentH;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViwH;
@@ -33,6 +40,20 @@
 @property (assign, nonatomic)NSInteger stype;//分红类型
 @property (assign, nonatomic)NSInteger indexShelves;//是否上架
 
+//行业
+@property (nonatomic, strong)NSMutableArray *industryArr;//分类
+@property (nonatomic, strong)NSMutableArray *goodsArr;//属性
+@property (nonatomic, assign)NSInteger isChoseFirstClassify;//记录一级分类的第几行
+@property (nonatomic, assign)NSInteger isChoseSecondClassify;//记录二级分类的第几行
+@property (weak, nonatomic) IBOutlet UILabel *oneClassifyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *twoClassifyLabel;
+//属性View
+@property (weak, nonatomic) IBOutlet UIView *shuxingView;
+
+@property (strong, nonatomic)UIView *incentiveModelMaskV;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *shuxingViewHeight;
+
+
 @end
 
 @implementation LBAddMineProductionViewController
@@ -47,10 +68,86 @@
     self.stype = 1;
     self.indexShelves = 1;
     
+    
     [self refreshimageview];
+    [self getPickerData];
+}
+#pragma mark - get data
+- (void)getPickerData {
+    
+    //分类列表
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsCate" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        
+//        NSLog(@"responseObject = %@",responseObject);
+        if ([responseObject[@"code"] integerValue]==1) {
+            self.industryArr = responseObject[@"data"];
+        }else{
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+    //属性列表
+    NSMutableDictionary *dict1 = [NSMutableDictionary dictionary];
+ 
+    [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsAttr" paramDic:dict1 finish:^(id responseObject) {
+        [_loadV removeloadview];
+        
+//        NSLog(@"responseObject = %@",responseObject);
+        if ([responseObject[@"code"] integerValue]==1) {
+            self.goodsArr = responseObject[@"data"];
+            NSLog(@"goodsArr =  %@",self.goodsArr);
+            QQTagView *view = [[QQTagView alloc] init];
+            
+            view.frame = CGRectMake(80, 10, SCREEN_WIDTH, 0);
+            view.delegate = self;
+            view .tag = 1;
+            [view addTags:@[@"6754674567", @"88888888", @"999",@"43243434",@"341234",@"777",@"743432523577"]];
+            [self.shuxingView addSubview:view];
+            
+            
+        }else{
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+}
+- (void)QQTagView:(QQTagView *)QQTagView QQTagItem:(QQTagItem *)QQTagItem
+{
+    NSLog(@"%ld",QQTagItem.Style);
+    //    NSLog(@"%@",QQTagItem.text);
+//    if (QQTagView.tag ==1) {
+//        if (QQTagItem.Style == QQTagStyleNone) {
+//            [self.HeaderView addLabel:QQTagItem.text tag:1];
+//            [self.arr addObject:QQTagItem.text];
+//        }else{
+//            [self.HeaderView  remove:QQTagItem.text];
+//            [self.arr removeObject:QQTagItem.text];
+//            
+//        }
+//    }
+//    NSLog(@"%@",self.arr);
     
 }
+- (void)QQTagView:(QQTagView *)QQTagView sizeChange:(CGRect)newSize
+{
+    self.shuxingViewHeight.constant = newSize.size.height + 30;
 
+
+}
 //选择20%
 - (IBAction)tappercentTweTy:(UITapGestureRecognizer *)sender {
      self.stype = 1;
@@ -72,6 +169,63 @@
     [self.selectBtOne setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
     [self.selectBtTwo setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
     [self.selectBtThree setImage:[UIImage imageNamed:@"添加产品选中"] forState:UIControlStateNormal];
+}
+//一级分类选择
+- (IBAction)oneClassifyChoose:(id)sender {
+    LBAddrecomdManChooseAreaViewController *vc=[[LBAddrecomdManChooseAreaViewController alloc]init];
+    if (self.industryArr.count != 0) {
+        
+        vc.provinceArr = self.industryArr;
+        vc.titlestr = @"请选择一级行业分类";
+        vc.returnreslut = ^(NSInteger index){
+            _isChoseFirstClassify = index;
+            _oneClassifyLabel.text = _industryArr[index][@"catename"];
+            _oneClassifyLabel.textColor = [UIColor blackColor];
+            _twoClassifyLabel.text = @"请选择二级行业分类";
+            
+        };
+        vc.transitioningDelegate=self;
+        vc.modalPresentationStyle=UIModalPresentationCustom;
+        [self presentViewController:vc animated:YES completion:nil];
+    }else{
+        [MBProgressHUD showError:@"一级行业分类暂无数据"];
+    }
+
+}
+//二级分类选择
+- (IBAction)twoClassifyChoose:(id)sender {
+    if ([self.oneClassifyLabel.text isEqualToString:@"请选择一级行业分类"]) {
+        [MBProgressHUD showError:@"请选择一级行业分类"];
+        return;
+    }
+    
+    LBAddrecomdManChooseAreaViewController *vc=[[LBAddrecomdManChooseAreaViewController alloc]init];
+    
+    NSArray *arr = self.industryArr[_isChoseFirstClassify][@"son"];
+    if(arr.count != 0){
+        
+        vc.provinceArr = self.industryArr[_isChoseFirstClassify][@"son"];
+        vc.titlestr = @"请选择二级行业分类";
+        vc.returnreslut = ^(NSInteger index){
+            _isChoseSecondClassify = index;
+            NSArray *son = _industryArr[_isChoseFirstClassify][@"son"];
+            if (son.count == 0) {
+                _twoClassifyLabel.text = @"";
+            }else{
+                
+                _twoClassifyLabel.text = _industryArr[_isChoseFirstClassify][@"son"][index][@"catename"];
+            }
+            _twoClassifyLabel.textColor = [UIColor blackColor];
+            
+        };
+        
+        vc.transitioningDelegate=self;
+        vc.modalPresentationStyle=UIModalPresentationCustom;
+        [self presentViewController:vc animated:YES completion:nil];
+    }else{
+        [MBProgressHUD showError:@"二级行业分类暂无数据"];
+    }
+
 }
 
 - (IBAction)isShelvesEvent:(UISwitch *)sender {
@@ -215,10 +369,10 @@
     
     if (self.imageArr.count > 3) {
         self.imageViwH.constant = 210;
-        self.contentH.constant = 700 + 110;
+        self.contentH.constant = 880 + 110;
     }else{
         self.imageViwH.constant = 210;
-        self.contentH.constant = 700;
+        self.contentH.constant = 880;
     }
 
 }
@@ -335,11 +489,85 @@
     }
 }
 
+#pragma 动画代理
+- (nullable UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source{
+    
+    return [[editorMaskPresentationController alloc]initWithPresentedViewController:presented presentingViewController:presenting];
+    
+}
+//控制器创建执行的动画（返回一个实现UIViewControllerAnimatedTransitioning协议的类）
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
+{
+    _ishidecotr=YES;
+    return self;
+}
 
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    _ishidecotr=NO;
+    return self;
+}
+- (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext{
+    
+    return 0.5;
+    
+}
+-(void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext{
+    if (_ishidecotr==YES) {
+        UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
+        toView.frame=CGRectMake(-SCREEN_WIDTH, (SCREEN_HEIGHT - 300)/2, SCREEN_WIDTH - 40, 280);
+        toView.layer.cornerRadius = 6;
+        toView.clipsToBounds = YES;
+        [transitionContext.containerView addSubview:toView];
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            toView.frame=CGRectMake(20, (SCREEN_HEIGHT - 300)/2, SCREEN_WIDTH - 40, 280);
+            
+        } completion:^(BOOL finished) {
+            
+            [transitionContext completeTransition:YES]; //这个必须写,否则程序 认为动画还在执行中,会导致展示完界面后,无法处理用户的点击事件
+        }];
+    }else{
+        
+        UIView *toView = [transitionContext viewForKey:UITransitionContextFromViewKey];
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            toView.frame=CGRectMake(20 + SCREEN_WIDTH, (SCREEN_HEIGHT - 300)/2, SCREEN_WIDTH - 40, 280);
+            
+        } completion:^(BOOL finished) {
+            if (finished) {
+                [toView removeFromSuperview];
+                [transitionContext completeTransition:YES]; //这个必须写,否则程序 认为动画还在执行中,会导致展示完界面后,无法处理用户的点击事件
+            }
+            
+        }];
+        
+    }
+    
+}
+
+//点击maskview
+-(void)incentiveModelMaskVtapgestureLb{
+    
+    [self.incentiveModelMaskV removeFromSuperview];
+    
+    
+}
+-(UIView*)incentiveModelMaskV{
+    
+    if (!_incentiveModelMaskV) {
+        _incentiveModelMaskV=[[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        _incentiveModelMaskV.backgroundColor=[UIColor clearColor];
+    }
+    
+    return _incentiveModelMaskV;
+    
+}
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     self.contentW.constant = SCREEN_WIDTH;
-    self.contentH.constant = 700;
+    self.contentH.constant = 880;
     self.imageViwH.constant = 100;
     
     self.submitBt.layer.cornerRadius = 4;
@@ -352,5 +580,11 @@
         _imageArr=[NSMutableArray arrayWithObjects:@"照片框-拷贝-9", nil];
     }
     return _imageArr;
+}
+-(NSMutableArray*)goodsArr{
+    if (!_goodsArr) {
+        _goodsArr=[NSMutableArray array];
+    }
+    return _goodsArr;
 }
 @end
