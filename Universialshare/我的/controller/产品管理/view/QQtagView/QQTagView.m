@@ -15,7 +15,7 @@
     if (self = [super init]) {
         self.tagFontSize = 12;
         self.tagSpace = 10;
-        self.padding = UIEdgeInsetsMake(10, 10, 10, 10);//控件的距离
+        self.padding = UIEdgeInsetsMake(5, 10, 5, 10);//控件的距离
 //        self.tagTextPadding = UIEdgeInsetsMake(5, 10, 5, 10);
         self.Style = QQTagStyleNone;
         self.backgroundColor =[UIColor whiteColor];
@@ -28,7 +28,7 @@
     self.tagFontSize = 12;
     self.tagSpace = 10;
     self.Style = TagViewStyle;
-    self.padding = UIEdgeInsetsMake(10, 10, 10, 10);//控件的距离
+    self.padding = UIEdgeInsetsMake(5, 10, 5, 10);//控件的距离
     self.backgroundColor =[UIColor redColor];
     return self;
 }
@@ -63,9 +63,9 @@
     if(self.subviews && self.subviews.count > 0) {
         frame = [self.subviews lastObject].frame;
     }
-    
+//
     QQTagItem *Item = [[QQTagItem alloc]init];
-#warning mark - 是否显示删除图片 
+#warning mark - 是否显示删除图片
     // 这里是RightView实现的也可以用CleanButtonMode实现
     /**
      UIButton *button = [label.label valueForKey:@"_clearButton"];

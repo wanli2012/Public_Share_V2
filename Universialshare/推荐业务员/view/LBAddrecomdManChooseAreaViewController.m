@@ -79,6 +79,10 @@
         displaylable.text = [self.provinceArr objectAtIndex:row][@"trade_name"];
     }else if ([self.titlestr isEqualToString:@"请选择二级行业分类"] || [self.titlestr isEqualToString:@"请选择二级商户"]){
         displaylable.text = [self.provinceArr objectAtIndex:row][@"trade_name"];
+    }else if([self.titlestr isEqualToString:@"请选择一级分类"]){
+        displaylable.text = [self.provinceArr objectAtIndex:row][@"catename"];
+    }else if ([self.titlestr isEqualToString:@"请选择二级分类"]){
+        displaylable.text = [self.provinceArr objectAtIndex:row][@"catename"];
     }
     
     UIView *maskview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, (self.view.bounds.size.width - 20), 50)];

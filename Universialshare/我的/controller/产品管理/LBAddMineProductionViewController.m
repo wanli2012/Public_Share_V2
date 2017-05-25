@@ -15,7 +15,11 @@
 {
     BOOL      _ishidecotr;//判断是否隐藏弹出控制器
     LoadWaitView *_loadV;
+    NSMutableArray *_tags;
+    NSMutableArray *_tag_ids;
+    QQTagView *_tagView;
 }
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentW;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentH;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViwH;
@@ -53,6 +57,8 @@
 @property (strong, nonatomic)UIView *incentiveModelMaskV;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *shuxingViewHeight;
 
+@property (nonatomic, assign)CGRect shuxingSize;
+@property (nonatomic, strong)NSMutableArray *selectedTagIds;
 
 @end
 
@@ -74,7 +80,6 @@
 }
 #pragma mark - get data
 - (void)getPickerData {
-    
     //分类列表
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 
@@ -99,20 +104,23 @@
     NSMutableDictionary *dict1 = [NSMutableDictionary dictionary];
  
     [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsAttr" paramDic:dict1 finish:^(id responseObject) {
-        [_loadV removeloadview];
+//        [_loadV removeloadview];
         
 //        NSLog(@"responseObject = %@",responseObject);
-        if ([responseObject[@"code"] integerValue]==1) {
-            self.goodsArr = responseObject[@"data"];
-            NSLog(@"goodsArr =  %@",self.goodsArr);
-            QQTagView *view = [[QQTagView alloc] init];
+        if ([responseObject[@"code"] integerValue]== 1) {
             
-            view.frame = CGRectMake(80, 10, SCREEN_WIDTH, 0);
-            view.delegate = self;
-            view .tag = 1;
-            [view addTags:@[@"6754674567", @"88888888", @"999",@"43243434",@"341234",@"777",@"743432523577"]];
-            [self.shuxingView addSubview:view];
-            
+            _tagView = [[QQTagView alloc] init];
+            _tagView.frame = CGRectMake(80, 10, SCREEN_WIDTH - 80, 0);
+            _tagView.delegate = self;
+            _tagView.tag = 1;
+            _tags = [NSMutableArray array];
+            _tag_ids = [NSMutableArray array];
+            for (NSDictionary *dic in responseObject[@"data"]) {
+                [_tags addObject:dic[@"attr_info"]];
+                [_tag_ids addObject:dic[@"attr_id"]];
+            }
+            [_tagView addTags:_tags];
+            [self.shuxingView addSubview:_tagView];
             
         }else{
             
@@ -120,31 +128,29 @@
         }
         
     } enError:^(NSError *error) {
-        [_loadV removeloadview];
+//        [_loadV removeloadview];
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
 }
 - (void)QQTagView:(QQTagView *)QQTagView QQTagItem:(QQTagItem *)QQTagItem
 {
-    NSLog(@"%ld",QQTagItem.Style);
-    //    NSLog(@"%@",QQTagItem.text);
-//    if (QQTagView.tag ==1) {
-//        if (QQTagItem.Style == QQTagStyleNone) {
-//            [self.HeaderView addLabel:QQTagItem.text tag:1];
-//            [self.arr addObject:QQTagItem.text];
-//        }else{
-//            [self.HeaderView  remove:QQTagItem.text];
-//            [self.arr removeObject:QQTagItem.text];
-//            
-//        }
-//    }
-//    NSLog(@"%@",self.arr);
-    
+    if (QQTagItem.Style == QQTagStyleNone) {
+        
+        [self.selectedTagIds addObject:QQTagItem.text];
+        
+    }else{
+        
+        [self.selectedTagIds removeObject:QQTagItem.text];
+        
+    }
+
 }
 - (void)QQTagView:(QQTagView *)QQTagView sizeChange:(CGRect)newSize
 {
     self.shuxingViewHeight.constant = newSize.size.height + 30;
+    self.shuxingSize = newSize;
+    self.contentH.constant = 880 + self.shuxingSize.size.height - 30;
 
 
 }
@@ -176,26 +182,26 @@
     if (self.industryArr.count != 0) {
         
         vc.provinceArr = self.industryArr;
-        vc.titlestr = @"请选择一级行业分类";
+        vc.titlestr = @"请选择一级分类";
         vc.returnreslut = ^(NSInteger index){
             _isChoseFirstClassify = index;
             _oneClassifyLabel.text = _industryArr[index][@"catename"];
             _oneClassifyLabel.textColor = [UIColor blackColor];
-            _twoClassifyLabel.text = @"请选择二级行业分类";
+            _twoClassifyLabel.text = @"请选择二级分类";
             
         };
         vc.transitioningDelegate=self;
         vc.modalPresentationStyle=UIModalPresentationCustom;
         [self presentViewController:vc animated:YES completion:nil];
     }else{
-        [MBProgressHUD showError:@"一级行业分类暂无数据"];
+        [MBProgressHUD showError:@"一级分类暂无数据"];
     }
 
 }
 //二级分类选择
 - (IBAction)twoClassifyChoose:(id)sender {
-    if ([self.oneClassifyLabel.text isEqualToString:@"请选择一级行业分类"]) {
-        [MBProgressHUD showError:@"请选择一级行业分类"];
+    if ([self.oneClassifyLabel.text isEqualToString:@"请选择一级分类"]) {
+        [MBProgressHUD showError:@"请选择一级分类"];
         return;
     }
     
@@ -205,7 +211,7 @@
     if(arr.count != 0){
         
         vc.provinceArr = self.industryArr[_isChoseFirstClassify][@"son"];
-        vc.titlestr = @"请选择二级行业分类";
+        vc.titlestr = @"请选择二级分类";
         vc.returnreslut = ^(NSInteger index){
             _isChoseSecondClassify = index;
             NSArray *son = _industryArr[_isChoseFirstClassify][@"son"];
@@ -223,7 +229,7 @@
         vc.modalPresentationStyle=UIModalPresentationCustom;
         [self presentViewController:vc animated:YES completion:nil];
     }else{
-        [MBProgressHUD showError:@"二级行业分类暂无数据"];
+        [MBProgressHUD showError:@"二级分类暂无数据"];
     }
 
 }
@@ -270,7 +276,18 @@
         return;
     }
 
-    NSDictionary *dict = @{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token,@"goods_name":self.nameTf.text,@"rl_type_id":[NSNumber numberWithInteger:self.stype],@"goods_info":self.productdesTv.text,@"status":[NSNumber numberWithInteger:self.indexShelves],@"price":self.UnitPriceTf.text,@"discount":self.favorablePriceTf.text,@"sendPrice":self.freightTf.text,@"total_num":self.numTf.text,@"count":[NSNumber numberWithInteger:self.imageArr.count - 1]};
+    NSDictionary *dict = @{@"uid":[UserModel defaultUser].uid ,
+                           @"token":[UserModel defaultUser].token,
+                           @"goods_name":self.nameTf.text,
+                           @"rl_type_id":[NSNumber numberWithInteger:self.stype],
+                           @"goods_info":self.productdesTv.text,
+                           @"status":[NSNumber numberWithInteger:self.indexShelves],
+                           @"price":self.UnitPriceTf.text,
+                           @"discount":self.favorablePriceTf.text,
+                           @"sendPrice":self.freightTf.text,
+                           @"total_num":self.numTf.text,
+                           
+                           @"count":[NSNumber numberWithInteger:self.imageArr.count - 1]};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
     manager.requestSerializer.timeoutInterval = 20;
@@ -370,13 +387,22 @@
     if (self.imageArr.count > 3) {
         self.imageViwH.constant = 210;
         self.contentH.constant = 880 + 110;
+        if (self.shuxingSize.size.height) {
+            self.imageViwH.constant = 210;
+            self.contentH.constant = 880 + 110 + self.shuxingSize.size.height - 30;
+
+        }
     }else{
         self.imageViwH.constant = 210;
         self.contentH.constant = 880;
+        if (self.shuxingSize.size.height) {
+            self.imageViwH.constant = 210;
+            self.contentH.constant = 880 + self.shuxingSize.size.height - 30;
+            
+        }
     }
 
 }
-
 
 -(void)tapgestureImagev:(UITapGestureRecognizer*)gesture{
 
@@ -581,10 +607,10 @@
     }
     return _imageArr;
 }
--(NSMutableArray*)goodsArr{
-    if (!_goodsArr) {
-        _goodsArr=[NSMutableArray array];
+-(NSMutableArray*)selectedTagIds{
+    if (!_selectedTagIds) {
+        _selectedTagIds=[NSMutableArray array];
     }
-    return _goodsArr;
+    return _selectedTagIds;
 }
 @end
