@@ -10,4 +10,10 @@
 
 @interface GLRecommendStore_RecordCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *namelb;
+@property (weak, nonatomic) IBOutlet UILabel *adresslb;
+@property (weak, nonatomic) IBOutlet UILabel *codelb;
+@property (weak, nonatomic) IBOutlet UILabel *timelb;
+
+
 @end

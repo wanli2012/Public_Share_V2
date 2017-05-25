@@ -181,7 +181,7 @@
     [manager POST:[NSString stringWithFormat:@"%@user/userInfoBq",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         //将图片以表单形式上传
         
-        for (int i = 0; i < imageViewArr.count; i ++) {
+        for (int i = 0; i < imageViewArr.count; i++) {
             
             NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
             formatter.dateFormat=@"yyyyMMddHHmmss";
@@ -193,10 +193,11 @@
         }
         
     }progress:^(NSProgress *uploadProgress){
+        
         [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
-        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-        [SVProgressHUD setCornerRadius:8.0];
+//        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+          [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+//        [SVProgressHUD setCornerRadius:8.0];
 
         
     }success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -226,8 +227,6 @@
         [SVProgressHUD dismiss];
         [MBProgressHUD showError:error.localizedDescription];
     }];
-    
-    
 }
 
 //选择图片来源
@@ -384,6 +383,12 @@
     [super updateViewConstraints];
     self.contentW.constant =SCREEN_WIDTH;
     self.contentH.constant =760;
+    
+    self.surebutton.layer.cornerRadius = 4;
+    self.surebutton.clipsToBounds = YES;
+    
+    self.exitbt.layer.cornerRadius = 4;
+    self.exitbt.clipsToBounds = YES;
 
 }
 
