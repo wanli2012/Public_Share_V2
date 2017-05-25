@@ -778,8 +778,6 @@
 		F94A33FA1EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94A33F81EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.xib */; };
 		F94D317D1EAF1A2300309029 /* LBRecommendedSalesmanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94D317B1EAF1A2300309029 /* LBRecommendedSalesmanViewController.m */; };
 		F94D317E1EAF1A2300309029 /* LBRecommendedSalesmanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94D317C1EAF1A2300309029 /* LBRecommendedSalesmanViewController.xib */; };
-		F94D31821EAF2EB300309029 /* LBRecommendedBusinessAuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94D31801EAF2EB300309029 /* LBRecommendedBusinessAuditViewController.m */; };
-		F94D31831EAF2EB300309029 /* LBRecommendedBusinessAuditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94D31811EAF2EB300309029 /* LBRecommendedBusinessAuditViewController.xib */; };
 		F94D31971EAF3AED00309029 /* LBRecommendedBusinessAuditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94D31951EAF3AED00309029 /* LBRecommendedBusinessAuditTableViewCell.m */; };
 		F94D31981EAF3AED00309029 /* LBRecommendedBusinessAuditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94D31961EAF3AED00309029 /* LBRecommendedBusinessAuditTableViewCell.xib */; };
 		F94D319C1EAF3FC300309029 /* LBRecommendedBusinessAuditOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94D319A1EAF3FC300309029 /* LBRecommendedBusinessAuditOneTableViewCell.m */; };
@@ -2309,9 +2307,6 @@
 		F94D317A1EAF1A2300309029 /* LBRecommendedSalesmanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBRecommendedSalesmanViewController.h; sourceTree = "<group>"; };
 		F94D317B1EAF1A2300309029 /* LBRecommendedSalesmanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBRecommendedSalesmanViewController.m; sourceTree = "<group>"; };
 		F94D317C1EAF1A2300309029 /* LBRecommendedSalesmanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBRecommendedSalesmanViewController.xib; sourceTree = "<group>"; };
-		F94D317F1EAF2EB300309029 /* LBRecommendedBusinessAuditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBRecommendedBusinessAuditViewController.h; sourceTree = "<group>"; };
-		F94D31801EAF2EB300309029 /* LBRecommendedBusinessAuditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBRecommendedBusinessAuditViewController.m; sourceTree = "<group>"; };
-		F94D31811EAF2EB300309029 /* LBRecommendedBusinessAuditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBRecommendedBusinessAuditViewController.xib; sourceTree = "<group>"; };
 		F94D31941EAF3AED00309029 /* LBRecommendedBusinessAuditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBRecommendedBusinessAuditTableViewCell.h; sourceTree = "<group>"; };
 		F94D31951EAF3AED00309029 /* LBRecommendedBusinessAuditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBRecommendedBusinessAuditTableViewCell.m; sourceTree = "<group>"; };
 		F94D31961EAF3AED00309029 /* LBRecommendedBusinessAuditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBRecommendedBusinessAuditTableViewCell.xib; sourceTree = "<group>"; };
@@ -5665,9 +5660,6 @@
 				F94D317A1EAF1A2300309029 /* LBRecommendedSalesmanViewController.h */,
 				F94D317B1EAF1A2300309029 /* LBRecommendedSalesmanViewController.m */,
 				F94D317C1EAF1A2300309029 /* LBRecommendedSalesmanViewController.xib */,
-				F94D317F1EAF2EB300309029 /* LBRecommendedBusinessAuditViewController.h */,
-				F94D31801EAF2EB300309029 /* LBRecommendedBusinessAuditViewController.m */,
-				F94D31811EAF2EB300309029 /* LBRecommendedBusinessAuditViewController.xib */,
 				F94D31931EAF3AD300309029 /* view */,
 			);
 			path = "推荐业务员";
@@ -6557,7 +6549,6 @@
 				4A3D17BB1ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.xib in Resources */,
 				F94D31E31EAF716D00309029 /* LBMineCenterReceivingGoodsViewController.xib in Resources */,
 				4A2F520E1EC7084000ECA95D /* GLHomeLiveChooseController.xib in Resources */,
-				F94D31831EAF2EB300309029 /* LBRecommendedBusinessAuditViewController.xib in Resources */,
 				F92309931E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.xib in Resources */,
 				F966B4101EACB0C0007260FC /* LBSaleManPersonInfoViewController.xib in Resources */,
 				4AAD253E1EC188C90054FD06 /* GLBuyBackChooseBankView.xib in Resources */,
@@ -7178,7 +7169,6 @@
 				4A46106D1E9CC6360045824F /* ZXWifiResultParser.m in Sources */,
 				4A460A5B1E9CC0310045824F /* ScanResultViewController.m in Sources */,
 				4AFCDC7B1ED2EE77007C1681 /* GLMerchat_CommentTableController.m in Sources */,
-				F94D31821EAF2EB300309029 /* LBRecommendedBusinessAuditViewController.m in Sources */,
 				4A46104D1E9CC6360045824F /* ZXAddressBookParsedResult.m in Sources */,
 				4A5F669F1ECA89FA0048F339 /* GLNearbyViewController.m in Sources */,
 				F92DA01A1ECDA163004CBAA8 /* UIView+AdjustFrame.m in Sources */,

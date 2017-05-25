@@ -29,7 +29,6 @@
 #import "LBMineSelectCustomerTypeView.h"
 #import "LBMineCenterUsualUnderOrderViewController.h"
 #import "LBSaleManPersonInfoViewController.h"
-#import "LBRecommendedBusinessAuditViewController.h"
 #import "LBBelowTheLineViewController.h"
 #import "LBBaiduMapViewController.h"
 #import "GLShoppingCartController.h"
@@ -47,6 +46,7 @@
 #import "LBStoreMoreInfomationViewController.h"//商店详情
 #import "LBMineCenterMYOrderEvaluationDetailViewController.h"//评论商品
 #import "LBMerchantSubmissionFourViewController.h"
+#import "LBRecommendedSalesmanViewController.h"
 
 @interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
     UIImageView *_imageviewLeft;
@@ -179,7 +179,7 @@
                 }else{
                 
                     self.hidesBottomBarWhenPushed=YES;
-                    LBRecommendedBusinessAuditViewController *vc=[[LBRecommendedBusinessAuditViewController alloc]init];
+                    LBRecommendedSalesmanViewController *vc=[[LBRecommendedSalesmanViewController alloc]init];
                     [self.navigationController pushViewController:vc animated:YES];
                     self.hidesBottomBarWhenPushed=NO;
                 }
