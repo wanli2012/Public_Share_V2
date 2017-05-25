@@ -105,8 +105,6 @@
     
     }
     
-    
-    
     if (self.returnreslut) {
         self.returnreslut(_resultStr,_resultStrId,_provinceStrId,_cityStrId,_countryStrId);
     }
@@ -114,8 +112,6 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:@"LoveConsumptionVC" object:nil];
     
 }
-
-
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     

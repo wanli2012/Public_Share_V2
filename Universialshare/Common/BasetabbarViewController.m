@@ -144,8 +144,6 @@
         index = 2;
     }else if ([[UserModel defaultUser].usrtype isEqualToString:@"0"]){
         index = 3;
-    }else if ([UserModel defaultUser].usrtype == nil || [UserModel defaultUser].usrtype.length <= 0 ){
-        index = 3;
     }else{
         index = 2;
     }
@@ -153,14 +151,13 @@
        
         if ([UserModel defaultUser].loginstatus == YES) {
             
-            if ([[UserModel defaultUser].AudiThrough isEqualToString:@"0"] || [[UserModel defaultUser].AudiThrough isEqualToString:@"3"]) {
+            if ([[UserModel defaultUser].rzstatus isEqualToString:@"0"] || [[UserModel defaultUser].rzstatus isEqualToString:@"3"]) {
                 
                 LBImprovePersonalDataViewController *infoVC = [[LBImprovePersonalDataViewController alloc] init];
                 infoVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 [self presentViewController:infoVC animated:YES completion:nil];
                 return NO;
             }
-            
             return YES;
         }
         GLLoginController *loginVC = [[GLLoginController alloc] init];
