@@ -105,7 +105,7 @@ static const CGFloat headerImageHeight = 180.0f;
                 
                 self.cycleScrollView.imageURLStringsGroup = imagearr;
                 
-                 self.navigationItem.title = [NSString stringWithFormat:@"%@分",self.dataDic[@"shop_data"][@"shop_name"]];
+                 self.navigationItem.title = [NSString stringWithFormat:@"%@",self.dataDic[@"shop_data"][@"shop_name"]];
                 
                 [self.tableview reloadData];
             }
@@ -196,7 +196,6 @@ static const CGFloat headerImageHeight = 180.0f;
         return 4;
     }
     return 0;
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

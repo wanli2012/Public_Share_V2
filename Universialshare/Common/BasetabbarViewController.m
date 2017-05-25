@@ -139,13 +139,13 @@
     
     int index;
     if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
-        index = 3;
+        index = 2;
     }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]){
-        index = 2;
-    }else if ([[UserModel defaultUser].usrtype isEqualToString:@"0"]){
         index = 3;
-    }else{
+    }else if ([[UserModel defaultUser].usrtype isEqualToString:@"0"]){
         index = 2;
+    }else{
+        index = 1;
     }
     if (viewController == [tabBarController.viewControllers objectAtIndex:index]) {
        

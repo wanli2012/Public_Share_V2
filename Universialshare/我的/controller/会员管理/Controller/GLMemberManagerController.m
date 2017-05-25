@@ -26,6 +26,7 @@
 @property (assign, nonatomic)BOOL refreshType;//判断刷新状态 默认为no
 @property (nonatomic, strong)NSMutableArray *models;//锁定会员数据
 @property (nonatomic, strong)NSMutableArray *modelsone;//平台会员数据
+@property (strong, nonatomic)NodataView *nodataV;
 @end
 
 static NSString *ID = @"GLMemberManagerCell";
@@ -41,7 +42,7 @@ static NSString *ID = @"GLMemberManagerCell";
     self.currentbutton = self.leftBtn;
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMemberManagerCell" bundle:nil] forCellReuseIdentifier:ID];
 
-    
+    [self.tableView addSubview:self.nodataV];
     [self initdatasorce];
     
     __weak __typeof(self) weakSelf = self;
@@ -265,5 +266,15 @@ static NSString *ID = @"GLMemberManagerCell";
         
     }
     return _modelsone;
+}
+
+-(NodataView*)nodataV{
+    
+    if (!_nodataV) {
+        _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-114);
+    }
+    return _nodataV;
+    
 }
 @end
