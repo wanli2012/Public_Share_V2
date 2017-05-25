@@ -44,6 +44,8 @@ static NSString *ID = @"GLMerchant_IncomeCell";
     self.queryBtn.layer.cornerRadius = 5.f;
     
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
+    [self.tableView addSubview:self.nodataV];
+    self.nodataV.hidden = YES;
     
     [self.view addSubview:self.CalendarView];
     
@@ -105,7 +107,8 @@ static NSString *ID = @"GLMerchant_IncomeCell";
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"page"] = [NSString stringWithFormat:@"%d",_page];
-    
+    dict[@"type"];
+    dict[@"oType"];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd"];
@@ -136,7 +139,11 @@ static NSString *ID = @"GLMerchant_IncomeCell";
             
             [MBProgressHUD showError:@"已经没有更多数据了"];
         }
-        
+        if (self.models.count <= 0 ) {
+            self.nodataV.hidden = NO;
+        }else{
+            self.nodataV.hidden = YES;
+        }
         [self.tableView reloadData];
     } enError:^(NSError *error) {
         [self endRefresh];

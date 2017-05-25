@@ -7,9 +7,9 @@
 
 #import <UIKit/UIKit.h>
 //选中的颜色
-#define SelectColor  [UIColor greenColor]
+#define SelectColor  YYSRGBColor(40, 150, 50, 1)
 //显示的颜色
-#define ShowColor  [UIColor lightGrayColor]
+#define ShowColor  [UIColor groupTableViewBackgroundColor]
 
 typedef NS_ENUM(NSInteger,QQTagStyle){
     QQTagStyleSlect = 0,// 不可编辑的选中状态

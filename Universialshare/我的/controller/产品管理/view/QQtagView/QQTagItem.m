@@ -17,6 +17,7 @@
         self.textAlignment = NSTextAlignmentCenter;
         self.delegate = self;
         self.backgroundColor = ShowColor;
+        self.textColor = [UIColor darkGrayColor];
         self.layer.cornerRadius = 5.f;
         self.clipsToBounds = YES;
     }
@@ -26,13 +27,14 @@
 
 {
     [textField resignFirstResponder];
-    NSLog(@"string");
 //设置选中与正常颜色
     if (self.Style == QQTagStyleNone) {
         self.backgroundColor = ShowColor;
+        self.textColor = [UIColor darkGrayColor];
         self.Style = QQTagStyleSlect;
     }else if(self.Style == QQTagStyleSlect){
         self.backgroundColor = SelectColor ;
+        self.textColor = [UIColor whiteColor];
         self.Style = QQTagStyleNone;
     }else {
         

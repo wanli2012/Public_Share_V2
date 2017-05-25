@@ -43,6 +43,8 @@ static NSString *ID = @"GLMerchat_CommentCell";
     self.navigationController.navigationBar.hidden = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
+    [self.tableView addSubview:self.nodataV];
+    self.nodataV.hidden = YES;
     
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -97,12 +99,19 @@ static NSString *ID = @"GLMerchat_CommentCell";
                 
                 for (NSDictionary *dic in responseObject[@"data"][@"reply"]) {
                     GLMerchat_CommentModel *model = [GLMerchat_CommentModel mj_objectWithKeyValues:dic];
-                    [_models addObject:model];
+                    [self.models addObject:model];
                 }
                 self.dataDic = responseObject[@"data"];
                 
                 [self setupHeaderView];
                 self.tableView.tableHeaderView = self.headerView;
+
+                
+                if (self.models.count <= 0 ) {
+                    self.nodataV.hidden = NO;
+                }else{
+                    self.nodataV.hidden = YES;
+                }
 
                 [self.tableView reloadData];
             }

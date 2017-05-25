@@ -33,6 +33,8 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.collectionView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellWithReuseIdentifier:ID];
+    [self.collectionView addSubview:self.nodataV];
+    self.nodataV.hidden = YES;
     
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -84,10 +86,15 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 for (NSDictionary *dic in responseObject[@"data"]) {
                     GLMerchat_CommentGoodsModel *model = [GLMerchat_CommentGoodsModel mj_objectWithKeyValues:dic];
-                    [_models addObject:model];
+                    [self.models addObject:model];
                 }
                
-               
+                if (self.models.count <= 0 ) {
+                    self.nodataV.hidden = NO;
+                }else{
+                    self.nodataV.hidden = YES;
+                }
+                
                 [self.collectionView reloadData];
             }
             
