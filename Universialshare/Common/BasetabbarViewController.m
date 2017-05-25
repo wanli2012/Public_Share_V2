@@ -139,7 +139,7 @@
     }else if ([[UserModel defaultUser].usrtype isEqualToString:@"0"]){
         index = 3;
     }else{
-        index = 3;
+        index = 2;
     }
     if (viewController == [tabBarController.viewControllers objectAtIndex:index]) {
        

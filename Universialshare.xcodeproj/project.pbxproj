@@ -783,6 +783,8 @@
 		F94D6E281E9E074300412E64 /* SelectUserTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F94D6E261E9E074300412E64 /* SelectUserTypeView.m */; };
 		F94D6E291E9E074300412E64 /* SelectUserTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94D6E271E9E074300412E64 /* SelectUserTypeView.xib */; };
 		F94D6E2B1E9E2A6D00412E64 /* setUp.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F94D6E2A1E9E2A6D00412E64 /* setUp.xcassets */; };
+		F94F29571ED6651A00E52573 /* LBImprovePersonalDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94F29551ED6651A00E52573 /* LBImprovePersonalDataViewController.m */; };
+		F94F29581ED6651A00E52573 /* LBImprovePersonalDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94F29561ED6651A00E52573 /* LBImprovePersonalDataViewController.xib */; };
 		F95150891EC06F9100BDCF53 /* https.cer in Resources */ = {isa = PBXBuildFile; fileRef = F95150881EC06F9100BDCF53 /* https.cer */; };
 		F9516DE01ECA8C76009F015D /* LBStoreMoreInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9516DDE1ECA8C76009F015D /* LBStoreMoreInfomationViewController.m */; };
 		F9516DE11ECA8C76009F015D /* LBStoreMoreInfomationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9516DDF1ECA8C76009F015D /* LBStoreMoreInfomationViewController.xib */; };
@@ -918,8 +920,6 @@
 		F966B4151EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F966B4131EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.m */; };
 		F966B4161EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F966B4141EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.xib */; };
 		F97644D91EA5BAEA00AFA22B /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = F97644D81EA5BAEA00AFA22B /* RSAEncryptor.m */; };
-		F97644DE1EA608EC00AFA22B /* LBImprovePersonalDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97644DC1EA608EC00AFA22B /* LBImprovePersonalDataViewController.m */; };
-		F97644DF1EA608EC00AFA22B /* LBImprovePersonalDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97644DD1EA608EC00AFA22B /* LBImprovePersonalDataViewController.xib */; };
 		F97F09D81EC9402A000D3B30 /* LBProductManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F09D61EC9402A000D3B30 /* LBProductManagementViewController.m */; };
 		F97F09D91EC9402A000D3B30 /* LBProductManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09D71EC9402A000D3B30 /* LBProductManagementViewController.xib */; };
 		F97F09DD1EC9406D000D3B30 /* LBProductManagementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F09DB1EC9406D000D3B30 /* LBProductManagementTableViewCell.m */; };
@@ -2297,6 +2297,9 @@
 		F94D6E261E9E074300412E64 /* SelectUserTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectUserTypeView.m; sourceTree = "<group>"; };
 		F94D6E271E9E074300412E64 /* SelectUserTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectUserTypeView.xib; sourceTree = "<group>"; };
 		F94D6E2A1E9E2A6D00412E64 /* setUp.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = setUp.xcassets; sourceTree = "<group>"; };
+		F94F29541ED6651A00E52573 /* LBImprovePersonalDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBImprovePersonalDataViewController.h; sourceTree = "<group>"; };
+		F94F29551ED6651A00E52573 /* LBImprovePersonalDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBImprovePersonalDataViewController.m; sourceTree = "<group>"; };
+		F94F29561ED6651A00E52573 /* LBImprovePersonalDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBImprovePersonalDataViewController.xib; sourceTree = "<group>"; };
 		F95150881EC06F9100BDCF53 /* https.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = https.cer; sourceTree = "<group>"; };
 		F9516DDD1ECA8C76009F015D /* LBStoreMoreInfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBStoreMoreInfomationViewController.h; sourceTree = "<group>"; };
 		F9516DDE1ECA8C76009F015D /* LBStoreMoreInfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBStoreMoreInfomationViewController.m; sourceTree = "<group>"; };
@@ -2511,9 +2514,6 @@
 		F966B4141EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBSaleManPersonInfoTableViewCell.xib; sourceTree = "<group>"; };
 		F97644D71EA5BAEA00AFA22B /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
 		F97644D81EA5BAEA00AFA22B /* RSAEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
-		F97644DB1EA608EC00AFA22B /* LBImprovePersonalDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBImprovePersonalDataViewController.h; sourceTree = "<group>"; };
-		F97644DC1EA608EC00AFA22B /* LBImprovePersonalDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBImprovePersonalDataViewController.m; sourceTree = "<group>"; };
-		F97644DD1EA608EC00AFA22B /* LBImprovePersonalDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBImprovePersonalDataViewController.xib; sourceTree = "<group>"; };
 		F97F09D51EC9402A000D3B30 /* LBProductManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBProductManagementViewController.h; sourceTree = "<group>"; };
 		F97F09D61EC9402A000D3B30 /* LBProductManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBProductManagementViewController.m; sourceTree = "<group>"; };
 		F97F09D71EC9402A000D3B30 /* LBProductManagementViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBProductManagementViewController.xib; sourceTree = "<group>"; };
@@ -6145,9 +6145,9 @@
 		F97644DA1EA6083700AFA22B /* 完善个人资料 */ = {
 			isa = PBXGroup;
 			children = (
-				F97644DB1EA608EC00AFA22B /* LBImprovePersonalDataViewController.h */,
-				F97644DC1EA608EC00AFA22B /* LBImprovePersonalDataViewController.m */,
-				F97644DD1EA608EC00AFA22B /* LBImprovePersonalDataViewController.xib */,
+				F94F29541ED6651A00E52573 /* LBImprovePersonalDataViewController.h */,
+				F94F29551ED6651A00E52573 /* LBImprovePersonalDataViewController.m */,
+				F94F29561ED6651A00E52573 /* LBImprovePersonalDataViewController.xib */,
 			);
 			path = "完善个人资料";
 			sourceTree = "<group>";
@@ -6352,7 +6352,6 @@
 				4A2F521A1EC7084000ECA95D /* GLEvaluateCell.xib in Resources */,
 				F92309391E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeDetailOneTableViewCell.xib in Resources */,
 				4AA0D5CA1EAEF9DB00CB8F77 /* GLClassifyCell.xib in Resources */,
-				F97644DF1EA608EC00AFA22B /* LBImprovePersonalDataViewController.xib in Resources */,
 				F92309231E9B8BFF00ECDC94 /* LBMineCenterRechargeBankCardTableViewCell.xib in Resources */,
 				4AAD25401EC188C90054FD06 /* GLBuyBackRecordCell.xib in Resources */,
 				F94D6E241E9DFB2700412E64 /* LBHomeLoginFortgetSecretViewController.xib in Resources */,
@@ -6581,6 +6580,7 @@
 				F951EB171EA1EFC100D6708E /* LBMineCenterUsualUnderOrderOneViewController.xib in Resources */,
 				F9520A0F1EAD9EE300B4D665 /* LBMerchantSubmissionFourViewController.xib in Resources */,
 				4A2F52261EC7084100ECA95D /* GLHourseOptionCell.xib in Resources */,
+				F94F29581ED6651A00E52573 /* LBImprovePersonalDataViewController.xib in Resources */,
 				4AE354831EC8482500BF60CC /* GLMerchat_StoreController.xib in Resources */,
 				F923093D1E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeTableViewCell.xib in Resources */,
 			);
@@ -6708,6 +6708,7 @@
 				4AAD257D1EC188F50054FD06 /* GLEncourageModel.m in Sources */,
 				4A46110C1E9CC6370045824F /* ZXQRCodeFinderPatternFinder.m in Sources */,
 				4AA0D5C81EAEF6C900CB8F77 /* GLClassifyCell.m in Sources */,
+				F94F29571ED6651A00E52573 /* LBImprovePersonalDataViewController.m in Sources */,
 				4AAD25531EC188D70054FD06 /* GLDirectDnationRecordController.m in Sources */,
 				4A4610411E9CC6360045824F /* ZXAztecCode.m in Sources */,
 				F92309551E9B8BFF00ECDC94 /* LBMyOrderPendingPaymentViewController.m in Sources */,
@@ -6770,7 +6771,6 @@
 				4A4610A41E9CC6360045824F /* ZXDataMatrixTextEncoder.m in Sources */,
 				F9643F161ECFE74E001B707B /* TYAlertScaleFadeAnimation.m in Sources */,
 				F91274971EA0E5E300B7A539 /* LBMineStoreOrderingViewController.m in Sources */,
-				F97644DE1EA608EC00AFA22B /* LBImprovePersonalDataViewController.m in Sources */,
 				F92309531E9B8BFF00ECDC94 /* LBMyOrderPendingEvaluationViewController.m in Sources */,
 				4A07A88C1EA0BBF1005A9B67 /* GLNoneOfDonationCell.m in Sources */,
 				4A4610951E9CC6360045824F /* ZXDataMatrixDataBlock.m in Sources */,
