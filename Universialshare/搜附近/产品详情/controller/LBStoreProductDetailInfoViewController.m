@@ -295,7 +295,7 @@
     }
     self.hidesBottomBarWhenPushed = YES;
     GLConfirmOrderController *vc=[[GLConfirmOrderController alloc]init];
-    self.goodId = @"110";
+    self.goodId = @"112";
     vc.goods_id = self.goodId;
     vc.goods_count = @"1";
     vc.orderType = 2; //订单类型
@@ -448,8 +448,6 @@
         
         _shareV.frame = CGRectMake(0, SCREEN_HEIGHT - shareVH, SCREEN_WIDTH, shareVH);
     }];
-    
-
     
 }
 

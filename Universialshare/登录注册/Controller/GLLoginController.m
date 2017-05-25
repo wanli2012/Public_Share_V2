@@ -179,7 +179,7 @@
             
             [UserModel defaultUser].loginstatus = YES;
             [UserModel defaultUser].usrtype = self.usertype;
-            [UserModel defaultUser].AudiThrough = @"0";
+            [UserModel defaultUser].AudiThrough = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"rzstatus"]];;
             
             if ([[UserModel defaultUser].banknumber rangeOfString:@"null"].location != NSNotFound) {
                 

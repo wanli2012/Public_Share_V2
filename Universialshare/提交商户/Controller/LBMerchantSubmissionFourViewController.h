@@ -10,7 +10,4 @@
 
 @interface LBMerchantSubmissionFourViewController : UIViewController
 
-
-
-
 @end

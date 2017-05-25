@@ -28,7 +28,6 @@
 #import "LBMineStoreOrderingViewController.h"
 #import "LBMineSelectCustomerTypeView.h"
 #import "LBMineCenterUsualUnderOrderViewController.h"
-#import "GLSubmitFirstController.h"
 #import "LBSaleManPersonInfoViewController.h"
 #import "LBRecommendedBusinessAuditViewController.h"
 #import "LBBelowTheLineViewController.h"
@@ -47,7 +46,7 @@
 
 #import "LBStoreMoreInfomationViewController.h"//商店详情
 #import "LBMineCenterMYOrderEvaluationDetailViewController.h"//评论商品
-
+#import "LBMerchantSubmissionFourViewController.h"
 
 @interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
     UIImageView *_imageviewLeft;
@@ -157,7 +156,7 @@
             {
                 
                 self.hidesBottomBarWhenPushed=YES;
-                GLSubmitFirstController *vc=[[GLSubmitFirstController alloc]init];
+                 LBMerchantSubmissionFourViewController *vc = [[LBMerchantSubmissionFourViewController alloc] init];
                 [self.navigationController pushViewController:vc animated:YES];
                 self.hidesBottomBarWhenPushed=NO;
                 
@@ -235,6 +234,7 @@
                     self.hidesBottomBarWhenPushed=NO;
                 }else if([[UserModel defaultUser].groupId isEqualToString:Retailer]){
                     self.hidesBottomBarWhenPushed=YES;
+                   
                     GLMemberManagerController *vc = [[GLMemberManagerController alloc] init];
                     [self.navigationController pushViewController:vc animated:YES];
                     self.hidesBottomBarWhenPushed=NO;

@@ -244,7 +244,7 @@
     NSDictionary *dic = @{@"uid":[UserModel defaultUser].uid,@"token":[UserModel defaultUser].token,@"phone":self.phonetf.text,@"yzm":self.yanzTf.text,@"grade":self.levelStr,@"province":_provinceArr[_ischosePro][@"province_code"],@"city":_provinceArr[_ischosePro][@"city"][_ischoseCity][@"city_code"],@"country":_provinceArr[_ischosePro][@"city"][_ischoseCity][@"country"][_ischoseArea][@"country_code"],@"password":encryptsecret};
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/addSaler" paramDic:dic finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"user/openTjmember" paramDic:dic finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             [MBProgressHUD showError:responseObject[@"message"]];
