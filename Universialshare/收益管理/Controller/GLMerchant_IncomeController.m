@@ -34,8 +34,9 @@ static NSString *ID = @"GLMerchant_IncomeCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"收益";
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.hidden = NO;
+    
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     
     [self.view addSubview:self.CalendarView];
@@ -43,6 +44,12 @@ static NSString *ID = @"GLMerchant_IncomeCell";
     self.CalendarView.hidden = YES;
     
     [self.CalendarView addSubview:self.Calendar];
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.hidden = YES;
+    
 }
 //查询 搜索
 - (IBAction)query:(id)sender {

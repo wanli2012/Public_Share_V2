@@ -24,6 +24,7 @@
 #import "GLNearbyViewController.h"
 #import "GLMerchat_StoreController.h"
 #import "GLMerchat_CommentController.h"
+#import "GLMerchant_IncomeController.h"
 
 @interface BasetabbarViewController ()<UITabBarControllerDelegate>
 
@@ -64,6 +65,8 @@
     GLMerchat_StoreController *storeVC = [[GLMerchat_StoreController alloc] init];
     //商家用 评论
     GLMerchat_CommentController*commentVC = [[GLMerchat_CommentController alloc] init];
+    //商家收益
+    GLMerchant_IncomeController *incomeVC = [[GLMerchant_IncomeController alloc] init];
     
     BaseNavigationViewController *firstNav = [[BaseNavigationViewController alloc] initWithRootViewController:firstVC];
     BaseNavigationViewController *Homenav = [[BaseNavigationViewController alloc] initWithRootViewController:Homevc];
@@ -76,6 +79,7 @@
     BaseNavigationViewController *nearbyNav = [[BaseNavigationViewController alloc] initWithRootViewController:nearbyVC];
     BaseNavigationViewController *storeNav = [[BaseNavigationViewController alloc] initWithRootViewController:storeVC];
     BaseNavigationViewController *commentNav = [[BaseNavigationViewController alloc] initWithRootViewController:commentVC];
+    BaseNavigationViewController *incomeNav = [[BaseNavigationViewController alloc] initWithRootViewController:incomeVC];
     
     firstVC.title = @"首页";
     Homevc.title=@"消费商城";
@@ -83,6 +87,7 @@
     minevc.title=@"我的";
 //    storeVC.title = @"门店";
     commentNav.title = @"商品";
+    incomeNav.title = @"收益";
     
     firstVC.tabBarItem = [self barTitle:@"首页" image:@"home_page_normal"  selectImage:@"home_page_select"];
     Homevc.tabBarItem = [self barTitle:@"消费商城" image:@"消费商城未选中状态" selectImage:@"消费商城"];
@@ -91,25 +96,26 @@
     ManAndBusinessVc.tabBarItem = [self barTitle:@"推广员" image:@"推广员未选中" selectImage:@"推广员选中"];
     myodresvc.tabBarItem = [self barTitle:@"订单" image:@"消费商城未选中状态" selectImage:@"消费商城"];
     businessNav.tabBarItem = [self barTitle:@"商家" image:@"消费商城未选中状态" selectImage:@"消费商城"];
-    nearbyNav.tabBarItem = [self barTitle:@"搜附近" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
+    nearbyNav.tabBarItem = [self barTitle:@"逛逛" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
     storeNav.tabBarItem = [self barTitle:@"门店" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
     commentNav.tabBarItem = [self barTitle:@"商品" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
+    incomeNav.tabBarItem = [self barTitle:@"收益" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
 //    [UserModel defaultUser].usrtype = Retailer;
 //    [UserModel defaultUser].loginstatus = YES;
 
 //    [usermodelachivar achive];
     if ([UserModel defaultUser].loginstatus == YES) {//登录状态
-        if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {//一级业务员和二级业务员
-            self.viewControllers = @[firstNav, ManAndBusinessNav, minenav];
-        }else if ([[UserModel defaultUser].usrtype isEqualToString:THREESALER]){//三级业务员
-            self.viewControllers = @[firstNav, businessNav, minenav];
+        if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] ) {//一级业务员(副总)
+            self.viewControllers = @[ManAndBusinessNav, minenav];
+        }else if ([[UserModel defaultUser].usrtype isEqualToString:THREESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]){//二级业务员(高级推广员) 和 三级业务员(普通推广员)
+            self.viewControllers = @[businessNav, minenav];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]){//普通用户
-            self.viewControllers = @[firstNav,nearbyNav, IntegralMallnav, minenav];
+            self.viewControllers = @[IntegralMallnav,nearbyNav, minenav];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]){//商家
-            self.viewControllers = @[firstNav, storeNav,commentNav, minenav];
+            self.viewControllers = @[incomeNav,commentNav,storeNav, minenav];
         }
     }else{//退出状态
-        self.viewControllers = @[firstNav,nearbyNav,commentNav, minenav];
+        self.viewControllers = @[IntegralMallnav,nearbyNav, minenav];
     }
     
     self.selectedIndex=0;

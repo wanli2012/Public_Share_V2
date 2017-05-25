@@ -143,23 +143,46 @@
                         <outlet property="delegate" destination="-1" id="fqC-hX-VXO"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x1c-qn-OvK">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收  益" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jlj-1c-YDV">
+                            <rect key="frame" x="165" y="34.5" width="46" height="19.5"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="vVM-I3-VGB"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Jlj-1c-YDV" secondAttribute="bottom" constant="10" id="EeY-Rm-cPY"/>
+                        <constraint firstItem="Jlj-1c-YDV" firstAttribute="centerX" secondItem="x1c-qn-OvK" secondAttribute="centerX" id="rJb-zJ-0pI"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.66666666669999997" green="0.66666668650000005" blue="0.66666668650000005" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="x1c-qn-OvK" secondAttribute="trailing" id="2AA-1W-Afu"/>
                 <constraint firstItem="IMh-ce-D7u" firstAttribute="top" secondItem="2j2-n7-hva" secondAttribute="bottom" constant="3" id="8hJ-i4-Y6i"/>
                 <constraint firstItem="IMh-ce-D7u" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GbQ-ZW-HXW"/>
+                <constraint firstItem="x1c-qn-OvK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HIc-WD-5FY"/>
                 <constraint firstAttribute="trailing" secondItem="2j2-n7-hva" secondAttribute="trailing" id="Kzl-tg-Cxg"/>
                 <constraint firstAttribute="trailing" secondItem="fI2-Xk-zst" secondAttribute="trailing" id="QI4-Df-xPa"/>
+                <constraint firstItem="x1c-qn-OvK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="QNm-Vb-FXt"/>
                 <constraint firstItem="fI2-Xk-zst" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="XoN-ac-cvn"/>
                 <constraint firstAttribute="trailing" secondItem="IMh-ce-D7u" secondAttribute="trailing" id="dbC-HG-UYK"/>
                 <constraint firstItem="2j2-n7-hva" firstAttribute="top" secondItem="fI2-Xk-zst" secondAttribute="bottom" id="hx6-gj-D1k"/>
                 <constraint firstAttribute="bottom" secondItem="IMh-ce-D7u" secondAttribute="bottom" id="ktj-YO-lim"/>
+                <constraint firstItem="fI2-Xk-zst" firstAttribute="top" secondItem="x1c-qn-OvK" secondAttribute="bottom" id="lN9-gg-xgs"/>
                 <constraint firstItem="2j2-n7-hva" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sxx-zt-OhY"/>
                 <constraint firstItem="fI2-Xk-zst" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vS5-Ku-eV5"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="55.5" y="54.5"/>
+            <point key="canvasLocation" x="41" y="5"/>
         </view>
     </objects>
     <resources>

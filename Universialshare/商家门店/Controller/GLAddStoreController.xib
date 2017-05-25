@@ -15,6 +15,7 @@
                 <outlet property="IDImageV" destination="7vB-LC-CqM" id="0xh-yL-pEB"/>
                 <outlet property="IDImageV2" destination="RNf-v8-IYc" id="KE6-uH-yXv"/>
                 <outlet property="cityLabel" destination="3rz-hh-FLp" id="m7Z-X3-COQ"/>
+                <outlet property="codeBtn" destination="dvf-pq-qHI" id="SQq-09-OBk"/>
                 <outlet property="codeTF" destination="Ltf-Nk-yss" id="VbH-sj-prS"/>
                 <outlet property="contentViewWidth" destination="Sx9-oW-N8k" id="cer-Rb-iVw"/>
                 <outlet property="detailAddressTF" destination="tTY-aO-Lav" id="qpd-Ma-Fvo"/>
@@ -92,7 +93,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ltf-Nk-yss">
-                                            <rect key="frame" x="67" y="17" width="298" height="16"/>
+                                            <rect key="frame" x="67" y="17" width="188" height="16"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -100,13 +101,30 @@
                                                 <outlet property="delegate" destination="-1" id="txq-Ek-7I2"/>
                                             </connections>
                                         </textField>
+                                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvf-pq-qHI">
+                                            <rect key="frame" x="265" y="10" width="100" height="30"/>
+                                            <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="PMU-7V-V8k"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <state key="normal" title="获取验证码">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="getCode:" destination="-1" eventType="touchUpInside" id="vlz-SX-NKA"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="E7o-Pp-cNR" firstAttribute="leading" secondItem="IXk-d8-QCn" secondAttribute="leading" constant="10" id="A4Z-Ya-Yw6"/>
+                                        <constraint firstItem="dvf-pq-qHI" firstAttribute="leading" secondItem="Ltf-Nk-yss" secondAttribute="trailing" constant="10" id="NQO-O5-6Yh"/>
                                         <constraint firstItem="E7o-Pp-cNR" firstAttribute="top" secondItem="IXk-d8-QCn" secondAttribute="top" constant="10" id="QDS-bh-RkG"/>
+                                        <constraint firstItem="dvf-pq-qHI" firstAttribute="top" secondItem="IXk-d8-QCn" secondAttribute="top" constant="10" id="V47-zJ-4Bv"/>
+                                        <constraint firstAttribute="trailing" secondItem="dvf-pq-qHI" secondAttribute="trailing" constant="10" id="a46-K8-1SV"/>
+                                        <constraint firstAttribute="bottom" secondItem="dvf-pq-qHI" secondAttribute="bottom" constant="10" id="bZH-s2-uwz"/>
                                         <constraint firstItem="Ltf-Nk-yss" firstAttribute="leading" secondItem="E7o-Pp-cNR" secondAttribute="trailing" constant="10" id="gEX-iq-5FL"/>
-                                        <constraint firstAttribute="trailing" secondItem="Ltf-Nk-yss" secondAttribute="trailing" constant="10" id="oaC-0L-lCR"/>
                                         <constraint firstItem="Ltf-Nk-yss" firstAttribute="centerY" secondItem="E7o-Pp-cNR" secondAttribute="centerY" id="vpb-C0-OOb"/>
                                         <constraint firstAttribute="bottom" secondItem="E7o-Pp-cNR" secondAttribute="bottom" constant="10" id="zcm-2B-UlY"/>
                                     </constraints>
@@ -177,7 +195,7 @@
                                         <constraint firstAttribute="bottom" secondItem="7kd-Yd-pHY" secondAttribute="bottom" constant="10" id="nTx-GE-RnG"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdN-oG-6fm">
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdN-oG-6fm">
                                     <rect key="frame" x="20" y="1159" width="335" height="40"/>
                                     <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
@@ -203,8 +221,8 @@
                                                         <constraint firstAttribute="height" constant="5" id="mc0-sZ-9Vx"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="ddd" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rz-hh-FLp">
-                                                    <rect key="frame" x="77" y="17" width="268" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rz-hh-FLp">
+                                                    <rect key="frame" x="77" y="10" width="268" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -230,6 +248,7 @@
                                                 <constraint firstItem="Kq6-h2-F6r" firstAttribute="leading" secondItem="hMl-Ay-LeW" secondAttribute="leading" constant="10" id="FL3-yU-uBD"/>
                                                 <constraint firstItem="vow-af-out" firstAttribute="centerY" secondItem="Kq6-h2-F6r" secondAttribute="centerY" id="Htd-oX-0wl"/>
                                                 <constraint firstItem="vow-af-out" firstAttribute="leading" secondItem="3rz-hh-FLp" secondAttribute="trailing" constant="10" id="gl5-da-5XF"/>
+                                                <constraint firstItem="3rz-hh-FLp" firstAttribute="height" secondItem="Kq6-h2-F6r" secondAttribute="height" id="jeS-da-8Iq"/>
                                             </constraints>
                                             <connections>
                                                 <outletCollection property="gestureRecognizers" destination="Pcm-p3-DYf" appends="YES" id="U95-2c-wvg"/>
@@ -245,8 +264,8 @@
                                                         <constraint firstAttribute="height" constant="12" id="YTm-wl-Fq2"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="ddd" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oKD-Pt-G3C">
-                                                    <rect key="frame" x="77" y="18.5" width="266" height="14.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oKD-Pt-G3C">
+                                                    <rect key="frame" x="77" y="10" width="266" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -266,6 +285,7 @@
                                             <constraints>
                                                 <constraint firstItem="oKD-Pt-G3C" firstAttribute="leading" secondItem="8Vo-Pu-eje" secondAttribute="trailing" constant="10" id="2uU-B4-wNO"/>
                                                 <constraint firstAttribute="trailing" secondItem="9Vo-K6-Me9" secondAttribute="trailing" constant="10" id="5rS-ia-cUa"/>
+                                                <constraint firstItem="oKD-Pt-G3C" firstAttribute="height" secondItem="8Vo-Pu-eje" secondAttribute="height" id="9sW-LC-YKX"/>
                                                 <constraint firstAttribute="bottom" secondItem="8Vo-Pu-eje" secondAttribute="bottom" constant="10" id="A6a-0Z-gBi"/>
                                                 <constraint firstItem="8Vo-Pu-eje" firstAttribute="top" secondItem="ezV-Ii-hjA" secondAttribute="top" constant="10" id="OiS-ZZ-kOv"/>
                                                 <constraint firstItem="9Vo-K6-Me9" firstAttribute="leading" secondItem="oKD-Pt-G3C" secondAttribute="trailing" constant="10" id="jq5-0a-h4H"/>
@@ -451,7 +471,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-9" translatesAutoresizingMaskIntoConstraints="NO" id="7vB-LC-CqM">
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-9" translatesAutoresizingMaskIntoConstraints="NO" id="7vB-LC-CqM">
                                             <rect key="frame" x="10" y="51" width="80" height="80"/>
                                             <gestureRecognizers/>
                                             <constraints>
@@ -462,7 +482,7 @@
                                                 <outletCollection property="gestureRecognizers" destination="Rsc-Wh-A63" appends="YES" id="dn5-Ke-qQ1"/>
                                             </connections>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-9" translatesAutoresizingMaskIntoConstraints="NO" id="RNf-v8-IYc">
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-9" translatesAutoresizingMaskIntoConstraints="NO" id="RNf-v8-IYc">
                                             <rect key="frame" x="147.5" y="51" width="80" height="80"/>
                                             <gestureRecognizers/>
                                             <constraints>
@@ -478,7 +498,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-9" translatesAutoresizingMaskIntoConstraints="NO" id="xzS-Eg-LNs">
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-9" translatesAutoresizingMaskIntoConstraints="NO" id="xzS-Eg-LNs">
                                             <rect key="frame" x="10" y="182" width="80" height="80"/>
                                             <gestureRecognizers/>
                                             <constraints>
@@ -495,7 +515,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-9" translatesAutoresizingMaskIntoConstraints="NO" id="dLO-oV-pHx">
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-9" translatesAutoresizingMaskIntoConstraints="NO" id="dLO-oV-pHx">
                                             <rect key="frame" x="10" y="313" width="80" height="80"/>
                                             <gestureRecognizers/>
                                             <constraints>
@@ -503,23 +523,21 @@
                                                 <constraint firstAttribute="width" constant="80" id="cGS-1a-sTd"/>
                                             </constraints>
                                             <connections>
-                                                <outletCollection property="gestureRecognizers" destination="6CW-rD-nuQ" appends="YES" id="yhJ-ut-fvQ"/>
-                                                <outletCollection property="gestureRecognizers" destination="SHx-Rm-zOY" appends="YES" id="xuq-LU-PnO"/>
+                                                <outletCollection property="gestureRecognizers" destination="tW9-37-FTE" appends="YES" id="ehY-xl-5eA"/>
                                             </connections>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-9" translatesAutoresizingMaskIntoConstraints="NO" id="nxt-4O-ILA">
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-9" translatesAutoresizingMaskIntoConstraints="NO" id="nxt-4O-ILA">
                                             <rect key="frame" x="147.5" y="313" width="80" height="80"/>
                                             <gestureRecognizers/>
                                             <connections>
-                                                <outletCollection property="gestureRecognizers" destination="A2f-Mk-EdY" appends="YES" id="2Sq-Rt-u9A"/>
+                                                <outletCollection property="gestureRecognizers" destination="gvn-je-m8B" appends="YES" id="gnc-Bl-6VS"/>
                                             </connections>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-9" translatesAutoresizingMaskIntoConstraints="NO" id="M10-cK-WGi">
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-9" translatesAutoresizingMaskIntoConstraints="NO" id="M10-cK-WGi">
                                             <rect key="frame" x="285" y="313" width="80" height="80"/>
                                             <gestureRecognizers/>
                                             <connections>
-                                                <outletCollection property="gestureRecognizers" destination="dGr-SY-iyG" appends="YES" id="K9g-wD-9Jc"/>
-                                                <outletCollection property="gestureRecognizers" destination="RaM-on-73S" appends="YES" id="gj9-Lb-1uG"/>
+                                                <outletCollection property="gestureRecognizers" destination="nuK-66-Sak" appends="YES" id="iwy-lL-MYf"/>
                                             </connections>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="营业执照(1张)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5q-Mf-wH3">
@@ -528,7 +546,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-9" translatesAutoresizingMaskIntoConstraints="NO" id="KrB-bJ-xOY">
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-9" translatesAutoresizingMaskIntoConstraints="NO" id="KrB-bJ-xOY">
                                             <rect key="frame" x="10" y="444" width="80" height="80"/>
                                             <gestureRecognizers/>
                                             <constraints>
@@ -639,9 +657,6 @@
                                 <constraint firstItem="RwY-ya-pVb" firstAttribute="top" secondItem="Jsw-u5-0Bm" secondAttribute="bottom" constant="1" id="wHf-Qv-rUo"/>
                                 <constraint firstAttribute="trailing" secondItem="IXk-d8-QCn" secondAttribute="trailing" id="y0z-jd-J6h"/>
                             </constraints>
-                            <connections>
-                                <outletCollection property="gestureRecognizers" destination="85R-OF-2mb" appends="YES" id="gJ1-FH-mO0"/>
-                            </connections>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="0.90935158729553223" green="0.92145264148712158" blue="0.93383711576461792" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -664,21 +679,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="207.5" y="266.5"/>
         </view>
-        <tapGestureRecognizer id="6CW-rD-nuQ">
-            <connections>
-                <action selector="uploadPic:" destination="-1" id="bSa-EM-qnG"/>
-            </connections>
-        </tapGestureRecognizer>
-        <tapGestureRecognizer id="85R-OF-2mb">
-            <connections>
-                <action selector="uploadPic:" destination="-1" id="baA-cI-93y"/>
-            </connections>
-        </tapGestureRecognizer>
-        <tapGestureRecognizer id="dGr-SY-iyG">
-            <connections>
-                <action selector="uploadPic:" destination="-1" id="nEQ-ZE-q3b"/>
-            </connections>
-        </tapGestureRecognizer>
         <tapGestureRecognizer id="Pcm-p3-DYf">
             <connections>
                 <action selector="locationChoose:" destination="-1" id="EYk-Ef-UmU"/>
@@ -704,24 +704,24 @@
                 <action selector="pictureProcessing:" destination="-1" id="x63-9N-kZY"/>
             </connections>
         </tapGestureRecognizer>
-        <tapGestureRecognizer id="SHx-Rm-zOY">
-            <connections>
-                <action selector="pictureProcessing:" destination="-1" id="5aP-Xn-LHt"/>
-            </connections>
-        </tapGestureRecognizer>
-        <tapGestureRecognizer id="A2f-Mk-EdY">
-            <connections>
-                <action selector="pictureProcessing:" destination="-1" id="rVf-1J-mdw"/>
-            </connections>
-        </tapGestureRecognizer>
-        <tapGestureRecognizer id="RaM-on-73S">
-            <connections>
-                <action selector="pictureProcessing:" destination="-1" id="Bad-fj-lRW"/>
-            </connections>
-        </tapGestureRecognizer>
-        <tapGestureRecognizer id="OzN-iq-KZm">
+        <tapGestureRecognizer id="OzN-iq-KZm" userLabel="Tap liences">
             <connections>
                 <action selector="pictureProcessing:" destination="-1" id="7Yq-ys-lel"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="tW9-37-FTE">
+            <connections>
+                <action selector="pictureProcessing:" destination="-1" id="rMv-Ss-fDM"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="gvn-je-m8B">
+            <connections>
+                <action selector="pictureProcessing:" destination="-1" id="tHc-Te-FOR"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="nuK-66-Sak" userLabel="Tap imageV3">
+            <connections>
+                <action selector="pictureProcessing:" destination="-1" id="qLP-iY-UJI"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

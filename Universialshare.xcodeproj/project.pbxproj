@@ -407,11 +407,7 @@
 		4A46111A1E9CC6370045824F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 4A4610011E9CC6360045824F /* README.md */; };
 		4A46111B1E9CC6370045824F /* UIImageView+CornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4610051E9CC6360045824F /* UIImageView+CornerRadius.m */; };
 		4A46111D1E9CCC010045824F /* Mine_sixPart.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A46111C1E9CCC010045824F /* Mine_sixPart.xcassets */; };
-		4A521F5D1EC451100028F2A2 /* GLIncomeManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A521F5B1EC451100028F2A2 /* GLIncomeManagerController.m */; };
-		4A521F5E1EC451100028F2A2 /* GLIncomeManagerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A521F5C1EC451100028F2A2 /* GLIncomeManagerController.xib */; };
-		4A521F621EC466500028F2A2 /* GLIncomeManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A521F601EC466500028F2A2 /* GLIncomeManagerCell.m */; };
-		4A521F631EC466500028F2A2 /* GLIncomeManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A521F611EC466500028F2A2 /* GLIncomeManagerCell.xib */; };
-		4A521F661EC474970028F2A2 /* GLIncomeManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A521F651EC474970028F2A2 /* GLIncomeManagerModel.m */; };
+		4A5C70CB1ED66850001110B6 /* GLMerchat_StoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C70CA1ED66850001110B6 /* GLMerchat_StoreModel.m */; };
 		4A5DF5F61ED185DA00BF6AC7 /* GLStoreProductCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5DF5F41ED185DA00BF6AC7 /* GLStoreProductCommentController.m */; };
 		4A5DF5F71ED185DA00BF6AC7 /* GLStoreProductCommentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5DF5F51ED185DA00BF6AC7 /* GLStoreProductCommentController.xib */; };
 		4A5F669F1ECA89FA0048F339 /* GLNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F66891ECA89FA0048F339 /* GLNearbyViewController.m */; };
@@ -517,15 +513,22 @@
 		4AAD25AD1EC18BFF0054FD06 /* GLMyCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AAD25AB1EC18BFF0054FD06 /* GLMyCollectionCell.xib */; };
 		4AAD25B01EC18EA70054FD06 /* GLMyCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAD25AF1EC18EA70054FD06 /* GLMyCollectionModel.m */; };
 		4AB508CD1EB190A20057EB3B /* GLShoppingCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB508CC1EB190A20057EB3B /* GLShoppingCartModel.m */; };
+		4AB9E14D1ED6B7EE00BE0420 /* GLMerchat_ModifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB9E14C1ED6B7EE00BE0420 /* GLMerchat_ModifyView.m */; };
+		4AB9E14F1ED6B80200BE0420 /* GLMerchat_ModifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB9E14E1ED6B80200BE0420 /* GLMerchat_ModifyView.xib */; };
+		4AB9E17D1ED6BA6600BE0420 /* GLIncomeManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB9E16E1ED6BA6600BE0420 /* GLIncomeManagerController.m */; };
+		4AB9E17E1ED6BA6600BE0420 /* GLIncomeManagerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB9E16F1ED6BA6600BE0420 /* GLIncomeManagerController.xib */; };
+		4AB9E17F1ED6BA6600BE0420 /* GLMerchant_IncomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB9E1711ED6BA6600BE0420 /* GLMerchant_IncomeController.m */; };
+		4AB9E1801ED6BA6600BE0420 /* GLMerchant_IncomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB9E1721ED6BA6600BE0420 /* GLMerchant_IncomeController.xib */; };
+		4AB9E1811ED6BA6600BE0420 /* GLIncomeManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB9E1751ED6BA6600BE0420 /* GLIncomeManagerModel.m */; };
+		4AB9E1821ED6BA6600BE0420 /* GLIncomeManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB9E1781ED6BA6600BE0420 /* GLIncomeManagerCell.m */; };
+		4AB9E1831ED6BA6600BE0420 /* GLIncomeManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB9E1791ED6BA6600BE0420 /* GLIncomeManagerCell.xib */; };
+		4AB9E1841ED6BA6600BE0420 /* GLMerchant_IncomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB9E17B1ED6BA6600BE0420 /* GLMerchant_IncomeCell.m */; };
+		4AB9E1851ED6BA6600BE0420 /* GLMerchant_IncomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB9E17C1ED6BA6600BE0420 /* GLMerchant_IncomeCell.xib */; };
 		4AD5514D1EB2E6B600C04062 /* GLSubmitChooseTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD5514C1EB2E6B600C04062 /* GLSubmitChooseTimeView.m */; };
 		4AD5514F1EB2E6C900C04062 /* GLSubmitChooseTimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD5514E1EB2E6C900C04062 /* GLSubmitChooseTimeView.xib */; };
 		4AD551521EB36E4D00C04062 /* SYDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD551511EB36E4D00C04062 /* SYDatePicker.m */; };
 		4AE3546E1EC7F44700BF60CC /* GLConfirmOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE3546D1EC7F44700BF60CC /* GLConfirmOrderModel.m */; };
 		4AE354701EC7F7CD00BF60CC /* 我的.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AE3546F1EC7F7CD00BF60CC /* 我的.xcassets */; };
-		4AE354741EC837A100BF60CC /* GLMerchant_IncomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE354721EC837A100BF60CC /* GLMerchant_IncomeController.m */; };
-		4AE354751EC837A100BF60CC /* GLMerchant_IncomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE354731EC837A100BF60CC /* GLMerchant_IncomeController.xib */; };
-		4AE354791EC83AAB00BF60CC /* GLMerchant_IncomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE354771EC83AAB00BF60CC /* GLMerchant_IncomeCell.m */; };
-		4AE3547A1EC83AAB00BF60CC /* GLMerchant_IncomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE354781EC83AAB00BF60CC /* GLMerchant_IncomeCell.xib */; };
 		4AE354821EC8482500BF60CC /* GLMerchat_StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE354801EC8482500BF60CC /* GLMerchat_StoreController.m */; };
 		4AE354831EC8482500BF60CC /* GLMerchat_StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE354811EC8482500BF60CC /* GLMerchat_StoreController.xib */; };
 		4AE354871EC84BC300BF60CC /* GLMerchat_StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE354851EC84BC300BF60CC /* GLMerchat_StoreCell.m */; };
@@ -1716,14 +1719,8 @@
 		4A4610041E9CC6360045824F /* UIImageView+CornerRadius.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CornerRadius.h"; sourceTree = "<group>"; };
 		4A4610051E9CC6360045824F /* UIImageView+CornerRadius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CornerRadius.m"; sourceTree = "<group>"; };
 		4A46111C1E9CCC010045824F /* Mine_sixPart.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine_sixPart.xcassets; sourceTree = "<group>"; };
-		4A521F5A1EC451100028F2A2 /* GLIncomeManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIncomeManagerController.h; sourceTree = "<group>"; };
-		4A521F5B1EC451100028F2A2 /* GLIncomeManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIncomeManagerController.m; sourceTree = "<group>"; };
-		4A521F5C1EC451100028F2A2 /* GLIncomeManagerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLIncomeManagerController.xib; sourceTree = "<group>"; };
-		4A521F5F1EC466500028F2A2 /* GLIncomeManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIncomeManagerCell.h; sourceTree = "<group>"; };
-		4A521F601EC466500028F2A2 /* GLIncomeManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIncomeManagerCell.m; sourceTree = "<group>"; };
-		4A521F611EC466500028F2A2 /* GLIncomeManagerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLIncomeManagerCell.xib; sourceTree = "<group>"; };
-		4A521F641EC474970028F2A2 /* GLIncomeManagerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIncomeManagerModel.h; sourceTree = "<group>"; };
-		4A521F651EC474970028F2A2 /* GLIncomeManagerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIncomeManagerModel.m; sourceTree = "<group>"; };
+		4A5C70C91ED66850001110B6 /* GLMerchat_StoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMerchat_StoreModel.h; sourceTree = "<group>"; };
+		4A5C70CA1ED66850001110B6 /* GLMerchat_StoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMerchat_StoreModel.m; sourceTree = "<group>"; };
 		4A5DF5F31ED185DA00BF6AC7 /* GLStoreProductCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLStoreProductCommentController.h; sourceTree = "<group>"; };
 		4A5DF5F41ED185DA00BF6AC7 /* GLStoreProductCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLStoreProductCommentController.m; sourceTree = "<group>"; };
 		4A5DF5F51ED185DA00BF6AC7 /* GLStoreProductCommentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLStoreProductCommentController.xib; sourceTree = "<group>"; };
@@ -1892,6 +1889,23 @@
 		4AAD25AF1EC18EA70054FD06 /* GLMyCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMyCollectionModel.m; sourceTree = "<group>"; };
 		4AB508CB1EB190A20057EB3B /* GLShoppingCartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLShoppingCartModel.h; sourceTree = "<group>"; };
 		4AB508CC1EB190A20057EB3B /* GLShoppingCartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLShoppingCartModel.m; sourceTree = "<group>"; };
+		4AB9E14B1ED6B7EE00BE0420 /* GLMerchat_ModifyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMerchat_ModifyView.h; sourceTree = "<group>"; };
+		4AB9E14C1ED6B7EE00BE0420 /* GLMerchat_ModifyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMerchat_ModifyView.m; sourceTree = "<group>"; };
+		4AB9E14E1ED6B80200BE0420 /* GLMerchat_ModifyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMerchat_ModifyView.xib; sourceTree = "<group>"; };
+		4AB9E16D1ED6BA6600BE0420 /* GLIncomeManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIncomeManagerController.h; sourceTree = "<group>"; };
+		4AB9E16E1ED6BA6600BE0420 /* GLIncomeManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIncomeManagerController.m; sourceTree = "<group>"; };
+		4AB9E16F1ED6BA6600BE0420 /* GLIncomeManagerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLIncomeManagerController.xib; sourceTree = "<group>"; };
+		4AB9E1701ED6BA6600BE0420 /* GLMerchant_IncomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMerchant_IncomeController.h; sourceTree = "<group>"; };
+		4AB9E1711ED6BA6600BE0420 /* GLMerchant_IncomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMerchant_IncomeController.m; sourceTree = "<group>"; };
+		4AB9E1721ED6BA6600BE0420 /* GLMerchant_IncomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMerchant_IncomeController.xib; sourceTree = "<group>"; };
+		4AB9E1741ED6BA6600BE0420 /* GLIncomeManagerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIncomeManagerModel.h; sourceTree = "<group>"; };
+		4AB9E1751ED6BA6600BE0420 /* GLIncomeManagerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIncomeManagerModel.m; sourceTree = "<group>"; };
+		4AB9E1771ED6BA6600BE0420 /* GLIncomeManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIncomeManagerCell.h; sourceTree = "<group>"; };
+		4AB9E1781ED6BA6600BE0420 /* GLIncomeManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIncomeManagerCell.m; sourceTree = "<group>"; };
+		4AB9E1791ED6BA6600BE0420 /* GLIncomeManagerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLIncomeManagerCell.xib; sourceTree = "<group>"; };
+		4AB9E17A1ED6BA6600BE0420 /* GLMerchant_IncomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMerchant_IncomeCell.h; sourceTree = "<group>"; };
+		4AB9E17B1ED6BA6600BE0420 /* GLMerchant_IncomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMerchant_IncomeCell.m; sourceTree = "<group>"; };
+		4AB9E17C1ED6BA6600BE0420 /* GLMerchant_IncomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMerchant_IncomeCell.xib; sourceTree = "<group>"; };
 		4AD5514B1EB2E6B600C04062 /* GLSubmitChooseTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSubmitChooseTimeView.h; sourceTree = "<group>"; };
 		4AD5514C1EB2E6B600C04062 /* GLSubmitChooseTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLSubmitChooseTimeView.m; sourceTree = "<group>"; };
 		4AD5514E1EB2E6C900C04062 /* GLSubmitChooseTimeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLSubmitChooseTimeView.xib; sourceTree = "<group>"; };
@@ -1900,12 +1914,6 @@
 		4AE3546C1EC7F44700BF60CC /* GLConfirmOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLConfirmOrderModel.h; sourceTree = "<group>"; };
 		4AE3546D1EC7F44700BF60CC /* GLConfirmOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLConfirmOrderModel.m; sourceTree = "<group>"; };
 		4AE3546F1EC7F7CD00BF60CC /* 我的.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "我的.xcassets"; sourceTree = "<group>"; };
-		4AE354711EC837A100BF60CC /* GLMerchant_IncomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMerchant_IncomeController.h; sourceTree = "<group>"; };
-		4AE354721EC837A100BF60CC /* GLMerchant_IncomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMerchant_IncomeController.m; sourceTree = "<group>"; };
-		4AE354731EC837A100BF60CC /* GLMerchant_IncomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMerchant_IncomeController.xib; sourceTree = "<group>"; };
-		4AE354761EC83AAB00BF60CC /* GLMerchant_IncomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMerchant_IncomeCell.h; sourceTree = "<group>"; };
-		4AE354771EC83AAB00BF60CC /* GLMerchant_IncomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMerchant_IncomeCell.m; sourceTree = "<group>"; };
-		4AE354781EC83AAB00BF60CC /* GLMerchant_IncomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMerchant_IncomeCell.xib; sourceTree = "<group>"; };
 		4AE3547F1EC8482500BF60CC /* GLMerchat_StoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMerchat_StoreController.h; sourceTree = "<group>"; };
 		4AE354801EC8482500BF60CC /* GLMerchat_StoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMerchat_StoreController.m; sourceTree = "<group>"; };
 		4AE354811EC8482500BF60CC /* GLMerchat_StoreController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMerchat_StoreController.xib; sourceTree = "<group>"; };
@@ -4121,51 +4129,6 @@
 			path = CornerRadiusCategory;
 			sourceTree = "<group>";
 		};
-		4A521F561EC450860028F2A2 /* 收益管理 */ = {
-			isa = PBXGroup;
-			children = (
-				4A521F571EC450860028F2A2 /* Controller */,
-				4A521F581EC450860028F2A2 /* Model */,
-				4A521F591EC450860028F2A2 /* View */,
-			);
-			path = "收益管理";
-			sourceTree = "<group>";
-		};
-		4A521F571EC450860028F2A2 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				4A521F5A1EC451100028F2A2 /* GLIncomeManagerController.h */,
-				4A521F5B1EC451100028F2A2 /* GLIncomeManagerController.m */,
-				4A521F5C1EC451100028F2A2 /* GLIncomeManagerController.xib */,
-				4AE354711EC837A100BF60CC /* GLMerchant_IncomeController.h */,
-				4AE354721EC837A100BF60CC /* GLMerchant_IncomeController.m */,
-				4AE354731EC837A100BF60CC /* GLMerchant_IncomeController.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		4A521F581EC450860028F2A2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				4A521F641EC474970028F2A2 /* GLIncomeManagerModel.h */,
-				4A521F651EC474970028F2A2 /* GLIncomeManagerModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		4A521F591EC450860028F2A2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				4A521F5F1EC466500028F2A2 /* GLIncomeManagerCell.h */,
-				4A521F601EC466500028F2A2 /* GLIncomeManagerCell.m */,
-				4A521F611EC466500028F2A2 /* GLIncomeManagerCell.xib */,
-				4AE354761EC83AAB00BF60CC /* GLMerchant_IncomeCell.h */,
-				4AE354771EC83AAB00BF60CC /* GLMerchant_IncomeCell.m */,
-				4AE354781EC83AAB00BF60CC /* GLMerchant_IncomeCell.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		4A5F66861ECA89FA0048F339 /* 主页 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4588,6 +4551,51 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4AB9E16B1ED6BA6600BE0420 /* 收益管理 */ = {
+			isa = PBXGroup;
+			children = (
+				4AB9E16C1ED6BA6600BE0420 /* Controller */,
+				4AB9E1731ED6BA6600BE0420 /* Model */,
+				4AB9E1761ED6BA6600BE0420 /* View */,
+			);
+			path = "收益管理";
+			sourceTree = "<group>";
+		};
+		4AB9E16C1ED6BA6600BE0420 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4AB9E16D1ED6BA6600BE0420 /* GLIncomeManagerController.h */,
+				4AB9E16E1ED6BA6600BE0420 /* GLIncomeManagerController.m */,
+				4AB9E16F1ED6BA6600BE0420 /* GLIncomeManagerController.xib */,
+				4AB9E1701ED6BA6600BE0420 /* GLMerchant_IncomeController.h */,
+				4AB9E1711ED6BA6600BE0420 /* GLMerchant_IncomeController.m */,
+				4AB9E1721ED6BA6600BE0420 /* GLMerchant_IncomeController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4AB9E1731ED6BA6600BE0420 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4AB9E1741ED6BA6600BE0420 /* GLIncomeManagerModel.h */,
+				4AB9E1751ED6BA6600BE0420 /* GLIncomeManagerModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4AB9E1761ED6BA6600BE0420 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4AB9E1771ED6BA6600BE0420 /* GLIncomeManagerCell.h */,
+				4AB9E1781ED6BA6600BE0420 /* GLIncomeManagerCell.m */,
+				4AB9E1791ED6BA6600BE0420 /* GLIncomeManagerCell.xib */,
+				4AB9E17A1ED6BA6600BE0420 /* GLMerchant_IncomeCell.h */,
+				4AB9E17B1ED6BA6600BE0420 /* GLMerchant_IncomeCell.m */,
+				4AB9E17C1ED6BA6600BE0420 /* GLMerchant_IncomeCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4AE3546B1EC7F44700BF60CC /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -4623,6 +4631,8 @@
 		4AE3547D1EC8478D00BF60CC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4A5C70C91ED66850001110B6 /* GLMerchat_StoreModel.h */,
+				4A5C70CA1ED66850001110B6 /* GLMerchat_StoreModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4633,6 +4643,9 @@
 				4AE354841EC84BC300BF60CC /* GLMerchat_StoreCell.h */,
 				4AE354851EC84BC300BF60CC /* GLMerchat_StoreCell.m */,
 				4AE354861EC84BC300BF60CC /* GLMerchat_StoreCell.xib */,
+				4AB9E14B1ED6B7EE00BE0420 /* GLMerchat_ModifyView.h */,
+				4AB9E14C1ED6B7EE00BE0420 /* GLMerchat_ModifyView.m */,
+				4AB9E14E1ED6B80200BE0420 /* GLMerchat_ModifyView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4813,6 +4826,7 @@
 				4A0D97031E9729C100A26B84 /* 商城首页 */,
 				F92308321E9B8BFE00ECDC94 /* 我的 */,
 				4AE3547B1EC8478D00BF60CC /* 商家门店 */,
+				4AB9E16B1ED6BA6600BE0420 /* 收益管理 */,
 				F966B3D61EAC7D46007260FC /* 商家列表 */,
 				F966B3D71EAC7D46007260FC /* 商家列表详情 */,
 				F966B3D81EAC7D46007260FC /* 业务员列表详情 */,
@@ -5079,7 +5093,6 @@
 				4AAD25411EC188D70054FD06 /* 直捐 */,
 				4A07A87D1EA0BBF1005A9B67 /* 让利 */,
 				4AAD25A01EC1895D0054FD06 /* 我要收藏 */,
-				4A521F561EC450860028F2A2 /* 收益管理 */,
 				4A2F51C01EC6E3E100ECA95D /* 会员管理 */,
 				4A1FE72B1EC9424C0000A357 /* 我要推店 */,
 			);
@@ -6341,8 +6354,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F92309461E9B8BFF00ECDC94 /* LBMineMessageHotPickOneTableViewCell.xib in Resources */,
+				4AB9E1831ED6BA6600BE0420 /* GLIncomeManagerCell.xib in Resources */,
 				F923095A1E9B8BFF00ECDC94 /* LBMyOrderEveluationSucessCollectionViewCell.xib in Resources */,
 				F9F7804F1ED2F8FE00A498D6 /* LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.xib in Resources */,
+				4AB9E1851ED6BA6600BE0420 /* GLMerchant_IncomeCell.xib in Resources */,
 				4AFFA52D1ECBDA57004FDEA7 /* GLNearby_MerchatListController.xib in Resources */,
 				4A46103C1E9CC6360045824F /* ios-social-sdk-socialbar.html in Resources */,
 				F92309291E9B8BFF00ECDC94 /* LBMineCenterAddBankCardViewController.xib in Resources */,
@@ -6357,7 +6372,6 @@
 				4A2F52171EC7084000ECA95D /* GLBottomCell.xib in Resources */,
 				F90B99231ED419C500E75C95 /* LBCheckMoreHotProductViewController.xib in Resources */,
 				4AE354701EC7F7CD00BF60CC /* 我的.xcassets in Resources */,
-				4AE3547A1EC83AAB00BF60CC /* GLMerchant_IncomeCell.xib in Resources */,
 				4AD5514F1EB2E6C900C04062 /* GLSubmitChooseTimeView.xib in Resources */,
 				F9061FDB1E83C4730080E9D9 /* LaunchScreen.storyboard in Resources */,
 				4A1FE7331EC978FB0000A357 /* GLRecommendStoreController.xib in Resources */,
@@ -6378,9 +6392,9 @@
 				4A4610061E9CC6360045824F /* CodeScan.bundle in Resources */,
 				4A4610231E9CC6360045824F /* UMShareEditViewController.xib in Resources */,
 				4A5F66AC1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib in Resources */,
+				4AB9E14F1ED6B80200BE0420 /* GLMerchat_ModifyView.xib in Resources */,
 				F966B3D51EAC3DAF007260FC /* LBMineCenterOrderDetailSevenTableViewCell.xib in Resources */,
 				4AAD25851EC188F50054FD06 /* GLRecommendCell.xib in Resources */,
-				4AE354751EC837A100BF60CC /* GLMerchant_IncomeController.xib in Resources */,
 				4A4609FD1E9CB78E0045824F /* GLDonationMaskView.xib in Resources */,
 				F961AA331E9CE1D200275F52 /* LBMoreOperateView.xib in Resources */,
 				4AA0D5B31EAEEC8E00CB8F77 /* GLIntegraClassifyController.xib in Resources */,
@@ -6400,6 +6414,7 @@
 				F923094E1E9B8BFF00ECDC94 /* LBMineMessageSetupViewController.xib in Resources */,
 				4A46111D1E9CCC010045824F /* Mine_sixPart.xcassets in Resources */,
 				F923092B1E9B8BFF00ECDC94 /* LBMineCenterBalanceRechargeViewController.xib in Resources */,
+				4AB9E1801ED6BA6600BE0420 /* GLMerchant_IncomeController.xib in Resources */,
 				F961AA391E9CE33200275F52 /* LBConsumptionSeriesViewTableViewCell.xib in Resources */,
 				F9061FD81E83C4730080E9D9 /* Assets.xcassets in Resources */,
 				4AAD259F1EC189070054FD06 /* GLMine_MyHeartCell.xib in Resources */,
@@ -6472,7 +6487,6 @@
 				4A2A00C71EC70D9400052CA7 /* GLOrderGoodsCell.xib in Resources */,
 				F906201C1E83C8770080E9D9 /* tabbarimage.xcassets in Resources */,
 				F923098A1E9B8BFF00ECDC94 /* LBMineViewController.xib in Resources */,
-				4A521F5E1EC451100028F2A2 /* GLIncomeManagerController.xib in Resources */,
 				4AAD25331EC188C90054FD06 /* GLBuyBackController.xib in Resources */,
 				4A78C2161EA8918500771047 /* GLDonationRecordController.xib in Resources */,
 				4AFCDC5D1ED2B0B0007C1681 /* GLMerchat_CommentCell.xib in Resources */,
@@ -6481,6 +6495,7 @@
 				4A5F66A01ECA89FA0048F339 /* GLNearbyViewController.xib in Resources */,
 				F966B3D01EAC3D96007260FC /* LBMineCenterOrderDetailSixTableViewCell.xib in Resources */,
 				F9061FD61E83C4730080E9D9 /* Main.storyboard in Resources */,
+				4AB9E17E1ED6BA6600BE0420 /* GLIncomeManagerController.xib in Resources */,
 				F966B3C61EAC3D64007260FC /* LBMineCenterOrderDetailFourTableViewCell.xib in Resources */,
 				F94A33FA1EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.xib in Resources */,
 				F9516DE11ECA8C76009F015D /* LBStoreMoreInfomationViewController.xib in Resources */,
@@ -6498,7 +6513,6 @@
 				4AA0D5BB1EAEF01D00CB8F77 /* GLClassifyView.xib in Resources */,
 				4A4608F01E9C9E6D0045824F /* GLRankingCell.xib in Resources */,
 				4A460D321E9CC2C50045824F /* GLShareView.xib in Resources */,
-				4A521F631EC466500028F2A2 /* GLIncomeManagerCell.xib in Resources */,
 				F966B3F81EAC8C8A007260FC /* LBShowSaleManAndBusinessViewController.xib in Resources */,
 				F9434D501EC16D78001C80A4 /* LBMineCenterRegionQueryTableViewCell.xib in Resources */,
 				F91274A81EA0E6BC00B7A539 /* LBMineStoreOrderingTableViewCell.xib in Resources */,
@@ -6744,6 +6758,7 @@
 				F92309831E9B8BFF00ECDC94 /* LBMineCenterSafeBindPhoneViewController.m in Sources */,
 				F923092E1E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeViewController.m in Sources */,
 				F91274A11EA0E66000B7A539 /* LBMineStoreHistoryOrderingViewController.m in Sources */,
+				4AB9E17D1ED6BA6600BE0420 /* GLIncomeManagerController.m in Sources */,
 				4A46105D1E9CC6360045824F /* ZXResultParser.m in Sources */,
 				4A4611071E9CC6370045824F /* ZXQRCodeVersion.m in Sources */,
 				F923095B1E9B8BFF00ECDC94 /* LBMyOrderEveluationSucessOneCollectionViewCell.m in Sources */,
@@ -6812,6 +6827,7 @@
 				F92309641E9B8BFF00ECDC94 /* XBTagTitleCell.m in Sources */,
 				F91964E51EB2EAF0008A8616 /* SelectionOfSalesmanLevelView.m in Sources */,
 				4AAD259D1EC189070054FD06 /* GLMyheartModel.m in Sources */,
+				4AB9E1811ED6BA6600BE0420 /* GLIncomeManagerModel.m in Sources */,
 				F9126EF61EA0B086004785EA /* LBMineSystemMessageTableViewCell.m in Sources */,
 				4A4610BE1E9CC6370045824F /* ZXRSSExpandedDecodedObject.m in Sources */,
 				4A46105E1E9CC6360045824F /* ZXSMSMMSResultParser.m in Sources */,
@@ -6849,6 +6865,7 @@
 				4A4610C61E9CC6370045824F /* ZXRSS14Reader.m in Sources */,
 				4A4610DC1E9CC6370045824F /* ZXOneDReader.m in Sources */,
 				4A4610EF1E9CC6370045824F /* ZXPDF417DetectionResultColumn.m in Sources */,
+				4AB9E1821ED6BA6600BE0420 /* GLIncomeManagerCell.m in Sources */,
 				F9F7804E1ED2F8FE00A498D6 /* LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.m in Sources */,
 				F9126EBE1EA05692004785EA /* GLMine_InfoCell.m in Sources */,
 				F9643F201ECFEB3A001B707B /* LBMineCenterMYOrderEvaluationDetailTableViewCell.m in Sources */,
@@ -6883,6 +6900,7 @@
 				4A46108A1E9CC6360045824F /* ZXDecodeHints.m in Sources */,
 				4A4610991E9CC6360045824F /* ZXDataMatrixDetector.m in Sources */,
 				4A4611011E9CC6370045824F /* ZXQRCodeDecodedBitStreamParser.m in Sources */,
+				4A5C70CB1ED66850001110B6 /* GLMerchat_StoreModel.m in Sources */,
 				F92309281E9B8BFF00ECDC94 /* LBMineCenterAddBankCardViewController.m in Sources */,
 				4A4610C51E9CC6370045824F /* ZXAbstractRSSReader.m in Sources */,
 				4A4610EB1E9CC6370045824F /* ZXPDF417Codeword.m in Sources */,
@@ -6919,6 +6937,7 @@
 				F923094F1E9B8BFF00ECDC94 /* UIView+XBExtension.m in Sources */,
 				4A4610CA1E9CC6370045824F /* ZXRSSUtils.m in Sources */,
 				4A4611091E9CC6370045824F /* ZXQRCodeAlignmentPatternFinder.m in Sources */,
+				4AB9E17F1ED6BA6600BE0420 /* GLMerchant_IncomeController.m in Sources */,
 				4A4610511E9CC6360045824F /* ZXEmailAddressParsedResult.m in Sources */,
 				F92DA01D1ECDA177004CBAA8 /* MenuTableViewCell.m in Sources */,
 				4A46104A1E9CC6360045824F /* ZXAbstractDoCoMoResultParser.m in Sources */,
@@ -6942,7 +6961,6 @@
 				4A46109F1E9CC6360045824F /* ZXDataMatrixEncoderContext.m in Sources */,
 				F97F09DD1EC9406D000D3B30 /* LBProductManagementTableViewCell.m in Sources */,
 				4A2F52271EC7084100ECA95D /* GLImage_textDetailCell.m in Sources */,
-				4A521F5D1EC451100028F2A2 /* GLIncomeManagerController.m in Sources */,
 				4A013CA11E9DCE1500BB3764 /* GLFirstPageRankingModel.m in Sources */,
 				F961A9C91E9C747700275F52 /* usermodelachivar.m in Sources */,
 				4A46110E1E9CC6370045824F /* ZXQRCode.m in Sources */,
@@ -7003,11 +7021,9 @@
 				4AEF77CD1ECD3A0B00FBC1DB /* CustomDatePicker.m in Sources */,
 				F966B40F1EACB0C0007260FC /* LBSaleManPersonInfoViewController.m in Sources */,
 				4A4610A91E9CC6360045824F /* ZXMaxiCodeDecodedBitStreamParser.m in Sources */,
-				4AE354791EC83AAB00BF60CC /* GLMerchant_IncomeCell.m in Sources */,
 				F923096E1E9B8BFF00ECDC94 /* LBMineCentermodifyAdressTableViewCell.m in Sources */,
 				F961A9CC1E9C750300275F52 /* UILabel+UILabel_ChangeLineSpaceAndWordSpace.m in Sources */,
 				4A4610131E9CC6360045824F /* LBXScanNative.m in Sources */,
-				4A521F661EC474970028F2A2 /* GLIncomeManagerModel.m in Sources */,
 				F90620071E83C5D00080E9D9 /* LBLoginNavigationViewController.m in Sources */,
 				F923091C1E9B8BFF00ECDC94 /* LBMineCenterMyBalanceViewController.m in Sources */,
 				4A4609F71E9CB78E0045824F /* GLDonationController.m in Sources */,
@@ -7165,7 +7181,6 @@
 				F94D31821EAF2EB300309029 /* LBRecommendedBusinessAuditViewController.m in Sources */,
 				4A46104D1E9CC6360045824F /* ZXAddressBookParsedResult.m in Sources */,
 				4A5F669F1ECA89FA0048F339 /* GLNearbyViewController.m in Sources */,
-				4A521F621EC466500028F2A2 /* GLIncomeManagerCell.m in Sources */,
 				F92DA01A1ECDA163004CBAA8 /* UIView+AdjustFrame.m in Sources */,
 				4A4610661E9CC6360045824F /* ZXURIResultParser.m in Sources */,
 				4A5F66AB1ECA89FA0048F339 /* GLNearby_SectionHeaderView.m in Sources */,
@@ -7174,6 +7189,7 @@
 				F90C452E1ED6AD8A001650BD /* QBAssetsViewController.m in Sources */,
 				4A4610EA1E9CC6370045824F /* ZXPDF417BoundingBox.m in Sources */,
 				4A2F52191EC7084000ECA95D /* GLEvaluateCell.m in Sources */,
+				4AB9E1841ED6BA6600BE0420 /* GLMerchant_IncomeCell.m in Sources */,
 				4A4610531E9CC6360045824F /* ZXEmailDoCoMoResultParser.m in Sources */,
 				4A4610851E9CC6360045824F /* ZXPerspectiveTransform.m in Sources */,
 				4A4610811E9CC6360045824F /* ZXGlobalHistogramBinarizer.m in Sources */,
@@ -7285,7 +7301,7 @@
 				4A5F66A51ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.m in Sources */,
 				F923092A1E9B8BFF00ECDC94 /* LBMineCenterBalanceRechargeViewController.m in Sources */,
 				F966B3E21EAC7E38007260FC /* LBMyBusinessListDetailViewController.m in Sources */,
-				4AE354741EC837A100BF60CC /* GLMerchant_IncomeController.m in Sources */,
+				4AB9E14D1ED6B7EE00BE0420 /* GLMerchat_ModifyView.m in Sources */,
 				4A4610BF1E9CC6370045824F /* ZXRSSExpandedFieldParser.m in Sources */,
 				4A46108C1E9CC6360045824F /* ZXEncodeHints.m in Sources */,
 				4A4610AA1E9CC6360045824F /* ZXMaxiCodeDecoder.m in Sources */,

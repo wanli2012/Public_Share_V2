@@ -38,19 +38,19 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商  品" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47x-VQ-GYW">
-                            <rect key="frame" x="167" y="30" width="41.5" height="20"/>
+                            <rect key="frame" x="165" y="34" width="46" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="P2X-tW-Xx4"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="47x-VQ-GYW" secondAttribute="bottom" constant="10" id="Idl-Zx-xgL"/>
                         <constraint firstItem="47x-VQ-GYW" firstAttribute="centerX" secondItem="xzF-YR-IdR" secondAttribute="centerX" id="aZG-yX-vQb"/>
-                        <constraint firstItem="47x-VQ-GYW" firstAttribute="top" secondItem="xzF-YR-IdR" secondAttribute="top" constant="30" id="skI-25-QU0"/>
                     </constraints>
                 </view>
             </subviews>

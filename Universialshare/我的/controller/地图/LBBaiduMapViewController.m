@@ -227,11 +227,15 @@
 //确定
 - (void)customLocationAccuracyCircle {
     
-    if (self.returePositon) {
+//    if (self.returePositon) {
+//        self.returePositon(self.locationStr,self.provinceid,self.cityid,self.coutry,self.coors2);
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }
+    if (self.locationStr != nil || self.provinceid != nil || self.cityid != nil ||self.coutry != nil) {
         self.returePositon(self.locationStr,self.provinceid,self.cityid,self.coutry,self.coors2);
         [self.navigationController popViewControllerAnimated:YES];
+
     }
-    
    
 }
 
