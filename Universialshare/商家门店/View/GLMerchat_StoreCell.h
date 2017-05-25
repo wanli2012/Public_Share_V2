@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMerchat_StoreModel.h"
 
 @protocol GLMerchat_StoreCellDelegate <NSObject>
 
@@ -20,5 +21,7 @@
 @property (nonatomic, assign)id<GLMerchat_StoreCellDelegate> delegate;
 
 @property (nonatomic, strong)NSIndexPath *indexPath;
+
+@property (nonatomic, strong)GLMerchat_StoreModel *model;
 
 @end

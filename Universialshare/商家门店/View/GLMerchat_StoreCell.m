@@ -7,11 +7,18 @@
 //
 
 #import "GLMerchat_StoreCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface GLMerchat_StoreCell ()
 @property (weak, nonatomic) IBOutlet UIButton *suspendBtn;
 @property (weak, nonatomic) IBOutlet UIButton *modifyBtn;
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UIImageView *picImageV;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *statusBtn;//显示状态
 
 @end
 
@@ -23,9 +30,9 @@
     self.suspendBtn.layer.cornerRadius = 5.f;
     self.modifyBtn.layer.cornerRadius = 5.f;
     self.bgView.layer.cornerRadius = 5.f;
-    self.bgView.clipsToBounds = YES;
-    self.suspendBtn.clipsToBounds = YES;
-    self.modifyBtn.clipsToBounds = YES;
+
+    self.statusBtn.layer.cornerRadius = 5.f;
+    
 }
 
 - (IBAction)click:(UIButton *)sender {
@@ -36,6 +43,61 @@
         }else{
             [self.delegate cellClick:2 indexPath:self.indexPath];
         }
+    }
+}
+- (void)setModel:(GLMerchat_StoreModel *)model {
+    _model = model;
+//    self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:<#(UIImage *)#>
+    self.picImageV.image = [UIImage imageNamed:@"XRPlaceholder"];
+    self.nameLabel.text = model.shop_name;
+    self.phoneLabel.text = model.phone;
+    self.addressLabel.text = model.shop_address;
+    
+    switch ([model.status integerValue]) {
+        case 0:
+        {
+            self.suspendBtn.hidden = YES;
+            self.modifyBtn.hidden = YES;
+            self.statusBtn.hidden = NO;
+            [self.statusBtn setTitle:@"正在审核" forState:UIControlStateNormal];
+        }
+            break;
+        case 1:
+        {
+            self.suspendBtn.hidden = NO;
+            self.modifyBtn.hidden = NO;
+            self.statusBtn.hidden = YES;
+            if ([model.is_open integerValue] == 1) {
+                [self.suspendBtn setTitle:@"暂停营业" forState:UIControlStateNormal];
+                [self.modifyBtn setTitle:@"修改密码" forState:UIControlStateNormal];
+            }else{
+                [self.suspendBtn setTitle:@"开始营业" forState:UIControlStateNormal];
+                [self.modifyBtn setTitle:@"修改密码" forState:UIControlStateNormal];
+            }
+
+        }
+            break;
+        case 2:
+        {
+            self.suspendBtn.hidden = YES;
+            self.modifyBtn.hidden = YES;
+            self.statusBtn.hidden = NO;
+            [self.statusBtn setTitle:@"审核失败" forState:UIControlStateNormal];
+
+        }
+            break;
+        case 3:
+        {
+            self.suspendBtn.hidden = YES;
+            self.modifyBtn.hidden = YES;
+            self.statusBtn.hidden = NO;
+            [self.statusBtn setTitle:@"暂无资料" forState:UIControlStateNormal];
+
+        }
+            break;
+            
+        default:
+            break;
     }
 }
 

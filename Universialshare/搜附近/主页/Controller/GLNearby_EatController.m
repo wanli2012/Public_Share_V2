@@ -188,7 +188,12 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
-        return 1;
+        if(self.recommendModels.count == 0){
+            return 0;
+        }else{
+            
+            return 1;
+        }
     }else{
         
         return self.nearModels.count;

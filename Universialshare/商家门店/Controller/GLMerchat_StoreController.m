@@ -9,7 +9,7 @@
 #import "GLMerchat_StoreController.h"
 #import "GLMerchat_StoreCell.h"
 #import "GLAddStoreController.h"
-
+#import "GLMerchat_StoreModel.h"
 
 @interface GLMerchat_StoreController ()<GLMerchat_StoreCellDelegate>
 {
@@ -89,10 +89,10 @@ static NSString *ID = @"GLMerchat_StoreCell";
         NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue]==1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-//                for (NSDictionary *dic in responseObject[@"data"]) {
-//                    GLMerchat_CommentGoodsModel *model = [GLMerchat_CommentGoodsModel mj_objectWithKeyValues:dic];
-//                    [_models addObject:model];
-//                }
+                for (NSDictionary *dic in responseObject[@"data"]) {
+                    GLMerchat_StoreModel *model = [GLMerchat_StoreModel mj_objectWithKeyValues:dic];
+                    [_models addObject:model];
+                }
                 
                 [self.tableView reloadData];
             }
@@ -139,7 +139,7 @@ static NSString *ID = @"GLMerchat_StoreCell";
 #pragma UITableviewDelegate UITableviewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return self.models.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -150,6 +150,7 @@ static NSString *ID = @"GLMerchat_StoreCell";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
     cell.indexPath = indexPath;
+    cell.model = self.models[indexPath.row];
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -159,7 +160,36 @@ static NSString *ID = @"GLMerchat_StoreCell";
     return self.tableView.rowHeight;
     
 }
+- (void)openOrCloseWithStatus:(NSInteger )status indexPath:(NSIndexPath *)indexPath{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    GLMerchat_StoreModel *model = self.models[indexPath.row];
+    dict[@"status"] = @(status);
+    dict[@"shop_id"] = model.uid;
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"shop/setStoreOpenOrClose" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        NSLog(@"%@",responseObject);
+        if ([responseObject[@"code"] integerValue]==1) {
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                
+            }
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+            
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+    
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
 
+}
 #pragma GLMerchat_StoreCellDelegate
 
 - (void)cellClick:(NSInteger)index indexPath:(NSIndexPath *)indexPath{
@@ -170,10 +200,38 @@ static NSString *ID = @"GLMerchat_StoreCell";
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
             
         }];
-        
+//        __weak typeof(self) weakself = self;
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//                    UITextField *login = alertController.textFields.firstObject;
-//                    UITextField *password = alertController.textFields.lastObject;
+            
+            UITextField *pwdTF = alertController.textFields.firstObject;
+            
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            dict[@"token"] = [UserModel defaultUser].token;
+            dict[@"uid"] = [UserModel defaultUser].uid;
+            GLMerchat_StoreModel *model = self.models[indexPath.row];
+            dict[@"status"] = @(2);
+            dict[@"shop_id"] = model.uid;
+            dict[@"pwd"] = pwdTF.text;
+            
+            _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+            [NetworkManager requestPOSTWithURLStr:@"shop/setStoreOpenOrClose" paramDic:dict finish:^(id responseObject) {
+                [_loadV removeloadview];
+                NSLog(@"%@",responseObject);
+                if ([responseObject[@"code"] integerValue]==1) {
+                    
+                    [self updateData:YES];
+                }else{
+                    [MBProgressHUD showError:responseObject[@"message"]];
+                    
+                }
+                
+            } enError:^(NSError *error) {
+                [_loadV removeloadview];
+                
+                [MBProgressHUD showError:error.localizedDescription];
+                
+            }];
+//            [weakself openOrCloseWithStatus:2 indexPath:indexPath];
            NSLog(@"暂停营业");
         
         }];
@@ -214,5 +272,13 @@ static NSString *ID = @"GLMerchat_StoreCell";
 
     }
 }
-
+-(NSMutableArray *)models{
+    
+    if (!_models) {
+        _models=[NSMutableArray array];
+    }
+    
+    return _models;
+    
+}
 @end
