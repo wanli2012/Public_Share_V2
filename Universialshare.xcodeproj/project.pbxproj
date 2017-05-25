@@ -524,6 +524,8 @@
 		4AB9E1831ED6BA6600BE0420 /* GLIncomeManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB9E1791ED6BA6600BE0420 /* GLIncomeManagerCell.xib */; };
 		4AB9E1841ED6BA6600BE0420 /* GLMerchant_IncomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB9E17B1ED6BA6600BE0420 /* GLMerchant_IncomeCell.m */; };
 		4AB9E1851ED6BA6600BE0420 /* GLMerchant_IncomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB9E17C1ED6BA6600BE0420 /* GLMerchant_IncomeCell.xib */; };
+		4AB9E1B91ED6E97E00BE0420 /* QQTagItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB9E1AD1ED6E97E00BE0420 /* QQTagItem.m */; };
+		4AB9E1BA1ED6E97E00BE0420 /* QQTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB9E1AF1ED6E97E00BE0420 /* QQTagView.m */; };
 		4AD5514D1EB2E6B600C04062 /* GLSubmitChooseTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD5514C1EB2E6B600C04062 /* GLSubmitChooseTimeView.m */; };
 		4AD5514F1EB2E6C900C04062 /* GLSubmitChooseTimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD5514E1EB2E6C900C04062 /* GLSubmitChooseTimeView.xib */; };
 		4AD551521EB36E4D00C04062 /* SYDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD551511EB36E4D00C04062 /* SYDatePicker.m */; };
@@ -1904,6 +1906,10 @@
 		4AB9E17A1ED6BA6600BE0420 /* GLMerchant_IncomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMerchant_IncomeCell.h; sourceTree = "<group>"; };
 		4AB9E17B1ED6BA6600BE0420 /* GLMerchant_IncomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMerchant_IncomeCell.m; sourceTree = "<group>"; };
 		4AB9E17C1ED6BA6600BE0420 /* GLMerchant_IncomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMerchant_IncomeCell.xib; sourceTree = "<group>"; };
+		4AB9E1AC1ED6E97E00BE0420 /* QQTagItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQTagItem.h; sourceTree = "<group>"; };
+		4AB9E1AD1ED6E97E00BE0420 /* QQTagItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQTagItem.m; sourceTree = "<group>"; };
+		4AB9E1AE1ED6E97E00BE0420 /* QQTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQTagView.h; sourceTree = "<group>"; };
+		4AB9E1AF1ED6E97E00BE0420 /* QQTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQTagView.m; sourceTree = "<group>"; };
 		4AD5514B1EB2E6B600C04062 /* GLSubmitChooseTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSubmitChooseTimeView.h; sourceTree = "<group>"; };
 		4AD5514C1EB2E6B600C04062 /* GLSubmitChooseTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLSubmitChooseTimeView.m; sourceTree = "<group>"; };
 		4AD5514E1EB2E6C900C04062 /* GLSubmitChooseTimeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLSubmitChooseTimeView.xib; sourceTree = "<group>"; };
@@ -4591,6 +4597,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4AB9E1A11ED6E97E00BE0420 /* QQtagView */ = {
+			isa = PBXGroup;
+			children = (
+				4AB9E1AC1ED6E97E00BE0420 /* QQTagItem.h */,
+				4AB9E1AD1ED6E97E00BE0420 /* QQTagItem.m */,
+				4AB9E1AE1ED6E97E00BE0420 /* QQTagView.h */,
+				4AB9E1AF1ED6E97E00BE0420 /* QQTagView.m */,
+			);
+			path = QQtagView;
+			sourceTree = "<group>";
+		};
 		4AE3546B1EC7F44700BF60CC /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -6223,6 +6240,7 @@
 		F97F09D41EC93FA9000D3B30 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				4AB9E1A11ED6E97E00BE0420 /* QQtagView */,
 				F97F09DA1EC9406D000D3B30 /* LBProductManagementTableViewCell.h */,
 				F97F09DB1EC9406D000D3B30 /* LBProductManagementTableViewCell.m */,
 				F97F09DC1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib */,
@@ -6953,6 +6971,7 @@
 				F97F09DD1EC9406D000D3B30 /* LBProductManagementTableViewCell.m in Sources */,
 				4A2F52271EC7084100ECA95D /* GLImage_textDetailCell.m in Sources */,
 				4A013CA11E9DCE1500BB3764 /* GLFirstPageRankingModel.m in Sources */,
+				4AB9E1BA1ED6E97E00BE0420 /* QQTagView.m in Sources */,
 				F961A9C91E9C747700275F52 /* usermodelachivar.m in Sources */,
 				4A46110E1E9CC6370045824F /* ZXQRCode.m in Sources */,
 				4A4610E61E9CC6370045824F /* ZXModulusPoly.m in Sources */,
@@ -6994,6 +7013,7 @@
 				4A460A5D1E9CC0310045824F /* SubLBXScanViewController.m in Sources */,
 				4A2F521D1EC7084000ECA95D /* GLHomeLiveCell.m in Sources */,
 				F9520A281EAE170400B4D665 /* LBMineStoreAllOrdersViewController.m in Sources */,
+				4AB9E1B91ED6E97E00BE0420 /* QQTagItem.m in Sources */,
 				4A46105A1E9CC6360045824F /* ZXParsedResult.m in Sources */,
 				4A4610841E9CC6360045824F /* ZXIntArray.m in Sources */,
 				4AFCDC761ED2EE09007C1681 /* GLMerchat_CommentGoodcell.m in Sources */,

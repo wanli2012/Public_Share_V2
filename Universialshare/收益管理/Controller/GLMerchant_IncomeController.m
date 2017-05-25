@@ -12,7 +12,7 @@
 
 @interface GLMerchant_IncomeController ()<HWCalendarDelegate>
 {
-    
+    LoadWaitView *_loadV;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *timeOneBtn;
@@ -26,6 +26,10 @@
 @property (strong, nonatomic)HWCalendar *Calendar;
 @property (strong, nonatomic)UIView *CalendarView;
 
+@property (nonatomic, assign)int page;
+@property (nonatomic, strong)NSMutableArray *models;
+@property (nonatomic ,strong)NodataView *nodataV;
+
 @end
 
 static NSString *ID = @"GLMerchant_IncomeCell";
@@ -37,6 +41,8 @@ static NSString *ID = @"GLMerchant_IncomeCell";
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     
+    self.queryBtn.layer.cornerRadius = 5.f;
+    
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     
     [self.view addSubview:self.CalendarView];
@@ -44,6 +50,101 @@ static NSString *ID = @"GLMerchant_IncomeCell";
     self.CalendarView.hidden = YES;
     
     [self.CalendarView addSubview:self.Calendar];
+    
+    __weak typeof(self) weakself = self;
+    _Calendar.returnCancel = ^(){
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            weakself.CalendarView.hidden = YES;
+        });
+    };
+    
+    
+    __weak __typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf updateData:YES];
+        
+    }];
+    
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf updateData:NO];
+    }];
+    
+    // 设置文字
+    [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
+    
+    [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
+    
+    [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
+    
+    
+    self.tableView.mj_header = header;
+    self.tableView.mj_footer = footer;
+   
+}
+
+- (void)endRefresh {
+    [self.tableView.mj_footer endRefreshing];
+    [self.tableView.mj_header endRefreshing];
+    
+}
+
+- (void)updateData:(BOOL)status {
+    
+    if (status) {
+        
+        _page = 1;
+        [self.models removeAllObjects];
+        
+    }else{
+        _page ++;
+    }
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"page"] = [NSString stringWithFormat:@"%d",_page];
+    
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+    NSDate *date1 = [dateFormatter dateFromString:self.timeOneBtn.titleLabel.text];
+    NSDate *date2 = [dateFormatter dateFromString:self.timeTwoBtn.titleLabel.text];
+
+    //转成时间戳
+    NSString *startTime = [NSString stringWithFormat:@"%ld", (long)[date1 timeIntervalSince1970]];
+    NSString *endTime = [NSString stringWithFormat:@"%ld", (long)[date2 timeIntervalSince1970]];
+    
+    dict[@"starttime"] = startTime;
+    dict[@"endtime"] = endTime;
+    
+    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"user/getProfitList" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        [self endRefresh];
+                NSLog(@"%@",responseObject);
+        if ([responseObject[@"code"] integerValue] == 1) {
+            
+            for (NSDictionary *dict in responseObject[@"data"]) {
+                //                GLNoneOfDonationModel *model = [GLNoneOfDonationModel mj_objectWithKeyValues:dict];
+                //                [_models addObject:model];
+            }
+            
+            
+        }else if([responseObject[@"code"] integerValue] == 3){
+            
+            [MBProgressHUD showError:@"已经没有更多数据了"];
+        }
+        
+        [self.tableView reloadData];
+    } enError:^(NSError *error) {
+        [self endRefresh];
+         NSLog(@"%@",error.localizedDescription);
+        [_loadV removeloadview];
+        self.nodataV.hidden = NO;
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -70,6 +171,7 @@ static NSString *ID = @"GLMerchant_IncomeCell";
         NSLog(@"date1 > date2");
     }else if ([[NSString stringWithFormat:@"%d",[self compareOneDay:date1 withAnotherDay:date2]] isEqualToString:@"-1"]){
         NSLog(@"date1 < date2");
+         [self updateData:YES];
     }else{
         NSLog(@"date1 = date2");
     }

@@ -134,7 +134,7 @@ static NSString *ID = @"GLIncomeManagerCell";
     dict[@"endtime"] = [NSString stringWithFormat:@""];
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/myRl_list" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"user/getProfitList" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
         //        NSLog(@"%@",responseObject);
