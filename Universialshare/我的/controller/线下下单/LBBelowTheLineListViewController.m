@@ -69,7 +69,7 @@
 -(void)initdatasource{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/gain_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"shop/order_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page],@"type":@"2"} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
@@ -124,15 +124,15 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-//    if (self.dataarr.count > 0 ) {
-//        
-//        self.nodataV.hidden = YES;
-//    }else{
-//        self.nodataV.hidden = NO;
-//        
-//    }
+    if (self.dataarr.count > 0 ) {
+        
+        self.nodataV.hidden = YES;
+    }else{
+        self.nodataV.hidden = NO;
+        
+    }
     
-    return 10;
+    return self.dataarr.count;
     
 }
 
@@ -143,25 +143,31 @@
     
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     
     LBBelowTheLineListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBBelowTheLineListTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.orderCodeLb.text = [NSString stringWithFormat:@"订  单  号: %@",self.dataarr[indexPath.row][@"order_num"]];
+    cell.numLb.text = [NSString stringWithFormat:@"商品数量: %@",self.dataarr[indexPath.row][@"order_num"]];
+    cell.moenyLb.text = [NSString stringWithFormat:@" %@",self.dataarr[indexPath.row][@"price"]];
     
+    if ([self.dataarr[indexPath.row][@"price"] integerValue] == 1) {
+         cell.orderCodeLb.text = @"20%";
+    }
+    if ([self.dataarr[indexPath.row][@"price"] integerValue] == 2) {
+        cell.orderCodeLb.text = @"10%";
+    }
+    if ([self.dataarr[indexPath.row][@"price"] integerValue] == 3) {
+        cell.orderCodeLb.text = @"5%";
+    }
     
     return cell;
-    
 }
-
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    
 }
-
 
 -(NSMutableArray *)dataarr{
     
