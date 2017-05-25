@@ -214,7 +214,7 @@
             
             [UserModel defaultUser].truename = self.nameTf.text;
             [UserModel defaultUser].idcard = self.codeTf.text;
-            [UserModel defaultUser].AudiThrough = @"1";
+            [UserModel defaultUser].rzstatus = @"1";
             
             [usermodelachivar achive];
             
