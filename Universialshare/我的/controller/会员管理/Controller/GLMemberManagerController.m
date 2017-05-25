@@ -207,7 +207,19 @@ static NSString *ID = @"GLMemberManagerCell";
 
 #pragma UITableViewDelegate UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
+    if (self.currentbutton == self.leftBtn ) {
+        if (self.models.count <= 0) {
+            self.nodataV.hidden = NO;
+        }else{
+             self.nodataV.hidden = YES;
+        }
+    }else{
+        if (self.modelsone.count <= 0) {
+            self.nodataV.hidden = NO;
+        }else{
+            self.nodataV.hidden = YES;
+        }
+    }
     return self.currentbutton == self.leftBtn?self.models.count:self.modelsone.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
