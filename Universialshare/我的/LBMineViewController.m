@@ -271,7 +271,8 @@
                 self.hidesBottomBarWhenPushed=YES;
                 if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
                     
-                    GLMerchant_IncomeController *vc = [[GLMerchant_IncomeController alloc] init];
+//                    GLMerchant_IncomeController *vc = [[GLMerchant_IncomeController alloc] init];
+                    GLMine_MyBeansController *vc = [[GLMine_MyBeansController alloc] init];
                     [self.navigationController pushViewController:vc animated:YES];
                     
                 }else{

@@ -11,10 +11,12 @@
 #import "GLShareView.h"
 #import "UMSocial.h"
 #import <Social/Social.h>
+#import "GLSet_MaskVeiw.h"
 
 @interface GLRecommendController ()
 {
     GLShareView *_shareV;
+    GLSet_MaskVeiw *_maskV;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *codeImageV;
 @property (weak, nonatomic) IBOutlet UIView *contentV;
@@ -45,19 +47,37 @@
     [self logoQrCode];
     UILongPressGestureRecognizer *ges = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(share:)];
     [self.codeImageV addGestureRecognizer:ges];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
+    
+}
+- (void)dealloc{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    
+//    CGFloat shareVH = SCREEN_HEIGHT /5;
+//    [UIView animateWithDuration:0.2 animations:^{
+//        
+//        _shareV.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, shareVH);
+//        
+//    }completion:^(BOOL finished) {
+//        [_shareV removeFromSuperview];
+//        _shareV = nil;
+//    }];
+//}
+//分享页面消失
+- (void)dismiss{
     CGFloat shareVH = SCREEN_HEIGHT /5;
     [UIView animateWithDuration:0.2 animations:^{
         
         _shareV.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, shareVH);
         
-    }completion:^(BOOL finished) {
-        [_shareV removeFromSuperview];
-        _shareV = nil;
+    } completion:^(BOOL finished) {
+        
+        [_maskV removeFromSuperview];
     }];
 }
 //分享到社交圈
@@ -67,15 +87,20 @@
         
         CGFloat shareVH = SCREEN_HEIGHT /5;
         
-        if (_shareV == nil) {
+        if (_maskV == nil) {
+            
+            _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+            
+            _maskV.bgView.alpha = 0.4;
             
             _shareV = [[NSBundle mainBundle] loadNibNamed:@"GLShareView" owner:nil options:nil].lastObject;
             _shareV.frame = CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, 0);
             [_shareV.weiboShareBtn addTarget:self action:@selector(shareClick:) forControlEvents:UIControlEventTouchUpInside];
             [_shareV.weixinShareBtn addTarget:self action:@selector(shareClick:) forControlEvents:UIControlEventTouchUpInside];
             [_shareV.friendShareBtn addTarget:self action:@selector(shareClick:) forControlEvents:UIControlEventTouchUpInside];
-            [self.view addSubview:_shareV];
+            //        [self.view addSubview:_maskV];
         }
+        [_maskV showViewWithContentView:_shareV];
         
         [UIView animateWithDuration:0.2 animations:^{
             

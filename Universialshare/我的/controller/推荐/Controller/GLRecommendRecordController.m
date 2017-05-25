@@ -149,9 +149,7 @@ static NSString *ID = @"GLRecommendRcordCell";
     
 }
 #pragma  UITableviewDatasource
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
-}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
     return self.models.count;
@@ -167,31 +165,5 @@ static NSString *ID = @"GLRecommendRcordCell";
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 0.0, 300.0, 30)];
-    customView.backgroundColor = YYSRGBColor(244,248, 250,1);
-    
-    UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    headerLabel.backgroundColor = [UIColor clearColor];
-    headerLabel.opaque = NO;
-    headerLabel.textColor = [UIColor darkGrayColor];
-    headerLabel.highlightedTextColor = [UIColor whiteColor];
-    headerLabel.font = [UIFont systemFontOfSize:14];
-    headerLabel.frame = CGRectMake(10.0, 0.0, 300.0, 30);
-    
-    if (section == 0) {
-        headerLabel.text =  @"本月";
-    }else {
-        headerLabel.text = @"上月";
-    }
-    
-    [customView addSubview:headerLabel];
-    
-    return customView;
-}
-//设置Header高度
-- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 30;
-}
+
 @end

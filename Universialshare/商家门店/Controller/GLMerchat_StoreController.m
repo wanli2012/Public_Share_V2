@@ -38,6 +38,9 @@ static NSString *ID = @"GLMerchat_StoreCell";
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
+    [self.tableView addSubview:self.nodataV];
+    self.nodataV.hidden = YES;
+
     
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -93,7 +96,12 @@ static NSString *ID = @"GLMerchat_StoreCell";
                     GLMerchat_StoreModel *model = [GLMerchat_StoreModel mj_objectWithKeyValues:dic];
                     [_models addObject:model];
                 }
-                
+                if (self.models.count <= 0 ) {
+                    self.nodataV.hidden = NO;
+                }else{
+                    self.nodataV.hidden = YES;
+                }
+
                 [self.tableView reloadData];
             }
             
@@ -118,7 +126,7 @@ static NSString *ID = @"GLMerchat_StoreCell";
     
     if (!_nodataV) {
         _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
-        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-114-49);
+        _nodataV.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 49);
     }
     return _nodataV;
     
