@@ -18,7 +18,9 @@
 
 @property (nonatomic, copy)NSString *shop_name;
 
-@property (nonatomic, copy)NSString *status;
+@property (nonatomic, copy)NSString *status;//0:正在审核 1:审核通过
+
+@property (nonatomic, copy)NSString *shop_id;
 
 @property (nonatomic, copy)NSString *uid;
 

@@ -40,6 +40,8 @@
 @property (strong, nonatomic)NSString *cityStrId;
 @property (strong, nonatomic)NSString *countryStrId;
 
+@property (nonatomic, strong)NSMutableArray *dataArr;
+
 @end
 
 @implementation LBMineCenterAddAdreassViewController
@@ -57,6 +59,28 @@
     self.countryStrId = @"";
     
     [self initProvinceCityArea];
+    [self getPickerData];
+}
+- (void)getPickerData {
+    //行业列表
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"user/getCityList" paramDic:@{} finish:^(id responseObject) {
+        [_loadV removeloadview];
+        if ([responseObject[@"code"] integerValue]==1) {
+            self.dataArr = responseObject[@"data"];
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+    
+    
 }
 
 -(void)initProvinceCityArea{
@@ -131,6 +155,7 @@
 - (IBAction)tapgestureChoose:(UITapGestureRecognizer *)sender {
     
     LBMineCenterChooseAreaViewController *vc=[[LBMineCenterChooseAreaViewController alloc]init];
+    vc.dataArr = self.dataArr;
     vc.transitioningDelegate=self;
     vc.modalPresentationStyle=UIModalPresentationCustom;
     

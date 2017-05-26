@@ -26,8 +26,8 @@
 @property(nonatomic, assign) CGFloat tagFontSize; // default is 12
 @property(nonatomic) UIEdgeInsets padding; // container inner spacing, default is {10, 10, 10, 10}
 @property(nonatomic) UIEdgeInsets tagTextPadding; // tag text inner spaces, default is {3, 5, 3, 5}
-- (void)addTags:(NSArray *)tags;
-- (void)addLabel:(NSString *)text tag:(NSInteger)tag;
+- (void)addTags:(NSArray *)tags tag_ids:(NSArray *)tag_ids;
+- (void)addLabel:(NSString *)text tag:(NSInteger)tag ;
 - (void)remove:(NSString *)text;
 - (instancetype)initWith:(QQTagStyle)TagViewStyle;
 @end

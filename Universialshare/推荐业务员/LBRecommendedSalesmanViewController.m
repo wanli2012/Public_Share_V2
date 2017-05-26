@@ -11,12 +11,11 @@
 #import "LBAddrecomdManChooseAreaViewController.h"
 #import "editorMaskPresentationController.h"
 
-@interface LBRecommendedSalesmanViewController ()<UITextFieldDelegate,UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
+@interface LBRecommendedSalesmanViewController ()<UITextFieldDelegate,UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning,UIImagePickerControllerDelegate,UIActionSheetDelegate,UINavigationControllerDelegate>
 {
     BOOL      _ishidecotr;//判断是否隐藏弹出控制器
 }
 @property (weak, nonatomic) IBOutlet UIView *baseView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentH;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentW;
 @property (weak, nonatomic) IBOutlet UITextField *phonetf;
 @property (weak, nonatomic) IBOutlet UITextField *yanzTf;
@@ -27,8 +26,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *areaTf;
 @property (weak, nonatomic) IBOutlet UITextField *secrestTf;
 @property (weak, nonatomic) IBOutlet UIButton *nextBt;
-@property (weak, nonatomic) IBOutlet UITextField *idenfyCode;
+//@property (weak, nonatomic) IBOutlet UITextField *idenfyCode;
 @property (weak, nonatomic) IBOutlet UITextField *nameTf;
+@property (weak, nonatomic) IBOutlet UITextField *trueNameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *ensurePwdTF;
 
 @property (weak, nonatomic) IBOutlet UIView *levelView;
 @property (strong, nonatomic)UIView *incentiveModelMaskV;
@@ -42,6 +43,10 @@
 @property (nonatomic, assign)NSInteger ischosePro;//记录选择省的第几行
 @property (nonatomic, assign)NSInteger ischoseCity;//记录选择市的第几行
 @property (nonatomic, assign)NSInteger ischoseArea;//记录选择区的第几行
+
+@property (weak, nonatomic) IBOutlet UIImageView *IDImageV;//身份证正面照
+@property (weak, nonatomic) IBOutlet UIImageView *IDImageV2;//身份证反面照
+@property (assign, nonatomic)NSInteger tapIndex;//判断点击的是那个图片
 
 @end
 
@@ -99,8 +104,8 @@
         _areaTf.text = @"";
         
     };
-    vc.transitioningDelegate=self;
-    vc.modalPresentationStyle=UIModalPresentationCustom;
+    vc.transitioningDelegate = self;
+    vc.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:vc animated:YES completion:nil];
     
 }
@@ -147,7 +152,23 @@
     [self presentViewController:vc animated:YES completion:nil];
     
 }
-
+//身份证图片上传
+- (IBAction)uploadIDPic:(id)sender {
+    _tapIndex = 1;
+    [self tapgesturephotoOrCamera];
+}
+- (IBAction)uploadIDPicBack:(id)sender {
+    _tapIndex = 2;
+    [self tapgesturephotoOrCamera];
+}
+//选择图片来源
+-(void)tapgesturephotoOrCamera{
+    
+    UIActionSheet* actionSheet = [[UIActionSheet alloc]initWithTitle:@"请选择图片来源" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"去相册选择",@"用相机拍照", nil];
+    [actionSheet showInView:self.view];
+    
+    
+}
 //发送验证
 - (IBAction)sendCodeEvent:(UIButton *)sender {
     
@@ -238,31 +259,151 @@
         [MBProgressHUD showError:@"密码须包含数字和字母"];
         return;
     }
-    
+    if (![self.ensurePwdTF.text isEqualToString:self.secrestTf.text]) {
+        [MBProgressHUD showError:@"两次输入的密码不一致"];
+        return;
+    }
      NSString *encryptsecret = [RSAEncryptor encryptString:self.secrestTf.text publicKey:public_RSA];
     
-    NSDictionary *dic = @{@"uid":[UserModel defaultUser].uid,@"token":[UserModel defaultUser].token,@"phone":self.phonetf.text,@"yzm":self.yanzTf.text,@"grade":self.levelStr,@"province":_provinceArr[_ischosePro][@"province_code"],@"city":_provinceArr[_ischosePro][@"city"][_ischoseCity][@"city_code"],@"country":_provinceArr[_ischosePro][@"city"][_ischoseCity][@"country"][_ischoseArea][@"country_code"],@"password":encryptsecret};
+    NSDictionary *dic = @{@"uid":[UserModel defaultUser].uid,
+                          @"token":[UserModel defaultUser].token,
+                          @"phone":self.phonetf.text,
+                          @"yzm":self.yanzTf.text,
+                          @"grade":self.levelStr,
+                          @"province":_provinceArr[_ischosePro][@"province_code"],
+                          @"city":_provinceArr[_ischosePro][@"city"][_ischoseCity][@"city_code"],
+                          @"country":_provinceArr[_ischosePro][@"city"][_ischoseCity][@"country"][_ischoseArea][@"country_code"],
+                          @"password":encryptsecret,
+                          @"truename":self.trueNameLabel.text};
     
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/openTjmember" paramDic:dic finish:^(id responseObject) {
-        [_loadV removeloadview];
-        if ([responseObject[@"code"] integerValue]==1) {
-            [MBProgressHUD showError:responseObject[@"message"]];
-            [self.navigationController popViewControllerAnimated:YES];
-        }else{
-        [MBProgressHUD showError:responseObject[@"message"]];
-        
+    NSArray *imageViewArr = [NSArray arrayWithObjects:self.IDImageV,self.IDImageV2,nil];
+    
+    NSArray *titleArr = [NSArray arrayWithObjects:@"face_pic",@"con_pic", nil];
+
+    NSLog(@"%@",dic);
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
+    manager.requestSerializer.timeoutInterval = 20;
+    // 加上这行代码，https ssl 验证。
+    [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
+    [manager POST:[NSString stringWithFormat:@"%@user/openTjmember",URL_Base] parameters:dic  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        //将图片以表单形式上传
+        //        NSLog(@"dict = %@",dict);
+        for (int i = 0; i < imageViewArr.count; i ++) {
+            
+            NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+            formatter.dateFormat=@"yyyyMMddHHmmss";
+            NSString *str=[formatter stringFromDate:[NSDate date]];
+            NSString *fileName=[NSString stringWithFormat:@"%@%d.png",str,i];
+            UIImageView *imaev = (UIImageView*)imageViewArr[i];
+            NSData *data = UIImagePNGRepresentation(imaev.image);
+            [formData appendPartWithFileData:data name:titleArr[i] fileName:fileName mimeType:@"image/png"];
         }
         
-    } enError:^(NSError *error) {
+    }progress:^(NSProgress *uploadProgress){
+        
+        [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
+
+        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+
+    }success:^(NSURLSessionDataTask *task, id responseObject) {
+        [SVProgressHUD dismiss];
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([dic[@"code"]integerValue]==1) {
+            
+            [MBProgressHUD showError:dic[@"message"]];
+//          [self.navigationController popToRootViewControllerAnimated:YES];
+        }else{
+            [MBProgressHUD showError:dic[@"message"]];
+        }
+        [_loadV removeloadview];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [SVProgressHUD dismiss];
         [_loadV removeloadview];
         [MBProgressHUD showError:error.localizedDescription];
-        
     }];
-    
-    
+ 
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    switch (buttonIndex) {
+        case 0:{
+            [self getpicture];//获取相册
+        }break;
+            
+        case 1:{
+            [self getcamera];//获取照相机
+        }break;
+        default:
+            break;
+    }
 }
 
+-(void)getpicture{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    //    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    picker.delegate = self;
+    //    // 设置选择后的图片可以被编辑
+    //    picker.allowsEditing = YES;
+    //    [self presentViewController:picker animated:YES completion:nil];
+    //1.获取媒体支持格式
+    NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+    picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    picker.mediaTypes = @[mediaTypes[0]];
+    //5.其他配置
+    //allowsEditing是否允许编辑，如果值为no，选择照片之后就不会进入编辑界面
+    picker.allowsEditing = YES;
+    //6.推送
+    [self presentViewController:picker animated:YES completion:nil];
+}
+-(void)getcamera{
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        // 设置拍照后的图片可以被编辑
+        picker.allowsEditing = YES;
+        picker.sourceType = sourceType;
+        [self presentViewController:picker animated:YES completion:nil];
+    }else {
+        
+    }
+}
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    if ([type isEqualToString:@"public.image"]) {
+        // 先把图片转成NSData
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+        NSData *data;
+        if (UIImagePNGRepresentation(image) == nil) {
+            
+            data = UIImageJPEGRepresentation(image, 0.1);
+        }else {
+            data=    UIImageJPEGRepresentation(image, 0.1);
+        }
+        //#warning 这里来做操作，提交的时候要上传
+        // 图片保存的路径
+        switch (self.tapIndex) {
+            case 1:
+            {
+                self.IDImageV.image = [UIImage imageWithData:data];
+            }
+                break;
+            case 2:
+            {
+                self.IDImageV2.image = [UIImage imageWithData:data];
+            }
+                break;
+          
+            default:
+                break;
+        }
+        
+        [picker dismissViewControllerAnimated:YES completion:nil];
+        
+    }
+}
 - (nullable UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source{
     
     return [[editorMaskPresentationController alloc]initWithPresentedViewController:presented presentingViewController:presenting];
@@ -325,31 +466,32 @@
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
-    if (textField == self.idenfyCode && [string isEqualToString:@"\n"]) {
-        [self.nameTf becomeFirstResponder];
-        return NO;
-    }else if (textField == self.nameTf && [string isEqualToString:@"\n"]) {
-        [self.yanzTf becomeFirstResponder];
-        return NO;
-    }
-   else if (textField == self.secrestTf && [string isEqualToString:@"\n"]) {
-       
-        [self.view endEditing:YES];
-        return NO;
-        
-    }
+//    if (textField == self.idenfyCode && [string isEqualToString:@"\n"]) {
+//        [self.nameTf becomeFirstResponder];
+//        return NO;
+//    }else
+//    if (textField == self.nameTf && [string isEqualToString:@"\n"]) {
+//        [self.yanzTf becomeFirstResponder];
+//        return NO;
+//    }
+//   else if (textField == self.secrestTf && [string isEqualToString:@"\n"]) {
+//       
+//        [self.view endEditing:YES];
+//        return NO;
+//
+//    }
     
-    if (textField == self.idenfyCode ) {
-        
-        for(int i=0; i< [string length];i++){
-            
-            int a = [string characterAtIndex:i];
-            
-            if( a >= 0x4e00 && a <= 0x9fff)
-                
-                return NO;
-        }
-    }
+//    if (textField == self.idenfyCode ) {
+//        
+//        for(int i=0; i< [string length];i++){
+//            
+//            int a = [string characterAtIndex:i];
+//            
+//            if( a >= 0x4e00 && a <= 0x9fff)
+//                
+//                return NO;
+//        }
+//    }
     
     if (textField == self.nameTf && ![string isEqualToString:@""] ) {
         //只能输入英文或中文
@@ -407,7 +549,6 @@
     self.nextBt.clipsToBounds = YES;
     
     self.contentW.constant = SCREEN_WIDTH;
-    self.contentH.constant = 500;
     
     
     self.baseView.layer.cornerRadius = 4;

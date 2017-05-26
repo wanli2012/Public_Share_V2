@@ -119,7 +119,7 @@
                 [_tags addObject:dic[@"attr_info"]];
                 [_tag_ids addObject:dic[@"attr_id"]];
             }
-            [_tagView addTags:_tags];
+            [_tagView addTags:_tags tag_ids:_tag_ids];
             [self.shuxingView addSubview:_tagView];
             
         }else{
@@ -137,11 +137,11 @@
 {
     if (QQTagItem.Style == QQTagStyleNone) {
         
-        [self.selectedTagIds addObject:QQTagItem.text];
+        [self.selectedTagIds addObject:[NSString stringWithFormat:@"%lu",QQTagItem.tag]];
         
     }else{
         
-        [self.selectedTagIds removeObject:QQTagItem.text];
+        [self.selectedTagIds removeObject:[NSString stringWithFormat:@"%lu",QQTagItem.tag]];
         
     }
 
@@ -275,7 +275,21 @@
         [MBProgressHUD showError:@"至少上传一张图片"];
         return;
     }
-
+    NSString *cate_id = [NSString stringWithFormat:@"%@,%@",self.industryArr[self.isChoseFirstClassify][@"cate_id"],_industryArr[_isChoseFirstClassify][@"son"][_isChoseSecondClassify][@"cate_id"]];
+    
+    
+    NSMutableString *attr_id = [[NSMutableString alloc] init];
+    if (self.selectedTagIds.count <= 0) {
+        [MBProgressHUD showError:@"请选择属性"];
+        
+    }else{
+        [attr_id appendString:self.selectedTagIds[0]];
+        for (int i = 1; i < self.selectedTagIds.count; i++) {
+//            [attr_id appendString:[NSString stringWithFormat:@",%@",self.selectedTagIds[i]]];
+            [attr_id appendFormat:@",%@",self.selectedTagIds[i]];
+        }
+    }
+    
     NSDictionary *dict = @{@"uid":[UserModel defaultUser].uid ,
                            @"token":[UserModel defaultUser].token,
                            @"goods_name":self.nameTf.text,
@@ -286,8 +300,10 @@
                            @"discount":self.favorablePriceTf.text,
                            @"sendPrice":self.freightTf.text,
                            @"total_num":self.numTf.text,
-                           
+                           @"cate_id":cate_id,
+                           @"attr_id":attr_id,
                            @"count":[NSNumber numberWithInteger:self.imageArr.count - 1]};
+    NSLog(@"attr_id = %@",attr_id);
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
     manager.requestSerializer.timeoutInterval = 20;

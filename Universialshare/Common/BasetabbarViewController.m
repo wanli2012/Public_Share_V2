@@ -100,9 +100,9 @@
 
 //    [usermodelachivar achive];
     if ([UserModel defaultUser].loginstatus == YES) {//登录状态
-        if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] ) {//一级业务员(副总)
+        if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:THREESALER]) {//一级业务员(副总) 二级业务员(高级推广员)
             self.viewControllers = @[ManAndBusinessNav, minenav];
-        }else if ([[UserModel defaultUser].usrtype isEqualToString:THREESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]){//二级业务员(高级推广员) 和 三级业务员(普通推广员)
+        }else if ([[UserModel defaultUser].usrtype isEqualToString:TWOSALER]){//三级业务员(普通推广员)
             self.viewControllers = @[businessNav, minenav];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]){//普通用户
             self.viewControllers = @[IntegralMallnav,nearbyNav, minenav];
