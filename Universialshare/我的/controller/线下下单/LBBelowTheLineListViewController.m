@@ -17,6 +17,7 @@
 @property (assign, nonatomic)NSInteger page;//页数默认为1
 @property (assign, nonatomic)BOOL refreshType;//判断刷新状态 默认为no
 @property (strong, nonatomic)NodataView *nodataV;
+@property (assign, nonatomic)NSInteger type;//0 审核失败 1成功 2未审核 不传代表查所有
 
 @end
 
@@ -69,7 +70,7 @@
 -(void)initdatasource{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/order_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page],@"type":@"2"} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"shop/order_list_shop" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page],@"type":@"2"} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
