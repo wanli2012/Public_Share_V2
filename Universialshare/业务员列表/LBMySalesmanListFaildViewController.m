@@ -14,43 +14,46 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface LBMySalesmanListFaildViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (strong, nonatomic)NSMutableArray *dataarr;
+
+@property (strong, nonatomic)NSMutableArray *models;
 @property (strong, nonatomic)LoadWaitView *loadV;
 @property (assign, nonatomic)NSInteger page;//页数默认为1
-@property (assign, nonatomic)BOOL refreshType;//判断刷新状态 默认为no
 @property (strong, nonatomic)NodataView *nodataV;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (nonatomic, copy)NSString *type;//1:推广员  2:高级推广员
 
 @end
 
 @implementation LBMySalesmanListFaildViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    _page = 1;
+    
     self.tableview.tableFooterView = [UIView new];
-     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableview registerNib:[UINib nibWithNibName:@"LBMySalesmanListTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMySalesmanListTableViewCell"];
+    self.type = @"1";
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(filterExtensionCategories:) name:@"filterExtensionCategories" object:nil];
     
     //获取数据
-    [self initdatasource];
     [self.tableview addSubview:self.nodataV];
+    self.nodataV.hidden = YES;
     
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-        [weakSelf loadNewData];
+        [weakSelf updateData:YES];
         
     }];
     
     MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        [weakSelf footerrefresh];
+        [weakSelf updateData:NO];
         // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
     }];
     
-    
     // 设置文字
-    
     [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
     
     [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
@@ -61,95 +64,83 @@
     self.tableview.mj_header = header;
     self.tableview.mj_footer = footer;
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(filterExtensionCategories:) name:@"filterExtensionCategories" object:nil];
+    [self updateData:YES];
+}
+- (void)dealloc{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+- (void)updateData:(BOOL)status {
+    if (status) {
+        
+        self.page = 1;
+        [self.models removeAllObjects];
+        
+    }else{
+        _page ++;
+        
+    }
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"status"] = @2;
+    dict[@"type"] = self.type;
+    dict[@"page"] = @(self.page);
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"user/get_tg_list" paramDic:dict finish:^(id responseObject) {
+        
+        [_loadV removeloadview];
+        [self endRefresh];
+        if ([responseObject[@"code"] integerValue]==1) {
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                
+                for (NSDictionary *dic in responseObject[@"data"]) {
+                    GLMySalesmanModel *model = [GLMySalesmanModel mj_objectWithKeyValues:dic];
+                    [self.models addObject:model];
+                }
+            }
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+            
+        }
+        if (self.models.count <= 0 ) {
+            self.nodataV.hidden = NO;
+        }else{
+            self.nodataV.hidden = YES;
+        }
+        
+        [self.tableview reloadData];
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [self endRefresh];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
     
 }
+- (void)endRefresh {
+    
+    [self.tableview.mj_header endRefreshing];
+    [self.tableview.mj_footer endRefreshing];
+    
+}
+
 //筛选
 -(void)filterExtensionCategories:(NSNotification*)notification{
     
-    NSDictionary *dic=notification.userInfo;
+    NSDictionary *dic = notification.userInfo;
     
-    NSLog(@"bbbbbb%@",dic);
-    
+    self.type = dic[@"indexVc"];
+    [self updateData:YES];
 }
--(void)initdatasource{
-    
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/salerList" paramDic:@{@"page":[NSNumber numberWithInteger:_page] , @"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token ,@"type":@"1"} finish:^(id responseObject)
-     {
-         
-         [_loadV removeloadview];
-         [self.tableview.mj_header endRefreshing];
-         [self.tableview.mj_footer endRefreshing];
-         if ([responseObject[@"code"] integerValue]==1) {
-             
-             if (_refreshType == NO) {
-                 [self.dataarr removeAllObjects];
-                 if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-                     [self.dataarr addObjectsFromArray:responseObject[@"data"]];
-                 }
-                 
-                 [self.tableview reloadData];
-             }else{
-                 
-                 if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-                     [self.dataarr addObjectsFromArray:responseObject[@"data"]];
-                 }
-                 
-                 [self.tableview reloadData];
-                 
-             }
-             
-         }else if ([responseObject[@"code"] integerValue]==3){
-             
-             [MBProgressHUD showError:responseObject[@"message"]];
-             
-         }else{
-             [MBProgressHUD showError:responseObject[@"message"]];
-             
-             
-         }
-     } enError:^(NSError *error) {
-         [_loadV removeloadview];
-         [self.tableview.mj_header endRefreshing];
-         [self.tableview.mj_footer endRefreshing];
-         [MBProgressHUD showError:error.localizedDescription];
-         
-     }];
-    
-    
-}
-
-//下拉刷新
--(void)loadNewData{
-    
-    _refreshType = NO;
-    _page=1;
-    
-    [self initdatasource];
-}
-//上啦刷新
--(void)footerrefresh{
-    _refreshType = YES;
-    _page++;
-    
-    [self initdatasource];
-}
-
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-//    if (self.dataarr.count > 0 ) {
-//        
-//        self.nodataV.hidden = YES;
-//    }else{
-//        self.nodataV.hidden = NO;
-//        
-//    }
-//    return self.dataarr.count;
-    
-    self.nodataV.hidden = YES;
-    return 5;
+    return self.models.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -158,45 +149,21 @@
     
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
     
     LBMySalesmanListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBMySalesmanListTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.index = indexPath.row;
-//    [cell.imagev sd_setImageWithURL:[NSURL URLWithString:self.dataarr[indexPath.row][@"saleman_headpic"]] placeholderImage:[UIImage imageNamed:@""]];
-//    cell.namelb.text=[NSString stringWithFormat:@"用户名: %@",self.dataarr[indexPath.row][@"saleman_name"]];
-//    cell.EngLishLb.text=[NSString stringWithFormat:@"手机号: %@",self.dataarr[indexPath.row][@"saleman_phone"]];
-//    cell.adressLb.text=[NSString stringWithFormat:@"身份: %@",self.dataarr[indexPath.row][@"saleman_address"]];
-//    cell.businessNum.text=[NSString stringWithFormat:@"推荐推广员人数:%@家",self.dataarr[indexPath.row][@"saleman_num"]];
-//    cell.shopnum.text=[NSString stringWithFormat:@"推荐商家总额:%@元",self.dataarr[indexPath.row][@"shop_mon"]];
-//    
-//    if ([cell.shopnum.text rangeOfString:@"null"].location != NSNotFound) {
-//        cell.shopnum.text  = @"推荐商家总额:0元";
-//    }
-//    
-//    if ([self.dataarr[indexPath.row][@"saleman_type"] integerValue] == 6) {
-//        cell.adressLb.text = @"身份: 副总";
-//    }else if ([self.dataarr[indexPath.row][@"saleman_type"] integerValue] == 7) {
-//        cell.adressLb.text = @"身份: 高级推广员";
-//        cell.businessNum.hidden = NO;
-//    }else if ([self.dataarr[indexPath.row][@"saleman_type"] integerValue] == 8) {
-//        cell.adressLb.text = @"身份: 推广员";
-//        cell.businessNum.hidden = YES;
-//    }
-//    
-//    __weak typeof(self) weakself =self;
-//    cell.returntapgestureimage = ^(NSInteger index){
-//        
-//        //        if (weakself.returnpushinfovc) {
-//        //            weakself.returnpushinfovc(index);
-//        //        }
-//        
-//    };
+    cell.model = self.models[indexPath.row];
     
-    
+    //    __weak typeof(self) weakself =self;
+    //    cell.returntapgestureimage = ^(NSInteger index){
+    //
+    //        //        if (weakself.returnpushinfovc) {
+    //        //            weakself.returnpushinfovc(index);
+    //        //        }
+    //
+    //    };
     return cell;
     
 }
@@ -209,20 +176,20 @@
     
 }
 
--(NSMutableArray *)dataarr{
+-(NSMutableArray *)models{
     
-    if (!_dataarr) {
-        _dataarr=[NSMutableArray array];
+    if (!_models) {
+        _models = [NSMutableArray array];
     }
     
-    return _dataarr;
+    return _models;
     
 }
 -(NodataView*)nodataV{
     
     if (!_nodataV) {
         _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
-        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-114);
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-114-49);
     }
     return _nodataV;
     

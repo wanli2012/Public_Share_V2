@@ -94,6 +94,8 @@
 		4A3D17BB1ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3D17B91ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.xib */; };
 		4A417C061ED820F20074BDBA /* GLMerchat_StoreModifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A417C041ED820F20074BDBA /* GLMerchat_StoreModifyController.m */; };
 		4A417C071ED820F20074BDBA /* GLMerchat_StoreModifyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A417C051ED820F20074BDBA /* GLMerchat_StoreModifyController.xib */; };
+		4A417C0D1ED82C390074BDBA /* GLMySalesmanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A417C0C1ED82C390074BDBA /* GLMySalesmanModel.m */; };
+		4A417C101ED858080074BDBA /* GLMemberConsumerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A417C0F1ED858080074BDBA /* GLMemberConsumerModel.m */; };
 		4A4609D61E9CB78E0045824F /* GLRecommendController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4609761E9CB78E0045824F /* GLRecommendController.m */; };
 		4A4609D71E9CB78E0045824F /* GLRecommendController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4609771E9CB78E0045824F /* GLRecommendController.xib */; };
 		4A4609D81E9CB78E0045824F /* GLRecommendRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4609791E9CB78E0045824F /* GLRecommendRecordController.m */; };
@@ -1074,6 +1076,10 @@
 		4A417C031ED820F20074BDBA /* GLMerchat_StoreModifyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMerchat_StoreModifyController.h; sourceTree = "<group>"; };
 		4A417C041ED820F20074BDBA /* GLMerchat_StoreModifyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMerchat_StoreModifyController.m; sourceTree = "<group>"; };
 		4A417C051ED820F20074BDBA /* GLMerchat_StoreModifyController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMerchat_StoreModifyController.xib; sourceTree = "<group>"; };
+		4A417C0B1ED82C390074BDBA /* GLMySalesmanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMySalesmanModel.h; sourceTree = "<group>"; };
+		4A417C0C1ED82C390074BDBA /* GLMySalesmanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMySalesmanModel.m; sourceTree = "<group>"; };
+		4A417C0E1ED858080074BDBA /* GLMemberConsumerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMemberConsumerModel.h; sourceTree = "<group>"; };
+		4A417C0F1ED858080074BDBA /* GLMemberConsumerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMemberConsumerModel.m; sourceTree = "<group>"; };
 		4A4609751E9CB78E0045824F /* GLRecommendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRecommendController.h; sourceTree = "<group>"; };
 		4A4609761E9CB78E0045824F /* GLRecommendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLRecommendController.m; sourceTree = "<group>"; };
 		4A4609771E9CB78E0045824F /* GLRecommendController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLRecommendController.xib; sourceTree = "<group>"; };
@@ -2796,6 +2802,8 @@
 		4A2F51C21EC6E3E100ECA95D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4A417C0E1ED858080074BDBA /* GLMemberConsumerModel.h */,
+				4A417C0F1ED858080074BDBA /* GLMemberConsumerModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2930,6 +2938,15 @@
 				4AD551511EB36E4D00C04062 /* SYDatePicker.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		4A417C0A1ED82C090074BDBA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4A417C0B1ED82C390074BDBA /* GLMySalesmanModel.h */,
+				4A417C0C1ED82C390074BDBA /* GLMySalesmanModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		4A4608F51E9CA0880045824F /* 积分商城 */ = {
@@ -5994,6 +6011,7 @@
 				F966B3F41EAC8C8A007260FC /* LBShowSaleManAndBusinessViewController.h */,
 				F966B3F51EAC8C8A007260FC /* LBShowSaleManAndBusinessViewController.m */,
 				F966B3F61EAC8C8A007260FC /* LBShowSaleManAndBusinessViewController.xib */,
+				4A417C0A1ED82C090074BDBA /* Model */,
 				F966B3F91EAC9106007260FC /* view */,
 			);
 			path = "业务员列表";
@@ -6759,6 +6777,7 @@
 				F92309891E9B8BFF00ECDC94 /* LBMineViewController.m in Sources */,
 				F92309921E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.m in Sources */,
 				4A5F66BC1ECA93C50048F339 /* GLNearby_LiveController.m in Sources */,
+				4A417C0D1ED82C390074BDBA /* GLMySalesmanModel.m in Sources */,
 				F923097F1E9B8BFF00ECDC94 /* LBMineCenterSafeSecondSecretViewController.m in Sources */,
 				4A4610B41E9CC6370045824F /* ZXAI013x0xDecoder.m in Sources */,
 				4A1D78ED1EADF81900374386 /* GLCityModel.m in Sources */,
@@ -7077,6 +7096,7 @@
 				F92309651E9B8BFF00ECDC94 /* XBConst.m in Sources */,
 				4A4610441E9CC6360045824F /* ZXAztecSimpleToken.m in Sources */,
 				4AAD259A1EC189070054FD06 /* GLSixPersentController.m in Sources */,
+				4A417C101ED858080074BDBA /* GLMemberConsumerModel.m in Sources */,
 				4A4610F91E9CC6370045824F /* ZXPDF417HighLevelEncoder.m in Sources */,
 				F92309321E9B8BFF00ECDC94 /* LBMineMessageHotPickViewController.m in Sources */,
 				4A4610691E9CC6360045824F /* ZXVEventResultParser.m in Sources */,

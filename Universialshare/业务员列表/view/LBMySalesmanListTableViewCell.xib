@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -128,12 +128,14 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="EngLishLb" destination="ke1-6u-mU6" id="71I-8A-2DJ"/>
-                <outlet property="adressLb" destination="QIn-EF-Dz4" id="Ij6-6U-BCJ"/>
+                <outlet property="IDLabel" destination="i7H-da-EUz" id="OlI-uR-Ety"/>
+                <outlet property="addTimeLabel" destination="pL7-vN-wkG" id="q65-GO-Fng"/>
                 <outlet property="businessNum" destination="pL7-vN-wkG" id="bqI-29-Zcy"/>
+                <outlet property="gtLabel" destination="ke1-6u-mU6" id="OpO-Cd-xWz"/>
                 <outlet property="imagev" destination="cqo-ml-2uL" id="b0q-C3-6b3"/>
-                <outlet property="namelb" destination="BeT-ez-r3G" id="aFn-qO-18Q"/>
-                <outlet property="shopnum" destination="ziz-QF-y3I" id="Lpy-sW-pvA"/>
+                <outlet property="shopNumLabel" destination="QIn-EF-Dz4" id="Id5-c7-3k4"/>
+                <outlet property="tgLabel" destination="BeT-ez-r3G" id="Lcc-Ap-ryY"/>
+                <outlet property="trueNameLabel" destination="m0u-B8-isS" id="vyb-s6-rGL"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LBMySalesmanListFaildViewController : UIViewController
+
 @property (copy , nonatomic)void(^returnpushvc)(NSDictionary *dic);
 
 @property (copy , nonatomic)void(^returnpushinfovc)(NSInteger index);
