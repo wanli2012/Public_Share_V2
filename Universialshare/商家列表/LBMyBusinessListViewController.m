@@ -37,6 +37,7 @@
 //    self.automaticallyAdjustsScrollViewInsets = NO;
     
     _page = 1;
+    _refreshType = NO;
     self.tableview.tableFooterView = [UIView new];
     
     [self.tableview registerNib:[UINib nibWithNibName:@"LBNybusinessListTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBNybusinessListTableViewCell"];

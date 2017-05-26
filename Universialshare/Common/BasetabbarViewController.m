@@ -23,7 +23,7 @@
 #import "GLNearbyViewController.h"
 #import "GLMerchat_StoreController.h"
 #import "GLMerchat_CommentController.h"
-#import "GLMerchant_IncomeController.h"
+#import "LBHomeIncomeViewController.h"
 
 @interface BasetabbarViewController ()<UITabBarControllerDelegate>
 
@@ -64,7 +64,7 @@
     //商家用 评论
     GLMerchat_CommentController*commentVC = [[GLMerchat_CommentController alloc] init];
     //商家收益
-    GLMerchant_IncomeController *incomeVC = [[GLMerchant_IncomeController alloc] init];
+    LBHomeIncomeViewController *incomeVC = [[LBHomeIncomeViewController alloc] init];
     
     BaseNavigationViewController *Homenav = [[BaseNavigationViewController alloc] initWithRootViewController:Homevc];
     BaseNavigationViewController *IntegralMallnav = [[BaseNavigationViewController alloc] initWithRootViewController:IntegralMallvc];
