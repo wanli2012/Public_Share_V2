@@ -13,7 +13,6 @@
 #import "BaseNavigationViewController.h"
 
 #import "GLLoginController.h"
-#import "GLFirstPageController.h"
 #import "GLLoginController.h"
 
 #import "LBImprovePersonalDataViewController.h"
@@ -50,7 +49,6 @@
 - (void)addViewControllers {
     
     
-    GLFirstPageController *firstVC = [[GLFirstPageController alloc] init];
     GLHomePageController *Homevc = [[GLHomePageController alloc] init];
 //    GLLoginController *Homevc = [[GLLoginController alloc] init];
     LBIntegralMallViewController *IntegralMallvc = [[LBIntegralMallViewController alloc] init];
@@ -68,7 +66,6 @@
     //商家收益
     GLMerchant_IncomeController *incomeVC = [[GLMerchant_IncomeController alloc] init];
     
-    BaseNavigationViewController *firstNav = [[BaseNavigationViewController alloc] initWithRootViewController:firstVC];
     BaseNavigationViewController *Homenav = [[BaseNavigationViewController alloc] initWithRootViewController:Homevc];
     BaseNavigationViewController *IntegralMallnav = [[BaseNavigationViewController alloc] initWithRootViewController:IntegralMallvc];
     BaseNavigationViewController *minenav = [[BaseNavigationViewController alloc] initWithRootViewController:minevc];
@@ -81,7 +78,6 @@
     BaseNavigationViewController *commentNav = [[BaseNavigationViewController alloc] initWithRootViewController:commentVC];
     BaseNavigationViewController *incomeNav = [[BaseNavigationViewController alloc] initWithRootViewController:incomeVC];
     
-    firstVC.title = @"首页";
     Homevc.title=@"消费商城";
     IntegralMallvc.title=@"积分商城";
     minevc.title=@"我的";
@@ -89,7 +85,6 @@
     commentNav.title = @"商品";
     incomeNav.title = @"收益";
     
-    firstVC.tabBarItem = [self barTitle:@"首页" image:@"home_page_normal"  selectImage:@"home_page_select"];
     Homevc.tabBarItem = [self barTitle:@"消费商城" image:@"消费商城未选中状态" selectImage:@"消费商城"];
     IntegralMallvc.tabBarItem = [self barTitle:@"积分商城" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
     minevc.tabBarItem = [self barTitle:@"我的" image:@"mine_normal" selectImage:@"mine_select"];
