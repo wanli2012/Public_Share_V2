@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface GLMerchant_IncomeCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *iamgev;
+@property (weak, nonatomic) IBOutlet UILabel *namelb;
+@property (weak, nonatomic) IBOutlet UILabel *codelb;
+@property (weak, nonatomic) IBOutlet UILabel *moneylb;
+@property (weak, nonatomic) IBOutlet UILabel *orderlb;
+@property (weak, nonatomic) IBOutlet UILabel *rlbael;
 
 @end

@@ -130,10 +130,8 @@
     [self.imageannimation.layer removeAnimationForKey:@"move"];
     
     if (self.currenbt == self.onLineBt) {
-        
         [self.delegete clickonlinebutton];
     }else if (self.currenbt == self.underLineBt){
-    
         [self.delegete clickunderlinebutton];
     }
 

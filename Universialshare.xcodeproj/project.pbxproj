@@ -833,6 +833,8 @@
 		F95E83661ED7C48800E60F46 /* LBHomeIncomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95E83651ED7C48800E60F46 /* LBHomeIncomeView.m */; };
 		F95E83691ED7D1A900E60F46 /* LBincomeHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95E83681ED7D1A900E60F46 /* LBincomeHeaderFooterView.m */; };
 		F95E836C1ED7F93E00E60F46 /* LBIncomeChooseHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95E836B1ED7F93E00E60F46 /* LBIncomeChooseHeaderFooterView.m */; };
+		F95E836E1ED85C0B00E60F46 /* Zapfino.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F95E836D1ED85C0B00E60F46 /* Zapfino.ttf */; };
+		F95E83711ED85F3400E60F46 /* WSShiningLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95E83701ED85F3400E60F46 /* WSShiningLabel.m */; };
 		F961A9C81E9C747700275F52 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F961A9C51E9C747700275F52 /* UserModel.m */; };
 		F961A9C91E9C747700275F52 /* usermodelachivar.m in Sources */ = {isa = PBXBuildFile; fileRef = F961A9C71E9C747700275F52 /* usermodelachivar.m */; };
 		F961A9CC1E9C750300275F52 /* UILabel+UILabel_ChangeLineSpaceAndWordSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = F961A9CB1E9C750300275F52 /* UILabel+UILabel_ChangeLineSpaceAndWordSpace.m */; };
@@ -2367,6 +2369,9 @@
 		F95E83681ED7D1A900E60F46 /* LBincomeHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBincomeHeaderFooterView.m; sourceTree = "<group>"; };
 		F95E836A1ED7F93E00E60F46 /* LBIncomeChooseHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBIncomeChooseHeaderFooterView.h; sourceTree = "<group>"; };
 		F95E836B1ED7F93E00E60F46 /* LBIncomeChooseHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBIncomeChooseHeaderFooterView.m; sourceTree = "<group>"; };
+		F95E836D1ED85C0B00E60F46 /* Zapfino.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zapfino.ttf; sourceTree = "<group>"; };
+		F95E836F1ED85F3400E60F46 /* WSShiningLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSShiningLabel.h; sourceTree = "<group>"; };
+		F95E83701ED85F3400E60F46 /* WSShiningLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSShiningLabel.m; sourceTree = "<group>"; };
 		F961A9C41E9C747700275F52 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		F961A9C51E9C747700275F52 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		F961A9C61E9C747700275F52 /* usermodelachivar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usermodelachivar.h; sourceTree = "<group>"; };
@@ -3057,6 +3062,8 @@
 		4A460D9B1E9CC6350045824F /* 三方库 */ = {
 			isa = PBXGroup;
 			children = (
+				F95E836F1ED85F3400E60F46 /* WSShiningLabel.h */,
+				F95E83701ED85F3400E60F46 /* WSShiningLabel.m */,
 				F90C450C1ED6AD8A001650BD /* QBImagePicker */,
 				F966597D1ED57EB2000DD67F /* IOS图片浏览器 */,
 				F9126EEC1EA059A9004785EA /* mapapi.bundle */,
@@ -4742,6 +4749,7 @@
 				F923082E1E9B8B6B00ECDC94 /* Address.plist */,
 				F906201D1E83CBAD0080E9D9 /* universialshare.pch */,
 				F906201F1E83CC900080E9D9 /* Header.h */,
+				F95E836D1ED85C0B00E60F46 /* Zapfino.ttf */,
 				F95150881EC06F9100BDCF53 /* https.cer */,
 				F9061FCB1E83C4720080E9D9 /* Supporting Files */,
 			);
@@ -6393,6 +6401,7 @@
 				4AA0D5A51EAEEC0600CB8F77 /* GLIntegralHeaderView.xib in Resources */,
 				F966B3F31EAC7FBA007260FC /* LBNybusinessListTableViewCell.xib in Resources */,
 				4AA0D5D61EAF3B3E00CB8F77 /* GLClassifyHeaderView.xib in Resources */,
+				F95E836E1ED85C0B00E60F46 /* Zapfino.ttf in Resources */,
 				4A2F52221EC7084100ECA95D /* GLHourseDetailFirstCell.xib in Resources */,
 				4AAD253C1EC188C90054FD06 /* GLBankCardCellTableViewCell.xib in Resources */,
 				F92309481E9B8BFF00ECDC94 /* LBMineMessageHotPickTableViewCell.xib in Resources */,
@@ -6593,6 +6602,7 @@
 				4A4610B31E9CC6370045824F /* ZXAI013x0x1xDecoder.m in Sources */,
 				F951EB161EA1EFC100D6708E /* LBMineCenterUsualUnderOrderOneViewController.m in Sources */,
 				F91964EB1EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.m in Sources */,
+				F95E83711ED85F3400E60F46 /* WSShiningLabel.m in Sources */,
 				4A4610CD1E9CC6370045824F /* ZXCode128Reader.m in Sources */,
 				F94D31971EAF3AED00309029 /* LBRecommendedBusinessAuditTableViewCell.m in Sources */,
 				F9126EBC1EA05692004785EA /* GLMine_InfoController.m in Sources */,
