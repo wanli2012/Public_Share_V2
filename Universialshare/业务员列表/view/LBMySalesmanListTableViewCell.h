@@ -7,19 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMySalesmanModel.h"
 
 @interface LBMySalesmanListTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *imagev;
+@property (nonatomic, strong)GLMySalesmanModel *model;
 
-@property (weak, nonatomic) IBOutlet UILabel *namelb;
-
-@property (weak, nonatomic) IBOutlet UILabel *EngLishLb;
-@property (weak, nonatomic) IBOutlet UILabel *adressLb;
 @property (assign , nonatomic)NSInteger index;
 
 @property (weak, nonatomic) IBOutlet UILabel *businessNum;
-@property (weak, nonatomic) IBOutlet UILabel *shopnum;
+
 
 
 @property (copy , nonatomic)void(^returntapgestureimage)();

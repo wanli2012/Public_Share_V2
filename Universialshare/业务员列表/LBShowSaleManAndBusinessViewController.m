@@ -40,7 +40,6 @@
 
 @property (strong, nonatomic)NSString *usertype;
 
-
 @end
 
 @implementation LBShowSaleManAndBusinessViewController
@@ -57,7 +56,7 @@
     _scuessVc=[[LBMySalesmanListViewController alloc]init];
     _faildVc=[[LBMySalesmanListFaildViewController alloc]init];
     
-    _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT-114)];
+    _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT - 114 - 49)];
     [self.view addSubview:_contentView];
     
     [self addChildViewController:_AuditVc];
@@ -93,11 +92,11 @@
     NSDictionary *dict2 = @{@"imageName" : @"密码",
                             @"itemName" : @"高级推广员"
                             };
-    NSDictionary *dict3 = @{@"imageName" : @"密码",
-                            @"itemName" : @"商户"
-                            };
+//    NSDictionary *dict3 = @{@"imageName" : @"密码",
+//                            @"itemName" : @"商户"
+//                            };
     
-     NSArray *dataArray = @[dict1,dict2,dict3];
+     NSArray *dataArray = @[dict1,dict2];
     
     _dataArray = dataArray;
     
@@ -111,6 +110,8 @@
     } backViewTap:^{
         weakSelf.flag = YES; // 这里的目的是，让rightButton点击，可再次pop出menu
     }];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@1}];
 }
 
 - (IBAction)salemanEvent:(UIButton *)sender {
@@ -196,22 +197,20 @@
         self.currentViewController = toViewController;
     }];
     
-    
-    
 }
 #pragma mark -- 回调事件(自定义)
 - (void)doSomething:(NSString *)str tag:(NSInteger)tag{
     self.titleLb.text = str;
     switch (tag) {
         case 1:
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@1}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@1}];
             break;
         case 2:
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@2}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@2}];
             break;
-        case 3:
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@3}];
-            break;
+//        case 3:
+//            [[NSNotificationCenter defaultCenter]postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@3}];
+//            break;
             
         default:
             break;
