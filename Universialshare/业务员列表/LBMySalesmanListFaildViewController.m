@@ -64,7 +64,7 @@
     self.tableview.mj_header = header;
     self.tableview.mj_footer = footer;
     
-    
+    [self updateData:YES];
 }
 - (void)dealloc{
     

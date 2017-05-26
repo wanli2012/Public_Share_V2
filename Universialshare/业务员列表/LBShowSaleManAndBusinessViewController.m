@@ -85,7 +85,6 @@
         }
     };
     
-    
     NSDictionary *dict1 = @{@"imageName" : @"密码",
                             @"itemName" : @"推广员"
                             };
@@ -111,7 +110,7 @@
         weakSelf.flag = YES; // 这里的目的是，让rightButton点击，可再次pop出menu
     }];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@1}];
+  
 }
 
 - (IBAction)salemanEvent:(UIButton *)sender {

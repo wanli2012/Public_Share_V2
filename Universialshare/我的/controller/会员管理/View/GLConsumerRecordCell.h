@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMemberConsumerModel.h"
 
 @interface GLConsumerRecordCell : UITableViewCell
+
+@property (nonatomic, strong)GLMemberConsumerModel *model;
 
 @end

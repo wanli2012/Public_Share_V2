@@ -26,5 +26,11 @@
     [super awakeFromNib];
     // Initialization code
 }
-
+- (void)setModel:(GLMemberConsumerModel *)model{
+    _model = model;
+    self.nameLabel.text = model.goods_name;
+    self.priceLabel.text = model.fh_price;
+    self.consumerSumLabel.text = model.total_price;
+    self.consumerDateLabel.text = model.addtime;
+}
 @end
