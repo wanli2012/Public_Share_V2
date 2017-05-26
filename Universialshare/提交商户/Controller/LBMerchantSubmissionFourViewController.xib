@@ -51,11 +51,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="1450"/>
+            <rect key="frame" x="0.0" y="0.0" width="386" height="1444"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="svW-Jc-sUI">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="1450"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svW-Jc-sUI">
+                    <rect key="frame" x="0.0" y="0.0" width="386" height="1444"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAY-rZ-nUY">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="1450"/>
@@ -197,7 +197,7 @@
                                             </connections>
                                         </imageView>
                                         <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-13" translatesAutoresizingMaskIntoConstraints="NO" id="drQ-m2-kfU">
-                                            <rect key="frame" x="110" y="1185" width="90" height="110"/>
+                                            <rect key="frame" x="132.5" y="1185" width="90" height="110"/>
                                             <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="90" id="fQb-TS-pW2"/>
@@ -208,7 +208,7 @@
                                             </connections>
                                         </imageView>
                                         <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="内景2-拷贝" translatesAutoresizingMaskIntoConstraints="NO" id="mTx-6o-bzZ">
-                                            <rect key="frame" x="210" y="1185" width="90" height="110"/>
+                                            <rect key="frame" x="255" y="1185" width="90" height="110"/>
                                             <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="90" id="DgB-fA-ZeY"/>
@@ -549,7 +549,7 @@
                                                                         <constraint firstAttribute="height" constant="10" id="ntk-5V-oA4"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HuE-II-NBE">
+                                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HuE-II-NBE">
                                                                     <rect key="frame" x="0.0" y="5" width="106" height="40"/>
                                                                     <gestureRecognizers/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -566,7 +566,7 @@
                                                                         <constraint firstAttribute="width" constant="15" id="t63-vA-AYF"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" contentMode="left" verticalHuggingPriority="251" text="选择" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgi-Fk-s8J">
+                                                                <label opaque="NO" contentMode="left" verticalHuggingPriority="251" text="请选择" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgi-Fk-s8J">
                                                                     <rect key="frame" x="140" y="5" width="99" height="40"/>
                                                                     <gestureRecognizers/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -695,6 +695,7 @@
                                         <constraint firstItem="MVX-GZ-Uot" firstAttribute="leading" secondItem="0jo-zD-FyS" secondAttribute="leading" constant="10" id="8bu-wA-LiU"/>
                                         <constraint firstItem="tuG-cf-svE" firstAttribute="leading" secondItem="t6l-4X-FOY" secondAttribute="trailing" id="8hm-F1-Ueh"/>
                                         <constraint firstAttribute="trailing" secondItem="MVX-GZ-Uot" secondAttribute="trailing" constant="10" id="Bfb-iY-7yd"/>
+                                        <constraint firstAttribute="trailing" secondItem="mTx-6o-bzZ" secondAttribute="trailing" constant="10" id="D2S-KK-1To"/>
                                         <constraint firstAttribute="trailing" secondItem="lHl-hp-iRq" secondAttribute="trailing" constant="10" id="EbP-kQ-pzM"/>
                                         <constraint firstItem="drQ-m2-kfU" firstAttribute="top" secondItem="lHl-hp-iRq" secondAttribute="bottom" constant="10" id="Hke-XF-T2f"/>
                                         <constraint firstAttribute="trailing" secondItem="Uiw-ML-bpy" secondAttribute="trailing" constant="10" id="JPD-D1-wfT"/>
@@ -715,9 +716,8 @@
                                         <constraint firstItem="LkF-A3-Mcy" firstAttribute="top" secondItem="0jo-zD-FyS" secondAttribute="top" constant="5" id="kCZ-me-er4"/>
                                         <constraint firstItem="lHl-hp-iRq" firstAttribute="top" secondItem="tnQ-Bl-uxw" secondAttribute="bottom" constant="10" id="lEh-Yy-GSk"/>
                                         <constraint firstAttribute="trailing" secondItem="LkF-A3-Mcy" secondAttribute="trailing" id="lMJ-YE-nac"/>
-                                        <constraint firstItem="mTx-6o-bzZ" firstAttribute="leading" secondItem="drQ-m2-kfU" secondAttribute="trailing" constant="10" id="pr1-8O-s0C"/>
+                                        <constraint firstItem="drQ-m2-kfU" firstAttribute="centerX" secondItem="0jo-zD-FyS" secondAttribute="centerX" id="nuv-7f-O7T"/>
                                         <constraint firstAttribute="trailing" secondItem="QsC-Wt-0yw" secondAttribute="trailing" constant="10" id="qWi-Mj-OwS"/>
-                                        <constraint firstItem="drQ-m2-kfU" firstAttribute="leading" secondItem="for-wy-2rY" secondAttribute="trailing" constant="10" id="qcH-PG-gCF"/>
                                         <constraint firstItem="tnQ-Bl-uxw" firstAttribute="leading" secondItem="0jo-zD-FyS" secondAttribute="leading" constant="10" id="sW6-RB-k7x"/>
                                         <constraint firstItem="pHU-hZ-Xw1" firstAttribute="leading" secondItem="0jo-zD-FyS" secondAttribute="leading" constant="10" id="tZb-vx-CJC"/>
                                         <constraint firstItem="ZZN-7W-zEz" firstAttribute="leading" secondItem="L1F-Kd-giS" secondAttribute="trailing" constant="10" id="vof-av-vXm"/>
@@ -769,7 +769,7 @@
                 <constraint firstItem="svW-Jc-sUI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="yxd-OO-LgD"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="36" y="1"/>
+            <point key="canvasLocation" x="69" y="-2"/>
         </view>
         <tapGestureRecognizer id="6jF-bb-HaS">
             <connections>

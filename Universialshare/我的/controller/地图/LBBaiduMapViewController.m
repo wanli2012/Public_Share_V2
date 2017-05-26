@@ -9,6 +9,9 @@
 #import "LBBaiduMapViewController.h"
 
 @interface LBBaiduMapViewController ()
+{
+    BOOL _isGetLocation;//是否拿到了位置信息
+}
 
 @property (strong , nonatomic)BMKPointAnnotation *pointAnnotation;
 @property (strong , nonatomic)NSString *locationStr;//地址
@@ -42,6 +45,7 @@
     self.title=@"地图";
     self.navigationItem.rightBarButtonItem = barItem;
     
+    _isGetLocation = NO;
     [self.view addSubview:self.mapView];
 }
 -(void)viewWillAppear:(BOOL)animated {
@@ -202,6 +206,9 @@
         self.coutry = result.addressDetail.district;
         
         self.pointAnnotation.subtitle = result.address;
+        //确定已拿到位置信息
+        _isGetLocation = YES;
+        
         // 定位一次成功后就关闭定位
         [_locService stopUserLocationService];
         
@@ -226,15 +233,14 @@
 
 //确定
 - (void)customLocationAccuracyCircle {
-    
-//    if (self.returePositon) {
-//        self.returePositon(self.locationStr,self.provinceid,self.cityid,self.coutry,self.coors2);
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }
-    if (self.locationStr != nil || self.provinceid != nil || self.cityid != nil ||self.coutry != nil) {
-        self.returePositon(self.locationStr,self.provinceid,self.cityid,self.coutry,self.coors2);
-        [self.navigationController popViewControllerAnimated:YES];
 
+    if (_isGetLocation) {
+        
+        self.returePositon(self.locationStr,self.provinceid,self.cityid,self.coutry,self.coors2);
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        [MBProgressHUD showError:@"还未定位到当前位置"];
     }
    
 }

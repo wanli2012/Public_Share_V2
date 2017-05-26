@@ -97,6 +97,8 @@
 		4A3D17B61ECC514400F85A3B /* GLRecommendStore_RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3D17B41ECC514400F85A3B /* GLRecommendStore_RecordCell.xib */; };
 		4A3D17BA1ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3D17B81ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.m */; };
 		4A3D17BB1ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3D17B91ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.xib */; };
+		4A417C011ED8088F0074BDBA /* GLMerchat_StoreModifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A417BFF1ED8088F0074BDBA /* GLMerchat_StoreModifyController.m */; };
+		4A417C021ED8088F0074BDBA /* GLMerchat_StoreModifyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A417C001ED8088F0074BDBA /* GLMerchat_StoreModifyController.xib */; };
 		4A4608E71E9C9E6D0045824F /* GLFirstPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4608D21E9C9E6D0045824F /* GLFirstPageController.m */; };
 		4A4608E81E9C9E6D0045824F /* GLFirstPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4608D31E9C9E6D0045824F /* GLFirstPageController.xib */; };
 		4A4608E91E9C9E6D0045824F /* GLDailyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4608D61E9C9E6D0045824F /* GLDailyView.m */; };
@@ -1104,6 +1106,9 @@
 		4A3D17B71ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRecommendStroe_RecordDateCell.h; sourceTree = "<group>"; };
 		4A3D17B81ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLRecommendStroe_RecordDateCell.m; sourceTree = "<group>"; };
 		4A3D17B91ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLRecommendStroe_RecordDateCell.xib; sourceTree = "<group>"; };
+		4A417BFE1ED8088F0074BDBA /* GLMerchat_StoreModifyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMerchat_StoreModifyController.h; sourceTree = "<group>"; };
+		4A417BFF1ED8088F0074BDBA /* GLMerchat_StoreModifyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMerchat_StoreModifyController.m; sourceTree = "<group>"; };
+		4A417C001ED8088F0074BDBA /* GLMerchat_StoreModifyController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMerchat_StoreModifyController.xib; sourceTree = "<group>"; };
 		4A4608D11E9C9E6D0045824F /* GLFirstPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLFirstPageController.h; sourceTree = "<group>"; };
 		4A4608D21E9C9E6D0045824F /* GLFirstPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLFirstPageController.m; sourceTree = "<group>"; };
 		4A4608D31E9C9E6D0045824F /* GLFirstPageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLFirstPageController.xib; sourceTree = "<group>"; };
@@ -4636,6 +4641,9 @@
 				4AE354891EC85E6C00BF60CC /* GLAddStoreController.h */,
 				4AE3548A1EC85E6C00BF60CC /* GLAddStoreController.m */,
 				4AE3548B1EC85E6C00BF60CC /* GLAddStoreController.xib */,
+				4A417BFE1ED8088F0074BDBA /* GLMerchat_StoreModifyController.h */,
+				4A417BFF1ED8088F0074BDBA /* GLMerchat_StoreModifyController.m */,
+				4A417C001ED8088F0074BDBA /* GLMerchat_StoreModifyController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6399,6 +6407,7 @@
 				4A2A00C21EC70D9400052CA7 /* GLConfirmOrderController.xib in Resources */,
 				F9516DF41ECAD6C5009F015D /* LBStoreDetailHotProductTableViewCell.xib in Resources */,
 				F923098F1E9B8BFF00ECDC94 /* LBMineCenterCollectionViewCell.xib in Resources */,
+				4A417C021ED8088F0074BDBA /* GLMerchat_StoreModifyController.xib in Resources */,
 				4A4610061E9CC6360045824F /* CodeScan.bundle in Resources */,
 				4A4610231E9CC6360045824F /* UMShareEditViewController.xib in Resources */,
 				4A5F66AC1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib in Resources */,
@@ -6823,6 +6832,7 @@
 				4A4610C71E9CC6370045824F /* ZXRSSDataCharacter.m in Sources */,
 				F961AA381E9CE33200275F52 /* LBConsumptionSeriesViewTableViewCell.m in Sources */,
 				4A460D311E9CC2C50045824F /* GLShareView.m in Sources */,
+				4A417C011ED8088F0074BDBA /* GLMerchat_StoreModifyController.m in Sources */,
 				4A4610721E9CC6360045824F /* ZXMonochromeRectangleDetector.m in Sources */,
 				4AAD259C1EC189070054FD06 /* GLTwelevePersentController.m in Sources */,
 				4A4610F51E9CC6370045824F /* ZXPDF417BarcodeMatrix.m in Sources */,

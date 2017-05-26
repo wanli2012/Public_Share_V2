@@ -37,11 +37,11 @@
 
 - (IBAction)click:(UIButton *)sender {
     
-    if ([self.delegate respondsToSelector:@selector(cellClick:indexPath:)]) {
+    if ([self.delegate respondsToSelector:@selector(cellClick:indexPath:btnTitle:)]) {
         if (sender == self.suspendBtn) {
-            [self.delegate cellClick:1 indexPath:self.indexPath];
+            [self.delegate cellClick:1 indexPath:self.indexPath btnTitle:self.suspendBtn.titleLabel.text];
         }else{
-            [self.delegate cellClick:2 indexPath:self.indexPath];
+            [self.delegate cellClick:2 indexPath:self.indexPath btnTitle:self.modifyBtn.titleLabel.text];
         }
     }
 }

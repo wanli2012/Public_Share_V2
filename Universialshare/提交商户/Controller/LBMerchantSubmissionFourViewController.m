@@ -170,7 +170,7 @@
             _isChoseFirstClassify = index;
             _industryOneLb.text = _industryArr[index][@"trade_name"];
             _industryOneLb.textColor = [UIColor blackColor];
-            _industrySecLb.text = @"";
+            _industrySecLb.text = @"请选择";
             
         };
         vc.transitioningDelegate = self;

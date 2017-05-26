@@ -12,7 +12,7 @@
 @protocol GLMerchat_StoreCellDelegate <NSObject>
 
 //index 1:暂停营业   2:修改密码
-- (void)cellClick:(NSInteger )index indexPath:(NSIndexPath *)indexPath;
+- (void)cellClick:(NSInteger )index indexPath:(NSIndexPath *)indexPath btnTitle:(NSString *)title;
 
 @end
 

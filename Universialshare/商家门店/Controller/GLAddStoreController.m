@@ -56,6 +56,7 @@
 @property (strong, nonatomic)LoadWaitView *loadV;
 @property (assign, nonatomic)NSInteger tapIndex;//判断点击的是那个图片
 
+@property (nonatomic, strong)NSMutableArray *dataArr;
 @end
 
 @implementation GLAddStoreController
@@ -78,6 +79,30 @@
     
     self.mapAddressLabel.text = @"请选择地址";
     self.mapAddressLabel.textColor = [UIColor lightGrayColor];
+    
+    [self getPickerData];
+}
+#pragma mark - get data
+- (void)getPickerData {
+    //行业列表
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"user/getCityList" paramDic:@{} finish:^(id responseObject) {
+        [_loadV removeloadview];
+        if ([responseObject[@"code"] integerValue]==1) {
+            self.dataArr = responseObject[@"data"];
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+    
+    
 }
 //获取验证码
 - (IBAction)getCode:(id)sender {
@@ -198,7 +223,7 @@
     dict[@"uid"] = [UserModel defaultUser].uid;
 
     dict[@"phone"] = self.phoneTF.text;
-    dict[@"password"] = self.passwordTF.text;
+    dict[@"password"] = [RSAEncryptor encryptString:self.passwordTF.text publicKey:public_RSA];
     dict[@"yzm"] = self.codeTF.text;
     dict[@"corporation_name"] = self.legalPersonNameTF.text;
     dict[@"corporation_phone"] = self.legalPhoneTF.text;
@@ -225,7 +250,7 @@
     [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
     [manager POST:[NSString stringWithFormat:@"%@shop/addSonStore",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         //将图片以表单形式上传
-        //        NSLog(@"dict = %@",dict);
+        NSLog(@"dict = %@",dict);
         for (int i = 0; i < imageViewArr.count; i ++) {
             
             NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
@@ -240,9 +265,9 @@
     }progress:^(NSProgress *uploadProgress){
         
         [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
-        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+//        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
         [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-        [SVProgressHUD setCornerRadius:8.0];
+//        [SVProgressHUD setCornerRadius:8.0];
         
     }success:^(NSURLSessionDataTask *task, id responseObject) {
         [SVProgressHUD dismiss];
@@ -267,6 +292,7 @@
     LBMineCenterChooseAreaViewController *vc=[[LBMineCenterChooseAreaViewController alloc]init];
     vc.transitioningDelegate=self;
     vc.modalPresentationStyle=UIModalPresentationCustom;
+    vc.dataArr = self.dataArr;
     
     [self presentViewController:vc animated:YES completion:nil];
     __weak typeof(self) weakself = self;

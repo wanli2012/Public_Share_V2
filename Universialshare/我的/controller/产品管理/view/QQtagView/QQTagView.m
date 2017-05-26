@@ -50,10 +50,10 @@
         }
     }
 }
-- (void)addTags:(NSArray *)tags
+- (void)addTags:(NSArray *)tags tag_ids:(NSArray *)tag_ids
 {
     for (int i = 0; i< tags.count; i++) {
-        [self addLabel:tags[i] tag:i];
+        [self addLabel:tags[i] tag:[tag_ids[i] integerValue]];
         
     }
 }

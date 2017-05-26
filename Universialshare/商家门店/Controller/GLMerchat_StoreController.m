@@ -10,6 +10,7 @@
 #import "GLMerchat_StoreCell.h"
 #import "GLAddStoreController.h"
 #import "GLMerchat_StoreModel.h"
+#import "GLMerchat_StoreModifyController.h"
 
 @interface GLMerchat_StoreController ()<GLMerchat_StoreCellDelegate>
 {
@@ -83,32 +84,33 @@ static NSString *ID = @"GLMerchat_StoreCell";
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"page"] = [NSString stringWithFormat:@"%ld",_page];
-//    dict[@"shop_name"] = [NSString stringWithFormat:@"%ld",_page];
+
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"shop/getSonStoreList" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
         NSLog(@"%@",responseObject);
-        if ([responseObject[@"code"] integerValue]==1) {
+        if ([responseObject[@"code"] integerValue] == 1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 for (NSDictionary *dic in responseObject[@"data"]) {
                     GLMerchat_StoreModel *model = [GLMerchat_StoreModel mj_objectWithKeyValues:dic];
                     [_models addObject:model];
                 }
-                if (self.models.count <= 0 ) {
-                    self.nodataV.hidden = NO;
-                }else{
-                    self.nodataV.hidden = YES;
-                }
 
-                [self.tableView reloadData];
             }
             
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
             
         }
+        
+        if (self.models.count <= 0 ) {
+            self.nodataV.hidden = NO;
+        }else{
+            self.nodataV.hidden = YES;
+        }
+        [self.tableView reloadData];
         
     } enError:^(NSError *error) {
         [_loadV removeloadview];
@@ -168,39 +170,10 @@ static NSString *ID = @"GLMerchat_StoreCell";
     return self.tableView.rowHeight;
     
 }
-- (void)openOrCloseWithStatus:(NSInteger )status indexPath:(NSIndexPath *)indexPath{
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"uid"] = [UserModel defaultUser].uid;
-    GLMerchat_StoreModel *model = self.models[indexPath.row];
-    dict[@"status"] = @(status);
-    dict[@"shop_id"] = model.uid;
-    
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/setStoreOpenOrClose" paramDic:dict finish:^(id responseObject) {
-        [_loadV removeloadview];
-        NSLog(@"%@",responseObject);
-        if ([responseObject[@"code"] integerValue]==1) {
-            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-                
-            }
-            
-        }else{
-            [MBProgressHUD showError:responseObject[@"message"]];
-            
-        }
-        
-    } enError:^(NSError *error) {
-        [_loadV removeloadview];
-    
-        [MBProgressHUD showError:error.localizedDescription];
-        
-    }];
 
-}
 #pragma GLMerchat_StoreCellDelegate
 
-- (void)cellClick:(NSInteger)index indexPath:(NSIndexPath *)indexPath{
+- (void)cellClick:(NSInteger)index indexPath:(NSIndexPath *)indexPath btnTitle:(NSString *)title{
     if (index == 1) {
         
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"暂停营业" message:@"请输入密码" preferredStyle:UIAlertControllerStyleAlert];
@@ -208,41 +181,15 @@ static NSString *ID = @"GLMerchat_StoreCell";
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
             
         }];
-//        __weak typeof(self) weakself = self;
+        __weak typeof(self) weakself = self;
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             
             UITextField *pwdTF = alertController.textFields.firstObject;
             
-            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-            dict[@"token"] = [UserModel defaultUser].token;
-            dict[@"uid"] = [UserModel defaultUser].uid;
-            GLMerchat_StoreModel *model = self.models[indexPath.row];
-            dict[@"status"] = @(2);
-            dict[@"shop_id"] = model.uid;
-            dict[@"pwd"] = pwdTF.text;
-            
-            _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-            [NetworkManager requestPOSTWithURLStr:@"shop/setStoreOpenOrClose" paramDic:dict finish:^(id responseObject) {
-                [_loadV removeloadview];
-                NSLog(@"%@",responseObject);
-                if ([responseObject[@"code"] integerValue]==1) {
-                    
-                    [self updateData:YES];
-                }else{
-                    [MBProgressHUD showError:responseObject[@"message"]];
-                    
-                }
-                
-            } enError:^(NSError *error) {
-                [_loadV removeloadview];
-                
-                [MBProgressHUD showError:error.localizedDescription];
-                
-            }];
-//            [weakself openOrCloseWithStatus:2 indexPath:indexPath];
-           NSLog(@"暂停营业");
+            [weakself openOrCloseIndexPath:indexPath title:title pwd:pwdTF.text];
         
         }];
+        
         [alertController addAction:cancelAction];
         [alertController addAction:okAction];
         
@@ -250,35 +197,54 @@ static NSString *ID = @"GLMerchat_StoreCell";
             textField.placeholder = @"请输入密码";
             textField.secureTextEntry = YES;
         }];
+        
         [self presentViewController:alertController animated:YES completion:nil];
         
     }else{
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改密码" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
-            
-        }];
-        
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            //                    UITextField *login = alertController.textFields.firstObject;
-            //                    UITextField *password = alertController.textFields.lastObject;
-            NSLog(@"修改密码");
-            
-        }];
-        [alertController addAction:cancelAction];
-        [alertController addAction:okAction];
-        
-        [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            textField.placeholder = @"请输入原密码";
-            textField.secureTextEntry = YES;
-        }];
-        [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            textField.placeholder = @"请输入新密码";
-            textField.secureTextEntry = YES;
-        }];
-        [self presentViewController:alertController animated:YES completion:nil];
+        GLMerchat_StoreModel *model = self.models[indexPath.row];
+
+        self.hidesBottomBarWhenPushed = YES;
+        GLMerchat_StoreModifyController *modifyVC = [[GLMerchat_StoreModifyController alloc] init];
+        modifyVC.uid = model.uid;
+        [self.navigationController pushViewController:modifyVC animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
 
     }
+}
+- (void)openOrCloseIndexPath:(NSIndexPath *)indexPath title:(NSString *)title pwd:(NSString *)pwd{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    GLMerchat_StoreModel *model = self.models[indexPath.row];
+    if ([title isEqualToString:@"暂停营业"]) {
+        
+        dict[@"status"] = @(2);//暂停营业
+    }else{
+        
+        dict[@"status"] = @1;//开始营业
+    }
+    dict[@"shop_id"] = model.shop_id;
+    dict[@"pwd"] = [RSAEncryptor encryptString:pwd publicKey:public_RSA];
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"shop/setStoreOpenOrClose" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        NSLog(@"%@",dict);
+        NSLog(@"%@",responseObject);
+        if ([responseObject[@"code"] integerValue]==1) {
+            
+            [self updateData:YES];
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+            
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
 }
 -(NSMutableArray *)models{
     
