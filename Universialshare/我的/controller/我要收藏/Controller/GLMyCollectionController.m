@@ -11,6 +11,7 @@
 #import "GLMyCollectionModel.h"
 #import "LBStoreProductDetailInfoViewController.h"
 #import "MXNavigationBarManager.h"
+#import "GLHourseDetailController.h"
 
 @interface GLMyCollectionController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -228,10 +229,13 @@ static NSString *ID = @"GLMyCollectionCell";
 
     GLMyCollectionModel *model = self.models[indexPath.row];
     self.isdelete = indexPath.row;
+    self.hidesBottomBarWhenPushed = YES;
     if ([model.goods_type isEqualToString:@"2"]) {//积分收藏
-        
+        GLHourseDetailController *vc = [[GLHourseDetailController alloc] init];
+        vc.goods_id = model.goods_id;
+        vc.is_notice = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }else{
-        self.hidesBottomBarWhenPushed = YES;
         LBStoreProductDetailInfoViewController *vc=[[LBStoreProductDetailInfoViewController alloc]init];
         vc.goodId = model.goods_id;
         vc.goodname = model.name;
