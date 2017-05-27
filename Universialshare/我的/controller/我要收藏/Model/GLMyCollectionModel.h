@@ -26,4 +26,6 @@
 
 @property (nonatomic, copy)NSString *shop_name;//商店名
 
+@property (nonatomic, copy)NSString *goods_type;//收藏类型
+
 @end

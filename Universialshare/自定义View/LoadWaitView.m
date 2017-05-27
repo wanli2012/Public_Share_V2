@@ -22,7 +22,7 @@
         
         self = viewArray[0];
         self.frame = frame;
-        self.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
+        self.backgroundColor=[UIColor clearColor];
         
         UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgestrue)];
         [self addGestureRecognizer:tap];

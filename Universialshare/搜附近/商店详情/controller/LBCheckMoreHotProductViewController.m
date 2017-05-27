@@ -67,7 +67,7 @@ static NSString *ID = @"LBStoreDetailHotProductTableViewCell";
 - (void)initdatasource{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/UsergetStoreGoodsList" paramDic:@{@"shop_id":@"412",@"page":[NSNumber numberWithInteger:_page]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"shop/UsergetStoreGoodsList" paramDic:@{@"shop_id":self.storeId,@"page":[NSNumber numberWithInteger:_page]} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
@@ -160,6 +160,7 @@ static NSString *ID = @"LBStoreDetailHotProductTableViewCell";
     LBStoreProductDetailInfoViewController *vc=[[LBStoreProductDetailInfoViewController alloc]init];
     vc.goodname = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"name"]];
     vc.storename = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"shop_name"]];
+    vc.goodId = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"goods_id"]];
     [self.navigationController pushViewController:vc animated:YES];
 
 }
