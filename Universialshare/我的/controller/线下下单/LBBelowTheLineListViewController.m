@@ -8,6 +8,7 @@
 
 #import "LBBelowTheLineListViewController.h"
 #import "LBBelowTheLineListTableViewCell.h"
+#import "QQPopMenuView.h"
 
 @interface LBBelowTheLineListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -17,7 +18,8 @@
 @property (assign, nonatomic)NSInteger page;//页数默认为1
 @property (assign, nonatomic)BOOL refreshType;//判断刷新状态 默认为no
 @property (strong, nonatomic)NodataView *nodataV;
-@property (assign, nonatomic)NSInteger type;//0 审核失败 1成功 2未审核 不传代表查所有
+@property (strong, nonatomic)NSString *type;//0 审核失败 1成功 2未审核 不传代表查所有
+@property (strong, nonatomic)UIButton *buttonedt;
 
 @end
 
@@ -27,6 +29,7 @@
     [super viewDidLoad];
 
     self.page = 1;
+    self.type = @"";
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"我的订单";
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -51,7 +54,6 @@
         // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
     }];
     
-    
     // 设置文字
     
     [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
@@ -65,12 +67,21 @@
     
     [self initdatasource];
     
+    
+    _buttonedt=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 60)];
+    [_buttonedt setTitle:@"筛选" forState:UIControlStateNormal];
+    [_buttonedt setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -10)];
+    _buttonedt.titleLabel.font = [UIFont systemFontOfSize:14];
+    [_buttonedt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_buttonedt addTarget:self action:@selector(chooseevent) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:_buttonedt];
+    
 }
 
 -(void)initdatasource{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/order_list_shop" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page],@"type":@"2"} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"user/order_list_shop" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page],@"type":self.type} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
@@ -87,7 +98,9 @@
             [self.tableview reloadData];
             
         }else if ([responseObject[@"code"] integerValue]==3){
-            
+            if (_refreshType == NO) {
+                [self.dataarr removeAllObjects];
+            }
             [MBProgressHUD showError:responseObject[@"message"]];
             [self.tableview reloadData];
         }else{
@@ -149,17 +162,16 @@
     LBBelowTheLineListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBBelowTheLineListTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.orderCodeLb.text = [NSString stringWithFormat:@"订  单  号: %@",self.dataarr[indexPath.row][@"order_num"]];
-    cell.numLb.text = [NSString stringWithFormat:@"商品数量: %@",self.dataarr[indexPath.row][@"order_num"]];
-    cell.moenyLb.text = [NSString stringWithFormat:@" %@",self.dataarr[indexPath.row][@"price"]];
-    
-    if ([self.dataarr[indexPath.row][@"price"] integerValue] == 1) {
-         cell.orderCodeLb.text = @"20%";
-    }
-    if ([self.dataarr[indexPath.row][@"price"] integerValue] == 2) {
-        cell.orderCodeLb.text = @"10%";
-    }
-    if ([self.dataarr[indexPath.row][@"price"] integerValue] == 3) {
-        cell.orderCodeLb.text = @"5%";
+    cell.numLb.text = [NSString stringWithFormat:@"商品数量: %@",self.dataarr[indexPath.row][@"goods_total"]];
+    cell.moenyLb.text = [NSString stringWithFormat:@"¥%@",self.dataarr[indexPath.row][@"line_money"]];
+    cell.modelLb.text = [NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"rlmodel_type"]];
+   
+    if ([self.dataarr[indexPath.row][@"status"] integerValue] == 0) {
+        cell.status.text = @"审核状态: 审核失败";
+    }else  if ([self.dataarr[indexPath.row][@"status"] integerValue] == 1){
+        cell.status.text = @"审核状态: 审核通过";
+    }else  if ([self.dataarr[indexPath.row][@"status"] integerValue] == 2){
+        cell.status.text = @"审核状态: 未审核";
     }
     
     return cell;
@@ -168,6 +180,35 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
+}
+//帅选
+-(void)chooseevent{
+
+    __weak typeof(self) weakself = self;
+    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"审核失败",@"imageName":@""},
+                                                                  @{@"title":@"审核成功",@"imageName":@""},
+                                                                  @{@"title":@"未审核",@"imageName":@""},
+                                                                  @{@"title":@"全部",@"imageName":@""}]
+                        
+                                                              width:100
+                                                   triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, 64+5)
+                                                            action:^(NSInteger index) {
+                                                                if (index == 3) {
+                                                                  weakself.type = @"";
+                                                                }else{
+                                                                  weakself.type = [NSString stringWithFormat:@"%ld",(long)index];
+                                                                }
+                                                                _refreshType = NO;
+                                                                _page=1;
+                                                                
+                                                                [weakself initdatasource];
+                                                                
+                                                               }];
+    
+    popview.isHideImage = YES;
+    
+    [popview show];
+
 }
 
 -(NSMutableArray *)dataarr{

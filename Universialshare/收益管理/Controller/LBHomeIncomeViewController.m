@@ -12,6 +12,7 @@
 #import "LBincomeHeaderFooterView.h"
 #import "LBIncomeChooseHeaderFooterView.h"
 #import "HWCalendar.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface LBHomeIncomeViewController ()<UITableViewDelegate,UITableViewDataSource,LBIncomeChooseHeaderdelegete,LBincomeHeaderdelegete,HWCalendarDelegate>
 
@@ -116,42 +117,65 @@ static const CGFloat headerHeight = 0.0f;
 
 -(void)initdatasource{
     
+    NSString *startTime = @"";
+    NSString *endTime = @"";
+    if (![self.startStr isEqualToString:@""] && ![self.endStr isEqualToString:@""]) {
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+        NSDate *date1 = [dateFormatter dateFromString:self.startStr];
+        NSDate *date2 = [dateFormatter dateFromString:self.endStr];
+        //转成时间戳
+        startTime = [NSString stringWithFormat:@"%ld", (long)[date1 timeIntervalSince1970]];
+        endTime = [NSString stringWithFormat:@"%ld", (long)[date2 timeIntervalSince1970]];
+        
+    }
+    
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/dealerList" paramDic:@{@"page":[NSNumber numberWithInteger:_page] , @"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token,@"starttime":self.startStr,@"endtime":self.endStr,@"otype":self.otype} finish:^(id responseObject)
+    [NetworkManager requestPOSTWithURLStr:@"user/getProfitShopList" paramDic:@{@"page":[NSNumber numberWithInteger:_page] ,
+                                                                               @"uid":[UserModel defaultUser].uid ,  @"token":[UserModel defaultUser].token,@"starttime":startTime,
+                                                                               @"endtime":endTime,
+                                                                               @"otype":self.otype} finish:^(id responseObject)
      {
          
          [_loadV removeloadview];
          [self.tableview.mj_header endRefreshing];
          [self.tableview.mj_footer endRefreshing];
          if ([responseObject[@"code"] integerValue]==1) {
-             self.headview.alllebel.text = [NSString stringWithFormat:@"营业总额: ¥%@",responseObject[@"total_money"]];
+             if ([responseObject[@"total_money"] integerValue] <= 10000) {
+                 self.headview.alllebel.text = [NSString stringWithFormat:@"营业总额: ¥%@",responseObject[@"total_money"]];
+             }else{
+                  self.headview.alllebel.text = [NSString stringWithFormat:@"营业总额: ¥%.2f万",[responseObject[@"total_money"] floatValue] / 10000];
+             }
              self.onlineMoney = self.headview.alllebel.text;
              if (_refreshType == NO) {
                  [self.dataArr removeAllObjects];
                  if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                      [self.dataArr addObjectsFromArray:responseObject[@"data"]];
                  }
-                 
-                 [self.tableview reloadData];
+
              }else{
                  
                  if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                      [self.dataArr addObjectsFromArray:responseObject[@"data"]];
                  }
                  
-                 [self.tableview reloadData];
-                 
              }
              
          }else if ([responseObject[@"code"] integerValue]==3){
-             
+             if (_refreshType == NO) {
+                [self.dataArr removeAllObjects];
+                
+             }
              [MBProgressHUD showError:responseObject[@"message"]];
              
          }else{
              [MBProgressHUD showError:responseObject[@"message"]];
              
          }
+         [self.tableview reloadData];
      } enError:^(NSError *error) {
+         [self.tableview reloadData];
          [_loadV removeloadview];
          [self.tableview.mj_header endRefreshing];
          [self.tableview.mj_footer endRefreshing];
@@ -164,8 +188,25 @@ static const CGFloat headerHeight = 0.0f;
 
 -(void)initdatasourceOne{
     
+    NSString *startTime = @"";
+    NSString *endTime = @"";
+    if (![self.startStrUnder isEqualToString:@""] && ![self.endStrUnder isEqualToString:@""]) {
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+        NSDate *date1 = [dateFormatter dateFromString:self.startStrUnder];
+        NSDate *date2 = [dateFormatter dateFromString:self.endStrUnder];
+        //转成时间戳
+        startTime = [NSString stringWithFormat:@"%ld", (long)[date1 timeIntervalSince1970]];
+        endTime = [NSString stringWithFormat:@"%ld", (long)[date2 timeIntervalSince1970]];
+        
+    }
+
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/dealerList" paramDic:@{@"page":[NSNumber numberWithInteger:_pageUnder] , @"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token,@"starttime":self.startStrUnder,@"endtime":self.endStrUnder,@"otype":self.otype} finish:^(id responseObject)
+    [NetworkManager requestPOSTWithURLStr:@"user/getProfitShopList" paramDic:@{@"page":[NSNumber numberWithInteger:_pageUnder] ,
+                                                                               @"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token,@"starttime":startTime,
+                                                                               @"endtime":endTime,
+                                                                               @"otype":self.otype} finish:^(id responseObject)
      {
          
          [_loadV removeloadview];
@@ -173,7 +214,11 @@ static const CGFloat headerHeight = 0.0f;
          [self.tableview.mj_footer endRefreshing];
         
          if ([responseObject[@"code"] integerValue]==1) {
-             self.headview.alllebel.text = [NSString stringWithFormat:@"营业总额: ¥%@",responseObject[@"total_money"]];
+             if ([responseObject[@"total_money"] integerValue] <= 10000) {
+                 self.headview.alllebel.text = [NSString stringWithFormat:@"营业总额: ¥%@",responseObject[@"total_money"]];
+             }else{
+                 self.headview.alllebel.text = [NSString stringWithFormat:@"营业总额: ¥%.2f万",[responseObject[@"total_money"] floatValue] / 10000];
+             }
              self.underlineMoney = self.headview.alllebel.text;
              if (_refreshTypeUnder == NO) {
                  [self.dataArrUnder removeAllObjects];
@@ -181,26 +226,28 @@ static const CGFloat headerHeight = 0.0f;
                      [self.dataArrUnder addObjectsFromArray:responseObject[@"data"]];
                  }
                  
-                 [self.tableview reloadData];
              }else{
                  
                  if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                      [self.dataArrUnder addObjectsFromArray:responseObject[@"data"]];
                  }
-                 
-                 [self.tableview reloadData];
-                 
              }
              
          }else if ([responseObject[@"code"] integerValue]==3){
-             
+             if (_refreshType == NO) {
+                  [self.dataArrUnder removeAllObjects];
+                 
+             }
+            
              [MBProgressHUD showError:responseObject[@"message"]];
              
          }else{
              [MBProgressHUD showError:responseObject[@"message"]];
              
          }
+         [self.tableview reloadData];
      } enError:^(NSError *error) {
+         [self.tableview reloadData];
          [_loadV removeloadview];
          [self.tableview.mj_header endRefreshing];
          [self.tableview.mj_footer endRefreshing];
@@ -274,16 +321,16 @@ static const CGFloat headerHeight = 0.0f;
     
     if ([self.otype isEqualToString:@"1"]) {
         if (self.dataArr.count <= 0) {
-            self.nodataV.hidden = YES;
+            self.nodataV.hidden = NO;
         }else{
             self.nodataV.hidden = YES;
         }
         if (section == 1) {
-            return 10;
+            return self.dataArr.count;
         }
     }else{
         if (self.dataArrUnder.count <= 0) {
-            self.nodataV.hidden = YES;
+            self.nodataV.hidden = NO;
         }else{
             self.nodataV.hidden = YES;
         }
@@ -297,9 +344,47 @@ static const CGFloat headerHeight = 0.0f;
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     GLMerchant_IncomeCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
-    
-
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if ([self.otype isEqualToString:@"1"]) {
+        [cell.iamgev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataArr[indexPath.row][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"熊"]];
+        cell.namelb.text = [NSString stringWithFormat:@"商品名:%@",self.dataArr[indexPath.row][@"goods_name"]];
+        cell.codelb.text = [NSString stringWithFormat:@"数量:%@",self.dataArr[indexPath.row][@"goods_num"]];
+        cell.orderlb.text = [NSString stringWithFormat:@"让利模式:%@",self.dataArr[indexPath.row][@"rl_type"]];
+        
+        if ([self.dataArr[indexPath.row][@"rl_money"] integerValue] <= 10000) {
+            cell.rlbael.text = [NSString stringWithFormat:@"让利额:¥%@",self.dataArr[indexPath.row][@"rl_money"]];
+        }else{
+
+            cell.rlbael.text = [NSString stringWithFormat:@"让利额: ¥%.2f万",[self.dataArr[indexPath.row][@"rl_money"] floatValue] / 10000];
+        }
+        if ([self.dataArr[indexPath.row][@"total_money"] integerValue] <= 10000) {
+            cell.moneylb.text = [NSString stringWithFormat:@"价格:¥%@",self.dataArr[indexPath.row][@"total_money"]];
+        }else{
+            
+            cell.moneylb.text = [NSString stringWithFormat:@"价格: ¥%.2f万",[self.dataArr[indexPath.row][@"total_money"] floatValue] / 10000];
+        }
+    }else{
+        [cell.iamgev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataArrUnder[indexPath.row][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"熊"]];
+        cell.namelb.text = [NSString stringWithFormat:@"商品名:%@",self.dataArrUnder[indexPath.row][@"goods_name"]];
+        cell.codelb.text = [NSString stringWithFormat:@"数量:%@",self.dataArrUnder[indexPath.row][@"goods_num"]];
+        cell.moneylb.text = [NSString stringWithFormat:@"价格:¥%@",self.dataArrUnder[indexPath.row][@"rl_money"]];
+        cell.rlbael.text = [NSString stringWithFormat:@"让利额:¥%@",self.dataArrUnder[indexPath.row][@"total_money"]];
+        cell.orderlb.text = [NSString stringWithFormat:@"让利模式:%@",self.dataArrUnder[indexPath.row][@"rl_type"]];
+    
+    }
+    if ([self.dataArrUnder[indexPath.row][@"rl_money"] integerValue] <= 10000) {
+        cell.rlbael.text = [NSString stringWithFormat:@"让利额:¥%@",self.dataArrUnder[indexPath.row][@"rl_money"]];
+    }else{
+        
+        cell.rlbael.text = [NSString stringWithFormat:@"让利额: ¥%.2f万",[self.dataArrUnder[indexPath.row][@"rl_money"] floatValue] / 10000];
+    }
+    if ([self.dataArrUnder[indexPath.row][@"total_money"] integerValue] <= 10000) {
+        cell.moneylb.text = [NSString stringWithFormat:@"价格:¥%@",self.dataArrUnder[indexPath.row][@"total_money"]];
+    }else{
+        
+        cell.moneylb.text = [NSString stringWithFormat:@"价格: ¥%.2f万",[self.dataArrUnder[indexPath.row][@"total_money"] floatValue] / 10000];
+    }
+    
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -411,32 +496,57 @@ static const CGFloat headerHeight = 0.0f;
 //搜索
 -(void)clickSearchbutton:(UIButton *)button otherbutton:(UIButton *)button1{
 
-    if ([self.startStr isEqualToString:@""]) {
-        [MBProgressHUD showError:@"还没有选择起始日期"];
-        return;
-    }
-    if([self.endStr isEqualToString:@""]){
-        [MBProgressHUD showError:@"还没有选择截止日期"];
-        return;
+    if ([self.otype isEqualToString:@"1"]) {
+        if ([self.startStr isEqualToString:@""]) {
+            [MBProgressHUD showError:@"还没有选择起始日期"];
+            return;
+        }
+        if([self.endStr isEqualToString:@""]){
+            [MBProgressHUD showError:@"还没有选择截止日期"];
+            return;
+        }
+    }else{
+        if ([self.startStrUnder isEqualToString:@""]) {
+            [MBProgressHUD showError:@"还没有选择起始日期"];
+            return;
+        }
+        if([self.endStrUnder isEqualToString:@""]){
+            [MBProgressHUD showError:@"还没有选择截止日期"];
+            return;
+        }
+    
     }
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy.MM.dd"];
-    NSDate *date1 = [dateFormatter dateFromString:self.startStr];
-    NSDate *date2 = [dateFormatter dateFromString:self.endStr];
+    
+    NSDate *date1;
+    NSDate *date2;
+    if ([self.otype isEqualToString:@"1"]) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy.MM.dd"];
+        date1 = [dateFormatter dateFromString:self.startStr];
+        date2 = [dateFormatter dateFromString:self.endStr];
+    }else{
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy.MM.dd"];
+        date1 = [dateFormatter dateFromString:self.startStrUnder];
+        date2 = [dateFormatter dateFromString:self.endStrUnder];
+    }
     if ([[NSString stringWithFormat:@"%d",[self compareOneDay:date1 withAnotherDay:date2]] isEqualToString:@"1"]) {
         //NSLog(@"date1 > date2");
         
-        [MBProgressHUD showError:@"开始时间过大"];
+        [MBProgressHUD showError:@"开始时间不对"];
         
     }else if ([[NSString stringWithFormat:@"%d",[self compareOneDay:date1 withAnotherDay:date2]] isEqualToString:@"-1"]){
        // NSLog(@"date1 < date2");
-        
-        [self initdatasource];
+        if ([self.otype isEqualToString:@"1"]) {
+            [self initdatasource];
+        }else{
+            [self initdatasourceOne];
+        }
         
     }else{
         //NSLog(@"date1 = date2");
-        [MBProgressHUD showError:@"选择的时间相等"];
+        [MBProgressHUD showError:@"选择的时间不能相同"];
     }
     
 

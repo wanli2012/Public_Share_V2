@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *orderCodeLb;
 @property (weak, nonatomic) IBOutlet UILabel *moenyLb;
 @property (weak, nonatomic) IBOutlet UILabel *numLb;
+@property (weak, nonatomic) IBOutlet UILabel *status;
 
 @end

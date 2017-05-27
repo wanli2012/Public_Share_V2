@@ -32,7 +32,7 @@
         
         make.height.equalTo(@20);
         make.width.greaterThanOrEqualTo(@60);
-        make.centerX.equalTo(self).offset(20);
+        make.centerX.equalTo(self).offset(30);
         make.centerY.equalTo(self);
     }];
     
@@ -54,7 +54,6 @@
     }];
 
 }
-
 
 -(UIImageView *)headimage{
     
@@ -78,9 +77,9 @@
         _alllebel=[[UILabel alloc]init];
         _alllebel.backgroundColor=[UIColor clearColor];
         _alllebel.textColor=[UIColor blackColor];
-        _alllebel.font=[UIFont systemFontOfSize:15];
         _alllebel.textAlignment=NSTextAlignmentCenter;
         _alllebel.text = @"营业总额: ¥0";
+        _alllebel.font = [UIFont fontWithName:@"Zapfino" size:10];
     }
     
     return _alllebel;

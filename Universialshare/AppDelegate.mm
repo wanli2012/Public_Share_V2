@@ -31,7 +31,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    NSLog(@"22222222222222%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"isdirect1"]);
+
     if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isdirect1"] isEqualToString:@"YES"]) {
         self.window.rootViewController = [[BasetabbarViewController alloc]init];
         
