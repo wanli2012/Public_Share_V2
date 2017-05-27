@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *xiajiaImageV;
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 
 @end
 
@@ -42,6 +44,18 @@
     }
     if (_imageV.image == nil) {
         _imageV.image = [UIImage imageNamed:@"XRPlaceholder"];
+    }
+    
+    if([model.status integerValue] == 2){
+        
+        self.xiajiaImageV.hidden = NO;
+    }else{
+        self.xiajiaImageV.hidden = YES;
+    }
+    if ([model.goods_type integerValue] == 1) {
+        self.typeLabel.text = @"";
+    }else{
+        
     }
 }
 

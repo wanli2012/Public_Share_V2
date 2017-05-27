@@ -75,7 +75,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
     dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
   
-    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    _loadV = [LoadWaitView addloadview:self.view.bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
