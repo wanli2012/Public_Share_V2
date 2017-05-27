@@ -28,6 +28,7 @@
 @property (nonatomic, strong)NSMutableArray *recommendModels;
 
 @property (nonatomic, copy)NSString *city_id;
+@property (nonatomic,assign)NSInteger page;
 
 @end
 
@@ -41,9 +42,32 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     [self.tableView registerNib:[UINib nibWithNibName:ID2 bundle:nil] forCellReuseIdentifier:ID2];
-    [self postRequest];
+    __weak __typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf updateData:YES];
+        
+    }];
+
+    // 设置文字
+    [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
+    
+    [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
+    
+    [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
+    
+    self.tableView.mj_header = header;
+    [self updateData:YES];
+    
 }
-- (void)postRequest {
+
+- (void)updateData:(BOOL)status {
+    if (status) {
+
+        [self.nearModels removeAllObjects];
+        [self.recommendModels removeAllObjects];
+        [self.tradeTwoModels removeAllObjects];
+    }
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades[0];
@@ -55,6 +79,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
+        [self endRefresh];
         if ([responseObject[@"code"] integerValue] == 1){
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 
@@ -117,9 +142,16 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         
     } enError:^(NSError *error) {
         [_loadV removeloadview];
+        [self endRefresh];
         [MBProgressHUD showError:error.description];
     }];
 
+}
+- (void)endRefresh {
+    
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+    
 }
 - (void)refreshRequest {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -129,7 +161,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
     dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
     
-    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
@@ -229,6 +261,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         cell.models = self.recommendModels;
         [cell.collectionView reloadData];
         return cell;
+        
     }else{
         
         GLNearby_classifyCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];

@@ -7,13 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMemberModel.h"
 
 @interface GLMemberManagerCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *allMoenyLb;
-@property (weak, nonatomic) IBOutlet UILabel *bonusLb;
-@property (weak, nonatomic) IBOutlet UILabel *nameLb;
-@property (weak, nonatomic) IBOutlet UILabel *phoneLb;
-
+@property (nonatomic, strong)GLMemberModel *model;
 
 @end

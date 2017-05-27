@@ -7,6 +7,14 @@
 //
 
 #import "GLMemberManagerCell.h"
+@interface GLMemberManagerCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *allMoenyLb;
+@property (weak, nonatomic) IBOutlet UILabel *bonusLb;
+@property (weak, nonatomic) IBOutlet UILabel *nameLb;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLb;
+
+@end
 
 @implementation GLMemberManagerCell
 
@@ -20,5 +28,25 @@
 
     // Configure the view for the selected state
 }
+- (void)setModel:(GLMemberModel *)model{
+    _model = model;
+    //消费总额
+    if ([model.totalPrice floatValue] > 10000) {
+        
+        self.allMoenyLb.text = [NSString stringWithFormat:@"%.2f万",[model.totalPrice floatValue] / 10000];
+    }else{
+        self.allMoenyLb.text = [NSString stringWithFormat:@"%@",model.totalPrice];
+    }
+    //奖金
+    if ([model.goods_fl floatValue] > 10000) {
+        
+        self.bonusLb.text = [NSString stringWithFormat:@"%.2f万",[model.goods_fl floatValue] / 10000];
+    }else{
+        self.bonusLb.text = [NSString stringWithFormat:@"%@",model.goods_fl];
+    }
+    
+    self.nameLb.text = model.truename;
+    self.phoneLb.text = model.phone;
 
+}
 @end

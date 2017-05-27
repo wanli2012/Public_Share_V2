@@ -283,10 +283,19 @@ GLNearby_AllController *all;
     UIView *view = _scrollTableViews[tabviewTag];
 //    NSLog(@"%@",_scrollTableViews[tabviewTag]);
     view.frame = tableNewFrame;
-    [eat.tableView reloadData];
-    [live.tableView reloadData];
-    [play.tableView reloadData];
-    [all.tableView reloadData];
+    if ([view isKindOfClass:[eat class]]) {
+        
+        [eat.tableView reloadData];
+    }else if ([view isKindOfClass:[live class]]){
+        
+        [live.tableView reloadData];
+    }else if ([view isKindOfClass:[play class]]){
+        
+        [play.tableView reloadData];
+    }else if ([view isKindOfClass:[all class]]){
+        
+        [all.tableView reloadData];
+    }
 
 //    [view. reloadData];
 }

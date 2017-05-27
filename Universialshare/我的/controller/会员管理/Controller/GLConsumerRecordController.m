@@ -13,6 +13,7 @@
 #import "GLMemberConsumerModel.h"
 
 @interface GLConsumerRecordController ()<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UILabel *totalIncomeLabel;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -32,7 +33,7 @@ static NSString *ID = @"GLConsumerRecordCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"消费记录";
+    self.navigationItem.title = @"线上他店";
     //右键自定义
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(0, 0, 80, 44);
@@ -45,7 +46,8 @@ static NSString *ID = @"GLConsumerRecordCell";
     
     [self.tableView registerNib:[UINib nibWithNibName:@"GLConsumerRecordCell" bundle:nil] forCellReuseIdentifier:ID];
     
-    
+    self.totalIncomeLabel.text = @"     总收益:0     ";
+    self.totalIncomeLabel.layer.cornerRadius = 5.f;
     
     NSDictionary *dict1 = @{@"imageName" : @"密码",
                             @"itemName" : @"线上他店"
@@ -74,7 +76,6 @@ static NSString *ID = @"GLConsumerRecordCell";
         weakSelf.flag = YES; // 这里的目的是，让rightButton点击，可再次pop出menu
     }];
     
-
     //获取数据
     [self.tableView addSubview:self.nodataV];
     self.nodataV.hidden = YES;
@@ -136,8 +137,8 @@ static NSString *ID = @"GLConsumerRecordCell";
         
         [_loadV removeloadview];
         [self endRefresh];
-        NSLog(@"dict = %@",dict);
-        NSLog(@"%@",responseObject);
+//        NSLog(@"dict = %@",dict);
+//        NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue]==1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 
@@ -151,6 +152,13 @@ static NSString *ID = @"GLConsumerRecordCell";
             [MBProgressHUD showError:responseObject[@"message"]];
             
         }
+        //总收益Label赋值
+        if ([responseObject[@"total_money"] floatValue] > 10000) {
+            self.totalIncomeLabel.text = [NSString stringWithFormat:@"     总收益:%.2f万     ",[responseObject[@"total_money"] floatValue] / 10000];
+        }else{
+            self.totalIncomeLabel.text = [NSString stringWithFormat:@"     总收益:%@     ",responseObject[@"total_money"]];
+        }
+        //nodata图片展示
         if (self.models.count <= 0 ) {
             self.nodataV.hidden = NO;
         }else{
@@ -198,6 +206,7 @@ static NSString *ID = @"GLConsumerRecordCell";
         {
             self.type = @"1";
             self.shop_type = @"2";
+            self.navigationItem.title = @"线上他店";
             [self updateData:YES];
         }
 //            [[NSNotificationCenter defaultCenter] postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@1}];
@@ -206,6 +215,7 @@ static NSString *ID = @"GLConsumerRecordCell";
         {
             self.type = @"1";
             self.shop_type = @"1";
+            self.navigationItem.title = @"线上本店";
             [self updateData:YES];
         }
             break;
@@ -213,6 +223,7 @@ static NSString *ID = @"GLConsumerRecordCell";
         {
             self.type = @"2";
             self.shop_type = @"2";
+            self.navigationItem.title = @"线下他店";
             [self updateData:YES];
         }
             break;
@@ -220,6 +231,7 @@ static NSString *ID = @"GLConsumerRecordCell";
         {
             self.type = @"2";
             self.shop_type = @"1";
+            self.navigationItem.title = @"线下本店";
             [self updateData:YES];
         }
             break;
@@ -258,5 +270,14 @@ static NSString *ID = @"GLConsumerRecordCell";
         
     }
     return _models;
+}
+-(NodataView*)nodataV{
+    
+    if (!_nodataV) {
+        _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-154);
+    }
+    return _nodataV;
+    
 }
 @end

@@ -88,20 +88,20 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
                     GLMerchat_CommentGoodsModel *model = [GLMerchat_CommentGoodsModel mj_objectWithKeyValues:dic];
                     [self.models addObject:model];
                 }
-               
-                if (self.models.count <= 0 ) {
-                    self.nodataV.hidden = NO;
-                }else{
-                    self.nodataV.hidden = YES;
-                }
-                
-                [self.collectionView reloadData];
             }
             
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
             
         }
+        
+        if (self.models.count <= 0 ) {
+            self.nodataV.hidden = NO;
+        }else{
+            self.nodataV.hidden = YES;
+        }
+        
+        [self.collectionView reloadData];
         
     } enError:^(NSError *error) {
         [_loadV removeloadview];
@@ -119,7 +119,7 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
     
     if (!_nodataV) {
         _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
-        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-114-49);
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT- 64 - 49);
     }
     return _nodataV;
     
@@ -170,4 +170,7 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
     }
     return _models;
 }
+
+
+
 @end

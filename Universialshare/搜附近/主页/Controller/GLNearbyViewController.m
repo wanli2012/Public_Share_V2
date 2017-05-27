@@ -18,7 +18,7 @@
 
 @interface GLNearbyViewController ()<UITextFieldDelegate>
 {
-    LoadWaitView *_loadV;
+//    LoadWaitView *_loadV;
     
 }
 @property (weak, nonatomic) IBOutlet UIButton *cityBtn;

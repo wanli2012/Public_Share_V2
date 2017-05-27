@@ -9,6 +9,7 @@
 #import "GLMemberManagerController.h"
 #import "GLMemberManagerCell.h"
 #import "GLConsumerRecordController.h"
+#import "GLMemberModel.h"
 
 @interface GLMemberManagerController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -81,7 +82,12 @@ static NSString *ID = @"GLMemberManagerCell";
     if (status) {
         
         self.page = 1;
-        [self.models removeAllObjects];
+        if (self.type == 1) {
+            
+            [self.models removeAllObjects];
+        }else{
+            [self.modelsone removeAllObjects];
+        }
         
     }else{
         _page ++;
@@ -99,27 +105,40 @@ static NSString *ID = @"GLMemberManagerCell";
         
         [_loadV removeloadview];
         [self endRefresh];
-        NSLog(@"dict = %@",dict);
+//        NSLog(@"dict = %@",dict);
         NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue]==1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 
-//                for (NSDictionary *dic in responseObject[@"data"]) {
-//                    GLMemberConsumerModel *model = [GLMemberConsumerModel mj_objectWithKeyValues:dic];
-//                    [self.models addObject:model];
-//                }
+                for (NSDictionary *dic in responseObject[@"data"]) {
+                    GLMemberModel *model = [GLMemberModel mj_objectWithKeyValues:dic];
+                    if (self.type == 1) {
+                        
+                        [self.models addObject:model];
+                    }else{
+                        [self.modelsone addObject:model];
+                    }
+                }
             }
             
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
             
         }
-        if (self.models.count <= 0 ) {
-            self.nodataV.hidden = NO;
-        }else{
-            self.nodataV.hidden = YES;
-        }
         
+        if (self.type == 1 ) {
+            if (self.models.count <= 0) {
+                self.nodataV.hidden = NO;
+            }else{
+                self.nodataV.hidden = YES;
+            }
+        }else{
+            if (self.modelsone.count <= 0) {
+                self.nodataV.hidden = NO;
+            }else{
+                self.nodataV.hidden = YES;
+            }
+        }
         [self.tableView reloadData];
         
     } enError:^(NSError *error) {
@@ -137,76 +156,6 @@ static NSString *ID = @"GLMemberManagerCell";
     
 }
 
-//初始化数据
-//-(void)initdatasorce{
-//
-//    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-//    [NetworkManager requestPOSTWithURLStr:@"shop/getTjUserList" paramDic:@{@"token":[UserModel defaultUser].token,@"uid":[UserModel defaultUser].uid,@"page":[NSNumber numberWithInteger:self.currentPage],@"type":[NSNumber numberWithInteger:self.type]} finish:^(id responseObject)
-//     {
-//         
-//         [_loadV removeloadview];
-//         [self.tableView.mj_header endRefreshing];
-//         [self.tableView.mj_footer endRefreshing];
-//         if ([responseObject[@"code"] integerValue]==1) {
-//             
-//             if (self.currentbutton == self.leftBtn) {
-//                
-//                 if (_refreshType == NO) {
-//                     [self.models removeAllObjects];
-//                     if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-//                         [self.models addObjectsFromArray:responseObject[@"data"]];
-//                     }
-//                     
-//                     [self.tableView reloadData];
-//                     
-//                 }else{
-//                     
-//                     if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-//                         [self.models addObjectsFromArray:responseObject[@"data"]];
-//                     }
-//                     
-//                     [self.tableView reloadData];
-//                     
-//                 }
-//             }else{
-//             
-//                 if (_refreshType == NO) {
-//                     [self.modelsone removeAllObjects];
-//                     if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-//                         [self.modelsone addObjectsFromArray:responseObject[@"data"]];
-//                     }
-//                     
-//                     [self.tableView reloadData];
-//                 }else{
-//                     
-//                     if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-//                         [self.modelsone addObjectsFromArray:responseObject[@"data"]];
-//                     }
-//                     
-//                     [self.tableView reloadData];
-//                     
-//                 }
-//             }
-//             
-//         }else if ([responseObject[@"code"] integerValue]==3){
-//             
-//             [MBProgressHUD showError:responseObject[@"message"]];
-//             
-//         }else{
-//             [MBProgressHUD showError:responseObject[@"message"]];
-//             
-//             
-//         }
-//     } enError:^(NSError *error) {
-//         [_loadV removeloadview];
-//         [self.tableView.mj_header endRefreshing];
-//         [self.tableView.mj_footer endRefreshing];
-//         [MBProgressHUD showError:error.localizedDescription];
-//         
-//     }];
-//    
-//}
-
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
@@ -216,70 +165,39 @@ static NSString *ID = @"GLMemberManagerCell";
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
     
-//    if (sender == self.leftBtn) {
-//        self.currentbutton = self.leftBtn;
-//        self.type = 1;
-//        [self.leftBtn setTitleColor:YYSRGBColor(26, 183, 58, 1) forState:UIControlStateNormal];
-//        [self.rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        if (self.models.count <= 0) {
-//            _refreshType = NO;
-//            _page=1;
-//             _currentPage = _page;
-//            [self initdatasorce];
-//            return;
-//        }
-//    }else{
-//        self.currentbutton = self.rightBtn;
-//        self.type = 2;
-//        [self.leftBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [self.rightBtn setTitleColor:YYSRGBColor(26, 183, 58, 1) forState:UIControlStateNormal];
-//        if (self.models.count <= 0) {
-//            _refreshType = NO;
-//            _pageone=1;
-//             _currentPage = _pageone;
-//            [self initdatasorce];
-//            return;
-//        }
-//    }
-    
-    [self.tableView reloadData];
+    if (sender == self.leftBtn) {
+
+        self.type = 1;
+        [self.leftBtn setTitleColor:YYSRGBColor(26, 183, 58, 1) forState:UIControlStateNormal];
+        [self.rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+
+    }else{
+
+        self.type = 2;
+        [self.leftBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.rightBtn setTitleColor:YYSRGBColor(26, 183, 58, 1) forState:UIControlStateNormal];
+
+    }
+    [self updateData:YES];
+
 }
 
 #pragma UITableViewDelegate UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.currentbutton == self.leftBtn ) {
-        if (self.models.count <= 0) {
-            self.nodataV.hidden = NO;
-        }else{
-             self.nodataV.hidden = YES;
-        }
-    }else{
-        if (self.modelsone.count <= 0) {
-            self.nodataV.hidden = NO;
-        }else{
-            self.nodataV.hidden = YES;
-        }
-    }
-    return self.currentbutton == self.leftBtn?self.models.count:self.modelsone.count;
+
+    return self.type == 1?self.models.count:self.modelsone.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GLMemberManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     cell.selectionStyle = 0;
     
-//    if (self.type == 1) {
-//        
-//        cell.allMoenyLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"totalPrice"]];
-//        cell.bonusLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"goods_fl"]];
-//        cell.nameLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"truename"]];
-//        cell.phoneLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"phone"]];
-//        
-//    }else{
-//        cell.allMoenyLb.text = [NSString stringWithFormat:@"%@",self.modelsone[indexPath.row][@"totalPrice"]];
-//        cell.bonusLb.text = [NSString stringWithFormat:@"%@",self.modelsone[indexPath.row][@"goods_fl"]];
-//        cell.nameLb.text = [NSString stringWithFormat:@"%@",self.modelsone[indexPath.row][@"truename"]];
-//        cell.phoneLb.text = [NSString stringWithFormat:@"%@",self.modelsone[indexPath.row][@"phone"]];
-//    
-//    }
+    if (self.type == 1) {
+        
+        cell.model = self.models[indexPath.row];
+    }else{
+        
+        cell.model = self.modelsone[indexPath.row];
+    }
     
     return cell;
 }
@@ -294,11 +212,6 @@ static NSString *ID = @"GLMemberManagerCell";
     GLConsumerRecordController *consumerVC = [[GLConsumerRecordController alloc] init];
     [self.navigationController pushViewController:consumerVC animated:YES];
 }
-
-
-
-
-
 
 
 - (NSMutableArray *)models{

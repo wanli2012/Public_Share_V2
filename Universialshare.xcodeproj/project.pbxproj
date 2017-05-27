@@ -392,6 +392,7 @@
 		4A46111A1E9CC6370045824F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 4A4610011E9CC6360045824F /* README.md */; };
 		4A46111B1E9CC6370045824F /* UIImageView+CornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4610051E9CC6360045824F /* UIImageView+CornerRadius.m */; };
 		4A46111D1E9CCC010045824F /* Mine_sixPart.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A46111C1E9CCC010045824F /* Mine_sixPart.xcassets */; };
+		4A52F54E1ED911C300075934 /* GLMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A52F54D1ED911C300075934 /* GLMemberModel.m */; };
 		4A5C70CB1ED66850001110B6 /* GLMerchat_StoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C70CA1ED66850001110B6 /* GLMerchat_StoreModel.m */; };
 		4A5DF5F61ED185DA00BF6AC7 /* GLStoreProductCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5DF5F41ED185DA00BF6AC7 /* GLStoreProductCommentController.m */; };
 		4A5DF5F71ED185DA00BF6AC7 /* GLStoreProductCommentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5DF5F51ED185DA00BF6AC7 /* GLStoreProductCommentController.xib */; };
@@ -1672,6 +1673,8 @@
 		4A4610041E9CC6360045824F /* UIImageView+CornerRadius.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CornerRadius.h"; sourceTree = "<group>"; };
 		4A4610051E9CC6360045824F /* UIImageView+CornerRadius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CornerRadius.m"; sourceTree = "<group>"; };
 		4A46111C1E9CCC010045824F /* Mine_sixPart.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine_sixPart.xcassets; sourceTree = "<group>"; };
+		4A52F54C1ED911C300075934 /* GLMemberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMemberModel.h; sourceTree = "<group>"; };
+		4A52F54D1ED911C300075934 /* GLMemberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMemberModel.m; sourceTree = "<group>"; };
 		4A5C70C91ED66850001110B6 /* GLMerchat_StoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMerchat_StoreModel.h; sourceTree = "<group>"; };
 		4A5C70CA1ED66850001110B6 /* GLMerchat_StoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMerchat_StoreModel.m; sourceTree = "<group>"; };
 		4A5DF5F31ED185DA00BF6AC7 /* GLStoreProductCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLStoreProductCommentController.h; sourceTree = "<group>"; };
@@ -2799,6 +2802,8 @@
 			children = (
 				4A417C0E1ED858080074BDBA /* GLMemberConsumerModel.h */,
 				4A417C0F1ED858080074BDBA /* GLMemberConsumerModel.m */,
+				4A52F54C1ED911C300075934 /* GLMemberModel.h */,
+				4A52F54D1ED911C300075934 /* GLMemberModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6877,6 +6882,7 @@
 				4AEF77CD1ECD3A0B00FBC1DB /* CustomDatePicker.m in Sources */,
 				F966B40F1EACB0C0007260FC /* LBSaleManPersonInfoViewController.m in Sources */,
 				4A4610A91E9CC6360045824F /* ZXMaxiCodeDecodedBitStreamParser.m in Sources */,
+				4A52F54E1ED911C300075934 /* GLMemberModel.m in Sources */,
 				F923096E1E9B8BFF00ECDC94 /* LBMineCentermodifyAdressTableViewCell.m in Sources */,
 				F961A9CC1E9C750300275F52 /* UILabel+UILabel_ChangeLineSpaceAndWordSpace.m in Sources */,
 				4A4610131E9CC6360045824F /* LBXScanNative.m in Sources */,
