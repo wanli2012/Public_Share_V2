@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -39,7 +39,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="奖金:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJr-Qe-Gdp">
-                        <rect key="frame" x="230.5" y="10" width="31" height="16"/>
+                        <rect key="frame" x="202" y="10" width="31" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -51,19 +51,16 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLy-e6-SqG">
-                        <rect key="frame" x="102" y="10" width="80" height="16"/>
+                        <rect key="frame" x="102" y="10" width="90" height="16"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="80" id="LZR-Qq-OQT"/>
+                            <constraint firstAttribute="width" constant="90" id="LZR-Qq-OQT"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.93559116129999997" green="0.2449045181" blue="0.0002224964264" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="¥ 0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTV-pN-WRB">
-                        <rect key="frame" x="261.5" y="10" width="39.5" height="16"/>
-                        <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="1NQ-S6-Hf9"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="¥ 0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTV-pN-WRB">
+                        <rect key="frame" x="233" y="10" width="68" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.93559116129999997" green="0.2449045181" blue="0.0002224964264" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -96,6 +93,7 @@
                     </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="pJr-Qe-Gdp" firstAttribute="leading" secondItem="sLy-e6-SqG" secondAttribute="trailing" constant="10" id="1ch-Af-MLv"/>
                     <constraint firstItem="5D1-5z-Yle" firstAttribute="top" secondItem="ad5-Vk-eDl" secondAttribute="top" id="4yr-cq-UCH"/>
                     <constraint firstItem="dJH-T7-MYg" firstAttribute="leading" secondItem="sLy-e6-SqG" secondAttribute="leading" id="6lq-8J-vMm"/>
                     <constraint firstAttribute="trailing" secondItem="lTV-pN-WRB" secondAttribute="trailing" constant="10" id="83s-5x-Lmg"/>

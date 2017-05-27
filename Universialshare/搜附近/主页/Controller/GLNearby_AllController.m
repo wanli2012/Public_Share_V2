@@ -81,7 +81,7 @@ static NSString *ID = @"GLNearby_classifyCell";
     dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
     dict[@"page"] = [NSString stringWithFormat:@"%ld",_page];
     
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/searchNearShopByContent" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
