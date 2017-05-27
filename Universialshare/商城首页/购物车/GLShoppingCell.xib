@@ -29,7 +29,7 @@
                         <state key="normal" image="未选中"/>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O7v-Lf-qVG">
-                        <rect key="frame" x="40" y="10" width="120" height="83.5"/>
+                        <rect key="frame" x="40" y="10" width="120" height="84"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="wVA-jd-avE"/>
@@ -55,7 +55,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 56万" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yez-le-6oE">
-                        <rect key="frame" x="170" y="72.5" width="45" height="21"/>
+                        <rect key="frame" x="170" y="73" width="45" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="8JZ-dg-3HU"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="m8Y-3u-x9f"/>
@@ -89,7 +89,7 @@
                         </constraints>
                     </imageView>
                     <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uyo-vx-qVj">
-                        <rect key="frame" x="40" y="73.5" width="120" height="20"/>
+                        <rect key="frame" x="40" y="74" width="120" height="20"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消费商品" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10v-PZ-h3E">
                                 <rect key="frame" x="0.0" y="0.0" width="120" height="20"/>
