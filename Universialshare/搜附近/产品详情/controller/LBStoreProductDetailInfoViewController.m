@@ -89,9 +89,9 @@
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     NSDictionary *dic ;
     if ([UserModel defaultUser].loginstatus == YES) {
-        dic =@{@"goods_id":@"110",@"uid":[UserModel defaultUser].uid,@"token":[UserModel defaultUser].token};
+        dic =@{@"goods_id":self.goodId,@"uid":[UserModel defaultUser].uid,@"token":[UserModel defaultUser].token};
     }else{
-        dic =@{@"goods_id":@"110"};
+        dic =@{@"goods_id":self.goodId};
     }
     [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsDetailByGoodsID" paramDic:dic finish:^(id responseObject) {
         [_loadV removeloadview];
@@ -184,12 +184,23 @@
         
         LBStoreProductDetailInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreProductDetailInfoTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-       cell.namelb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"name"]];
         cell.storelb.text = [NSString stringWithFormat:@"%@",self.storename];
         
         cell.moneyLb.text = [NSString stringWithFormat:@"现价%@",self.dataDic[@"goods_data"][@"discount"]];
         cell.yuanjiLb.text = [NSString stringWithFormat:@"原价%@",self.dataDic[@"goods_data"][@"price"]];
-        cell.infolb.text = [NSString stringWithFormat:@"已选:%@",self.dataDic[@"goods_data"][@"info"]];
+        //cell.infolb.text = [NSString stringWithFormat:@"已选:%@",self.dataDic[@"goods_data"][@"info"]];
+        cell.catalbel.text = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"cate"]];
+        
+        NSString *strone = [NSString stringWithFormat:@"[%@]",self.dataDic[@"goods_data"][@"attr"]];
+        long len1 = [strone length];
+        NSString *strtwo = [NSString stringWithFormat:@"[%@]%@",self.dataDic[@"goods_data"][@"attr"],self.dataDic[@"goods_data"][@"info"]];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:strtwo];
+        
+        [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,len1)];
+        [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17.0f] range:NSMakeRange(0,len1)];
+        
+        cell.namelb.attributedText = str;
+        
         
         return cell;
         
@@ -295,7 +306,6 @@
     }
     self.hidesBottomBarWhenPushed = YES;
     GLConfirmOrderController *vc=[[GLConfirmOrderController alloc]init];
-    self.goodId = @"112";
     vc.goods_id = self.goodId;
     vc.goods_count = @"1";
     vc.orderType = 2; //订单类型

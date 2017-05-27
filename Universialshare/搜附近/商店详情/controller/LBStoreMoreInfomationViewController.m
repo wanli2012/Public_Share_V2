@@ -85,7 +85,7 @@ static const CGFloat headerImageHeight = 180.0f;
 -(void)initdatasource{
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/goToShop" paramDic:@{@"shop_id":@"412",@"lat":[NSNumber numberWithFloat:self.lat],@"lng":[NSNumber numberWithFloat:self.lng]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"shop/goToShop" paramDic:@{@"shop_id":self.storeId,@"lat":[NSNumber numberWithFloat:self.lat],@"lng":[NSNumber numberWithFloat:self.lng]} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
@@ -203,8 +203,7 @@ static const CGFloat headerImageHeight = 180.0f;
     if (section == 0) {
         return 2;
     }else if (section == 1){
-        //return [self.dataDic[@"goods_data"]count];
-        return 1;
+        return [self.dataDic[@"goods_data"]count];
     }else if (section == 2){
         return [self.dataDic[@"com_data"]count];
     }else if (section == 3){
@@ -247,7 +246,7 @@ static const CGFloat headerImageHeight = 180.0f;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.scoreLb.text = [NSString stringWithFormat:@"%@分",self.dataDic[@"shop_data"][@"pj_mark"]];
             cell.starView.progress = [self.dataDic[@"shop_data"][@"pj_mark"] integerValue];
-            cell.storeNameLb.text = [NSString stringWithFormat:@"%@分",self.dataDic[@"shop_data"][@"shop_name"]];
+            cell.storeNameLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"shop_data"][@"shop_name"]];
             cell.delegete=self;
             
             return cell;
@@ -263,12 +262,12 @@ static const CGFloat headerImageHeight = 180.0f;
     }else if (indexPath.section == 1){
         LBStoreDetailHotProductTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreDetailHotProductTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        /*
+        
         [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
         cell.nameLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_name"]];
         cell.moneyLb.text = [NSString stringWithFormat:@"¥%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_price"]];
         cell.descrebLb.text = [NSString stringWithFormat:@"¥%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_info"]];
-        */
+        
         
          return cell;
     
@@ -384,8 +383,8 @@ static const CGFloat headerImageHeight = 180.0f;
         self.HideNavagation = YES;
         self.hidesBottomBarWhenPushed = YES;
         LBStoreProductDetailInfoViewController *vc=[[LBStoreProductDetailInfoViewController alloc]init];
-        //vc.goodname = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_name"]];
-        vc.storename = [NSString stringWithFormat:@"%@分",self.dataDic[@"shop_data"][@"shop_name"]];
+        vc.goodname = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_name"]];
+        vc.storename = [NSString stringWithFormat:@"%@",self.dataDic[@"shop_data"][@"shop_name"]];
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.section == 3){
         self.hidesBottomBarWhenPushed = YES;
@@ -430,7 +429,7 @@ static const CGFloat headerImageHeight = 180.0f;
     CGFloat lng = [self.dataDic[@"shop_data"][@"lng"] floatValue ];
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/goToShop" paramDic:@{@"shop_id":@"412",@"lat":[NSNumber numberWithFloat:lat],@"lng":[NSNumber numberWithFloat:lng]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"shop/goToShop" paramDic:@{@"shop_id":self.storeId,@"lat":[NSNumber numberWithFloat:lat],@"lng":[NSNumber numberWithFloat:lng]} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {

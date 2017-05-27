@@ -38,13 +38,10 @@
 #import "GLMyCollectionController.h"
 #import "GLIncomeManagerController.h"
 #import "GLMemberManagerController.h"
-#import "GLMerchant_IncomeController.h"
 #import "GLMerchat_StoreController.h"
 #import "LBProductManagementViewController.h"
 #import "GLRecommendStoreController.h"
 
-#import "LBStoreMoreInfomationViewController.h"//商店详情
-#import "LBMineCenterMYOrderEvaluationDetailViewController.h"//评论商品
 #import "LBMerchantSubmissionFourViewController.h"
 #import "LBRecommendedSalesmanViewController.h"
 
@@ -481,13 +478,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 //消息
 - (IBAction)messagebutton:(UIButton *)sender {
     
-//    self.hidesBottomBarWhenPushed=YES;
-//    LBMineMessageViewController *vc=[[LBMineMessageViewController alloc]init];
-//    [self.navigationController pushViewController:vc animated:YES];
-//    self.hidesBottomBarWhenPushed=NO;
-    
     self.hidesBottomBarWhenPushed=YES;
-    LBStoreMoreInfomationViewController *vc=[[LBStoreMoreInfomationViewController alloc]init];
+    LBMineMessageViewController *vc=[[LBMineMessageViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed=NO;
     

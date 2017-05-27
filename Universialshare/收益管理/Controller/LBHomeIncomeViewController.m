@@ -163,7 +163,10 @@ static const CGFloat headerHeight = 0.0f;
              }
              
          }else if ([responseObject[@"code"] integerValue]==3){
-             [self.dataArr removeAllObjects];
+             if (_refreshType == NO) {
+                [self.dataArr removeAllObjects];
+                
+             }
              [MBProgressHUD showError:responseObject[@"message"]];
              
          }else{
@@ -231,7 +234,11 @@ static const CGFloat headerHeight = 0.0f;
              }
              
          }else if ([responseObject[@"code"] integerValue]==3){
-             [self.dataArrUnder removeAllObjects];
+             if (_refreshType == NO) {
+                  [self.dataArrUnder removeAllObjects];
+                 
+             }
+            
              [MBProgressHUD showError:responseObject[@"message"]];
              
          }else{

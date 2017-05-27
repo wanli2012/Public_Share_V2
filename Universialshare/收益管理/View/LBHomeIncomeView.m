@@ -55,7 +55,6 @@
 
 }
 
-
 -(UIImageView *)headimage{
     
     if (!_headimage) {
