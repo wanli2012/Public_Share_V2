@@ -91,6 +91,7 @@
                     ordersMdel.total = responseObject[@"data"][i][@"total"];
                     ordersMdel.isExpanded = NO;
                     ordersMdel.MyOrdersListModel = responseObject[@"data"][i][@"goods"];
+                    ordersMdel.crypt = responseObject[@"data"][i][@"crypt"];
                     [self.dataarr addObject:ordersMdel];
                 }
                 self.useableScore = responseObject[@"mark"];
@@ -216,8 +217,9 @@
         LBMineCenterPayPagesViewController *vc=[[LBMineCenterPayPagesViewController alloc]init];
         LBMyOrdersModel *model = self.dataarr[section];
         vc.order_sn =  model.order_num;
-        vc.orderPrice = model.order_money;
         vc.order_id = model.order_id;
+        vc.order_sh = model.crypt;
+        vc.orderPrice = model.order_money;
         vc.payType = [model.order_type intValue];
         vc.useableScore = self.useableScore;
         vc.pushIndex = 2;
