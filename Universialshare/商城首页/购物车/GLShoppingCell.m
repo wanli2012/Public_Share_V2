@@ -32,7 +32,7 @@
 }
 - (void)setModel:(GLShoppingCartModel *)model {
     _model = model;
-    [_imageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+//    [_imageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
     _goodsNamelabel.text = model.goods_name;
     _amountLabel.text =[NSString stringWithFormat:@"数量:%@",model.num];
     _detailLabel.text = model.info;
@@ -42,9 +42,9 @@
     }else{
         _priceLabel.text = [NSString stringWithFormat:@"¥ %@元",model.goods_price];
     }
-    if (_imageV.image == nil) {
-        _imageV.image = [UIImage imageNamed:@"XRPlaceholder"];
-    }
+//    if (_imageV.image == nil) {
+//        _imageV.image = [UIImage imageNamed:@"XRPlaceholder"];
+//    }
     
     if([model.status integerValue] == 2){
         
@@ -53,9 +53,9 @@
         self.xiajiaImageV.hidden = YES;
     }
     if ([model.goods_type integerValue] == 1) {
-        self.typeLabel.text = @"";
+        self.typeLabel.text = @"返利商品";
     }else{
-        
+         self.typeLabel.text = @"米券商品";
     }
 }
 

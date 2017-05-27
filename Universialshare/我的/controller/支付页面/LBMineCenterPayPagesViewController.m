@@ -65,7 +65,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postRepuest:) name:@"input_PasswordNotification" object:nil];
-
     
 }
 
@@ -75,28 +74,19 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
+
     return 50;
     
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-
     LBMineCenterPayPagesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBMineCenterPayPagesTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.payimage.image = [UIImage imageNamed:_dataarr[indexPath.row][@"image"]];
     cell.paytitile.text = _dataarr[indexPath.row][@"title"];
     
-    if([self.useableScore integerValue] > 10000){
-        
-        cell.reuseScoreLabel.text  = [NSString stringWithFormat:@"剩余积分:%.2f万分",[self.useableScore floatValue]/10000];
-    }else{
-         cell.reuseScoreLabel.text  = [NSString stringWithFormat:@"剩余积分:%@分",self.useableScore];
-    }
-    
+    cell.reuseScoreLabel.text  = [NSString stringWithFormat:@"剩余:%@分",self.useableScore];
     if ([self.selectB[indexPath.row]boolValue] == NO) {
         
         cell.selectimage.image = [UIImage imageNamed:@"支付未选中"];
