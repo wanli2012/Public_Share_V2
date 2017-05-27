@@ -26,6 +26,10 @@
 
 @property (nonatomic, copy)NSString *cart_id;
 
+@property (nonatomic, copy)NSString *goods_type;
+
+@property (nonatomic, copy)NSString *status;
+
 
 
 @end
