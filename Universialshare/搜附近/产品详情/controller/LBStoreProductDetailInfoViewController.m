@@ -296,6 +296,7 @@
 - (void)checkMore:(id)sender{
     self.hidesBottomBarWhenPushed = YES;
     GLStoreProductCommentController *commentVC = [[GLStoreProductCommentController alloc] init];
+    commentVC.goodId = self.goodId;
     [self.navigationController pushViewController:commentVC animated:YES];
 }
 //立即购买

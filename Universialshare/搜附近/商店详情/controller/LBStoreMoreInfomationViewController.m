@@ -164,12 +164,8 @@ static const CGFloat headerImageHeight = 180.0f;
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    
-
     [MXNavigationBarManager reStoreToCustomNavigationBar:self];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
-    
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -177,7 +173,6 @@ static const CGFloat headerImageHeight = 180.0f;
      self.navigationController.navigationBar.hidden = NO;
     [self.tableview setContentOffset:CGPointMake(0,-headerImageHeight) animated:NO];
     if (self.HideNavagation == YES) {
-            //[self viewDidLoad];
         [MXNavigationBarManager managerWithController:self];
         if (self.offset.y <= 0) {
             [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:(self.offset.y+headerImageHeight)/headerImageHeight],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
@@ -266,8 +261,7 @@ static const CGFloat headerImageHeight = 180.0f;
         [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
         cell.nameLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_name"]];
         cell.moneyLb.text = [NSString stringWithFormat:@"¥%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_price"]];
-        cell.descrebLb.text = [NSString stringWithFormat:@"¥%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_info"]];
-        
+        cell.descrebLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_info"]];
         
          return cell;
     
@@ -407,6 +401,7 @@ static const CGFloat headerImageHeight = 180.0f;
             self.hidesBottomBarWhenPushed = YES;
             self.HideNavagation = YES;
             LBCheckMoreHotProductViewController *vc=[[LBCheckMoreHotProductViewController alloc]init];
+            vc.storeId = [NSString stringWithFormat:@"%@",self.dataDic[@"shop_data"][@"shop_id"]];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

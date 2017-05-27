@@ -10,6 +10,7 @@
 #import "GLMyCollectionCell.h"
 #import "GLMyCollectionModel.h"
 #import "LBStoreProductDetailInfoViewController.h"
+#import "MXNavigationBarManager.h"
 
 @interface GLMyCollectionController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -225,19 +226,27 @@ static NSString *ID = @"GLMyCollectionCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    self.isdelete = indexPath.row;
-    self.hidesBottomBarWhenPushed = YES;
-    LBStoreProductDetailInfoViewController *vc=[[LBStoreProductDetailInfoViewController alloc]init];
     GLMyCollectionModel *model = self.models[indexPath.row];
-    vc.goodId = model.goods_id;
-    vc.goodname = model.name;
-    vc.storename = model.shop_name;
-    [self.navigationController pushViewController:vc animated:YES];
+    self.isdelete = indexPath.row;
+    if ([model.goods_type isEqualToString:@"2"]) {//积分收藏
+        
+    }else{
+        self.hidesBottomBarWhenPushed = YES;
+        LBStoreProductDetailInfoViewController *vc=[[LBStoreProductDetailInfoViewController alloc]init];
+        vc.goodId = model.goods_id;
+        vc.goodname = model.name;
+        vc.storename = model.shop_name;
+        [self.navigationController pushViewController:vc animated:YES];
+    
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    
+    [MXNavigationBarManager reStoreToCustomNavigationBar:self];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
 
 }
 
