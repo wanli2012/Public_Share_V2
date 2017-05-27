@@ -183,6 +183,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"goods_id"] = self.goods_id;
     dict[@"type"] = @(self.type);
+    dict[@""];
     //取出 数量
     GLHourseChangeNumCell *cell = [self.tableView cellForRowAtIndexPath:_indexPath];
     _sum = [cell.sumLabel.text integerValue];
