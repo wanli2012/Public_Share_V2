@@ -13,4 +13,7 @@
 @property(nonatomic , strong)NSString *goodId;
 @property(nonatomic , strong)NSString *goodname;
 @property(nonatomic , strong)NSString *storename;
+@property(nonatomic , assign)BOOL isnotice;//判断是否需要发送取消收藏通知 yes 发送
+
+
 @end
