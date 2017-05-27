@@ -19,6 +19,9 @@
 @property (copy, nonatomic)NSString *total;
 @property (copy, nonatomic)NSString *mark;
 
+@property (copy, nonatomic)NSString *crypt;
+
+
 @property (copy, nonatomic)NSArray *MyOrdersListModel;
 
 @property (assign, nonatomic)BOOL isExpanded;//是否展开
