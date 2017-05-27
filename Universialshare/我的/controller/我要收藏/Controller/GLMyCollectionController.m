@@ -254,7 +254,6 @@ static NSString *ID = @"GLMyCollectionCell";
     [self.models removeObjectAtIndex:self.isdelete];
     [self.tableView reloadData];
 
-
 }
 
 @end

@@ -17,5 +17,5 @@
 @property (nonatomic, assign)int type;
 
 @property (nonatomic, copy)NSString *goods_id;
-
+@property (assign, nonatomic) NSInteger is_notice;//是否收藏
 @end

@@ -48,6 +48,8 @@
 @property (assign, nonatomic) NSInteger is_collection;//是否收藏
 @property (weak, nonatomic) IBOutlet UIImageView *collectionimage;
 
+
+
 @end
 static NSString *firstCell = @"GLHourseDetailFirstCell";
 
@@ -234,7 +236,11 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
             if ([responseObject[@"code"] integerValue] == 1){
                 self.collectionimage.image = [UIImage imageNamed:@"collect_icon"];
                 self.is_collection = 0;
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"GLMyCollectionController" object:nil];
+                if (self.is_notice == YES) {
+                    
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"GLMyCollectionController" object:nil];
+                }
+                
                 [MBProgressHUD showSuccess:@"取消收藏成功"];
                 
             }else{
