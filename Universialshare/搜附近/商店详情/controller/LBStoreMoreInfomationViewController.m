@@ -385,6 +385,7 @@ static const CGFloat headerImageHeight = 180.0f;
         LBStoreProductDetailInfoViewController *vc=[[LBStoreProductDetailInfoViewController alloc]init];
         vc.goodname = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_name"]];
         vc.storename = [NSString stringWithFormat:@"%@",self.dataDic[@"shop_data"][@"shop_name"]];
+        vc.goodId = [NSString stringWithFormat:@"%@",self.dataDic[@"shop_data"][@"goods_id"]];
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.section == 3){
         self.hidesBottomBarWhenPushed = YES;

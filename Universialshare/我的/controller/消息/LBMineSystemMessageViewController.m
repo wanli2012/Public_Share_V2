@@ -9,8 +9,9 @@
 #import "LBMineSystemMessageViewController.h"
 #import "LBMineSystemMessageTableViewCell.h"
 #import <MJRefresh/MJRefresh.h>
+#import "QQPopMenuView.h"
 
-@interface LBMineSystemMessageViewController ()<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+@interface LBMineSystemMessageViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic)NSMutableArray *dataarr;
@@ -21,8 +22,6 @@
 @property (assign, nonatomic)NSInteger messageType;//消息类型 默认为1
 @property (strong, nonatomic)NSMutableArray *messageArr;
 @property (strong, nonatomic)UIButton *buttonedt;
-@property (strong, nonatomic)UIPickerView *pickerView;
-@property (strong, nonatomic)UIView *pickerViewMask;
 @property (strong, nonatomic)NodataView *nodataV;
 
 
@@ -37,7 +36,7 @@
     self.view.backgroundColor=[UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.messageType = 1;
-    self.messageArr = [NSMutableArray arrayWithObjects:@"回购消息",@"分红消息",@"推荐消息",@"下单消息",@"转增消息",@"直捐消息", nil];
+    self.messageArr = [NSMutableArray arrayWithObjects:@"兑换消息",@"分红消息",@"推荐消息",@"下单消息",@"转增消息",@"直捐消息", nil];
     self.tableview.tableFooterView = [UIView new];
     self.tableview.estimatedRowHeight = 70;
     self.tableview.rowHeight = UITableViewAutomaticDimension;
@@ -106,7 +105,9 @@
             }
             
         }else if ([responseObject[@"code"] integerValue]==3){
-            
+            if (_refreshType == NO) {
+                [self.dataarr removeAllObjects];
+            }
             [MBProgressHUD showError:responseObject[@"message"]];
              [self.tableview reloadData];
         }else{
@@ -142,9 +143,30 @@
 }
 //筛选
 -(void)edtingInfo{
-    [self.view addSubview:self.pickerViewMask];
-    [self.pickerViewMask addSubview:self.pickerView];
 
+    __weak typeof(self) weakself = self;
+    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"兑换消息",@"imageName":@""},
+                                                                   @{@"title":@"分红消息",@"imageName":@""},
+                                                                   @{@"title":@"推荐消息",@"imageName":@""},
+                                                                   @{@"title":@"下单消息",@"imageName":@""},
+                                                                   @{@"title":@"转赠消息",@"imageName":@""},
+                                                                   @{@"title":@"直捐消息",@"imageName":@""},
+                                                                   
+                                                                   ]
+                              
+                                                           width:100
+                                                triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, 64+5)
+                                                          action:^(NSInteger index) {
+                                                              
+                                                              _refreshType = NO;
+                                                              _page=1;
+                                                              _messageType = index + 1;
+                                                              [weakself initdatasource];
+                                                          }];
+    
+    popview.isHideImage = YES;
+    
+    [popview show];
 
 }
 
@@ -182,68 +204,7 @@
         
         return cell;
    
-    
 }
-
-#pragma Mark -- UIPickerViewDataSource
-// pickerView 列数
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 1;
-}
-
-// pickerView 每列个数
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    
-    if (self.dataarr.count > 0) {
-        self.nodataV.hidden = YES;
-    }else{
-        self.nodataV.hidden = NO;
-    }
-    return self.messageArr.count;
-}
-
-#pragma Mark -- UIPickerViewDelegate
-// 每列宽度
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    
-    
-    return SCREEN_WIDTH -20;
-}
-
--(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
-    
-    return 50;
-}
-// 返回选中的行
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    
-    self.messageType = row + 1;
-
-}
-
-//返回当前行的内容,此处是将数组中数值添加到滚动的那个显示栏上
--(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    
-    return self.messageArr[row];
-}
-
-////重写方法
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
-    UILabel* pickerLabel = (UILabel*)view;
-    if (!pickerLabel){
-        pickerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH -20 , 50)];
-        [pickerLabel setTextAlignment:NSTextAlignmentCenter];
-        [pickerLabel setBackgroundColor:[UIColor clearColor]];
-        [pickerLabel setFont:[UIFont boldSystemFontOfSize:15]];
-    }
-    // Fill the label text here
-    pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
-    return pickerLabel;
-}
-
-
 -(NSMutableArray *)dataarr{
 
     if (!_dataarr) {
@@ -251,45 +212,6 @@
     }
 
     return _dataarr;
-
-}
-
-//点击pickerViewMask
--(void)tapgestureMask{
-    
-    [self.pickerView removeFromSuperview];
-    [self.pickerViewMask removeFromSuperview];
-    //重新刷新
-    _refreshType = NO;
-    _page=1;
-    [self.dataarr removeAllObjects];
-    
-    [self initdatasource];
-    
-}
-
--(UIPickerView*)pickerView{
-    
-    if (!_pickerView) {
-        _pickerView=[[UIPickerView alloc]initWithFrame:CGRectMake(10, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 20, 200)];
-        _pickerView.dataSource=self;
-        _pickerView.delegate=self;
-        _pickerView.backgroundColor=[UIColor whiteColor];
-    }
-    return _pickerView;
-    
-}
-
--(UIView*)pickerViewMask{
-    
-    if (!_pickerViewMask) {
-        _pickerViewMask=[[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-        _pickerViewMask.backgroundColor= YYSRGBColor(0, 0, 0, 0.2);
-        UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgestureMask)];
-        [_pickerViewMask addGestureRecognizer:tap];
-    }
-    
-    return _pickerViewMask;
 }
 
 -(NodataView*)nodataV{
