@@ -23,6 +23,7 @@
 #import "GLShoppingCartController.h"
 
 #import "GLGoodsDetailModel.h"
+#import "GLShoppingCartController.h"
 
 @interface GLHourseDetailController ()<SDCycleScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,GLTwoButtonCellDelegate,GLHourseChangeNumCellDelegate>
 {
@@ -44,6 +45,8 @@
 @property (nonatomic, strong)NSMutableArray *optionModels;
 
 @property (nonatomic, strong)GLGoodsDetailModel *model;
+@property (assign, nonatomic) NSInteger is_collection;//是否收藏
+@property (weak, nonatomic) IBOutlet UIImageView *collectionimage;
 
 @end
 static NSString *firstCell = @"GLHourseDetailFirstCell";
@@ -68,13 +71,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     [super viewDidLoad];
     _status = 1;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    //自定义右键
-    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightBtn.frame = CGRectMake(0, 0, 40, 44);
-    [rightBtn setImage:[UIImage imageNamed:@"XRPlaceholder"] forState:UIControlStateNormal];
-    [rightBtn addTarget:self  action:@selector(myCollection) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+
 //    self.navigationItem.title = @"房子详情";
     _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 160)
                                                           delegate:self
@@ -122,50 +119,140 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     
 }
 - (void)postRequest{
-    
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    NSDictionary *dict;
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dict =@{@"goods_id":self.goods_id,@"uid":[UserModel defaultUser].uid,@"token":[UserModel defaultUser].token};
+    }else{
+        dict =@{@"goods_id":self.goods_id};
+    }
+
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/goodsDetail" paramDic:@{@"goods_id":self.goods_id} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"shop/goodsDetail" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
 //        NSLog(@"responseObject = %@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1){
+             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
            self.model = [GLGoodsDetailModel mj_objectWithKeyValues:responseObject[@"data"]];
             
         }
-        
+        self.cycleScrollView.imageURLStringsGroup = responseObject[@"data"][@"details_banner"];
+            
+        if ([responseObject[@"data"][@"is_collection"]integerValue] == 0) {
+            self.collectionimage.image = [UIImage imageNamed:@"collect_icon"];
+        }else{
+            self.collectionimage.image = [UIImage imageNamed:@"collect_select_icon"];
+        }
+        self.is_collection = [responseObject[@"data"][@"is_collection"] integerValue];
+
         [self.tableView reloadData];
+            
+        }
         
     } enError:^(NSError *error) {
         [_loadV removeloadview];
         
     }];
+    
+}
+//跳到购物车
+- (IBAction)goToCart:(id)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLShoppingCartController *cartVC = [[GLShoppingCartController alloc] init];
+    [self.navigationController pushViewController:cartVC animated:YES];
     
 }
 //收藏
-- (void)myCollection {
+- (IBAction)collection:(id)sender {
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//    dict[@"token"] = [UserModel defaultUser].token;
+//    dict[@"uid"] = [UserModel defaultUser].uid;
+//    dict[@"GID"] = self.goods_id;
+//    dict[@"type"] = @(self.type);
+//    
+//    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+//    [NetworkManager requestPOSTWithURLStr:@"shop/addMyCollect" paramDic:dict finish:^(id responseObject) {
+//        
+//        [_loadV removeloadview];
+//        //        NSLog(@"dict = %@",dict);
+//        //        NSLog(@"responseObject = %@",responseObject);
+//        if ([responseObject[@"code"] integerValue] == 1){
+//            
+//        }
+//        
+//        [MBProgressHUD showError:responseObject[@"message"]];
+//    } enError:^(NSError *error) {
+//        [_loadV removeloadview];
+//        
+//    }];
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [MBProgressHUD showError:@"请先登录"];
+        return;
+    }
     
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"uid"] = [UserModel defaultUser].uid;
-    dict[@"GID"] = self.goods_id;
-    dict[@"type"] = @(self.type);
-
-    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/addMyCollect" paramDic:dict finish:^(id responseObject) {
+    if (self.is_collection  == 0) {
         
-        [_loadV removeloadview];
-//        NSLog(@"dict = %@",dict);
-//        NSLog(@"responseObject = %@",responseObject);
-        if ([responseObject[@"code"] integerValue] == 1){
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"token"] = [UserModel defaultUser].token;
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"GID"] = self.goods_id;
+        dict[@"type"] = @(self.type);
         
-        }
+        _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+        [NetworkManager requestPOSTWithURLStr:@"shop/addMyCollect" paramDic:dict finish:^(id responseObject) {
+            
+            [_loadV removeloadview];
+            if ([responseObject[@"code"] integerValue] == 1){
+                self.collectionimage.image = [UIImage imageNamed:@"collect_select_icon"];
+                self.is_collection = 1;
+                [MBProgressHUD showSuccess:@"收藏成功"];
+                
+            }else{
+                
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
+            
+            [self.tableView reloadData];
+            
+        } enError:^(NSError *error) {
+            [_loadV removeloadview];
+            
+        }];
+        
+    }else{
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"token"] = [UserModel defaultUser].token;
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"GID"] = self.goods_id;
+        
+        _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+        [NetworkManager requestPOSTWithURLStr:@"shop/delMyCollect" paramDic:dict finish:^(id responseObject) {
+            
+            [_loadV removeloadview];
+            if ([responseObject[@"code"] integerValue] == 1){
+                self.collectionimage.image = [UIImage imageNamed:@"collect_icon"];
+                self.is_collection = 0;
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"GLMyCollectionController" object:nil];
+                [MBProgressHUD showSuccess:@"取消收藏成功"];
+                
+            }else{
+                
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
+            
+            [self.tableView reloadData];
+            
+        } enError:^(NSError *error) {
+            [_loadV removeloadview];
+            
+        }];
+    }
     
-        [MBProgressHUD showError:responseObject[@"message"]];
-    } enError:^(NSError *error) {
-        [_loadV removeloadview];
-        
-    }];
+    
 }
+
 //积分兑换
 - (IBAction)exchange:(id)sender {
     self.hidesBottomBarWhenPushed = YES;
@@ -219,11 +306,17 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     //取出 数量
     GLHourseChangeNumCell *cell = [self.tableView cellForRowAtIndexPath:_indexPath];
 
-    GLConfirmOrderController *confirmVC = [[GLConfirmOrderController alloc] init];
-    confirmVC.goods_count = cell.sumLabel.text;
-    confirmVC.orderType = self.type;
-    confirmVC.goods_id = self.goods_id;
-    [self.navigationController pushViewController:confirmVC animated:YES];
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [MBProgressHUD showError:@"请先登录"];
+        return;
+    }
+    self.hidesBottomBarWhenPushed = YES;
+    GLConfirmOrderController *vc=[[GLConfirmOrderController alloc]init];
+    vc.goods_id = self.goods_id;
+    vc.goods_count = cell.sumLabel.text;
+    vc.orderType = self.type; //订单类型
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
 - (NSMutableArray *)dataSource{
     if (!_dataSource) {

@@ -48,7 +48,7 @@
     
     self.ordercode.text = self.order_sn;
     self.orderMoney.text = self.orderPrice;
-    self.payType = 1;
+//    self.payType = 1;
     if (self.payType == 1) {
         self.orderMTitleLb.text = @"订单金额:";
         self.orderType.text = @"消费订单";
@@ -86,7 +86,11 @@
     cell.payimage.image = [UIImage imageNamed:_dataarr[indexPath.row][@"image"]];
     cell.paytitile.text = _dataarr[indexPath.row][@"title"];
     
-    cell.reuseScoreLabel.text  = [NSString stringWithFormat:@"剩余:%@分",self.useableScore];
+    if(indexPath.row == 0){
+        
+        cell.reuseScoreLabel.text  = [NSString stringWithFormat:@"剩余:%@",self.useableScore];
+    }
+    
     if ([self.selectB[indexPath.row]boolValue] == NO) {
         
         cell.selectimage.image = [UIImage imageNamed:@"支付未选中"];
@@ -145,7 +149,7 @@
     [_contentView.backBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
     _contentView.layer.cornerRadius = 4;
     _contentView.layer.masksToBounds = YES;
-    
+    _contentView.priceLabel.text = [NSString stringWithFormat:@"¥ %@",self.orderPrice];
     _contentView.frame = CGRectMake(0, SCREEN_HEIGHT, contentViewW, 0);
     [_maskV showViewWithContentView:_contentView];
     [UIView animateWithDuration:0.3 animations:^{
@@ -163,7 +167,7 @@
     //    NSString *uid = [RSAEncryptor encryptString:[UserModel defaultUser].uid publicKey:public_RSA];
     //    dict[@"uid"] = uid;
     dict[@"order_id"] = [RSAEncryptor encryptString:orderID publicKey:public_RSA];
-;
+    
     if (self.selectIndex == 0) {
         
         dict[@"type"] = @4;

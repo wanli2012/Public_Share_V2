@@ -38,8 +38,6 @@ static NSString *ID = @"GLMyCollectionCell";
     
     [self.tableView addSubview:self.nodataV];
     self.nodataV.hidden = YES;
-
-    
     
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
