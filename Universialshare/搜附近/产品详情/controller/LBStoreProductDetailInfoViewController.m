@@ -371,7 +371,10 @@
             if ([responseObject[@"code"] integerValue] == 1){
                 self.collectionimage.image = [UIImage imageNamed:@"collect_icon"];
                 self.is_collection = 0;
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"GLMyCollectionController" object:nil];
+                if (self.isnotice == YES) {
+                   [[NSNotificationCenter defaultCenter]postNotificationName:@"GLMyCollectionController" object:nil];
+                }
+                
                 [MBProgressHUD showSuccess:@"取消收藏成功"];
                 
             }else{
