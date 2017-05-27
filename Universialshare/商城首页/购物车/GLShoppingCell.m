@@ -45,13 +45,14 @@
 //    if (_imageV.image == nil) {
 //        _imageV.image = [UIImage imageNamed:@"XRPlaceholder"];
 //    }
-    
+    //判断是否下架
     if([model.status integerValue] == 2){
         
         self.xiajiaImageV.hidden = NO;
     }else{
         self.xiajiaImageV.hidden = YES;
     }
+    
     if ([model.goods_type integerValue] == 1) {
         self.typeLabel.text = @"返利商品";
     }else{

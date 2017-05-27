@@ -55,7 +55,7 @@ static NSString *ID = @"GLShoppingCell";
     
      [self.clearingBtn addTarget:self action:@selector(clearingMore:) forControlEvents:UIControlEventTouchUpInside];
 //    self.selectedNumLabel.text = [NSString stringWithFormat:@"已选中%ld件商品",_totalNum];
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额¥ %ld元",_totalPrice];
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额¥ %lu元",(long)_totalPrice];
     [self updateTitleNum];
     [self postRequest];
     

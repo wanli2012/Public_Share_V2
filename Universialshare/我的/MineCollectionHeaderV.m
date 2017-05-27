@@ -166,16 +166,6 @@
             cell.infoL.text = @"0";
         }
     }else if (indexPath.row == 4){
-        cell.infoL.text = [UserModel defaultUser].recommendMark;
-        if ([cell.infoL.text isEqualToString:@""]) {
-            cell.infoL.text = @"0";
-        }
-    }else if (indexPath.row == 5){
-        cell.infoL.text = [UserModel defaultUser].giveMeMark;
-        if ([cell.infoL.text isEqualToString:@""]) {
-            cell.infoL.text = @"0";
-        }
-    }else if (indexPath.row == 6){
         cell.infoL.text = [UserModel defaultUser].lastFanLiTime;
         if ([cell.infoL.text isEqualToString:@""]) {
             cell.infoL.text = @"暂无";
@@ -309,7 +299,7 @@
 -(NSArray*)titleArr{
 
     if (!_titleArr) {
-        _titleArr=[NSArray arrayWithObjects:@"米券",@"积分",@"米子",@"推荐米子",@"注册奖励",@"获得米子",@"上个激励日", nil];
+        _titleArr=[NSArray arrayWithObjects:@"米子",@"积分",@"米卷",@"推荐米子",@"上个激励日", nil];
     }
 return _titleArr;
 }
