@@ -38,16 +38,8 @@ static NSString *ID = @"GLConsumerRecordCell";
     //右键自定义
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(0, 0, 80, 44);
-//    [rightBtn.titleLabel setFont:[UIFont systemFontOfSize:13]];
-//    [rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -40)];
-//    [rightBtn setTitle:@"筛选" forState:UIControlStateNormal];
-    
-//    [button setTitleEdgeInsets:UIEdgeInsetsMake(0, -imgArrow.size.width, 0, imgArrow.size.width)];
-//    [button setImageEdgeInsets:UIEdgeInsetsMake(0, button.titleLabel.bounds.size.width, 0, -button.titleLabel.bounds.size.width)];
-    //    [button setImage:imgArrow forState:UIControlStateNormal];
-    //    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;//(需要何值请参看API文档)
     [rightBtn setImage:[UIImage imageNamed:@"筛选更多"] forState:UIControlStateNormal];
-    
+    rightBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;//(需要何值请参看API文档)
     [rightBtn addTarget:self action:@selector(filte) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     
@@ -138,7 +130,8 @@ static NSString *ID = @"GLConsumerRecordCell";
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"uid"] = self.uid;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"userID"] = self.uid;
     dict[@"type"] = self.type;
     dict[@"shop_type"] = self.shop_type;
     dict[@"page"] = @(self.page);

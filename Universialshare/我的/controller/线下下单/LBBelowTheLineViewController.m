@@ -117,9 +117,12 @@
 
 //获取验证码
 - (IBAction)getcodeEvent:(UIButton *)sender {
-    
+    if (self.phoneTf.text.length <= 0) {
+        [MBProgressHUD showError:@"请输入会员电话号码或ID"];
+        return;
+    }
     [self startTime];//获取倒计时
-    [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:@{@"phone":[UserModel defaultUser].phone} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:@{@"phone":self.phoneTf.text} finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue]==1) {
             
         }else{
@@ -239,7 +242,7 @@
             
             [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
 //            [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-            [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+//            [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
 //            [SVProgressHUD setCornerRadius:8.0];
             
         }success:^(NSURLSessionDataTask *task, id responseObject) {
