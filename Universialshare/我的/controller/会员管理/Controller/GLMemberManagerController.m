@@ -107,7 +107,7 @@ static NSString *ID = @"GLMemberManagerCell";
         [self endRefresh];
 //        NSLog(@"dict = %@",dict);
 //        NSLog(@"%@",responseObject);
-        if ([responseObject[@"code"] integerValue]==1) {
+        if ([responseObject[@"code"] integerValue] == 1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 
                 for (NSDictionary *dic in responseObject[@"data"]) {
@@ -210,6 +210,15 @@ static NSString *ID = @"GLMemberManagerCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.hidesBottomBarWhenPushed = YES;
     GLConsumerRecordController *consumerVC = [[GLConsumerRecordController alloc] init];
+    
+    if (self.type == 1) {
+        GLMemberModel *model = self.models[indexPath.row];
+        consumerVC.uid = model.uid;
+    }else{
+        GLMemberModel *model = self.modelsone[indexPath.row];
+        consumerVC.uid = model.uid;
+    }
+    
     [self.navigationController pushViewController:consumerVC animated:YES];
 }
 

@@ -38,16 +38,23 @@ static NSString *ID = @"GLConsumerRecordCell";
     //右键自定义
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(0, 0, 80, 44);
-    [rightBtn.titleLabel setFont:[UIFont systemFontOfSize:13]];
-    [rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -40)];
-    [rightBtn setTitle:@"筛选" forState:UIControlStateNormal];
+//    [rightBtn.titleLabel setFont:[UIFont systemFontOfSize:13]];
+//    [rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -40)];
+//    [rightBtn setTitle:@"筛选" forState:UIControlStateNormal];
+    
+//    [button setTitleEdgeInsets:UIEdgeInsetsMake(0, -imgArrow.size.width, 0, imgArrow.size.width)];
+//    [button setImageEdgeInsets:UIEdgeInsetsMake(0, button.titleLabel.bounds.size.width, 0, -button.titleLabel.bounds.size.width)];
+    //    [button setImage:imgArrow forState:UIControlStateNormal];
+    //    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;//(需要何值请参看API文档)
+    [rightBtn setImage:[UIImage imageNamed:@"筛选更多"] forState:UIControlStateNormal];
+    
     [rightBtn addTarget:self action:@selector(filte) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     
     
     [self.tableView registerNib:[UINib nibWithNibName:@"GLConsumerRecordCell" bundle:nil] forCellReuseIdentifier:ID];
     
-    self.totalIncomeLabel.text = @"     总收益:0     ";
+    self.totalIncomeLabel.text = @"¥ ";
     self.totalIncomeLabel.layer.cornerRadius = 5.f;
  
     [self setPopMenu];
@@ -107,7 +114,7 @@ static NSString *ID = @"GLConsumerRecordCell";
     /**
      *  创建普通的MenuView，frame可以传递空值，宽度默认120，高度自适应
      */
-    [CommonMenuView createMenuWithFrame:CGRectMake(0, 0, 130, 0) target:self dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
+    [CommonMenuView createMenuWithFrame:CGRectMake(0, 0, 100, 0) target:self dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
         [weakSelf doSomething:(NSString *)str tag:(NSInteger)tag]; // do something
     } backViewTap:^{
         weakSelf.flag = YES; // 这里的目的是，让rightButton点击，可再次pop出menu
@@ -131,7 +138,7 @@ static NSString *ID = @"GLConsumerRecordCell";
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"uid"] = self.uid;
     dict[@"type"] = self.type;
     dict[@"shop_type"] = self.shop_type;
     dict[@"page"] = @(self.page);
@@ -143,7 +150,7 @@ static NSString *ID = @"GLConsumerRecordCell";
         [self endRefresh];
 //        NSLog(@"dict = %@",dict);
 //        NSLog(@"%@",responseObject);
-        if ([responseObject[@"code"] integerValue]==1) {
+        if ([responseObject[@"code"] integerValue] == 1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 
                 for (NSDictionary *dic in responseObject[@"data"]) {
@@ -158,9 +165,9 @@ static NSString *ID = @"GLConsumerRecordCell";
         }
         //总收益Label赋值
         if ([responseObject[@"total_money"] floatValue] > 10000) {
-            self.totalIncomeLabel.text = [NSString stringWithFormat:@"     总收益:%.2f万     ",[responseObject[@"total_money"] floatValue] / 10000];
+            self.totalIncomeLabel.text = [NSString stringWithFormat:@"¥ %.2f万",[responseObject[@"total_money"] floatValue] / 10000];
         }else{
-            self.totalIncomeLabel.text = [NSString stringWithFormat:@"     总收益:%@     ",responseObject[@"total_money"]];
+            self.totalIncomeLabel.text = [NSString stringWithFormat:@"¥ %@",responseObject[@"total_money"]];
         }
         //nodata图片展示
         if (self.models.count <= 0 ) {
