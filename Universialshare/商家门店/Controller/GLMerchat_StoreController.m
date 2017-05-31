@@ -140,6 +140,10 @@ static NSString *ID = @"GLMerchat_StoreCell";
 
 - (IBAction)addStore:(id)sender {
     
+    if([[UserModel defaultUser].is_main integerValue] == 1){
+        [MBProgressHUD showError:@"分店不能开通门店"];
+        return;
+    }
     self.hidesBottomBarWhenPushed = YES;
     GLAddStoreController *addVC = [[GLAddStoreController alloc] init];
     [self.navigationController pushViewController:addVC animated:YES];

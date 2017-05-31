@@ -29,8 +29,23 @@
 - (void)setModel:(GLMemberConsumerModel *)model{
     _model = model;
     self.nameLabel.text = model.goods_name;
-    self.priceLabel.text = model.fh_price;
-    self.consumerSumLabel.text = model.total_price;
-    self.consumerDateLabel.text = model.addtime;
+    self.priceLabel.text = [NSString stringWithFormat:@"分红:¥ %@",model.fh_price];
+    self.consumerSumLabel.text = [NSString stringWithFormat:@"消费:¥ %@", model.total_price];
+    
+    NSDateFormatter *fm = [[NSDateFormatter alloc] init];
+    [fm setDateFormat:@"yyyy-MM-dd"];
+    
+    NSDate *date = [fm dateFromString:model.addtime];
+    self.consumerDateLabel.text = [NSString stringWithFormat:@"%@",date];
+    
+    if ([model.rl_type integerValue] == 1) {//20%
+        self.typeImageV.image = [UIImage imageNamed:@""];
+        
+    }else if ([model.rl_type integerValue] == 2){//10%
+        self.typeImageV.image = [UIImage imageNamed:@""];
+        
+    }else{//5%
+        self.typeImageV.image = [UIImage imageNamed:@""];
+    }
 }
 @end

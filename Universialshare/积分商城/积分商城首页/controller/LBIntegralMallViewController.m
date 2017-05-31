@@ -23,6 +23,8 @@
 #import "GLCityChooseController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
+#import "GLIntegralMall_SearchController.h"
+
 @interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 {
     UIImageView *_imageviewLeft;
@@ -97,6 +99,9 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 
 - (void)postRequest{
 
+    [self.hotModels removeAllObjects];
+    [self.interestModels removeAllObjects];
+    
     [NetworkManager requestPOSTWithURLStr:@"index/banner_list" paramDic:@{@"type":@"6"} finish:^(id responseObject) {
 
         if ([responseObject[@"code"] integerValue] == 1){
@@ -138,9 +143,9 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
         [self endRefresh];
 //        NSLog(@"responseObject = %@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1){
-            for (NSDictionary *dict in responseObject[@"data"][@"mall_tabe"]) {
+            for (NSDictionary *dic in responseObject[@"data"][@"mall_tabe"]) {
                 
-                GLMallHotModel *model = [GLMallHotModel mj_objectWithKeyValues:dict];
+                GLMallHotModel *model = [GLMallHotModel mj_objectWithKeyValues:dic];
                 [_hotModels addObject:model];
             }
             for (NSDictionary *dic in responseObject[@"data"][@"inte_list"]) {
@@ -190,6 +195,12 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
         GLIntegraClassifyController *classifyVC = [[GLIntegraClassifyController alloc] init];
         [self.navigationController pushViewController:classifyVC animated:YES];
     }
+    self.hidesBottomBarWhenPushed = NO;
+}
+- (IBAction)search:(id)sender {
+    self.hidesBottomBarWhenPushed = YES;
+    GLIntegralMall_SearchController *search = [[GLIntegralMall_SearchController alloc] init];
+    [self.navigationController pushViewController:search animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
 

@@ -274,9 +274,7 @@
         _namelebel.textAlignment=NSTextAlignmentCenter;
         _namelebel.numberOfLines=0;
         [_namelebel sizeToFit];
-        
     }
-    
     return _namelebel;
     
 }
@@ -302,8 +300,8 @@
         _titleArr=[NSArray arrayWithObjects:@"米卷",@"积分",@"米子",@"推荐米子",@"上个激励日", nil];
     }
 return _titleArr;
+    
 }
-
 
 -(UIButton*)CollectinGoodsBt{
     
