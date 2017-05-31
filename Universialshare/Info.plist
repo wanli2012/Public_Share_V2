@@ -4,7 +4,8 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Zapfino.ttf</string>
+		<string>Arial Black.ttf</string>
+		<string>Cochin.ttc</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

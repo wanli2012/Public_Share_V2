@@ -24,5 +24,4 @@
 
 @property (nonatomic, assign)NSInteger pushIndex;//记录从哪个控制器push的 1:积分商城确认订单  2:我的-订单
 
-
 @end

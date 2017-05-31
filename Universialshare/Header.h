@@ -25,8 +25,10 @@
 
 #define URL_Base @"http://192.168.0.190/V2/DZGX/index.php/app/"
 //#define URL_Base @"https://www.51dztg.com/index.php/app/"
-
+//下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1228047806?mt=8"
+//关于我们网址
+#define ABOUTUS_URL @"https://www.51dztg.com/hyjm/hyjm.html"
 //米家
 #define OrdinaryUser @"10"
 //米商
