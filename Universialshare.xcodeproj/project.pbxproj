@@ -751,6 +751,12 @@
 		F92DA0191ECDA163004CBAA8 /* MenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA0151ECDA163004CBAA8 /* MenuModel.m */; };
 		F92DA01A1ECDA163004CBAA8 /* UIView+AdjustFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA0171ECDA163004CBAA8 /* UIView+AdjustFrame.m */; };
 		F92DA01D1ECDA177004CBAA8 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA01C1ECDA177004CBAA8 /* MenuTableViewCell.m */; };
+		F92ED4931EDE5E3A00B3B3DB /* Cochin.ttc in Resources */ = {isa = PBXBuildFile; fileRef = F92ED4921EDE5E3A00B3B3DB /* Cochin.ttc */; };
+		F92ED4951EDE603B00B3B3DB /* Arial Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F92ED4941EDE603B00B3B3DB /* Arial Black.ttf */; };
+		F92ED4991EDE6D5900B3B3DB /* LBHomeIncomeFristViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F92ED4971EDE6D5900B3B3DB /* LBHomeIncomeFristViewController.m */; };
+		F92ED49A1EDE6D5900B3B3DB /* LBHomeIncomeFristViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92ED4981EDE6D5900B3B3DB /* LBHomeIncomeFristViewController.xib */; };
+		F92ED49E1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F92ED49C1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.m */; };
+		F92ED49F1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92ED49D1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.xib */; };
 		F93F84D21E9F02C500F76E0B /* loadWait.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F93F84D11E9F02C500F76E0B /* loadWait.xcassets */; };
 		F9434D4D1EC16D78001C80A4 /* LBMineCenterRegionQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9434D471EC16D78001C80A4 /* LBMineCenterRegionQueryViewController.m */; };
 		F9434D4E1EC16D78001C80A4 /* LBMineCenterRegionQueryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9434D481EC16D78001C80A4 /* LBMineCenterRegionQueryViewController.xib */; };
@@ -837,7 +843,6 @@
 		F95E83661ED7C48800E60F46 /* LBHomeIncomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95E83651ED7C48800E60F46 /* LBHomeIncomeView.m */; };
 		F95E83691ED7D1A900E60F46 /* LBincomeHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95E83681ED7D1A900E60F46 /* LBincomeHeaderFooterView.m */; };
 		F95E836C1ED7F93E00E60F46 /* LBIncomeChooseHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95E836B1ED7F93E00E60F46 /* LBIncomeChooseHeaderFooterView.m */; };
-		F95E836E1ED85C0B00E60F46 /* Zapfino.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F95E836D1ED85C0B00E60F46 /* Zapfino.ttf */; };
 		F95E83711ED85F3400E60F46 /* WSShiningLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F95E83701ED85F3400E60F46 /* WSShiningLabel.m */; };
 		F961A9C81E9C747700275F52 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F961A9C51E9C747700275F52 /* UserModel.m */; };
 		F961A9C91E9C747700275F52 /* usermodelachivar.m in Sources */ = {isa = PBXBuildFile; fileRef = F961A9C71E9C747700275F52 /* usermodelachivar.m */; };
@@ -2250,6 +2255,14 @@
 		F92DA0171ECDA163004CBAA8 /* UIView+AdjustFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AdjustFrame.m"; sourceTree = "<group>"; };
 		F92DA01B1ECDA177004CBAA8 /* MenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewCell.h; sourceTree = "<group>"; };
 		F92DA01C1ECDA177004CBAA8 /* MenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewCell.m; sourceTree = "<group>"; };
+		F92ED4921EDE5E3A00B3B3DB /* Cochin.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cochin.ttc; sourceTree = "<group>"; };
+		F92ED4941EDE603B00B3B3DB /* Arial Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Arial Black.ttf"; sourceTree = "<group>"; };
+		F92ED4961EDE6D5900B3B3DB /* LBHomeIncomeFristViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBHomeIncomeFristViewController.h; sourceTree = "<group>"; };
+		F92ED4971EDE6D5900B3B3DB /* LBHomeIncomeFristViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBHomeIncomeFristViewController.m; sourceTree = "<group>"; };
+		F92ED4981EDE6D5900B3B3DB /* LBHomeIncomeFristViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBHomeIncomeFristViewController.xib; sourceTree = "<group>"; };
+		F92ED49B1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBHomeIncomesecondViewController.h; sourceTree = "<group>"; };
+		F92ED49C1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBHomeIncomesecondViewController.m; sourceTree = "<group>"; };
+		F92ED49D1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBHomeIncomesecondViewController.xib; sourceTree = "<group>"; };
 		F93F84D11E9F02C500F76E0B /* loadWait.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = loadWait.xcassets; sourceTree = "<group>"; };
 		F9434D461EC16D78001C80A4 /* LBMineCenterRegionQueryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterRegionQueryViewController.h; sourceTree = "<group>"; };
 		F9434D471EC16D78001C80A4 /* LBMineCenterRegionQueryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterRegionQueryViewController.m; sourceTree = "<group>"; };
@@ -2381,7 +2394,6 @@
 		F95E83681ED7D1A900E60F46 /* LBincomeHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBincomeHeaderFooterView.m; sourceTree = "<group>"; };
 		F95E836A1ED7F93E00E60F46 /* LBIncomeChooseHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBIncomeChooseHeaderFooterView.h; sourceTree = "<group>"; };
 		F95E836B1ED7F93E00E60F46 /* LBIncomeChooseHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBIncomeChooseHeaderFooterView.m; sourceTree = "<group>"; };
-		F95E836D1ED85C0B00E60F46 /* Zapfino.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zapfino.ttf; sourceTree = "<group>"; };
 		F95E836F1ED85F3400E60F46 /* WSShiningLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSShiningLabel.h; sourceTree = "<group>"; };
 		F95E83701ED85F3400E60F46 /* WSShiningLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSShiningLabel.m; sourceTree = "<group>"; };
 		F961A9C41E9C747700275F52 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
@@ -4480,6 +4492,12 @@
 				F95E835F1ED7B7E700E60F46 /* LBHomeIncomeViewController.h */,
 				F95E83601ED7B7E700E60F46 /* LBHomeIncomeViewController.m */,
 				F95E83611ED7B7E700E60F46 /* LBHomeIncomeViewController.xib */,
+				F92ED4961EDE6D5900B3B3DB /* LBHomeIncomeFristViewController.h */,
+				F92ED4971EDE6D5900B3B3DB /* LBHomeIncomeFristViewController.m */,
+				F92ED4981EDE6D5900B3B3DB /* LBHomeIncomeFristViewController.xib */,
+				F92ED49B1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.h */,
+				F92ED49C1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.m */,
+				F92ED49D1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4776,7 +4794,8 @@
 				F923082E1E9B8B6B00ECDC94 /* Address.plist */,
 				F906201D1E83CBAD0080E9D9 /* universialshare.pch */,
 				F906201F1E83CC900080E9D9 /* Header.h */,
-				F95E836D1ED85C0B00E60F46 /* Zapfino.ttf */,
+				F92ED4921EDE5E3A00B3B3DB /* Cochin.ttc */,
+				F92ED4941EDE603B00B3B3DB /* Arial Black.ttf */,
 				F95150881EC06F9100BDCF53 /* https.cer */,
 				F9061FCB1E83C4720080E9D9 /* Supporting Files */,
 			);
@@ -6258,6 +6277,7 @@
 				F92309421E9B8BFF00ECDC94 /* LBMineCenterseverceNoticeTableViewCell.xib in Resources */,
 				4A4610311E9CC6360045824F /* README.txt in Resources */,
 				F923091D1E9B8BFF00ECDC94 /* LBMineCenterMyBalanceViewController.xib in Resources */,
+				F92ED4931EDE5E3A00B3B3DB /* Cochin.ttc in Resources */,
 				4A4610321E9CC6360045824F /* iOS-social-analytics-releasenote.html in Resources */,
 				F92309881E9B8BFF00ECDC94 /* LBMineCenterPriviteInfoViewController.xib in Resources */,
 				F91029C71EC5835B00246D04 /* LBMySalesmanListAuditViewController.xib in Resources */,
@@ -6335,6 +6355,7 @@
 				F923092D1E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeDetailViewController.xib in Resources */,
 				F966B3E81EAC7E7B007260FC /* LBMySalesmanListViewController.xib in Resources */,
 				4A4609FF1E9CB78E0045824F /* GLDonationRecordCell.xib in Resources */,
+				F92ED4951EDE603B00B3B3DB /* Arial Black.ttf in Resources */,
 				F92309781E9B8BFF00ECDC94 /* LBMineCentermodifyAdressViewController.xib in Resources */,
 				4AAD25591EC188D70054FD06 /* GLDirectDnationRecordCell.xib in Resources */,
 				F951C7751EB0C4AA0014A71D /* LBBelowTheLineViewController.xib in Resources */,
@@ -6429,7 +6450,6 @@
 				4AA0D5A51EAEEC0600CB8F77 /* GLIntegralHeaderView.xib in Resources */,
 				F966B3F31EAC7FBA007260FC /* LBNybusinessListTableViewCell.xib in Resources */,
 				4AA0D5D61EAF3B3E00CB8F77 /* GLClassifyHeaderView.xib in Resources */,
-				F95E836E1ED85C0B00E60F46 /* Zapfino.ttf in Resources */,
 				4A2F52221EC7084100ECA95D /* GLHourseDetailFirstCell.xib in Resources */,
 				4AAD253C1EC188C90054FD06 /* GLBankCardCellTableViewCell.xib in Resources */,
 				F92309481E9B8BFF00ECDC94 /* LBMineMessageHotPickTableViewCell.xib in Resources */,
@@ -6445,6 +6465,7 @@
 				4A3D17BB1ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.xib in Resources */,
 				F94D31E31EAF716D00309029 /* LBMineCenterReceivingGoodsViewController.xib in Resources */,
 				4A2F520E1EC7084000ECA95D /* GLHomeLiveChooseController.xib in Resources */,
+				F92ED49A1EDE6D5900B3B3DB /* LBHomeIncomeFristViewController.xib in Resources */,
 				F92309931E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.xib in Resources */,
 				F966B4101EACB0C0007260FC /* LBSaleManPersonInfoViewController.xib in Resources */,
 				4AAD253E1EC188C90054FD06 /* GLBuyBackChooseBankView.xib in Resources */,
@@ -6474,6 +6495,7 @@
 				F966B3B71EAC3BB8007260FC /* LBMineCenterOrderDetailOneTableViewCell.xib in Resources */,
 				4A4610211E9CC6360045824F /* UMSCommentInputController.xib in Resources */,
 				4A2F52201EC7084100ECA95D /* GLHourseChangeNumCell.xib in Resources */,
+				F92ED49F1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.xib in Resources */,
 				F95E83631ED7B7E700E60F46 /* LBHomeIncomeViewController.xib in Resources */,
 				F923097A1E9B8BFF00ECDC94 /* LBMineCenterAccountSafeViewController.xib in Resources */,
 				F9121B1E1EB1DC4F00DAB7A2 /* LBMineStoreOrderingOneTableViewCell.xib in Resources */,
@@ -6719,6 +6741,7 @@
 				F92309571E9B8BFF00ECDC94 /* LBMyOrderPendingRefundViewController.m in Sources */,
 				4A4610A41E9CC6360045824F /* ZXDataMatrixTextEncoder.m in Sources */,
 				F9643F161ECFE74E001B707B /* TYAlertScaleFadeAnimation.m in Sources */,
+				F92ED49E1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.m in Sources */,
 				F91274971EA0E5E300B7A539 /* LBMineStoreOrderingViewController.m in Sources */,
 				F92309531E9B8BFF00ECDC94 /* LBMyOrderPendingEvaluationViewController.m in Sources */,
 				4A07A88C1EA0BBF1005A9B67 /* GLNoneOfDonationCell.m in Sources */,
@@ -6952,6 +6975,7 @@
 				F9434D4D1EC16D78001C80A4 /* LBMineCenterRegionQueryViewController.m in Sources */,
 				4A4610601E9CC6360045824F /* ZXSMSTOMMSTOResultParser.m in Sources */,
 				4A4610941E9CC6360045824F /* ZXDataMatrixBitMatrixParser.m in Sources */,
+				F92ED4991EDE6D5900B3B3DB /* LBHomeIncomeFristViewController.m in Sources */,
 				4A4610781E9CC6360045824F /* ZXBitArray.m in Sources */,
 				F958C07F1EA4615A003C9CFB /* LBMineCenterUsualUnderOrderTableViewCell.m in Sources */,
 				F92309341E9B8BFF00ECDC94 /* LBMineMessageSeviceViewController.m in Sources */,

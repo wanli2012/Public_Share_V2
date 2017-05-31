@@ -10,6 +10,7 @@
 #import "LBMineCentermodifyAdressViewController.h"
 #import "LBMineCenterAccountSafeViewController.h"
 #import "GLSetup_VersionInfoController.h"
+#import "LBViewProtocolViewController.h"
 
 #define PATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0]
 
@@ -18,10 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *exitBt;
 @property (weak, nonatomic) IBOutlet UILabel *momeryLb;
 @property (weak, nonatomic) IBOutlet UILabel *verionLb;
-
 @property (nonatomic , assign)float folderSize;//缓存
-
-
 
 @end
 
@@ -89,6 +87,11 @@
 //关于
 - (IBAction)aboutUs:(UITapGestureRecognizer *)sender {
     
+    self.hidesBottomBarWhenPushed = YES;
+    LBViewProtocolViewController *vc=[[LBViewProtocolViewController alloc]init];
+    vc.webUrl = ABOUTUS_URL;
+    vc.navTitle = @"关于我们";
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 //退出登录

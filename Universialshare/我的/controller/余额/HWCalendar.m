@@ -475,7 +475,6 @@
 {
     [self dismiss];
     
-
     if (self.returnCancel) {
         self.returnCancel();
     }
@@ -485,7 +484,7 @@
 - (void)show
 {
     [UIView animateWithDuration:0.3f animations:^{
-        self.frame = CGRectMake(0, 140, SCREEN_WIDTH , self.bounds.size.height);
+        self.frame = CGRectMake(0,(SCREEN_HEIGHT - self.bounds.size.height)/2 , SCREEN_WIDTH , self.bounds.size.height);
     }];
 }
 
