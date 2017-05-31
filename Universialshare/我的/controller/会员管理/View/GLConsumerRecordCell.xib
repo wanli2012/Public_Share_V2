@@ -15,10 +15,10 @@
             <rect key="frame" x="0.0" y="0.0" width="322" height="109"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="322" height="109"/>
+                <rect key="frame" x="0.0" y="0.0" width="322" height="108"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="XRPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="pRp-yE-jHX">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图" translatesAutoresizingMaskIntoConstraints="NO" id="pRp-yE-jHX">
                         <rect key="frame" x="10" y="10" width="90" height="99"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="90" id="nh9-Oa-0Ob"/>
@@ -56,11 +56,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hNa-mo-Nbn">
-                        <rect key="frame" x="70" y="10" width="30" height="30"/>
-                        <color key="backgroundColor" red="0.1002232143" green="0.7162946429" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <rect key="frame" x="65" y="10" width="35" height="31"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="Waw-9h-v4J"/>
-                            <constraint firstAttribute="height" constant="30" id="nby-ah-Uc4"/>
+                            <constraint firstAttribute="width" constant="35" id="Waw-9h-v4J"/>
+                            <constraint firstAttribute="height" constant="31" id="nby-ah-Uc4"/>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -95,6 +95,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="XRPlaceholder" width="391" height="220"/>
+        <image name="图" width="87" height="77"/>
     </resources>
 </document>

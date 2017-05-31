@@ -39,23 +39,24 @@
                             </connections>
                         </button>
                         <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nvE-Dv-9XJ">
-                            <rect key="frame" x="80" y="25" width="215" height="34"/>
+                            <rect key="frame" x="65" y="30" width="245" height="24"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="搜索" translatesAutoresizingMaskIntoConstraints="NO" id="kXl-7B-JdK">
-                                    <rect key="frame" x="10" y="10" width="14" height="14"/>
+                                    <rect key="frame" x="10" y="5" width="14" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="kXl-7B-JdK" secondAttribute="height" multiplier="1:1" id="c33-BW-UuD"/>
                                         <constraint firstAttribute="width" constant="14" id="xjS-kf-p3c"/>
                                     </constraints>
                                 </imageView>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入商品名或ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2QJ-6J-qo6">
-                                    <rect key="frame" x="34" y="0.0" width="181" height="34"/>
+                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入商品名或ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2QJ-6J-qo6">
+                                    <rect key="frame" x="34" y="0.0" width="211" height="24"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="2QJ-6J-qo6" secondAttribute="bottom" id="2vW-Sy-Vg3"/>
                                 <constraint firstItem="2QJ-6J-qo6" firstAttribute="leading" secondItem="kXl-7B-JdK" secondAttribute="trailing" constant="10" id="7ES-Id-sfk"/>
@@ -67,19 +68,22 @@
                                 <constraint firstItem="2QJ-6J-qo6" firstAttribute="top" secondItem="nvE-Dv-9XJ" secondAttribute="top" id="k5D-Uu-Y6s"/>
                                 <constraint firstAttribute="bottom" secondItem="2QJ-6J-qo6" secondAttribute="bottom" id="tEX-TG-YjP"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="9Cl-g0-CcF" appends="YES" id="AqQ-jo-6y4"/>
+                            </connections>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="nvE-Dv-9XJ" secondAttribute="trailing" constant="80" id="2ZI-ug-TfN"/>
                         <constraint firstAttribute="height" constant="64" id="ENy-0f-fdT"/>
+                        <constraint firstItem="nvE-Dv-9XJ" firstAttribute="centerX" secondItem="rCq-8t-XiF" secondAttribute="centerX" id="EtX-oT-CsO"/>
                         <constraint firstItem="nvE-Dv-9XJ" firstAttribute="centerY" secondItem="rJz-37-kmI" secondAttribute="centerY" id="PQa-WZ-233"/>
                         <constraint firstItem="rJz-37-kmI" firstAttribute="leading" secondItem="rCq-8t-XiF" secondAttribute="leading" id="WRc-2j-gCE"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="aCV-vd-Pa1"/>
-                        <constraint firstItem="nvE-Dv-9XJ" firstAttribute="leading" secondItem="rCq-8t-XiF" secondAttribute="leading" constant="80" id="e0n-c2-6oA"/>
+                        <constraint firstItem="nvE-Dv-9XJ" firstAttribute="leading" secondItem="rJz-37-kmI" secondAttribute="trailing" constant="5" id="dsy-95-kSn"/>
                         <constraint firstItem="rJz-37-kmI" firstAttribute="top" secondItem="rCq-8t-XiF" secondAttribute="top" constant="20" id="fdk-DA-tvf"/>
                         <constraint firstAttribute="bottom" secondItem="rJz-37-kmI" secondAttribute="bottom" id="kQU-Zw-9h8"/>
-                        <constraint firstItem="nvE-Dv-9XJ" firstAttribute="height" secondItem="rJz-37-kmI" secondAttribute="height" constant="-10" id="v23-3R-XIs"/>
+                        <constraint firstItem="nvE-Dv-9XJ" firstAttribute="height" secondItem="rJz-37-kmI" secondAttribute="height" constant="-20" id="v23-3R-XIs"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="68p-6h-T6T">
@@ -93,7 +97,6 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="nvE-Dv-9XJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3Hd-Y7-Gex"/>
                 <constraint firstItem="68p-6h-T6T" firstAttribute="top" secondItem="rCq-8t-XiF" secondAttribute="bottom" id="Dh1-J2-aqQ"/>
                 <constraint firstAttribute="trailing" secondItem="rCq-8t-XiF" secondAttribute="trailing" id="Isi-DL-qPr"/>
                 <constraint firstItem="rCq-8t-XiF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="R7H-eD-wAT"/>
@@ -106,6 +109,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="34.5" y="54.5"/>
         </view>
+        <tapGestureRecognizer id="9Cl-g0-CcF">
+            <connections>
+                <action selector="search:" destination="-1" id="TXn-E5-NgX"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="搜索" width="15" height="14"/>

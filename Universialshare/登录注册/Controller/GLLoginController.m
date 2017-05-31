@@ -207,6 +207,7 @@
                 [UserModel defaultUser].shop_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_name"]];
                 [UserModel defaultUser].shop_address = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_address"]];
                 [UserModel defaultUser].shop_type = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_type"]];
+                [UserModel defaultUser].is_main = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"is_main"]];
                 if ([[UserModel defaultUser].shop_name rangeOfString:@"null"].location != NSNotFound) {
                     
                     [UserModel defaultUser].shop_name = @"";
@@ -223,6 +224,7 @@
                 [UserModel defaultUser].shop_name = @"";
                 [UserModel defaultUser].shop_address = @"";
                 [UserModel defaultUser].shop_type = @"";
+                [UserModel defaultUser].is_main = @"";
 
             }
             
