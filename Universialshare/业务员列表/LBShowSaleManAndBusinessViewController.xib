@@ -39,13 +39,13 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbG-hZ-fVs">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbG-hZ-fVs">
                             <rect key="frame" x="299" y="29" width="60" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="Xqd-no-eFw"/>
                                 <constraint firstAttribute="height" constant="30" id="xT7-Q3-6bQ"/>
                             </constraints>
-                            <state key="normal" title="筛选">
+                            <state key="normal" image="筛选更多">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -123,4 +123,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
+    <resources>
+        <image name="筛选更多" width="14" height="3"/>
+    </resources>
 </document>
