@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *consumerSumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *consumerDateLabel;
 
-
 @end
 
 @implementation GLConsumerRecordCell
@@ -33,19 +32,21 @@
     self.consumerSumLabel.text = [NSString stringWithFormat:@"消费:¥ %@", model.total_price];
     
     NSDateFormatter *fm = [[NSDateFormatter alloc] init];
-    [fm setDateFormat:@"yyyy-MM-dd"];
-    
+    [fm setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *date = [fm dateFromString:model.addtime];
-    self.consumerDateLabel.text = [NSString stringWithFormat:@"%@",date];
+    
+    [fm setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateStr = [fm stringFromDate:date];
+    self.consumerDateLabel.text = [NSString stringWithFormat:@"时间:%@",dateStr];
     
     if ([model.rl_type integerValue] == 1) {//20%
-        self.typeImageV.image = [UIImage imageNamed:@""];
+        self.typeImageV.image = [UIImage imageNamed:@"智能20%"];
         
     }else if ([model.rl_type integerValue] == 2){//10%
-        self.typeImageV.image = [UIImage imageNamed:@""];
+        self.typeImageV.image = [UIImage imageNamed:@"智能10%"];
         
     }else{//5%
-        self.typeImageV.image = [UIImage imageNamed:@""];
+        self.typeImageV.image = [UIImage imageNamed:@"智能5%"];
     }
 }
 @end

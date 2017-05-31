@@ -34,6 +34,7 @@ static NSString *ID = @"GLConsumerRecordCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"线上他店";
+    self.automaticallyAdjustsScrollViewInsets = NO;
     //右键自定义
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(0, 0, 80, 44);
@@ -48,34 +49,9 @@ static NSString *ID = @"GLConsumerRecordCell";
     
     self.totalIncomeLabel.text = @"     总收益:0     ";
     self.totalIncomeLabel.layer.cornerRadius = 5.f;
-    
-    NSDictionary *dict1 = @{@"imageName" : @"密码",
-                            @"itemName" : @"线上他店"
-                            };
-    NSDictionary *dict2 = @{@"imageName" : @"密码",
-                            @"itemName" : @"线上本店"
-                            };
-    NSDictionary *dict3 = @{@"imageName" : @"密码",
-                            @"itemName" : @"线下他店"
-                            };
-    NSDictionary *dict4 = @{@"imageName" : @"密码",
-                            @"itemName" : @"线下本店"
-                            };
-    NSArray *dataArray = @[dict1,dict2,dict3,dict4];
-    
-//    _dataArray = dataArray;
-    
-    __weak __typeof(&*self)weakSelf = self;
-    
-    /**
-     *  创建普通的MenuView，frame可以传递空值，宽度默认120，高度自适应
-     */
-    [CommonMenuView createMenuWithFrame:CGRectMake(0, 0, 130, 0) target:self dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
-        [weakSelf doSomething:(NSString *)str tag:(NSInteger)tag]; // do something
-    } backViewTap:^{
-        weakSelf.flag = YES; // 这里的目的是，让rightButton点击，可再次pop出menu
-    }];
-    
+ 
+    [self setPopMenu];
+     __weak __typeof(&*self)weakSelf = self;
     //获取数据
     [self.tableView addSubview:self.nodataV];
     self.nodataV.hidden = YES;
@@ -104,10 +80,38 @@ static NSString *ID = @"GLConsumerRecordCell";
     
     //默认
     self.type = @"1";
-    self.shop_type = @"1";
+    self.shop_type = @"2";
     
     [self updateData:YES];
     
+}
+- (void)setPopMenu {
+    
+    NSDictionary *dict1 = @{@"imageName" : @"",
+                            @"itemName" : @"线上他店"
+                            };
+    NSDictionary *dict2 = @{@"imageName" : @"",
+                            @"itemName" : @"线上本店"
+                            };
+    NSDictionary *dict3 = @{@"imageName" : @"",
+                            @"itemName" : @"线下他店"
+                            };
+    NSDictionary *dict4 = @{@"imageName" : @"",
+                            @"itemName" : @"线下本店"
+                            };
+    NSArray *dataArray = @[dict1,dict2,dict3,dict4];
+    
+    //    _dataArray = dataArray;
+    
+    __weak __typeof(&*self)weakSelf = self;
+    /**
+     *  创建普通的MenuView，frame可以传递空值，宽度默认120，高度自适应
+     */
+    [CommonMenuView createMenuWithFrame:CGRectMake(0, 0, 130, 0) target:self dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
+        [weakSelf doSomething:(NSString *)str tag:(NSInteger)tag]; // do something
+    } backViewTap:^{
+        weakSelf.flag = YES; // 这里的目的是，让rightButton点击，可再次pop出menu
+    }];
 }
 - (void)dealloc{
     

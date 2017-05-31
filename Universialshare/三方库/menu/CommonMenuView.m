@@ -59,7 +59,8 @@
     return self;
 }
 - (void)setUpUI{
-    self.backgroundColor = [UIColor colorWithRed:61/255.0 green:61/255.0 blue:61/255.0 alpha:1];
+//    self.backgroundColor = [UIColor colorWithRed:61/255.0 green:61/255.0 blue:61/255.0 alpha:1];
+    self.backgroundColor = [UIColor whiteColor];
     arrowPointX = self.width * 0.5;
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kTriangleHeight, self.width, self.height)];
     tableView.delegate = self;
