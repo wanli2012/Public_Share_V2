@@ -61,16 +61,15 @@
         _headimage=[[UIImageView alloc]init];
         _headimage.backgroundColor=[UIColor whiteColor];
         _headimage.clipsToBounds = YES;
-        _headimage.layer.cornerRadius = 4 ;
+        _headimage.layer.cornerRadius = 4;
         _headimage.contentMode = UIViewContentModeScaleAspectFill;
         _headimage.userInteractionEnabled = NO;
-        _headimage.image = [UIImage imageNamed:@"熊"];
+        _headimage.image = [UIImage imageNamed:@"总额"];
         
     }
     
     return _headimage;
 }
-
 -(UILabel*)alllebel{
     
     if (!_alllebel) {
