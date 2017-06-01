@@ -10,8 +10,10 @@
 
 @interface GLIncomeManagerModel : NSObject
 
-@property (nonatomic, copy)NSString *name;
+@property (nonatomic, copy)NSString *shop_name;
 
-@property (nonatomic, copy)NSString *address;
+@property (nonatomic, copy)NSString *shop_address;
+
+@property (nonatomic, copy)NSString *total_money;
 
 @end

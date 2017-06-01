@@ -12,4 +12,6 @@
 
 @property (nonatomic, copy)NSString *uid;
 
+@property (nonatomic, copy)NSArray *dataArray;
+
 @end

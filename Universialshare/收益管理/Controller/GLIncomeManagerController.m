@@ -55,8 +55,8 @@ static NSString *ID = @"GLIncomeManagerCell";
     
     [self.tableView registerNib:[UINib nibWithNibName:@"GLIncomeManagerCell" bundle:nil] forCellReuseIdentifier:ID];
     _model = [[GLIncomeManagerModel alloc] init];
-    _model.name = @"你哈也的你大爷街";
-    _model.address = @"天府三街中百大道天府三街中百街中";
+    _model.shop_name = @"你哈也的你大爷街";
+    _model.shop_address = @"天府三街中百大道天府三街中百街中";
     
     [self.view addSubview:self.CalendarView];
     
@@ -148,6 +148,7 @@ static NSString *ID = @"GLIncomeManagerCell";
     dict[@"starttime"] = startTime;
     dict[@"endtime"] = endTime;
     
+    NSLog(@"dict = %@",dict);
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"user/getProfitList" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
@@ -155,8 +156,9 @@ static NSString *ID = @"GLIncomeManagerCell";
         //        NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1) {
             
-            for (NSDictionary *dict in responseObject[@"data"]) {
-                
+            for (NSDictionary *dic in responseObject[@"data"]) {
+                GLIncomeManagerModel *model = [GLIncomeManagerModel mj_objectWithKeyValues:dic];
+                [self.models addObject:model];
             }
 
             
@@ -165,7 +167,12 @@ static NSString *ID = @"GLIncomeManagerCell";
             [MBProgressHUD showError:@"已经没有更多数据了"];
         }
         
-        
+        if (self.models.count <= 0 ) {
+            self.nodataV.hidden = NO;
+        }else{
+            self.nodataV.hidden = YES;
+        }
+
         [self.tableView reloadData];
     } enError:^(NSError *error) {
         [self endRefresh];
@@ -211,13 +218,14 @@ static NSString *ID = @"GLIncomeManagerCell";
 #pragma UITableviewDelegate UITableviewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return self.models.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     GLIncomeManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
-    cell.nameLabel.text = _model.name;
-    cell.addressLabel.text = _model.address;
+//    cell.nameLabel.text = _model.shop_name;
+//    cell.addressLabel.text = _model.shop_address;
+    cell.model = self.models[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -287,6 +295,12 @@ static NSString *ID = @"GLIncomeManagerCell";
         _CalendarView.backgroundColor=YYSRGBColor(0, 0, 0, 0.2);
     }
     return _CalendarView;
+}
+- (NSMutableArray *)models{
+    if (!_models) {
+        _models = [NSMutableArray array];
+    }
+    return _models;
 }
 
 @end

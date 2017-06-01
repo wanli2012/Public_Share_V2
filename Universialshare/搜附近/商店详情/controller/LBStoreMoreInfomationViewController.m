@@ -558,6 +558,7 @@ static const CGFloat headerImageHeight = 180.0f;
     self.hidesBottomBarWhenPushed = YES;
     self.HideNavagation = YES;
     LBPayTheBillViewController *vc=[[LBPayTheBillViewController alloc]init];
+    vc.shop_uid = self.storeId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark -- SDCycleScrollViewDelegate
