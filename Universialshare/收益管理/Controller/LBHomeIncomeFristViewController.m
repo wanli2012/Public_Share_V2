@@ -36,9 +36,11 @@
 @property (strong, nonatomic)NSString *otype;//1线上2线下
 
 @property (strong, nonatomic)NSString *onlineMoney;//线上总额
+@property (assign, nonatomic)BOOL  showSearch;//是否展示搜索
 
 @end
 static NSString *ID = @"GLMerchant_IncomeCell";
+static NSString *searchID = @"LBincomeHeaderFooterView";
 static const CGFloat headerHeight = 0.0f;
 
 @implementation LBHomeIncomeFristViewController
@@ -49,6 +51,7 @@ static const CGFloat headerHeight = 0.0f;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     [self.tableview registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
+
     _page = 1;
     _refreshType = NO;
     self.startStr = @"";
@@ -104,6 +107,8 @@ static const CGFloat headerHeight = 0.0f;
     self.tableview.mj_footer = footer;
     
     [self initdatasource];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showSearchView:) name:@"LBHomeIncomeFristViewController" object:nil];
 }
 
 -(void)initdatasource{
@@ -228,71 +233,62 @@ static const CGFloat headerHeight = 0.0f;
         }else{
             self.nodataV.hidden = YES;
         }
-        if (section == 0) {
-            return self.dataArr.count;
-        }
     
-    return 0;
+    
+    return self.dataArr.count + 1;
+    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    GLMerchant_IncomeCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-        [cell.iamgev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataArr[indexPath.row][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"熊"]];
-        cell.namelb.text = [NSString stringWithFormat:@"商品名:%@",self.dataArr[indexPath.row][@"goods_name"]];
-        cell.codelb.text = [NSString stringWithFormat:@"数量:%@",self.dataArr[indexPath.row][@"goods_num"]];
-        cell.orderlb.text = [NSString stringWithFormat:@"让利模式:%@",self.dataArr[indexPath.row][@"rl_type"]];
+    if ( indexPath.row == 0) {
+        LBincomeHeaderFooterView *cell = [tableView dequeueReusableCellWithIdentifier:searchID];
+        if (!cell) {
+            cell = [[LBincomeHeaderFooterView alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:searchID];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegete = self;
         
-        if ([self.dataArr[indexPath.row][@"rl_money"] integerValue] <= 10000) {
-            cell.rlbael.text = [NSString stringWithFormat:@"让利额:¥%@",self.dataArr[indexPath.row][@"rl_money"]];
+        if (self.showSearch == YES) {
+            cell.hidden = NO;
+        }else{
+           cell.hidden = YES;
+        }
+        return cell;
+    }else{
+        GLMerchant_IncomeCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        [cell.iamgev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataArr[indexPath.row-1][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"熊"]];
+        cell.namelb.text = [NSString stringWithFormat:@"商品名:%@",self.dataArr[indexPath.row-1][@"goods_name"]];
+        cell.codelb.text = [NSString stringWithFormat:@"数量:%@",self.dataArr[indexPath.row-1][@"goods_num"]];
+        cell.orderlb.text = [NSString stringWithFormat:@"让利模式:%@",self.dataArr[indexPath.row-1][@"rl_type"]];
+        
+        if ([self.dataArr[indexPath.row-1][@"rl_money"] integerValue] <= 10000) {
+            cell.rlbael.text = [NSString stringWithFormat:@"让利额:¥%@",self.dataArr[indexPath.row-1][@"rl_money"]];
         }else{
             
-            cell.rlbael.text = [NSString stringWithFormat:@"让利额: ¥%.2f万",[self.dataArr[indexPath.row][@"rl_money"] floatValue] / 10000];
+            cell.rlbael.text = [NSString stringWithFormat:@"让利额: ¥%.2f万",[self.dataArr[indexPath.row-1][@"rl_money"] floatValue] / 10000];
         }
-        if ([self.dataArr[indexPath.row][@"total_money"] integerValue] <= 10000) {
-            cell.moneylb.text = [NSString stringWithFormat:@"价格:¥%@",self.dataArr[indexPath.row][@"total_money"]];
+        if ([self.dataArr[indexPath.row-1][@"total_money"] integerValue] <= 10000) {
+            cell.moneylb.text = [NSString stringWithFormat:@"价格:¥%@",self.dataArr[indexPath.row-1][@"total_money"]];
         }else{
             
-            cell.moneylb.text = [NSString stringWithFormat:@"价格: ¥%.2f万",[self.dataArr[indexPath.row][@"total_money"] floatValue] / 10000];
+            cell.moneylb.text = [NSString stringWithFormat:@"价格: ¥%.2f万",[self.dataArr[indexPath.row-1][@"total_money"] floatValue] / 10000];
         }
-    return cell;
+        return cell;
+    }
+
+    return [[UITableViewCell alloc]init];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    if (self.showSearch == YES && indexPath.row == 0) {
+        return 50;
+    }else if (self.showSearch == NO && indexPath.row == 0){
+        return 0;
+    }
     return 100;
     
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
-    return 50;
-    
-}
-
-
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-        LBincomeHeaderFooterView *headerview = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LBincomeHeaderFooterView"];
-        if (!headerview) {
-            headerview = [[LBincomeHeaderFooterView alloc] initWithReuseIdentifier:@"LBincomeHeaderFooterView"];
-            
-        }
-        headerview.delegete = self;
-
-            if ([self.startStr isEqualToString:@""]) {
-                [headerview.startBt setTitle:@"请选择开始时间" forState:UIControlStateNormal];
-            }else{
-                [headerview.startBt setTitle:self.startStr forState:UIControlStateNormal];
-            }
-            if ([self.endStr isEqualToString:@""]) {
-                [headerview.endBt setTitle:@"请选择结束时间" forState:UIControlStateNormal];
-            }else{
-                [headerview.endBt setTitle:self.endStr forState:UIControlStateNormal];
-            }
-        
-        return headerview;
 }
 
 #pragma mark ----- LBincomeHeaderdelegete
@@ -405,6 +401,24 @@ static const CGFloat headerHeight = 0.0f;
         self.backbutton.hidden = YES;
     }
     
+}
+
+-(void)showSearchView:(NSNotification*)noti{
+
+    NSDictionary *dic = noti.userInfo;
+    BOOL b=[dic[@"show"]boolValue];
+     self.showSearch = b;
+    if (b == YES) {
+         [self.tableview reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0], nil] withRowAnimation:UITableViewRowAnimationRight];
+    }else{
+        self.startStr = @"";
+        self.endStr = @"";
+        self.refreshType =NO;
+        self.page =1;
+        [self initdatasource];
+        [self.tableview reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0], nil] withRowAnimation:UITableViewRowAnimationRight];
+    }
+   
 }
 
 -(LBHomeIncomeView*)headview{

@@ -198,8 +198,8 @@
 //        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
           [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
 //        [SVProgressHUD setCornerRadius:8.0];
-
         
+
     }success:^(NSURLSessionDataTask *task, id responseObject) {
         [SVProgressHUD dismiss];
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];

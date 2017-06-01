@@ -69,8 +69,8 @@
     
     
     _buttonedt=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 60)];
-    [_buttonedt setTitle:@"筛选" forState:UIControlStateNormal];
-    [_buttonedt setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -10)];
+    [_buttonedt setImage:[UIImage imageNamed:@"筛选更多"] forState:UIControlStateNormal];
+    [_buttonedt setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 0, -5)];
     _buttonedt.titleLabel.font = [UIFont systemFontOfSize:14];
     [_buttonedt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_buttonedt addTarget:self action:@selector(chooseevent) forControlEvents:UIControlEventTouchUpInside];

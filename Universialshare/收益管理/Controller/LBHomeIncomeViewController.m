@@ -16,6 +16,11 @@
 @property (strong, nonatomic)LBHomeIncomesecondViewController *secondVc;
 @property (strong, nonatomic)UIViewController *currentVC;
 
+@property (assign, nonatomic)BOOL firstBool;
+@property (assign, nonatomic)BOOL secondBool;
+@property (weak, nonatomic) IBOutlet UIButton *chooseBt;
+
+
 @end
 
 @implementation LBHomeIncomeViewController
@@ -34,20 +39,24 @@
     //设置默认控制器为fristVc
     self.currentVC = self.fristVc;
     [self.view addSubview:self.fristVc.view];
+    
+    self.firstBool = NO;
+    self.secondBool =NO;
 }
 
 - (IBAction)segmentEvent:(UISegmentedControl *)sender {
     
     switch (sender.selectedSegmentIndex) {
         case 0:
+            self.chooseBt.selected = self.firstBool;
             [self replaceFromOldViewController:self.secondVc toNewViewController:self.fristVc];
             break;
         case 1:
+            self.chooseBt.selected = self.secondBool;
             [self replaceFromOldViewController:self.fristVc toNewViewController:self.secondVc];
             break;
         default:
             break;
-            
     }
     
 }
@@ -77,5 +86,19 @@
             }
         }];
     }
+
+
+- (IBAction)searchEvent:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (self.currentVC == self.fristVc) {
+        self.firstBool = sender.selected;
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"LBHomeIncomeFristViewController" object:nil userInfo:@{@"show":[NSNumber numberWithBool:sender.selected]}];
+    }else{
+        self.secondBool = sender.selected;
+      [[NSNotificationCenter defaultCenter]postNotificationName:@"LBHomeIncomesecondViewController" object:nil userInfo:@{@"show":[NSNumber numberWithBool:sender.selected]}];
+    }
+    
+}
+
 
 @end

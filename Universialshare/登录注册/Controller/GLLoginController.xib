@@ -96,10 +96,10 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hv1-np-xFU">
-                            <rect key="frame" x="30" y="225" width="275" height="35"/>
+                            <rect key="frame" x="10" y="230" width="315" height="45"/>
                             <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="35" id="ZNX-UJ-ElF"/>
+                                <constraint firstAttribute="height" constant="45" id="ZNX-UJ-ElF"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="登  录">
@@ -111,7 +111,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRe-Bg-0e7">
-                            <rect key="frame" x="30" y="280" width="275" height="35"/>
+                            <rect key="frame" x="10" y="295" width="315" height="45"/>
                             <color key="backgroundColor" red="0.77709561589999998" green="0.19865089650000001" blue="0.056773729619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="注  册">
@@ -151,7 +151,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="Hv1-np-xFU" firstAttribute="leading" secondItem="6Jn-r6-mkG" secondAttribute="leading" constant="30" id="1TD-lD-7ZY"/>
+                        <constraint firstItem="Hv1-np-xFU" firstAttribute="leading" secondItem="6Jn-r6-mkG" secondAttribute="leading" constant="10" id="1TD-lD-7ZY"/>
                         <constraint firstItem="KVO-gV-ihj" firstAttribute="height" secondItem="zxk-kR-rPG" secondAttribute="height" id="39L-yL-GIP"/>
                         <constraint firstItem="CAy-Ks-J5I" firstAttribute="leading" secondItem="SAc-6M-vsf" secondAttribute="trailing" constant="20" id="8Qp-g5-5K5"/>
                         <constraint firstItem="SAc-6M-vsf" firstAttribute="top" secondItem="xFo-Xk-3GM" secondAttribute="bottom" constant="10" id="A3O-bu-mR3"/>
@@ -167,8 +167,8 @@
                         <constraint firstItem="hev-LI-5dm" firstAttribute="leading" secondItem="6Jn-r6-mkG" secondAttribute="leading" constant="10" id="Ofu-cn-C4Q"/>
                         <constraint firstItem="mRe-Bg-0e7" firstAttribute="top" secondItem="Hv1-np-xFU" secondAttribute="bottom" constant="20" id="SiQ-VB-xf4"/>
                         <constraint firstItem="xFo-Xk-3GM" firstAttribute="top" secondItem="KVO-gV-ihj" secondAttribute="bottom" constant="10" id="Tre-ZH-DuY"/>
-                        <constraint firstAttribute="trailing" secondItem="Hv1-np-xFU" secondAttribute="trailing" constant="30" id="Zqx-X1-tji"/>
-                        <constraint firstItem="Hv1-np-xFU" firstAttribute="top" secondItem="2N6-Vj-ynp" secondAttribute="bottom" constant="20" id="bwm-SK-xYK"/>
+                        <constraint firstAttribute="trailing" secondItem="Hv1-np-xFU" secondAttribute="trailing" constant="10" id="Zqx-X1-tji"/>
+                        <constraint firstItem="Hv1-np-xFU" firstAttribute="top" secondItem="2N6-Vj-ynp" secondAttribute="bottom" constant="25" id="bwm-SK-xYK"/>
                         <constraint firstItem="SAc-6M-vsf" firstAttribute="centerX" secondItem="zxk-kR-rPG" secondAttribute="centerX" id="iBC-Lt-Slf"/>
                         <constraint firstItem="mRe-Bg-0e7" firstAttribute="height" secondItem="Hv1-np-xFU" secondAttribute="height" id="iXs-Vy-MAq"/>
                         <constraint firstItem="zxk-kR-rPG" firstAttribute="leading" secondItem="6Jn-r6-mkG" secondAttribute="leading" constant="20" id="jcU-sB-abP"/>

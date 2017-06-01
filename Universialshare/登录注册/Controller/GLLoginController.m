@@ -62,8 +62,23 @@
     UITapGestureRecognizer *ThreeVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(threeSalerViewgesture)];
     [self.loginView.threeView addGestureRecognizer:ThreeVgesture];
     
-    
     self.currentloginViewimage = self.loginView.shangImage;
+    
+//    CAGradientLayer *layer = [CAGradientLayer new];
+//    //colors存放渐变的颜色的数组
+//    layer.colors=@[(__bridge id)[UIColor whiteColor].CGColor,(__bridge id)TABBARTITLE_COLOR.CGColor,(__bridge id)[UIColor whiteColor].CGColor];
+//    layer.startPoint = CGPointMake(0.5, 0);
+//    layer.endPoint = CGPointMake(0.5, 1);
+//    layer.frame = self.loginBtn.bounds;
+//    [self.loginBtn.layer addSublayer:layer];
+//    
+//    CAGradientLayer *layera = [CAGradientLayer new];
+//    //colors存放渐变的颜色的数组
+//    layera.colors=@[(__bridge id)[UIColor whiteColor].CGColor,(__bridge id)YYSRGBColor(198, 51, 14, 1).CGColor,(__bridge id)[UIColor whiteColor].CGColor];
+//    layera.startPoint = CGPointMake(0.5, 0);
+//    layera.endPoint = CGPointMake(0.5, 1);
+//    layera.frame = self.registerBtn.bounds;
+//    [self.registerBtn.layer addSublayer:layera];
     
 }
 
@@ -107,6 +122,10 @@
     
     [self.view addSubview:self.maskView];
     [self.view addSubview:self.loginView];
+    self.loginView.transform = CGAffineTransformMakeScale(0.7, 0.7);
+    [UIView animateWithDuration:1.0 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0.2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.loginView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+    } completion:nil];
     
 }
 //隐藏或显示图片
@@ -359,6 +378,7 @@
     self.loginView.sureBt.clipsToBounds = YES;
     self.loginView.cancelBt.layer.cornerRadius = 4;
     self.loginView.cancelBt.clipsToBounds = YES;
+
 
 }
 
