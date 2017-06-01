@@ -18,7 +18,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
+    self.totalMoneyLabel.font = [UIFont systemFontOfSize:13 * autoSizeScaleX];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -33,9 +33,9 @@
     
     if ([model.total_money floatValue] > 10000) {
         
-        self.totalMoneyLabel.text = [NSString stringWithFormat:@"%.2f万元",[model.total_money floatValue]/10000];
+        self.totalMoneyLabel.text = [NSString stringWithFormat:@"%.2f万",[model.total_money floatValue]/10000];
     }else{
-        self.totalMoneyLabel.text = [NSString stringWithFormat:@"%@元",model.total_money ];
+        self.totalMoneyLabel.text = [NSString stringWithFormat:@"%@",model.total_money ];
     }
 }
 @end

@@ -16,6 +16,7 @@
                 <outlet property="timeOneBtn" destination="fL2-h8-JfM" id="1O2-kx-KCv"/>
                 <outlet property="timeOneBtnWidth" destination="CVg-07-cqa" id="zpt-y8-N45"/>
                 <outlet property="timeTwoBtn" destination="6pf-5b-OYU" id="YS6-dv-2cG"/>
+                <outlet property="totalLabel" destination="o0Y-2Q-VhV" id="hge-zA-2iL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -35,7 +36,7 @@
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5ek-6e-xgR">
-                            <rect key="frame" x="105" y="29.5" width="20" height="5"/>
+                            <rect key="frame" x="105" y="30" width="20" height="5"/>
                             <color key="backgroundColor" red="0.36652925609999998" green="0.8058723807" blue="0.43994837999999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="5" id="ggf-pX-AYn"/>
@@ -102,20 +103,20 @@
                     <rect key="frame" x="0.0" y="138" width="320" height="80"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="XRPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="NG5-Il-PsN">
-                            <rect key="frame" x="40" y="15.5" width="70" height="50"/>
+                            <rect key="frame" x="40" y="15" width="70" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="70" id="8D7-Uc-VGi"/>
                                 <constraint firstAttribute="height" constant="50" id="dnz-MN-vhn"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21345678元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0Y-2Q-VhV">
-                            <rect key="frame" x="140" y="15" width="96" height="20.5"/>
+                            <rect key="frame" x="130" y="44" width="170" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商家销售总额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ndv-AD-dcl">
-                            <rect key="frame" x="151" y="40.5" width="74" height="14.5"/>
+                            <rect key="frame" x="130" y="15" width="74" height="15"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -124,12 +125,13 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="NG5-Il-PsN" firstAttribute="centerY" secondItem="APu-1g-Wsz" secondAttribute="centerY" id="00h-g6-8bD"/>
-                        <constraint firstItem="o0Y-2Q-VhV" firstAttribute="top" secondItem="NG5-Il-PsN" secondAttribute="top" id="CHP-Kh-Auv"/>
-                        <constraint firstItem="o0Y-2Q-VhV" firstAttribute="leading" secondItem="NG5-Il-PsN" secondAttribute="trailing" constant="30" id="L0F-xx-ky4"/>
+                        <constraint firstItem="o0Y-2Q-VhV" firstAttribute="leading" secondItem="NG5-Il-PsN" secondAttribute="trailing" constant="20" id="6V8-uQ-e3P"/>
+                        <constraint firstItem="Ndv-AD-dcl" firstAttribute="top" secondItem="NG5-Il-PsN" secondAttribute="top" id="GEx-pc-faQ"/>
                         <constraint firstItem="NG5-Il-PsN" firstAttribute="leading" secondItem="APu-1g-Wsz" secondAttribute="leading" constant="40" id="TDN-qc-P1M"/>
-                        <constraint firstItem="Ndv-AD-dcl" firstAttribute="centerX" secondItem="o0Y-2Q-VhV" secondAttribute="centerX" id="XKQ-qs-iCf"/>
+                        <constraint firstItem="Ndv-AD-dcl" firstAttribute="leading" secondItem="o0Y-2Q-VhV" secondAttribute="leading" id="X3r-4V-HjY"/>
+                        <constraint firstItem="o0Y-2Q-VhV" firstAttribute="bottom" secondItem="NG5-Il-PsN" secondAttribute="bottom" id="cqe-n4-2Zm"/>
                         <constraint firstAttribute="height" constant="80" id="gNt-WZ-NCL"/>
-                        <constraint firstItem="Ndv-AD-dcl" firstAttribute="top" secondItem="o0Y-2Q-VhV" secondAttribute="bottom" constant="5" id="xLk-cI-pQg"/>
+                        <constraint firstAttribute="trailing" secondItem="o0Y-2Q-VhV" secondAttribute="trailing" constant="20" id="q4n-cQ-ovy"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUQ-F2-mnE">
@@ -143,7 +145,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收益列表" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVf-fB-wU3">
-                            <rect key="frame" x="60" y="12" width="53.5" height="16"/>
+                            <rect key="frame" x="60" y="12" width="54" height="16"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>

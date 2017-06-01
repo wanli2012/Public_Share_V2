@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewHeight;
 
 @end
 
@@ -23,7 +24,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
+    self.imageViewHeight.constant = 142.5 * autoSizeScaleY;
 }
 - (void)setModel:(GLintegralGoodsModel *)model {
     _model = model;

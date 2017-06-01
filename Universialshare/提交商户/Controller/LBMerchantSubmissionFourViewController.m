@@ -420,7 +420,7 @@
     dict[@"email"] = self.connectPhoneTf.text;//联系人电话
     dict[@"truename"] = self.connectName.text;//登录手机号
     dict[@"phone"] = self.connectPhoneTf.text;//真实姓名
-    dict[@"trade_id"] = _industryArr[_isChoseFirstClassify][@"son"][_isChoseSecondClassify][@"trade_id"];
+    dict[@"trade_id"] = _industryArr[_isChoseFirstClassify][@"trade_id"];
     dict[@"two_trade_id"] = _industryArr[_isChoseFirstClassify][@"son"][_isChoseSecondClassify][@"trade_id"];
 
     dict[@"lat"] = self.latStr;//纬度
@@ -453,9 +453,9 @@
         
     }progress:^(NSProgress *uploadProgress){
         
-        [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
+//        [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
 //        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+//        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
 //        [SVProgressHUD setCornerRadius:8.0];
         
     }success:^(NSURLSessionDataTask *task, id responseObject) {

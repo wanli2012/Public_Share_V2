@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *timeTwoBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *timeOneBtnWidth;
 
+@property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (assign, nonatomic)NSInteger timeBtIndex;//判断选择的按钮时哪一个
 @property (strong, nonatomic)HWCalendar *Calendar;
 @property (strong, nonatomic)UIView *CalendarView;
@@ -99,6 +100,7 @@ static NSString *ID = @"GLIncomeManagerCell";
 
 //选择日期
 - (IBAction)timeChoose:(id)sender {
+    
     if (sender == self.timeOneBtn) {
         _timeBtIndex = 1;
     }else{
@@ -148,7 +150,7 @@ static NSString *ID = @"GLIncomeManagerCell";
     dict[@"starttime"] = startTime;
     dict[@"endtime"] = endTime;
     
-    NSLog(@"dict = %@",dict);
+//    NSLog(@"dict = %@",dict);
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"user/getProfitList" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
@@ -173,6 +175,7 @@ static NSString *ID = @"GLIncomeManagerCell";
             self.nodataV.hidden = YES;
         }
 
+        self.totalLabel.text =[NSString stringWithFormat:@"%@",responseObject[@"total_money"]];
         [self.tableView reloadData];
     } enError:^(NSError *error) {
         [self endRefresh];

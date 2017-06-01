@@ -75,6 +75,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
     dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
   
+    NSLog(@"dict = %@",dict);
     _loadV = [LoadWaitView addloadview:self.view.bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
         
@@ -203,6 +204,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 }
 - (void)more:(UIButton * )btn {
     self.viewController.hidesBottomBarWhenPushed = YES;
+    
     GLNearby_MerchatListController *merchatVC = [[GLNearby_MerchatListController alloc] init];
 
     GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades[0];
@@ -211,6 +213,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     merchatVC.city_id = self.city_id;
     merchatVC.trade_id = model.trade_id;
     [self.viewController.navigationController pushViewController:merchatVC animated:YES];
+    
     self.viewController.hidesBottomBarWhenPushed = NO;
     
 }
