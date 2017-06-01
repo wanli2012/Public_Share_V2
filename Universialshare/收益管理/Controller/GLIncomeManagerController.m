@@ -130,8 +130,23 @@ static NSString *ID = @"GLIncomeManagerCell";
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"page"] = [NSString stringWithFormat:@"%d",_page];
-    dict[@"starttime"] = [NSString stringWithFormat:@""];
-    dict[@"endtime"] = [NSString stringWithFormat:@""];
+    
+    NSString *startTime = @"";
+    NSString *endTime = @"";
+    if (![self.timeOneBtn.titleLabel.text isEqualToString:@"起始日期"] && ![self.timeTwoBtn.titleLabel.text isEqualToString:@"截止日期"]) {
+    
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+        NSDate *date1 = [dateFormatter dateFromString:self.timeOneBtn.titleLabel.text];
+        NSDate *date2 = [dateFormatter dateFromString:self.timeTwoBtn.titleLabel.text];
+        //转成时间戳
+        startTime = [NSString stringWithFormat:@"%ld", (long)[date1 timeIntervalSince1970]];
+        endTime = [NSString stringWithFormat:@"%ld", (long)[date2 timeIntervalSince1970]];
+        
+    }
+
+    dict[@"starttime"] = startTime;
+    dict[@"endtime"] = endTime;
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"user/getProfitList" paramDic:dict finish:^(id responseObject) {
@@ -141,8 +156,7 @@ static NSString *ID = @"GLIncomeManagerCell";
         if ([responseObject[@"code"] integerValue] == 1) {
             
             for (NSDictionary *dict in responseObject[@"data"]) {
-//                GLNoneOfDonationModel *model = [GLNoneOfDonationModel mj_objectWithKeyValues:dict];
-//                [_models addObject:model];
+                
             }
 
             
