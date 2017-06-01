@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBHomeIncomeViewController">
             <connections>
+                <outlet property="chooseBt" destination="CsJ-v7-778" id="abc-0n-NA1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -50,12 +51,35 @@
                                         <action selector="segmentEvent:" destination="-1" eventType="valueChanged" id="eLM-Ux-qDc"/>
                                     </connections>
                                 </segmentedControl>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CsJ-v7-778">
+                                    <rect key="frame" x="319" y="31.5" width="46" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="25" id="PrF-AB-Xjd"/>
+                                        <constraint firstAttribute="width" constant="46" id="byb-cK-DL6"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <state key="normal" title="筛选">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" title="收起">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="searchEvent:" destination="-1" eventType="touchUpInside" id="akZ-Ux-PGj"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="Gx1-yg-xvw" firstAttribute="centerX" secondItem="otA-TP-VIM" secondAttribute="centerX" id="1Jx-kv-aN5"/>
+                                <constraint firstItem="CsJ-v7-778" firstAttribute="centerY" secondItem="Gx1-yg-xvw" secondAttribute="centerY" id="3Aa-1m-fmU"/>
                                 <constraint firstItem="pKg-Os-Hna" firstAttribute="centerX" secondItem="otA-TP-VIM" secondAttribute="centerX" id="575-z9-rTM"/>
                                 <constraint firstAttribute="bottom" secondItem="Gx1-yg-xvw" secondAttribute="bottom" constant="8" id="F5v-gb-gaB"/>
+                                <constraint firstAttribute="trailing" secondItem="CsJ-v7-778" secondAttribute="trailing" constant="10" id="TzX-o5-RBm"/>
                                 <constraint firstAttribute="bottom" secondItem="pKg-Os-Hna" secondAttribute="bottom" constant="10" id="rmf-AZ-vK8"/>
                             </constraints>
                         </view>

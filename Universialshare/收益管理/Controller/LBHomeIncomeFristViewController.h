@@ -10,4 +10,5 @@
 
 @interface LBHomeIncomeFristViewController : UIViewController
 
+
 @end

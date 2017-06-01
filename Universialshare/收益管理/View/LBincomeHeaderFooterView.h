@@ -16,7 +16,7 @@
 -(void)clickSearchbutton:(UIButton*)button otherbutton:(UIButton*)button1;
 
 @end
-@interface LBincomeHeaderFooterView : UITableViewHeaderFooterView
+@interface LBincomeHeaderFooterView : UITableViewCell
 
 @property(nonatomic , strong) UIButton *searchBt;//搜索
 @property(nonatomic , strong) UIView *lineview;

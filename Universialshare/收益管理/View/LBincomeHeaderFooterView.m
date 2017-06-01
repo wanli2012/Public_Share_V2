@@ -11,8 +11,8 @@
 
 @implementation LBincomeHeaderFooterView
 
--(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
-    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self initerface];
         self.contentView.backgroundColor = [UIColor whiteColor];
     }

@@ -66,6 +66,7 @@
     self.yuliuTf.text = randomNumber;
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"记录"] style:UIBarButtonItemStylePlain target:self action:@selector(checkrecorderEvent)];
+    item.imageInsets = UIEdgeInsetsMake(5, -5, 0, 5);
     self.navigationItem.rightBarButtonItem=item;
     
 }
@@ -234,9 +235,8 @@
                 NSData *data = UIImagePNGRepresentation(self.imageOne.image);
                 [formData appendPartWithFileData:data name:@"xfpz" fileName:fileName mimeType:@"image/png"];
             }
-            
+
         }progress:^(NSProgress *uploadProgress){
-            
             [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
 //            [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
             [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
