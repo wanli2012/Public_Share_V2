@@ -64,21 +64,21 @@
     
     self.currentloginViewimage = self.loginView.shangImage;
     
-    CAGradientLayer *layer = [CAGradientLayer new];
-    //colors存放渐变的颜色的数组
-    layer.colors=@[(__bridge id)[UIColor whiteColor].CGColor,(__bridge id)TABBARTITLE_COLOR.CGColor,(__bridge id)[UIColor whiteColor].CGColor];
-    layer.startPoint = CGPointMake(0.5, 0);
-    layer.endPoint = CGPointMake(0.5, 1);
-    layer.frame = self.loginBtn.bounds;
-    [self.loginBtn.layer addSublayer:layer];
-    
-    CAGradientLayer *layera = [CAGradientLayer new];
-    //colors存放渐变的颜色的数组
-    layera.colors=@[(__bridge id)[UIColor whiteColor].CGColor,(__bridge id)YYSRGBColor(198, 51, 14, 1).CGColor,(__bridge id)[UIColor whiteColor].CGColor];
-    layera.startPoint = CGPointMake(0.5, 0);
-    layera.endPoint = CGPointMake(0.5, 1);
-    layera.frame = self.registerBtn.bounds;
-    [self.registerBtn.layer addSublayer:layera];
+//    CAGradientLayer *layer = [CAGradientLayer new];
+//    //colors存放渐变的颜色的数组
+//    layer.colors=@[(__bridge id)[UIColor whiteColor].CGColor,(__bridge id)TABBARTITLE_COLOR.CGColor,(__bridge id)[UIColor whiteColor].CGColor];
+//    layer.startPoint = CGPointMake(0.5, 0);
+//    layer.endPoint = CGPointMake(0.5, 1);
+//    layer.frame = self.loginBtn.bounds;
+//    [self.loginBtn.layer addSublayer:layer];
+//    
+//    CAGradientLayer *layera = [CAGradientLayer new];
+//    //colors存放渐变的颜色的数组
+//    layera.colors=@[(__bridge id)[UIColor whiteColor].CGColor,(__bridge id)YYSRGBColor(198, 51, 14, 1).CGColor,(__bridge id)[UIColor whiteColor].CGColor];
+//    layera.startPoint = CGPointMake(0.5, 0);
+//    layera.endPoint = CGPointMake(0.5, 1);
+//    layera.frame = self.registerBtn.bounds;
+//    [self.registerBtn.layer addSublayer:layera];
     
 }
 
