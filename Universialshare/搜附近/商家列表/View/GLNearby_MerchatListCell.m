@@ -31,6 +31,9 @@
     
 }
 - (IBAction)mapToHere:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(mapTo)]) {
+        [self.delegate mapTo];
+    }
 }
 
 - (void)setModel:(GLNearby_MerchatListModel *)model{

@@ -210,7 +210,6 @@ static NSString *ID = @"GLNearby_MerchatListCell";
  
 }
 
-
 //选择
 - (IBAction)choose:(UIButton *)sender {
     
@@ -224,7 +223,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     [self.classifyBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [self.sortBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
 
-    [sender setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [sender setTitleColor:YYSRGBColor(40, 150, 58, 1) forState:UIControlStateNormal];
     
     self.cityBtn.selected = NO;
     self.classifyBtn.selected = NO;
@@ -235,7 +234,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     self.classifyBtn.imageView.transform = CGAffineTransformMakeRotation(0);
     self.sortBtn.imageView.transform = CGAffineTransformMakeRotation(0);
     sender.imageView.transform = CGAffineTransformMakeRotation(M_PI);
+    
     __weak __typeof(self)weakSelf = self;
+    
     switch (sender.tag) {
         case 10:
         {

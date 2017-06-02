@@ -9,8 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "GLNearby_MerchatListModel.h"
 
+@protocol GLNearby_MerchatListCellDelegate <NSObject>
+
+- (void)mapTo;
+
+@end
+
 @interface GLNearby_MerchatListCell : UITableViewCell
 
 @property (nonatomic, strong)GLNearby_MerchatListModel *model;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (nonatomic, assign)id <GLNearby_MerchatListCellDelegate> delegate;
+
 @end

@@ -94,7 +94,6 @@ static NSString *ID = @"GLNearby_classifyCell";
                     [self.models addObject:model];
                 }
                 
-                [self.tableView reloadData];
             }
             
         }else{
@@ -102,6 +101,7 @@ static NSString *ID = @"GLNearby_classifyCell";
             
         }
         
+        [self.tableView reloadData];
     } enError:^(NSError *error) {
         [_loadV removeloadview];
         [self endRefresh];
