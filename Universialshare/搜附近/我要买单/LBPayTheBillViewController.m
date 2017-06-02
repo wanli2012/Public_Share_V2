@@ -137,10 +137,9 @@
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
            
-        }else{
-            [MBProgressHUD showError:responseObject[@"message"]];
-            
+            [self.navigationController popViewControllerAnimated:YES];
         }
+        
         [MBProgressHUD showError:responseObject[@"message"]];
 
         [self dismiss];

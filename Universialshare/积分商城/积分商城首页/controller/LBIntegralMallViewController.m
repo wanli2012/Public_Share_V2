@@ -19,11 +19,14 @@
 #import "GLMall_InterestModel.h"
 
 //城市定位 选择
-
 #import "GLCityChooseController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 #import "GLIntegralMall_SearchController.h"
+//公告
+#import "GLHomePageNoticeView.h"
+#import "GLSet_MaskVeiw.h"
+#import "GLHomePageNoticeView.h"
 
 @interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 {
@@ -31,6 +34,10 @@
     UIImageView *_imageviewRight;
     LoadWaitView * _loadV;
     NSInteger _page;
+    
+    NSString *_htmlString;
+    GLSet_MaskVeiw *_maskV;
+    GLHomePageNoticeView *_contentView;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong)SDCycleScrollView *cycleScrollView;
@@ -40,7 +47,7 @@
 @property (nonatomic, strong)NSMutableArray *interestModels;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 
-//城市定位
+//公告
 
 
 @end
@@ -72,6 +79,8 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     self.searchView.layer.cornerRadius = self.searchView.yy_height / 2;
     self.searchView.clipsToBounds = YES;
     
+    //公告
+    [self initInterDataSorceinfomessage];
     [self postRequest];
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -89,6 +98,13 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     
     self.tableView.mj_header = header;
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
+}
+- (void)dismiss{
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        [_maskV removeFromSuperview];
+    }];
 }
 - (void)updateUI{
     
@@ -170,6 +186,139 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
 
 }
+-(void)initInterDataSorceinfomessage{
+    
+    [NetworkManager requestPOSTWithURLStr:@"index/notice" paramDic:nil finish:^(id responseObject) {
+        //        [_loadV removeFromSuperview];
+        //        NSLog(@"%@",responseObject);
+        if ([responseObject[@"code"] integerValue] == 1) {
+            //
+            //            NSString *htmlString = [NSString stringWithFormat:@"<!DOCTYPE html><html>%@</html>",responseObject[@"data"][@"content"]];
+            //            htmlString = [htmlString stringByReplacingOccurrencesOfString:@"\\\"" withString:responseObject[@"data"][@"content"]];
+            //            self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT *0.5)];
+            //
+            //            [self.webView loadHTMLString:htmlString baseURL:nil];
+            //
+            //            [self.view addSubview:self.webView];
+            
+            CGFloat contentViewH = 300;
+            CGFloat contentViewW = SCREEN_WIDTH;
+            _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+            
+            _maskV.bgView.alpha = 0.4;
+            
+            _contentView = [[NSBundle mainBundle] loadNibNamed:@"GLHomePageNoticeView" owner:nil options:nil].lastObject;
+           
+            _contentView.layer.cornerRadius = 4;
+            _contentView.layer.masksToBounds = YES;
+
+            _htmlString = [NSString stringWithFormat:@"<!DOCTYPE html><html>%@</html>",responseObject[@"data"][@"content"]];
+            _htmlString = [_htmlString stringByReplacingOccurrencesOfString:@"\\\"" withString:responseObject[@"data"][@"content"]];
+
+            [_contentView.webView loadHTMLString:_htmlString baseURL:nil];
+            _contentView.frame = CGRectMake(0, SCREEN_HEIGHT, contentViewW, 0);
+            [_maskV showViewWithContentView:_contentView];
+            [UIView animateWithDuration:0.3 animations:^{
+                _contentView.frame = CGRectMake(0, SCREEN_HEIGHT - contentViewH, contentViewW, contentViewH);
+//                [_contentView.passwordF becomeFirstResponder];
+            }];
+            
+            [_maskV showViewWithContentView:_contentView];
+            
+//            NSString *strtitle=[NSString stringWithFormat:@"%@",responseObject[@"data"][@"title"]];
+//            NSString *strcontent=[NSString stringWithFormat:@"%@",responseObject[@"data"][@"content"]];
+//            NSString *strtime=[NSString stringWithFormat:@"%@",responseObject[@"data"][@"release_time"]];
+//            //
+//            if ([strtitle rangeOfString:@"null"].location == NSNotFound) {
+//                self.homepopinfoView.titlename.text = strtitle;
+//            }else{
+//                self.homepopinfoView.titlename.text = @"";
+//            }
+//            if ([strcontent rangeOfString:@"null"].location == NSNotFound) {
+//                
+//                _htmlString = [NSString stringWithFormat:@"<!DOCTYPE html><html>%@</html>",strcontent];
+//                _htmlString = [_htmlString stringByReplacingOccurrencesOfString:@"\\\"" withString:strcontent];
+//                
+//                [self.homepopinfoView.webView loadHTMLString:_htmlString baseURL:nil];
+//                
+//            }
+//            if ([strtime rangeOfString:@"null"].location == NSNotFound) {
+//                self.homepopinfoView.timeLb.text = strtime;
+//            }else{
+//                
+//                self.homepopinfoView.timeLb.text = @"";
+//            }
+//            //
+//            //                        if (self.homepopinfoView.infoLb.text.length<=1) {
+//            //                            return ;
+//            //                        }
+//            
+//            CGRect sizetitle=[self.homepopinfoView.titlename.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 80, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14]} context:nil];
+//            
+//        
+//            CGRect sizecontent =[_htmlString boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 80, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14]} context:nil];
+//            
+//            if ((110 + sizetitle.size.height + sizecontent.size.height) >= ((SCREEN_HEIGHT/2) - 30)) {
+//                
+//                self.homepopinfoView.frame = CGRectMake(20, (SCREEN_HEIGHT - ((SCREEN_HEIGHT/2) - 30)) / 2, SCREEN_WIDTH - 40, ((SCREEN_HEIGHT/2) - 30));
+//                
+//                self.homepopinfoView.scrollViewH.constant = (SCREEN_HEIGHT/2) - 105;
+//                self.homepopinfoView.contentW.constant = SCREEN_WIDTH - 80;
+//                self.homepopinfoView.contentH.constant = sizetitle.size.height + sizecontent.size.height + 20;
+//                self.homepopinfoView.webViewH.constant = sizecontent.size.height + 20;
+//            }else{
+//                
+//                self.homepopinfoView.frame = CGRectMake(20, (SCREEN_HEIGHT - (110 + sizetitle.size.height + sizecontent.size.height)) / 2, SCREEN_WIDTH - 40, 110 + sizetitle.size.height + sizecontent.size.height);
+//                
+//                self.homepopinfoView.scrollViewH.constant = 110 + sizetitle.size.height + sizecontent.size.height - 80;
+//               
+//                self.homepopinfoView.scrollView.scrollEnabled = YES;
+//                
+//                self.homepopinfoView.contentW.constant = SCREEN_WIDTH - 80;
+//                self.homepopinfoView.contentH.constant = 110 + sizetitle.size.height + sizecontent.size.height - 80;
+//                
+//
+//            }
+//            
+//            self.homepopinfoView.webView.scrollView.bounces = NO;
+//            [self.view addSubview:self.homepopinfoViewmask];
+//            [self.homepopinfoViewmask addSubview:self.homepopinfoView];
+            
+        }
+        
+    } enError:^(NSError *error) {
+        
+    }];
+    
+}
+-(NSString *)filterHTML:(NSString *)html
+{
+    NSScanner * scanner = [NSScanner scannerWithString:html];
+    NSString * text = nil;
+    while([scanner isAtEnd]==NO)
+    {
+        [scanner scanUpToString:@"<" intoString:nil];
+        [scanner scanUpToString:@">" intoString:&text];
+        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
+    }
+    return html;
+}
+
+/**
+ *  字符串转富文本
+ */
+- (NSMutableAttributedString *)strToAttriWithStr:(NSString *)htmlStr{
+    
+    NSMutableAttributedString *AttributedString=[[NSMutableAttributedString alloc] initWithData:[htmlStr dataUsingEncoding:NSUTF8StringEncoding]
+                                                                                        options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType}
+                                                                             documentAttributes:nil
+                                                                                          error:nil];
+    
+    [AttributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:13] range:NSMakeRange(0, [AttributedString length])];//设置字体大小
+    
+    return AttributedString;
+}
+
 - (void)classifyClick:(UITapGestureRecognizer *)tap {
    
     self.hidesBottomBarWhenPushed = YES;
@@ -417,4 +566,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     }
     return _interestModels;
 }
+
+
+
 @end

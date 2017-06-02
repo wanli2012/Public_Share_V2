@@ -14,6 +14,8 @@
 #import "GLCityChooseController.h"
 #import "GLNearby_TradeOneModel.h"
 #import <MapKit/MapKit.h>
+#import "LBStoreMoreInfomationViewController.h"
+#import "GLNearby_NearShopModel.h"
 
 @interface GLNearby_MerchatListController ()<UITableViewDataSource,UITableViewDelegate,GLNearby_MerchatListCellDelegate>
 {
@@ -32,6 +34,7 @@
 @property (nonatomic, strong)NSMutableArray *nearModels;
 @property (nonatomic, strong)NSMutableArray *recModels;
 @property (nonatomic, assign)NSInteger page;
+@property (nonatomic,strong)NodataView *nodataV;
 
 @end
 
@@ -42,6 +45,8 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     [super viewDidLoad];
     
     self.navigationItem.title = @"商家列表";
+    [self.tableView addSubview:self.nodataV];
+    self.nodataV.hidden = YES;
 
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
@@ -116,7 +121,13 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                     }
                 }
             }
+            if (self.recModels.count <= 0 ) {
+                self.nodataV.hidden = NO;
+            }else{
+                self.nodataV.hidden = YES;
+            }
             [self.tableView reloadData];
+
             
         } enError:^(NSError *error) {
             [self endRefresh];
@@ -140,19 +151,33 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                     }
                 }
             }
+            if (self.nearModels.count <= 0 ) {
+                self.nodataV.hidden = NO;
+            }else{
+                self.nodataV.hidden = YES;
+            }
             [self.tableView reloadData];
+
             
         } enError:^(NSError *error) {
             [self endRefresh];
             [MBProgressHUD showError:error.description];
         }];
     }
-//    NSLog(@"%@",dict);
     
 }
 - (void)endRefresh {
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
+}
+-(NodataView*)nodataV{
+    
+    if (!_nodataV) {
+        _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 40);
+    }
+    return _nodataV;
+    
 }
 - (void)dealloc {
     
@@ -417,6 +442,27 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     }
     
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.hidesBottomBarWhenPushed = YES;
+    
+    LBStoreMoreInfomationViewController *storeVC = [[LBStoreMoreInfomationViewController alloc] init];
+    
+    GLNearby_NearShopModel *model;
+    
+    if (self.index == 10) {
+        model = self.recModels[indexPath.row];
+    }else{
+        model = self.nearModels[indexPath.row];
+    }
+    
+    storeVC.lat = [model.lat floatValue];
+    storeVC.lng = [model.lng floatValue];
+    storeVC.storeId = model.shop_id;
+    
+    [self.navigationController pushViewController:storeVC animated:YES];
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
