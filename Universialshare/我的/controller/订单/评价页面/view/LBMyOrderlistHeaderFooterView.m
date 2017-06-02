@@ -32,11 +32,8 @@
     [self addSubview:self.orderstore];
     [self addSubview:self.imagevo];
     [self addSubview:self.typelabel];
+    [self addSubview:self.numlb];
     
-    self.ordermoney.text = @"¥1.00";
-    self.orderName.text = @"今年我上次你说怕看出那片刻今年我上次你说怕看出那片刻";
-    self.orderinfo.text = @"呃看到某 v 产品代码 v 了呃看到某 v 产品代码 v 了";
-    self.orderstore.text = @"呃看到某 v 产品代码 v 了";
   
     [self.imagev mas_makeConstraints:^(MASConstraintMaker *make) {
         //make.trailing.equalTo(self).offset(-10);
@@ -78,6 +75,14 @@
         
     }];
     
+    [self.numlb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.imagev.mas_trailing).offset(10);
+        make.trailing.equalTo(self).offset(-10);
+        make.top.equalTo(self.orderstore.mas_bottom).offset(5);
+        make.height.greaterThanOrEqualTo(@15);
+        
+    }];
+    
     [self.imagevo mas_makeConstraints:^(MASConstraintMaker *make) {
 
         make.trailing.equalTo(self).offset(-10);
@@ -95,8 +100,6 @@
         make.centerY.equalTo(self.imagevo.mas_centerY);
         
     }];
-    
-    
 }
 
 -(void)tapgestureview{
@@ -135,10 +138,9 @@
     
     if (!_ordermoney) {
         _ordermoney=[[UILabel alloc]init];
-        _ordermoney.backgroundColor=[UIColor clearColor];
-        _ordermoney.textColor=[UIColor blackColor];
-        _ordermoney.font=[UIFont systemFontOfSize:12];
-        
+        _ordermoney.textColor=[UIColor redColor];
+        _ordermoney.font=[UIFont systemFontOfSize:15];
+        _ordermoney.textAlignment = NSTextAlignmentRight;
     }
     
     return _ordermoney;
@@ -171,6 +173,20 @@
     }
     
     return _orderstore;
+    
+}
+
+-(UILabel*)numlb{
+    
+    if (!_numlb) {
+        _numlb=[[UILabel alloc]init];
+        _numlb.backgroundColor=[UIColor clearColor];
+        _numlb.textColor=[UIColor blackColor];
+        _numlb.font=[UIFont systemFontOfSize:12];
+        
+    }
+    
+    return _numlb;
     
 }
 

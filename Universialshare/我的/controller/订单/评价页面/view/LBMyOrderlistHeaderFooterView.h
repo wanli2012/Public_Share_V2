@@ -18,6 +18,7 @@
 
 @property(nonatomic , strong) UILabel *orderinfo;//订单 描述
 @property(nonatomic , strong) UILabel *orderstore;//商店名
+@property(nonatomic , strong) UILabel *numlb;//数量
 @property(nonatomic , strong) UILabel *typelabel;
 
 @property (strong, nonatomic)UIImageView *imagevo;

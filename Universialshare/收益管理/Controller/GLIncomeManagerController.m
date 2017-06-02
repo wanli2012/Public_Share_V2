@@ -11,10 +11,6 @@
 #import "GLIncomeManagerModel.h"
 #import "HWCalendar.h"
 
-
-
-
-
 @interface GLIncomeManagerController ()<UITableViewDelegate,UITableViewDataSource,HWCalendarDelegate>
 {
     GLIncomeManagerModel *_model;

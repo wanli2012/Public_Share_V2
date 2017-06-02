@@ -55,7 +55,7 @@
         model.is_comment = [NSString stringWithFormat:@"%@",self.arr[i][@"is_comment"]];
         model.reply = [NSString stringWithFormat:@"%@",self.arr[i][@"reply"]];
         model.conment = [NSString stringWithFormat:@"%@",self.arr[i][@"comment"]];
-        
+        model.goods_num = [NSString stringWithFormat:@"%@",self.arr[i][@"goods_num"]];
         [self.dataArr addObject:model];
     }
     [self.tableview reloadData];
@@ -155,6 +155,8 @@
     headerview.orderName.text = model.namelb;
     headerview.orderinfo.text = model.infolb;
     headerview.orderstore.text = model.sizelb;
+    headerview.ordermoney.text = [NSString stringWithFormat:@"¥%@",model.moneylb];
+    headerview.numlb.text = [NSString stringWithFormat:@"x%@",model.goods_num];
     
     if ([model.is_comment integerValue] == 0) {
         headerview.typelabel.text = @"发表评论";

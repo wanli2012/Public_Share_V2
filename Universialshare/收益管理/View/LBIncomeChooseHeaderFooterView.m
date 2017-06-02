@@ -16,10 +16,10 @@
 @end
 @implementation LBIncomeChooseHeaderFooterView
 
--(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
-    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+-(instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
         [self initerface];
-        self.contentView.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor whiteColor];
     }
     
     return self;
@@ -153,7 +153,7 @@
     if (!_onLineBt) {
         _onLineBt=[[UIButton alloc]init];
         _onLineBt.backgroundColor=TABBARTITLE_COLOR;
-        [_onLineBt setTitle:@"线上收益" forState:UIControlStateNormal];
+        [_onLineBt setTitle:@"待发货" forState:UIControlStateNormal];
         _onLineBt.titleLabel.font=[UIFont systemFontOfSize:14];
         [_onLineBt addTarget:self action:@selector(onlineBtbtton) forControlEvents:UIControlEventTouchUpInside];
         [_onLineBt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -170,7 +170,7 @@
     if (!_underLineBt) {
         _underLineBt=[[UIButton alloc]init];
         _underLineBt.backgroundColor=[UIColor lightGrayColor];
-        [_underLineBt setTitle:@"线下收益" forState:UIControlStateNormal];
+        [_underLineBt setTitle:@"已发货" forState:UIControlStateNormal];
         _underLineBt.titleLabel.font=[UIFont systemFontOfSize:14];
         [_underLineBt addTarget:self action:@selector(underlineBtbtton) forControlEvents:UIControlEventTouchUpInside];
         [_underLineBt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

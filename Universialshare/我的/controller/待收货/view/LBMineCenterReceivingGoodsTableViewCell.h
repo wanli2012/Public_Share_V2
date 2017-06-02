@@ -26,7 +26,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *pricelb;
 
-//@property (weak, nonatomic) IBOutlet UIButton *buyBt;
+@property (weak, nonatomic) IBOutlet UIButton *sureSend;
 //@property (weak, nonatomic) IBOutlet UIButton *SeeBt;
 
 @property (assign,nonatomic)id<LBMineCenterReceivingGoodsDelegete> delegete;

@@ -178,7 +178,7 @@
     
     LBMineCenterReceivingGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBMineCenterReceivingGoodsTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //cell.delegete = self;
+    cell.delegete = self;
     cell.index = indexPath.row;
     LBWaitOrdersModel *model = self.dataarr[indexPath.section];
     cell.WaitOrdersListModel = model.WaitOrdersListModel[indexPath.row];
@@ -189,11 +189,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 
-    return 118;
+    return 90;
 
 }
-
-
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
     LBWaitOrdersHeaderView *headerview = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LBWaitOrdersHeaderView"];
@@ -205,15 +203,16 @@
     __weak typeof(self) weakself = self;
     LBWaitOrdersModel *sectionModel = self.dataarr[section];
     headerview.sectionModel = sectionModel;
+    headerview.wuliuBt.hidden = YES;
+    headerview.sureGetBt.hidden = YES;
     headerview.expandCallback = ^(BOOL isExpanded) {
-        
     [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
 //    确认收货
-    headerview.returnsureGetBt = ^(NSInteger section){
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"您确定已收货吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        [alert show];
-    };
+//    headerview.returnsureGetBt = ^(NSInteger section){
+//        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"您确定已收货吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//        [alert show];
+//    };
 //    查看物流
     headerview.returnwuliuBt = ^(NSInteger section){
         self.ConfirmReceiptSection = section;
@@ -221,6 +220,7 @@
         LBMineCenterFlyNoticeDetailViewController *vc=[[LBMineCenterFlyNoticeDetailViewController alloc]init];
         [weakself.navigationController pushViewController:vc animated:YES];
     };
+    
     
     return headerview;
 }
@@ -232,14 +232,14 @@
 }
 
 #pragma mark ---- LBMineCenterReceivingGoodsDelegete
-////确认收货
-//-(void)BuyAgain:(NSInteger)index section:(NSInteger)section{
-//    self.ConfirmReceiptRow = index;
-//    self.ConfirmReceiptSection = section;
-//    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"您确定已收货吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-//    [alert show];
-//
-//}
+//确认收货
+-(void)BuyAgain:(NSInteger)index section:(NSInteger)section{
+    self.ConfirmReceiptRow = index;
+    self.ConfirmReceiptSection = section;
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"您确定已收货吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
+
+}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
