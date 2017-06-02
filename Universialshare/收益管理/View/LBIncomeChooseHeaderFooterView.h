@@ -15,7 +15,7 @@
 
 @end
 
-@interface LBIncomeChooseHeaderFooterView : UITableViewHeaderFooterView
+@interface LBIncomeChooseHeaderFooterView : UIView
 
 @property(nonatomic , strong) UIView *lineview;
 @property(nonatomic , strong) UIButton *onLineBt;//线上

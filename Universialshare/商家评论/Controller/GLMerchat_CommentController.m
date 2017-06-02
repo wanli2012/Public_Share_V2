@@ -10,6 +10,7 @@
 #import "GLMerchat_CommentGoodsModel.h"
 #import "GLMerchat_CommentGoodCell.h"
 #import "GLMerchat_CommentTableController.h"
+#import "LBStoreSendGoodsListViewController.h"
 
 @interface GLMerchat_CommentController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
@@ -163,6 +164,16 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 1;
 }
+
+- (IBAction)clickorderList:(UIButton *)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBStoreSendGoodsListViewController *commentVC = [[LBStoreSendGoodsListViewController alloc] init];
+    [self.navigationController pushViewController:commentVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
+}
+
 
 - (NSMutableArray *)models{
     if (!_models) {

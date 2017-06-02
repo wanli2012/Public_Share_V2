@@ -23,5 +23,6 @@
 @property(nonatomic,strong)NSString *is_comment;
 @property(nonatomic,strong)NSString *reply;
 @property(nonatomic,strong)NSString *conment;
+@property(nonatomic,strong)NSString *goods_num;
 
 @end

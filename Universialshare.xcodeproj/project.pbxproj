@@ -831,6 +831,14 @@
 		F9520A1F1EADF40600B4D665 /* LBViewProtocolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9520A1D1EADF40600B4D665 /* LBViewProtocolViewController.xib */; };
 		F9520A281EAE170400B4D665 /* LBMineStoreAllOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9520A261EAE170400B4D665 /* LBMineStoreAllOrdersViewController.m */; };
 		F9520A291EAE170400B4D665 /* LBMineStoreAllOrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9520A271EAE170400B4D665 /* LBMineStoreAllOrdersViewController.xib */; };
+		F955A7851EE0117C004141A4 /* LBStoreSendGoodsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F955A7831EE0117C004141A4 /* LBStoreSendGoodsListViewController.m */; };
+		F955A7861EE0117C004141A4 /* LBStoreSendGoodsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F955A7841EE0117C004141A4 /* LBStoreSendGoodsListViewController.xib */; };
+		F955A78A1EE011E0004141A4 /* LBStoreSendGoodsListFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F955A7881EE011E0004141A4 /* LBStoreSendGoodsListFirstViewController.m */; };
+		F955A78B1EE011E0004141A4 /* LBStoreSendGoodsListFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F955A7891EE011E0004141A4 /* LBStoreSendGoodsListFirstViewController.xib */; };
+		F955A78F1EE011F3004141A4 /* LBStoreSendGoodsSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F955A78D1EE011F3004141A4 /* LBStoreSendGoodsSecondViewController.m */; };
+		F955A7901EE011F3004141A4 /* LBStoreSendGoodsSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F955A78E1EE011F3004141A4 /* LBStoreSendGoodsSecondViewController.xib */; };
+		F955A7941EE017B9004141A4 /* LBStoreSendGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F955A7921EE017B9004141A4 /* LBStoreSendGoodsTableViewCell.m */; };
+		F955A7951EE017B9004141A4 /* LBStoreSendGoodsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F955A7931EE017B9004141A4 /* LBStoreSendGoodsTableViewCell.xib */; };
 		F9564DF71EC84C3F007F3677 /* LBSelectRegionalAgentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9564DF61EC84C3F007F3677 /* LBSelectRegionalAgentView.m */; };
 		F9564DF91EC84C4F007F3677 /* LBSelectRegionalAgentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9564DF81EC84C4F007F3677 /* LBSelectRegionalAgentView.xib */; };
 		F9564DFD1EC86217007F3677 /* LBBelowTheLineListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9564DFB1EC86217007F3677 /* LBBelowTheLineListViewController.m */; };
@@ -2377,6 +2385,18 @@
 		F9520A251EAE170400B4D665 /* LBMineStoreAllOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineStoreAllOrdersViewController.h; sourceTree = "<group>"; };
 		F9520A261EAE170400B4D665 /* LBMineStoreAllOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineStoreAllOrdersViewController.m; sourceTree = "<group>"; };
 		F9520A271EAE170400B4D665 /* LBMineStoreAllOrdersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineStoreAllOrdersViewController.xib; sourceTree = "<group>"; };
+		F955A7821EE0117C004141A4 /* LBStoreSendGoodsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBStoreSendGoodsListViewController.h; sourceTree = "<group>"; };
+		F955A7831EE0117C004141A4 /* LBStoreSendGoodsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBStoreSendGoodsListViewController.m; sourceTree = "<group>"; };
+		F955A7841EE0117C004141A4 /* LBStoreSendGoodsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBStoreSendGoodsListViewController.xib; sourceTree = "<group>"; };
+		F955A7871EE011E0004141A4 /* LBStoreSendGoodsListFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBStoreSendGoodsListFirstViewController.h; sourceTree = "<group>"; };
+		F955A7881EE011E0004141A4 /* LBStoreSendGoodsListFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBStoreSendGoodsListFirstViewController.m; sourceTree = "<group>"; };
+		F955A7891EE011E0004141A4 /* LBStoreSendGoodsListFirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBStoreSendGoodsListFirstViewController.xib; sourceTree = "<group>"; };
+		F955A78C1EE011F3004141A4 /* LBStoreSendGoodsSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBStoreSendGoodsSecondViewController.h; sourceTree = "<group>"; };
+		F955A78D1EE011F3004141A4 /* LBStoreSendGoodsSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBStoreSendGoodsSecondViewController.m; sourceTree = "<group>"; };
+		F955A78E1EE011F3004141A4 /* LBStoreSendGoodsSecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBStoreSendGoodsSecondViewController.xib; sourceTree = "<group>"; };
+		F955A7911EE017B9004141A4 /* LBStoreSendGoodsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBStoreSendGoodsTableViewCell.h; sourceTree = "<group>"; };
+		F955A7921EE017B9004141A4 /* LBStoreSendGoodsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBStoreSendGoodsTableViewCell.m; sourceTree = "<group>"; };
+		F955A7931EE017B9004141A4 /* LBStoreSendGoodsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBStoreSendGoodsTableViewCell.xib; sourceTree = "<group>"; };
 		F9564DF51EC84C3F007F3677 /* LBSelectRegionalAgentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBSelectRegionalAgentView.h; sourceTree = "<group>"; };
 		F9564DF61EC84C3F007F3677 /* LBSelectRegionalAgentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBSelectRegionalAgentView.m; sourceTree = "<group>"; };
 		F9564DF81EC84C4F007F3677 /* LBSelectRegionalAgentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBSelectRegionalAgentView.xib; sourceTree = "<group>"; };
@@ -4644,6 +4664,15 @@
 				4AFCDC781ED2EE77007C1681 /* GLMerchat_CommentTableController.h */,
 				4AFCDC791ED2EE77007C1681 /* GLMerchat_CommentTableController.m */,
 				4AFCDC7A1ED2EE77007C1681 /* GLMerchat_CommentTableController.xib */,
+				F955A7821EE0117C004141A4 /* LBStoreSendGoodsListViewController.h */,
+				F955A7831EE0117C004141A4 /* LBStoreSendGoodsListViewController.m */,
+				F955A7841EE0117C004141A4 /* LBStoreSendGoodsListViewController.xib */,
+				F955A7871EE011E0004141A4 /* LBStoreSendGoodsListFirstViewController.h */,
+				F955A7881EE011E0004141A4 /* LBStoreSendGoodsListFirstViewController.m */,
+				F955A7891EE011E0004141A4 /* LBStoreSendGoodsListFirstViewController.xib */,
+				F955A78C1EE011F3004141A4 /* LBStoreSendGoodsSecondViewController.h */,
+				F955A78D1EE011F3004141A4 /* LBStoreSendGoodsSecondViewController.m */,
+				F955A78E1EE011F3004141A4 /* LBStoreSendGoodsSecondViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4671,6 +4700,9 @@
 				4AFCDC591ED2B0B0007C1681 /* GLMerchat_CommentCell.h */,
 				4AFCDC5A1ED2B0B0007C1681 /* GLMerchat_CommentCell.m */,
 				4AFCDC5B1ED2B0B0007C1681 /* GLMerchat_CommentCell.xib */,
+				F955A7911EE017B9004141A4 /* LBStoreSendGoodsTableViewCell.h */,
+				F955A7921EE017B9004141A4 /* LBStoreSendGoodsTableViewCell.m */,
+				F955A7931EE017B9004141A4 /* LBStoreSendGoodsTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6361,6 +6393,7 @@
 				F9F7804A1ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.xib in Resources */,
 				F923097E1E9B8BFF00ECDC94 /* LBMineCenterSafeModifySecondSecretViewController.xib in Resources */,
 				F9520A1F1EADF40600B4D665 /* LBViewProtocolViewController.xib in Resources */,
+				F955A7861EE0117C004141A4 /* LBStoreSendGoodsListViewController.xib in Resources */,
 				F923092D1E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeDetailViewController.xib in Resources */,
 				F966B3E81EAC7E7B007260FC /* LBMySalesmanListViewController.xib in Resources */,
 				4A4609FF1E9CB78E0045824F /* GLDonationRecordCell.xib in Resources */,
@@ -6475,9 +6508,12 @@
 				F94D31E31EAF716D00309029 /* LBMineCenterReceivingGoodsViewController.xib in Resources */,
 				4A2F520E1EC7084000ECA95D /* GLHomeLiveChooseController.xib in Resources */,
 				F92ED49A1EDE6D5900B3B3DB /* LBHomeIncomeFristViewController.xib in Resources */,
+				F955A7951EE017B9004141A4 /* LBStoreSendGoodsTableViewCell.xib in Resources */,
+				F955A78B1EE011E0004141A4 /* LBStoreSendGoodsListFirstViewController.xib in Resources */,
 				F92309931E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.xib in Resources */,
 				F966B4101EACB0C0007260FC /* LBSaleManPersonInfoViewController.xib in Resources */,
 				4AAD253E1EC188C90054FD06 /* GLBuyBackChooseBankView.xib in Resources */,
+				F955A7901EE011F3004141A4 /* LBStoreSendGoodsSecondViewController.xib in Resources */,
 				4A5F66C21ECA93D70048F339 /* GLNearby_PlayController.xib in Resources */,
 				F92309561E9B8BFF00ECDC94 /* LBMyOrderPendingPaymentViewController.xib in Resources */,
 				4AFCDC891ED319A0007C1681 /* GLNearby_SearchController.xib in Resources */,
@@ -6640,6 +6676,7 @@
 				F923098B1E9B8BFF00ECDC94 /* MineCollectionHeaderV.m in Sources */,
 				F966B3BB1EAC3D3E007260FC /* LBMineCenterOrderDetailTwoTableViewCell.m in Sources */,
 				4A4610961E9CC6360045824F /* ZXDataMatrixDecodedBitStreamParser.m in Sources */,
+				F955A7941EE017B9004141A4 /* LBStoreSendGoodsTableViewCell.m in Sources */,
 				4A4610B71E9CC6370045824F /* ZXAI01weightDecoder.m in Sources */,
 				F9126EF11EA0B042004785EA /* LBMineSystemMessageViewController.m in Sources */,
 				4A4610671E9CC6360045824F /* ZXURLTOResultParser.m in Sources */,
@@ -6742,6 +6779,7 @@
 				F9126EF61EA0B086004785EA /* LBMineSystemMessageTableViewCell.m in Sources */,
 				4A4610BE1E9CC6370045824F /* ZXRSSExpandedDecodedObject.m in Sources */,
 				4A46105E1E9CC6360045824F /* ZXSMSMMSResultParser.m in Sources */,
+				F955A7851EE0117C004141A4 /* LBStoreSendGoodsListViewController.m in Sources */,
 				4A4610621E9CC6360045824F /* ZXTelParsedResult.m in Sources */,
 				4A4610481E9CC6360045824F /* ZXAztecReader.m in Sources */,
 				F92D9FF11ECD8FBE004CBAA8 /* LCStarRatingView.m in Sources */,
@@ -7209,6 +7247,7 @@
 				F923092A1E9B8BFF00ECDC94 /* LBMineCenterBalanceRechargeViewController.m in Sources */,
 				F966B3E21EAC7E38007260FC /* LBMyBusinessListDetailViewController.m in Sources */,
 				4AB9E14D1ED6B7EE00BE0420 /* GLMerchat_ModifyView.m in Sources */,
+				F955A78F1EE011F3004141A4 /* LBStoreSendGoodsSecondViewController.m in Sources */,
 				4A4610BF1E9CC6370045824F /* ZXRSSExpandedFieldParser.m in Sources */,
 				4A46108C1E9CC6360045824F /* ZXEncodeHints.m in Sources */,
 				4A4610AA1E9CC6360045824F /* ZXMaxiCodeDecoder.m in Sources */,
@@ -7217,6 +7256,7 @@
 				4A4610D91E9CC6370045824F /* ZXMultiFormatOneDReader.m in Sources */,
 				4A4610761E9CC6360045824F /* ZXReedSolomonDecoder.m in Sources */,
 				4AFCDC571ED29039007C1681 /* GLMerchat_CommentController.m in Sources */,
+				F955A78A1EE011E0004141A4 /* LBStoreSendGoodsListFirstViewController.m in Sources */,
 				F9101B341ECEFBCC0079BB2E /* LBPayTheBillViewController.m in Sources */,
 				4A2A00C81EC70D9400052CA7 /* GLOrderPayView.m in Sources */,
 				4A4610741E9CC6360045824F /* ZXGenericGF.m in Sources */,

@@ -21,6 +21,9 @@
 //    
 //    self.SeeBt.layer.borderWidth = 1;
 //    self.SeeBt.layer.borderColor = YYSRGBColor(191, 0, 0, 1).CGColor;
+    
+    self.sureSend.layer.cornerRadius = 4;
+    self.sureSend.clipsToBounds = YES;
 }
 
 -(void)setWaitOrdersListModel:(LBWaitOrdersListModel *)WaitOrdersListModel{
@@ -33,16 +36,17 @@
 
     [self.imagev sd_setImageWithURL:[NSURL URLWithString:dic[@"image_cover"]] placeholderImage:[UIImage imageNamed:@""]];
     self.cartype.text = [NSString stringWithFormat:@"%@",dic[@"goods_name"]];
-    self.numlb.text = [NSString stringWithFormat:@"数量:%@",dic[@"goods_num"]];
-    self.pricelb.text = [NSString stringWithFormat:@"价格:%@",dic[@"goods_price"]];
+    self.numlb.text = [NSString stringWithFormat:@"数量:x%@",dic[@"goods_num"]];
+    self.pricelb.text = [NSString stringWithFormat:@"价格:¥%@",dic[@"goods_price"]];
 
 }
 
 
-//- (IBAction)buyevent:(UIButton *)sender {
-//    
-//    [self.delegete BuyAgain:self.index section:self.section];
-//}
+- (IBAction)buyevent:(UIButton *)sender {
+    
+    [self.delegete BuyAgain:self.index section:self.section];
+}
+
 //
 //- (IBAction)SeeEvent:(UIButton *)sender {
 //    

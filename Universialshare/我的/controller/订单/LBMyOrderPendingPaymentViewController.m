@@ -219,7 +219,7 @@
         vc.order_sn =  model.order_num;
         vc.order_id = model.order_id;
         vc.order_sh = model.crypt;
-        vc.orderPrice = model.order_money;
+        vc.orderPrice = model.realy_price;
         vc.payType = [model.order_type intValue];
         vc.useableScore = self.useableScore;
         vc.pushIndex = 2;
