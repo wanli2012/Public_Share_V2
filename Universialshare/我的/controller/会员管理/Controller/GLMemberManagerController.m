@@ -12,7 +12,12 @@
 #import "GLMemberModel.h"
 
 @interface GLMemberManagerController ()<UITableViewDelegate,UITableViewDataSource>
-
+{
+    NSDictionary *_dict1 ;
+    NSDictionary *_dict2 ;
+    NSDictionary *_dict3 ;
+    NSDictionary *_dict4 ;
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *leftBtn;
 @property (weak, nonatomic) IBOutlet UIButton *rightBtn;
@@ -28,9 +33,11 @@
 @property (nonatomic, strong)NSMutableArray *models;//锁定会员数据
 @property (nonatomic, strong)NSMutableArray *modelsone;//平台会员数据
 @property (strong, nonatomic)NodataView *nodataV;
+
 @end
 
 static NSString *ID = @"GLMemberManagerCell";
+
 @implementation GLMemberManagerController
 
 - (void)viewDidLoad {
@@ -40,6 +47,7 @@ static NSString *ID = @"GLMemberManagerCell";
     self.page = 1;
     self.pageone = 1;
     self.type = 1;
+    [self setupConst];
     self.currentbutton = self.leftBtn;
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMemberManagerCell" bundle:nil] forCellReuseIdentifier:ID];
     
@@ -73,6 +81,7 @@ static NSString *ID = @"GLMemberManagerCell";
     [self updateData:YES];
     
 }
+
 - (void)dealloc{
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -105,8 +114,7 @@ static NSString *ID = @"GLMemberManagerCell";
         
         [_loadV removeloadview];
         [self endRefresh];
-//        NSLog(@"dict = %@",dict);
-//        NSLog(@"%@",responseObject);
+
         if ([responseObject[@"code"] integerValue] == 1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 
@@ -187,6 +195,7 @@ static NSString *ID = @"GLMemberManagerCell";
 
     return self.type == 1?self.models.count:self.modelsone.count;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GLMemberManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     cell.selectionStyle = 0;
@@ -206,22 +215,45 @@ static NSString *ID = @"GLMemberManagerCell";
     return 90;
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.hidesBottomBarWhenPushed = YES;
     GLConsumerRecordController *consumerVC = [[GLConsumerRecordController alloc] init];
     
+    
     if (self.type == 1) {
+        
         GLMemberModel *model = self.models[indexPath.row];
         consumerVC.uid = model.uid;
+        consumerVC.dataArray = @[_dict2,_dict4,_dict1,_dict3];
+        
     }else{
+        
         GLMemberModel *model = self.modelsone[indexPath.row];
         consumerVC.uid = model.uid;
+        consumerVC.dataArray = @[_dict2,_dict4];
+        
     }
     
     [self.navigationController pushViewController:consumerVC animated:YES];
 }
 
+//筛选选项
+- (void)setupConst {
+    
+    _dict1 = @{@"imageName" : @"",
+               @"itemName" : @"线上他店"
+               };
+    _dict2 = @{@"imageName" : @"",
+               @"itemName" : @"线上本店"
+               };
+    _dict3 = @{@"imageName" : @"",
+               @"itemName" : @"线下他店"
+               };
+    _dict4 = @{@"imageName" : @"",
+               @"itemName" : @"线下本店"
+               };
+    
+}
 
 - (NSMutableArray *)models{
     if (!_models) {

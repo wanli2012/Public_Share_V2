@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Universialshare/&#x6536;&#x76ca;&#x7ba1;&#x7406;/Controller/GLIncomeManagerController.m"
-            timestampString = "517914262.878854"
+            filePath = "Universialshare/&#x5546;&#x57ce;&#x9996;&#x9875;/&#x8ba2;&#x5355;/Controller/GLConfirmOrderController.m"
+            timestampString = "518005776.6644"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "-updateData:"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "-postRequest"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

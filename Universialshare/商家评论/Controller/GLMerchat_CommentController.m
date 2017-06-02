@@ -35,6 +35,7 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.collectionView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellWithReuseIdentifier:ID];
     [self.collectionView addSubview:self.nodataV];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
     self.nodataV.hidden = YES;
     
     __weak __typeof(self) weakSelf = self;
@@ -100,6 +101,7 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
             self.nodataV.hidden = NO;
         }else{
             self.nodataV.hidden = YES;
+            self.collectionView.backgroundColor = YYSRGBColor(184, 184, 184, 0.2);
         }
         
         [self.collectionView reloadData];

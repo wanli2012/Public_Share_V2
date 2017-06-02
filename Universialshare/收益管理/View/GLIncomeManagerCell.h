@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLIncomeManagerModel.h"
 
 @interface GLIncomeManagerCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
+@property (nonatomic, strong)GLIncomeManagerModel *model;
 @end

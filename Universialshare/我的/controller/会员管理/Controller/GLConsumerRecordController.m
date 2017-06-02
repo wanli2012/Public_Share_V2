@@ -13,6 +13,7 @@
 #import "GLMemberConsumerModel.h"
 
 @interface GLConsumerRecordController ()<UITableViewDelegate,UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UILabel *totalIncomeLabel;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -79,26 +80,26 @@ static NSString *ID = @"GLConsumerRecordCell";
     
     //默认
     self.type = @"1";
-    self.shop_type = @"2";
+    self.shop_type = @"1";
     
     [self updateData:YES];
     
 }
 - (void)setPopMenu {
     
-    NSDictionary *dict1 = @{@"imageName" : @"",
-                            @"itemName" : @"线上他店"
-                            };
-    NSDictionary *dict2 = @{@"imageName" : @"",
-                            @"itemName" : @"线上本店"
-                            };
-    NSDictionary *dict3 = @{@"imageName" : @"",
-                            @"itemName" : @"线下他店"
-                            };
-    NSDictionary *dict4 = @{@"imageName" : @"",
-                            @"itemName" : @"线下本店"
-                            };
-    NSArray *dataArray = @[dict1,dict2,dict3,dict4];
+//    NSDictionary *dict1 = @{@"imageName" : @"",
+//                            @"itemName" : @"线上他店"
+//                            };
+//    NSDictionary *dict2 = @{@"imageName" : @"",
+//                            @"itemName" : @"线上本店"
+//                            };
+//    NSDictionary *dict3 = @{@"imageName" : @"",
+//                            @"itemName" : @"线下他店"
+//                            };
+//    NSDictionary *dict4 = @{@"imageName" : @"",
+//                            @"itemName" : @"线下本店"
+//                            };
+//    NSArray *dataArray = @[dict2,dict4,dict1,dict3];
     
     //    _dataArray = dataArray;
     
@@ -106,7 +107,7 @@ static NSString *ID = @"GLConsumerRecordCell";
     /**
      *  创建普通的MenuView，frame可以传递空值，宽度默认120，高度自适应
      */
-    [CommonMenuView createMenuWithFrame:CGRectMake(0, 0, 100, 0) target:self dataArray:dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
+    [CommonMenuView createMenuWithFrame:CGRectMake(0, 0, 100, 0) target:self dataArray:self.dataArray itemsClickBlock:^(NSString *str, NSInteger tag) {
         [weakSelf doSomething:(NSString *)str tag:(NSInteger)tag]; // do something
     } backViewTap:^{
         weakSelf.flag = YES; // 这里的目的是，让rightButton点击，可再次pop出menu
@@ -208,34 +209,36 @@ static NSString *ID = @"GLConsumerRecordCell";
     switch (tag) {
         case 1:
         {
+            
             self.type = @"1";
-            self.shop_type = @"2";
-            self.navigationItem.title = @"线上他店";
+            self.shop_type = @"1";
+            self.navigationItem.title = @"线上本店";
             [self updateData:YES];
         }
 //            [[NSNotificationCenter defaultCenter] postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@1}];
             break;
         case 2:
         {
-            self.type = @"1";
+            self.type = @"2";
             self.shop_type = @"1";
-            self.navigationItem.title = @"线上本店";
+            self.navigationItem.title = @"线下本店";
             [self updateData:YES];
         }
             break;
         case 3:
         {
-            self.type = @"2";
+            self.type = @"1";
             self.shop_type = @"2";
-            self.navigationItem.title = @"线下他店";
+            self.navigationItem.title = @"线上他店";
             [self updateData:YES];
         }
             break;
         case 4:
         {
+            
             self.type = @"2";
-            self.shop_type = @"1";
-            self.navigationItem.title = @"线下本店";
+            self.shop_type = @"2";
+            self.navigationItem.title = @"线下他店";
             [self updateData:YES];
         }
             break;

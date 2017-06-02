@@ -11,6 +11,6 @@
 @interface LBPayTheBillViewController : UIViewController
 
 
-
+@property (nonatomic, copy)NSString *shop_uid;
 
 @end

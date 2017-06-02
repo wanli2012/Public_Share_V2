@@ -7,6 +7,7 @@
 //
 
 #import "GLConsumerRecordCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface GLConsumerRecordCell ()
 
@@ -47,6 +48,11 @@
         
     }else{//5%
         self.typeImageV.image = [UIImage imageNamed:@"智能5%"];
+    }
+    
+    if (model.thumb.length > 0 ) {
+        
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@""]];
     }
 }
 @end

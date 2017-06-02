@@ -20,4 +20,6 @@
 
 @property (nonatomic, copy)NSString *total_price;
 
+@property (nonatomic, copy)NSString *thumb;
+
 @end

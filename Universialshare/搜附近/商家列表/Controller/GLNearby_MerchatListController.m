@@ -149,7 +149,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 
     }
 
-    NSLog(@"%@",dict);
+//    NSLog(@"%@",dict);
     
 }
 - (void)endRefresh {
@@ -181,7 +181,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     
     [_maskV showViewWithContentView:_contentView];
     _maskV.alpha = 0;
-    self.navigationController.navigationBar.hidden = NO;
+
 //    self.tabBarController.tabBar.hidden = YES;
     if ([GLNearby_Model defaultUser].city != nil) {
         
