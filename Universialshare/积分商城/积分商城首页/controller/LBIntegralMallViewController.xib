@@ -38,7 +38,7 @@
                                 <action selector="cityChoose:" destination="-1" eventType="touchUpInside" id="dxV-TS-p8t"/>
                             </connections>
                         </button>
-                        <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nvE-Dv-9XJ">
+                        <view hidden="YES" autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nvE-Dv-9XJ">
                             <rect key="frame" x="65" y="30" width="245" height="24"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="搜索" translatesAutoresizingMaskIntoConstraints="NO" id="kXl-7B-JdK">

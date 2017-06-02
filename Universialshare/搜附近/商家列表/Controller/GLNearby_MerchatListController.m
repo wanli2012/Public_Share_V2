@@ -13,8 +13,9 @@
 #import "GLNearby_MerchatListModel.h"
 #import "GLCityChooseController.h"
 #import "GLNearby_TradeOneModel.h"
+#import <MapKit/MapKit.h>
 
-@interface GLNearby_MerchatListController ()<UITableViewDataSource,UITableViewDelegate>
+@interface GLNearby_MerchatListController ()<UITableViewDataSource,UITableViewDelegate,GLNearby_MerchatListCellDelegate>
 {
     GLSet_MaskVeiw *_maskV;
     UIView *_contentView;
@@ -111,7 +112,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                     
                     for (NSDictionary *dic  in responseObject[@"data"]) {
                         GLNearby_MerchatListModel *model = [GLNearby_MerchatListModel mj_objectWithKeyValues:dic];
-                        [self.nearModels addObject:model];
+                        [self.recModels addObject:model];
                     }
                 }
             }
@@ -135,9 +136,8 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                     
                     for (NSDictionary *dic  in responseObject[@"data"]) {
                         GLNearby_MerchatListModel *model = [GLNearby_MerchatListModel mj_objectWithKeyValues:dic];
-                        [self.recModels addObject:model];
+                        [self.nearModels addObject:model];
                     }
-                    
                 }
             }
             [self.tableView reloadData];
@@ -146,9 +146,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
             [self endRefresh];
             [MBProgressHUD showError:error.description];
         }];
-
     }
-
 //    NSLog(@"%@",dict);
     
 }
@@ -209,6 +207,31 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 
  
 }
+- (void)mapTo:(NSInteger)index{
+    
+    GLNearby_MerchatListModel *model = self.nearModels[index];
+    
+    CGFloat lat = [model.lat floatValue ];
+    CGFloat lng = [model.lng floatValue ];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]])// -- 使用 canOpenURL 判断需要在info.plist 的 LSApplicationQueriesSchemes 添加 baidumap 。
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"baidumap://map/geocoder?location=%f,%f&coord_type=bd09ll&src=webapp.rgeo.yourCompanyName.yourAppName",lat,lng]]];
+    }else{
+        //使用自带地图导航
+        
+        CLLocationCoordinate2D destCoordinate;
+        // 将数据传到反地址编码模型
+        destCoordinate = CLLocationCoordinate2DMake(lat,lng);
+        
+        MKMapItem *currentLocation =[MKMapItem mapItemForCurrentLocation];
+        
+        MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:destCoordinate addressDictionary:nil]];
+        
+        [MKMapItem openMapsWithItems:@[currentLocation,toLocation] launchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,
+                                                                                   MKLaunchOptionsShowsTrafficKey:[NSNumber numberWithBool:YES]}];
+    }
+}
 
 //选择
 - (IBAction)choose:(UIButton *)sender {
@@ -223,7 +246,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     [self.classifyBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [self.sortBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
 
-    [sender setTitleColor:YYSRGBColor(40, 150, 58, 1) forState:UIControlStateNormal];
+    [sender setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
     
     self.cityBtn.selected = NO;
     self.classifyBtn.selected = NO;
@@ -363,9 +386,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (self.index == 10) {
-        return self.nearModels.count;
-    }else{
         return self.recModels.count;
+    }else{
+        return self.nearModels.count;
     }
     
 }
@@ -375,18 +398,20 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     GLNearby_MerchatListCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (self.index == 10) {
         
-        if (self.nearModels.count != 0) {
-            
-            cell.model = self.nearModels[indexPath.row];
-        }
-    }else{
         if (self.recModels.count != 0) {
             
             cell.model = self.recModels[indexPath.row];
         }
+    }else{
+        if (self.nearModels.count != 0) {
+            
+            cell.model = self.nearModels[indexPath.row];
+        }
     }
     cell.selectionStyle = 0;
+    cell.delegate = self;
     cell.distanceLabel.hidden = YES;
+    cell.index = indexPath.row;
     if ([self.sort integerValue] == 3) {
         cell.distanceLabel.hidden = NO;
     }

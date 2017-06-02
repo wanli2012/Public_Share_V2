@@ -31,8 +31,8 @@
     
 }
 - (IBAction)mapToHere:(id)sender {
-    if ([self.delegate respondsToSelector:@selector(mapTo)]) {
-        [self.delegate mapTo];
+    if ([self.delegate respondsToSelector:@selector(mapTo:)]) {
+        [self.delegate mapTo:self.index];
     }
 }
 

@@ -11,7 +11,7 @@
 
 @protocol GLNearby_MerchatListCellDelegate <NSObject>
 
-- (void)mapTo;
+- (void)mapTo:(NSInteger)index;
 
 @end
 
@@ -19,6 +19,9 @@
 
 @property (nonatomic, strong)GLNearby_MerchatListModel *model;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+
 @property (nonatomic, assign)id <GLNearby_MerchatListCellDelegate> delegate;
+
+@property (nonatomic, assign)NSInteger index;
 
 @end

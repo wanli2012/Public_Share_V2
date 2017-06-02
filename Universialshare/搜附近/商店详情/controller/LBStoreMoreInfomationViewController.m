@@ -527,7 +527,7 @@ static const CGFloat headerImageHeight = 180.0f;
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phonestr]]]; //拨号
 
 }
-//取这里
+//去这里
 -(void)gotheremap{
     CGFloat lat = [self.dataDic[@"shop_data"][@"lat"] floatValue ];
     CGFloat lng = [self.dataDic[@"shop_data"][@"lng"] floatValue ];

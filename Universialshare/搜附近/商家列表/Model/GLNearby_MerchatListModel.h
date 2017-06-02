@@ -18,10 +18,16 @@
 
 @property (nonatomic, copy)NSString *total_money;
 
-@property (nonatomic, copy)NSString *limit;
+@property (nonatomic, copy)NSString *limit;//距离
 
 @property (nonatomic, copy)NSString *shop_address;
 
 @property (nonatomic, copy)NSString *phone;
+
+@property (nonatomic, copy)NSString *lat;
+
+@property (nonatomic, copy)NSString *lng;
+
+@property (nonatomic, copy)NSString *uid;
 
 @end
