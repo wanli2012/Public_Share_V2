@@ -29,7 +29,6 @@
 
 @end
 
-
 @implementation GLNearby_classifyCell
 
 - (void)awakeFromNib {
@@ -38,14 +37,16 @@
 }
 - (void)setModel:(GLNearby_NearShopModel *)model{
     _model = model;
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.store_pic] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.store_pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+    
     if (self.picImageV.image == nil) {
-        self.picImageV.image = [UIImage imageNamed:@"XRPlaceholder"];
+        self.picImageV.image = [UIImage imageNamed:PlaceHolderImage];
     }
     self.nameLabel.text = model.shop_name;
     self.addressLabel.text = [NSString stringWithFormat:@"地址:%@",model.shop_address];
     self.phoneLabel.text = [NSString stringWithFormat:@"电话:%@",model.phone];
-    self.numberLabel.text = [NSString stringWithFormat:@"销售额:%@",model.total_money];
+    self.numberLabel.text = [NSString stringWithFormat:@"销售额:¥ %@",model.total_money];
+    
     if([model.limit floatValue] > 1000){
         
         self.distanceLabel.text = [NSString stringWithFormat:@"< %.2fKm",[model.limit floatValue]/1000];

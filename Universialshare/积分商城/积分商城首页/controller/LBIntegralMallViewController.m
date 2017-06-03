@@ -111,13 +111,13 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     //
     [UIView animateWithDuration:0.5 animations:^{
         
-        _contentView.transform = CGAffineTransformMakeScale(0.07, 0.07);
+        _maskV.transform = CGAffineTransformMakeScale(0.07, 0.07);
         
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.5 animations:^{
-            _contentView.center = CGPointMake(SCREEN_WIDTH - 30,30);
+            _maskV.center = CGPointMake(SCREEN_WIDTH - 30,30);
         } completion:^(BOOL finished) {
-            [_contentView removeFromSuperview];
+            [_maskV removeFromSuperview];
         }];
     }];
 }
@@ -166,10 +166,10 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     }];
 
     
-    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+//    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/main" paramDic:@{} finish:^(id responseObject) {
         
-        [_loadV removeloadview];
+//        [_loadV removeloadview];
         [self endRefresh];
 //        NSLog(@"responseObject = %@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1){
@@ -187,12 +187,13 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
         [self.tableView reloadData];
         
     } enError:^(NSError *error) {
-        [_loadV removeloadview];
+//        [_loadV removeloadview];
         [self endRefresh];
         
     }];
 
 }
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
@@ -204,71 +205,47 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     
      _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"index/notice" paramDic:nil finish:^(id responseObject) {
-        //        [_loadV removeFromSuperview];
-        //        NSLog(@"%@",responseObject);
+        [_loadV removeloadview];
+        
         if ([responseObject[@"code"] integerValue] == 1) {
   
-            
-            CGFloat contentViewH = 300;
-            CGFloat contentViewW = SCREEN_WIDTH - 80;
+            CGFloat contentViewH = SCREEN_HEIGHT / 2;
+            CGFloat contentViewW = SCREEN_WIDTH - 40;
+            CGFloat contentViewX = 20;
             _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
             
             _maskV.bgView.alpha = 0.3;
             
             _contentView = [[NSBundle mainBundle] loadNibNamed:@"GLHomePageNoticeView" owner:nil options:nil].lastObject;
-            _contentView.contentViewW.constant = SCREEN_WIDTH - 80;
-            _contentView.contentViewH.constant = 270;
-            _contentView.layer.cornerRadius = 4;
+            _contentView.contentViewW.constant = SCREEN_WIDTH - 40;
+            _contentView.contentViewH.constant = SCREEN_HEIGHT / 2 - 30;
+            _contentView.layer.cornerRadius = 5;
             _contentView.layer.masksToBounds = YES;
-
+            
             _htmlString = [NSString stringWithFormat:@"<!DOCTYPE html><html>%@</html>",responseObject[@"data"][@"content"]];
             _htmlString = [_htmlString stringByReplacingOccurrencesOfString:@"\\\"" withString:responseObject[@"data"][@"content"]];
-
+            
             [_contentView.webView loadHTMLString:_htmlString baseURL:nil];
             _contentView.titleLabel.text = responseObject[@"data"][@"title"];
-            _contentView.frame = CGRectMake(40, SCREEN_HEIGHT, contentViewW, 0);
             
             [_maskV showViewWithContentView:_contentView];
-            [UIView animateWithDuration:0.3 animations:^{
-                _contentView.frame = CGRectMake(40, (SCREEN_HEIGHT - contentViewH)/2, contentViewW, contentViewH);
-
-            }];
-
-
             
+            _contentView.frame = CGRectMake(contentViewX, (SCREEN_HEIGHT - contentViewH)/2, contentViewW, contentViewH);
+            //缩放
+            _contentView.transform=CGAffineTransformMakeScale(0.01f, 0.01f);
+            _contentView.alpha = 0;
+            [UIView animateWithDuration:0.2 animations:^{
+                
+                _contentView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+                _contentView.alpha = 1;
+            }];
+  
         }
         
     } enError:^(NSError *error) {
-        
+        [_loadV removeloadview];
     }];
     
-}
--(NSString *)filterHTML:(NSString *)html
-{
-    NSScanner * scanner = [NSScanner scannerWithString:html];
-    NSString * text = nil;
-    while([scanner isAtEnd]==NO)
-    {
-        [scanner scanUpToString:@"<" intoString:nil];
-        [scanner scanUpToString:@">" intoString:&text];
-        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
-    }
-    return html;
-}
-
-/**
- *  字符串转富文本
- */
-- (NSMutableAttributedString *)strToAttriWithStr:(NSString *)htmlStr{
-    
-    NSMutableAttributedString *AttributedString=[[NSMutableAttributedString alloc] initWithData:[htmlStr dataUsingEncoding:NSUTF8StringEncoding]
-                                                                                        options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType}
-                                                                             documentAttributes:nil
-                                                                                          error:nil];
-    
-    [AttributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:13] range:NSMakeRange(0, [AttributedString length])];//设置字体大小
-    
-    return AttributedString;
 }
 
 - (void)classifyClick:(UITapGestureRecognizer *)tap {

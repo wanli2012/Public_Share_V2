@@ -45,7 +45,8 @@
     self.nameLabel.text = model.shop_name;
     self.adressLabel.text = [NSString stringWithFormat:@"地址:%@",model.shop_address];
     self.phoneNumLabel.text = [NSString stringWithFormat:@"电话:%@", model.phone];
-    self.contentLabel.text = model.total_money;
+    
+    self.contentLabel.text = [NSString stringWithFormat:@"销售额:¥ %@",model.total_money];
     if ([model.limit floatValue] > 1000) {
         self.distanceLabel.text = [NSString stringWithFormat:@"%.2fKm", [model.limit floatValue] / 1000];
 

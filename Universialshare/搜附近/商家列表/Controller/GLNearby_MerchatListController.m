@@ -257,7 +257,12 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                                                                                    MKLaunchOptionsShowsTrafficKey:[NSNumber numberWithBool:YES]}];
     }
 }
-
+//- (CGFloat)calculateWidth:(NSString *)string{
+//    
+//    NSDictionary *attrs = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:14]};
+//    CGSize size = [string sizeWithAttributes:attrs];
+//    return size.width;
+//}
 //选择
 - (IBAction)choose:(UIButton *)sender {
     
@@ -284,7 +289,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     sender.imageView.transform = CGAffineTransformMakeRotation(M_PI);
     
     __weak __typeof(self)weakSelf = self;
-    
+
     switch (sender.tag) {
         case 10:
         {
@@ -293,9 +298,15 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                 GLCityChooseController *cityVC = [[GLCityChooseController alloc] init];
         
                 cityVC.block = ^(NSString *city,NSString *city_id){
+                    
                     [weakSelf.cityBtn setTitle:city forState:UIControlStateNormal];
-//                    [GLNearby_Model defaultUser].city_id = city_id;
-                    self.city_id = city_id;
+                    
+                    UIImage *image = [UIImage imageNamed:@"下选三角形"];
+                    [weakSelf.cityBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width, 0, image.size.width)];
+                    [weakSelf.cityBtn setImageEdgeInsets:UIEdgeInsetsMake(0, weakSelf.cityBtn.titleLabel.bounds.size.width, 0, - weakSelf.cityBtn.titleLabel.bounds.size.width)];
+                    
+                    weakSelf.city_id = city_id;
+                    
                     [weakSelf updateData:YES];
                     [weakSelf dismiss];
                 };
@@ -317,6 +328,10 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                     }else{
                         weakSelf.limit = @"";
                     }
+                    UIImage *image = [UIImage imageNamed:@"下选三角形"];
+                    [weakSelf.cityBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width, 0, image.size.width)];
+                    [weakSelf.cityBtn setImageEdgeInsets:UIEdgeInsetsMake(0, weakSelf.cityBtn.titleLabel.bounds.size.width, 0, - weakSelf.cityBtn.titleLabel.bounds.size.width)];
+                    
                     [weakSelf updateData:YES];
                     [weakSelf dismiss];
                 };
@@ -348,6 +363,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                 if ([value isEqualToString:@"不限"]) {
                     weakSelf.two_trade_id = @"";
                 }
+                UIImage *image = [UIImage imageNamed:@"下选三角形"];
+                [weakSelf.classifyBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width, 0, image.size.width)];
+                [weakSelf.classifyBtn setImageEdgeInsets:UIEdgeInsetsMake(0, weakSelf.classifyBtn.titleLabel.bounds.size.width, 0, - weakSelf.classifyBtn.titleLabel.bounds.size.width)];
                 [weakSelf updateData:YES];
                 [weakSelf dismiss];
             };
@@ -372,6 +390,10 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                     weakSelf.sort = @"3";
                 }
 
+                UIImage *image = [UIImage imageNamed:@"下选三角形"];
+                [weakSelf.sortBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width, 0, image.size.width)];
+                [weakSelf.sortBtn setImageEdgeInsets:UIEdgeInsetsMake(0, weakSelf.sortBtn.titleLabel.bounds.size.width, 0, - weakSelf.sortBtn.titleLabel.bounds.size.width)];
+                
                 [weakSelf updateData:YES];
                 [weakSelf dismiss];
             };

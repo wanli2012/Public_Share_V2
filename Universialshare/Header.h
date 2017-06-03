@@ -64,4 +64,6 @@
 
 #define KCURRENTCITYINFODEFAULTS [NSUserDefaults standardUserDefaults]
 
+#define PlaceHolderImage @"XRPlaceholder"
+
 #endif /* Header_h */

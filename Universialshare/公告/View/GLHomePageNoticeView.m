@@ -10,6 +10,11 @@
 
 @implementation GLHomePageNoticeView
 
-
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    
+    self.webView.scrollView.showsVerticalScrollIndicator = NO;
+    self.webView.scrollView.showsHorizontalScrollIndicator = NO;
+}
 
 @end
