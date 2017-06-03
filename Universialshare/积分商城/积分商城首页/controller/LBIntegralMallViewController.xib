@@ -38,7 +38,7 @@
                                 <action selector="cityChoose:" destination="-1" eventType="touchUpInside" id="dxV-TS-p8t"/>
                             </connections>
                         </button>
-                        <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nvE-Dv-9XJ">
+                        <view hidden="YES" autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nvE-Dv-9XJ">
                             <rect key="frame" x="65" y="30" width="245" height="24"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="搜索" translatesAutoresizingMaskIntoConstraints="NO" id="kXl-7B-JdK">
@@ -72,17 +72,25 @@
                                 <outletCollection property="gestureRecognizers" destination="9Cl-g0-CcF" appends="YES" id="AqQ-jo-6y4"/>
                             </connections>
                         </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="米券商城" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avX-EP-VIf">
+                            <rect key="frame" x="151" y="31.5" width="73.5" height="21.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="ENy-0f-fdT"/>
                         <constraint firstItem="nvE-Dv-9XJ" firstAttribute="centerX" secondItem="rCq-8t-XiF" secondAttribute="centerX" id="EtX-oT-CsO"/>
                         <constraint firstItem="nvE-Dv-9XJ" firstAttribute="centerY" secondItem="rJz-37-kmI" secondAttribute="centerY" id="PQa-WZ-233"/>
+                        <constraint firstItem="avX-EP-VIf" firstAttribute="centerX" secondItem="rCq-8t-XiF" secondAttribute="centerX" id="QjG-Ri-BVy"/>
                         <constraint firstItem="rJz-37-kmI" firstAttribute="leading" secondItem="rCq-8t-XiF" secondAttribute="leading" id="WRc-2j-gCE"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="aCV-vd-Pa1"/>
                         <constraint firstItem="nvE-Dv-9XJ" firstAttribute="leading" secondItem="rJz-37-kmI" secondAttribute="trailing" constant="5" id="dsy-95-kSn"/>
                         <constraint firstItem="rJz-37-kmI" firstAttribute="top" secondItem="rCq-8t-XiF" secondAttribute="top" constant="20" id="fdk-DA-tvf"/>
                         <constraint firstAttribute="bottom" secondItem="rJz-37-kmI" secondAttribute="bottom" id="kQU-Zw-9h8"/>
+                        <constraint firstItem="avX-EP-VIf" firstAttribute="centerY" secondItem="rJz-37-kmI" secondAttribute="centerY" id="pt5-g8-miE"/>
                         <constraint firstItem="nvE-Dv-9XJ" firstAttribute="height" secondItem="rJz-37-kmI" secondAttribute="height" constant="-20" id="v23-3R-XIs"/>
                     </constraints>
                 </view>

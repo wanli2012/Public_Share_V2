@@ -19,18 +19,23 @@
 #import "GLMall_InterestModel.h"
 
 //城市定位 选择
-
 #import "GLCityChooseController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 #import "GLIntegralMall_SearchController.h"
+//公告
+#import "GLHomePageNoticeView.h"
+#import "GLSet_MaskVeiw.h"
+#import "GLHomePageNoticeView.h"
 
 @interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 {
-    UIImageView *_imageviewLeft;
-    UIImageView *_imageviewRight;
     LoadWaitView * _loadV;
     NSInteger _page;
+    
+    NSString *_htmlString;
+    GLSet_MaskVeiw *_maskV;
+    GLHomePageNoticeView *_contentView;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong)SDCycleScrollView *cycleScrollView;
@@ -40,7 +45,7 @@
 @property (nonatomic, strong)NSMutableArray *interestModels;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 
-//城市定位
+//公告
 
 
 @end
@@ -72,6 +77,8 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     self.searchView.layer.cornerRadius = self.searchView.yy_height / 2;
     self.searchView.clipsToBounds = YES;
     
+    //公告
+    [self initInterDataSorceinfomessage];
     [self postRequest];
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -89,11 +96,34 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     
     self.tableView.mj_header = header;
 
-}
-- (void)updateUI{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
 }
+- (void)dismiss{
+    
+//    [UIView animateWithDuration:0.2 animations:^{
+//        _contentView.frame = CGRectMake(40, SCREEN_HEIGHT, SCREEN_WIDTH - 80, 300);
+//        
+//    }completion:^(BOOL finished) {
+//        
+//        [_maskV removeFromSuperview];
+//    }];
+    //
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        _maskV.transform = CGAffineTransformMakeScale(0.07, 0.07);
+        
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 animations:^{
+            _maskV.center = CGPointMake(SCREEN_WIDTH - 30,30);
+        } completion:^(BOOL finished) {
+            [_maskV removeFromSuperview];
+        }];
+    }];
+}
+
 - (void)endRefresh {
+    
     [self.tableView.mj_header endRefreshing];
 }
 
@@ -136,10 +166,10 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     }];
 
     
-    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+//    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/main" paramDic:@{} finish:^(id responseObject) {
         
-        [_loadV removeloadview];
+//        [_loadV removeloadview];
         [self endRefresh];
 //        NSLog(@"responseObject = %@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1){
@@ -157,12 +187,13 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
         [self.tableView reloadData];
         
     } enError:^(NSError *error) {
-        [_loadV removeloadview];
+//        [_loadV removeloadview];
         [self endRefresh];
         
     }];
 
 }
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
@@ -170,6 +201,53 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
 
 }
+-(void)initInterDataSorceinfomessage{
+    
+     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"index/notice" paramDic:nil finish:^(id responseObject) {
+        [_loadV removeloadview];
+        
+        if ([responseObject[@"code"] integerValue] == 1) {
+  
+            CGFloat contentViewH = SCREEN_HEIGHT / 2;
+            CGFloat contentViewW = SCREEN_WIDTH - 40;
+            CGFloat contentViewX = 20;
+            _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+            
+            _maskV.bgView.alpha = 0.3;
+            
+            _contentView = [[NSBundle mainBundle] loadNibNamed:@"GLHomePageNoticeView" owner:nil options:nil].lastObject;
+            _contentView.contentViewW.constant = SCREEN_WIDTH - 40;
+            _contentView.contentViewH.constant = SCREEN_HEIGHT / 2 - 30;
+            _contentView.layer.cornerRadius = 5;
+            _contentView.layer.masksToBounds = YES;
+            
+            _htmlString = [NSString stringWithFormat:@"<!DOCTYPE html><html>%@</html>",responseObject[@"data"][@"content"]];
+            _htmlString = [_htmlString stringByReplacingOccurrencesOfString:@"\\\"" withString:responseObject[@"data"][@"content"]];
+            
+            [_contentView.webView loadHTMLString:_htmlString baseURL:nil];
+            _contentView.titleLabel.text = responseObject[@"data"][@"title"];
+            
+            [_maskV showViewWithContentView:_contentView];
+            
+            _contentView.frame = CGRectMake(contentViewX, (SCREEN_HEIGHT - contentViewH)/2, contentViewW, contentViewH);
+            //缩放
+            _contentView.transform=CGAffineTransformMakeScale(0.01f, 0.01f);
+            _contentView.alpha = 0;
+            [UIView animateWithDuration:0.2 animations:^{
+                
+                _contentView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+                _contentView.alpha = 1;
+            }];
+  
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+    }];
+    
+}
+
 - (void)classifyClick:(UITapGestureRecognizer *)tap {
    
     self.hidesBottomBarWhenPushed = YES;
@@ -314,96 +392,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
      self.hidesBottomBarWhenPushed = NO;
 }
 
-#pragma mark ------------------self.view的滑动手势
-#pragma mark 添加手势
--(void)addMySelfPanGesture{
-    
-    //添加左右滑动手势pan
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    [self.view addGestureRecognizer:pan];
-    
-}
 
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    /********用于创建pan********/       //将左右的tab页面绘制出来，并把UIView添加到当前的self.view中
-//    NSUInteger selectedIndex = [self.tabBarController selectedIndex];
-//    UIViewController* v1 = [self.tabBarController.viewControllers objectAtIndex:selectedIndex-1];
-//    UIImage* image1 = [self imageByCropping:v1.view toRect:v1.view.bounds];
-//    _imageviewLeft = [[UIImageView alloc] initWithImage:image1];
-//    _imageviewLeft.frame = CGRectMake(_imageviewLeft.frame.origin.x - [UIScreen mainScreen].bounds.size.width, _imageviewLeft.frame.origin.y , _imageviewLeft.frame.size.width, _imageviewLeft.frame.size.height);
-//    [self.view addSubview:_imageviewLeft];
-//    
-//    UIViewController* v2 = [self.tabBarController.viewControllers objectAtIndex:selectedIndex+1];
-//    UIImage* image2 = [self imageByCropping:v2.view toRect:v2.view.bounds];
-//    _imageviewRight = [[UIImageView alloc] initWithImage:image2];
-//    _imageviewRight.frame = CGRectMake(_imageviewRight.frame.origin.x + [UIScreen mainScreen].bounds.size.width, 0, _imageviewRight.frame.size.width, _imageviewRight.frame.size.height);
-//    [self.view addSubview:_imageviewRight];
-    /********用于创建pan********/
-}
-
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    /********用于移除pan时的左右两边的view********/
-    [_imageviewLeft removeFromSuperview];
-    [_imageviewRight removeFromSuperview];
-    /********用于移除pan时的左右两边的view********/
-}
-
-#pragma mark 绘制图片
-//与pan结合使用 截图方法，图片用来做动画
--(UIImage*)imageByCropping:(UIView*)imageToCrop toRect:(CGRect)rect
-{
-    CGFloat scale = [[UIScreen mainScreen] scale];
-    CGSize pageSize = CGSizeMake(scale*rect.size.width, scale*rect.size.height) ;
-    UIGraphicsBeginImageContext(pageSize);
-    CGContextScaleCTM(UIGraphicsGetCurrentContext(), scale, scale);
-    
-    CGContextRef resizedContext =UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(resizedContext,-1*rect.origin.x,-1*rect.origin.y);
-    [imageToCrop.layer renderInContext:resizedContext];
-    UIImage*imageOriginBackground =UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    imageOriginBackground = [UIImage imageWithCGImage:imageOriginBackground.CGImage scale:scale orientation:UIImageOrientationUp];
-    
-    return imageOriginBackground;
-}
-
-#pragma mark Pan手势
-- (void) handlePan:(UIPanGestureRecognizer*)recongizer{
-    
-    NSUInteger index = [self.tabBarController selectedIndex];
-    
-    CGPoint point = [recongizer translationInView:self.view];
-    
-    recongizer.view.center = CGPointMake(recongizer.view.center.x + point.x, recongizer.view.center.y);
-    [recongizer setTranslation:CGPointMake(0, 0) inView:self.view];
-    
-    if (recongizer.state == UIGestureRecognizerStateEnded) {
-        if (recongizer.view.center.x < [UIScreen mainScreen].bounds.size.width && recongizer.view.center.x > 0 ) {
-            [UIView animateWithDuration:timea delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                recongizer.view.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2 ,[UIScreen mainScreen].bounds.size.height/2);
-            }completion:^(BOOL finished) {
-                
-            }];
-        } else if (recongizer.view.center.x <= 0 ){
-            [UIView animateWithDuration:timea delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                recongizer.view.center = CGPointMake(-[UIScreen mainScreen].bounds.size.width/2 ,[UIScreen mainScreen].bounds.size.height/2);
-            }completion:^(BOOL finished) {
-                [self.tabBarController setSelectedIndex:index+1];
-                recongizer.view.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2 ,[UIScreen mainScreen].bounds.size.height/2);
-            }];
-        } else {
-            [UIView animateWithDuration:timea delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                recongizer.view.center = CGPointMake([UIScreen mainScreen].bounds.size.width*1.5 ,[UIScreen mainScreen].bounds.size.height/2);
-            }completion:^(BOOL finished) {
-                [self.tabBarController setSelectedIndex:index-1];
-                recongizer.view.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2 ,[UIScreen mainScreen].bounds.size.height/2);
-            }];
-        }
-    }
-}
 
 - (NSMutableArray *)hotModels{
     if (!_hotModels) {
@@ -417,4 +406,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     }
     return _interestModels;
 }
+
+
+
 @end

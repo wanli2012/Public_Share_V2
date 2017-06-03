@@ -86,9 +86,13 @@
     cell.payimage.image = [UIImage imageNamed:_dataarr[indexPath.row][@"image"]];
     cell.paytitile.text = _dataarr[indexPath.row][@"title"];
     
-    if(indexPath.row == 0){
-        
-        cell.reuseScoreLabel.text  = [NSString stringWithFormat:@"剩余:%@",self.useableScore];
+    if(indexPath.row == 0){//米子
+        if (self.payType == 1) {
+            
+            cell.reuseScoreLabel.text  = [NSString stringWithFormat:@"剩余:%@",[UserModel defaultUser].ketiBean];
+        }else{//米券
+            cell.reuseScoreLabel.text  = [NSString stringWithFormat:@"剩余:%@",[UserModel defaultUser].mark];
+        }
     }
     
     if ([self.selectB[indexPath.row]boolValue] == NO) {
@@ -281,10 +285,7 @@
             
         }
     }
-    
-    
-    
-    
+  
 }
 
 -(NSArray*)dataarr{

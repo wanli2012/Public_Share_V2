@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="351" height="109"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="351" height="109"/>
+                <rect key="frame" x="0.0" y="0.0" width="351" height="108"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成都市美美美服饰店" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7b6-yK-W3T">
@@ -33,7 +33,7 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成都市金牛万达广场二期三楼0303" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgH-1Y-SVN">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成都市金牛万达广场二期三楼0303" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgH-1Y-SVN">
                         <rect key="frame" x="120" y="37" width="221" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -75,6 +75,7 @@
                     <constraint firstItem="7b6-yK-W3T" firstAttribute="top" secondItem="FCh-Pl-qYx" secondAttribute="top" id="Kje-QS-Qv7"/>
                     <constraint firstAttribute="trailing" secondItem="7b6-yK-W3T" secondAttribute="trailing" constant="10" id="P1j-rg-g48"/>
                     <constraint firstItem="YmE-VL-FMh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Qrq-Cl-d4H"/>
+                    <constraint firstItem="YmE-VL-FMh" firstAttribute="top" secondItem="VFM-C2-anV" secondAttribute="bottom" constant="9" id="RqJ-U6-JVG"/>
                     <constraint firstItem="FCh-Pl-qYx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Sbi-79-cbr"/>
                     <constraint firstAttribute="trailing" secondItem="YmE-VL-FMh" secondAttribute="trailing" id="ZZi-0D-aqf"/>
                     <constraint firstItem="6Z2-US-Dn2" firstAttribute="top" secondItem="hgH-1Y-SVN" secondAttribute="bottom" constant="10" id="ab2-Wg-gQN"/>

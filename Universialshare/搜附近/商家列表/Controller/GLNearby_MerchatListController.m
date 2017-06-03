@@ -13,8 +13,11 @@
 #import "GLNearby_MerchatListModel.h"
 #import "GLCityChooseController.h"
 #import "GLNearby_TradeOneModel.h"
+#import <MapKit/MapKit.h>
+#import "LBStoreMoreInfomationViewController.h"
+#import "GLNearby_NearShopModel.h"
 
-@interface GLNearby_MerchatListController ()<UITableViewDataSource,UITableViewDelegate>
+@interface GLNearby_MerchatListController ()<UITableViewDataSource,UITableViewDelegate,GLNearby_MerchatListCellDelegate>
 {
     GLSet_MaskVeiw *_maskV;
     UIView *_contentView;
@@ -31,6 +34,7 @@
 @property (nonatomic, strong)NSMutableArray *nearModels;
 @property (nonatomic, strong)NSMutableArray *recModels;
 @property (nonatomic, assign)NSInteger page;
+@property (nonatomic,strong)NodataView *nodataV;
 
 @end
 
@@ -41,6 +45,8 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     [super viewDidLoad];
     
     self.navigationItem.title = @"商家列表";
+    [self.tableView addSubview:self.nodataV];
+    self.nodataV.hidden = YES;
 
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
@@ -111,11 +117,17 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                     
                     for (NSDictionary *dic  in responseObject[@"data"]) {
                         GLNearby_MerchatListModel *model = [GLNearby_MerchatListModel mj_objectWithKeyValues:dic];
-                        [self.nearModels addObject:model];
+                        [self.recModels addObject:model];
                     }
                 }
             }
+            if (self.recModels.count <= 0 ) {
+                self.nodataV.hidden = NO;
+            }else{
+                self.nodataV.hidden = YES;
+            }
             [self.tableView reloadData];
+
             
         } enError:^(NSError *error) {
             [self endRefresh];
@@ -135,26 +147,37 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                     
                     for (NSDictionary *dic  in responseObject[@"data"]) {
                         GLNearby_MerchatListModel *model = [GLNearby_MerchatListModel mj_objectWithKeyValues:dic];
-                        [self.recModels addObject:model];
+                        [self.nearModels addObject:model];
                     }
-                    
                 }
             }
+            if (self.nearModels.count <= 0 ) {
+                self.nodataV.hidden = NO;
+            }else{
+                self.nodataV.hidden = YES;
+            }
             [self.tableView reloadData];
+
             
         } enError:^(NSError *error) {
             [self endRefresh];
             [MBProgressHUD showError:error.description];
         }];
-
     }
-
-//    NSLog(@"%@",dict);
     
 }
 - (void)endRefresh {
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
+}
+-(NodataView*)nodataV{
+    
+    if (!_nodataV) {
+        _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 40);
+    }
+    return _nodataV;
+    
 }
 - (void)dealloc {
     
@@ -209,8 +232,37 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 
  
 }
-
-
+- (void)mapTo:(NSInteger)index{
+    
+    GLNearby_MerchatListModel *model = self.nearModels[index];
+    
+    CGFloat lat = [model.lat floatValue ];
+    CGFloat lng = [model.lng floatValue ];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]])// -- 使用 canOpenURL 判断需要在info.plist 的 LSApplicationQueriesSchemes 添加 baidumap 。
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"baidumap://map/geocoder?location=%f,%f&coord_type=bd09ll&src=webapp.rgeo.yourCompanyName.yourAppName",lat,lng]]];
+    }else{
+        //使用自带地图导航
+        
+        CLLocationCoordinate2D destCoordinate;
+        // 将数据传到反地址编码模型
+        destCoordinate = CLLocationCoordinate2DMake(lat,lng);
+        
+        MKMapItem *currentLocation =[MKMapItem mapItemForCurrentLocation];
+        
+        MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:destCoordinate addressDictionary:nil]];
+        
+        [MKMapItem openMapsWithItems:@[currentLocation,toLocation] launchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,
+                                                                                   MKLaunchOptionsShowsTrafficKey:[NSNumber numberWithBool:YES]}];
+    }
+}
+//- (CGFloat)calculateWidth:(NSString *)string{
+//    
+//    NSDictionary *attrs = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:14]};
+//    CGSize size = [string sizeWithAttributes:attrs];
+//    return size.width;
+//}
 //选择
 - (IBAction)choose:(UIButton *)sender {
     
@@ -224,7 +276,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     [self.classifyBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [self.sortBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
 
-    [sender setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [sender setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
     
     self.cityBtn.selected = NO;
     self.classifyBtn.selected = NO;
@@ -235,7 +287,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     self.classifyBtn.imageView.transform = CGAffineTransformMakeRotation(0);
     self.sortBtn.imageView.transform = CGAffineTransformMakeRotation(0);
     sender.imageView.transform = CGAffineTransformMakeRotation(M_PI);
+    
     __weak __typeof(self)weakSelf = self;
+
     switch (sender.tag) {
         case 10:
         {
@@ -244,9 +298,15 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                 GLCityChooseController *cityVC = [[GLCityChooseController alloc] init];
         
                 cityVC.block = ^(NSString *city,NSString *city_id){
+                    
                     [weakSelf.cityBtn setTitle:city forState:UIControlStateNormal];
-//                    [GLNearby_Model defaultUser].city_id = city_id;
-                    self.city_id = city_id;
+                    
+                    UIImage *image = [UIImage imageNamed:@"下选三角形"];
+                    [weakSelf.cityBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width, 0, image.size.width)];
+                    [weakSelf.cityBtn setImageEdgeInsets:UIEdgeInsetsMake(0, weakSelf.cityBtn.titleLabel.bounds.size.width, 0, - weakSelf.cityBtn.titleLabel.bounds.size.width)];
+                    
+                    weakSelf.city_id = city_id;
+                    
                     [weakSelf updateData:YES];
                     [weakSelf dismiss];
                 };
@@ -268,6 +328,10 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                     }else{
                         weakSelf.limit = @"";
                     }
+                    UIImage *image = [UIImage imageNamed:@"下选三角形"];
+                    [weakSelf.cityBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width, 0, image.size.width)];
+                    [weakSelf.cityBtn setImageEdgeInsets:UIEdgeInsetsMake(0, weakSelf.cityBtn.titleLabel.bounds.size.width, 0, - weakSelf.cityBtn.titleLabel.bounds.size.width)];
+                    
                     [weakSelf updateData:YES];
                     [weakSelf dismiss];
                 };
@@ -299,6 +363,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                 if ([value isEqualToString:@"不限"]) {
                     weakSelf.two_trade_id = @"";
                 }
+                UIImage *image = [UIImage imageNamed:@"下选三角形"];
+                [weakSelf.classifyBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width, 0, image.size.width)];
+                [weakSelf.classifyBtn setImageEdgeInsets:UIEdgeInsetsMake(0, weakSelf.classifyBtn.titleLabel.bounds.size.width, 0, - weakSelf.classifyBtn.titleLabel.bounds.size.width)];
                 [weakSelf updateData:YES];
                 [weakSelf dismiss];
             };
@@ -323,6 +390,10 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                     weakSelf.sort = @"3";
                 }
 
+                UIImage *image = [UIImage imageNamed:@"下选三角形"];
+                [weakSelf.sortBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -image.size.width, 0, image.size.width)];
+                [weakSelf.sortBtn setImageEdgeInsets:UIEdgeInsetsMake(0, weakSelf.sortBtn.titleLabel.bounds.size.width, 0, - weakSelf.sortBtn.titleLabel.bounds.size.width)];
+                
                 [weakSelf updateData:YES];
                 [weakSelf dismiss];
             };
@@ -362,9 +433,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (self.index == 10) {
-        return self.nearModels.count;
-    }else{
         return self.recModels.count;
+    }else{
+        return self.nearModels.count;
     }
     
 }
@@ -374,23 +445,46 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     GLNearby_MerchatListCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (self.index == 10) {
         
-        if (self.nearModels.count != 0) {
-            
-            cell.model = self.nearModels[indexPath.row];
-        }
-    }else{
         if (self.recModels.count != 0) {
             
             cell.model = self.recModels[indexPath.row];
         }
+    }else{
+        if (self.nearModels.count != 0) {
+            
+            cell.model = self.nearModels[indexPath.row];
+        }
     }
     cell.selectionStyle = 0;
+    cell.delegate = self;
     cell.distanceLabel.hidden = YES;
+    cell.index = indexPath.row;
     if ([self.sort integerValue] == 3) {
         cell.distanceLabel.hidden = NO;
     }
     
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.hidesBottomBarWhenPushed = YES;
+    
+    LBStoreMoreInfomationViewController *storeVC = [[LBStoreMoreInfomationViewController alloc] init];
+    
+    GLNearby_NearShopModel *model;
+    
+    if (self.index == 10) {
+        model = self.recModels[indexPath.row];
+    }else{
+        model = self.nearModels[indexPath.row];
+    }
+    
+    storeVC.lat = [model.lat floatValue];
+    storeVC.lng = [model.lng floatValue];
+    storeVC.storeId = model.shop_id;
+    
+    [self.navigationController pushViewController:storeVC animated:YES];
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     

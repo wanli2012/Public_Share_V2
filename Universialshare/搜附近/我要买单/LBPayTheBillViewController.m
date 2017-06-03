@@ -119,6 +119,8 @@
 - (void)ricePay:(NSNotification *)sender {
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"shop_uid"] = self.shop_uid;
     dict[@"type"] = [NSString stringWithFormat:@"%lu",self.payType]; //支付方式: 1 支付宝 2 微信 3:米子
     dict[@"price"] = self.moneytf.text;//价格
@@ -126,7 +128,7 @@
     dict[@"rl_type"] = [NSString stringWithFormat:@"%lu",self.modelType];//让利模式 1:20%  2:10%  3:5%
     dict[@"version"] = @"3";//版本 3:Ios
     //    dict[@"crypt"] = @"";
-    dict[@"pwd"] =  [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];;
+    dict[@"pwd"] =  [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
     
     NSLog(@"dict = %@",dict);
     
@@ -135,19 +137,18 @@
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
            
-            
-        }else{
-            [MBProgressHUD showError:responseObject[@"message"]];
-            
+            [self.navigationController popViewControllerAnimated:YES];
         }
+        
         [MBProgressHUD showError:responseObject[@"message"]];
 
+        [self dismiss];
     } enError:^(NSError *error) {
         [_loadV removeloadview];
+        [self dismiss];
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
-    
     
 }
 
@@ -166,7 +167,7 @@
     
     [alertView addAction:[TYAlertAction actionWithTitle:@"米子支付" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
            self.methodTf.text = action.title;
-        self.payType = 3;
+        self.payType = 4;
     }]];
     [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancel handler:^(TYAlertAction *action) {
 
@@ -174,7 +175,6 @@
     
     TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:alertView preferredStyle:TYAlertControllerStyleActionSheet];
     [self presentViewController:alertController animated:YES completion:nil];
-    
     
 }
 
