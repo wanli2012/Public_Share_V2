@@ -21,7 +21,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FYZ-B0-IR9">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYZ-B0-IR9">
                     <rect key="frame" x="0.0" y="27.5" width="317" height="240.5"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbG-O6-qag">
@@ -29,7 +29,7 @@
                             <subviews>
                                 <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wy0-cs-qe3">
                                     <rect key="frame" x="0.0" y="0.0" width="317" height="233"/>
-                                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </webView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -66,6 +66,7 @@
             <connections>
                 <outlet property="contentView" destination="xbG-O6-qag" id="YLr-Ia-pwG"/>
                 <outlet property="contentViewH" destination="Pjr-fM-3kx" id="7it-H0-Njd"/>
+                <outlet property="contentViewW" destination="Xsh-s2-VmK" id="nro-PW-suL"/>
                 <outlet property="scrollView" destination="FYZ-B0-IR9" id="AsM-gu-nPn"/>
                 <outlet property="titleLabel" destination="2hy-TK-b1h" id="2TB-jv-pH1"/>
                 <outlet property="webView" destination="Wy0-cs-qe3" id="yxw-Cb-rxe"/>

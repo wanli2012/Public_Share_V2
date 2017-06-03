@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewH;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewW;
 
 @end

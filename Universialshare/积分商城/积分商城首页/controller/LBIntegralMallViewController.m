@@ -30,8 +30,6 @@
 
 @interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 {
-    UIImageView *_imageviewLeft;
-    UIImageView *_imageviewRight;
     LoadWaitView * _loadV;
     NSInteger _page;
     
@@ -99,17 +97,33 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     self.tableView.mj_header = header;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
+    
 }
 - (void)dismiss{
     
-    [UIView animateWithDuration:0.2 animations:^{
-        [_maskV removeFromSuperview];
+//    [UIView animateWithDuration:0.2 animations:^{
+//        _contentView.frame = CGRectMake(40, SCREEN_HEIGHT, SCREEN_WIDTH - 80, 300);
+//        
+//    }completion:^(BOOL finished) {
+//        
+//        [_maskV removeFromSuperview];
+//    }];
+    //
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        _contentView.transform = CGAffineTransformMakeScale(0.07, 0.07);
+        
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 animations:^{
+            _contentView.center = CGPointMake(SCREEN_WIDTH - 30,30);
+        } completion:^(BOOL finished) {
+            [_contentView removeFromSuperview];
+        }];
     }];
 }
-- (void)updateUI{
-    
-}
+
 - (void)endRefresh {
+    
     [self.tableView.mj_header endRefreshing];
 }
 
@@ -188,27 +202,22 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 }
 -(void)initInterDataSorceinfomessage{
     
+     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"index/notice" paramDic:nil finish:^(id responseObject) {
         //        [_loadV removeFromSuperview];
         //        NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1) {
-            //
-            //            NSString *htmlString = [NSString stringWithFormat:@"<!DOCTYPE html><html>%@</html>",responseObject[@"data"][@"content"]];
-            //            htmlString = [htmlString stringByReplacingOccurrencesOfString:@"\\\"" withString:responseObject[@"data"][@"content"]];
-            //            self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT *0.5)];
-            //
-            //            [self.webView loadHTMLString:htmlString baseURL:nil];
-            //
-            //            [self.view addSubview:self.webView];
+  
             
             CGFloat contentViewH = 300;
-            CGFloat contentViewW = SCREEN_WIDTH;
+            CGFloat contentViewW = SCREEN_WIDTH - 80;
             _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
             
-            _maskV.bgView.alpha = 0.4;
+            _maskV.bgView.alpha = 0.3;
             
             _contentView = [[NSBundle mainBundle] loadNibNamed:@"GLHomePageNoticeView" owner:nil options:nil].lastObject;
-           
+            _contentView.contentViewW.constant = SCREEN_WIDTH - 80;
+            _contentView.contentViewH.constant = 270;
             _contentView.layer.cornerRadius = 4;
             _contentView.layer.masksToBounds = YES;
 
@@ -216,73 +225,16 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
             _htmlString = [_htmlString stringByReplacingOccurrencesOfString:@"\\\"" withString:responseObject[@"data"][@"content"]];
 
             [_contentView.webView loadHTMLString:_htmlString baseURL:nil];
-            _contentView.frame = CGRectMake(0, SCREEN_HEIGHT, contentViewW, 0);
+            _contentView.titleLabel.text = responseObject[@"data"][@"title"];
+            _contentView.frame = CGRectMake(40, SCREEN_HEIGHT, contentViewW, 0);
+            
             [_maskV showViewWithContentView:_contentView];
             [UIView animateWithDuration:0.3 animations:^{
-                _contentView.frame = CGRectMake(0, SCREEN_HEIGHT - contentViewH, contentViewW, contentViewH);
-//                [_contentView.passwordF becomeFirstResponder];
+                _contentView.frame = CGRectMake(40, (SCREEN_HEIGHT - contentViewH)/2, contentViewW, contentViewH);
+
             }];
-            
-            [_maskV showViewWithContentView:_contentView];
-            
-//            NSString *strtitle=[NSString stringWithFormat:@"%@",responseObject[@"data"][@"title"]];
-//            NSString *strcontent=[NSString stringWithFormat:@"%@",responseObject[@"data"][@"content"]];
-//            NSString *strtime=[NSString stringWithFormat:@"%@",responseObject[@"data"][@"release_time"]];
-//            //
-//            if ([strtitle rangeOfString:@"null"].location == NSNotFound) {
-//                self.homepopinfoView.titlename.text = strtitle;
-//            }else{
-//                self.homepopinfoView.titlename.text = @"";
-//            }
-//            if ([strcontent rangeOfString:@"null"].location == NSNotFound) {
-//                
-//                _htmlString = [NSString stringWithFormat:@"<!DOCTYPE html><html>%@</html>",strcontent];
-//                _htmlString = [_htmlString stringByReplacingOccurrencesOfString:@"\\\"" withString:strcontent];
-//                
-//                [self.homepopinfoView.webView loadHTMLString:_htmlString baseURL:nil];
-//                
-//            }
-//            if ([strtime rangeOfString:@"null"].location == NSNotFound) {
-//                self.homepopinfoView.timeLb.text = strtime;
-//            }else{
-//                
-//                self.homepopinfoView.timeLb.text = @"";
-//            }
-//            //
-//            //                        if (self.homepopinfoView.infoLb.text.length<=1) {
-//            //                            return ;
-//            //                        }
-//            
-//            CGRect sizetitle=[self.homepopinfoView.titlename.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 80, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14]} context:nil];
-//            
-//        
-//            CGRect sizecontent =[_htmlString boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 80, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14]} context:nil];
-//            
-//            if ((110 + sizetitle.size.height + sizecontent.size.height) >= ((SCREEN_HEIGHT/2) - 30)) {
-//                
-//                self.homepopinfoView.frame = CGRectMake(20, (SCREEN_HEIGHT - ((SCREEN_HEIGHT/2) - 30)) / 2, SCREEN_WIDTH - 40, ((SCREEN_HEIGHT/2) - 30));
-//                
-//                self.homepopinfoView.scrollViewH.constant = (SCREEN_HEIGHT/2) - 105;
-//                self.homepopinfoView.contentW.constant = SCREEN_WIDTH - 80;
-//                self.homepopinfoView.contentH.constant = sizetitle.size.height + sizecontent.size.height + 20;
-//                self.homepopinfoView.webViewH.constant = sizecontent.size.height + 20;
-//            }else{
-//                
-//                self.homepopinfoView.frame = CGRectMake(20, (SCREEN_HEIGHT - (110 + sizetitle.size.height + sizecontent.size.height)) / 2, SCREEN_WIDTH - 40, 110 + sizetitle.size.height + sizecontent.size.height);
-//                
-//                self.homepopinfoView.scrollViewH.constant = 110 + sizetitle.size.height + sizecontent.size.height - 80;
-//               
-//                self.homepopinfoView.scrollView.scrollEnabled = YES;
-//                
-//                self.homepopinfoView.contentW.constant = SCREEN_WIDTH - 80;
-//                self.homepopinfoView.contentH.constant = 110 + sizetitle.size.height + sizecontent.size.height - 80;
-//                
-//
-//            }
-//            
-//            self.homepopinfoView.webView.scrollView.bounces = NO;
-//            [self.view addSubview:self.homepopinfoViewmask];
-//            [self.homepopinfoViewmask addSubview:self.homepopinfoView];
+
+
             
         }
         
@@ -463,96 +415,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
      self.hidesBottomBarWhenPushed = NO;
 }
 
-#pragma mark ------------------self.view的滑动手势
-#pragma mark 添加手势
--(void)addMySelfPanGesture{
-    
-    //添加左右滑动手势pan
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    [self.view addGestureRecognizer:pan];
-    
-}
 
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    /********用于创建pan********/       //将左右的tab页面绘制出来，并把UIView添加到当前的self.view中
-//    NSUInteger selectedIndex = [self.tabBarController selectedIndex];
-//    UIViewController* v1 = [self.tabBarController.viewControllers objectAtIndex:selectedIndex-1];
-//    UIImage* image1 = [self imageByCropping:v1.view toRect:v1.view.bounds];
-//    _imageviewLeft = [[UIImageView alloc] initWithImage:image1];
-//    _imageviewLeft.frame = CGRectMake(_imageviewLeft.frame.origin.x - [UIScreen mainScreen].bounds.size.width, _imageviewLeft.frame.origin.y , _imageviewLeft.frame.size.width, _imageviewLeft.frame.size.height);
-//    [self.view addSubview:_imageviewLeft];
-//    
-//    UIViewController* v2 = [self.tabBarController.viewControllers objectAtIndex:selectedIndex+1];
-//    UIImage* image2 = [self imageByCropping:v2.view toRect:v2.view.bounds];
-//    _imageviewRight = [[UIImageView alloc] initWithImage:image2];
-//    _imageviewRight.frame = CGRectMake(_imageviewRight.frame.origin.x + [UIScreen mainScreen].bounds.size.width, 0, _imageviewRight.frame.size.width, _imageviewRight.frame.size.height);
-//    [self.view addSubview:_imageviewRight];
-    /********用于创建pan********/
-}
-
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    /********用于移除pan时的左右两边的view********/
-    [_imageviewLeft removeFromSuperview];
-    [_imageviewRight removeFromSuperview];
-    /********用于移除pan时的左右两边的view********/
-}
-
-#pragma mark 绘制图片
-//与pan结合使用 截图方法，图片用来做动画
--(UIImage*)imageByCropping:(UIView*)imageToCrop toRect:(CGRect)rect
-{
-    CGFloat scale = [[UIScreen mainScreen] scale];
-    CGSize pageSize = CGSizeMake(scale*rect.size.width, scale*rect.size.height) ;
-    UIGraphicsBeginImageContext(pageSize);
-    CGContextScaleCTM(UIGraphicsGetCurrentContext(), scale, scale);
-    
-    CGContextRef resizedContext =UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(resizedContext,-1*rect.origin.x,-1*rect.origin.y);
-    [imageToCrop.layer renderInContext:resizedContext];
-    UIImage*imageOriginBackground =UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    imageOriginBackground = [UIImage imageWithCGImage:imageOriginBackground.CGImage scale:scale orientation:UIImageOrientationUp];
-    
-    return imageOriginBackground;
-}
-
-#pragma mark Pan手势
-- (void) handlePan:(UIPanGestureRecognizer*)recongizer{
-    
-    NSUInteger index = [self.tabBarController selectedIndex];
-    
-    CGPoint point = [recongizer translationInView:self.view];
-    
-    recongizer.view.center = CGPointMake(recongizer.view.center.x + point.x, recongizer.view.center.y);
-    [recongizer setTranslation:CGPointMake(0, 0) inView:self.view];
-    
-    if (recongizer.state == UIGestureRecognizerStateEnded) {
-        if (recongizer.view.center.x < [UIScreen mainScreen].bounds.size.width && recongizer.view.center.x > 0 ) {
-            [UIView animateWithDuration:timea delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                recongizer.view.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2 ,[UIScreen mainScreen].bounds.size.height/2);
-            }completion:^(BOOL finished) {
-                
-            }];
-        } else if (recongizer.view.center.x <= 0 ){
-            [UIView animateWithDuration:timea delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                recongizer.view.center = CGPointMake(-[UIScreen mainScreen].bounds.size.width/2 ,[UIScreen mainScreen].bounds.size.height/2);
-            }completion:^(BOOL finished) {
-                [self.tabBarController setSelectedIndex:index+1];
-                recongizer.view.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2 ,[UIScreen mainScreen].bounds.size.height/2);
-            }];
-        } else {
-            [UIView animateWithDuration:timea delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                recongizer.view.center = CGPointMake([UIScreen mainScreen].bounds.size.width*1.5 ,[UIScreen mainScreen].bounds.size.height/2);
-            }completion:^(BOOL finished) {
-                [self.tabBarController setSelectedIndex:index-1];
-                recongizer.view.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2 ,[UIScreen mainScreen].bounds.size.height/2);
-            }];
-        }
-    }
-}
 
 - (NSMutableArray *)hotModels{
     if (!_hotModels) {
