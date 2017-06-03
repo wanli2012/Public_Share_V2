@@ -15,5 +15,8 @@
 @property (copy, nonatomic)NSString *goods_mes;
 @property (copy, nonatomic)NSString *goods_num;
 @property (copy, nonatomic)NSString *goods_price;
+@property (copy, nonatomic)NSString *shop_name;
+@property (copy, nonatomic)NSString *is_receipt;
+@property (copy, nonatomic)NSString *orderGoodsId;
 
 @end

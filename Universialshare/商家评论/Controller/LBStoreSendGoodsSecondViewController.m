@@ -135,17 +135,10 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     
     LBStoreSendGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.indexRow = indexPath.row;
-    cell.delegete = self;
+    cell.indexpath = indexPath;
     cell.button.hidden = YES;
     
     return cell;
-    
-}
-#pragma mark --- LBStoreSendGoodsDelegete
-
--(void)clickSendGoods:(NSInteger)index{
-    
     
 }
 

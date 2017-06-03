@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LBSendGoodsProductModel.h"
 @protocol LBStoreSendGoodsDelegete <NSObject>
 
--(void)clickSendGoods:(NSInteger)index;
+-(void)clickSendGoods:(NSIndexPath*)indexpath;
 
 @end
 
@@ -20,7 +20,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *namelb;
 @property (weak, nonatomic) IBOutlet UILabel *phonelb;
 @property (weak, nonatomic) IBOutlet UILabel *timelb;
-@property (assign, nonatomic) NSInteger  indexRow;
+@property (strong, nonatomic) NSIndexPath  *indexpath;
 @property (assign, nonatomic) id<LBStoreSendGoodsDelegete>  delegete;
+@property (strong, nonatomic)LBSendGoodsProductModel *WaitOrdersListModel;
+@property (weak, nonatomic) IBOutlet UIImageView *imagev;
+@property (weak, nonatomic) IBOutlet UILabel *pricelb;
 
 @end

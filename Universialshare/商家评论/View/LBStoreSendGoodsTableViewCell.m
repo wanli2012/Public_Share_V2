@@ -7,6 +7,7 @@
 //
 
 #import "LBStoreSendGoodsTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation LBStoreSendGoodsTableViewCell
 
@@ -19,7 +20,17 @@
 //发货
 - (IBAction)sendGoodsEvent:(UIButton *)sender {
     
-    [self.delegete clickSendGoods:self.indexRow];
+    [self.delegete clickSendGoods:self.indexpath];
 }
 
+-(void)setWaitOrdersListModel:(LBSendGoodsProductModel *)WaitOrdersListModel{
+    _WaitOrdersListModel = WaitOrdersListModel;
+
+    self.codelb.text = [NSString stringWithFormat:@"%@",_WaitOrdersListModel.goods_name];
+    self.pricelb.text = [NSString stringWithFormat:@"x%@  ¥%@",_WaitOrdersListModel.goods_num,_WaitOrdersListModel.goods_price];
+   self.namelb.text = [NSString stringWithFormat:@"%@",_WaitOrdersListModel.goods_info];
+    self.phonelb.text = [NSString stringWithFormat:@"tel: %@",_WaitOrdersListModel.phone];
+    self.phonelb.text = [NSString stringWithFormat:@"消费者: %@",_WaitOrdersListModel.user_name];
+    [self.imagev sd_setImageWithURL:[NSURL URLWithString:_WaitOrdersListModel.thumb] placeholderImage:[UIImage imageNamed:@"熊"]];
+}
 @end

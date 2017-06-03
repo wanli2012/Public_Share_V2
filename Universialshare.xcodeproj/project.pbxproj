@@ -766,6 +766,8 @@
 		F9434D501EC16D78001C80A4 /* LBMineCenterRegionQueryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9434D4C1EC16D78001C80A4 /* LBMineCenterRegionQueryTableViewCell.xib */; };
 		F9434D551EC19046001C80A4 /* LBMineCenterWantToSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9434D531EC19046001C80A4 /* LBMineCenterWantToSignUpViewController.m */; };
 		F9434D561EC19046001C80A4 /* LBMineCenterWantToSignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9434D541EC19046001C80A4 /* LBMineCenterWantToSignUpViewController.xib */; };
+		F947384D1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F947384B1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.m */; };
+		F947384E1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F947384C1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.xib */; };
 		F94A33F31EAA01A600222A86 /* LBMineCenterPayPagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94A33F11EAA01A600222A86 /* LBMineCenterPayPagesViewController.m */; };
 		F94A33F41EAA01A600222A86 /* LBMineCenterPayPagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94A33F21EAA01A600222A86 /* LBMineCenterPayPagesViewController.xib */; };
 		F94A33F91EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94A33F71EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.m */; };
@@ -882,6 +884,7 @@
 		F9643F201ECFEB3A001B707B /* LBMineCenterMYOrderEvaluationDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9643F1E1ECFEB3A001B707B /* LBMineCenterMYOrderEvaluationDetailTableViewCell.m */; };
 		F9643F211ECFEB3A001B707B /* LBMineCenterMYOrderEvaluationDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9643F1F1ECFEB3A001B707B /* LBMineCenterMYOrderEvaluationDetailTableViewCell.xib */; };
 		F9643F261ED025F2001B707B /* orderEvaluationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9643F251ED025F2001B707B /* orderEvaluationModel.m */; };
+		F9662FF91EE252BD00FD61AF /* LBSendGoodsProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9662FF81EE252BD00FD61AF /* LBSendGoodsProductModel.m */; };
 		F96659821ED57EB2000DD67F /* JZAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F966597F1ED57EB2000DD67F /* JZAlbumViewController.m */; };
 		F96659831ED57EB2000DD67F /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = F96659811ED57EB2000DD67F /* PhotoView.m */; };
 		F96659851ED58BDD000DD67F /* BootstrapDiagram.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F96659841ED58BDD000DD67F /* BootstrapDiagram.xcassets */; };
@@ -2286,6 +2289,9 @@
 		F9434D521EC19046001C80A4 /* LBMineCenterWantToSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterWantToSignUpViewController.h; sourceTree = "<group>"; };
 		F9434D531EC19046001C80A4 /* LBMineCenterWantToSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterWantToSignUpViewController.m; sourceTree = "<group>"; };
 		F9434D541EC19046001C80A4 /* LBMineCenterWantToSignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterWantToSignUpViewController.xib; sourceTree = "<group>"; };
+		F947384A1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBOrderRebatePendingViewController.h; sourceTree = "<group>"; };
+		F947384B1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBOrderRebatePendingViewController.m; sourceTree = "<group>"; };
+		F947384C1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBOrderRebatePendingViewController.xib; sourceTree = "<group>"; };
 		F94A33F01EAA01A600222A86 /* LBMineCenterPayPagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterPayPagesViewController.h; sourceTree = "<group>"; };
 		F94A33F11EAA01A600222A86 /* LBMineCenterPayPagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterPayPagesViewController.m; sourceTree = "<group>"; };
 		F94A33F21EAA01A600222A86 /* LBMineCenterPayPagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterPayPagesViewController.xib; sourceTree = "<group>"; };
@@ -2472,6 +2478,8 @@
 		F9643F1F1ECFEB3A001B707B /* LBMineCenterMYOrderEvaluationDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterMYOrderEvaluationDetailTableViewCell.xib; sourceTree = "<group>"; };
 		F9643F241ED025F2001B707B /* orderEvaluationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = orderEvaluationModel.h; sourceTree = "<group>"; };
 		F9643F251ED025F2001B707B /* orderEvaluationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderEvaluationModel.m; sourceTree = "<group>"; };
+		F9662FF71EE252BD00FD61AF /* LBSendGoodsProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBSendGoodsProductModel.h; sourceTree = "<group>"; };
+		F9662FF81EE252BD00FD61AF /* LBSendGoodsProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBSendGoodsProductModel.m; sourceTree = "<group>"; };
 		F966597E1ED57EB2000DD67F /* JZAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZAlbumViewController.h; sourceTree = "<group>"; };
 		F966597F1ED57EB2000DD67F /* JZAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAlbumViewController.m; sourceTree = "<group>"; };
 		F96659801ED57EB2000DD67F /* PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoView.h; sourceTree = "<group>"; };
@@ -4684,6 +4692,8 @@
 				4AFCDC831ED2F1C4007C1681 /* GLMerchat_CommentGoodsModel.m */,
 				4AFCDC5E1ED2B159007C1681 /* GLMerchat_CommentModel.h */,
 				4AFCDC5F1ED2B159007C1681 /* GLMerchat_CommentModel.m */,
+				F9662FF71EE252BD00FD61AF /* LBSendGoodsProductModel.h */,
+				F9662FF81EE252BD00FD61AF /* LBSendGoodsProductModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5252,6 +5262,9 @@
 				F9121B1F1EB2044300DAB7A2 /* LBMyOrderAlreadyPaymentViewController.h */,
 				F9121B201EB2044300DAB7A2 /* LBMyOrderAlreadyPaymentViewController.m */,
 				F9121B211EB2044300DAB7A2 /* LBMyOrderAlreadyPaymentViewController.xib */,
+				F947384A1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.h */,
+				F947384B1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.m */,
+				F947384C1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.xib */,
 				F9121B241EB219F900DAB7A2 /* model */,
 				F92308A31E9B8BFE00ECDC94 /* view */,
 				F92308B01E9B8BFF00ECDC94 /* XBScrollPageController */,
@@ -6531,6 +6544,7 @@
 				4A07A88D1EA0BBF1005A9B67 /* GLNoneOfDonationCell.xib in Resources */,
 				4AFCDC7C1ED2EE77007C1681 /* GLMerchat_CommentTableController.xib in Resources */,
 				F923096B1E9B8BFF00ECDC94 /* LBMyOrderCheckUnsubscribeRecordViewController.xib in Resources */,
+				F947384E1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.xib in Resources */,
 				4A4609F81E9CB78E0045824F /* GLDonationController.xib in Resources */,
 				4A0023FA1E84AEFF00B2A9FE /* HomePage.xcassets in Resources */,
 				4AFCDC581ED29039007C1681 /* GLMerchat_CommentController.xib in Resources */,
@@ -6850,6 +6864,7 @@
 				4A4611011E9CC6370045824F /* ZXQRCodeDecodedBitStreamParser.m in Sources */,
 				4A5C70CB1ED66850001110B6 /* GLMerchat_StoreModel.m in Sources */,
 				F92309281E9B8BFF00ECDC94 /* LBMineCenterAddBankCardViewController.m in Sources */,
+				F9662FF91EE252BD00FD61AF /* LBSendGoodsProductModel.m in Sources */,
 				4A4610C51E9CC6370045824F /* ZXAbstractRSSReader.m in Sources */,
 				4A4610EB1E9CC6370045824F /* ZXPDF417Codeword.m in Sources */,
 				F92309611E9B8BFF00ECDC94 /* XBScrollPageController.m in Sources */,
@@ -7104,6 +7119,7 @@
 				4A0D978A1E9729C100A26B84 /* GLShoppingCell.m in Sources */,
 				4A3D17B01ECC507B00F85A3B /* GLRecommendStroe_RecordController.m in Sources */,
 				F9520A0E1EAD9EE300B4D665 /* LBMerchantSubmissionFourViewController.m in Sources */,
+				F947384D1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.m in Sources */,
 				4AAD253D1EC188C90054FD06 /* GLBuyBackChooseBankView.m in Sources */,
 				4A4610931E9CC6360045824F /* ZXRGBLuminanceSource.m in Sources */,
 				F92309791E9B8BFF00ECDC94 /* LBMineCenterAccountSafeViewController.m in Sources */,

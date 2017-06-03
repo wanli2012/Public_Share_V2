@@ -1,18 +1,20 @@
 //
-//  LBMyOrderPendingEvaluationViewController.m
+//  LBOrderRebatePendingViewController.m
 //  Universialshare
 //
-//  Created by 四川三君科技有限公司 on 2017/4/1.
+//  Created by 四川三君科技有限公司 on 2017/6/2.
 //  Copyright © 2017年 四川三君科技有限公司. All rights reserved.
 //
 
-#import "LBMyOrderPendingEvaluationViewController.h"
+#import "LBOrderRebatePendingViewController.h"
 #import "LBMyOrderListTableViewCell.h"
-#import "LBMineCenterMYOrderEvaluationDetailViewController.h"
+#import "LBMineCenterPayPagesViewController.h"
 #import <MJRefresh/MJRefresh.h>
-#import <SDWebImage/UIImageView+WebCache.h>
+#import "LBMyOrdersHeaderView.h"
+#import "LBMyOrdersModel.h"
+#import "LBMyOrdersListModel.h"
 
-@interface LBMyOrderPendingEvaluationViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface LBOrderRebatePendingViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic)NSMutableArray *dataarr;
 @property (strong, nonatomic)LoadWaitView *loadV;
@@ -20,15 +22,15 @@
 @property (assign, nonatomic)BOOL refreshType;//判断刷新状态 默认为no
 @property (strong, nonatomic)NodataView *nodataV;
 
-@property (assign, nonatomic)NSInteger refreshindex;//刷新下标
+@property (nonatomic, copy)NSString *useableScore;//剩余积分
 
 @end
 
-@implementation LBMyOrderPendingEvaluationViewController
+@implementation LBOrderRebatePendingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.tableview.tableFooterView = [UIView new];
@@ -60,33 +62,51 @@
     
     self.tableview.mj_header = header;
     self.tableview.mj_footer = footer;
-    //评论成功刷新数据源
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshdatasource:) name:@"LBMyOrderPendingEvaluationViewController" object:nil];
 }
 
 -(void)initdatasource{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getWaitingOrderCommentList" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page] } finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"user/order_mark_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page] , @"type":@7} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
+        
         if ([responseObject[@"code"] integerValue]==1) {
+            
             if (_refreshType == NO) {
                 [self.dataarr removeAllObjects];
             }
+            
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-                [self.dataarr addObjectsFromArray:responseObject[@"data"]];
+                for (int i = 0; i<[responseObject[@"data"] count]; i++) {
+                    
+                    LBMyOrdersModel *ordersMdel=[[LBMyOrdersModel alloc]init];
+                    ordersMdel.addtime = responseObject[@"data"][i][@"addtime"];
+                    ordersMdel.order_id = responseObject[@"data"][i][@"order_id"];
+                    ordersMdel.order_money = responseObject[@"data"][i][@"order_money"];
+                    ordersMdel.order_num = responseObject[@"data"][i][@"order_num"];
+                    ordersMdel.order_type = responseObject[@"data"][i][@"order_type"];
+                    ordersMdel.realy_price = responseObject[@"data"][i][@"realy_price"];
+                    ordersMdel.total = responseObject[@"data"][i][@"total"];
+                    ordersMdel.isExpanded = NO;
+                    ordersMdel.MyOrdersListModel = responseObject[@"data"][i][@"goods"];
+                    ordersMdel.crypt = responseObject[@"data"][i][@"crypt"];
+                    [self.dataarr addObject:ordersMdel];
+                }
+                self.useableScore = responseObject[@"mark"];
             }
             
             [self.tableview reloadData];
             
         }else if ([responseObject[@"code"] integerValue]==3){
-
+            
             [MBProgressHUD showError:responseObject[@"message"]];
             
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
+            
+            
         }
     } enError:^(NSError *error) {
         [_loadV removeloadview];
@@ -95,6 +115,7 @@
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
+    
     
 }
 
@@ -113,17 +134,25 @@
     
     [self initdatasource];
 }
-
-
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (self.dataarr.count > 0 ) {
+        
+        self.nodataV.hidden = YES;
+    }else{
+        self.nodataV.hidden = NO;
+        
+    }
+    
+    return self.dataarr.count;
+    
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.dataarr.count <= 0) {
-        self.nodataV.hidden = NO;
-    }else{
-        self.nodataV.hidden = YES;
-    }
-    return self.dataarr.count;
+    
+    LBMyOrdersModel *model=self.dataarr[section];
+    return model.isExpanded?model.MyOrdersListModel.count:0;
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -131,28 +160,43 @@
     
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 90;
+    
+}
+
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    LBMyOrdersHeaderView *headerview = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LBMyOrdersHeaderView"];
+    
+    if (!headerview) {
+        headerview = [[LBMyOrdersHeaderView alloc] initWithReuseIdentifier:@"LBMyOrdersHeaderView"];
+        
+    }
+    headerview.cancelBt.hidden = YES;
+    headerview.payBt.hidden = YES;
+    
+    return headerview;
+}
+
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
     LBMyOrderListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBMyOrderListTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell.payBt setTitle:@"去评价" forState:UIControlStateNormal];
-    cell.stauesLb.text = @"待评价";
+    [cell.payBt setTitle:@"去支付" forState:UIControlStateNormal];
+    cell.payBt.hidden = YES;
     cell.index = indexPath.row;
     cell.deleteBt.hidden = YES;
-    [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"thumb"]]] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
-    cell.namelb.text = [NSString stringWithFormat:@"订单号:%@",self.dataarr[indexPath.row][@"order_num"]];
-    cell.numlb.text = [NSString stringWithFormat:@"总价:¥%@",self.dataarr[indexPath.row][@"order_money"]];
-    cell.priceLb.text = [NSString stringWithFormat:@"数量:%@",self.dataarr[indexPath.row][@"total"]];
+    cell.stauesLb.text = @"待付款";
     
-    __weak typeof(self)  weakself = self;
-    cell.retunpaybutton = ^(NSInteger index){
-        _refreshindex = index;
-        LBMineCenterMYOrderEvaluationDetailViewController *vc=[[LBMineCenterMYOrderEvaluationDetailViewController alloc]init];
-        vc.arr = weakself.dataarr[index][@"goods_data"];
-        [weakself.navigationController pushViewController:vc animated:YES];
-        
-    };
+    LBMyOrdersModel *model= (LBMyOrdersModel*)self.dataarr[indexPath.section];
+    
+    cell.myorderlistModel = model.MyOrdersListModel[indexPath.row];
     
     return cell;
     
@@ -162,24 +206,6 @@
     
     
     
-}
-
--(void)refreshdatasource:(NSNotification*)noti{
-   
-    NSDictionary *dic = noti.userInfo;
-
-    NSMutableDictionary *dic1=[NSMutableDictionary dictionaryWithDictionary:self.dataarr[_refreshindex]];
-    
-    dic1[@"is_comment"] = @"1";
-    dic1[@"mark"] = dic[@"mark"];
-    dic1[@"comment"] = dic[@"comment"];
-    
-    [self.dataarr replaceObjectAtIndex:_refreshindex withObject:dic1];
-    
-    [self.tableview reloadData];
-    
-    
-
 }
 
 -(NSMutableArray *)dataarr{
