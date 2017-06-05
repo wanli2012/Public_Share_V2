@@ -17,6 +17,9 @@
     self.payBt.layer.borderColor = YYSRGBColor(191, 0, 0, 1).CGColor;
     self.payBt.layer.borderWidth = 1;
     
+    self.deleteBt.layer.cornerRadius = 4;
+    self.deleteBt.clipsToBounds = YES;
+    
     UITapGestureRecognizer *tapgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgestureEvent:)];
     
     [self.stauesLb addGestureRecognizer:tapgesture];
@@ -57,7 +60,25 @@
     self.namelb.text = [NSString stringWithFormat:@"%@",dic[@"goods_name"]];
     self.numlb.text = [NSString stringWithFormat:@"数量: %@",dic[@"goods_num"]];
     self.priceLb.text = [NSString stringWithFormat:@"价格: %@",dic[@"goods_price"]];
+}
 
+-(void)setMyorderRebateModel:(LBMyorderRebateModel *)myorderRebateModel{
+    _myorderRebateModel = myorderRebateModel;
+    
+    [self.imagev sd_setImageWithURL:[NSURL URLWithString:_myorderRebateModel.thumb] placeholderImage:[UIImage imageNamed:@"熊"]];
+    self.namelb.text = [NSString stringWithFormat:@"%@",_myorderRebateModel.goods_name];
+    self.numlb.text = [NSString stringWithFormat:@"数量: %@",_myorderRebateModel.goods_num];
+    self.priceLb.text = [NSString stringWithFormat:@"价格: %@",_myorderRebateModel.goods_price];
+
+    if ([_myorderRebateModel.is_receipt isEqualToString:@"4"]) {//生效
+        [self.deleteBt setTitle:@"已分红" forState:UIControlStateNormal];
+        self.deleteBt.backgroundColor = [UIColor grayColor];
+        self.deleteBt.userInteractionEnabled = NO;
+    }else{//未生效
+        [self.deleteBt setTitle:@"开始分红" forState:UIControlStateNormal];
+        self.deleteBt.backgroundColor = TABBARTITLE_COLOR;
+        self.deleteBt.userInteractionEnabled = YES;
+    }
 
 }
 

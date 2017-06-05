@@ -16,5 +16,6 @@
 @property (copy, nonatomic)NSString *goods_price;
 @property (copy, nonatomic)NSString *thumb;
 @property (copy, nonatomic)NSString *is_receipt;
+@property (copy, nonatomic)NSString *order_goods_id;
 
 @end

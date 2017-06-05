@@ -192,8 +192,6 @@
     return headerview;
 }
 
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
@@ -205,20 +203,41 @@
      cell.indexpath = indexPath;
     cell.deleteBt.hidden = NO;
     cell.stauesLb.hidden = YES;
-    
+    __weak typeof(self) weakself =self;
     LBMyOrdersModel *model= (LBMyOrdersModel*)self.dataarr[indexPath.section];
-    cell.myorderlistModel = model.MyOrdersListModel[indexPath.row];
+    cell.myorderRebateModel = model.dataArr[indexPath.row];
     cell.retundeletebutton = ^(NSIndexPath *indexpath){
-    
-    
+        [weakself startShareRebate:indexpath];
     };
     
     return cell;
     
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)startShareRebate:(NSIndexPath*)indexpath{
+
+    LBMyOrdersModel *model= (LBMyOrdersModel*)self.dataarr[indexpath.section];
+    LBMyorderRebateModel  *rebateModel = model.dataArr[indexpath.row];
     
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"shop/confirmOrderDoing" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"order_id" :model.order_id,@"order_goods_id":rebateModel.order_goods_id} finish:^(id responseObject) {
+        [_loadV removeloadview];
+        if ([responseObject[@"code"] integerValue]==1) {
+            rebateModel.is_receipt = @"4";
+            [MBProgressHUD showError:@"发货成功"];
+            [self.tableview reloadData];
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
 }

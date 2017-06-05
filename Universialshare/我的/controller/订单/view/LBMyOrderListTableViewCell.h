@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LBMyOrdersListModel.h"
+#import "LBMyorderRebateModel.h"
 
 @protocol LBMyOrderListTableViewdelegete <NSObject>
 
@@ -37,5 +38,6 @@
 
 @property (assign, nonatomic)id<LBMyOrderListTableViewdelegete> delegete;
 @property (strong, nonatomic)LBMyOrdersListModel *myorderlistModel;
+@property (strong, nonatomic)LBMyorderRebateModel *myorderRebateModel;
 
 @end
