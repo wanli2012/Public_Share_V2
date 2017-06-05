@@ -385,6 +385,12 @@
 
 
 #pragma mark - 点击激励模式选择
+-(void)threeButtonE{
+    self.userytpe = [KThreePersent integerValue];
+    self.modeltf.text = @"3%激励模式";
+    [self incentiveModelMaskVtapgestureLb];
+    
+}
 
 -(void)sixbuttonE{
     self.userytpe=3;
@@ -401,12 +407,6 @@
 -(void)twentyFbuttonE{
     self.userytpe=1;
     self.modeltf.text=@"20%激励模式";
-    [self incentiveModelMaskVtapgestureLb];
-    
-}
--(void)threeButtonE{
-    self.userytpe = [KThreePersent integerValue];
-    self.modeltf.text = @"3%激励模式";
     [self incentiveModelMaskVtapgestureLb];
     
 }

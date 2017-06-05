@@ -181,6 +181,7 @@
     [self.selectBtThree setImage:[UIImage imageNamed:@"添加产品选中"] forState:UIControlStateNormal];
     [self.selectBtFour setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
 }
+//选择3%
 - (IBAction)tapgestureThree:(UITapGestureRecognizer *)sender {
     self.stype = [KThreePersent integerValue];
     [self.selectBtOne setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
