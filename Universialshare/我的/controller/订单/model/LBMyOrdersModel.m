@@ -10,4 +10,13 @@
 
 @implementation LBMyOrdersModel
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.dataArr = [NSMutableArray array];
+    }
+    return self;
+}
+
 @end

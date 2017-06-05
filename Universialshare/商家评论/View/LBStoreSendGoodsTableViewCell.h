@@ -10,7 +10,7 @@
 #import "LBSendGoodsProductModel.h"
 @protocol LBStoreSendGoodsDelegete <NSObject>
 
--(void)clickSendGoods:(NSIndexPath*)indexpath;
+-(void)clickSendGoods:(NSIndexPath*)indexpath  name:(NSString*)name;
 
 @end
 

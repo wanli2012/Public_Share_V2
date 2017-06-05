@@ -32,15 +32,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NrA-as-cA6">
-                                <rect key="frame" x="270" y="3" width="40" height="30"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NrA-as-cA6">
+                                <rect key="frame" x="250" y="5.5" width="60" height="25"/>
+                                <color key="backgroundColor" red="0.14404621719999999" green="0.60565376280000005" blue="0.14635491370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="jxh-nj-2OT"/>
-                                    <constraint firstAttribute="width" constant="40" id="lI0-YV-bQj"/>
+                                    <constraint firstAttribute="height" constant="25" id="jxh-nj-2OT"/>
+                                    <constraint firstAttribute="width" constant="60" id="lI0-YV-bQj"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" image="address_dele"/>
+                                <state key="normal" title="确认收货"/>
                                 <connections>
                                     <action selector="deletebutton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Vrp-V8-ytX"/>
                                 </connections>
@@ -91,7 +92,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="iox-gr-vrb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.77709561589999998" green="0.19865089650000001" blue="0.056773729619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CRh-Eb-Wh5">
@@ -152,6 +153,5 @@
     </objects>
     <resources>
         <image name="XRPlaceholder" width="391" height="220"/>
-        <image name="address_dele" width="19" height="19"/>
     </resources>
 </document>

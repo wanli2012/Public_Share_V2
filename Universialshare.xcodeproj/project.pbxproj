@@ -586,6 +586,7 @@
 		F90C45331ED6AD8A001650BD /* QBVideoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = F90C45251ED6AD8A001650BD /* QBVideoIconView.m */; };
 		F90C45341ED6AD8A001650BD /* QBVideoIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F90C45271ED6AD8A001650BD /* QBVideoIndicatorView.m */; };
 		F90C45361ED6B692001650BD /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90C45351ED6B692001650BD /* AssetsLibrary.framework */; };
+		F90D09D31EE5606A00F321A6 /* LBMyorderRebateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F90D09D21EE5606A00F321A6 /* LBMyorderRebateModel.m */; };
 		F9101B341ECEFBCC0079BB2E /* LBPayTheBillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9101B321ECEFBCC0079BB2E /* LBPayTheBillViewController.m */; };
 		F9101B351ECEFBCC0079BB2E /* LBPayTheBillViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9101B331ECEFBCC0079BB2E /* LBPayTheBillViewController.xib */; };
 		F91029C21EC5831300246D04 /* LBMySalesmanListFaildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91029C01EC5831300246D04 /* LBMySalesmanListFaildViewController.xib */; };
@@ -2029,6 +2030,8 @@
 		F90C45271ED6AD8A001650BD /* QBVideoIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBVideoIndicatorView.m; sourceTree = "<group>"; };
 		F90C45281ED6AD8A001650BD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/QBImagePicker.strings"; sourceTree = "<group>"; };
 		F90C45351ED6B692001650BD /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		F90D09D11EE5606A00F321A6 /* LBMyorderRebateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMyorderRebateModel.h; sourceTree = "<group>"; };
+		F90D09D21EE5606A00F321A6 /* LBMyorderRebateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMyorderRebateModel.m; sourceTree = "<group>"; };
 		F9101B311ECEFBCC0079BB2E /* LBPayTheBillViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPayTheBillViewController.h; sourceTree = "<group>"; };
 		F9101B321ECEFBCC0079BB2E /* LBPayTheBillViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPayTheBillViewController.m; sourceTree = "<group>"; };
 		F9101B331ECEFBCC0079BB2E /* LBPayTheBillViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBPayTheBillViewController.xib; sourceTree = "<group>"; };
@@ -5048,6 +5051,8 @@
 				F9121B261EB21A6500DAB7A2 /* LBMyOrdersModel.m */,
 				F9121B281EB21A8900DAB7A2 /* LBMyOrdersListModel.h */,
 				F9121B291EB21A8900DAB7A2 /* LBMyOrdersListModel.m */,
+				F90D09D11EE5606A00F321A6 /* LBMyorderRebateModel.h */,
+				F90D09D21EE5606A00F321A6 /* LBMyorderRebateModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -6773,6 +6778,7 @@
 				4A2A00C31EC70D9400052CA7 /* GLOrderDetailController.m in Sources */,
 				F966B3B01EAC3B4C007260FC /* LBMineCenterOrderDetailViewController.m in Sources */,
 				F94D31E81EAF7EE200309029 /* LBWaitOrdersHeaderView.m in Sources */,
+				F90D09D31EE5606A00F321A6 /* LBMyorderRebateModel.m in Sources */,
 				F923098B1E9B8BFF00ECDC94 /* MineCollectionHeaderV.m in Sources */,
 				F966B3BB1EAC3D3E007260FC /* LBMineCenterOrderDetailTwoTableViewCell.m in Sources */,
 				4A4610961E9CC6360045824F /* ZXDataMatrixDecodedBitStreamParser.m in Sources */,

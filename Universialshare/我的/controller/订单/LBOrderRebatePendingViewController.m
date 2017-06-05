@@ -12,7 +12,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import "LBMyOrdersHeaderView.h"
 #import "LBMyOrdersModel.h"
-#import "LBMyOrdersListModel.h"
+#import "LBMyorderRebateModel.h"
 
 @interface LBOrderRebatePendingViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -90,7 +90,11 @@
                     ordersMdel.realy_price = responseObject[@"data"][i][@"realy_price"];
                     ordersMdel.total = responseObject[@"data"][i][@"total"];
                     ordersMdel.isExpanded = NO;
-                    ordersMdel.MyOrdersListModel = responseObject[@"data"][i][@"goods"];
+                    for (int j =0; j < [responseObject[@"data"][i][@"goods"]count]; j++) {
+                        LBMyorderRebateModel   *listmodel = [LBMyorderRebateModel mj_objectWithKeyValues:responseObject[@"data"][i][@"goods"][j]];
+                        [ordersMdel.dataArr addObject:listmodel];
+                    }
+                    
                     ordersMdel.crypt = responseObject[@"data"][i][@"crypt"];
                     [self.dataarr addObject:ordersMdel];
                 }
@@ -150,7 +154,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     LBMyOrdersModel *model=self.dataarr[section];
-    return model.isExpanded?model.MyOrdersListModel.count:0;
+    return model.isExpanded?model.dataArr.count:0;
 }
 
 
@@ -175,9 +179,16 @@
         headerview = [[LBMyOrdersHeaderView alloc] initWithReuseIdentifier:@"LBMyOrdersHeaderView"];
         
     }
+    __weak typeof(self)  weakself = self;
+    LBMyOrdersModel *sectionModel = self.dataarr[section];
+    headerview.sectionModel = sectionModel;
+    headerview.expandCallback = ^(BOOL isExpanded) {
+        
+        [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
+    };
+    headerview.section = section;
     headerview.cancelBt.hidden = YES;
     headerview.payBt.hidden = YES;
-    
     return headerview;
 }
 
@@ -191,12 +202,16 @@
     [cell.payBt setTitle:@"去支付" forState:UIControlStateNormal];
     cell.payBt.hidden = YES;
     cell.index = indexPath.row;
-    cell.deleteBt.hidden = YES;
-    cell.stauesLb.text = @"待付款";
+     cell.indexpath = indexPath;
+    cell.deleteBt.hidden = NO;
+    cell.stauesLb.hidden = YES;
     
     LBMyOrdersModel *model= (LBMyOrdersModel*)self.dataarr[indexPath.section];
-    
     cell.myorderlistModel = model.MyOrdersListModel[indexPath.row];
+    cell.retundeletebutton = ^(NSIndexPath *indexpath){
+    
+    
+    };
     
     return cell;
     
@@ -227,4 +242,5 @@
     return _nodataV;
     
 }
+
 @end

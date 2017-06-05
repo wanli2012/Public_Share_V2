@@ -12,6 +12,7 @@
 #import "LBWaitOrdersModel.h"
 #import "LBWaitOrdersHeaderView.h"
 #import "LBSendGoodsProductModel.h"
+#import "LBSendGoodsProductModel.h"
 
 @interface LBStoreSendGoodsListFirstViewController ()<LBStoreSendGoodsDelegete>
 
@@ -193,12 +194,7 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     headerview.expandCallback = ^(BOOL isExpanded) {
         [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
-    //    确认收货
-    //    headerview.returnsureGetBt = ^(NSInteger section){
-    //        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"您确定已收货吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    //        [alert show];
-    //    };
-    //    查看物流
+ 
     return headerview;
 
 }
@@ -206,9 +202,9 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
 
 #pragma mark --- LBStoreSendGoodsDelegete
 
--(void)clickSendGoods:(NSIndexPath *)indexpath{
+-(void)clickSendGoods:(NSIndexPath *)indexpath name:(NSString *)name{
 
-    TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"发送" message:@"您将要发货给哈哈"];
+    TYAlertView *alertView = [TYAlertView alertViewWithTitle:[NSString stringWithFormat:@"您发货给%@",name] message:[NSString stringWithFormat:@"填写物流单号可查看物流信息"]];
     
     [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancel handler:^(TYAlertAction *action) {
 
@@ -216,18 +212,20 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     
     // 弱引用alertView 否则 会循环引用
     __typeof (alertView) __weak weakAlertView = alertView;
+    __typeof (self) __weak weakself = self;
     [alertView addAction:[TYAlertAction actionWithTitle:@"确定" style:TYAlertActionStyleDestructive handler:^(TYAlertAction *action) {
-        
-        for (UITextField *textField in weakAlertView.textFieldArray) {
-            NSLog(@"%@",textField.text);
+        if (weakAlertView.textFieldArray.count > 0) {
+            for (UITextField *textField in weakAlertView.textFieldArray) {
+                [weakself storeSendGoods:indexpath codestr:textField.text];
+            }
+        }else{
+               [weakself storeSendGoods:indexpath codestr:@""];
         }
+       
     }]];
     
     [alertView addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"请输入账号";
-    }];
-    [alertView addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"请输入密码";
+        textField.placeholder = @"请输入物流单号(选填)";
     }];
     
     // first way to show
@@ -255,6 +253,32 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     
     [self presentViewController:alertController animated:YES completion:nil];
 
+}
+/**
+ *发货接口
+ *codestr  物流单号
+ */
+-(void)storeSendGoods:(NSIndexPath*)indexpath codestr:(NSString*)codestr{
+
+    LBWaitOrdersModel *model = self.dataarr[indexpath.section];
+    LBSendGoodsProductModel  *orderModel= model.dataArr[indexpath.row];
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"shop/sendOrder" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"order_id" :model.order_id,@"order_goods_id":orderModel.order_goods_id,@"odd_num":codestr} finish:^(id responseObject) {
+        [_loadV removeloadview];
+        if ([responseObject[@"code"] integerValue]==1) {
+            orderModel.is_receipt = @"3";
+            [MBProgressHUD showError:@"发货成功"];
+             [self.tableview reloadData];
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
 }
 
 -(NSMutableArray *)dataarr{

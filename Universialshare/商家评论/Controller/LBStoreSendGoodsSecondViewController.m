@@ -8,8 +8,13 @@
 
 #import "LBStoreSendGoodsSecondViewController.h"
 #import "LBStoreSendGoodsTableViewCell.h"
+#import "UIView+TYAlertView.h"
+#import "LBWaitOrdersModel.h"
+#import "LBWaitOrdersHeaderView.h"
+#import "LBSendGoodsProductModel.h"
+#import "LBSendGoodsProductModel.h"
 
-@interface LBStoreSendGoodsSecondViewController ()<LBStoreSendGoodsDelegete>
+@interface LBStoreSendGoodsSecondViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic)NSMutableArray *dataarr;
@@ -44,7 +49,6 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     }];
     
     // 设置文字
-    
     [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
     
     [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
@@ -54,13 +58,14 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     self.tableview.mj_header = header;
     self.tableview.mj_footer = footer;
     
-    // [self initdatasource];
+    [self initdatasource];
+    
     
 }
 
 -(void)initdatasource{
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getStoreGoodsList" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"shop/arealySendOrder" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page]} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
@@ -71,7 +76,20 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
             }
             
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-                [self.dataarr addObjectsFromArray:responseObject[@"data"]];
+                for (int i = 0; i<[responseObject[@"data"] count]; i++) {
+                    
+                    LBWaitOrdersModel *ordersMdel=[[LBWaitOrdersModel alloc]init];
+                    ordersMdel.creat_time = responseObject[@"data"][i][@"addtime"];
+                    ordersMdel.order_id = responseObject[@"data"][i][@"order_id"];
+                    ordersMdel.order_number = responseObject[@"data"][i][@"order_num"];
+                    ordersMdel.order_type = responseObject[@"data"][i][@"order_type"];
+                    ordersMdel.isExpanded = NO;
+                    for (int j =0; j < [responseObject[@"data"][i][@"son"]count]; j++) {
+                        LBSendGoodsProductModel   *listmodel = [LBSendGoodsProductModel mj_objectWithKeyValues:responseObject[@"data"][i][@"son"][j]];
+                        [ordersMdel.dataArr addObject:listmodel];
+                    }
+                    [self.dataarr addObject:ordersMdel];
+                }
             }
             
             [self.tableview reloadData];
@@ -112,19 +130,29 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     [self initdatasource];
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    if (self.dataarr.count > 0) {
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (self.dataarr.count > 0 ) {
+        
         self.nodataV.hidden = YES;
     }else{
-        self.nodataV.hidden = YES;
+        self.nodataV.hidden = NO;
+        
     }
     
-    return 3;
+    return self.dataarr.count;
     
 }
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    LBWaitOrdersModel *model = self.dataarr[section];
+    return model.isExpanded ? model.dataArr.count : 0;
+    
+}
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     
     return 100;
     
@@ -136,11 +164,39 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     LBStoreSendGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.indexpath = indexPath;
-    cell.button.hidden = YES;
-    
+    LBWaitOrdersModel *model = self.dataarr[indexPath.section];
+    cell.WaitOrdersListModel = model.dataArr[indexPath.row];
     return cell;
     
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 85;
+    
+}
+
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    LBWaitOrdersHeaderView *headerview = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LBWaitOrdersHeaderView"];
+    
+    if (!headerview) {
+        headerview = [[LBWaitOrdersHeaderView alloc] initWithReuseIdentifier:@"LBWaitOrdersHeaderView"];
+        
+    }
+    __weak typeof(self) weakself = self;
+    LBWaitOrdersModel *sectionModel = self.dataarr[section];
+    headerview.sectionModel = sectionModel;
+    headerview.wuliuBt.hidden = YES;
+    headerview.sureGetBt.hidden = YES;
+    headerview.expandCallback = ^(BOOL isExpanded) {
+        [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
+    };
+    
+    return headerview;
+    
+}
+
 
 -(NSMutableArray *)dataarr{
     

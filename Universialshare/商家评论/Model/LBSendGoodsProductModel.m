@@ -12,7 +12,7 @@
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key{
     if([key isEqualToString:@"id"]){
-        _goods_id = value;
+        _order_goods_id = value;
     }
 }
 

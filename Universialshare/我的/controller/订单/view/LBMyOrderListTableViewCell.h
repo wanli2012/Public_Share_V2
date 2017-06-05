@@ -31,9 +31,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *payBt;
 @property (weak, nonatomic) IBOutlet UIButton *deleteBt;
 @property (assign, nonatomic)NSInteger index;
-
+@property (strong, nonatomic)NSIndexPath *indexpath;
 @property (copy, nonatomic)void(^retunpaybutton)(NSInteger index);
-@property (copy, nonatomic)void(^retundeletebutton)(NSInteger index);
+@property (copy, nonatomic)void(^retundeletebutton)(NSIndexPath *index);
 
 @property (assign, nonatomic)id<LBMyOrderListTableViewdelegete> delegete;
 @property (strong, nonatomic)LBMyOrdersListModel *myorderlistModel;

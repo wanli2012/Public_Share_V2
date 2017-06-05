@@ -249,7 +249,7 @@ static const CGFloat headerImageHeight = 180.0f;
             LBStoreDetailAdressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreDetailAdressTableViewCell" forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.adressLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"shop_data"][@"address"]];
-            cell.phone.text = [NSString stringWithFormat:@"电话号码:%@",self.dataDic[@"shop_data"][@"phone"]];
+            cell.phone.text = [NSString stringWithFormat:@"tel:%@",self.dataDic[@"shop_data"][@"phone"]];
             cell.delegete = self;
              return cell;
         }
