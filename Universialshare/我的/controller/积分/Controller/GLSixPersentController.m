@@ -40,17 +40,17 @@ static NSString *ID = @"GLMine_MyHeartCell";
                 GLMyheartModel *model = [GLMyheartModel mj_objectWithKeyValues:responseObject[@"data"]];
                 [self.models addObject:model];
              
-            [self.tableView reloadData];
            
            }else{
                [MBProgressHUD showError:responseObject[@"message"]];
            }
+            [self.tableView reloadData];
             
         } enError:^(NSError *error) {
             
             [_loadV removeloadview];
             [MBProgressHUD showError:error.localizedDescription];
-            
+            [self.tableView reloadData];
         }];
     }
     return _models;

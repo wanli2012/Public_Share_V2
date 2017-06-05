@@ -111,6 +111,7 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
         [self endRefresh];
         [MBProgressHUD showError:error.localizedDescription];
         
+        [self.collectionView reloadData];
     }];
     
 }

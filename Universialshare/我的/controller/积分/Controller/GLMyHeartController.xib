@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMyHeartController">
             <connections>
                 <outlet property="sixBtn" destination="XnB-xI-cds" id="wyS-MF-eLR"/>
+                <outlet property="threeBtn" destination="2wT-TL-Lo8" id="dOK-1l-oYm"/>
                 <outlet property="twelveBtn" destination="pIP-r2-52X" id="YZK-9Y-dcj"/>
                 <outlet property="twelveFourBtn" destination="4Sg-VA-uru" id="XIe-UK-DL8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -27,7 +28,7 @@
                     <rect key="frame" x="0.0" y="64" width="375" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XnB-xI-cds">
-                            <rect key="frame" x="0.0" y="3" width="126" height="44"/>
+                            <rect key="frame" x="0.0" y="3" width="95" height="44"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -45,7 +46,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Sg-VA-uru">
-                            <rect key="frame" x="252" y="3" width="126" height="44"/>
+                            <rect key="frame" x="189.5" y="3" width="95" height="44"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -57,7 +58,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pIP-r2-52X">
-                            <rect key="frame" x="126" y="3" width="126" height="44"/>
+                            <rect key="frame" x="95" y="3" width="94.5" height="44"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -71,15 +72,31 @@
                                 <action selector="buttonEvent:" destination="-1" eventType="touchUpInside" id="lxl-Kr-u8X"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wT-TL-Lo8">
+                            <rect key="frame" x="284.5" y="0.0" width="90.5" height="50"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal" title="3%奖金">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="buttonEvent:" destination="-1" eventType="touchUpInside" id="b4c-qJ-7Fb"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="8z2-M2-6c8"/>
-                        <constraint firstItem="XnB-xI-cds" firstAttribute="width" secondItem="XZJ-36-tVu" secondAttribute="width" multiplier="1/3" constant="1" id="Et7-rY-SIs"/>
+                        <constraint firstItem="XnB-xI-cds" firstAttribute="width" secondItem="XZJ-36-tVu" secondAttribute="width" multiplier="1/4" constant="1" id="Et7-rY-SIs"/>
+                        <constraint firstAttribute="bottom" secondItem="2wT-TL-Lo8" secondAttribute="bottom" id="H2U-OV-PaR"/>
                         <constraint firstAttribute="bottom" secondItem="pIP-r2-52X" secondAttribute="bottom" constant="3" id="JVD-S4-Z25"/>
+                        <constraint firstItem="2wT-TL-Lo8" firstAttribute="leading" secondItem="4Sg-VA-uru" secondAttribute="trailing" id="NZn-LG-UhL"/>
+                        <constraint firstItem="2wT-TL-Lo8" firstAttribute="top" secondItem="XZJ-36-tVu" secondAttribute="top" id="Rg9-dy-B7d"/>
                         <constraint firstAttribute="height" constant="50" id="WJq-yp-NXH"/>
                         <constraint firstItem="pIP-r2-52X" firstAttribute="top" secondItem="XZJ-36-tVu" secondAttribute="top" constant="3" id="Yr7-Uo-s6I"/>
                         <constraint firstAttribute="bottom" secondItem="XnB-xI-cds" secondAttribute="bottom" constant="3" id="dlq-jS-Qye"/>
+                        <constraint firstAttribute="trailing" secondItem="2wT-TL-Lo8" secondAttribute="trailing" id="gEF-vc-SMQ"/>
                         <constraint firstItem="4Sg-VA-uru" firstAttribute="leading" secondItem="pIP-r2-52X" secondAttribute="trailing" id="hcG-g6-KDm"/>
                         <constraint firstItem="pIP-r2-52X" firstAttribute="width" secondItem="XnB-xI-cds" secondAttribute="width" id="izc-Xw-g95"/>
                         <constraint firstItem="pIP-r2-52X" firstAttribute="leading" secondItem="XnB-xI-cds" secondAttribute="trailing" id="kf3-6L-G3D"/>

@@ -7,15 +7,18 @@
 //
 
 #import "GLMyHeartController.h"
+#import "GLThreePersentController.h"
 #import "GLSixPersentController.h"
 #import "GLTwelevePersentController.h"
 #import "GLTweleveFourController.h"
 
 @interface GLMyHeartController ()
+
 {
     UIButton *_tmpBtn;
 }
 
+@property (nonatomic, strong)GLThreePersentController *threePersentVC;
 @property (nonatomic, strong)GLSixPersentController *sixPersentVC;
 @property (nonatomic, strong)GLTwelevePersentController *twelvePercentVC;
 @property (nonatomic, strong)GLTweleveFourController *twentyfourPercentVC;
@@ -24,6 +27,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *sixBtn;
 @property (weak, nonatomic) IBOutlet UIButton *twelveBtn;
 @property (weak, nonatomic) IBOutlet UIButton *twelveFourBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *threeBtn;
+
 @property (nonatomic, strong)UIButton *currentButton;
 
 @property (nonatomic,strong)NSMutableArray *models;
@@ -39,6 +45,7 @@
     self.navigationController.navigationBar.hidden = NO;
     self.view.backgroundColor=[UIColor whiteColor];
     
+    _threePersentVC = [[GLThreePersentController alloc] init];
     _sixPersentVC = [[GLSixPersentController alloc]init];
     _twelvePercentVC = [[GLTwelevePersentController alloc]init];
     _twentyfourPercentVC = [[GLTweleveFourController alloc]init];
@@ -46,6 +53,7 @@
     _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT-114)];
     [self.view addSubview:_contentView];
     
+    [self addChildViewController:_threePersentVC];
     [self addChildViewController:_sixPersentVC];
     [self addChildViewController:_twelvePercentVC];
     [self addChildViewController:_twentyfourPercentVC];
@@ -70,6 +78,7 @@
     [self.sixBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [self.twelveBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [self.twelveFourBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [self.threeBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     
     [sender setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
 
@@ -82,12 +91,16 @@
 
         [self transitionFromVC:self.currentViewController toviewController:_twelvePercentVC];
         [self fitFrameForChildViewController:_twelvePercentVC];
-    }else{
+        
+    }else if(sender == self.twelveFourBtn){
 
         [self transitionFromVC:self.currentViewController toviewController:_twentyfourPercentVC];
         [self fitFrameForChildViewController:_twentyfourPercentVC];
+    }else{
+        
+        [self transitionFromVC:self.currentViewController toviewController:_threePersentVC];
+        [self fitFrameForChildViewController:_threePersentVC];
     }
-    
 }
 
 

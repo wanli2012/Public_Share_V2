@@ -52,13 +52,42 @@
         model.bean = @"0";
     }
     
-    self.consumeLabel.text = model.money;
-    self.encourageSumLabel.text = model.zjl;
-    self.heartSumLabel.text = model.love;
-    self.encouragingLabel.text = model.jl_love;
-    self.jiliCompleteLabel.text = model.end_love;
-    self.daijiliLabel.text = model.bean;
-    self.finishedNumLabel.text = model.end_bean;
+    if([model.money floatValue] > 10000){
+        
+        self.consumeLabel.text = [NSString stringWithFormat:@"%.2f万",[model.money floatValue]/10000];
+        
+    }else{
+        
+        self.consumeLabel.text = model.money;
+    }
+    if([model.zjl floatValue] > 10000){
+        
+        self.encourageSumLabel.text = [NSString stringWithFormat:@"%.2f万",[model.zjl floatValue]/10000];
+        
+    }else{
+        
+        self.encourageSumLabel.text = model.zjl;
+    }
+    if([model.love floatValue] > 10000){
+        
+        self.heartSumLabel.text = [NSString stringWithFormat:@"%.2f万",[model.love floatValue]/10000];
+        
+    }else{
+        
+        self.heartSumLabel.text = model.love;
+    }
+    if([model.jl_love floatValue] > 10000){
+        
+        self.encouragingLabel.text = [NSString stringWithFormat:@"%.2f万",[model.jl_love floatValue]/10000];
+        
+    }else{
+        
+        self.encouragingLabel.text = model.jl_love;
+    }
+
+//    self.jiliCompleteLabel.text = model.end_love;
+//    self.daijiliLabel.text = model.bean;
+//    self.finishedNumLabel.text = model.end_bean;
 
 }
 

@@ -101,6 +101,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     self.pagecontroll.currentPage=self.scrollView.contentOffset.x/self.view.bounds.size.width;
 }
+
 -(UIButton*)doneBt{
 
     if (!_doneBt) {
@@ -129,6 +130,6 @@
     [self.view.window.layer addAnimation:animation forKey:nil];
     [self presentViewController:wantVC animated:NO completion:nil];
     
-
 }
+
 @end
