@@ -97,7 +97,7 @@
     UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
     CGRect rect=[self.baseView2 convertRect: self.baseView2.bounds toView:window];
     
-    self.incentiveModelV.frame=CGRectMake(SCREEN_WIDTH-130, rect.origin.y+20, 120, 120);
+    self.incentiveModelV.frame=CGRectMake(SCREEN_WIDTH-130, rect.origin.y+20, 120, 150);
     
     [self.view addSubview:self.incentiveModelMaskV];
     [self.incentiveModelMaskV addSubview:self.incentiveModelV];
@@ -385,6 +385,12 @@
 
 
 #pragma mark - 点击激励模式选择
+-(void)threeButtonE{
+    self.userytpe = [KThreePersent integerValue];
+    self.modeltf.text = @"3%激励模式";
+    [self incentiveModelMaskVtapgestureLb];
+    
+}
 
 -(void)sixbuttonE{
     self.userytpe=3;
@@ -404,7 +410,6 @@
     [self incentiveModelMaskVtapgestureLb];
     
 }
-
 //点击maskview
 -(void)incentiveModelMaskVtapgestureLb{
     
@@ -448,9 +453,11 @@
     
     if (!_incentiveModelV) {
         _incentiveModelV=[[NSBundle mainBundle]loadNibNamed:@"IncentiveModel" owner:self options:nil].firstObject;
+        [_incentiveModelV.threeButton addTarget:self action:@selector(threeButtonE) forControlEvents:UIControlEventTouchUpInside];
         [_incentiveModelV.sixButton addTarget:self action:@selector(sixbuttonE) forControlEvents:UIControlEventTouchUpInside];
         [_incentiveModelV.twenteenButton addTarget:self action:@selector(twenteenButtonE) forControlEvents:UIControlEventTouchUpInside];
         [_incentiveModelV.twentyFBt addTarget:self action:@selector(twentyFbuttonE) forControlEvents:UIControlEventTouchUpInside];
+        
         
     }
     

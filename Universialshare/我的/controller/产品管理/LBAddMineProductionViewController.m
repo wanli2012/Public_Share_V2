@@ -33,6 +33,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *selectBtOne;
 @property (weak, nonatomic) IBOutlet UIButton *selectBtTwo;
 @property (weak, nonatomic) IBOutlet UIButton *selectBtThree;
+@property (weak, nonatomic) IBOutlet UIButton *selectBtFour;
+
+
 @property (weak, nonatomic) IBOutlet UITextField *UnitPriceTf;
 @property (weak, nonatomic) IBOutlet UITextView *productdesTv;
 @property (weak, nonatomic) IBOutlet UITextField *numTf;
@@ -137,11 +140,11 @@
 {
     if (QQTagItem.Style == QQTagStyleNone) {
         
-        [self.selectedTagIds addObject:[NSString stringWithFormat:@"%lu",QQTagItem.tag]];
+        [self.selectedTagIds addObject:[NSString stringWithFormat:@"%ld",(long)QQTagItem.tag]];
         
     }else{
         
-        [self.selectedTagIds removeObject:[NSString stringWithFormat:@"%lu",QQTagItem.tag]];
+        [self.selectedTagIds removeObject:[NSString stringWithFormat:@"%lu",(long)QQTagItem.tag]];
         
     }
 
@@ -150,8 +153,7 @@
 {
     self.shuxingViewHeight.constant = newSize.size.height + 30;
     self.shuxingSize = newSize;
-    self.contentH.constant = 880 + self.shuxingSize.size.height - 30;
-
+    self.contentH.constant = 920 + self.shuxingSize.size.height - 30;
 
 }
 //选择20%
@@ -160,6 +162,7 @@
     [self.selectBtOne setImage:[UIImage imageNamed:@"添加产品选中"] forState:UIControlStateNormal];
     [self.selectBtTwo setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
     [self.selectBtThree setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
+    [self.selectBtFour setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
     
 }
 //选择10%
@@ -168,13 +171,24 @@
     [self.selectBtOne setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
     [self.selectBtTwo setImage:[UIImage imageNamed:@"添加产品选中"] forState:UIControlStateNormal];
     [self.selectBtThree setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
+    [self.selectBtFour setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
 }
-//选择50%
+//选择5%
 - (IBAction)tapgestureFive:(UITapGestureRecognizer *)sender {
      self.stype = 3;
     [self.selectBtOne setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
     [self.selectBtTwo setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
     [self.selectBtThree setImage:[UIImage imageNamed:@"添加产品选中"] forState:UIControlStateNormal];
+    [self.selectBtFour setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
+}
+//选择3%
+- (IBAction)tapgestureThree:(UITapGestureRecognizer *)sender {
+    self.stype = [KThreePersent integerValue];
+    [self.selectBtOne setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
+    [self.selectBtTwo setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
+    [self.selectBtThree setImage:[UIImage imageNamed:@"添加产品未选中"] forState:UIControlStateNormal];
+    [self.selectBtFour setImage:[UIImage imageNamed:@"添加产品选中"] forState:UIControlStateNormal];
+
 }
 //一级分类选择
 - (IBAction)oneClassifyChoose:(id)sender {
@@ -275,8 +289,7 @@
         [MBProgressHUD showError:@"至少上传一张图片"];
         return;
     }
-    NSString *cate_id = [NSString stringWithFormat:@"%@,%@",self.industryArr[self.isChoseFirstClassify][@"cate_id"],_industryArr[_isChoseFirstClassify][@"son"][_isChoseSecondClassify][@"cate_id"]];
-    
+    NSString *cate_id = [NSString stringWithFormat:@"%@,%@,%@",self.industryArr[self.isChoseFirstClassify][@"cate_id"],_industryArr[_isChoseFirstClassify][@"son"][_isChoseSecondClassify][@"cate_id"],@"1"];
     
     NSMutableString *attr_id = [[NSMutableString alloc] init];
     if (self.selectedTagIds.count <= 0) {
@@ -303,7 +316,6 @@
                            @"cate_id":cate_id,
                            @"attr_id":attr_id,
                            @"count":[NSNumber numberWithInteger:self.imageArr.count - 1]};
-    NSLog(@"attr_id = %@",attr_id);
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
     manager.requestSerializer.timeoutInterval = 20;
@@ -344,11 +356,7 @@
         [MBProgressHUD showError:error.localizedDescription];
     }];
 
-    
-
 }
-
-
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
 
@@ -402,18 +410,18 @@
     
     if (self.imageArr.count > 3) {
         self.imageViwH.constant = 210;
-        self.contentH.constant = 880 + 110;
+        self.contentH.constant = 920 + 110;
         if (self.shuxingSize.size.height) {
             self.imageViwH.constant = 210;
-            self.contentH.constant = 880 + 110 + self.shuxingSize.size.height - 30;
+            self.contentH.constant = 920 + 110 + self.shuxingSize.size.height - 30;
 
         }
     }else{
         self.imageViwH.constant = 210;
-        self.contentH.constant = 880;
+        self.contentH.constant = 920;
         if (self.shuxingSize.size.height) {
             self.imageViwH.constant = 210;
-            self.contentH.constant = 880 + self.shuxingSize.size.height - 30;
+            self.contentH.constant = 920 + self.shuxingSize.size.height - 30;
             
         }
     }
@@ -609,7 +617,7 @@
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     self.contentW.constant = SCREEN_WIDTH;
-    self.contentH.constant = 880;
+    self.contentH.constant = 920;
     self.imageViwH.constant = 100;
     
     self.submitBt.layer.cornerRadius = 4;

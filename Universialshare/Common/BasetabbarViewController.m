@@ -79,14 +79,14 @@
     BaseNavigationViewController *incomeNav = [[BaseNavigationViewController alloc] initWithRootViewController:incomeVC];
     
     Homevc.title=@"消费商城";
-    IntegralMallvc.title=@"积分商城";
+    IntegralMallvc.title=@"米券商城";
     minevc.title=@"我的";
 //    storeVC.title = @"门店";
     commentNav.title = @"商品";
     incomeNav.title = @"收益";
     
     Homevc.tabBarItem = [self barTitle:@"消费商城" image:@"消费商城未选中状态" selectImage:@"消费商城"];
-    IntegralMallvc.tabBarItem = [self barTitle:@"积分商城" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
+    IntegralMallvc.tabBarItem = [self barTitle:@"米券商城" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
     minevc.tabBarItem = [self barTitle:@"我的" image:@"mine_normal" selectImage:@"mine_select"];
     ManAndBusinessVc.tabBarItem = [self barTitle:@"推广员" image:@"推广员未选中" selectImage:@"推广员选中"];
     myodresvc.tabBarItem = [self barTitle:@"订单" image:@"消费商城未选中状态" selectImage:@"消费商城"];

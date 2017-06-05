@@ -74,11 +74,7 @@
         make.width.equalTo(@80);
     }];
 
-
-    
-
 }
-
 
 -(void)setSectionModel:(LBWaitOrdersModel *)sectionModel{
 
@@ -96,7 +92,6 @@
 
     }
     
-
 }
 
 -(void)tapgestureSection{

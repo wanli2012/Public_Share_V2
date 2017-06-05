@@ -255,6 +255,8 @@
         cell.modelLb.text = [NSString stringWithFormat:@"奖金: 10%%"];
     }else if ([self.dataarr[indexPath.row][@"type"]integerValue] == 3){
         cell.modelLb.text = [NSString stringWithFormat:@"奖金: 5%%"];
+    }else if([self.dataarr[indexPath.row][@"type"]integerValue] == [KThreePersent integerValue]){
+        cell.modelLb.text = [NSString stringWithFormat:@"奖金: 3%%"];
     }
     
     if ([self.dataarr[indexPath.row][@"sh_status"]integerValue] == 3) {

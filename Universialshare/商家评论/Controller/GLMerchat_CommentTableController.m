@@ -86,7 +86,7 @@ static NSString *ID = @"GLMerchat_CommentCell";
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
-    dict[@"page"] = [NSString stringWithFormat:@"%ld",_page];
+    dict[@"page"] = [NSString stringWithFormat:@"%ld",(long)_page];
     dict[@"goods_id"] = self.goods_id;
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];

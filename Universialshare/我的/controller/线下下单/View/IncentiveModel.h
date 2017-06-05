@@ -10,9 +10,9 @@
 
 @interface IncentiveModel : UIView
 
+@property (weak, nonatomic) IBOutlet UIButton *threeButton;
 @property (weak, nonatomic) IBOutlet UIButton *sixButton;
 @property (weak, nonatomic) IBOutlet UIButton *twenteenButton;
 @property (weak, nonatomic) IBOutlet UIButton *twentyFBt;
-
 
 @end

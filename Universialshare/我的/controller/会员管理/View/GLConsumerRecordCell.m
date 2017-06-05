@@ -46,8 +46,11 @@
     }else if ([model.rl_type integerValue] == 2){//10%
         self.typeImageV.image = [UIImage imageNamed:@"智能10%"];
         
-    }else{//5%
+    }else if([model.rl_type integerValue] == 3){//5%
         self.typeImageV.image = [UIImage imageNamed:@"智能5%"];
+        
+    }else{//3%
+        self.typeImageV.image = [UIImage imageNamed:PlaceHolderImage];
     }
     
     if (model.thumb.length > 0 ) {

@@ -66,4 +66,8 @@
 
 #define PlaceHolderImage @"XRPlaceholder"
 
+
+//3%返利的宏
+#define KThreePersent @"4"
+
 #endif /* Header_h */

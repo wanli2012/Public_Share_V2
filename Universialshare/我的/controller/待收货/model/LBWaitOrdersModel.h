@@ -20,5 +20,4 @@
 
 @property (assign, nonatomic)BOOL isExpanded;//是否展开
 
-
 @end

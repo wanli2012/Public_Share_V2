@@ -181,6 +181,11 @@
 - (IBAction)tapgesturemodel:(UITapGestureRecognizer *)sender {
     TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"温馨提示" message:@"请选择奖金模式"];
     
+    [alertView addAction:[TYAlertAction actionWithTitle:@"3%" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
+        self.modelTf.text = action.title;
+        self.modelType = [KThreePersent integerValue];
+    }]];
+    
     [alertView addAction:[TYAlertAction actionWithTitle:@"5%" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
         self.modelTf.text = action.title;
         self.modelType = 3;
@@ -195,6 +200,8 @@
         self.modelTf.text = action.title;
         self.modelType = 1;
     }]];
+    
+    
     [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancel handler:^(TYAlertAction *action) {
   
         

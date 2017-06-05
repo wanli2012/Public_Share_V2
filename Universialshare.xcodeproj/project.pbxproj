@@ -431,6 +431,7 @@
 		4A5F66C61ECA93E70048F339 /* GLNearby_AllController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F66C41ECA93E70048F339 /* GLNearby_AllController.m */; };
 		4A5F66C71ECA93E70048F339 /* GLNearby_AllController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F66C51ECA93E70048F339 /* GLNearby_AllController.xib */; };
 		4A5F670F1ECAE52D0048F339 /* SlideTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F670E1ECAE52D0048F339 /* SlideTabBarView.m */; };
+		4A73B4CD1EE53C2100A6E4B2 /* GLThreePersentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A73B4CC1EE53C2100A6E4B2 /* GLThreePersentController.m */; };
 		4A782F9C1EDE59DE008784BF /* GLIntegralMall_SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A782F9A1EDE59DE008784BF /* GLIntegralMall_SearchController.m */; };
 		4A782F9D1EDE59DE008784BF /* GLIntegralMall_SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A782F9B1EDE59DE008784BF /* GLIntegralMall_SearchController.xib */; };
 		4A78C2161EA8918500771047 /* GLDonationRecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A78C2151EA8918500771047 /* GLDonationRecordController.xib */; };
@@ -1767,6 +1768,8 @@
 		4A5F66C51ECA93E70048F339 /* GLNearby_AllController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_AllController.xib; sourceTree = "<group>"; };
 		4A5F670D1ECAE52D0048F339 /* SlideTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideTabBarView.h; sourceTree = "<group>"; };
 		4A5F670E1ECAE52D0048F339 /* SlideTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideTabBarView.m; sourceTree = "<group>"; };
+		4A73B4CB1EE53C2100A6E4B2 /* GLThreePersentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLThreePersentController.h; sourceTree = "<group>"; };
+		4A73B4CC1EE53C2100A6E4B2 /* GLThreePersentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLThreePersentController.m; sourceTree = "<group>"; };
 		4A782F991EDE59DE008784BF /* GLIntegralMall_SearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIntegralMall_SearchController.h; sourceTree = "<group>"; };
 		4A782F9A1EDE59DE008784BF /* GLIntegralMall_SearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLIntegralMall_SearchController.m; sourceTree = "<group>"; };
 		4A782F9B1EDE59DE008784BF /* GLIntegralMall_SearchController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLIntegralMall_SearchController.xib; sourceTree = "<group>"; };
@@ -4523,12 +4526,14 @@
 				4AAD25881EC189070054FD06 /* GLMyHeartController.h */,
 				4AAD25891EC189070054FD06 /* GLMyHeartController.m */,
 				4AAD258A1EC189070054FD06 /* GLMyHeartController.xib */,
+				4A73B4CB1EE53C2100A6E4B2 /* GLThreePersentController.h */,
+				4A73B4CC1EE53C2100A6E4B2 /* GLThreePersentController.m */,
 				4AAD258B1EC189070054FD06 /* GLSixPersentController.h */,
 				4AAD258C1EC189070054FD06 /* GLSixPersentController.m */,
-				4AAD258D1EC189070054FD06 /* GLTweleveFourController.h */,
-				4AAD258E1EC189070054FD06 /* GLTweleveFourController.m */,
 				4AAD258F1EC189070054FD06 /* GLTwelevePersentController.h */,
 				4AAD25901EC189070054FD06 /* GLTwelevePersentController.m */,
+				4AAD258D1EC189070054FD06 /* GLTweleveFourController.h */,
+				4AAD258E1EC189070054FD06 /* GLTweleveFourController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4895,6 +4900,7 @@
 				F9061FD21E83C4720080E9D9 /* ViewController.m */,
 				F96659861ED592FF000DD67F /* yindaotuViewController.h */,
 				F96659871ED592FF000DD67F /* yindaotuViewController.m */,
+				4A4608F51E9CA0880045824F /* 积分商城 */,
 				F9520A1A1EADF40600B4D665 /* 使用加载网页 */,
 				F97644D01EA5B66300AFA22B /* RSA密钥 */,
 				4A460D9B1E9CC6350045824F /* 三方库 */,
@@ -4902,7 +4908,6 @@
 				4AFCDC501ED2901A007C1681 /* 商家评论 */,
 				4A5004471EE14F6B002D1964 /* 公告 */,
 				4AEE9EC41E94FEBA004FFDB9 /* 登录注册 */,
-				4A4608F51E9CA0880045824F /* 积分商城 */,
 				4A0D97031E9729C100A26B84 /* 商城首页 */,
 				F92308321E9B8BFE00ECDC94 /* 我的 */,
 				4AE3547B1EC8478D00BF60CC /* 商家门店 */,
@@ -5165,7 +5170,6 @@
 				4A460A521E9CC0310045824F /* 扫码 */,
 				F92308341E9B8BFE00ECDC94 /* 余额 */,
 				F92308551E9B8BFE00ECDC94 /* 消息 */,
-				F923088F1E9B8BFE00ECDC94 /* 积分 */,
 				F92308901E9B8BFE00ECDC94 /* 普通用户线上订单 */,
 				F92308D01E9B8BFF00ECDC94 /* 设置 */,
 				F92309051E9B8BFF00ECDC94 /* 返利 */,
@@ -5316,13 +5320,6 @@
 				F923088E1E9B8BFE00ECDC94 /* LBMineMessageSetupViewController.xib */,
 			);
 			path = "消息设置";
-			sourceTree = "<group>";
-		};
-		F923088F1E9B8BFE00ECDC94 /* 积分 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "积分";
 			sourceTree = "<group>";
 		};
 		F92308901E9B8BFE00ECDC94 /* 普通用户线上订单 */ = {
@@ -6828,6 +6825,7 @@
 				4A4610C01E9CC6370045824F /* ZXRSSExpandedGeneralAppIdDecoder.m in Sources */,
 				4A46109D1E9CC6360045824F /* ZXDataMatrixDefaultPlacement.m in Sources */,
 				4A4610EE1E9CC6370045824F /* ZXPDF417DetectionResult.m in Sources */,
+				4A73B4CD1EE53C2100A6E4B2 /* GLThreePersentController.m in Sources */,
 				4A4610E51E9CC6370045824F /* ZXModulusGF.m in Sources */,
 				4AEF77CE1ECD3A0B00FBC1DB /* JXAlertview.m in Sources */,
 				4A2F52151EC7084000ECA95D /* GLHourseOptionModel.m in Sources */,

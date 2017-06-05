@@ -167,7 +167,6 @@
         return 90;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     LBMineCenterReceivingGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBMineCenterReceivingGoodsTableViewCell" forIndexPath:indexPath];
@@ -208,6 +207,7 @@
 //        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"您确定已收货吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 //        [alert show];
 //    };
+    
 //    查看物流
     headerview.returnwuliuBt = ^(NSInteger section){
        
