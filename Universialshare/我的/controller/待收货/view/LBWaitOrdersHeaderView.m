@@ -89,6 +89,13 @@
     self.orderCode.text = [NSString stringWithFormat:@"订单号:%@",_sectionModel.order_number];
     self.orderTime.text = [NSString stringWithFormat:@"订单时间:%@",_sectionModel.creat_time];
     
+    if ([_sectionModel.order_type isEqualToString:@"1"]) {
+         _orderStaues.text = @"订单类型:消费订单";
+    }else{
+         _orderStaues.text = @"订单类型:其他订单";
+
+    }
+    
 
 }
 
@@ -149,7 +156,6 @@
         _orderStaues.backgroundColor=[UIColor clearColor];
         _orderStaues.textColor=[UIColor blackColor];
         _orderStaues.font=[UIFont systemFontOfSize:13];
-        _orderStaues.text = @"订单类型:积分订单";
         
     }
     

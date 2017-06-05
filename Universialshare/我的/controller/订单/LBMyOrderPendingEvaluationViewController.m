@@ -49,7 +49,6 @@
         // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
     }];
     
-    
     // 设置文字
     
     [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
@@ -63,7 +62,6 @@
     self.tableview.mj_footer = footer;
     //评论成功刷新数据源
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshdatasource:) name:@"LBMyOrderPendingEvaluationViewController" object:nil];
-    
 }
 
 -(void)initdatasource{
@@ -74,7 +72,6 @@
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
         if ([responseObject[@"code"] integerValue]==1) {
-            
             if (_refreshType == NO) {
                 [self.dataarr removeAllObjects];
             }

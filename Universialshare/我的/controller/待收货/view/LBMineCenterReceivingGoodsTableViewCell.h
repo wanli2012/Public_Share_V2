@@ -12,7 +12,7 @@
 @protocol  LBMineCenterReceivingGoodsDelegete <NSObject>
 
 -(void)checklogistics:(NSInteger)index;
--(void)BuyAgain:(NSInteger)index section:(NSInteger)section;
+-(void)BuyAgaingoodid:(NSString*)goog_id orderid:(NSString*)orderid indexpath:(NSIndexPath*)indexpath;
 
 @end
 
@@ -26,13 +26,16 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *pricelb;
 
+@property (weak, nonatomic) IBOutlet UILabel *storename;
+
 @property (weak, nonatomic) IBOutlet UIButton *sureSend;
 //@property (weak, nonatomic) IBOutlet UIButton *SeeBt;
 
+@property (strong, nonatomic)  NSIndexPath *indexpath;
+
 @property (assign,nonatomic)id<LBMineCenterReceivingGoodsDelegete> delegete;
 
-@property(assign,nonatomic)NSInteger index;
-@property(assign,nonatomic)NSInteger section;
+@property(strong,nonatomic)NSString *order_id;
 
 @property (strong, nonatomic)LBWaitOrdersListModel *WaitOrdersListModel;
 

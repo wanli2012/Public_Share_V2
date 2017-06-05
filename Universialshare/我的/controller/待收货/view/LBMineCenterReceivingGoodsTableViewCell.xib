@@ -115,6 +115,7 @@
                 <outlet property="imagev" destination="kAB-tm-Q2j" id="3RT-qG-TtN"/>
                 <outlet property="numlb" destination="QUU-7w-spH" id="tY4-lD-a4Q"/>
                 <outlet property="pricelb" destination="co1-kZ-cyz" id="dJ3-TI-993"/>
+                <outlet property="storename" destination="A1Y-Lf-a6Z" id="Xfu-f3-w0e"/>
                 <outlet property="sureSend" destination="161-hw-l7r" id="TJX-0Q-ZGv"/>
             </connections>
         </tableViewCell>

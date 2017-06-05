@@ -23,9 +23,9 @@
 @property (assign, nonatomic)NSInteger page;//页数默认为1
 @property (assign, nonatomic)BOOL refreshType;//判断刷新状态 默认为no
 @property (strong, nonatomic)NodataView *nodataV;
-@property (assign, nonatomic)NSInteger ConfirmReceiptRow;//确认收货row
-@property (assign, nonatomic)NSInteger ConfirmReceiptSection;//确认收货section
-
+@property (assign, nonatomic)NSIndexPath *indexpath;
+@property (strong, nonatomic)NSString *good_id;
+@property (strong, nonatomic)NSString *order_id;
 @end
 
 @implementation LBMineCenterReceivingGoodsViewController
@@ -92,30 +92,30 @@
                 for (int i = 0; i < [responseObject[@"data"] count]; i++) {
                     
                     LBWaitOrdersModel *orderMode = [[LBWaitOrdersModel alloc]init];
+
                     orderMode.order_id = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"order_id"]];
                     orderMode.order_number = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"order_number"]];
                     orderMode.creat_time = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"creat_time"]];
                     orderMode.logistics_sta = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"logistics_sta"]];
+                     orderMode.order_type = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"order_type"]];
                     orderMode.isExpanded = NO;
-                    
-                    orderMode.WaitOrdersListModel = [LBWaitOrdersListModel mj_keyValuesArrayWithObjectArray:responseObject[@"data"][i][@"order_glist"]];
-                    
+                    for (int j =0; j < [responseObject[@"data"][i][@"order_glist"]count]; j++) {
+                        LBWaitOrdersListModel   *listmodel = [LBWaitOrdersListModel mj_objectWithKeyValues:responseObject[@"data"][i][@"order_glist"][j]];
+                        [orderMode.dataArr addObject:listmodel];
+                    }
+   
                     [self.dataarr addObject:orderMode];
-                    
-                    
                 }
             }
             
             [self.tableview reloadData];
             
         }else if ([responseObject[@"code"] integerValue]==3){
-            
             [MBProgressHUD showError:responseObject[@"message"]];
             [self.tableview reloadData];
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
             [self.tableview reloadData];
-            
         }
     } enError:^(NSError *error) {
         [_loadV removeloadview];
@@ -124,8 +124,6 @@
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
-    
-    
 }
 
 //下拉刷新
@@ -160,16 +158,13 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     LBWaitOrdersModel *model = self.dataarr[section];
-    
-    return model.isExpanded ? model.WaitOrdersListModel.count : 0;
+    return model.isExpanded ? model.dataArr.count : 0;
 
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
-    return 130;
-    
+        return 90;
 }
 
 
@@ -179,9 +174,10 @@
     LBMineCenterReceivingGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBMineCenterReceivingGoodsTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegete = self;
-    cell.index = indexPath.row;
+    cell.indexpath = indexPath;
     LBWaitOrdersModel *model = self.dataarr[indexPath.section];
-    cell.WaitOrdersListModel = model.WaitOrdersListModel[indexPath.row];
+        cell.order_id = model.order_id;
+    cell.WaitOrdersListModel = model.dataArr[indexPath.row];
    
     return cell;
     
@@ -215,7 +211,7 @@
 //    };
 //    查看物流
     headerview.returnwuliuBt = ^(NSInteger section){
-        self.ConfirmReceiptSection = section;
+       
         weakself.hidesBottomBarWhenPushed = YES;
         LBMineCenterFlyNoticeDetailViewController *vc=[[LBMineCenterFlyNoticeDetailViewController alloc]init];
         [weakself.navigationController pushViewController:vc animated:YES];
@@ -233,9 +229,10 @@
 
 #pragma mark ---- LBMineCenterReceivingGoodsDelegete
 //确认收货
--(void)BuyAgain:(NSInteger)index section:(NSInteger)section{
-    self.ConfirmReceiptRow = index;
-    self.ConfirmReceiptSection = section;
+-(void)BuyAgaingoodid:(NSString *)goog_id orderid:(NSString *)orderid indexpath:(NSIndexPath *)indexpath{
+    self.good_id = goog_id;
+    self.order_id = orderid;
+    self.indexpath = indexpath;
     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"您确定已收货吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     [alert show];
 
@@ -243,14 +240,15 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
-        
-        LBWaitOrdersModel *model = (LBWaitOrdersModel*)self.dataarr[self.ConfirmReceiptSection];
+
+        LBWaitOrdersModel *model = self.dataarr[_indexpath.section];
+        LBWaitOrdersListModel *modelist= model.dataArr[_indexpath.row];
         _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-        [NetworkManager requestPOSTWithURLStr:@"shop/ConfirmReceipt" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"order_id":model.order_id } finish:^(id responseObject) {
+        [NetworkManager requestPOSTWithURLStr:@"shop/ConfirmReceipt" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"order_goods_id":_good_id,@"order_id":self.order_id } finish:^(id responseObject) {
             [_loadV removeloadview];
             if ([responseObject[@"code"] integerValue]==1) {
                 [MBProgressHUD showError:responseObject[@"message"]];
-                [self.dataarr removeObjectAtIndex:self.ConfirmReceiptSection];
+                modelist.is_receipt = @"1";
                 [self.tableview reloadData];
                
             }else{

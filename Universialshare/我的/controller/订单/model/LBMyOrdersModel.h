@@ -21,6 +21,7 @@
 
 @property (copy, nonatomic)NSString *crypt;
 
+@property (strong, nonatomic)NSMutableArray *dataArr;
 
 @property (copy, nonatomic)NSArray *MyOrdersListModel;
 

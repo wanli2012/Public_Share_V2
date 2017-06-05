@@ -12,6 +12,7 @@
 #import "LBMyOrderPendingEvaluationViewController.h"
 #import "LBMyOrderPendingRefundViewController.h"
 #import "LBMyOrderAlreadyPaymentViewController.h"
+#import "LBOrderRebatePendingViewController.h"
 
 @interface LBMineCenterMyOrderViewController ()
 
@@ -23,7 +24,7 @@
 //重载init方法
 - (instancetype)init
 {
-    if (self = [super initWithTagViewHeight:49])
+    if (self = [super initWithTagViewHeight:45])
     {
         
     }
@@ -48,7 +49,7 @@
 -(void)addviewcontrol{
     
     //设置自定义属性
-    self.tagItemSize = CGSizeMake(SCREEN_WIDTH / 4, 49);
+    self.tagItemSize = CGSizeMake(SCREEN_WIDTH / 5, 45);
 
 //    LBMyOrderAlreadyCompletedViewController *vc1=[[LBMyOrderAlreadyCompletedViewController alloc]init];
 //    LBMyOrderPendingPaymentViewController *vc2=[[LBMyOrderPendingPaymentViewController alloc]init];
@@ -60,6 +61,7 @@
                             @"待付款",
                             @"待评价",
                             @"已付款",
+                            @"待返利",
                             ];
     
     NSArray *classNames = @[
@@ -67,6 +69,7 @@
                             [LBMyOrderPendingPaymentViewController class],
                             [LBMyOrderPendingEvaluationViewController class],
                             [LBMyOrderAlreadyPaymentViewController class],
+                            [LBOrderRebatePendingViewController class],
                             ];
     
     self.normalTitleColor = [UIColor blackColor];

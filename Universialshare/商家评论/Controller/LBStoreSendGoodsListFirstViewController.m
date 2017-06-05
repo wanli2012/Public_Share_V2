@@ -9,6 +9,10 @@
 #import "LBStoreSendGoodsListFirstViewController.h"
 #import "LBStoreSendGoodsTableViewCell.h"
 #import "UIView+TYAlertView.h"
+#import "LBWaitOrdersModel.h"
+#import "LBWaitOrdersHeaderView.h"
+#import "LBSendGoodsProductModel.h"
+#import "LBSendGoodsProductModel.h"
 
 @interface LBStoreSendGoodsListFirstViewController ()<LBStoreSendGoodsDelegete>
 
@@ -55,13 +59,14 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     self.tableview.mj_header = header;
     self.tableview.mj_footer = footer;
     
-   // [self initdatasource];
+   [self initdatasource];
     
+
 }
 
 -(void)initdatasource{
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getStoreGoodsList" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"shop/getWaitingReceiptOrders" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page]} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
@@ -72,10 +77,23 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
             }
             
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-                [self.dataarr addObjectsFromArray:responseObject[@"data"]];
+                for (int i = 0; i<[responseObject[@"data"] count]; i++) {
+                    
+                    LBWaitOrdersModel *ordersMdel=[[LBWaitOrdersModel alloc]init];
+                    ordersMdel.creat_time = responseObject[@"data"][i][@"addtime"];
+                    ordersMdel.order_id = responseObject[@"data"][i][@"order_id"];
+                    ordersMdel.order_number = responseObject[@"data"][i][@"order_num"];
+                    ordersMdel.order_type = responseObject[@"data"][i][@"order_type"];
+                    ordersMdel.isExpanded = NO;
+                    for (int j =0; j < [responseObject[@"data"][i][@"son"]count]; j++) {
+                        LBSendGoodsProductModel   *listmodel = [LBSendGoodsProductModel mj_objectWithKeyValues:responseObject[@"data"][i][@"son"][j]];
+                        [ordersMdel.dataArr addObject:listmodel];
+                    }
+                    [self.dataarr addObject:ordersMdel];
+                }
             }
             
-            [self.tableview reloadData];
+           [self.tableview reloadData];
             
         }else if ([responseObject[@"code"] integerValue]==3){
             if (_refreshType == NO) {
@@ -113,15 +131,23 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     [self initdatasource];
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    if (self.dataarr.count > 0) {
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (self.dataarr.count > 0 ) {
+        
         self.nodataV.hidden = YES;
     }else{
-        self.nodataV.hidden = YES;
+        self.nodataV.hidden = NO;
+        
     }
     
-    return 10;
+    return self.dataarr.count;
+    
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    LBWaitOrdersModel *model = self.dataarr[section];
+    return model.isExpanded ? model.dataArr.count : 0;
     
 }
 
@@ -138,19 +164,47 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     
     LBStoreSendGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.indexRow = indexPath.row;
+    cell.indexpath = indexPath;
     cell.delegete = self;
-    
+    LBWaitOrdersModel *model = self.dataarr[indexPath.section];
+    cell.WaitOrdersListModel = model.dataArr[indexPath.row];
     return cell;
     
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 85;
+    
+}
+
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    LBWaitOrdersHeaderView *headerview = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LBWaitOrdersHeaderView"];
+    
+    if (!headerview) {
+        headerview = [[LBWaitOrdersHeaderView alloc] initWithReuseIdentifier:@"LBWaitOrdersHeaderView"];
+        
+    }
+    __weak typeof(self) weakself = self;
+    LBWaitOrdersModel *sectionModel = self.dataarr[section];
+    headerview.sectionModel = sectionModel;
+    headerview.wuliuBt.hidden = YES;
+    headerview.sureGetBt.hidden = YES;
+    headerview.expandCallback = ^(BOOL isExpanded) {
+        [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
+    };
+ 
+    return headerview;
+
 }
 
 
 #pragma mark --- LBStoreSendGoodsDelegete
 
--(void)clickSendGoods:(NSInteger)index{
+-(void)clickSendGoods:(NSIndexPath *)indexpath name:(NSString *)name{
 
-    TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"发送" message:@"您将要发货给哈哈"];
+    TYAlertView *alertView = [TYAlertView alertViewWithTitle:[NSString stringWithFormat:@"您发货给%@",name] message:[NSString stringWithFormat:@"填写物流单号可查看物流信息"]];
     
     [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancel handler:^(TYAlertAction *action) {
 
@@ -158,18 +212,20 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     
     // 弱引用alertView 否则 会循环引用
     __typeof (alertView) __weak weakAlertView = alertView;
+    __typeof (self) __weak weakself = self;
     [alertView addAction:[TYAlertAction actionWithTitle:@"确定" style:TYAlertActionStyleDestructive handler:^(TYAlertAction *action) {
-        
-        for (UITextField *textField in weakAlertView.textFieldArray) {
-            NSLog(@"%@",textField.text);
+        if (weakAlertView.textFieldArray.count > 0) {
+            for (UITextField *textField in weakAlertView.textFieldArray) {
+                [weakself storeSendGoods:indexpath codestr:textField.text];
+            }
+        }else{
+               [weakself storeSendGoods:indexpath codestr:@""];
         }
+       
     }]];
     
     [alertView addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"请输入账号";
-    }];
-    [alertView addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"请输入密码";
+        textField.placeholder = @"请输入物流单号(选填)";
     }];
     
     // first way to show
@@ -197,6 +253,32 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     
     [self presentViewController:alertController animated:YES completion:nil];
 
+}
+/**
+ *发货接口
+ *codestr  物流单号
+ */
+-(void)storeSendGoods:(NSIndexPath*)indexpath codestr:(NSString*)codestr{
+
+    LBWaitOrdersModel *model = self.dataarr[indexpath.section];
+    LBSendGoodsProductModel  *orderModel= model.dataArr[indexpath.row];
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"shop/sendOrder" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"order_id" :model.order_id,@"order_goods_id":orderModel.order_goods_id,@"odd_num":codestr} finish:^(id responseObject) {
+        [_loadV removeloadview];
+        if ([responseObject[@"code"] integerValue]==1) {
+            orderModel.is_receipt = @"3";
+            [MBProgressHUD showError:@"发货成功"];
+             [self.tableview reloadData];
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
 }
 
 -(NSMutableArray *)dataarr{

@@ -43,7 +43,7 @@
 - (IBAction)deletebutton:(UIButton *)sender {
     
     if (self.retundeletebutton) {
-        self.retundeletebutton(self.index);
+        self.retundeletebutton(self.indexpath);
     }
     
 }
@@ -53,7 +53,7 @@
     
     NSDictionary *dic = (NSDictionary*)_myorderlistModel;
     
-    [self.imagev sd_setImageWithURL:[NSURL URLWithString:dic[@"thumb"]] placeholderImage:[UIImage imageNamed:@""]];
+    [self.imagev sd_setImageWithURL:[NSURL URLWithString:dic[@"thumb"]] placeholderImage:[UIImage imageNamed:@"熊"]];
     self.namelb.text = [NSString stringWithFormat:@"%@",dic[@"goods_name"]];
     self.numlb.text = [NSString stringWithFormat:@"数量: %@",dic[@"goods_num"]];
     self.priceLb.text = [NSString stringWithFormat:@"价格: %@",dic[@"goods_price"]];

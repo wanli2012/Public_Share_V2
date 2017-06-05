@@ -1,21 +1,20 @@
 //
-//  LBStoreSendGoodsSecondViewController.m
+//  LBOrderRebatePendingViewController.m
 //  Universialshare
 //
-//  Created by 四川三君科技有限公司 on 2017/6/1.
+//  Created by 四川三君科技有限公司 on 2017/6/2.
 //  Copyright © 2017年 四川三君科技有限公司. All rights reserved.
 //
 
-#import "LBStoreSendGoodsSecondViewController.h"
-#import "LBStoreSendGoodsTableViewCell.h"
-#import "UIView+TYAlertView.h"
-#import "LBWaitOrdersModel.h"
-#import "LBWaitOrdersHeaderView.h"
-#import "LBSendGoodsProductModel.h"
-#import "LBSendGoodsProductModel.h"
+#import "LBOrderRebatePendingViewController.h"
+#import "LBMyOrderListTableViewCell.h"
+#import "LBMineCenterPayPagesViewController.h"
+#import <MJRefresh/MJRefresh.h>
+#import "LBMyOrdersHeaderView.h"
+#import "LBMyOrdersModel.h"
+#import "LBMyorderRebateModel.h"
 
-@interface LBStoreSendGoodsSecondViewController ()
-
+@interface LBOrderRebatePendingViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic)NSMutableArray *dataarr;
 @property (strong, nonatomic)LoadWaitView *loadV;
@@ -23,19 +22,23 @@
 @property (assign, nonatomic)BOOL refreshType;//判断刷新状态 默认为no
 @property (strong, nonatomic)NodataView *nodataV;
 
+@property (nonatomic, copy)NSString *useableScore;//剩余积分
+
 @end
-static NSString *ID = @"LBStoreSendGoodsTableViewCell";
-@implementation LBStoreSendGoodsSecondViewController
+
+@implementation LBOrderRebatePendingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.page = 1;
-    self.automaticallyAdjustsScrollViewInsets =NO;
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     self.tableview.tableFooterView = [UIView new];
-    [self.tableview registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     
+    [self.tableview registerNib:[UINib nibWithNibName:@"LBMyOrderListTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMyOrderListTableViewCell"];
+    _page = 1;
+    [self initdatasource];
     [self.tableview addSubview:self.nodataV];
-    
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
@@ -49,26 +52,26 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     }];
     
     // 设置文字
+    
     [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
     
     [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
     
     [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
     
+    
     self.tableview.mj_header = header;
     self.tableview.mj_footer = footer;
-    
-    [self initdatasource];
-    
-    
 }
 
 -(void)initdatasource{
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/arealySendOrder" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page]} finish:^(id responseObject) {
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"user/order_mark_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page] , @"type":@7} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
+        
         if ([responseObject[@"code"] integerValue]==1) {
             
             if (_refreshType == NO) {
@@ -78,31 +81,35 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 for (int i = 0; i<[responseObject[@"data"] count]; i++) {
                     
-                    LBWaitOrdersModel *ordersMdel=[[LBWaitOrdersModel alloc]init];
-                    ordersMdel.creat_time = responseObject[@"data"][i][@"addtime"];
+                    LBMyOrdersModel *ordersMdel=[[LBMyOrdersModel alloc]init];
+                    ordersMdel.addtime = responseObject[@"data"][i][@"addtime"];
                     ordersMdel.order_id = responseObject[@"data"][i][@"order_id"];
-                    ordersMdel.order_number = responseObject[@"data"][i][@"order_num"];
+                    ordersMdel.order_money = responseObject[@"data"][i][@"order_money"];
+                    ordersMdel.order_num = responseObject[@"data"][i][@"order_num"];
                     ordersMdel.order_type = responseObject[@"data"][i][@"order_type"];
+                    ordersMdel.realy_price = responseObject[@"data"][i][@"realy_price"];
+                    ordersMdel.total = responseObject[@"data"][i][@"total"];
                     ordersMdel.isExpanded = NO;
-                    for (int j =0; j < [responseObject[@"data"][i][@"son"]count]; j++) {
-                        LBSendGoodsProductModel   *listmodel = [LBSendGoodsProductModel mj_objectWithKeyValues:responseObject[@"data"][i][@"son"][j]];
+                    for (int j =0; j < [responseObject[@"data"][i][@"goods"]count]; j++) {
+                        LBMyorderRebateModel   *listmodel = [LBMyorderRebateModel mj_objectWithKeyValues:responseObject[@"data"][i][@"goods"][j]];
                         [ordersMdel.dataArr addObject:listmodel];
                     }
+                    
+                    ordersMdel.crypt = responseObject[@"data"][i][@"crypt"];
                     [self.dataarr addObject:ordersMdel];
                 }
+                self.useableScore = responseObject[@"mark"];
             }
             
             [self.tableview reloadData];
             
         }else if ([responseObject[@"code"] integerValue]==3){
-            if (_refreshType == NO) {
-                [self.dataarr removeAllObjects];
-            }
+            
             [MBProgressHUD showError:responseObject[@"message"]];
-            [self.tableview reloadData];
+            
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
-            [self.tableview reloadData];
+            
             
         }
     } enError:^(NSError *error) {
@@ -112,6 +119,8 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
+    
+    
 }
 
 //下拉刷新
@@ -129,7 +138,6 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     
     [self initdatasource];
 }
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (self.dataarr.count > 0 ) {
         
@@ -145,58 +153,75 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    LBWaitOrdersModel *model = self.dataarr[section];
-    return model.isExpanded ? model.dataArr.count : 0;
-    
+    LBMyOrdersModel *model=self.dataarr[section];
+    return model.isExpanded?model.dataArr.count:0;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
-    return 100;
+    return 150;
     
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    LBStoreSendGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.indexpath = indexPath;
-    LBWaitOrdersModel *model = self.dataarr[indexPath.section];
-    cell.WaitOrdersListModel = model.dataArr[indexPath.row];
-    return cell;
-    
-}
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    return 85;
+    return 90;
     
 }
 
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    LBWaitOrdersHeaderView *headerview = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LBWaitOrdersHeaderView"];
+    LBMyOrdersHeaderView *headerview = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LBMyOrdersHeaderView"];
     
     if (!headerview) {
-        headerview = [[LBWaitOrdersHeaderView alloc] initWithReuseIdentifier:@"LBWaitOrdersHeaderView"];
+        headerview = [[LBMyOrdersHeaderView alloc] initWithReuseIdentifier:@"LBMyOrdersHeaderView"];
         
     }
-    __weak typeof(self) weakself = self;
-    LBWaitOrdersModel *sectionModel = self.dataarr[section];
+    __weak typeof(self)  weakself = self;
+    LBMyOrdersModel *sectionModel = self.dataarr[section];
     headerview.sectionModel = sectionModel;
-    headerview.wuliuBt.hidden = YES;
-    headerview.sureGetBt.hidden = YES;
     headerview.expandCallback = ^(BOOL isExpanded) {
+        
         [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
-    
+    headerview.section = section;
+    headerview.cancelBt.hidden = YES;
+    headerview.payBt.hidden = YES;
     return headerview;
+}
+
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    LBMyOrderListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBMyOrderListTableViewCell" forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell.payBt setTitle:@"去支付" forState:UIControlStateNormal];
+    cell.payBt.hidden = YES;
+    cell.index = indexPath.row;
+     cell.indexpath = indexPath;
+    cell.deleteBt.hidden = NO;
+    cell.stauesLb.hidden = YES;
+    
+    LBMyOrdersModel *model= (LBMyOrdersModel*)self.dataarr[indexPath.section];
+    cell.myorderlistModel = model.MyOrdersListModel[indexPath.row];
+    cell.retundeletebutton = ^(NSIndexPath *indexpath){
+    
+    
+    };
+    
+    return cell;
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
+}
 
 -(NSMutableArray *)dataarr{
     
@@ -217,6 +242,5 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     return _nodataV;
     
 }
-
 
 @end

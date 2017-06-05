@@ -14,8 +14,9 @@
 @property (copy, nonatomic)NSString *order_number;
 @property (copy, nonatomic)NSString *creat_time;
 @property (copy, nonatomic)NSString *logistics_sta;
+@property (copy, nonatomic)NSString *order_type;
 
-@property (copy, nonatomic)NSArray *WaitOrdersListModel;
+@property (strong, nonatomic)NSMutableArray *dataArr;
 
 @property (assign, nonatomic)BOOL isExpanded;//是否展开
 
