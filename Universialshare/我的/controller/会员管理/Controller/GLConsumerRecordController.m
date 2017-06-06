@@ -34,7 +34,7 @@ static NSString *ID = @"GLConsumerRecordCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"线上他店";
+    self.navigationItem.title = @"线上本店";
     self.automaticallyAdjustsScrollViewInsets = NO;
     //右键自定义
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];

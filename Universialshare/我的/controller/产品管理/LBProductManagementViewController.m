@@ -63,6 +63,7 @@
     self.tableview.mj_footer = footer;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.editButton];
+    self.page = 1;
     [self initdatasource];
 }
 

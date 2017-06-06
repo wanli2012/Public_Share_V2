@@ -83,6 +83,8 @@ static NSString *ID = @"GLShoppingCell";
                     
                     [self.tableView reloadData];
                 }
+            }else{
+                [MBProgressHUD showError:responseObject[@"message"]];
             }
      
     } enError:^(NSError *error) {

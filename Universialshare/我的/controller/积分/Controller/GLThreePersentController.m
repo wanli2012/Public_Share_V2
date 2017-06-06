@@ -4,7 +4,6 @@
 //
 //  Created by 龚磊 on 2017/6/5.
 //  Copyright © 2017年 四川三君科技有限公司. All rights reserved.
-//
 
 #import "GLThreePersentController.h"
 #import "GLMine_MyHeartCell.h"
@@ -39,7 +38,6 @@ static NSString *ID = @"GLMine_MyHeartCell";
                 
                 GLMyheartModel *model = [GLMyheartModel mj_objectWithKeyValues:responseObject[@"data"]];
                 [self.models addObject:model];
-                
                 
             }else{
                 [MBProgressHUD showError:responseObject[@"message"]];

@@ -178,8 +178,6 @@
     
     [self.tableview reloadData];
     
-    
-
 }
 
 -(NSMutableArray *)dataarr{

@@ -39,7 +39,7 @@ static NSString *ID = @"GLMerchat_CommentCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"评价";
+    self.navigationItem.title = @"商品评价";
     self.navigationController.navigationBar.hidden = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
@@ -102,18 +102,13 @@ static NSString *ID = @"GLMerchat_CommentCell";
                     [self.models addObject:model];
                 }
                 self.dataDic = responseObject[@"data"];
-                
-                [self setupHeaderView];
-                self.tableView.tableHeaderView = self.headerView;
-
-                
+            
                 if (self.models.count <= 0 ) {
                     self.nodataV.hidden = NO;
                 }else{
                     self.nodataV.hidden = YES;
                 }
 
-                [self.tableView reloadData];
             }
             
         }else{
@@ -121,11 +116,15 @@ static NSString *ID = @"GLMerchat_CommentCell";
             
         }
         
+        [self setupHeaderView];
+        self.tableView.tableHeaderView = self.headerView;
+
+        [self.tableView reloadData];
     } enError:^(NSError *error) {
         [_loadV removeloadview];
         [self endRefresh];
         [MBProgressHUD showError:error.localizedDescription];
-        
+         [self.tableView reloadData];
     }];
     
 }

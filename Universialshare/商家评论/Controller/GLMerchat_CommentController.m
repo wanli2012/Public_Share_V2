@@ -78,7 +78,7 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
-    dict[@"page"] = [NSString stringWithFormat:@"%ld",_page];
+    dict[@"page"] = [NSString stringWithFormat:@"%zd",_page];
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"shop/getArealyCommentGoodsList" paramDic:dict finish:^(id responseObject) {
@@ -111,6 +111,13 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
         [self endRefresh];
         [MBProgressHUD showError:error.localizedDescription];
         
+        if (self.models.count <= 0 ) {
+            self.nodataV.hidden = NO;
+        }else{
+            self.nodataV.hidden = YES;
+            self.collectionView.backgroundColor = YYSRGBColor(184, 184, 184, 0.2);
+        }
+
         [self.collectionView reloadData];
     }];
     
@@ -147,9 +154,13 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
 }
 //选择了某个cell
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    GLMerchat_CommentGoodsModel *model = self.models[indexPath.row];
+    if ([model.pl_count integerValue] <= 0) {
+        [MBProgressHUD showError:@"暂无评论"];
+        return;
+    }
     self.hidesBottomBarWhenPushed = YES;
     GLMerchat_CommentTableController *commentVC = [[GLMerchat_CommentTableController alloc] init];
-    GLMerchat_CommentGoodsModel *model = self.models[indexPath.row];
     commentVC.goods_id = model.goods_id;
     [self.navigationController pushViewController:commentVC animated:YES];
     self.hidesBottomBarWhenPushed = NO;

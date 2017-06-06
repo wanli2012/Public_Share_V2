@@ -50,7 +50,7 @@
         self.typeImageV.image = [UIImage imageNamed:@"智能5%"];
         
     }else{//3%
-        self.typeImageV.image = [UIImage imageNamed:PlaceHolderImage];
+        self.typeImageV.image = [UIImage imageNamed:@"智能3%"];
     }
     
     if (model.thumb.length > 0 ) {
