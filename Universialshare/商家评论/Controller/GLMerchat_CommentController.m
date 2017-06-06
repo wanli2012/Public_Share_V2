@@ -157,7 +157,7 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
 //定义每个UICollectionViewCell 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    return CGSizeMake(SCREEN_WIDTH / 2 - 0.5, 150);
+    return CGSizeMake(SCREEN_WIDTH / 2 - 0.5, SCREEN_WIDTH / 2 - 0.5);
 }
 //每个section中不同的行之间的行间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {

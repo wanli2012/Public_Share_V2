@@ -152,7 +152,6 @@
     }
 
     return self.dataarr.count;
-
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
