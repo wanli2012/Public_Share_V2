@@ -182,7 +182,6 @@
         }
         [self addChildViewController:cachedViewController];
         [cell configCellWithController:cachedViewController];
-        NSLog(@"cachedViewController = %@",NSStringFromCGRect(cachedViewController.view.frame));
         return cell;
     }
     return nil;
