@@ -12,7 +12,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+   
+    self.image.layer.cornerRadius = 3;
+    self.image.clipsToBounds = YES;
 }
 
 

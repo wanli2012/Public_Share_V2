@@ -42,7 +42,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *freightTf;
 @property (weak, nonatomic) IBOutlet UITextField *favorablePriceTf;
-@property (weak, nonatomic) IBOutlet UISwitch *isShelvesBt;
+@property (weak, nonatomic) IBOutlet UITextField *SpecificationsTf;//商品规格
+
 
 @property (assign, nonatomic)NSInteger stype;//分红类型
 @property (assign, nonatomic)NSInteger indexShelves;//是否上架
@@ -285,6 +286,10 @@
         [MBProgressHUD showError:@"请输入优惠价格"];
         return;
     }
+    if (self.SpecificationsTf.text.length <= 0) {
+        [MBProgressHUD showError:@"请简单描述商品规格"];
+        return;
+    }
     if (self.imageArr.count <= 1) {
         [MBProgressHUD showError:@"至少上传一张图片"];
         return;
@@ -313,6 +318,7 @@
                            @"discount":self.favorablePriceTf.text,
                            @"sendPrice":self.freightTf.text,
                            @"total_num":self.numTf.text,
+                           @"spec_info":self.SpecificationsTf.text,
                            @"cate_id":cate_id,
                            @"attr_id":attr_id,
                            @"count":[NSNumber numberWithInteger:self.imageArr.count - 1]};
@@ -410,18 +416,18 @@
     
     if (self.imageArr.count > 3) {
         self.imageViwH.constant = 210;
-        self.contentH.constant = 920 + 110;
+        self.contentH.constant = 940 + 110;
         if (self.shuxingSize.size.height) {
             self.imageViwH.constant = 210;
-            self.contentH.constant = 920 + 110 + self.shuxingSize.size.height - 30;
+            self.contentH.constant = 940 + 110 + self.shuxingSize.size.height - 30;
 
         }
     }else{
         self.imageViwH.constant = 210;
-        self.contentH.constant = 920;
+        self.contentH.constant = 940;
         if (self.shuxingSize.size.height) {
             self.imageViwH.constant = 210;
-            self.contentH.constant = 920 + self.shuxingSize.size.height - 30;
+            self.contentH.constant = 940 + self.shuxingSize.size.height - 30;
             
         }
     }
@@ -617,7 +623,7 @@
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     self.contentW.constant = SCREEN_WIDTH;
-    self.contentH.constant = 920;
+    self.contentH.constant = 940;
     self.imageViwH.constant = 100;
     
     self.submitBt.layer.cornerRadius = 4;

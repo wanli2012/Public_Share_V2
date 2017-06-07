@@ -112,6 +112,9 @@
             
         }else if ([responseObject[@"code"] integerValue]==3){
             [MBProgressHUD showError:responseObject[@"message"]];
+            if (_refreshType == NO) {
+                [self.dataarr removeAllObjects];
+            }
             [self.tableview reloadData];
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
@@ -159,11 +162,9 @@
     
     LBWaitOrdersModel *model = self.dataarr[section];
     return model.isExpanded ? model.dataArr.count : 0;
-
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
         return 90;
 }
 
@@ -176,6 +177,7 @@
     LBWaitOrdersModel *model = self.dataarr[indexPath.section];
         cell.order_id = model.order_id;
     cell.WaitOrdersListModel = model.dataArr[indexPath.row];
+    [cell.downMenuButton dismissButtons];
    
     return cell;
     
@@ -194,7 +196,6 @@
         headerview = [[LBWaitOrdersHeaderView alloc] initWithReuseIdentifier:@"LBWaitOrdersHeaderView"];
     
     }
-    __weak typeof(self) weakself = self;
     LBWaitOrdersModel *sectionModel = self.dataarr[section];
     headerview.sectionModel = sectionModel;
     headerview.wuliuBt.hidden = YES;
@@ -202,20 +203,7 @@
     headerview.expandCallback = ^(BOOL isExpanded) {
     [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
-//    确认收货
-//    headerview.returnsureGetBt = ^(NSInteger section){
-//        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"您确定已收货吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-//        [alert show];
-//    };
-    
-//    查看物流
-    headerview.returnwuliuBt = ^(NSInteger section){
-       
-        weakself.hidesBottomBarWhenPushed = YES;
-        LBMineCenterFlyNoticeDetailViewController *vc=[[LBMineCenterFlyNoticeDetailViewController alloc]init];
-        [weakself.navigationController pushViewController:vc animated:YES];
-    };
-    
+
     
     return headerview;
 }
@@ -263,10 +251,14 @@
     
 }
 
--(void)checklogistics:(NSInteger)index{
+-(void)checklogistics:(NSIndexPath *)index{
 
+    LBWaitOrdersModel *model = self.dataarr[index.section];
+    LBWaitOrdersListModel *listmodel= model.dataArr[index.row];
+    
     self.hidesBottomBarWhenPushed = YES;
     LBMineCenterFlyNoticeDetailViewController *vc=[[LBMineCenterFlyNoticeDetailViewController alloc]init];
+    vc.codestr = [NSString stringWithFormat:@"%@",listmodel.odd_num];
     [self.navigationController pushViewController:vc animated:YES];
 
 

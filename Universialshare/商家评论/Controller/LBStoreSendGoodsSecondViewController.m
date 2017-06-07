@@ -13,6 +13,7 @@
 #import "LBWaitOrdersHeaderView.h"
 #import "LBSendGoodsProductModel.h"
 #import "LBSendGoodsProductModel.h"
+#import "LBStoreSendGoodsLeavingTableViewCell.h"
 
 @interface LBStoreSendGoodsSecondViewController ()
 
@@ -25,6 +26,8 @@
 
 @end
 static NSString *ID = @"LBStoreSendGoodsTableViewCell";
+static NSString *LeavingID = @"LBStoreSendGoodsLeavingTableViewCell";
+
 @implementation LBStoreSendGoodsSecondViewController
 
 - (void)viewDidLoad {
@@ -33,6 +36,7 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     self.automaticallyAdjustsScrollViewInsets =NO;
     self.tableview.tableFooterView = [UIView new];
     [self.tableview registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
+     [self.tableview registerNib:[UINib nibWithNibName:LeavingID bundle:nil] forCellReuseIdentifier:LeavingID];
     
     [self.tableview addSubview:self.nodataV];
     
@@ -146,14 +150,18 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     LBWaitOrdersModel *model = self.dataarr[section];
-    return model.isExpanded ? model.dataArr.count : 0;
+    return model.isExpanded ? model.dataArr.count + 1 : 0;
     
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    if (indexPath.row == 0) {
+        self.tableview.estimatedRowHeight = 30;
+        self.tableview.rowHeight = UITableViewAutomaticDimension;
+        return UITableViewAutomaticDimension;
+    }
     return 100;
     
 }
@@ -161,11 +169,22 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if (indexPath.row == 0) {
+        LBStoreSendGoodsLeavingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LeavingID forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        LBWaitOrdersModel *model = self.dataarr[indexPath.section];
+        cell.leavingLb.text = [NSString stringWithFormat:@"买家留言: %@",model.order_remark];
+        if ([model.order_remark rangeOfString:@"null"].location != NSNotFound || model.order_remark.length <= 0) {
+            cell.leavingLb.text = @"买家留言: 买家没有留下任何足迹";
+        }
+        return cell;
+    }
+
     LBStoreSendGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.indexpath = indexPath;
     LBWaitOrdersModel *model = self.dataarr[indexPath.section];
-    cell.WaitOrdersListModel = model.dataArr[indexPath.row];
+    cell.WaitOrdersListModel = model.dataArr[indexPath.row-1];
     return cell;
     
 }
@@ -184,7 +203,7 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
         headerview = [[LBWaitOrdersHeaderView alloc] initWithReuseIdentifier:@"LBWaitOrdersHeaderView"];
         
     }
-    __weak typeof(self) weakself = self;
+    //__weak typeof(self) weakself = self;
     LBWaitOrdersModel *sectionModel = self.dataarr[section];
     headerview.sectionModel = sectionModel;
     headerview.wuliuBt.hidden = YES;

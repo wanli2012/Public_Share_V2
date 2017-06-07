@@ -773,6 +773,9 @@
 		F92ED49A1EDE6D5900B3B3DB /* LBHomeIncomeFristViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92ED4981EDE6D5900B3B3DB /* LBHomeIncomeFristViewController.xib */; };
 		F92ED49E1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F92ED49C1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.m */; };
 		F92ED49F1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92ED49D1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.xib */; };
+		F92F93791EE6A4F00030A1A8 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = F92F93781EE6A4F00030A1A8 /* NullSafe.m */; };
+		F92F937D1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F92F937B1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.m */; };
+		F92F937E1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92F937C1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.xib */; };
 		F93F84D21E9F02C500F76E0B /* loadWait.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F93F84D11E9F02C500F76E0B /* loadWait.xcassets */; };
 		F9434D4D1EC16D78001C80A4 /* LBMineCenterRegionQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9434D471EC16D78001C80A4 /* LBMineCenterRegionQueryViewController.m */; };
 		F9434D4E1EC16D78001C80A4 /* LBMineCenterRegionQueryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9434D481EC16D78001C80A4 /* LBMineCenterRegionQueryViewController.xib */; };
@@ -941,6 +944,7 @@
 		F966B4101EACB0C0007260FC /* LBSaleManPersonInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F966B40E1EACB0C0007260FC /* LBSaleManPersonInfoViewController.xib */; };
 		F966B4151EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F966B4131EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.m */; };
 		F966B4161EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F966B4141EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.xib */; };
+		F96CEE431EE79B76000B6D91 /* DWBubbleMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F96CEE421EE79B76000B6D91 /* DWBubbleMenuButton.m */; };
 		F97644D91EA5BAEA00AFA22B /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = F97644D81EA5BAEA00AFA22B /* RSAEncryptor.m */; };
 		F97F09D81EC9402A000D3B30 /* LBProductManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F09D61EC9402A000D3B30 /* LBProductManagementViewController.m */; };
 		F97F09D91EC9402A000D3B30 /* LBProductManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09D71EC9402A000D3B30 /* LBProductManagementViewController.xib */; };
@@ -2315,6 +2319,10 @@
 		F92ED49B1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBHomeIncomesecondViewController.h; sourceTree = "<group>"; };
 		F92ED49C1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBHomeIncomesecondViewController.m; sourceTree = "<group>"; };
 		F92ED49D1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBHomeIncomesecondViewController.xib; sourceTree = "<group>"; };
+		F92F93781EE6A4F00030A1A8 /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
+		F92F937A1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBStoreSendGoodsLeavingTableViewCell.h; sourceTree = "<group>"; };
+		F92F937B1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBStoreSendGoodsLeavingTableViewCell.m; sourceTree = "<group>"; };
+		F92F937C1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBStoreSendGoodsLeavingTableViewCell.xib; sourceTree = "<group>"; };
 		F93F84D11E9F02C500F76E0B /* loadWait.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = loadWait.xcassets; sourceTree = "<group>"; };
 		F9434D461EC16D78001C80A4 /* LBMineCenterRegionQueryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterRegionQueryViewController.h; sourceTree = "<group>"; };
 		F9434D471EC16D78001C80A4 /* LBMineCenterRegionQueryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterRegionQueryViewController.m; sourceTree = "<group>"; };
@@ -2580,6 +2588,8 @@
 		F966B4121EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBSaleManPersonInfoTableViewCell.h; sourceTree = "<group>"; };
 		F966B4131EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBSaleManPersonInfoTableViewCell.m; sourceTree = "<group>"; };
 		F966B4141EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBSaleManPersonInfoTableViewCell.xib; sourceTree = "<group>"; };
+		F96CEE411EE79B76000B6D91 /* DWBubbleMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWBubbleMenuButton.h; sourceTree = "<group>"; };
+		F96CEE421EE79B76000B6D91 /* DWBubbleMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWBubbleMenuButton.m; sourceTree = "<group>"; };
 		F97644D71EA5BAEA00AFA22B /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
 		F97644D81EA5BAEA00AFA22B /* RSAEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
 		F97F09D51EC9402A000D3B30 /* LBProductManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBProductManagementViewController.h; sourceTree = "<group>"; };
@@ -2680,6 +2690,7 @@
 				F961A9CB1E9C750300275F52 /* UILabel+UILabel_ChangeLineSpaceAndWordSpace.m */,
 				F961A9E31E9C7B4700275F52 /* MBProgressHUD+LB.h */,
 				F961A9E41E9C7B4700275F52 /* MBProgressHUD+LB.m */,
+				F92F93781EE6A4F00030A1A8 /* NullSafe.m */,
 			);
 			path = "Tool(工具类)";
 			sourceTree = "<group>";
@@ -3168,6 +3179,8 @@
 		4A460D9B1E9CC6350045824F /* 三方库 */ = {
 			isa = PBXGroup;
 			children = (
+				F96CEE411EE79B76000B6D91 /* DWBubbleMenuButton.h */,
+				F96CEE421EE79B76000B6D91 /* DWBubbleMenuButton.m */,
 				F94E92B31ED9108200CBEDB8 /* PopMenuTableViewCell.h */,
 				F94E92B41ED9108200CBEDB8 /* PopMenuTableViewCell.m */,
 				F94E92B51ED9108200CBEDB8 /* PopMenuTableViewCell.xib */,
@@ -4800,6 +4813,9 @@
 				F955A7911EE017B9004141A4 /* LBStoreSendGoodsTableViewCell.h */,
 				F955A7921EE017B9004141A4 /* LBStoreSendGoodsTableViewCell.m */,
 				F955A7931EE017B9004141A4 /* LBStoreSendGoodsTableViewCell.xib */,
+				F92F937A1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.h */,
+				F92F937B1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.m */,
+				F92F937C1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6504,6 +6520,7 @@
 				4A3D17B61ECC514400F85A3B /* GLRecommendStore_RecordCell.xib in Resources */,
 				4A5004631EE14FA9002D1964 /* LBUserKonwViewTableViewCell.xib in Resources */,
 				4A2F521C1EC7084000ECA95D /* GLGoodsInfoCell.xib in Resources */,
+				F92F937E1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.xib in Resources */,
 				F91029C21EC5831300246D04 /* LBMySalesmanListFaildViewController.xib in Resources */,
 				F92309541E9B8BFF00ECDC94 /* LBMyOrderPendingEvaluationViewController.xib in Resources */,
 				F9434D561EC19046001C80A4 /* LBMineCenterWantToSignUpViewController.xib in Resources */,
@@ -6861,6 +6878,8 @@
 				F92309221E9B8BFF00ECDC94 /* LBMineCenterRechargeBankCardTableViewCell.m in Sources */,
 				F9126EE81EA0599B004785EA /* LBBaiduMapViewController.m in Sources */,
 				4A4610B01E9CC6370045824F /* ZXAI01320xDecoder.m in Sources */,
+				F92F93791EE6A4F00030A1A8 /* NullSafe.m in Sources */,
+				F96CEE431EE79B76000B6D91 /* DWBubbleMenuButton.m in Sources */,
 				4A46101A1E9CC6360045824F /* LBXScanWrapper.m in Sources */,
 				4A4610D81E9CC6370045824F /* ZXITFWriter.m in Sources */,
 				4A0D97901E9729C100A26B84 /* GLHomeRecommendCollectionCell.m in Sources */,
@@ -7022,6 +7041,7 @@
 				4A4610121E9CC6360045824F /* LBXScanLineAnimation.m in Sources */,
 				4A4610701E9CC6360045824F /* ZXImage.m in Sources */,
 				4A4610D11E9CC6370045824F /* ZXCode93Reader.m in Sources */,
+				F92F937D1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.m in Sources */,
 				4AFCDC801ED2EE81007C1681 /* GLMerchat_CommentHeaderView.m in Sources */,
 				F9121B271EB21A6500DAB7A2 /* LBMyOrdersModel.m in Sources */,
 				F9643F151ECFE74E001B707B /* TYAlertFadeAnimation.m in Sources */,

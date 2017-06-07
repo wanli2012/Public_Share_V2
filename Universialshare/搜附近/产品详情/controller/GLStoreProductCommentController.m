@@ -68,15 +68,15 @@ static NSString *ID = @"LBStoreDetailreplaysTableViewCell";
             
             if (_refreshType == NO) {
                 [self.models removeAllObjects];
-                if (![responseObject[@"data"][@"reply"] isEqual:[NSNull null]]) {
-                    [self.models addObjectsFromArray:responseObject[@"data"][@"reply"]];
+                if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                    [self.models addObjectsFromArray:responseObject[@"data"]];
                 }
                 
                 [self.tableView reloadData];
             }else{
                 
-                if (![responseObject[@"data"][@"reply"] isEqual:[NSNull null]]) {
-                    [self.models addObjectsFromArray:responseObject[@"data"][@"reply"]];
+                if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                    [self.models addObjectsFromArray:responseObject[@"data"]];
                 }
                 
                 [self.tableView reloadData];

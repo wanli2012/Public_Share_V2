@@ -15,6 +15,7 @@
 @property (copy, nonatomic)NSString *creat_time;
 @property (copy, nonatomic)NSString *logistics_sta;
 @property (copy, nonatomic)NSString *order_type;
+@property (copy, nonatomic)NSString *order_remark;
 
 @property (strong, nonatomic)NSMutableArray *dataArr;
 

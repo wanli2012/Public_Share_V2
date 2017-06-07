@@ -18,5 +18,6 @@
 @property (copy, nonatomic)NSString *shop_name;
 @property (copy, nonatomic)NSString *is_receipt;
 @property (copy, nonatomic)NSString *orderGoodsId;
+@property (copy, nonatomic)NSString *odd_num;
 
 @end

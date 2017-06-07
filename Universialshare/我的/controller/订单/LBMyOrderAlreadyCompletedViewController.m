@@ -235,7 +235,7 @@
         LBMyOrdersModel *model=(LBMyOrdersModel*)self.dataarr[self.deleteRow];
         
         _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-        [NetworkManager requestPOSTWithURLStr:@"user/order_mark_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"order_id" :model.order_id , @"type":@1} finish:^(id responseObject) {
+        [NetworkManager requestPOSTWithURLStr:@"shop/delOrderLine" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"order_id" :model.order_id , @"type":@1} finish:^(id responseObject) {
             [_loadV removeloadview];
     
             if ([responseObject[@"code"] integerValue]==1) {

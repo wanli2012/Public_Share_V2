@@ -25,5 +25,6 @@
 @property (strong, nonatomic)LBSendGoodsProductModel *WaitOrdersListModel;
 @property (weak, nonatomic) IBOutlet UIImageView *imagev;
 @property (weak, nonatomic) IBOutlet UILabel *pricelb;
+@property (weak, nonatomic) IBOutlet UILabel *LeavingLb;
 
 @end

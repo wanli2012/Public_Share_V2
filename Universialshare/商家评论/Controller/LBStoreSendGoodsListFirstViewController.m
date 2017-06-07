@@ -13,6 +13,7 @@
 #import "LBWaitOrdersHeaderView.h"
 #import "LBSendGoodsProductModel.h"
 #import "LBSendGoodsProductModel.h"
+#import "LBStoreSendGoodsLeavingTableViewCell.h"
 
 @interface LBStoreSendGoodsListFirstViewController ()<LBStoreSendGoodsDelegete>
 
@@ -25,6 +26,8 @@
 
 @end
 static NSString *ID = @"LBStoreSendGoodsTableViewCell";
+static NSString *LeavingID = @"LBStoreSendGoodsLeavingTableViewCell";
+
 @implementation LBStoreSendGoodsListFirstViewController
 
 - (void)viewDidLoad {
@@ -33,6 +36,7 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
     self.automaticallyAdjustsScrollViewInsets =NO;
     self.tableview.tableFooterView = [UIView new];
     [self.tableview registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
+    [self.tableview registerNib:[UINib nibWithNibName:LeavingID bundle:nil] forCellReuseIdentifier:LeavingID];
     
     [self.tableview addSubview:self.nodataV];
     
@@ -84,6 +88,7 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
                     ordersMdel.order_id = responseObject[@"data"][i][@"order_id"];
                     ordersMdel.order_number = responseObject[@"data"][i][@"order_num"];
                     ordersMdel.order_type = responseObject[@"data"][i][@"order_type"];
+                     ordersMdel.order_remark = responseObject[@"data"][i][@"order_remark"];
                     ordersMdel.isExpanded = NO;
                     for (int j =0; j < [responseObject[@"data"][i][@"son"]count]; j++) {
                         LBSendGoodsProductModel   *listmodel = [LBSendGoodsProductModel mj_objectWithKeyValues:responseObject[@"data"][i][@"son"][j]];
@@ -147,27 +152,37 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     LBWaitOrdersModel *model = self.dataarr[section];
-    return model.isExpanded ? model.dataArr.count : 0;
+    return model.isExpanded ? model.dataArr.count + 1: 0;
     
 }
-
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    if (indexPath.row == 0) {
+        self.tableview.estimatedRowHeight = 30;
+        self.tableview.rowHeight = UITableViewAutomaticDimension;
+        return UITableViewAutomaticDimension;
+    }
     return 100;
     
 }
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if (indexPath.row == 0) {
+        LBStoreSendGoodsLeavingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LeavingID forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        LBWaitOrdersModel *model = self.dataarr[indexPath.section];
+        cell.leavingLb.text = [NSString stringWithFormat:@"买家留言: %@",model.order_remark];
+        if ([model.order_remark rangeOfString:@"null"].location != NSNotFound || model.order_remark.length <= 0) {
+            cell.leavingLb.text = @"买家留言: 买家没有留下任何足迹";
+        }
+        return cell;
+    }
     LBStoreSendGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.indexpath = indexPath;
     cell.delegete = self;
     LBWaitOrdersModel *model = self.dataarr[indexPath.section];
-    cell.WaitOrdersListModel = model.dataArr[indexPath.row];
+    cell.WaitOrdersListModel = model.dataArr[indexPath.row-1];
     return cell;
     
 }
@@ -261,7 +276,7 @@ static NSString *ID = @"LBStoreSendGoodsTableViewCell";
 -(void)storeSendGoods:(NSIndexPath*)indexpath codestr:(NSString*)codestr{
 
     LBWaitOrdersModel *model = self.dataarr[indexpath.section];
-    LBSendGoodsProductModel  *orderModel= model.dataArr[indexpath.row];
+    LBSendGoodsProductModel  *orderModel= model.dataArr[indexpath.row-1];
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/sendOrder" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"order_id" :model.order_id,@"order_goods_id":orderModel.order_goods_id,@"odd_num":codestr} finish:^(id responseObject) {

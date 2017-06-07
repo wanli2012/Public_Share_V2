@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LBMineCenterFlyNoticeDetailTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *codelb;
 
 @end

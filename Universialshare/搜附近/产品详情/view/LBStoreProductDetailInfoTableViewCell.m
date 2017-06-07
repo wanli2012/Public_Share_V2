@@ -15,8 +15,9 @@
    
     self.circleImage.layer.cornerRadius = 3;
     self.circleImage.clipsToBounds = YES;
+    
+    self.circleimage1.layer.cornerRadius = 3;
+    self.circleimage1.clipsToBounds = YES;
 }
-
-
 
 @end

@@ -155,6 +155,9 @@
     headerview.orderName.text = model.namelb;
     headerview.orderinfo.text = model.infolb;
     headerview.orderstore.text = model.sizelb;
+    if ([headerview.orderstore.text rangeOfString:@"null"].location != NSNotFound) {
+        headerview.orderstore.text = @"暂无";
+    }
     headerview.ordermoney.text = [NSString stringWithFormat:@"¥%@",model.moneylb];
     headerview.numlb.text = [NSString stringWithFormat:@"x%@",model.goods_num];
     
@@ -166,20 +169,18 @@
         headerview.typelabel.text = @"已评论";
     }
     
-    headerview.retrunshowsection = ^(NSInteger sectiona,LBMyOrderlistHeaderFooterView *headview){
+    if (model.isexpand == YES) {
+
+        headerview.imagevo.transform = CGAffineTransformIdentity;
+        
+    }else{
+        
+        CGAffineTransform cgaffine = CGAffineTransformMakeRotation(M_PI);
+        headerview.imagevo.transform = cgaffine;
+    }
     
+    headerview.retrunshowsection = ^(NSInteger sectiona,LBMyOrderlistHeaderFooterView *headview){
         model.isexpand = !model.isexpand;
-        
-        if (model.isexpand == YES) {
-            
-            headview.imagevo.transform = CGAffineTransformIdentity;
-            
-        }else{
-        
-            CGAffineTransform cgaffine = CGAffineTransformMakeRotation(M_PI);
-            headview.imagevo.transform = cgaffine;
-        }
-        
         NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:sectiona];
         [weakself.tableview reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
         
@@ -223,8 +224,8 @@
             model.conment = model.conentlb;
             model.mark = [NSString stringWithFormat:@"%f",model.starValue];
             [MBProgressHUD showError:@"评论成功"];
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"LBMyOrderPendingEvaluationViewController" object:nil userInfo:@{@"mark":model.mark,@"comment":model.conment}];
-            [self.tableview reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:index inSection:0], nil] withRowAnimation:UITableViewRowAnimationFade];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"LBMyOrderPendingEvaluationViewController" object:nil userInfo:@{@"mark":model.mark,@"comment":model.conment,@"row":[NSNumber numberWithInteger:index]}];
+            [self.tableview reloadSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationFade];
 
         }else if ([responseObject[@"code"] integerValue]==3){
             

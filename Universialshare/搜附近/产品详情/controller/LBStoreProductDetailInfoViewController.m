@@ -187,19 +187,30 @@
         
         cell.moneyLb.text = [NSString stringWithFormat:@"现价%@",self.dataDic[@"goods_data"][@"discount"]];
         cell.yuanjiLb.text = [NSString stringWithFormat:@"原价%@",self.dataDic[@"goods_data"][@"price"]];
-        //cell.infolb.text = [NSString stringWithFormat:@"已选:%@",self.dataDic[@"goods_data"][@"info"]];
+        cell.infolb.text = [NSString stringWithFormat:@"规格:%@",self.dataDic[@"goods_data"][@"spec_info"]];
         cell.catalbel.text = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"cate"]];
         
+        if ([cell.infolb.text rangeOfString:@"null"].location != NSNotFound ) {
+            cell.infolb.text = @"规格:默认";
+        }
+        
+        if ([self.dataDic[@"goods_data"][@"rl_type"] integerValue] == 1) {
+            cell.rebateTypeLb.text = @"20%";
+        }else if ([self.dataDic[@"goods_data"][@"rl_type"] integerValue] == 2) {
+            cell.rebateTypeLb.text = @"10%";
+        }else if ([self.dataDic[@"goods_data"][@"rl_type"] integerValue] == 3) {
+            cell.rebateTypeLb.text = @"5%";
+        }else if ([self.dataDic[@"goods_data"][@"rl_type"] integerValue] == 4) {
+            cell.rebateTypeLb.text = @"3%";
+        }
         NSString *strone = [NSString stringWithFormat:@"[%@]",self.dataDic[@"goods_data"][@"attr"]];
         long len1 = [strone length];
         NSString *strtwo = [NSString stringWithFormat:@"[%@]%@",self.dataDic[@"goods_data"][@"attr"],self.dataDic[@"goods_data"][@"info"]];
         NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:strtwo];
-        
         [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,len1)];
         [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17.0f] range:NSMakeRange(0,len1)];
-        
+
         cell.namelb.attributedText = str;
-        
         
         return cell;
         

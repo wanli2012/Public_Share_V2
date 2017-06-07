@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *moneyLb;
 @property (weak, nonatomic) IBOutlet UILabel *infolb;
 @property (weak, nonatomic) IBOutlet UILabel *yuanjiLb;
+@property (weak, nonatomic) IBOutlet UILabel *rebateTypeLb;
+@property (weak, nonatomic) IBOutlet UIImageView *circleimage1;
 
 @property (weak, nonatomic) IBOutlet UIImageView *circleImage;
 @property (weak, nonatomic) IBOutlet UILabel *catalbel;

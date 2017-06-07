@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "LBWaitOrdersListModel.h"
+#import "DWBubbleMenuButton.h"
 
 @protocol  LBMineCenterReceivingGoodsDelegete <NSObject>
 
--(void)checklogistics:(NSInteger)index;
+-(void)checklogistics:(NSIndexPath*)index;
 -(void)BuyAgaingoodid:(NSString*)goog_id orderid:(NSString*)orderid indexpath:(NSIndexPath*)indexpath;
 
 @end
@@ -38,5 +39,7 @@
 @property(strong,nonatomic)NSString *order_id;
 
 @property (strong, nonatomic)LBWaitOrdersListModel *WaitOrdersListModel;
+
+@property(nonatomic , strong)DWBubbleMenuButton *downMenuButton;
 
 @end

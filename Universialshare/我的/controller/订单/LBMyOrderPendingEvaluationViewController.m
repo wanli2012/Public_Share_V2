@@ -140,7 +140,7 @@
     cell.stauesLb.text = @"待评价";
     cell.index = indexPath.row;
     cell.deleteBt.hidden = YES;
-    [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"thumb"]]] placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
+    [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
     cell.namelb.text = [NSString stringWithFormat:@"订单号:%@",self.dataarr[indexPath.row][@"order_num"]];
     cell.numlb.text = [NSString stringWithFormat:@"总价:¥%@",self.dataarr[indexPath.row][@"order_money"]];
     cell.priceLb.text = [NSString stringWithFormat:@"数量:%@",self.dataarr[indexPath.row][@"total"]];
@@ -160,26 +160,23 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
-    
 }
 
 -(void)refreshdatasource:(NSNotification*)noti{
    
     NSDictionary *dic = noti.userInfo;
+    
+    NSInteger row = [dic[@"row"] integerValue];
 
-    NSMutableDictionary *dic1=[NSMutableDictionary dictionaryWithDictionary:self.dataarr[_refreshindex]];
+    NSMutableDictionary *dic1=[NSMutableDictionary dictionaryWithDictionary:self.dataarr[_refreshindex][@"goods_data"][row]];
     
     dic1[@"is_comment"] = @"1";
     dic1[@"mark"] = dic[@"mark"];
     dic1[@"comment"] = dic[@"comment"];
     
-    [self.dataarr replaceObjectAtIndex:_refreshindex withObject:dic1];
+    [self.dataarr[_refreshindex][@"goods_data"] replaceObjectAtIndex:row withObject:dic1];
     
     [self.tableview reloadData];
-    
-    
-
 }
 
 -(NSMutableArray *)dataarr{
@@ -187,9 +184,7 @@
     if (!_dataarr) {
         _dataarr=[NSMutableArray array];
     }
-    
     return _dataarr;
-    
 }
 
 -(NodataView*)nodataV{

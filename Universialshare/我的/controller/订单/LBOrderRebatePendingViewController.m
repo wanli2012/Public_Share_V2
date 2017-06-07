@@ -104,12 +104,13 @@
             [self.tableview reloadData];
             
         }else if ([responseObject[@"code"] integerValue]==3){
-            
+            if (_refreshType == NO) {
+                [self.dataarr removeAllObjects];
+            }
             [MBProgressHUD showError:responseObject[@"message"]];
             
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
-            
             
         }
     } enError:^(NSError *error) {
@@ -224,7 +225,7 @@
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             rebateModel.is_receipt = @"4";
-            [MBProgressHUD showError:@"发货成功"];
+            [MBProgressHUD showError:responseObject[@"message"]];
             [self.tableview reloadData];
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];

@@ -65,7 +65,11 @@
 #define KCURRENTCITYINFODEFAULTS [NSUserDefaults standardUserDefaults]
 
 #define PlaceHolderImage @"XRPlaceholder"
+/**
+ * 物流地址
+ */
 
+#define logisticsUrl @"http://jisukdcx.market.alicloudapi.com/express/query"
 
 //3%返利的宏
 #define KThreePersent @"4"
