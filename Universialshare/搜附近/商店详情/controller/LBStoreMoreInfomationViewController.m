@@ -277,18 +277,10 @@ static const CGFloat headerImageHeight = 180.0f;
         cell.timeLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"addtime"]];
         [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
         
-        if ([self.dataDic[@"com_data"][indexPath.row][@"is_comment"] integerValue] == 2) {
-            cell.replyLb.hidden = NO;
-            cell.replyLb.text = [NSString stringWithFormat:@"商家回复:%@",[self.dataDic[@"com_data"][indexPath.row][@"reply"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            cell.constaritH.constant = 15;
-            cell.constraitTop.constant = 0;
-        }else{
             cell.replyLb.hidden = YES;
             cell.replyLb.text = @"";
             cell.constaritH.constant = 0;
             cell.constraitTop.constant = 6;
-        
-        }
         
          return cell;
         
