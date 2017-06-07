@@ -161,7 +161,8 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
     }
     self.hidesBottomBarWhenPushed = YES;
     GLMerchat_CommentTableController *commentVC = [[GLMerchat_CommentTableController alloc] init];
-    commentVC.goods_id = model.goods_id;
+    commentVC.model = model;
+    
     [self.navigationController pushViewController:commentVC animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }

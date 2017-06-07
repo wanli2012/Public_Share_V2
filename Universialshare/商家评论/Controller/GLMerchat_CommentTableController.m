@@ -87,17 +87,17 @@ static NSString *ID = @"GLMerchat_CommentCell";
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"page"] = [NSString stringWithFormat:@"%ld",(long)_page];
-    dict[@"goods_id"] = self.goods_id;
+    dict[@"pre_id"] = [NSString stringWithFormat:@"goods_%@",self.goods_id];
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsCommentList" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"shop/getShopOrGoodsCommentList" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
 //        NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue]==1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 
-                for (NSDictionary *dic in responseObject[@"data"][@"reply"]) {
+                for (NSDictionary *dic in responseObject[@"data"]) {
                     GLMerchat_CommentModel *model = [GLMerchat_CommentModel mj_objectWithKeyValues:dic];
                     [self.models addObject:model];
                 }
@@ -129,8 +129,10 @@ static NSString *ID = @"GLMerchat_CommentCell";
     
 }
 - (void)endRefresh {
+    
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
+    
 }
 -(NodataView*)nodataV{
     
@@ -152,7 +154,7 @@ static NSString *ID = @"GLMerchat_CommentCell";
     nameLabel.font = [UIFont systemFontOfSize:13];
     nameLabel.textAlignment = NSTextAlignmentLeft;
 //    nameLabel.text = @"梁朝伟 刘德华 你大爷梁 你大爷梁朝伟 刘德华 你大爷梁朝伟 刘德华 你大爷 ";
-    nameLabel.text = self.dataDic[@"goods_name"];
+    nameLabel.text = self.model.goods_name;
     CGSize nameSize =  [self sizeWithStr:nameLabel.text font:nameLabel.font];
     nameLabel.frame = CGRectMake(10, CGRectGetMaxY(self.cycleScrollView.frame) + 10, SCREEN_WIDTH - 20, nameSize.height);
     
@@ -162,7 +164,7 @@ static NSString *ID = @"GLMerchat_CommentCell";
     detailLabel.numberOfLines = 0; // 需要把显示行数设置成无限制
     detailLabel.font = [UIFont systemFontOfSize:11];
     detailLabel.textAlignment = NSTextAlignmentLeft;
-    detailLabel.text = [NSString stringWithFormat:@"描述:%@",self.dataDic[@"info"]];
+    detailLabel.text = [NSString stringWithFormat:@"描述:%@",self.model.goods_info];
 //    detailLabel.text = @"这是一款宇宙最爆款的东西,虽然我也不知道这是个什么玩意儿我也不知道这是个什么玩意儿";
     CGSize detailSize =  [self sizeWithStr:detailLabel.text font:detailLabel.font];
     detailLabel.frame = CGRectMake(10, CGRectGetMaxY(nameLabel.frame) + 10, SCREEN_WIDTH - 20, detailSize.height);
@@ -174,7 +176,7 @@ static NSString *ID = @"GLMerchat_CommentCell";
     priceLabel.font = [UIFont systemFontOfSize:13];
     priceLabel.textAlignment = NSTextAlignmentLeft;
 //    priceLabel.text = @"¥ 3434";
-    priceLabel.text = [NSString stringWithFormat:@"¥ %@",self.dataDic[@"goods_price"]];
+    priceLabel.text = [NSString stringWithFormat:@"¥ %@",self.model.goods_price];
     priceLabel.frame = CGRectMake(10, CGRectGetMaxY(detailLabel.frame) + 10, SCREEN_WIDTH/2 - 10,20);
 
     //评价数
@@ -184,7 +186,7 @@ static NSString *ID = @"GLMerchat_CommentCell";
     commentLabel.font = [UIFont systemFontOfSize:12];
     commentLabel.textAlignment = NSTextAlignmentRight;
 //    commentLabel.text = @"评价:12";
-    commentLabel.text = [NSString stringWithFormat:@"评论:%@",self.dataDic[@"all_total"]];
+    commentLabel.text = [NSString stringWithFormat:@"评论:%@",self.model.pl_count];
     commentLabel.frame = CGRectMake(SCREEN_WIDTH/2, priceLabel.yy_y, SCREEN_WIDTH/2 - 10,20);
     
     //计算headerView 高度

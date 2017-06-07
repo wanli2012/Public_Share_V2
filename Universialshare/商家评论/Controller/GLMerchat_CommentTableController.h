@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMerchat_CommentGoodsModel.h"
 
 @interface GLMerchat_CommentTableController : UIViewController
 
 @property (nonatomic, copy)NSString *goods_id;
+
+@property (nonatomic, strong)GLMerchat_CommentGoodsModel *model;
 
 @end
