@@ -87,13 +87,13 @@
     
     Homevc.tabBarItem = [self barTitle:@"消费商城" image:@"消费商城未选中状态" selectImage:@"消费商城"];
     IntegralMallvc.tabBarItem = [self barTitle:@"米券商城" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
-    minevc.tabBarItem = [self barTitle:@"我的" image:@"mine_normal" selectImage:@"mine_select"];
+    minevc.tabBarItem = [self barTitle:@"我的" image:@"wd_icon" selectImage:@"wd_selected_icon"];
     ManAndBusinessVc.tabBarItem = [self barTitle:@"推广员" image:@"推广员未选中" selectImage:@"推广员选中"];
     myodresvc.tabBarItem = [self barTitle:@"订单" image:@"消费商城未选中状态" selectImage:@"消费商城"];
-    businessNav.tabBarItem = [self barTitle:@"商家" image:@"消费商城未选中状态" selectImage:@"消费商城"];
-    nearbyNav.tabBarItem = [self barTitle:@"逛逛" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
+    businessNav.tabBarItem = [self barTitle:@"商家" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
+    nearbyNav.tabBarItem = [self barTitle:@"逛逛" image:@"sfj_icon" selectImage:@"sfj_selected_icon"];
     storeNav.tabBarItem = [self barTitle:@"门店" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
-    commentNav.tabBarItem = [self barTitle:@"商品" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
+    commentNav.tabBarItem = [self barTitle:@"商品" image:@"sfj_icon" selectImage:@"sfj_selected_icon"];
     incomeNav.tabBarItem = [self barTitle:@"收益" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
 //    [UserModel defaultUser].usrtype = Retailer;
 //    [UserModel defaultUser].loginstatus = YES;
@@ -101,7 +101,7 @@
 //    [usermodelachivar achive];
     if ([UserModel defaultUser].loginstatus == YES) {//登录状态
         if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {//一级业务员(副总) 二级业务员(高级推广员)
-            self.viewControllers = @[ManAndBusinessNav, minenav];
+            self.viewControllers = @[businessNav,ManAndBusinessNav, minenav];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:THREESALER]){//三级业务员(普通推广员)
             self.viewControllers = @[businessNav, minenav];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]){//普通用户
