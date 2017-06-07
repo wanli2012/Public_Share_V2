@@ -161,10 +161,10 @@
         
         if (self.HideNavB == YES) {
             self.navgationView.hidden = YES;
-            self.navigationH.constant = 64;
-        }else{
-            self.navgationView.hidden = YES;
             self.navigationH.constant = 0;
+        }else{
+            self.navgationView.hidden = NO;
+            self.navigationH.constant = 64;
         }
     }
 }
@@ -183,8 +183,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-   
-    return 125;
+    self.tableview.estimatedRowHeight = 120;
+    self.tableview.rowHeight = UITableViewAutomaticDimension;
+    return UITableViewAutomaticDimension;
     
 }
 
@@ -212,7 +213,7 @@
     }
     __weak typeof(self) weakself =self;
     cell.returnGowhere = ^(NSInteger index){
-        if (weakself.HideNavB == YES) {
+        if (weakself.HideNavB == NO) {
             double lat = [weakself.dataarr[index][@"dealer_lat"]doubleValue];double lng = [weakself.dataarr[index][@"dealer_lng"]doubleValue];
             
             if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]])// -- 使用 canOpenURL 判断需要在info.plist 的 LSApplicationQueriesSchemes 添加 baidumap 。
