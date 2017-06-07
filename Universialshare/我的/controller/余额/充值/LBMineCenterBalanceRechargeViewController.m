@@ -96,27 +96,27 @@
             
         }else if (_sixSecret.length == 1){
             
-            [self showimageone:@"XRPlaceholder" imagetwo:@"" imagethree:@"" imagefour:@"" imagefive:@"" imagesix:@""];
+            [self showimageone:PlaceHolderImage imagetwo:@"" imagethree:@"" imagefour:@"" imagefive:@"" imagesix:@""];
             
         }else if (_sixSecret.length == 2){
             
-            [self showimageone:@"XRPlaceholder" imagetwo:@"XRPlaceholder" imagethree:@"" imagefour:@"" imagefive:@"" imagesix:@""];
+            [self showimageone:PlaceHolderImage imagetwo:PlaceHolderImage imagethree:@"" imagefour:@"" imagefive:@"" imagesix:@""];
             
         }else if (_sixSecret.length == 3){
             
-            [self showimageone:@"XRPlaceholder" imagetwo:@"XRPlaceholder" imagethree:@"XRPlaceholder" imagefour:@"" imagefive:@"" imagesix:@""];
+            [self showimageone:PlaceHolderImage imagetwo:PlaceHolderImage imagethree:PlaceHolderImage imagefour:@"" imagefive:@"" imagesix:@""];
             
         }else if (_sixSecret.length == 4){
             
-            [self showimageone:@"XRPlaceholder" imagetwo:@"XRPlaceholder" imagethree:@"XRPlaceholder" imagefour:@"XRPlaceholder" imagefive:@"" imagesix:@""];
+            [self showimageone:PlaceHolderImage imagetwo:PlaceHolderImage imagethree:PlaceHolderImage imagefour:PlaceHolderImage imagefive:@"" imagesix:@""];
             
         }else if (_sixSecret.length == 5){
             
-            [self showimageone:@"XRPlaceholder" imagetwo:@"XRPlaceholder" imagethree:@"XRPlaceholder" imagefour:@"XRPlaceholder" imagefive:@"XRPlaceholder" imagesix:@""];
+            [self showimageone:PlaceHolderImage imagetwo:PlaceHolderImage imagethree:PlaceHolderImage imagefour:PlaceHolderImage imagefive:PlaceHolderImage imagesix:@""];
             
         }else if (_sixSecret.length == 6){
             
-            [self showimageone:@"XRPlaceholder" imagetwo:@"XRPlaceholder" imagethree:@"XRPlaceholder" imagefour:@"XRPlaceholder" imagefive:@"XRPlaceholder" imagesix:@"XRPlaceholder"];
+            [self showimageone:PlaceHolderImage imagetwo:PlaceHolderImage imagethree:PlaceHolderImage imagefour:PlaceHolderImage imagefive:PlaceHolderImage imagesix:PlaceHolderImage];
             
         }
         

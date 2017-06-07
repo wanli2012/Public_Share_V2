@@ -13,4 +13,6 @@
 
 @property (nonatomic, copy)NSString *shop_uid;
 
+@property (nonatomic, copy)NSString *pic;
+
 @end

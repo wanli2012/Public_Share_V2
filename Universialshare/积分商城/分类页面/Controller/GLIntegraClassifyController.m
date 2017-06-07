@@ -48,7 +48,7 @@ static NSString *ID = @"GLClassifyCell";
     [self.backBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 0, 5, 20)];
 
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(SCREEN_WIDTH /2 - 0.5, 230 * autoSizeScaleY);
+    layout.itemSize = CGSizeMake(SCREEN_WIDTH /2 - 0.5, 210 * autoSizeScaleY);
     layout.minimumLineSpacing = 1;
     layout.minimumInteritemSpacing = 1;
     self.collectionView.collectionViewLayout = layout;

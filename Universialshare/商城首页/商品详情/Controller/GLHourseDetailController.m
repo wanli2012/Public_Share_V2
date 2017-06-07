@@ -77,13 +77,13 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 //    self.navigationItem.title = @"房子详情";
     _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 160)
                                                           delegate:self
-                                                  placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+                                                  placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     
-    _cycleScrollView.localizationImageNamesGroup = @[@"XRPlaceholder",
-                                                     @"XRPlaceholder",
-                                                     @"XRPlaceholder",
-                                                     @"XRPlaceholder",
-                                                     @"XRPlaceholder"];
+    _cycleScrollView.localizationImageNamesGroup = @[PlaceHolderImage,
+                                                     PlaceHolderImage,
+                                                     PlaceHolderImage,
+                                                     PlaceHolderImage,
+                                                     PlaceHolderImage];
     
     _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角

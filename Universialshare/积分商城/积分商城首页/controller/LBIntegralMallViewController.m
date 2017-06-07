@@ -62,7 +62,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     
     _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 160*autoSizeScaleY)
                                                           delegate:self
-                                                  placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+                                                  placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     
     _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角

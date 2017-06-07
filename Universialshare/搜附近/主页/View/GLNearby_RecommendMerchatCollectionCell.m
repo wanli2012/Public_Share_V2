@@ -35,9 +35,9 @@
 - (void)setModel:(GLNearby_NearShopModel *)model{
     _model = model;
     self.nameLabel.text = model.shop_name;
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     if (self.picImageV.image == nil) {
-        self.picImageV.image = [UIImage imageNamed:@"XRPlaceholder"];
+        self.picImageV.image = [UIImage imageNamed:PlaceHolderImage];
     }
 }
 @end

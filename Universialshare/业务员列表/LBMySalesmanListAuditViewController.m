@@ -173,7 +173,6 @@
     if (self.returnpushvc) {
         //self.returnpushvc(self.dataarr[indexPath.row]);
     }
-    
 }
 
 -(NSMutableArray *)models{

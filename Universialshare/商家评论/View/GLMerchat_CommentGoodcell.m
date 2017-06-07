@@ -27,7 +27,7 @@
 
 - (void)setModel:(GLMerchat_CommentGoodsModel *)model{
     _model = model;
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     self.nameLabel.text = model.goods_name;
     
     //超过一万处理长度

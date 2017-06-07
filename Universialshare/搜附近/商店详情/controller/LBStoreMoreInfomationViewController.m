@@ -553,6 +553,10 @@ static const CGFloat headerImageHeight = 180.0f;
     self.HideNavagation = YES;
     LBPayTheBillViewController *vc=[[LBPayTheBillViewController alloc]init];
     vc.shop_uid = self.storeId;
+     if (![self.dataDic[@"shop_data"][@"pic1"] isEqual:[NSNull null]]) {
+        vc.pic = self.dataDic[@"shop_data"][@"pic1"];
+    };
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark -- SDCycleScrollViewDelegate
@@ -572,7 +576,7 @@ static const CGFloat headerImageHeight = 180.0f;
     if (!_cycleScrollView) {
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, -headerImageHeight, SCREEN_WIDTH, headerImageHeight)
                                                               delegate:self
-                                                      placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+                                                      placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
         
         _cycleScrollView.localizationImageNamesGroup = @[];
         

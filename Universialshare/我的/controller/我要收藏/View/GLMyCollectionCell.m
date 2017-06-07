@@ -31,7 +31,7 @@
 
 - (void)setModel:(GLMyCollectionModel *)model{
     _model = model;
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     self.nameLabel.text = model.name;
     self.detailLabel.text = model.info;
     self.discountLabel.text =[NSString stringWithFormat:@"现价:%@", model.discount];
