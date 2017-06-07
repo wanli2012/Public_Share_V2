@@ -160,6 +160,10 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 //跳到购物车
 - (IBAction)goToCart:(id)sender {
     
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [MBProgressHUD showError:@"请先登录"];
+        return;
+    }
     self.hidesBottomBarWhenPushed = YES;
     GLShoppingCartController *cartVC = [[GLShoppingCartController alloc] init];
     [self.navigationController pushViewController:cartVC animated:YES];
@@ -167,27 +171,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 }
 //收藏
 - (IBAction)collection:(id)sender {
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-//    dict[@"token"] = [UserModel defaultUser].token;
-//    dict[@"uid"] = [UserModel defaultUser].uid;
-//    dict[@"GID"] = self.goods_id;
-//    dict[@"type"] = @(self.type);
-//    
-//    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-//    [NetworkManager requestPOSTWithURLStr:@"shop/addMyCollect" paramDic:dict finish:^(id responseObject) {
-//        
-//        [_loadV removeloadview];
-//        //        NSLog(@"dict = %@",dict);
-//        //        NSLog(@"responseObject = %@",responseObject);
-//        if ([responseObject[@"code"] integerValue] == 1){
-//            
-//        }
-//        
-//        [MBProgressHUD showError:responseObject[@"message"]];
-//    } enError:^(NSError *error) {
-//        [_loadV removeloadview];
-//        
-//    }];
+
     if ([UserModel defaultUser].loginstatus == NO) {
         [MBProgressHUD showError:@"请先登录"];
         return;
@@ -270,12 +254,16 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 //加入购物车
 - (IBAction)addToCart:(id)sender {
     
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [MBProgressHUD showError:@"请先登录"];
+        return;
+    }
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"goods_id"] = self.goods_id;
     dict[@"type"] = @(self.type);
-    dict[@""];
+
     //取出 数量
     GLHourseChangeNumCell *cell = [self.tableView cellForRowAtIndexPath:_indexPath];
     _sum = [cell.sumLabel.text integerValue];
@@ -285,11 +273,10 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     [NetworkManager requestPOSTWithURLStr:@"shop/addCart" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
-//        NSLog(@"responseObject = %@",responseObject);
+
         if ([responseObject[@"code"] integerValue] == 1){
 
             [MBProgressHUD showSuccess:@"成功加入购物车"];
-//            NSLog(@"message = %@",responseObject[@"message"]);
             
         }else{
             
@@ -390,24 +377,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         GLHourseDetailFirstCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"GLHourseDetailFirstCell"];
         cell.model = self.model;
         GLcell = cell;
-        
-//    }else if(indexPath.row == 1){
-//
-//        
-//        GLHourseOptionCell *cell = [tableView dequeueReusableCellWithIdentifier:optionCell];
-//        
-//        cell.model= self.optionModels[0];
-//        
-//       GLcell = cell;
-//        
-//    }else if(indexPath.row == 2){
-//      
-//        GLHourseOptionCell *cell = [tableView dequeueReusableCellWithIdentifier:optionCell];
-//        
-//        cell.model = self.optionModels[1];
-//        
-//        GLcell = cell;
-//        
+      
     }else if(indexPath.row == 1){
         
         GLHourseChangeNumCell *cell = [self.tableView dequeueReusableCellWithIdentifier:changeNumCell];
@@ -416,43 +386,13 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         cell.delegate = self;
         GLcell = cell;
         
-//    }else if(indexPath.row == 4){
+
     }else{
-//        NSArray * arr = @[@"厂商:",@"级别:",@"级别:",@"级别",@"级别",@"级别",@"级别",@"级别",@"级别"];
+
         NSArray *arr = self.model.attr;
         GLHourseDetailThirdCell *cell = [[GLHourseDetailThirdCell alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0) andDatasource:arr :@"商品参数" ];
         GLcell = cell;
-        
-//    }else if(indexPath.row == 5){
-//        
-//        NSArray * arr = @[@"厂商:",@"级别:",@"级别:",@"级别"];
-//        GLHourseDetailThirdCell *cell = [[GLHourseDetailThirdCell alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0) andDatasource:arr :@"安全参数" ];
-//        GLcell = cell;
-//        
-//    }else if(indexPath.row == 6){
-//
-//        GLTwoButtonCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"GLTwoButtonCell"];
-//        cell.delegate = self;
-//       GLcell = cell;
-//        
-//    }else if(indexPath.row == 7 ||indexPath.row == 8||indexPath.row == 9){
-//        
-//        if (self.dataSource[indexPath.row] == nil) {
-//            return nil;
-//        }
-//        
-//        if (_status == 0) {
-//            
-//            GLcell = [self.tableView dequeueReusableCellWithIdentifier:@"GLEvaluateCell"];
-//        }else{
-//            
-//            GLcell = [self.tableView dequeueReusableCellWithIdentifier:@"GLImage_textDetailCell"];
-//        }
-//
-//    }else{
-//        GLImage_textDetailCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"GLImage_textDetailCell"];
-//        
-//       GLcell = cell;
+
     }
     
     [self.cellArr addObject:GLcell];
@@ -471,27 +411,10 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         return 90;
         
     }else if (indexPath.row ==2 ){
+        
         NSArray *arr = self.model.attr;
         return [self jisuangaodu:arr];
-
         
-    }else if (indexPath.row ==3 ){
-        return 90;
-        
-    }else if (indexPath.row ==4 ){
-        NSArray *arr = [[NSArray alloc] initWithObjects:@"级别",@"级别",@"级别",@"级别",@"级别",@"级别",@"级别",@"级别",@"级别",@"级别",nil];
-         return [self jisuangaodu:arr];
-    }else if (indexPath.row ==5 ){
-
-        NSArray *arr = [[NSArray alloc] initWithObjects:@"级别",@"级别",@"级别",@"级别",nil];
-     
-        return [self jisuangaodu:arr];
-        
-    }else if (indexPath.row ==6 ){
-        return 50;
-    }else if (indexPath.row ==7 || indexPath.row == 8 ||indexPath.row == 9){
-
-        return 100;
     }else{
         return 100;
     }
@@ -500,7 +423,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 - (float)jisuangaodu:(NSArray *)arr{
     float upX = 10;
     float upY = 40;
-//    NSArray *arr = [[NSArray alloc] initWithObjects:@"级别",@"级别",@"级别",@"级别",nil];
+
     for (int i = 0; i<arr.count; i++) {
         NSString *str = [arr objectAtIndex:i] ;
         

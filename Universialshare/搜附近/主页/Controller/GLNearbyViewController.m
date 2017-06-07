@@ -9,6 +9,7 @@
 #import "SlideTabBarView.h"
 #import "GLNearby_TradeOneModel.h"
 #import "GLNearby_SearchController.h"
+#import "MXNavigationBarManager.h"
 
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
@@ -52,6 +53,7 @@
     [self.locService startUserLocationService];
     _mapView.userTrackingMode = BMKUserTrackingModeNone;//设置定位的状态
 }
+
 - (void)postRequest {
     
     [NetworkManager requestPOSTWithURLStr:@"shop/getTradeId" paramDic:@{} finish:^(id responseObject) {
@@ -81,7 +83,10 @@
     
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    
+
+    [MXNavigationBarManager reStoreToCustomNavigationBar:self];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
+  
 }
 -(void)viewWillDisappear:(BOOL)animated {
     [_mapView viewWillDisappear];
@@ -192,8 +197,7 @@
         CGFloat width = 120;
         UIImageView *imageV = [[UIImageView alloc] init];
         imageV.frame = CGRectMake(_placeHolderView.center.x - width/2, (_placeHolderView.yy_height - height) / 2 , width, height);
-//        imageV.center = self.view.center;
-        imageV.image = [UIImage imageNamed:@"XRPlaceholder"];
+        imageV.image = [UIImage imageNamed:@"pic_nodata"];
         imageV.userInteractionEnabled = NO;
         
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imageV.frame) + 30, _placeHolderView.yy_width, 20)];

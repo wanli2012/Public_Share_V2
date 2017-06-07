@@ -63,9 +63,9 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    [MXNavigationBarManager reStoreToCustomNavigationBar:self];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
+//    
+//    [MXNavigationBarManager reStoreToCustomNavigationBar:self];
+//    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
 }
 - (void)updateData:(BOOL)status {
     if (status) {
