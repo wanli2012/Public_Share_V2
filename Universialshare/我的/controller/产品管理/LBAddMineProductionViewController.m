@@ -294,7 +294,7 @@
         [MBProgressHUD showError:@"至少上传一张图片"];
         return;
     }
-    NSString *cate_id = [NSString stringWithFormat:@"%@,%@,%@",self.industryArr[self.isChoseFirstClassify][@"cate_id"],_industryArr[_isChoseFirstClassify][@"son"][_isChoseSecondClassify][@"cate_id"],@"1"];
+    NSString *cate_id = [NSString stringWithFormat:@"%@,%@",self.industryArr[self.isChoseFirstClassify][@"cate_id"],_industryArr[_isChoseFirstClassify][@"son"][_isChoseSecondClassify][@"cate_id"]];
     
     NSMutableString *attr_id = [[NSMutableString alloc] init];
     if (self.selectedTagIds.count <= 0) {

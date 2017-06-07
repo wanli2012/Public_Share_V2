@@ -217,7 +217,9 @@
         return;
     }
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/saveUserComment" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"mark" :[NSNumber numberWithFloat:model.starValue] , @"comment":model.conentlb,@"order_goods_id":model.order_goods_id} finish:^(id responseObject) {
+    
+    NSString *inputText = [model.conentlb stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [NetworkManager requestPOSTWithURLStr:@"shop/saveUserComment" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"mark" :[NSNumber numberWithFloat:model.starValue] , @"comment":inputText,@"order_goods_id":model.order_goods_id} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             model.is_comment = @"1";
@@ -232,9 +234,9 @@
             [MBProgressHUD showError:responseObject[@"message"]];
             
         }else{
-            [MBProgressHUD showError:responseObject[@"message"]];
             
         }
+                  [MBProgressHUD showError:responseObject[@"message"]];
     } enError:^(NSError *error) {
         [_loadV removeloadview];
         [MBProgressHUD showError:error.localizedDescription];

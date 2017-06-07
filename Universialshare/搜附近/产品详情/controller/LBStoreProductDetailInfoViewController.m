@@ -220,12 +220,12 @@
 
         cell.starView.progress = [self.dataDic[@"com_data"][indexPath.row][@"mark"] integerValue];
         cell.nameLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"user_name"]];
-        cell.contentLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"comment"]];
+        cell.contentLb.text =  [self.dataDic[@"com_data"][indexPath.row][@"comment"]stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         cell.timeLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"addtime"]];
         [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
         if ([self.dataDic[@"com_data"][indexPath.row][@"is_comment"] integerValue] == 2) {
             cell.replyLb.hidden = NO;
-            cell.replyLb.text = [NSString stringWithFormat:@"商家回复:%@",self.dataDic[@"com_data"][indexPath.row][@"reply"]];
+            cell.replyLb.text = [NSString stringWithFormat:@"商家回复:%@",[self.dataDic[@"com_data"][indexPath.row][@"reply"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             cell.constaritH.constant = 15;
             cell.constraitTop.constant = 0;
 

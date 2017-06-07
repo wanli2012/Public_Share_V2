@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface GLHourseDetailThirdCell : UITableViewCell
+
 @property(nonatomic)float height;
 -(instancetype)initWithFrame:(CGRect)frame andDatasource:(NSArray *)arr :(NSString *)typename;
+
 @end

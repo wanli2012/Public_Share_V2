@@ -44,7 +44,6 @@
         
         self.commentCountLabel.text = [NSString stringWithFormat:@"%@",model.pl_count];
     }
-
     
 }
 @end

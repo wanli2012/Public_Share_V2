@@ -202,6 +202,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 
 }
 -(void)initInterDataSorceinfomessage{
+    
     CGFloat contentViewH = SCREEN_HEIGHT / 2;
     CGFloat contentViewW = SCREEN_WIDTH - 40;
     CGFloat contentViewX = 20;
@@ -341,6 +342,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
     if (section == 0) {
         return 1;
     }else{
@@ -373,20 +375,22 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
             cell.models = self.hotModels;
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(classifyClick:)];
             UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(classifyClick:)];
             UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(classifyClick:)];
+            
             cell.firstView.tag = 11;
             cell.secondView.tag = 12;
             cell.thirdView.tag = 13;
             [cell.firstView addGestureRecognizer:tap];
             [cell.secondView addGestureRecognizer:tap2];
             [cell.thirdView addGestureRecognizer:tap3];
-            
-            UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(classifyClick:)];
-            [cell.moreView addGestureRecognizer:tap4];
-
         }
+        
+        cell.moreView.tag = 14;
+        UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(classifyClick:)];
+        [cell.moreView addGestureRecognizer:tap4];
         return cell;
         
     }else{

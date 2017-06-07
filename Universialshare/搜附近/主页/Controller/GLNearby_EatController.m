@@ -14,6 +14,7 @@
 #import "GLNearby_MerchatListController.h"
 #import "GLNearbyViewController.h"
 #import "LBStoreMoreInfomationViewController.h"
+#import "MXNavigationBarManager.h"
 
 #import "GLNearby_TradeOneModel.h"
 #import "GLNearby_NearShopModel.h"
@@ -60,7 +61,12 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     [self updateData:YES];
     
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [MXNavigationBarManager reStoreToCustomNavigationBar:self];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
+}
 - (void)updateData:(BOOL)status {
     if (status) {
 

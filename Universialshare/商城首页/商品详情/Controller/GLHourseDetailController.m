@@ -467,18 +467,14 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     
         return self.tableView.rowHeight;
         
-    }else if (indexPath.row ==1 ){
-   
-//        NSArray *arr = [[NSArray alloc] initWithObjects:@"蓝色",@"红色",@"湖蓝色",@"咖啡色",@"咖啡色",@"咖啡色",@"咖啡色",@"咖啡色",@"咖啡色",@"咖啡色",nil];
-//        NSArray *arr = self.model.attr;
-//         return [self jisuangaodu:arr];
+    }else if (indexPath.row == 1 ){
+
         return 90;
         
     }else if (indexPath.row ==2 ){
         NSArray *arr = self.model.attr;
         return [self jisuangaodu:arr];
-//        NSArray *arr = [[NSArray alloc] initWithObjects:@"蓝色",@"红色",@"湖蓝色",@"咖啡色",nil];
-//        return [self jisuanjincou:arr];
+
         
     }else if (indexPath.row ==3 ){
         return 90;
