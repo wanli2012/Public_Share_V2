@@ -46,7 +46,17 @@
     _priceLabel.text = [NSString stringWithFormat:@"¥%@元",_price];
     _monthSellLabel.text = [NSString stringWithFormat:@"月销%@笔",model.sell_count];
     _yunfeiLabel.text = [NSString stringWithFormat:@"运费:%@元",model.posttage];
-    _nameLabel.text = model.goods_info;
+    
+    NSString *strone = [NSString stringWithFormat:@"[%@]",model.attr];
+    long len1 = [strone length];
+    NSString *strtwo = [NSString stringWithFormat:@"[%@]%@",model.attr,model.goods_info];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:strtwo];
+    
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,len1)];
+    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17.0f] range:NSMakeRange(0,len1)];
+    
+    _nameLabel.attributedText = str;
+//    _nameLabel.text = model.goods_info;
 }
 
 @end

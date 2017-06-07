@@ -87,7 +87,7 @@ static NSString *ID = @"GLMerchat_CommentCell";
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"page"] = [NSString stringWithFormat:@"%ld",(long)_page];
-    dict[@"pre_id"] = [NSString stringWithFormat:@"goods_%@",self.goods_id];
+    dict[@"pre_id"] = [NSString stringWithFormat:@"goods_%@",self.model.goods_id];
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"shop/getShopOrGoodsCommentList" paramDic:dict finish:^(id responseObject) {
@@ -285,7 +285,9 @@ static NSString *ID = @"GLMerchat_CommentCell";
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"comment_id"] = model.comment_id;
-    dict[@"content"] = _commentTF.text;
+    
+    NSString *inputText = [_commentTF.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    dict[@"content"] = inputText;
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"shop/ShopSetReplyComment" paramDic:dict finish:^(id responseObject) {

@@ -52,7 +52,6 @@ static NSString *ID = @"LBStoreDetailreplaysTableViewCell";
     
     [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
     
-    
     self.tableView.mj_header = header;
     self.tableView.mj_footer = footer;
     
@@ -68,22 +67,15 @@ static NSString *ID = @"LBStoreDetailreplaysTableViewCell";
             
             if (_refreshType == NO) {
                 [self.models removeAllObjects];
-                if (![responseObject[@"data"][@"reply"] isEqual:[NSNull null]]) {
-                    [self.models addObjectsFromArray:responseObject[@"data"][@"reply"]];
-                }
-                
-                [self.tableView reloadData];
-            }else{
-                
-                if (![responseObject[@"data"][@"reply"] isEqual:[NSNull null]]) {
-                    [self.models addObjectsFromArray:responseObject[@"data"][@"reply"]];
-                }
-                
-                [self.tableView reloadData];
-                
             }
             
-        }else if ([responseObject[@"code"] integerValue]==3){
+            if (![responseObject[@"data"][@"reply"] isEqual:[NSNull null]]) {
+                [self.models addObjectsFromArray:responseObject[@"data"][@"reply"]];
+            }
+            
+            [self.tableView reloadData];
+            
+        }else if ([responseObject[@"code"] integerValue] == 3){
             
             [MBProgressHUD showError:responseObject[@"message"]];
             

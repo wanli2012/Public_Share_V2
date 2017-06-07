@@ -45,7 +45,9 @@
     [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
     self.nameLabel.text = model.user_name;
     self.dateLabel.text = model.addtime;
-    self.contentLabel.text = model.comment;
+    
+    NSString *showText = [model.comment stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    self.contentLabel.text = showText;
     self.starView.progress = [model.mark integerValue];
     
     if ([model.is_comment integerValue] == 1) {
@@ -54,7 +56,8 @@
         _replyLabel.text = @"";
         
     }else{
-        self.replyLabel.text = [NSString stringWithFormat:@"商家回复:%@",model.reply];
+        NSString *reply = [model.reply stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        self.replyLabel.text = [NSString stringWithFormat:@"商家回复:%@",reply];
         _bgView.hidden = NO;
         _commentBtn.hidden = YES;
     }
