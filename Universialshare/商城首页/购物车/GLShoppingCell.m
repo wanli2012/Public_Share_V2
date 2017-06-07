@@ -32,7 +32,7 @@
 }
 - (void)setModel:(GLShoppingCartModel *)model {
     _model = model;
-//    [_imageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+    [_imageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     _goodsNamelabel.text = model.goods_name;
     _amountLabel.text =[NSString stringWithFormat:@"数量:%@",model.num];
     _detailLabel.text = model.info;

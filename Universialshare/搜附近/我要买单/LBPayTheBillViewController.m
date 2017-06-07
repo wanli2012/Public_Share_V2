@@ -12,6 +12,7 @@
 #import "UIView+TYAlertView.h"
 #import "GLSet_MaskVeiw.h"
 #import "GLOrderPayView.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface LBPayTheBillViewController ()<UITextFieldDelegate>
 {
@@ -47,11 +48,12 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.title = @"支付";
     
+    [self.imagev sd_setImageWithURL:[NSURL URLWithString:self.pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postRepuest:) name:@"input_PasswordNotification" object:nil];
 
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -122,10 +124,10 @@
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"shop_uid"] = self.shop_uid;
-    dict[@"type"] = [NSString stringWithFormat:@"%lu",self.payType]; //支付方式: 1 支付宝 2 微信 3:米子
+    dict[@"type"] = [NSString stringWithFormat:@"%zd",self.payType]; //支付方式: 1 支付宝 2 微信 3:米子
     dict[@"price"] = self.moneytf.text;//价格
     dict[@"remark"] = self.infoTf.text;//备注
-    dict[@"rl_type"] = [NSString stringWithFormat:@"%lu",self.modelType];//让利模式 1:20%  2:10%  3:5%
+    dict[@"rl_type"] = [NSString stringWithFormat:@"%zd",self.modelType];//让利模式 1:20%  2:10%  3:5%
     dict[@"version"] = @"3";//版本 3:Ios
     //    dict[@"crypt"] = @"";
     dict[@"pwd"] =  [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];

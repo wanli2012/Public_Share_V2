@@ -40,9 +40,9 @@
     
     _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 80)
                                                           delegate:self
-                                                  placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+                                                  placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     
-    _cycleScrollView.localizationImageNamesGroup = @[@"XRPlaceholder"];
+    _cycleScrollView.localizationImageNamesGroup = @[PlaceHolderImage];
     
     _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角

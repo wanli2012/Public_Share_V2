@@ -43,7 +43,7 @@
             hud.mode = MBProgressHUDModeDeterminate;
         }
         
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString:photoUrl] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize){
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:photoUrl] placeholderImage:[UIImage imageNamed:PlaceHolderImage] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize){
             hud.progress = ((float)receivedSize)/expectedSize;
         } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
 

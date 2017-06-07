@@ -38,9 +38,9 @@
 
 - (void)setModel:(GLNearby_MerchatListModel *)model{
     _model = model;
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.store_pic] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.store_pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     if (self.picImageV.image == nil) {
-        self.picImageV.image = [UIImage imageNamed:@"XRPlaceholder"];
+        self.picImageV.image = [UIImage imageNamed:PlaceHolderImage];
     }
     self.nameLabel.text = model.shop_name;
     self.adressLabel.text = [NSString stringWithFormat:@"地址:%@",model.shop_address];

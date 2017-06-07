@@ -42,7 +42,7 @@
 - (void)setModel:(GLMerchat_CommentModel *)model{
     _model = model;
     
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     self.nameLabel.text = model.user_name;
     self.dateLabel.text = model.addtime;
     

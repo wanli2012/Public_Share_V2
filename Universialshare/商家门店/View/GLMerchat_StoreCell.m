@@ -48,7 +48,7 @@
 - (void)setModel:(GLMerchat_StoreModel *)model {
     _model = model;
 //    self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:<#(UIImage *)#>
-    self.picImageV.image = [UIImage imageNamed:@"XRPlaceholder"];
+    self.picImageV.image = [UIImage imageNamed:PlaceHolderImage];
     self.nameLabel.text = model.shop_name;
     self.phoneLabel.text = model.phone;
     self.addressLabel.text = model.shop_address;

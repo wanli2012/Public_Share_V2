@@ -51,7 +51,6 @@
     
     [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
     
-    
     self.taleview.mj_header = header;
     self.taleview.mj_footer = footer;
     

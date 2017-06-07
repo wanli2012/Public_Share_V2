@@ -32,7 +32,7 @@
 
 - (void)setModel:(GLConfirmOrderModel *)model{
     _model = model;
-    [_imageV sd_setImageWithURL:[NSURL URLWithString:model.cart_url] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+    [_imageV sd_setImageWithURL:[NSURL URLWithString:model.cart_url] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     _nameLabel.text = model.cart_name;
     _fanliLabel.text = [NSString stringWithFormat:@"原价:%@",model.cart_price];
     _priceLabel.text = [NSString stringWithFormat:@"现价:%@",model.cart_realy_price];

@@ -44,11 +44,11 @@ static NSString *recommendID = @"GLHomeRecommendCell";
     
     _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 160)
                                                           delegate:self
-                                                  placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+                                                  placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     
-    _cycleScrollView.localizationImageNamesGroup = @[@"XRPlaceholder",
-                                                     @"XRPlaceholder",
-                                                     @"XRPlaceholder"];
+    _cycleScrollView.localizationImageNamesGroup = @[PlaceHolderImage,
+                                                     PlaceHolderImage,
+                                                     PlaceHolderImage];
 
     _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
@@ -59,7 +59,7 @@ static NSString *recommendID = @"GLHomeRecommendCell";
     
     UIView *footerV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 110)];
     UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, footerV.yy_width, footerV.yy_height - 10)];
-    imageV.image = [UIImage imageNamed:@"XRPlaceholder"];
+    imageV.image = [UIImage imageNamed:PlaceHolderImage];
     [footerV addSubview:imageV];
     self.tableView.tableFooterView = footerV;
     

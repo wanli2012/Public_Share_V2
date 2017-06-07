@@ -44,7 +44,7 @@
     _model = model;
     [self changeColor:_jifenLabel rangeNumber:[model.goods_price integerValue]];
     _nameLabel.text = model.goods_name;
-    [_imageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+    [_imageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     
 }
 

@@ -30,7 +30,7 @@
     if (!_cycleScrollView) {
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)
                                                               delegate:self
-                                                      placeholderImage:[UIImage imageNamed:@"XRPlaceholder"]];
+                                                      placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
         
         _cycleScrollView.localizationImageNamesGroup = @[];
         
