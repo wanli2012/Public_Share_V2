@@ -191,8 +191,8 @@
         CGFloat height = 120;
         CGFloat width = 120;
         UIImageView *imageV = [[UIImageView alloc] init];
-        imageV.frame = CGRectMake(_placeHolderView.center.x - width/2, _placeHolderView.center.y - height / 2 , width, height);
-        imageV.center = _placeHolderView.center;
+        imageV.frame = CGRectMake(_placeHolderView.center.x - width/2, (_placeHolderView.yy_height - height) / 2 , width, height);
+//        imageV.center = self.view.center;
         imageV.image = [UIImage imageNamed:@"XRPlaceholder"];
         imageV.userInteractionEnabled = NO;
         

@@ -148,13 +148,12 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         }
         self.is_collection = [responseObject[@"data"][@"is_collection"] integerValue];
 
-        [self.tableView reloadData];
-            
         }
+        [self.tableView reloadData];
         
     } enError:^(NSError *error) {
         [_loadV removeloadview];
-        
+        [self.tableView reloadData];
     }];
     
 }
