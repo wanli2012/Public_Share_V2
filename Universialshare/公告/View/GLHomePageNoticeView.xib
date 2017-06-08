@@ -28,18 +28,18 @@
                             <rect key="frame" x="0.0" y="0.0" width="317" height="233"/>
                             <subviews>
                                 <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wy0-cs-qe3">
-                                    <rect key="frame" x="0.0" y="0.0" width="317" height="233"/>
+                                    <rect key="frame" x="5" y="0.0" width="307" height="228"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </webView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="Wy0-cs-qe3" firstAttribute="top" secondItem="xbG-O6-qag" secondAttribute="top" id="4w4-jT-C8C"/>
-                                <constraint firstAttribute="trailing" secondItem="Wy0-cs-qe3" secondAttribute="trailing" id="9wy-sq-Koo"/>
-                                <constraint firstAttribute="bottom" secondItem="Wy0-cs-qe3" secondAttribute="bottom" id="GUo-ut-zou"/>
+                                <constraint firstAttribute="trailing" secondItem="Wy0-cs-qe3" secondAttribute="trailing" constant="5" id="9wy-sq-Koo"/>
+                                <constraint firstAttribute="bottom" secondItem="Wy0-cs-qe3" secondAttribute="bottom" constant="5" id="GUo-ut-zou"/>
                                 <constraint firstAttribute="height" constant="233" id="Pjr-fM-3kx"/>
                                 <constraint firstAttribute="width" constant="317" id="Xsh-s2-VmK"/>
-                                <constraint firstItem="Wy0-cs-qe3" firstAttribute="leading" secondItem="xbG-O6-qag" secondAttribute="leading" id="eRJ-F8-0g8"/>
+                                <constraint firstItem="Wy0-cs-qe3" firstAttribute="leading" secondItem="xbG-O6-qag" secondAttribute="leading" constant="5" id="eRJ-F8-0g8"/>
                             </constraints>
                         </view>
                     </subviews>

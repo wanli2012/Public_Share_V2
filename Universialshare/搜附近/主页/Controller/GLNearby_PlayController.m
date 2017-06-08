@@ -189,6 +189,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         [self.tableView reloadData];
     } enError:^(NSError *error) {
         [_loadV removeloadview];
+        [self.tableView reloadData];
         [MBProgressHUD showError:error.description];
     }];
     

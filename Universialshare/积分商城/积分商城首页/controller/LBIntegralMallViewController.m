@@ -216,6 +216,11 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     _contentView.layer.cornerRadius = 5;
     _contentView.layer.masksToBounds = YES;
     
+    //设置webView
+    _contentView.webView.scalesPageToFit = YES;
+    _contentView.webView.autoresizesSubviews = NO;
+    _contentView.webView.autoresizingMask=(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
+    
     NSURL *url = [NSURL URLWithString:@"http://192.168.0.100/DGGXWeb/DZGX/index.php/Home/Newsdemo/newestnotice.html"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
    

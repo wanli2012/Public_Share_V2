@@ -132,17 +132,19 @@
     //    dict[@"crypt"] = @"";
     dict[@"pwd"] =  [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
     
-    NSLog(@"dict = %@",dict);
+//    NSLog(@"dict = %@",dict);
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"shop/faceToFacePay" paramDic:dict finish:^(id responseObject) {
+        
         [_loadV removeloadview];
+        
         if ([responseObject[@"code"] integerValue]==1) {
            
             [self.navigationController popViewControllerAnimated:YES];
         }
         
-        [MBProgressHUD showError:responseObject[@"message"]];
+        [MBProgressHUD showError:[NSString stringWithFormat:@"%@",responseObject[@"message"]]];
 
         [self dismiss];
     } enError:^(NSError *error) {

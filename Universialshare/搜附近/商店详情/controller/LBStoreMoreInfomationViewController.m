@@ -104,7 +104,8 @@ static const CGFloat headerImageHeight = 180.0f;
                 }
                 
                 self.cycleScrollView.imageURLStringsGroup = imagearr;
-                
+                self.cycleScrollView.contentMode = UIViewContentModeScaleAspectFill;
+                self.cycleScrollView.clipsToBounds = YES;
                  self.navigationItem.title = [NSString stringWithFormat:@"%@",self.dataDic[@"shop_data"][@"shop_name"]];
                 
                 [self.tableview reloadData];

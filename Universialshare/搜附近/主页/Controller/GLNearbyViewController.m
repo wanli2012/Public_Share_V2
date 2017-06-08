@@ -193,8 +193,8 @@
 - (UIView *)placeHolderView{
     if (!_placeHolderView) {
         _placeHolderView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 49-64)];
-        CGFloat height = 120;
-        CGFloat width = 120;
+        CGFloat height = 105;
+        CGFloat width = 170;
         UIImageView *imageV = [[UIImageView alloc] init];
         imageV.frame = CGRectMake(_placeHolderView.center.x - width/2, (_placeHolderView.yy_height - height) / 2 , width, height);
         imageV.image = [UIImage imageNamed:@"pic_nodata"];
