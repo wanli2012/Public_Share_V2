@@ -17,15 +17,13 @@
 #define YYSRGBColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 
 #define TABBARTITLE_COLOR YYSRGBColor(40, 150, 58 , 1.0) //导航栏颜色
-
-
 #define autoSizeScaleX (SCREEN_WIDTH/320.f)
 #define autoSizeScaleY (SCREEN_HEIGHT/568.f)
 
 #define ADAPT(x) SCREEN_WIDTH / 375 *(x)
 
-#define URL_Base @"http://192.168.0.190/V2/DZGX/index.php/app/"
-//#define URL_Base @"https://www.51dztg.com/index.php/app/"
+//#define URL_Base @"http://192.168.0.190/V2/DZGX/index.php/app/"
+#define URL_Base @"https://www.51dztg.com/index.php/app/"
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1228047806?mt=8"
 //关于我们网址

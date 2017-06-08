@@ -80,8 +80,9 @@
 //    layera.frame = self.registerBtn.bounds;
 //    [self.registerBtn.layer addSublayer:layera];
     
+    self.phone.text = @"15282085448";
+    self.scretTf.text = @"a123456";
 }
-
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;

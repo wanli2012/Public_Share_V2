@@ -15,4 +15,6 @@
 
 @property (nonatomic, copy)NSString *pic;
 
+@property (nonatomic, copy)NSString *namestr;
+
 @end
