@@ -237,7 +237,7 @@ static NSString *ID = @"GLMyCollectionCell";
         [self.navigationController pushViewController:vc animated:YES];
     }else{
         LBStoreProductDetailInfoViewController *vc=[[LBStoreProductDetailInfoViewController alloc]init];
-        vc.goodId = model.goods_id;
+        vc.goodId = model.goodsID;
         vc.goodname = model.name;
         vc.storename = model.shop_name;
         vc.isnotice = YES;

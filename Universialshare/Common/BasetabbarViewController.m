@@ -93,7 +93,7 @@
     businessNav.tabBarItem = [self barTitle:@"商家" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
     nearbyNav.tabBarItem = [self barTitle:@"逛逛" image:@"sfj_icon" selectImage:@"sfj_selected_icon"];
     storeNav.tabBarItem = [self barTitle:@"门店" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
-    commentNav.tabBarItem = [self barTitle:@"商品" image:@"sfj_icon" selectImage:@"sfj_selected_icon"];
+    commentNav.tabBarItem = [self barTitle:@"商品" image:@"sp_icon" selectImage:@"sp_selected_icon"];
     incomeNav.tabBarItem = [self barTitle:@"收益" image:@"sy_normal" selectImage:@"sy_select"];
 //    [UserModel defaultUser].usrtype = Retailer;
 //    [UserModel defaultUser].loginstatus = YES;

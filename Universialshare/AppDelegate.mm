@@ -52,7 +52,6 @@
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:WEIBO_APPKEY
                                               secret:WEIBO_SECRET
                                          RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-    
 
     return YES;
 }
@@ -64,6 +63,11 @@
     [UMSocialSnsService applicationDidBecomeActive];
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+   
+        return [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+    
+}
 
 #pragma mark - 键盘高度处理
 - (void)iqKeyboardShowOrHide {

@@ -80,8 +80,9 @@
 //    layera.frame = self.registerBtn.bounds;
 //    [self.registerBtn.layer addSublayer:layera];
     
+    self.phone.text = @"15282085448";
+    self.scretTf.text = @"a123456";
 }
-
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
@@ -122,8 +123,8 @@
     
     [self.view addSubview:self.maskView];
     [self.view addSubview:self.loginView];
-    self.loginView.transform = CGAffineTransformMakeScale(0.7, 0.7);
-    [UIView animateWithDuration:1.0 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0.2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    self.loginView.transform = CGAffineTransformMakeScale(0.8, 0.8);
+    [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0.2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.loginView.transform = CGAffineTransformMakeScale(1.0, 1.0);
     } completion:nil];
     
