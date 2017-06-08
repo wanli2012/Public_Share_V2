@@ -84,7 +84,8 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
                                                      PlaceHolderImage,
                                                      PlaceHolderImage,
                                                      PlaceHolderImage];
-    
+    _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
+    _cycleScrollView.clipsToBounds = YES;
     _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
     _cycleScrollView.titleLabelBackgroundColor = [UIColor clearColor];// 图片对应的标题的 背景色。（因为没有设标题）

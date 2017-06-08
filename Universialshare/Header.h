@@ -46,8 +46,8 @@
 #define SHARE_URL @"http://dzgx.joshuaweb.cn/index.php/Home/Regist/index.html?mod=member&act=register&username="
 #define UMSHARE_APPKEY @"58cf31dcf29d982906001f63"
 //微信分享
-#define WEIXI_APPKEY @"wx313142c8c6334365"
-#define WEIXI_SECRET @"566096084a8225f12ced0aad5d392815"
+#define WEIXI_APPKEY @"wx3719a66cd8983420"
+#define WEIXI_SECRET @"4fae7202764cda777d88c9515b5ca24e"
 //微博分享
 #define WEIBO_APPKEY @"2203958313"
 #define WEIBO_SECRET @"9a911777f4b18555cd2b42a9bc186389"

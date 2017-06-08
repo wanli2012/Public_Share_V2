@@ -2,11 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Arial Black.ttf</string>
-		<string>Cochin.ttc</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -30,7 +25,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wx313142c8c6334365</string>
+				<string>wx3719a66cd8983420</string>
 			</array>
 		</dict>
 		<dict>
@@ -140,6 +135,11 @@
 	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>亲，我们需要你调用您的相册哦，可以吗？</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Arial Black.ttf</string>
+		<string>Cochin.ttc</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
