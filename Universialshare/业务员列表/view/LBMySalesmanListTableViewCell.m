@@ -7,6 +7,7 @@
 //
 
 #import "LBMySalesmanListTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface LBMySalesmanListTableViewCell()
 
@@ -51,6 +52,8 @@
     self.addTimeLabel.text=[NSString stringWithFormat:@"推荐时间:%@",model.addtime];
     self.trueNameLabel.text=[NSString stringWithFormat:@"%@",model.truename];
     self.saleLb.text=[NSString stringWithFormat:@"¥%@",model.money];
+    
+    [self.imagev sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"熊"]];
 
 }
 

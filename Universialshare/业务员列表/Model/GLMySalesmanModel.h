@@ -30,4 +30,6 @@
 
 @property (nonatomic, copy)NSString *username;
 
+@property (nonatomic, copy)NSString *pic;
+
 @end

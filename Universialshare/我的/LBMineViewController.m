@@ -541,10 +541,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             _imageArr=[NSArray arrayWithObjects:@"jf_icon",@"wytd_icon",@"mg_icon",@"兑",@"wdsc_iocn",@"我要推荐",@"余额",@"我的返利",@"我的积分", nil];
         }
         else if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {
-           _imageArr=[NSArray arrayWithObjects:@"开通米商",@"直捐",@"开通推广员",@"回购",@"转赠",@"我要推荐", nil];
+           _imageArr=[NSArray arrayWithObjects:@"开通米商",@"sygl_icon",@"开通推广员",@"兑",@"qycx_icon",@"我要推荐", nil];
         }
         else if ([[UserModel defaultUser].usrtype isEqualToString:THREESALER]) {
-            _imageArr=[NSArray arrayWithObjects:@"开通米商",@"直捐",@"开通推广员",@"回购",@"转赠",@"我要推荐", nil];
+            _imageArr=[NSArray arrayWithObjects:@"开通米商",@"sygl_icon",@"开通推广员",@"兑",@"qycx_icon",@"我要推荐", nil];
         }
     }
     return _imageArr;

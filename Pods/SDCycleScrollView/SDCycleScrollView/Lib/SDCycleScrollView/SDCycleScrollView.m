@@ -69,6 +69,7 @@ NSString * const ID = @"cycleCell";
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     [self initialization];
     [self setupMainView];
 }
@@ -89,7 +90,7 @@ NSString * const ID = @"cycleCell";
     _hidesForSinglePage = YES;
     _currentPageDotColor = [UIColor whiteColor];
     _pageDotColor = [UIColor lightGrayColor];
-    _bannerImageViewContentMode = UIViewContentModeScaleToFill;
+    _bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     
     self.backgroundColor = [UIColor lightGrayColor];
     

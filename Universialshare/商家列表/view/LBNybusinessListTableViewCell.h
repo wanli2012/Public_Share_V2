@@ -21,5 +21,7 @@
 @property (assign, nonatomic)NSInteger index;
 
 @property (copy , nonatomic)void(^returnGowhere)(NSInteger index);
+@property (weak, nonatomic) IBOutlet UILabel *moenyLb;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLb;
 
 @end
