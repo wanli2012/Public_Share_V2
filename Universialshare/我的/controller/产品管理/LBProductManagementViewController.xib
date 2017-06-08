@@ -35,7 +35,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="S2t-na-613"/>
                     </constraints>
-                    <state key="normal" title="添加产品">
+                    <state key="normal" title="添加商品">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>

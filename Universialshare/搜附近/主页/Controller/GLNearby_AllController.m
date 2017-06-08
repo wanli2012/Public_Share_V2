@@ -106,7 +106,7 @@ static NSString *ID = @"GLNearby_classifyCell";
         [_loadV removeloadview];
         [self endRefresh];
         [MBProgressHUD showError:error.localizedDescription];
-        
+        [self.tableView reloadData];
     }];
     
 }

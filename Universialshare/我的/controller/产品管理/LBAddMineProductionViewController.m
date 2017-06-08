@@ -72,7 +72,7 @@
     [super viewDidLoad];
    
     self.navigationController.navigationBar.hidden = NO;
-    self.navigationItem.title = @"添加产品";
+    self.navigationItem.title = @"添加商品";
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.stype = 1;
@@ -154,7 +154,7 @@
 {
     self.shuxingViewHeight.constant = newSize.size.height + 30;
     self.shuxingSize = newSize;
-    self.contentH.constant = 920 + self.shuxingSize.size.height - 30;
+    self.contentH.constant = 940 + self.shuxingSize.size.height - 30;
 
 }
 //选择20%
@@ -462,7 +462,6 @@
             [alert show];
         }
     }
-
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

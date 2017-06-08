@@ -77,7 +77,7 @@ static NSString *ID = @"GLNearby_classifyCell";
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
     dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
-    dict[@"page"] = [NSString stringWithFormat:@"%ld",_page];
+    dict[@"page"] = [NSString stringWithFormat:@"%zd",_page];
     dict[@"content"] = self.searchTF.text;
     
 //    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
@@ -106,7 +106,7 @@ static NSString *ID = @"GLNearby_classifyCell";
         [_loadV removeloadview];
         [self endRefresh];
         [MBProgressHUD showError:error.localizedDescription];
-        
+        [self.tableView reloadData];
     }];
     
 }

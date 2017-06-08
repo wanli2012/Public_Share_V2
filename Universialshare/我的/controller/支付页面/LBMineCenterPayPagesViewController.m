@@ -261,7 +261,51 @@
     }];
 
 }
-
+- (void)alipayAndWeChatPay:(NSString *)payType{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    
+    //    NSString *orderID = [RSAEncryptor encryptString:self.orderNum publicKey:public_RSA];
+    //    NSString *uid = [RSAEncryptor encryptString:[UserModel defaultUser].uid publicKey:public_RSA];
+    //    dict[@"uid"] = uid;
+    //    dict[@"order_id"] = orderID;
+    
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"order_id"] = self.order_id;
+    dict[@"paytype"] = payType;
+    
+//    NSLog(@"%@",dict);
+    [NetworkManager requestPOSTWithURLStr:@"shop/payParam" paramDic:dict finish:^(id responseObject) {
+        
+        [_loadV removeloadview];
+        
+        [self dismiss];
+        if ([responseObject[@"code"] integerValue] == 1){
+            
+            self.hidesBottomBarWhenPushed = YES;
+            
+            [MBProgressHUD showSuccess:responseObject[@"message"]];
+            
+            if(self.pushIndex == 1){
+                
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                
+            }else{
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            
+            self.hidesBottomBarWhenPushed = NO;
+            
+        }else{
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        
+    }];
+}
 //支付请求
 - (void)postRepuest:(NSNotification *)sender {
 
@@ -279,9 +323,10 @@
             
         }else if (self.selectIndex == 1){
             //支付宝支付
-            
+            [self alipayAndWeChatPay:@"1"];
         }else{
             //微信支付
+            [self alipayAndWeChatPay:@"2"];
             
         }
     }

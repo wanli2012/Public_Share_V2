@@ -107,7 +107,6 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                 __weak typeof(self) weakSelf = self;
                 
                 headerV.block = ^(NSString *typeID,NSInteger count){
-                    NSLog(@"typeID = %@",typeID);
                     
                     if ([typeID isEqualToString:@"全部"]) {
                         
@@ -129,7 +128,6 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                                 _two_trade_id = model.trade_id;
                             }
                         }
-                        
                         [weakSelf refreshRequest];
                     }
                     
@@ -137,15 +135,16 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                     
                 };
                 
-                [self.tableView reloadData];
-                
             }
         }
         
+        [self.tableView reloadData];
     } enError:^(NSError *error) {
         [_loadV removeloadview];
         [self endRefresh];
         [MBProgressHUD showError:error.description];
+        [self.tableView reloadData];
+
     }];
     
 }
@@ -191,6 +190,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     } enError:^(NSError *error) {
         [_loadV removeloadview];
         [MBProgressHUD showError:error.description];
+        [self.tableView reloadData];
     }];
     
 }

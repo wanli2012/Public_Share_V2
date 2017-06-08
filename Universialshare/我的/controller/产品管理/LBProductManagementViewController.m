@@ -31,7 +31,7 @@
     [super viewDidLoad];
    
     self.navigationController.navigationBar.hidden = NO;
-    self.navigationItem.title = @"产品管理";
+    self.navigationItem.title = @"商品管理";
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.tableview.tableFooterView = [UIView new];
