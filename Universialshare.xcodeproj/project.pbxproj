@@ -392,6 +392,7 @@
 		4A46111A1E9CC6370045824F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 4A4610011E9CC6360045824F /* README.md */; };
 		4A46111B1E9CC6370045824F /* UIImageView+CornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4610051E9CC6360045824F /* UIImageView+CornerRadius.m */; };
 		4A46111D1E9CCC010045824F /* Mine_sixPart.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A46111C1E9CCC010045824F /* Mine_sixPart.xcassets */; };
+		4A4988081EE9201F00BD820D /* Guangguang.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A4988071EE9201F00BD820D /* Guangguang.xcassets */; };
 		4A50044E1EE14F8D002D1964 /* LBMoreOperateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A50044C1EE14F8D002D1964 /* LBMoreOperateView.m */; };
 		4A50044F1EE14F8D002D1964 /* LBMoreOperateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A50044D1EE14F8D002D1964 /* LBMoreOperateView.xib */; };
 		4A50045C1EE14FA9002D1964 /* LBConsumptionSeriesViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5004511EE14FA9002D1964 /* LBConsumptionSeriesViewTableViewCell.m */; };
@@ -1711,6 +1712,7 @@
 		4A4610041E9CC6360045824F /* UIImageView+CornerRadius.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CornerRadius.h"; sourceTree = "<group>"; };
 		4A4610051E9CC6360045824F /* UIImageView+CornerRadius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CornerRadius.m"; sourceTree = "<group>"; };
 		4A46111C1E9CCC010045824F /* Mine_sixPart.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine_sixPart.xcassets; sourceTree = "<group>"; };
+		4A4988071EE9201F00BD820D /* Guangguang.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Guangguang.xcassets; sourceTree = "<group>"; };
 		4A50044B1EE14F8D002D1964 /* LBMoreOperateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMoreOperateView.h; sourceTree = "<group>"; };
 		4A50044C1EE14F8D002D1964 /* LBMoreOperateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMoreOperateView.m; sourceTree = "<group>"; };
 		4A50044D1EE14F8D002D1964 /* LBMoreOperateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMoreOperateView.xib; sourceTree = "<group>"; };
@@ -5003,6 +5005,7 @@
 				F93F84D11E9F02C500F76E0B /* loadWait.xcassets */,
 				F958C0811EA4A3F9003C9CFB /* personCenter.xcassets */,
 				F9520A121EADD74D00B4D665 /* MerchantSubmission.xcassets */,
+				4A4988071EE9201F00BD820D /* Guangguang.xcassets */,
 				4AA0D5FC1EAF675300CB8F77 /* Integral_Mall.xcassets */,
 				4AE3546F1EC7F7CD00BF60CC /* 我的.xcassets */,
 				F96659841ED58BDD000DD67F /* BootstrapDiagram.xcassets */,
@@ -6637,6 +6640,7 @@
 				4A46102B1E9CC6360045824F /* WeiboSDK.bundle in Resources */,
 				F92309741E9B8BFF00ECDC94 /* LBMineCenterChooseAreaViewController.xib in Resources */,
 				F966B3CB1EAC3D79007260FC /* LBMineCenterOrderDetailFiveTableViewCell.xib in Resources */,
+				4A4988081EE9201F00BD820D /* Guangguang.xcassets in Resources */,
 				F951EB211EA1EFED00D6708E /* LBMineCenterUsualUnderOrderThreeViewController.xib in Resources */,
 				F9564DFE1EC86217007F3677 /* LBBelowTheLineListViewController.xib in Resources */,
 				F90C45301ED6AD8A001650BD /* QBImagePicker.storyboard in Resources */,

@@ -10,6 +10,4 @@
 
 @implementation GLNearby_SectionHeaderView
 
-
-
 @end

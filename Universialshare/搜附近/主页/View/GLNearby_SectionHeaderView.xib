@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="261" height="41"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="XRPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="1BK-y6-0bn">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tjsj_icon" translatesAutoresizingMaskIntoConstraints="NO" id="1BK-y6-0bn">
                     <rect key="frame" x="107.5" y="13.5" width="13.5" height="13"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="1BK-y6-0bn" secondAttribute="height" id="VSO-Bd-66b"/>
@@ -66,13 +66,14 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="iconImageV" destination="1BK-y6-0bn" id="h86-YV-VQG"/>
                 <outlet property="moreBtn" destination="3Ki-lK-V4K" id="RQ3-c1-fc1"/>
                 <outlet property="titleLabel" destination="Joo-WZ-mZX" id="Q03-pP-jyx"/>
             </connections>
-            <point key="canvasLocation" x="53.5" y="90.5"/>
+            <point key="canvasLocation" x="47" y="4"/>
         </view>
     </objects>
     <resources>
-        <image name="XRPlaceholder" width="391" height="220"/>
+        <image name="tjsj_icon" width="16" height="16"/>
     </resources>
 </document>

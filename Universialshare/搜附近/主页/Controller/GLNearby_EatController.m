@@ -255,11 +255,12 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         headV.titleLabel.text = @"推荐商家";
         [headV.moreBtn setTitle:@"查看更多" forState:UIControlStateNormal];
         headV.moreBtn.tag = 10;
+        headV.iconImageV.image = [UIImage imageNamed:@"tjsj_icon"];
     }else{
         headV.titleLabel.text = @"附近商家";
         [headV.moreBtn setTitle:@"查看全部" forState:UIControlStateNormal];
         headV.moreBtn.tag = 11;
-
+        headV.iconImageV.image = [UIImage imageNamed:@"fjsj_icon"];
     }
     [headV.moreBtn addTarget:self action:@selector(more:) forControlEvents:UIControlEventTouchUpInside];
     
