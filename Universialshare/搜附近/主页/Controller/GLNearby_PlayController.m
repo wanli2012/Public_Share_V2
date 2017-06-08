@@ -136,15 +136,17 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                     
                 };
                 
-                [self.tableView reloadData];
                 
             }
         }
         
+        [self.tableView reloadData];
     } enError:^(NSError *error) {
         [_loadV removeloadview];
         [self endRefresh];
         [MBProgressHUD showError:error.description];
+        [self.tableView reloadData];
+
     }];
     
 }
