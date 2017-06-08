@@ -645,7 +645,6 @@
 		F91964EB1EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91964E91EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.m */; };
 		F91964EC1EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91964EA1EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.xib */; };
 		F91964EF1EB36C68008A8616 /* MerchantInformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F91964EE1EB36C68008A8616 /* MerchantInformationModel.m */; };
-		F923082F1E9B8B6B00ECDC94 /* Address.plist in Resources */ = {isa = PBXBuildFile; fileRef = F923082E1E9B8B6B00ECDC94 /* Address.plist */; };
 		F923091A1E9B8BFF00ECDC94 /* HWCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = F92308361E9B8BFE00ECDC94 /* HWCalendar.m */; };
 		F923091B1E9B8BFF00ECDC94 /* HWOptionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F92308381E9B8BFE00ECDC94 /* HWOptionButton.m */; };
 		F923091C1E9B8BFF00ECDC94 /* LBMineCenterMyBalanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F923083A1E9B8BFE00ECDC94 /* LBMineCenterMyBalanceViewController.m */; };
@@ -2119,7 +2118,6 @@
 		F91964EA1EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBAddrecomdManChooseAreaViewController.xib; sourceTree = "<group>"; };
 		F91964ED1EB36C68008A8616 /* MerchantInformationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantInformationModel.h; sourceTree = "<group>"; };
 		F91964EE1EB36C68008A8616 /* MerchantInformationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantInformationModel.m; sourceTree = "<group>"; };
-		F923082E1E9B8B6B00ECDC94 /* Address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Address.plist; sourceTree = "<group>"; };
 		F92308351E9B8BFE00ECDC94 /* HWCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWCalendar.h; sourceTree = "<group>"; };
 		F92308361E9B8BFE00ECDC94 /* HWCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWCalendar.m; sourceTree = "<group>"; };
 		F92308371E9B8BFE00ECDC94 /* HWOptionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWOptionButton.h; sourceTree = "<group>"; };
@@ -4945,7 +4943,6 @@
 				F9061FD71E83C4730080E9D9 /* Assets.xcassets */,
 				F9061FD91E83C4730080E9D9 /* LaunchScreen.storyboard */,
 				F9061FDC1E83C4730080E9D9 /* Info.plist */,
-				F923082E1E9B8B6B00ECDC94 /* Address.plist */,
 				F906201D1E83CBAD0080E9D9 /* universialshare.pch */,
 				F906201F1E83CC900080E9D9 /* Header.h */,
 				F92ED4921EDE5E3A00B3B3DB /* Cochin.ttc */,
@@ -6557,7 +6554,6 @@
 				4AAD25331EC188C90054FD06 /* GLBuyBackController.xib in Resources */,
 				4A78C2161EA8918500771047 /* GLDonationRecordController.xib in Resources */,
 				4AFCDC5D1ED2B0B0007C1681 /* GLMerchat_CommentCell.xib in Resources */,
-				F923082F1E9B8B6B00ECDC94 /* Address.plist in Resources */,
 				4A2A00C91EC70D9400052CA7 /* GLOrderPayView.xib in Resources */,
 				4A5F66A01ECA89FA0048F339 /* GLNearbyViewController.xib in Resources */,
 				F966B3D01EAC3D96007260FC /* LBMineCenterOrderDetailSixTableViewCell.xib in Resources */,

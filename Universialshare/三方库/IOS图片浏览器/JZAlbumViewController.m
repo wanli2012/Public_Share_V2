@@ -79,11 +79,11 @@
     self.sliderLabel.backgroundColor = [UIColor clearColor];
     self.sliderLabel.textColor = [UIColor whiteColor];
     self.sliderLabel.textAlignment = NSTextAlignmentCenter;
-    self.sliderLabel.text = [NSString stringWithFormat:@"%d/%lu",self.currentIndex+1,(unsigned long)self.imgArr.count];
+    self.sliderLabel.text = [NSString stringWithFormat:@"%ld/%lu",self.currentIndex+1,(unsigned long)self.imgArr.count];
     [self.view addSubview:self.sliderLabel];
     
     // 2.保存按钮
-    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(screen_width - 65, 15, 55, 30)];
+    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(screen_width - 65, 20, 55, 30)];
     [saveButton setTitle:@"保存" forState:UIControlStateNormal];
     [saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     saveButton.layer.borderWidth = 0.1;

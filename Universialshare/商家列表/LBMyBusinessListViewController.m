@@ -183,7 +183,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    self.tableview.estimatedRowHeight = 120;
+    self.tableview.estimatedRowHeight = 150;
     self.tableview.rowHeight = UITableViewAutomaticDimension;
     return UITableViewAutomaticDimension;
     
@@ -201,6 +201,8 @@
     cell.namelb.text =[NSString stringWithFormat:@"商户名:%@",self.dataarr[indexPath.row][@"dealer_name"]];
     cell.name1Lb.text =[NSString stringWithFormat:@"商户类型:%@",self.dataarr[indexPath.row][@"dealer_type"]];
     cell.adressLb.text =[NSString stringWithFormat:@"商户地址:%@",self.dataarr[indexPath.row][@"dealer_address"]];
+     cell.moenyLb.text =[NSString stringWithFormat:@"销售额:¥%@",self.dataarr[indexPath.row][@"dealer_money"]];
+    cell.phoneLb.text =[NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"dealer_phone"]];
     
     if ([cell.namelb.text rangeOfString:@"null"].location != NSNotFound) {
         cell.namelb.text = @"商户名:";
