@@ -137,7 +137,7 @@
         index = 2;
     }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]){
         index = 3;
-    }else if ([[UserModel defaultUser].usrtype isEqualToString:@"0"] || [UserModel defaultUser].usrtype == nil){
+    }else if ([[UserModel defaultUser].usrtype isEqualToString:@"0"] || [UserModel defaultUser].usrtype == nil || [[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]){
         index = 2;
     }else{
         index = 1;

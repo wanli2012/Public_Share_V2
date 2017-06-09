@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChooseView.h"
+#import "ChooseRank.h"
 
 @interface GLHourseDetailController : UIViewController
 
@@ -18,4 +20,13 @@
 
 @property (nonatomic, copy)NSString *goods_id;
 @property (assign, nonatomic) NSInteger is_notice;//是否是从我的收藏里进来的
+
+//规格
+@property(nonatomic,strong)ChooseView *chooseView;
+@property(nonatomic,strong)ChooseRank *chooseRank;
+@property(nonatomic,strong)NSMutableArray *rankArray;
+@property(nonatomic,strong)NSMutableArray *standardList;
+@property(nonatomic,strong)NSMutableArray *standardValueList;
+@property(nonatomic,strong)UIView *backgroundView;
+
 @end

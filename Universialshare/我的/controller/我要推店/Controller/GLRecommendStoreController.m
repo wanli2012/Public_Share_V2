@@ -553,14 +553,14 @@
         
     }progress:^(NSProgress *uploadProgress){
         
-        [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
+       // [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
         //        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-                  [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+        //          [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
         //        [SVProgressHUD setCornerRadius:8.0];
         
         
     }success:^(NSURLSessionDataTask *task, id responseObject) {
-        [SVProgressHUD dismiss];
+        //[SVProgressHUD dismiss];
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         
         if ([dic[@"code"]integerValue]==1) {
@@ -586,7 +586,7 @@
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        [SVProgressHUD dismiss];
+        //[SVProgressHUD dismiss];
         [MBProgressHUD showError:error.localizedDescription];
     }];
 

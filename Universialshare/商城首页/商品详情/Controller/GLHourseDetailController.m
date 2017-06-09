@@ -25,7 +25,7 @@
 #import "GLGoodsDetailModel.h"
 #import "GLShoppingCartController.h"
 
-@interface GLHourseDetailController ()<SDCycleScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,GLTwoButtonCellDelegate,GLHourseChangeNumCellDelegate>
+@interface GLHourseDetailController ()<SDCycleScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,GLTwoButtonCellDelegate,GLHourseChangeNumCellDelegate,ChooseRankDelegate>
 {
     NSMutableArray *_visableCells;
     
@@ -48,7 +48,7 @@
 @property (assign, nonatomic) NSInteger is_collection;//是否收藏
 @property (weak, nonatomic) IBOutlet UIImageView *collectionimage;
 
-
+@property (nonatomic, strong)NSString *goods_spec;//规格项名字 如果是两个就用+拼接  例子:紫色+m
 
 @end
 static NSString *firstCell = @"GLHourseDetailFirstCell";
@@ -73,17 +73,12 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     [super viewDidLoad];
     _status = 1;
     self.automaticallyAdjustsScrollViewInsets = NO;
-
+    self.goods_spec = @"";
 //    self.navigationItem.title = @"房子详情";
     _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 160)
                                                           delegate:self
                                                   placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     
-    _cycleScrollView.localizationImageNamesGroup = @[PlaceHolderImage,
-                                                     PlaceHolderImage,
-                                                     PlaceHolderImage,
-                                                     PlaceHolderImage,
-                                                     PlaceHolderImage];
     _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     _cycleScrollView.clipsToBounds = YES;
     _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
@@ -119,6 +114,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 //    }
     
     [self postRequest];
+   [self initSpecificationsDataSoruce];
     
 }
 - (void)postRequest{
@@ -134,7 +130,6 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     [NetworkManager requestPOSTWithURLStr:@"shop/goodsDetail" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
-//        NSLog(@"responseObject = %@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1){
              if (![responseObject[@"data"] isEqual:[NSNull null]]) {
            self.model = [GLGoodsDetailModel mj_objectWithKeyValues:responseObject[@"data"]];
@@ -385,9 +380,11 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         cell.indexPath = indexPath;
         _indexPath = indexPath;
         cell.delegate = self;
+        if (![self.goods_spec isEqualToString:@""]) {
+            cell.SpecificationsLb.text = self.goods_spec;
+        }
         GLcell = cell;
         
-
     }else{
 
         NSArray *arr = self.model.attr;
@@ -404,12 +401,13 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     if (indexPath.row == 0) {
         self.tableView.estimatedRowHeight = 44;
         self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
         return self.tableView.rowHeight;
         
     }else if (indexPath.row == 1 ){
 
-        return 90;
+        self.tableView.estimatedRowHeight = 140;
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
+        return self.tableView.rowHeight;
         
     }else if (indexPath.row ==2 ){
         
@@ -485,6 +483,152 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     [self.tableView reloadData];
     
 }
+//请求规格
+-(void)initSpecificationsDataSoruce{
+
+    [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsSpec" paramDic:@{@"goods_id":self.goods_id} finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == 1){
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                for (int i=0; i<[responseObject[@"data"] count]; i++) {
+                    [self.standardList addObject:responseObject[@"data"][i][@"spec_name"] ];
+                     [self.standardValueList addObject:responseObject[@"data"][i][@"title_name"] ];
+                    [self initChooseView];
+                }
+            }
+        }
+    } enError:^(NSError *error) {
+
+    }];
+    
+}
+
+//不同规格下的参数
+-(void)setStoreGoods{
+    
+    [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsSpecDetail" paramDic:@{@"goods_id":self.goods_id,@"goods_spec":self.goods_spec} finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == 1){
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                self.model.money = responseObject[@"data"][@"marketprice"];
+                [self.tableView reloadData];
+            }
+        }
+    } enError:^(NSError *error) {
+        
+    }];
+    
+}
+//选择规格
+-(void)SpecificationsEvent{
+
+    if (self.standardList.count <= 0) {
+        [MBProgressHUD showError:@"暂无规格选择"];
+        return;
+    }
+    [UIView animateWithDuration: 0.35 animations: ^{
+        self.backgroundView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
+        self.chooseView.frame =CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    } completion: nil];
+
+}
+
+-(void)initChooseView{
+    
+    self.chooseView = [[ChooseView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [self.view addSubview:self.chooseView];
+    
+    
+    CGFloat maxY = 0;
+    CGFloat height = 0;
+    for (int i = 0; i < self.standardList.count; i ++)
+    {
+        
+        self.chooseRank = [[ChooseRank alloc] initWithTitle:self.standardList[i] titleArr:self.standardValueList[i] andFrame:CGRectMake(0, maxY, SCREEN_WIDTH, 40)];
+        maxY = CGRectGetMaxY(self.chooseRank.frame);
+        height += self.chooseRank.height;
+        self.chooseRank.tag = 8000+i;
+        self.chooseRank.delegate = self;
+        
+        [self.chooseView.mainscrollview addSubview:self.chooseRank];
+    }
+    self.chooseView.mainscrollview.contentSize = CGSizeMake(0, height);
+    
+    //加入购物车按钮
+    [self.chooseView.addBtn addTarget:self action:@selector(addGoodsCartBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    //立即购买
+    [self.chooseView.buyBtn addTarget:self action:@selector(Buynow) forControlEvents:UIControlEventTouchUpInside];
+    //取消按钮
+    [self.chooseView.cancelBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    //点击黑色透明视图choseView会消失
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
+    [self.chooseView.alphaView addGestureRecognizer:tap];
+}
+-(void)addGoodsCartBtnClick{
+    
+    [self dismiss];
+}
+-(void)Buynow{
+    self.goods_spec = @"";
+    if (self.rankArray.count <= 0) {
+        [MBProgressHUD showError:@"还未选择规格"];
+        return;
+    }
+    
+    for (int i = 0; i < self.rankArray.count; i++) {
+        if (i == self.rankArray.count - 1) {
+            self.goods_spec = [self.goods_spec stringByAppendingFormat:@"%@",_rankArray[i]];
+        }else{
+           self.goods_spec = [self.goods_spec stringByAppendingFormat:@"%@+",_rankArray[i]];
+        }
+    }
+    
+    [self setStoreGoods];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:1 inSection:0], nil] withRowAnimation:UITableViewRowAnimationNone];
+    [self dismiss];
+}
+/**
+ *  点击半透明部分或者取消按钮，弹出视图消失
+ */
+-(void)dismiss
+{
+    //    center.y = center.y+self.view.frame.size.height;
+    [UIView animateWithDuration: 0.35 animations: ^{
+        self.chooseView.frame =CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
+        self.backgroundView.transform = CGAffineTransformIdentity;
+    } completion: nil];
+    
+}
+
+-(void)selectBtnTitle:(NSString *)title andBtn:(UIButton *)btn{
+    
+    [self.rankArray removeAllObjects];
+    
+    for (int i=0; i < _standardList.count; i++)
+    {
+        ChooseRank *view = [self.view viewWithTag:8000+i];
+        
+        for (UIButton *obj in  view.btnView.subviews)
+        {
+            if(obj.selected){
+                
+                for (NSArray *arr in self.standardValueList)
+                {
+                    for (NSString *title in arr) {
+                        
+                        if ([view.selectBtn.titleLabel.text isEqualToString:title]) {
+                            
+                            [self.rankArray addObject:view.selectBtn.titleLabel.text];
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
 - (void)changeView:(NSInteger )tag{
 
     if (tag == 11) {
@@ -493,8 +637,35 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         _status = 0;
     }
     
-    
     [self.tableView reloadData];
     
+}
+
+-(NSMutableArray*)standardList{
+    if (!_standardList) {
+        _standardList = [NSMutableArray array];
+    }
+    
+    return _standardList;
+
+}
+
+-(NSMutableArray*)standardValueList{
+    if (!_standardValueList) {
+        _standardValueList = [NSMutableArray array];
+    
+    }
+    
+    return _standardValueList;
+    
+}
+
+-(NSMutableArray *)rankArray{
+    
+    if (_rankArray == nil) {
+        
+        _rankArray = [[NSMutableArray alloc] init];
+    }
+    return _rankArray;
 }
 @end

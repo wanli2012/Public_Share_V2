@@ -26,6 +26,11 @@
         [_delegate changeNum:sender.tag indexPath:self.indexPath];
     }
 }
-
+//选择规格
+- (IBAction)SpecificationsEvent:(UIButton *)sender {
+    
+    [self.delegate SpecificationsEvent];
+    
+}
 
 @end
