@@ -356,7 +356,7 @@ return _titleArr;
     if (!_cycleScrollView) {
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, CGRectGetMaxY(self.baseview.frame) + 1, SCREEN_WIDTH, self.frame.size.height - CGRectGetHeight(self.baseview.frame) )
                                                               delegate:self
-                                                      placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+                                                      placeholderImage:[UIImage imageNamed:@"商家placeholder"]];
         
         _cycleScrollView.localizationImageNamesGroup = @[];
         

@@ -33,6 +33,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    self.picImageV.layer.cornerRadius = 4;
+    self.picImageV.clipsToBounds = YES;
 
 }
 - (void)setModel:(GLNearby_NearShopModel *)model{

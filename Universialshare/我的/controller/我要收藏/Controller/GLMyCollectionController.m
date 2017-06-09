@@ -184,8 +184,11 @@ static NSString *ID = @"GLMyCollectionCell";
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
             dict[@"token"] = [UserModel defaultUser].token;
             dict[@"uid"] = [UserModel defaultUser].uid;
-            dict[@"GID"] = model.goods_id;
-            
+            if ([model.goods_type isEqualToString:@"2"]) {//积分收藏
+                dict[@"GID"] = model.goods_id;
+            }else{
+                dict[@"GID"] = model.goodsID;
+            }
             _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
             [NetworkManager requestPOSTWithURLStr:@"shop/delMyCollect" paramDic:dict finish:^(id responseObject) {
                 [_loadV removeloadview];

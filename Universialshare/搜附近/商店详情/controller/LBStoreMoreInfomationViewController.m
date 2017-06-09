@@ -219,7 +219,7 @@ static const CGFloat headerImageHeight = 180.0f;
         }
         
     }else if (indexPath.section == 1){
-        return 70;
+        return 90;
         
     }else if (indexPath.section == 2){
         self.tableview.estimatedRowHeight = 70;

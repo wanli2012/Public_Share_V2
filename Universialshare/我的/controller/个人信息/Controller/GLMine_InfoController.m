@@ -302,7 +302,7 @@ static NSString *ID = @"GLMine_InfoCell";
             cell.headimage.hidden = YES;
             cell.imageW.constant = 0;
             
-            if (indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 6 || indexPath.row == 7 ||indexPath.row == 4) {
+            if (indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 4 || indexPath.row == 1 || indexPath.row == 5) {
                 cell.textTf.enabled = NO;
             }else{
                 if (_EditBool == NO) {
@@ -399,7 +399,7 @@ static NSString *ID = @"GLMine_InfoCell";
             cell.headimage.hidden = YES;
             cell.imageW.constant = 0;
             
-            if (indexPath.row == 2 || indexPath.row == 4 || indexPath.row == 5) {
+            if (indexPath.row == 2 || indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 1 || indexPath.row == 3) {
                 cell.textTf.enabled = NO;
             }else{
                 if (_EditBool == NO) {
@@ -559,9 +559,9 @@ static NSString *ID = @"GLMine_InfoCell";
         NSData *data;
         if (UIImagePNGRepresentation(image) == nil) {
             
-            data = UIImageJPEGRepresentation(image, 0.1);
+            data = UIImageJPEGRepresentation(image, 0.2);
         }else {
-            data=    UIImageJPEGRepresentation(image, 0.1);
+            data=    UIImageJPEGRepresentation(image, 0.2);
         }
         //#warning 这里来做操作，提交的时候要上传
         // 图片保存的路径

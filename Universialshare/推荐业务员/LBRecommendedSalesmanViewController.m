@@ -378,9 +378,9 @@
         NSData *data;
         if (UIImagePNGRepresentation(image) == nil) {
             
-            data = UIImageJPEGRepresentation(image, 0.1);
+            data = UIImageJPEGRepresentation(image, 0.2);
         }else {
-            data=    UIImageJPEGRepresentation(image, 0.1);
+            data=    UIImageJPEGRepresentation(image, 0.2);
         }
         //#warning 这里来做操作，提交的时候要上传
         // 图片保存的路径
