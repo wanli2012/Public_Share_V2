@@ -160,9 +160,10 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
                 
             }
         }
-        
+        [self.tableView reloadData];
     } enError:^(NSError *error) {
         [MBProgressHUD showError:error.description];
+        [self.tableView reloadData];
     }];
 
     
@@ -189,6 +190,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     } enError:^(NSError *error) {
 //        [_loadV removeloadview];
         [self endRefresh];
+        [self.tableView reloadData];
         
     }];
 

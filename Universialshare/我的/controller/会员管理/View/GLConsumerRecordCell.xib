@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="322" height="108"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图" translatesAutoresizingMaskIntoConstraints="NO" id="pRp-yE-jHX">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图" translatesAutoresizingMaskIntoConstraints="NO" id="pRp-yE-jHX">
                         <rect key="frame" x="10" y="10" width="90" height="99"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="90" id="nh9-Oa-0Ob"/>
@@ -32,7 +32,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="米白色短袖小礼服" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1x-Jw-MJs">
-                        <rect key="frame" x="110" y="10" width="115" height="17"/>
+                        <rect key="frame" x="110" y="10" width="202" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -55,7 +55,7 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hNa-mo-Nbn">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hNa-mo-Nbn">
                         <rect key="frame" x="65" y="10" width="35" height="31"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -73,6 +73,7 @@
                     <constraint firstItem="06m-q6-xaD" firstAttribute="leading" secondItem="X1x-Jw-MJs" secondAttribute="leading" id="XAS-VL-ebB"/>
                     <constraint firstItem="OiP-a4-JjU" firstAttribute="leading" secondItem="X1x-Jw-MJs" secondAttribute="leading" id="Yqw-Gd-HvZ"/>
                     <constraint firstAttribute="bottom" secondItem="JiV-Q0-Bll" secondAttribute="bottom" id="ZEr-Zv-Ln0"/>
+                    <constraint firstAttribute="trailing" secondItem="X1x-Jw-MJs" secondAttribute="trailing" constant="10" id="a9j-9e-vO1"/>
                     <constraint firstItem="X1x-Jw-MJs" firstAttribute="top" secondItem="pRp-yE-jHX" secondAttribute="top" id="bCC-mH-hTn"/>
                     <constraint firstItem="hNa-mo-Nbn" firstAttribute="trailing" secondItem="pRp-yE-jHX" secondAttribute="trailing" id="dUL-2K-wtE"/>
                     <constraint firstItem="rJb-s4-eVR" firstAttribute="top" secondItem="06m-q6-xaD" secondAttribute="bottom" constant="10" id="gLm-XX-zjY"/>

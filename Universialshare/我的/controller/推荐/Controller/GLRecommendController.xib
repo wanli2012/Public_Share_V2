@@ -68,7 +68,7 @@
                         <constraint firstItem="Sf4-oB-aJ6" firstAttribute="centerX" secondItem="X19-4R-kP4" secondAttribute="centerX" id="uaX-E7-qhN"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="XRPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="YEb-dZ-KlE">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="go_area" translatesAutoresizingMaskIntoConstraints="NO" id="YEb-dZ-KlE">
                     <rect key="frame" x="0.0" y="507" width="370" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="GY6-pi-lIf"/>
@@ -90,6 +90,6 @@
         </view>
     </objects>
     <resources>
-        <image name="XRPlaceholder" width="391" height="220"/>
+        <image name="go_area" width="1125" height="224"/>
     </resources>
 </document>
