@@ -1,3 +1,4 @@
+
 //
 //  GLIntegralGoodsCell.m
 //  Universialshare
@@ -40,6 +41,11 @@
     [textColor addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:rangel];
     [textColor addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:18] range:rangel];
     [label setAttributedText:textColor];
+}
+- (IBAction)buy:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(buyNow:)]) {
+        [self.delegate buyNow:self.index];
+    }
 }
 
 - (void)setModel:(GLMall_InterestModel *)model{

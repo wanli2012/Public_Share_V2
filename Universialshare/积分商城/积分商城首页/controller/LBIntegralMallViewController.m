@@ -27,8 +27,9 @@
 #import "GLHomePageNoticeView.h"
 #import "GLSet_MaskVeiw.h"
 #import "GLHomePageNoticeView.h"
+#import "GLConfirmOrderController.h"
 
-@interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
+@interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,GLIntegralGoodsCellDelegate>
 {
     LoadWaitView * _loadV;
     NSInteger _page;
@@ -36,6 +37,7 @@
     NSString *_htmlString;
     GLSet_MaskVeiw *_maskV;
     GLHomePageNoticeView *_contentView;
+
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong)SDCycleScrollView *cycleScrollView;
@@ -350,6 +352,25 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
     
 }
+
+//立即抢购
+- (void)buyNow:(int)index{
+    self.hidesBottomBarWhenPushed = YES;
+    
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [MBProgressHUD showError:@"请先登录"];
+        return;
+    }
+
+    GLConfirmOrderController *vc=[[GLConfirmOrderController alloc]init];
+    GLMall_InterestModel *model = self.interestModels[index];
+    vc.goods_id = model.goods_id;
+    vc.goods_count = @"1";
+    vc.orderType = 2; //订单类型 2:积分商品
+    [self.navigationController pushViewController:vc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+
+}
 #pragma UITableviewDelegate UITableviewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
@@ -410,6 +431,9 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
         GLIntegralGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsCellID];
         cell.model = self.interestModels[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.index = (int)indexPath.row;
+        cell.delegate = self;
+        
         return cell;
 
     }

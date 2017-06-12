@@ -44,6 +44,9 @@
                         <state key="normal" title="立即抢购">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="buy:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="IGD-Me-Icq"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2666积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bZ-6h-WKC">
                         <rect key="frame" x="160" y="53.5" width="59" height="20"/>

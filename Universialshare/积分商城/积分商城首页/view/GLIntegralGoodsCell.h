@@ -9,8 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "GLMall_InterestModel.h"
 
+@protocol GLIntegralGoodsCellDelegate <NSObject>
+
+-(void)buyNow:(int)index;
+
+@end
+
 @interface GLIntegralGoodsCell : UITableViewCell
 
 @property (nonatomic, strong)GLMall_InterestModel *model;
+
+@property (nonatomic, assign)int index;
+
+@property (nonatomic, assign)id<GLIntegralGoodsCellDelegate> delegate;
 
 @end

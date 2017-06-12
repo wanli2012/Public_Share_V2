@@ -76,21 +76,17 @@ static NSString *ID = @"GLNearby_ClassifyConcollectionCell";
     GLNearby_ClassifyConcollectionCell *cell = (GLNearby_ClassifyConcollectionCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.bgView.backgroundColor = YYSRGBColor(40, 150, 58, 1);
     cell.titleLabel.textColor = [UIColor whiteColor];
-//    for (int i = 0; i< self.isSeletedArr.count; i++) {
-//        
-//        [self.isSeletedArr replaceObjectAtIndex:i withObject:@(NO)];
-//    }
-//    [self.isSeletedArr replaceObjectAtIndex:indexPath.row withObject:@(YES)];
-//    NSLog(@"%@",self.isSeletedArr[indexPath.row]);
+
     if([cell.titleLabel.text isEqualToString:@"全部"]){
         [self.tempDataSource removeAllObjects];
         for (int i = 0; i < self.dataSource.count; i++) {
-            [_tempDataSource addObject:self.dataSource[i]];
+            
+            GLNearby_TradeOneModel *model = self.dataSource[i];
+            [_tempDataSource addObject:model.trade_name];
             
         }
         [self.tempDataSource addObject:@"收起"];
         
-//        [self.isSeletedArr replaceObjectAtIndex:indexPath.row withObject:@(NO)];
         [self.collectionView reloadData];
         cell.bgView.backgroundColor =  [UIColor whiteColor];
         cell.titleLabel.textColor = [UIColor darkGrayColor];
@@ -99,11 +95,12 @@ static NSString *ID = @"GLNearby_ClassifyConcollectionCell";
     if([cell.titleLabel.text isEqualToString:@"收起"]){
         [self.tempDataSource removeAllObjects];
         for (int i = 0; i < 7; i++) {
-            [_tempDataSource addObject:self.dataSource[i]];
+            GLNearby_TradeOneModel *model = self.dataSource[i];
+
+            [_tempDataSource addObject:model.trade_name];
         }
         [_tempDataSource addObject:@"全部"];
         
-//        [self.isSeletedArr replaceObjectAtIndex:indexPath.row withObject:@(NO)];
         [self.collectionView reloadData];
         cell.bgView.backgroundColor =  [UIColor whiteColor];
         cell.titleLabel.textColor = [UIColor darkGrayColor];
