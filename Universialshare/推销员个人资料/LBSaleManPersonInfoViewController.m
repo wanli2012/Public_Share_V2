@@ -8,6 +8,7 @@
 
 #import "LBSaleManPersonInfoViewController.h"
 #import "LBSaleManPersonInfoTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface LBSaleManPersonInfoViewController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *headimage;
@@ -30,11 +31,7 @@
     self.headimage.layer.cornerRadius = 45;
     self.headimage.clipsToBounds = YES;
     
-    self.headimage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[UserModel defaultUser].headPic]];
-    
-    if (!self.headimage.image) {
-        self.headimage.image = [UIImage imageNamed:@"mine_head"];
-    }
+    [self.headimage sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].headPic] placeholderImage:[UIImage imageNamed:@"mine_head"]];
     
     self.namelb.text = [UserModel defaultUser].truename;
 }

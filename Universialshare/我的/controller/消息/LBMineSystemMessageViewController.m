@@ -36,7 +36,7 @@
     self.view.backgroundColor=[UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.messageType = 1;
-    self.messageArr = [NSMutableArray arrayWithObjects:@"兑换消息",@"分红消息",@"推荐消息",@"下单消息",@"转增消息",@"直捐消息", nil];
+    self.messageArr = [NSMutableArray arrayWithObjects:@"兑换消息",@"激励消息",@"推荐消息",@"下单消息",@"直捐消息", nil];
     self.tableview.tableFooterView = [UIView new];
     self.tableview.estimatedRowHeight = 70;
     self.tableview.rowHeight = UITableViewAutomaticDimension;
@@ -149,15 +149,20 @@
                                                                    @{@"title":@"分红消息",@"imageName":@""},
                                                                    @{@"title":@"推荐消息",@"imageName":@""},
                                                                    @{@"title":@"下单消息",@"imageName":@""},
-                                                                   @{@"title":@"转赠消息",@"imageName":@""},
                                                                    @{@"title":@"直捐消息",@"imageName":@""},
-                                                                   
                                                                    ]
                               
                                                            width:100
                                                 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, 64+5)
                                                           action:^(NSInteger index) {
                                                               
+                                                              if (index == 4) {
+                                                                  _refreshType = NO;
+                                                                  _page=1;
+                                                                  _messageType = 6;
+                                                                  [weakself initdatasource];
+                                                                  return ;
+                                                              }
                                                               _refreshType = NO;
                                                               _page=1;
                                                               _messageType = index + 1;

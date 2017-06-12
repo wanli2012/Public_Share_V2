@@ -451,14 +451,10 @@ static NSString *ID = @"GLMine_InfoCell";
                 [weakself.view endEditing:YES];
             }
             
-            
         };
 
-        
-        
     }
     
-
     return cell;
     
 }
