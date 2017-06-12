@@ -78,5 +78,4 @@
     manager.enableAutoToolbar = NO;
 }
 
-
 @end
