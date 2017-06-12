@@ -534,7 +534,6 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 }
 //取消
 -(void)addGoodsCartBtnClick{
-    
     [self dismiss];
 }
 //确定
