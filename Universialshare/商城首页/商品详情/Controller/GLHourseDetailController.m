@@ -303,6 +303,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     vc.goods_id = self.goods_id;
     vc.goods_count = cell.sumLabel.text;
     vc.orderType = 2; //订单类型
+    vc.goods_spec = @"0";
     [self.navigationController pushViewController:vc animated:YES];
 
 }

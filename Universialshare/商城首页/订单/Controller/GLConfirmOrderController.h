@@ -18,5 +18,7 @@
 
 @property (nonatomic, copy)NSString * cart_id;
 
+@property (nonatomic, copy)NSString * goods_spec;
+
 
 @end
