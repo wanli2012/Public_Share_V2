@@ -190,7 +190,7 @@
         cell.infolb.text = [NSString stringWithFormat:@"规格:%@",self.dataDic[@"goods_data"][@"spec_info"]];
         cell.catalbel.text = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"cate"]];
         
-        if ([cell.infolb.text rangeOfString:@"null"].location != NSNotFound ) {
+        if ([cell.infolb.text rangeOfString:@"null"].location != NSNotFound || [[NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"spec_info"]] isEqualToString:@"0"]) {
             cell.infolb.text = @"规格:默认";
         }
         
@@ -203,15 +203,19 @@
         }else if ([self.dataDic[@"goods_data"][@"rl_type"] integerValue] == 4) {
             cell.rebateTypeLb.text = @"3%";
         }
-        NSString *strone = [NSString stringWithFormat:@"[%@]",self.dataDic[@"goods_data"][@"attr"]];
-        long len1 = [strone length];
-        NSString *strtwo = [NSString stringWithFormat:@"[%@]%@",self.dataDic[@"goods_data"][@"attr"],self.dataDic[@"goods_data"][@"info"]];
-        NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:strtwo];
-        [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,len1)];
-        [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17.0f] range:NSMakeRange(0,len1)];
-
-        cell.namelb.attributedText = str;
         
+        if ([self.dataDic[@"goods_data"][@"attr"] rangeOfString:@"null"].location != NSNotFound || [[NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"attr"]] isEqualToString:@" "]) {
+           cell.namelb.text =  [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"info"]];
+        }else{
+            NSString *strone = [NSString stringWithFormat:@"[%@]",self.dataDic[@"goods_data"][@"attr"]];
+            long len1 = [strone length];
+            NSString *strtwo = [NSString stringWithFormat:@"[%@]%@",self.dataDic[@"goods_data"][@"attr"],self.dataDic[@"goods_data"][@"info"]];
+            NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:strtwo];
+            [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,len1)];
+            [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17.0f] range:NSMakeRange(0,len1)];
+            cell.namelb.attributedText = str;
+        }
+    
         return cell;
         
     }else if (indexPath.section == 1){

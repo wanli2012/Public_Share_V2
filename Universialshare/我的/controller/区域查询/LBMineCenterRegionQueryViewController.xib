@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +16,6 @@
                 <outlet property="baseview" destination="7Y9-o4-Qki" id="e1z-8D-t6m"/>
                 <outlet property="chechBt" destination="xXt-0e-8JN" id="GDg-Gw-fNE"/>
                 <outlet property="cityLb" destination="fA6-L2-W3R" id="981-NM-eUR"/>
-                <outlet property="headerImage" destination="nSB-5X-fin" id="LPh-1X-6Yk"/>
                 <outlet property="provinceLb" destination="ccc-wi-vi8" id="QFj-xf-l12"/>
                 <outlet property="signUpBt" destination="jmo-Wj-Daz" id="nr4-FO-7eA"/>
                 <outlet property="tableview" destination="3Bm-SF-yrw" id="fHA-nd-M4S"/>
@@ -192,11 +191,6 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Bm-SF-yrw">
                     <rect key="frame" x="0.0" y="144" width="375" height="463"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <imageView key="tableHeaderView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="XRPlaceholder" id="nSB-5X-fin">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.14404621719999999" green="0.60565376280000005" blue="0.14635491370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </imageView>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="VRc-ar-24q"/>
                         <outlet property="delegate" destination="-1" id="x33-gs-mGz"/>
@@ -236,7 +230,6 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="XRPlaceholder" width="391" height="220"/>
         <image name="bottom" width="22" height="22"/>
     </resources>
 </document>

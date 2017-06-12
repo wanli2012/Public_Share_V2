@@ -84,7 +84,7 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
-    dict[@"status"] = @2;
+    dict[@"status"] = @3;// 1通过 2审核中 3失败
     dict[@"type"] = self.type;
     dict[@"page"] = @(self.page);
     

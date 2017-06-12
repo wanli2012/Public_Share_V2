@@ -424,7 +424,7 @@
         
         if (!_headview.headimage.image) {
             
-            _headview.headimage.image = [UIImage imageNamed:@"mine_head"];
+            _headview.headimage.image = [UIImage imageNamed:@"dtx_icon"];
         }
         
         _headview.namelebel.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].name];

@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *namelb;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
-
 @end
 
 @implementation LBSaleManPersonInfoViewController
@@ -31,7 +30,7 @@
     self.headimage.layer.cornerRadius = 45;
     self.headimage.clipsToBounds = YES;
     
-    [self.headimage sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].headPic] placeholderImage:[UIImage imageNamed:@"mine_head"]];
+    [self.headimage sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].headPic] placeholderImage:[UIImage imageNamed:@"dtx_icon"]];
     
     self.namelb.text = [UserModel defaultUser].truename;
 }

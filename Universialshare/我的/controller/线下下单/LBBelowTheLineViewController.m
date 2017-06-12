@@ -45,6 +45,7 @@
 @property (strong, nonatomic)LoadWaitView *loadV;
 @property (weak, nonatomic) IBOutlet UIImageView *TriangleImage;
 
+@property (strong, nonatomic)NSString *phoneNum;//保存电话号码
 
 @end
 
@@ -56,7 +57,7 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"线下下单";
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
+    self.phoneNum = @"";
     UITapGestureRecognizer *incentiveModelMaskVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(incentiveModelMaskVtapgestureLb)];
     [self.incentiveModelMaskV addGestureRecognizer:incentiveModelMaskVgesture];
     
@@ -122,16 +123,38 @@
         [MBProgressHUD showError:@"请输入会员电话号码或ID"];
         return;
     }
-    [self startTime];//获取倒计时
-    [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:@{@"phone":self.phoneTf.text} finish:^(id responseObject) {
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"user/getTrueName" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"username" :self.phoneTf.text} finish:^(id responseObject) {
+        [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
+            self.phoneNum = responseObject[@"data"][@"phone"];
+            [self startTime];//获取倒计时
+            [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:@{@"phone":self.phoneNum} finish:^(id responseObject) {
+                if ([responseObject[@"code"] integerValue]==1) {
+                    
+                }else{
+                    
+                }
+            } enError:^(NSError *error) {
+                
+            }];
+ 
+        }else if ([responseObject[@"code"] integerValue]==3){
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
             
         }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+            
             
         }
     } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
         
     }];
+
 }
 //提交
 - (IBAction)submitInfoEvent:(UIButton *)sender {
@@ -189,7 +212,6 @@
                 [MBProgressHUD showError:responseObject[@"message"]];
             }
             
-            
         }else if ([responseObject[@"code"] integerValue]==3){
             
             [MBProgressHUD showError:responseObject[@"message"]];
@@ -210,8 +232,7 @@
     
     if (buttonIndex==1) {
         NSDictionary  * dic=@{@"token":[UserModel defaultUser].token , @"uid":[UserModel defaultUser].uid , @"username":self.phoneTf.text , @"yzm":self.codeTf.text,@"rlmodel_type":[NSNumber numberWithInteger:self.userytpe],@"money":self.moneyTf.text,@"shopname":self.nameTf.text,@"shopnum":self.numTf.text,@"code":self.yuliuTf.text,@"version":@"3"};
-        
-        _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+        self.comitbt.userInteractionEnabled = NO;
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
         manager.requestSerializer.timeoutInterval = 20;
@@ -241,13 +262,17 @@
 
         }progress:^(NSProgress *uploadProgress){
             [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
-//            [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-//            [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-//            [SVProgressHUD setCornerRadius:8.0];
+            [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+            [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+            [SVProgressHUD setCornerRadius:8.0];
+            
+            if (uploadProgress.fractionCompleted == 1.0) {
+                 [SVProgressHUD dismiss];
+            }
             
         }success:^(NSURLSessionDataTask *task, id responseObject) {
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-            [SVProgressHUD dismiss];
+           
             if ([dic[@"code"]integerValue]==1) {
                 
                 [MBProgressHUD showError:dic[@"message"]];
@@ -256,10 +281,9 @@
             }else{
                 [MBProgressHUD showError:dic[@"message"]];
             }
-            [_loadV removeloadview];
+           self.comitbt.userInteractionEnabled = YES;
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [SVProgressHUD dismiss];
-            [_loadV removeloadview];
+            self.comitbt.userInteractionEnabled = YES;
             [MBProgressHUD showError:error.localizedDescription];
         }];
                 

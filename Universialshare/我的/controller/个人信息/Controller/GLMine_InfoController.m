@@ -295,7 +295,7 @@ static NSString *ID = @"GLMine_InfoCell";
             cell.textTf.hidden = YES;
             cell.headimage.image = self.imagehead;
             if (!cell.headimage.image) {
-                cell.headimage.image = [UIImage imageNamed:@"mine_head"];
+                cell.headimage.image = [UIImage imageNamed:@"dtx_icon"];
             }
             
         }else{
@@ -392,7 +392,7 @@ static NSString *ID = @"GLMine_InfoCell";
             cell.textTf.hidden = YES;
             cell.headimage.image = self.imagehead;
             if (!cell.headimage.image) {
-                cell.headimage.image = [UIImage imageNamed:@"mine_head"];
+                cell.headimage.image = [UIImage imageNamed:@"dtx_icon"];
             }
             
         }else{

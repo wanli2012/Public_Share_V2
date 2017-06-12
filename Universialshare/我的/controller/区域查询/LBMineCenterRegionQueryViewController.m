@@ -11,15 +11,15 @@
 #import "LBMineCenterWantToSignUpViewController.h"
 #import "LBAddrecomdManChooseAreaViewController.h"
 #import "editorMaskPresentationController.h"
+#import "SDCycleScrollView.h"
 
-@interface LBMineCenterRegionQueryViewController ()<UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
+@interface LBMineCenterRegionQueryViewController ()<UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning,SDCycleScrollViewDelegate>
 {
     BOOL      _ishidecotr;//判断是否隐藏弹出控制器
 }
 @property (weak, nonatomic) IBOutlet UIButton *chechBt;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak, nonatomic) IBOutlet UIButton *signUpBt;
-@property (weak, nonatomic) IBOutlet UIImageView *headerImage;
 @property (weak, nonatomic) IBOutlet UIView *baseview;
 @property (strong, nonatomic)NSMutableArray *dataarr;
 @property (strong, nonatomic)LoadWaitView *loadV;
@@ -39,6 +39,7 @@
 @property (nonatomic, assign)NSInteger ischoseCity;//记录选择市的第几行
 @property (nonatomic, assign)NSInteger ischoseArea;//记录选择区的第几行
 
+@property (nonatomic, strong)SDCycleScrollView *cycleScrollView;
 @end
 
 @implementation LBMineCenterRegionQueryViewController
@@ -54,7 +55,7 @@
     
     [self.tableview registerNib:[UINib nibWithNibName:@"LBMineCenterRegionQueryTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMineCenterRegionQueryTableViewCell"];
     
-    //    [self.tableview registerClass:[LBWaitOrdersHeaderView class] forHeaderFooterViewReuseIdentifier:@"LBWaitOrdersHeaderView"];
+    self.tableview.tableHeaderView = self.cycleScrollView;
     
     [self.tableview addSubview:self.nodataV];
     
@@ -380,8 +381,6 @@
     
 }
 
-
-
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     
@@ -394,8 +393,6 @@
     self.baseview.layer.cornerRadius = 4;
     self.baseview.clipsToBounds = YES;
     
-    self.headerImage.frame = CGRectMake(0, 0, SCREEN_WIDTH, 100);
-
 }
 
 -(NSMutableArray *)dataarr{
@@ -417,5 +414,26 @@
     return _nodataV;
     
 }
+
+-(SDCycleScrollView*)cycleScrollView
+{
+    if (!_cycleScrollView) {
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100 )
+                                                              delegate:self
+                                                      placeholderImage:[UIImage imageNamed:@""]];
+        
+        _cycleScrollView.localizationImageNamesGroup = @[@"banner1(1)",@"banner2(1)",@"banner3(1)"];
+        
+        _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
+        _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
+        _cycleScrollView.titleLabelBackgroundColor = [UIColor groupTableViewBackgroundColor];// 图片对应的标题的 背景色。（因为没有设标题）
+        
+        _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
+    }
+    
+    return _cycleScrollView;
+    
+}
+
 
 @end
