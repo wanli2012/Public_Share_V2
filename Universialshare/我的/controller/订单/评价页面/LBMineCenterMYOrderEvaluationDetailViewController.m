@@ -12,6 +12,7 @@
 #import "LBMyOrderlistHeaderFooterView.h"
 #import "LBMineCenterMYOrderEvaluationDetailOneTableViewCell.h"
 #import "LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface LBMineCenterMYOrderEvaluationDetailViewController ()<UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,LBMineCenterMYOrderEvaluationDetailDelegete>
 
@@ -155,6 +156,7 @@
     headerview.orderName.text = model.namelb;
     headerview.orderinfo.text = model.infolb;
     headerview.orderstore.text = model.sizelb;
+    [headerview.imagev sd_setImageWithURL:[NSURL URLWithString:model.imageurl] placeholderImage:[UIImage imageNamed:@"planceholder"]];
     if ([headerview.orderstore.text rangeOfString:@"null"].location != NSNotFound) {
         headerview.orderstore.text = @"暂无";
     }

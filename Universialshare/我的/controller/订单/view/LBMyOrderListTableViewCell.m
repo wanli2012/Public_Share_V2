@@ -65,7 +65,7 @@
 -(void)setMyorderRebateModel:(LBMyorderRebateModel *)myorderRebateModel{
     _myorderRebateModel = myorderRebateModel;
     
-    [self.imagev sd_setImageWithURL:[NSURL URLWithString:_myorderRebateModel.thumb] placeholderImage:[UIImage imageNamed:@"熊"]];
+    [self.imagev sd_setImageWithURL:[NSURL URLWithString:_myorderRebateModel.thumb] placeholderImage:[UIImage imageNamed:@"planceholder"]];
     self.namelb.text = [NSString stringWithFormat:@"%@",_myorderRebateModel.goods_name];
     self.numlb.text = [NSString stringWithFormat:@"数量: %@",_myorderRebateModel.goods_num];
     self.priceLb.text = [NSString stringWithFormat:@"价格: %@",_myorderRebateModel.goods_price];

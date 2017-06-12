@@ -225,38 +225,6 @@
         vc.pushIndex = 2;
         [weakself.navigationController pushViewController:vc animated:YES];
         
-//        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-//        dict[@"token"] = [UserModel defaultUser].token;
-//        dict[@"uid"] = [UserModel defaultUser].uid;
-//        dict[@"goods_id"] = self.goods_id;
-//        dict[@"goods_count"] = self.goods_count;
-//        dict[@"address_id"] = @1;
-//        dict[@"remark"] = self.remarkTextV.text;
-//        dict[@"cart_id"] = self.cart_id;
-//        
-//        _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-//        [NetworkManager requestPOSTWithURLStr:@"shop/placeOrderEnd" paramDic:dict finish:^(id responseObject) {
-//            
-//            [_loadV removeloadview];
-//            NSLog(@"responseObject = %@",responseObject);
-//            if ([responseObject[@"code"] integerValue] == 1){
-//                
-//                self.hidesBottomBarWhenPushed = YES;
-//                LBMineCenterPayPagesViewController *payVC = [[LBMineCenterPayPagesViewController alloc] init];
-//                payVC.payType = [responseObject[@"data"][@"order_type"] integerValue];;
-//                payVC.orderNum =[NSString stringWithFormat:@"%@",responseObject[@"data"][@"order_num"]];
-//                payVC.orderScore = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"total_price"]];
-//                payVC.useableScore = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"user_integal"]];
-//                payVC.order_id = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"order_id"]];
-//                
-//                [self.navigationController pushViewController:payVC animated:YES];
-//                
-//            }
-//    
-//        } enError:^(NSError *error) {
-//            [_loadV removeloadview];
-//        }];
-        
 
     
     };

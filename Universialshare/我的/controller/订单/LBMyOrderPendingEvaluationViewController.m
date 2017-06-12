@@ -140,7 +140,7 @@
     cell.stauesLb.text = @"待评价";
     cell.index = indexPath.row;
     cell.deleteBt.hidden = YES;
-    [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
+    [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"planceholder"] options:SDWebImageAllowInvalidSSLCertificates];
     cell.namelb.text = [NSString stringWithFormat:@"订单号:%@",self.dataarr[indexPath.row][@"order_num"]];
     cell.numlb.text = [NSString stringWithFormat:@"总价:¥%@",self.dataarr[indexPath.row][@"order_money"]];
     cell.priceLb.text = [NSString stringWithFormat:@"数量:%@",self.dataarr[indexPath.row][@"total"]];

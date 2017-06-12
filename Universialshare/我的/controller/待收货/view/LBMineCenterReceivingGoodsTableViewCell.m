@@ -104,7 +104,7 @@
         _WaitOrdersListModel = WaitOrdersListModel;
     }
     
-    [self.imagev sd_setImageWithURL:[NSURL URLWithString:_WaitOrdersListModel.image_cover] placeholderImage:[UIImage imageNamed:@""]];
+    [self.imagev sd_setImageWithURL:[NSURL URLWithString:_WaitOrdersListModel.image_cover] placeholderImage:[UIImage imageNamed:@"planceholder"]];
     self.cartype.text = [NSString stringWithFormat:@"%@",_WaitOrdersListModel.goods_name];
     self.numlb.text = [NSString stringWithFormat:@"数量:x%@",_WaitOrdersListModel.goods_num];
     self.pricelb.text = [NSString stringWithFormat:@"价格:¥%@",_WaitOrdersListModel.goods_price];
