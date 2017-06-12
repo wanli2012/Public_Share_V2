@@ -38,12 +38,8 @@
 
 @property (nonatomic, strong)SDCycleScrollView *cycleScrollView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong)NSMutableArray *dataSource;
 
 @property (nonatomic, strong)NSMutableArray *cellArr;
-
-@property (nonatomic, strong)NSMutableArray *optionModels;
-
 @property (nonatomic, strong)GLGoodsDetailModel *model;
 @property (assign, nonatomic) NSInteger is_collection;//是否收藏
 @property (weak, nonatomic) IBOutlet UIImageView *collectionimage;
@@ -307,14 +303,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     [self.navigationController pushViewController:vc animated:YES];
 
 }
-- (NSMutableArray *)dataSource{
-    if (!_dataSource) {
-        _dataSource = [NSMutableArray array];
-        [_dataSource addObjectsFromArray:@[@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9"]];
-        _cellArr = [NSMutableArray array];
-    }
-    return _dataSource;
-}
+
 - (NSMutableArray *)cellArr{
     if (!_cellArr) {
         _cellArr = [NSMutableArray array];
@@ -342,29 +331,6 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 //        return self.dataSource.count;
         return 3;
     }
-}
-- (NSMutableArray *)optionModels{
-    if (!_optionModels) {
-        _optionModels = [NSMutableArray array];
-        NSArray *colorarr = [[NSArray alloc] initWithObjects:@"蓝色",@"红色",@"湖蓝色",@"咖啡色",@"咖啡色",@"咖啡色",@"咖啡色",@"咖啡色",@"咖啡色",@"咖啡色",nil];
-        NSArray *sizearr = [[NSArray alloc] initWithObjects:@"蓝色",@"红色",@"湖蓝色",@"咖啡色",nil];
-        
-     NSArray *typeArr = [[NSArray alloc] initWithObjects:@"颜色",@"型号",nil];
-        
-        for (int i = 0; i<2; i++) {
-            GLHourseOptionModel *model = [[GLHourseOptionModel alloc] init];
-            if (i == 0) {
-                model.titleNames = colorarr;
-                
-            }else{
-                model.titleNames = sizearr;
-            }
-            model.typeName = typeArr[i];
-            [_optionModels addObject:model];
-        }
-        
-    }
-    return _optionModels;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *GLcell;
@@ -480,7 +446,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     }else{
         _sum += 1;
     }
-    cell.sumLabel.text = [NSString stringWithFormat:@"%ld",_sum];
+    cell.sumLabel.text = [NSString stringWithFormat:@"%ld",(long)_sum];
     [self.tableView reloadData];
     
 }
@@ -603,11 +569,9 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 
 -(void)selectBtnTitle:(NSString *)title andBtn:(UIButton *)btn{
     
-    [self.rankArray removeAllObjects];
-    
     for (int i=0; i < _standardList.count; i++)
     {
-        ChooseRank *view = [self.view viewWithTag:8000+i];
+        ChooseRank *view = [self.chooseView.mainscrollview viewWithTag:8000+i];
         
         for (UIButton *obj in  view.btnView.subviews)
         {
