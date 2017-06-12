@@ -109,7 +109,6 @@ static NSString *ID = @"GLOrderGoodsCell";
             }
         }
         
-        
     } enError:^(NSError *error) {
         [_loadV removeloadview];
     }];

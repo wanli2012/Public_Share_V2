@@ -30,6 +30,8 @@
 
 @property (nonatomic, copy)NSString *status;
 
+@property (nonatomic, copy)NSString *spec;
+
 
 
 @end

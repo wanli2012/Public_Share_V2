@@ -21,7 +21,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="某某汽车XX型号豪华版rferg某某汽车XX型号豪华版rferg" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2A-7H-UdF">
                         <rect key="frame" x="170" y="10" width="266" height="33.5"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="nbI-vC-vya"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="8" id="nbI-vC-vya"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -62,14 +62,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LkW-LN-2zW">
-                        <rect key="frame" x="0.0" y="156.5" width="446" height="1"/>
+                        <rect key="frame" x="0.0" y="157" width="446" height="1"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="bti-Le-TSg"/>
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" image="XRPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="eGI-Mm-tLh">
-                        <rect key="frame" x="10" y="10" width="152" height="137.5"/>
+                        <rect key="frame" x="10" y="10" width="152" height="138"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="152" id="EHL-gh-UYA"/>
                         </constraints>
@@ -95,7 +95,6 @@
                     <constraint firstAttribute="trailing" secondItem="c2R-k4-aV7" secondAttribute="trailing" constant="10" id="SMY-wN-8q6"/>
                     <constraint firstAttribute="trailing" secondItem="v2A-7H-UdF" secondAttribute="trailing" constant="10" id="XCp-So-wb7"/>
                     <constraint firstItem="LkW-LN-2zW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="XHM-Us-df0"/>
-                    <constraint firstItem="LkW-LN-2zW" firstAttribute="top" secondItem="m4a-Ea-lth" secondAttribute="bottom" constant="11" id="azg-Bl-W5s"/>
                     <constraint firstItem="eGI-Mm-tLh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ezf-Ig-ers"/>
                     <constraint firstItem="eGI-Mm-tLh" firstAttribute="top" secondItem="v2A-7H-UdF" secondAttribute="top" id="fkP-xP-m8t"/>
                     <constraint firstItem="s8Q-5V-H9v" firstAttribute="leading" secondItem="1FI-AQ-WKW" secondAttribute="leading" id="hyl-NG-Vnf"/>
@@ -115,7 +114,7 @@
                 <outlet property="priceLabel" destination="m4a-Ea-lth" id="Bvo-p7-SBM"/>
                 <outlet property="sumLabel" destination="c2R-k4-aV7" id="1wj-J9-WGF"/>
             </connections>
-            <point key="canvasLocation" x="16" y="-135"/>
+            <point key="canvasLocation" x="-6" y="-154"/>
         </tableViewCell>
     </objects>
     <resources>
