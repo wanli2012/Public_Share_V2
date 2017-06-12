@@ -48,13 +48,13 @@
     
     self.ordercode.text = self.order_sn;
     self.orderMoney.text = self.orderPrice;
-//    self.payType = 1;
+
     if (self.payType == 1) {
         self.orderMTitleLb.text = @"订单金额:";
         self.orderType.text = @"消费订单";
     }else{
-        self.orderMTitleLb.text = @"订单积分:";
-        self.orderType.text = @"积分订单";
+        self.orderMTitleLb.text = @"订单米券:";
+        self.orderType.text = @"米券订单";
     }
     for (int i=0; i<_dataarr.count; i++) {
         
@@ -336,12 +336,12 @@
 -(NSArray*)dataarr{
 
     if (!_dataarr) {
-        self.payType = 1;
+   
         if (self.payType == 1) {
-            _dataarr=[NSArray arrayWithObjects:@{@"image":@"余额",@"title":@"米子支付"},@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"}, nil];
+            _dataarr = [NSArray arrayWithObjects:@{@"image":@"余额",@"title":@"米子支付"},@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"}, nil];
         }else if (self.payType == 2){
         
-           _dataarr=[NSArray arrayWithObjects:@{@"image":@"支付积分",@"title":@"积分支付"}, nil];
+           _dataarr=[NSArray arrayWithObjects:@{@"image":@"支付积分",@"title":@"米券支付"}, nil];
         }
     }
 

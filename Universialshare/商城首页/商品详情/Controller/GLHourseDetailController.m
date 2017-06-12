@@ -595,7 +595,6 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 }
 
 
-
 - (void)changeView:(NSInteger )tag{
 
     if (tag == 11) {
