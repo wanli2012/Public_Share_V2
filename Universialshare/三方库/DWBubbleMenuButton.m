@@ -204,7 +204,7 @@
         [button.layer addAnimation:scaleAnimation forKey:@"scaleAnimation"];
         
         button.transform = CGAffineTransformMakeScale(1.f, 1.f);
-        
+
         // position animation
         CABasicAnimation *positionAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
         

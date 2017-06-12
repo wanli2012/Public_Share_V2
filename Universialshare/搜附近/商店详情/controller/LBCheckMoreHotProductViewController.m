@@ -144,7 +144,7 @@ static NSString *ID = @"LBStoreDetailHotProductTableViewCell";
     LBStoreDetailHotProductTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreDetailHotProductTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-     [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.models[indexPath.row][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
+     [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.models[indexPath.row][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"planceholder"] options:SDWebImageAllowInvalidSSLCertificates];
      cell.nameLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"name"]];
      cell.moneyLb.text = [NSString stringWithFormat:@"¥%@",self.models[indexPath.row][@"price"]];
      cell.descrebLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"goods_info"]];

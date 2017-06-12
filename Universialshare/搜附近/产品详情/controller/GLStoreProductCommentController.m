@@ -143,7 +143,7 @@ static NSString *ID = @"LBStoreDetailreplaysTableViewCell";
     cell.nameLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"user_name"]];
     cell.contentLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"comment"]];
     cell.timeLb.text = [formattime formateTimeYM:self.models[indexPath.row][@"addtime"]];
-    [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.models[indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
+    [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.models[indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"tx_icon"] options:SDWebImageAllowInvalidSSLCertificates];
     if ([self.models[indexPath.row][@"is_comment"] integerValue] == 2) {
         cell.replyLb.hidden = NO;
         cell.replyLb.text = [NSString stringWithFormat:@"商家回复:%@",self.models[indexPath.row][@"reply"]];

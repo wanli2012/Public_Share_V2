@@ -14,7 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *headimage;
 @property (weak, nonatomic) IBOutlet UILabel *namelb;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
-
 @end
 
 @implementation LBSaleManPersonInfoViewController

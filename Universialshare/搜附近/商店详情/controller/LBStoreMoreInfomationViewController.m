@@ -259,7 +259,7 @@ static const CGFloat headerImageHeight = 180.0f;
         LBStoreDetailHotProductTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreDetailHotProductTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
+        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"planceholder"] options:SDWebImageAllowInvalidSSLCertificates];
         cell.nameLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_name"]];
         cell.moneyLb.text = [NSString stringWithFormat:@"¥%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_price"]];
         cell.descrebLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][indexPath.row][@"goods_info"]];
@@ -276,7 +276,7 @@ static const CGFloat headerImageHeight = 180.0f;
         NSString *showText = [self.dataDic[@"com_data"][indexPath.row][@"comment"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         cell.contentLb.text = showText;
         cell.timeLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"addtime"]];
-        [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
+        [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"tx_icon"] options:SDWebImageAllowInvalidSSLCertificates];
         
             cell.replyLb.hidden = YES;
             cell.replyLb.text = @"";
@@ -288,7 +288,7 @@ static const CGFloat headerImageHeight = 180.0f;
     }else if (indexPath.section == 3){
         LBStoreDetailRecomendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreDetailRecomendTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.lovedataArr[indexPath.row][@"store_pic"]]] placeholderImage:[UIImage imageNamed:@"熊"] options:SDWebImageAllowInvalidSSLCertificates];
+        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.lovedataArr[indexPath.row][@"store_pic"]]] placeholderImage:[UIImage imageNamed:@"planceholder"] options:SDWebImageAllowInvalidSSLCertificates];
         cell.nameLb.text = [NSString stringWithFormat:@"%@",self.lovedataArr[indexPath.row][@"shop_name"]];
          cell.descrebLb.text = [NSString stringWithFormat:@"%@",self.lovedataArr[indexPath.row][@"shop_type"]];
         cell.styeLb.text = [NSString stringWithFormat:@"%@",self.lovedataArr[indexPath.row][@"shop_area"]];
