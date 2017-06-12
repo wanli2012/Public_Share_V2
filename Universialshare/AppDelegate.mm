@@ -93,5 +93,4 @@
     manager.enableAutoToolbar = NO;
 }
 
-
 @end
