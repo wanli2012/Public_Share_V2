@@ -38,7 +38,7 @@
                     <rect key="frame" x="0.0" y="64" width="375" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1m-Ow-Dpo">
-                            <rect key="frame" x="0.0" y="3" width="126" height="44"/>
+                            <rect key="frame" x="0.0" y="3" width="188.5" height="44"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -53,7 +53,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6Y-lo-8I3">
-                            <rect key="frame" x="126" y="3" width="126" height="44"/>
+                            <rect key="frame" x="188.5" y="3" width="188.5" height="44"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -67,8 +67,8 @@
                                 <action selector="buttonEvent:" destination="-1" eventType="touchUpInside" id="WA0-Vg-V4P"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Nh-v3-C3Y">
-                            <rect key="frame" x="252" y="3" width="126" height="44"/>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Nh-v3-C3Y">
+                            <rect key="frame" x="377" y="3" width="188.5" height="44"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -93,7 +93,7 @@
                         <constraint firstItem="9Nh-v3-C3Y" firstAttribute="top" secondItem="OBy-a4-mRV" secondAttribute="top" constant="3" id="Cvb-6D-f4m"/>
                         <constraint firstAttribute="bottom" secondItem="e6Y-lo-8I3" secondAttribute="bottom" constant="3" id="MAk-2r-x0b"/>
                         <constraint firstAttribute="height" constant="50" id="U6F-Mo-jdb"/>
-                        <constraint firstItem="Y1m-Ow-Dpo" firstAttribute="width" secondItem="OBy-a4-mRV" secondAttribute="width" multiplier="1/3" constant="1" id="VsJ-t7-fhJ"/>
+                        <constraint firstItem="Y1m-Ow-Dpo" firstAttribute="width" secondItem="OBy-a4-mRV" secondAttribute="width" multiplier="1/2" constant="1" id="VsJ-t7-fhJ"/>
                         <constraint firstItem="9Nh-v3-C3Y" firstAttribute="leading" secondItem="e6Y-lo-8I3" secondAttribute="trailing" id="YUX-uc-6A5"/>
                         <constraint firstAttribute="bottom" secondItem="9Nh-v3-C3Y" secondAttribute="bottom" constant="3" id="blv-XX-ZtO"/>
                         <constraint firstAttribute="bottom" secondItem="Y1m-Ow-Dpo" secondAttribute="bottom" constant="3" id="mgV-gf-0Vs"/>

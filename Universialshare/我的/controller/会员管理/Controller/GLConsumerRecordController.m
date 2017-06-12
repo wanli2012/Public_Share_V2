@@ -34,7 +34,7 @@ static NSString *ID = @"GLConsumerRecordCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"线上本店";
+    self.navigationItem.title = @"消费记录";
     self.automaticallyAdjustsScrollViewInsets = NO;
     //右键自定义
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -43,7 +43,6 @@ static NSString *ID = @"GLConsumerRecordCell";
     rightBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;//(需要何值请参看API文档)
     [rightBtn addTarget:self action:@selector(filte) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
-    
     
     [self.tableView registerNib:[UINib nibWithNibName:@"GLConsumerRecordCell" bundle:nil] forCellReuseIdentifier:ID];
     
@@ -79,29 +78,13 @@ static NSString *ID = @"GLConsumerRecordCell";
     self.tableView.mj_footer = footer;
     
     //默认
-    self.type = @"1";
-    self.shop_type = @"1";
+    self.type = @"0";
+    self.shop_type = @"0";
     
     [self updateData:YES];
     
 }
 - (void)setPopMenu {
-    
-//    NSDictionary *dict1 = @{@"imageName" : @"",
-//                            @"itemName" : @"线上他店"
-//                            };
-//    NSDictionary *dict2 = @{@"imageName" : @"",
-//                            @"itemName" : @"线上本店"
-//                            };
-//    NSDictionary *dict3 = @{@"imageName" : @"",
-//                            @"itemName" : @"线下他店"
-//                            };
-//    NSDictionary *dict4 = @{@"imageName" : @"",
-//                            @"itemName" : @"线下本店"
-//                            };
-//    NSArray *dataArray = @[dict2,dict4,dict1,dict3];
-    
-    //    _dataArray = dataArray;
     
     __weak __typeof(&*self)weakSelf = self;
     /**

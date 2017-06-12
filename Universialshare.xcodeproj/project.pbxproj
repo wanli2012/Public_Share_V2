@@ -4386,15 +4386,15 @@
 		4AAD250C1EC188C90054FD06 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4AAD25131EC188C90054FD06 /* GLBuyBackController.h */,
+				4AAD25141EC188C90054FD06 /* GLBuyBackController.m */,
+				4AAD25151EC188C90054FD06 /* GLBuyBackController.xib */,
 				4AAD250D1EC188C90054FD06 /* GLBuyBackChooseCardController.h */,
 				4AAD250E1EC188C90054FD06 /* GLBuyBackChooseCardController.m */,
 				4AAD250F1EC188C90054FD06 /* GLBuyBackChooseCardController.xib */,
 				4AAD25101EC188C90054FD06 /* GLBuyBackChooseController.h */,
 				4AAD25111EC188C90054FD06 /* GLBuyBackChooseController.m */,
 				4AAD25121EC188C90054FD06 /* GLBuyBackChooseController.xib */,
-				4AAD25131EC188C90054FD06 /* GLBuyBackController.h */,
-				4AAD25141EC188C90054FD06 /* GLBuyBackController.m */,
-				4AAD25151EC188C90054FD06 /* GLBuyBackController.xib */,
 				4AAD25161EC188C90054FD06 /* GLBuyBackRecord_ApplyController.h */,
 				4AAD25171EC188C90054FD06 /* GLBuyBackRecord_ApplyController.m */,
 				4AAD25181EC188C90054FD06 /* GLBuyBackRecord_FailController.h */,
@@ -4493,11 +4493,11 @@
 		4AAD255D1EC188F50054FD06 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4AAD255E1EC188F50054FD06 /* GLEncourageBeansController.h */,
-				4AAD255F1EC188F50054FD06 /* GLEncourageBeansController.m */,
 				4AAD25601EC188F50054FD06 /* GLMine_MyBeansController.h */,
 				4AAD25611EC188F50054FD06 /* GLMine_MyBeansController.m */,
 				4AAD25621EC188F50054FD06 /* GLMine_MyBeansController.xib */,
+				4AAD255E1EC188F50054FD06 /* GLEncourageBeansController.h */,
+				4AAD255F1EC188F50054FD06 /* GLEncourageBeansController.m */,
 				4AAD25631EC188F50054FD06 /* GLReceiveBeansController.h */,
 				4AAD25641EC188F50054FD06 /* GLReceiveBeansController.m */,
 				4AAD25651EC188F50054FD06 /* GLRecommendBeansController.h */,

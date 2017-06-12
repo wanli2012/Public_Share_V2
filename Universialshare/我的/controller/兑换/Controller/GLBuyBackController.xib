@@ -90,7 +90,7 @@
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAT-dI-Zzy">
-                    <rect key="frame" x="0.0" y="64" width="375" height="542"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="532"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHv-25-s53">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="542"/>
@@ -412,10 +412,10 @@
                     </constraints>
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvJ-Tg-8w6">
-                    <rect key="frame" x="10" y="626" width="355" height="35"/>
+                    <rect key="frame" x="10" y="616" width="355" height="45"/>
                     <color key="backgroundColor" red="0.15516307950019836" green="0.58942979574203491" blue="0.228211909532547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="35" id="QwK-Nn-Hlc"/>
+                        <constraint firstAttribute="height" constant="45" id="QwK-Nn-Hlc"/>
                     </constraints>
                     <state key="normal" title="确定">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -445,7 +445,7 @@
     </objects>
     <resources>
         <image name="bank_nopicture" width="66" height="66"/>
-        <image name="iv_back" width="27" height="51"/>
+        <image name="iv_back" width="13" height="25"/>
         <image name="mine_add" width="64" height="64"/>
         <image name="mine_arrow_down" width="15" height="8"/>
         <image name="mine_details" width="16" height="30"/>

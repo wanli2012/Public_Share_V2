@@ -133,7 +133,7 @@ static NSString *ID = @"GLOrderGoodsCell";
             
             for (NSDictionary *dic in responseObject[@"data"][@"goods_list"]) {
                 GLConfirmOrderModel *model = [GLConfirmOrderModel mj_objectWithKeyValues:dic];
-                [_models addObject:model];
+                [self.models addObject:model];
             }
             self.tableViewHeight.constant = _models.count * 140 * autoSizeScaleY;
             self.contentViewH.constant = _models.count * 140 * autoSizeScaleY + 220;
@@ -248,6 +248,7 @@ static NSString *ID = @"GLOrderGoodsCell";
     GLOrderGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     cell.model = self.models[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     if(self.orderType == 1){
         cell.fanliLabel.hidden = YES;
     }else{
@@ -256,7 +257,10 @@ static NSString *ID = @"GLOrderGoodsCell";
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 140 *autoSizeScaleY;
+//    return 140 *autoSizeScaleY;
+    self.tableView.estimatedRowHeight = 44;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    return self.tableView.rowHeight;
 }
 
 #pragma 懒加载

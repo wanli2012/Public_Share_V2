@@ -56,7 +56,7 @@
 @implementation SlideTabBarView
 
 -(instancetype)initWithFrame:(CGRect)frame WithCount: (int) count{
-    self = [super initWithFrame:frame ];
+    self = [super initWithFrame:frame];
     
     if (self) {
         
@@ -246,7 +246,7 @@ GLNearby_AllController *all;
             [_scrollTableViews addObject:live.view];
             [_scrollView addSubview:live.view];
             
-        }else if (i == 6) {
+        }else if (i == 2) {
             play = [[GLNearby_PlayController alloc] init];
    
             [self.viewController addChildViewController:play];
@@ -255,7 +255,7 @@ GLNearby_AllController *all;
             [_scrollTableViews addObject:play.view];
             [_scrollView addSubview:play.view];
             
-        }else if(i == 2){
+        }else if(i == 3){
             all = [[GLNearby_AllController alloc] init];
    
             [self.viewController addChildViewController:all];

@@ -71,7 +71,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         
     }
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades[0];
+    GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades[2];
     dict[@"trade_id"] = model.trade_id;
     dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
     dict[@"lat"] = [GLNearby_Model defaultUser].latitude;

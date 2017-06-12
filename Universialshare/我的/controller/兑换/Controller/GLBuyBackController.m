@@ -49,9 +49,9 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-
 @property (weak, nonatomic) IBOutlet UIView *headView;
 
+@property (nonatomic, assign)int type;
 
 @end
 
@@ -265,8 +265,11 @@
                 }else if ([self.cardStyleLabel.text isEqualToString:@"中国建设银行"]){
                     self.bankStyleImageV.image = [UIImage imageNamed:@"CCB"];
                     
-                }else {
+                }else if ([self.cardStyleLabel.text isEqualToString:@"中国农业银行"]){
                     self.bankStyleImageV.image = [UIImage imageNamed:@"ABC"];
+                    
+                }else{
+                    self.bankStyleImageV.image = [UIImage imageNamed:@"bank_nopicture"];
                 }
             }else{
                 [self hideBankInfo];
@@ -377,7 +380,7 @@
             
             contentView.contentLabel.text = [NSString stringWithFormat:@"手续费为兑换数量的6%%"];
         }
-        
+        self.type = 1;
         [_maskV showViewWithContentView:contentView];
 
     }];
@@ -389,7 +392,7 @@
             
             contentView.contentLabel.text = [NSString stringWithFormat:@"手续费为兑换数量的3%%"];
         }
-        
+        self.type = 2;
         [_maskV showViewWithContentView:contentView];
         
     }];
@@ -402,7 +405,7 @@
             
             contentView.contentLabel.text = [NSString stringWithFormat:@"手续费为5颗米子"];
         }
-        
+        self.type = 3;
         [_maskV showViewWithContentView:contentView];
 
     }];
@@ -437,6 +440,9 @@
     dict[@"IDcar"] = self.cardNumLabel.text;
     //开户行地址  ???
     dict[@"address"] = self.cardStyleLabel.text;
+    
+    dict[@"type"] = [NSString stringWithFormat:@"%d",self.type];
+    
     NSString *encryptsecret = [RSAEncryptor encryptString:self.secondPwdF.text publicKey:public_RSA];
     dict[@"password"] = encryptsecret;
     if ([self.beanStyleLabel.text isEqualToString:NormalMoney]) {
@@ -444,7 +450,7 @@
     }else{
         dict[@"donatetype"] = @"0";
     }
-//    NSLog(@"dict  = %@",dict);
+
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"user/back" paramDic:dict finish:^(id responseObject) {
         

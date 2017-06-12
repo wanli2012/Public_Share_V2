@@ -55,7 +55,7 @@
     
     if (model.thumb.length > 0 ) {
         
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@""]];
+        [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@""]];
     }
 }
 @end

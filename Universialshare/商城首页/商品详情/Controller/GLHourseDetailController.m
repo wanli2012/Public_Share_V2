@@ -302,7 +302,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     GLConfirmOrderController *vc=[[GLConfirmOrderController alloc]init];
     vc.goods_id = self.goods_id;
     vc.goods_count = cell.sumLabel.text;
-    vc.orderType = self.type; //订单类型
+    vc.orderType = 2; //订单类型
     [self.navigationController pushViewController:vc animated:YES];
 
 }

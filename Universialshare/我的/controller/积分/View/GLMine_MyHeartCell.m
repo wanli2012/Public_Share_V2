@@ -14,9 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *encourageSumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *heartSumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *encouragingLabel;
-@property (weak, nonatomic) IBOutlet UILabel *jiliCompleteLabel;
-@property (weak, nonatomic) IBOutlet UILabel *daijiliLabel;
-@property (weak, nonatomic) IBOutlet UILabel *finishedNumLabel;
+
 
 
 
@@ -68,26 +66,23 @@
         
         self.encourageSumLabel.text = model.zjl;
     }
-    if([model.love floatValue] > 10000){
-        
-        self.heartSumLabel.text = [NSString stringWithFormat:@"%.2f万",[model.love floatValue]/10000];
-        
-    }else{
-        
-        self.heartSumLabel.text = model.love;
-    }
     if([model.jl_love floatValue] > 10000){
         
-        self.encouragingLabel.text = [NSString stringWithFormat:@"%.2f万",[model.jl_love floatValue]/10000];
+        self.heartSumLabel.text = [NSString stringWithFormat:@"%.2f万",[model.jl_love floatValue]/10000];
         
     }else{
         
-        self.encouragingLabel.text = model.jl_love;
+        self.heartSumLabel.text = model.jl_love;
+    }
+    if([model.end_love floatValue] > 10000){
+        
+        self.encouragingLabel.text = [NSString stringWithFormat:@"%.2f万",[model.end_love floatValue]/10000];
+        
+    }else{
+        
+        self.encouragingLabel.text = model.end_love;
     }
 
-//    self.jiliCompleteLabel.text = model.end_love;
-//    self.daijiliLabel.text = model.bean;
-//    self.finishedNumLabel.text = model.end_bean;
 
 }
 

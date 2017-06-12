@@ -18,14 +18,20 @@
                 <rect key="frame" x="0.0" y="0.0" width="344" height="139"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="某某汽车XX型号豪华版" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2A-7H-UdF">
-                        <rect key="frame" x="170" y="10" width="148" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="某某汽车XX型号豪华版rferg某某汽车XX型号豪华版rferg" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2A-7H-UdF">
+                        <rect key="frame" x="170" y="10" width="164" height="33.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="nbI-vC-vya"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="车型:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXF-74-Czh">
-                        <rect key="frame" x="170" y="42" width="31" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="车型:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXF-74-Czh">
+                        <rect key="frame" x="170" y="58.5" width="164" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="60A-W9-Uxs"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -77,23 +83,26 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="eGI-Mm-tLh" secondAttribute="bottom" constant="10" id="2fj-ap-Fl3"/>
                     <constraint firstItem="s8Q-5V-H9v" firstAttribute="centerY" secondItem="1FI-AQ-WKW" secondAttribute="centerY" id="3iR-T7-RAO"/>
+                    <constraint firstAttribute="trailing" secondItem="xXF-74-Czh" secondAttribute="trailing" constant="10" id="51X-p1-gT7"/>
                     <constraint firstItem="1FI-AQ-WKW" firstAttribute="leading" secondItem="v2A-7H-UdF" secondAttribute="leading" id="9wv-qF-G9E"/>
                     <constraint firstItem="s8Q-5V-H9v" firstAttribute="trailing" secondItem="1FI-AQ-WKW" secondAttribute="trailing" id="DMO-yJ-q7c"/>
+                    <constraint firstItem="c2R-k4-aV7" firstAttribute="centerY" secondItem="m4a-Ea-lth" secondAttribute="centerY" id="Egd-et-o6a"/>
                     <constraint firstItem="m4a-Ea-lth" firstAttribute="leading" secondItem="v2A-7H-UdF" secondAttribute="leading" id="IJt-TX-3xd"/>
-                    <constraint firstItem="m4a-Ea-lth" firstAttribute="bottom" secondItem="eGI-Mm-tLh" secondAttribute="bottom" id="NxZ-Vd-PtI"/>
+                    <constraint firstItem="1FI-AQ-WKW" firstAttribute="top" secondItem="xXF-74-Czh" secondAttribute="bottom" constant="10" id="KOW-cq-6eA"/>
+                    <constraint firstItem="v2A-7H-UdF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="LDi-m3-Ucw"/>
+                    <constraint firstItem="LkW-LN-2zW" firstAttribute="top" secondItem="m4a-Ea-lth" secondAttribute="bottom" constant="9" id="O4C-vu-GDF"/>
                     <constraint firstItem="v2A-7H-UdF" firstAttribute="leading" secondItem="eGI-Mm-tLh" secondAttribute="trailing" constant="10" id="Rml-Oe-yv2"/>
                     <constraint firstAttribute="trailing" secondItem="c2R-k4-aV7" secondAttribute="trailing" constant="10" id="SMY-wN-8q6"/>
-                    <constraint firstAttribute="bottom" secondItem="c2R-k4-aV7" secondAttribute="bottom" constant="10" id="UBZ-X6-4vO"/>
+                    <constraint firstAttribute="trailing" secondItem="v2A-7H-UdF" secondAttribute="trailing" constant="10" id="XCp-So-wb7"/>
                     <constraint firstItem="LkW-LN-2zW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="XHM-Us-df0"/>
                     <constraint firstItem="eGI-Mm-tLh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ezf-Ig-ers"/>
-                    <constraint firstItem="v2A-7H-UdF" firstAttribute="top" secondItem="eGI-Mm-tLh" secondAttribute="top" id="fac-bv-Yb2"/>
+                    <constraint firstItem="eGI-Mm-tLh" firstAttribute="top" secondItem="v2A-7H-UdF" secondAttribute="top" id="fkP-xP-m8t"/>
                     <constraint firstItem="s8Q-5V-H9v" firstAttribute="leading" secondItem="1FI-AQ-WKW" secondAttribute="leading" id="hyl-NG-Vnf"/>
                     <constraint firstItem="xXF-74-Czh" firstAttribute="leading" secondItem="v2A-7H-UdF" secondAttribute="leading" id="jhu-h4-zmg"/>
                     <constraint firstAttribute="trailing" secondItem="LkW-LN-2zW" secondAttribute="trailing" id="mTW-dS-RHw"/>
                     <constraint firstAttribute="bottom" secondItem="LkW-LN-2zW" secondAttribute="bottom" id="qI2-F9-m0v"/>
-                    <constraint firstItem="eGI-Mm-tLh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="tGD-UU-AJj"/>
+                    <constraint firstItem="eGI-Mm-tLh" firstAttribute="bottom" secondItem="m4a-Ea-lth" secondAttribute="bottom" id="tIw-Qh-Ico"/>
                     <constraint firstItem="m4a-Ea-lth" firstAttribute="top" secondItem="1FI-AQ-WKW" secondAttribute="bottom" constant="10" id="vC0-ib-DPX"/>
                     <constraint firstItem="xXF-74-Czh" firstAttribute="top" secondItem="v2A-7H-UdF" secondAttribute="bottom" constant="15" id="xmr-Oe-lUP"/>
                 </constraints>
