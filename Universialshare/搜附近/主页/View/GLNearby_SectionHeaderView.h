@@ -12,7 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *moreBtn;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *iconImageV;
+@property (weak, nonatomic) IBOutlet UIImageView *imagev;
 
 @property (nonatomic, assign)NSInteger index;//0:推荐商家  1:附近商家
 

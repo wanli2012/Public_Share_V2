@@ -171,7 +171,7 @@
     
     
     
-    for (int i = 0; i < _tabCount; i ++) {
+    for (int i = 0; i < name1.count; i ++) {
         
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(i * width, 0, width, TOPHEIGHT)];
         
@@ -246,7 +246,7 @@ GLNearby_AllController *all;
             [_scrollTableViews addObject:live.view];
             [_scrollView addSubview:live.view];
             
-        }else if (i == 2) {
+        }else if (i == 6) {
             play = [[GLNearby_PlayController alloc] init];
    
             [self.viewController addChildViewController:play];
@@ -255,7 +255,7 @@ GLNearby_AllController *all;
             [_scrollTableViews addObject:play.view];
             [_scrollView addSubview:play.view];
             
-        }else {
+        }else if(i == 2){
             all = [[GLNearby_AllController alloc] init];
    
             [self.viewController addChildViewController:all];

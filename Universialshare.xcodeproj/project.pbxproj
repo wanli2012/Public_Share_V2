@@ -952,6 +952,9 @@
 		F97F09DE1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09DC1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib */; };
 		F97F09E21EC98AEA000D3B30 /* LBAddMineProductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F09E01EC98AEA000D3B30 /* LBAddMineProductionViewController.m */; };
 		F97F09E31EC98AEA000D3B30 /* LBAddMineProductionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09E11EC98AEA000D3B30 /* LBAddMineProductionViewController.xib */; };
+		F9E3A5391EEA7EF0009B9F16 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E3A5381EEA7EF0009B9F16 /* UIView+Extension.m */; };
+		F9E3A53F1EEA7F40009B9F16 /* ChooseRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E3A53C1EEA7F40009B9F16 /* ChooseRank.m */; };
+		F9E3A5401EEA7F40009B9F16 /* ChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E3A53E1EEA7F40009B9F16 /* ChooseView.m */; };
 		F9F780451ED2E7C900A498D6 /* LBMyOrderlistHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F780441ED2E7C900A498D6 /* LBMyOrderlistHeaderFooterView.m */; };
 		F9F780491ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F780471ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.m */; };
 		F9F7804A1ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F780481ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.xib */; };
@@ -2601,6 +2604,12 @@
 		F97F09DF1EC98AEA000D3B30 /* LBAddMineProductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBAddMineProductionViewController.h; sourceTree = "<group>"; };
 		F97F09E01EC98AEA000D3B30 /* LBAddMineProductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBAddMineProductionViewController.m; sourceTree = "<group>"; };
 		F97F09E11EC98AEA000D3B30 /* LBAddMineProductionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBAddMineProductionViewController.xib; sourceTree = "<group>"; };
+		F9E3A5371EEA7EF0009B9F16 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		F9E3A5381EEA7EF0009B9F16 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		F9E3A53B1EEA7F40009B9F16 /* ChooseRank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseRank.h; sourceTree = "<group>"; };
+		F9E3A53C1EEA7F40009B9F16 /* ChooseRank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseRank.m; sourceTree = "<group>"; };
+		F9E3A53D1EEA7F40009B9F16 /* ChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseView.h; sourceTree = "<group>"; };
+		F9E3A53E1EEA7F40009B9F16 /* ChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseView.m; sourceTree = "<group>"; };
 		F9F780431ED2E7C900A498D6 /* LBMyOrderlistHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMyOrderlistHeaderFooterView.h; sourceTree = "<group>"; };
 		F9F780441ED2E7C900A498D6 /* LBMyOrderlistHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMyOrderlistHeaderFooterView.m; sourceTree = "<group>"; };
 		F9F780461ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterMYOrderEvaluationDetailOneTableViewCell.h; sourceTree = "<group>"; };
@@ -2672,6 +2681,8 @@
 		4A0023EF1E84AD6700B2A9FE /* Tool(工具类) */ = {
 			isa = PBXGroup;
 			children = (
+				F9E3A5371EEA7EF0009B9F16 /* UIView+Extension.h */,
+				F9E3A5381EEA7EF0009B9F16 /* UIView+Extension.m */,
 				F90B991C1ED417FC00E75C95 /* formattime.h */,
 				F90B991D1ED417FC00E75C95 /* formattime.m */,
 				F961A9CD1E9C75AF00275F52 /* GetLabelBounds.h */,
@@ -3201,6 +3212,7 @@
 				F92D9FEE1ECD8FBE004CBAA8 /* LCStarRatingView */,
 				F92DA0111ECDA14B004CBAA8 /* menu */,
 				F9643EFE1ECFE74D001B707B /* TYAlertController */,
+				F9E3A53A1EEA7F40009B9F16 /* ChooseView */,
 			);
 			path = "三方库";
 			sourceTree = "<group>";
@@ -6302,6 +6314,17 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		F9E3A53A1EEA7F40009B9F16 /* ChooseView */ = {
+			isa = PBXGroup;
+			children = (
+				F9E3A53B1EEA7F40009B9F16 /* ChooseRank.h */,
+				F9E3A53C1EEA7F40009B9F16 /* ChooseRank.m */,
+				F9E3A53D1EEA7F40009B9F16 /* ChooseView.h */,
+				F9E3A53E1EEA7F40009B9F16 /* ChooseView.m */,
+			);
+			path = ChooseView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -6807,6 +6830,7 @@
 				F90C45321ED6AD8A001650BD /* QBSlomoIconView.m in Sources */,
 				F92309381E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeDetailOneTableViewCell.m in Sources */,
 				F951EB1B1EA1EFD700D6708E /* LBMineCenterUsualUnderOrderTwoViewController.m in Sources */,
+				F9E3A5391EEA7EF0009B9F16 /* UIView+Extension.m in Sources */,
 				4A46107B1E9CC6360045824F /* ZXBoolArray.m in Sources */,
 				F951EB201EA1EFED00D6708E /* LBMineCenterUsualUnderOrderThreeViewController.m in Sources */,
 				F9434D4F1EC16D78001C80A4 /* LBMineCenterRegionQueryTableViewCell.m in Sources */,
@@ -7029,6 +7053,7 @@
 				4A2F522B1EC7084100ECA95D /* TypeView.m in Sources */,
 				4AD551521EB36E4D00C04062 /* SYDatePicker.m in Sources */,
 				4AAD25841EC188F50054FD06 /* GLRecommendCell.m in Sources */,
+				F9E3A53F1EEA7F40009B9F16 /* ChooseRank.m in Sources */,
 				4A4610A11E9CC6360045824F /* ZXDataMatrixHighLevelEncoder.m in Sources */,
 				4A46109F1E9CC6360045824F /* ZXDataMatrixEncoderContext.m in Sources */,
 				F97F09DD1EC9406D000D3B30 /* LBProductManagementTableViewCell.m in Sources */,
@@ -7246,6 +7271,7 @@
 				4A4610E01E9CC6370045824F /* ZXUPCEANExtension5Support.m in Sources */,
 				4AFAB8C71EBD9A4500CCFDCE /* GLSetup_VersionInfoController.m in Sources */,
 				F961A9DC1E9C765A00275F52 /* NetworkManager.m in Sources */,
+				F9E3A5401EEA7F40009B9F16 /* ChooseView.m in Sources */,
 				F9061FD01E83C4720080E9D9 /* AppDelegate.mm in Sources */,
 				4A0D978C1E9729C100A26B84 /* GLHomePageController.m in Sources */,
 				F9061FCD1E83C4720080E9D9 /* main.m in Sources */,

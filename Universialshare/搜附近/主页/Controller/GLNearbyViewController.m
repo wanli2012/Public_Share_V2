@@ -66,7 +66,6 @@
                     [self.models addObject:model];
                 }
                 [GLNearby_Model defaultUser].trades = self.models;
-                
                 [self.view addSubview:self.slideV];
             }
         }
@@ -186,7 +185,7 @@
 
 - (SlideTabBarView *)slideV{
     if (!_slideV) {
-        _slideV = [[SlideTabBarView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 49-64) WithCount:4];
+        _slideV = [[SlideTabBarView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 49-64) WithCount:self.models.count +1];
     }
     return _slideV;
 }

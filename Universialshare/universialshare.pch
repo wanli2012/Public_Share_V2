@@ -27,4 +27,10 @@
 
 #import "GLNearby_Model.h"
 
+#import "UIView+Extension.h"
+
+#define FONT(s)       [UIFont systemFontOfSize:s]
+#define BackgroundColor [UIColor colorWithRed:240/255.0f green:240/255.0f blue:244/255.0f alpha:1]
+#define MainColor        [UIColor colorWithRed:24/255.0f green:161/255.0f blue:76/255.0f alpha:1]
+
 #endif /* universialshare_pch */

@@ -73,7 +73,6 @@ static NSString *ID = @"GLNearby_classifyCell";
         
     }else{
         _page ++;
-        
     }
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -85,8 +84,6 @@ static NSString *ID = @"GLNearby_classifyCell";
     [NetworkManager requestPOSTWithURLStr:@"shop/searchNearShopByContent" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
-        //        NSLog(@"dict = %@",dict);
-        //        NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue]==1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 for (NSDictionary *dic  in responseObject[@"data"][@"shop_data"]) {

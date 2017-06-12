@@ -85,10 +85,10 @@
         }
     };
     
-    NSDictionary *dict1 = @{@"imageName" : @"密码",
+    NSDictionary *dict1 = @{@"imageName" : @"",
                             @"itemName" : @"推广员"
                             };
-    NSDictionary *dict2 = @{@"imageName" : @"密码",
+    NSDictionary *dict2 = @{@"imageName" : @"",
                             @"itemName" : @"高级推广员"
                             };
 //    NSDictionary *dict3 = @{@"imageName" : @"密码",

@@ -26,6 +26,8 @@
     self.panicBuyingBtn.layer.cornerRadius = 5.f;
     self.panicBuyingBtn.clipsToBounds = YES;
     [self changeColor:self.jifenLabel rangeNumber:2666];
+    self.imageV.layer.cornerRadius = 4;
+    self.imageV.clipsToBounds = YES;
 }
 
 

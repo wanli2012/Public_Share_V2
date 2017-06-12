@@ -10,6 +10,7 @@
 @protocol GLHourseChangeNumCellDelegate <NSObject>
 
 - (void)changeNum:(NSInteger )tag indexPath:(NSIndexPath *)indexPath;
+- (void)SpecificationsEvent;
 
 @end
 
@@ -18,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *reduceBtn;
 @property (weak, nonatomic) IBOutlet UIButton *addBtn;
 @property (weak, nonatomic) IBOutlet UILabel *sumLabel;
+@property (weak, nonatomic) IBOutlet UIButton *SpecificationsBt;
+@property (weak, nonatomic) IBOutlet UILabel *SpecificationsLb;
 
 
 @property (nonatomic, strong)NSIndexPath *indexPath;

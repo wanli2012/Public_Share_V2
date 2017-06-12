@@ -136,7 +136,7 @@ static NSString *ID = @"LBStoreDetailHotProductTableViewCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 70;
+    return 90;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -148,7 +148,6 @@ static NSString *ID = @"LBStoreDetailHotProductTableViewCell";
      cell.nameLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"name"]];
      cell.moneyLb.text = [NSString stringWithFormat:@"¥%@",self.models[indexPath.row][@"price"]];
      cell.descrebLb.text = [NSString stringWithFormat:@"%@",self.models[indexPath.row][@"goods_info"]];
-    
     
     return cell;
     

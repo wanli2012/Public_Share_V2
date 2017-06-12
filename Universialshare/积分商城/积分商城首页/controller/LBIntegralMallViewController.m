@@ -68,7 +68,9 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
     _cycleScrollView.titleLabelBackgroundColor = [UIColor clearColor];// 图片对应的标题的 背景色。（因为没有设标题）
     _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
-    
+    _cycleScrollView.localizationImageNamesGroup = @[@"banner01",
+                                                     @"banner02",
+                                                     @"banner03"];
     
     self.tableView.tableHeaderView = _cycleScrollView;
 
@@ -149,7 +151,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
                         [arrM addObject:dic[@"img_path"]];
                     }
                 }
-                if (arrM.count >= 3) {
+                if (arrM.count  <= 0) {
                     
                     _cycleScrollView.imageURLStringsGroup = arrM;
                 }else{
@@ -158,6 +160,10 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
                                                                      @"banner03"];
                 }
                 
+            }else{
+                _cycleScrollView.localizationImageNamesGroup = @[@"banner01",
+                                                                 @"banner02",
+                                                                 @"banner03"];
             }
         }
         [self.tableView reloadData];

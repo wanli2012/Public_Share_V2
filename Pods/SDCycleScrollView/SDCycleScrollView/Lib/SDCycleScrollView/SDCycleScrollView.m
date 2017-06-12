@@ -157,7 +157,7 @@ NSString * const ID = @"cycleCell";
     
     if (!self.backgroundImageView) {
         UIImageView *bgImageView = [UIImageView new];
-        bgImageView.contentMode = UIViewContentModeScaleAspectFill;
+        bgImageView.contentMode = UIViewContentModeScaleToFill;
         bgImageView.clipsToBounds = YES;
         [self insertSubview:bgImageView belowSubview:self.mainView];
         self.backgroundImageView = bgImageView;
