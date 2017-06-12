@@ -62,6 +62,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     
 }
 - (void)viewWillAppear:(BOOL)animated{
+    
     [super viewWillAppear:animated];
 //    
 //    [MXNavigationBarManager reStoreToCustomNavigationBar:self];
@@ -112,7 +113,6 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                 __weak typeof(self) weakSelf = self;
                 
                 headerV.block = ^(NSString *typeID,NSInteger count){
-                    NSLog(@"typeID = %@",typeID);
                     
                     if ([typeID isEqualToString:@"全部"]) {
                         
@@ -125,7 +125,9 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                             weakSelf.tableView.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, (count/4 +1) * 30 + 10);
                         }
                     }else if([typeID isEqualToString:@"收起"]){
+                        
                         weakSelf.tableView.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 70);
+                        
                     }else{
                         
                         for (int i = 0; i < self.tradeTwoModels.count; i ++) {
