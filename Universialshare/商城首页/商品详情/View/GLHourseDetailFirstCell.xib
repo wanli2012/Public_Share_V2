@@ -18,10 +18,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最高返利: 2666元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpr-ck-eQA">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="现价: 2666元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpr-ck-eQA">
                         <rect key="frame" x="10" y="67" width="300" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字 啊" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09N-Da-QlE">
@@ -75,9 +75,16 @@
                             <constraint firstAttribute="height" constant="20" id="Txb-Vf-SID"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.93559116129999997" green="0.2449045181" blue="0.0002224964264" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEL-vb-jJM">
+                        <rect key="frame" x="10" y="46.5" width="45" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="r7H-ta-ks5"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="09N-Da-QlE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="21U-VR-wnv"/>
@@ -86,7 +93,10 @@
                     <constraint firstItem="qpr-ck-eQA" firstAttribute="height" secondItem="AQE-JS-5vZ" secondAttribute="height" id="7nW-HP-gB7"/>
                     <constraint firstItem="qpr-ck-eQA" firstAttribute="leading" secondItem="AQE-JS-5vZ" secondAttribute="leading" id="93w-T7-qiR"/>
                     <constraint firstItem="82Y-OM-YGa" firstAttribute="centerY" secondItem="o4U-cF-sRj" secondAttribute="centerY" id="BEj-ti-8ze"/>
+                    <constraint firstItem="AQE-JS-5vZ" firstAttribute="trailing" secondItem="HEL-vb-jJM" secondAttribute="trailing" id="KfO-q6-bRT"/>
                     <constraint firstAttribute="trailing" secondItem="82Y-OM-YGa" secondAttribute="trailing" constant="10" id="LMH-0e-t3T"/>
+                    <constraint firstItem="AQE-JS-5vZ" firstAttribute="leading" secondItem="HEL-vb-jJM" secondAttribute="leading" id="MIt-cL-RJZ"/>
+                    <constraint firstItem="HEL-vb-jJM" firstAttribute="centerY" secondItem="AQE-JS-5vZ" secondAttribute="centerY" id="SnT-iU-FQk"/>
                     <constraint firstAttribute="trailing" secondItem="09N-Da-QlE" secondAttribute="trailing" constant="10" id="aPh-rv-p61"/>
                     <constraint firstItem="AQE-JS-5vZ" firstAttribute="top" secondItem="09N-Da-QlE" secondAttribute="bottom" constant="10" id="aXQ-Xt-RfN"/>
                     <constraint firstAttribute="trailing" secondItem="qpr-ck-eQA" secondAttribute="trailing" constant="10" id="cyG-er-ezO"/>

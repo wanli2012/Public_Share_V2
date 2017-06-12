@@ -119,6 +119,7 @@ static NSString *ID = @"GLOrderGoodsCell";
     dict1[@"uid"] = [UserModel defaultUser].uid;
     dict1[@"goods_id"] = self.goods_id;
     dict1[@"goods_count"] = self.goods_count;
+    dict1[@"goods_spec"] = self.goods_spec;
   
     //请求商品信息
     [NetworkManager requestPOSTWithURLStr:@"shop/placeOrderBefore" paramDic:dict1 finish:^(id responseObject) {

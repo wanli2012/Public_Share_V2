@@ -180,7 +180,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
         
 //        [_loadV removeloadview];
         [self endRefresh];
-//        NSLog(@"responseObject = %@",responseObject);
+
         if ([responseObject[@"code"] integerValue] == 1){
             for (NSDictionary *dic in responseObject[@"data"][@"mall_tabe"]) {
                 

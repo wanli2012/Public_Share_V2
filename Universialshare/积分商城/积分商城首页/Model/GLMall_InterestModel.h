@@ -17,7 +17,7 @@
 //商品名称
 @property (nonatomic, copy)NSString *goods_name;
 //价格
-@property (nonatomic, copy)NSString *goods_price;
+@property (nonatomic, copy)NSString *discount;
 //商品其他介绍
 @property (nonatomic, copy)NSString *goods_details;
 

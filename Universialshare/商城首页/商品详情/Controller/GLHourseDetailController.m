@@ -44,7 +44,8 @@
 @property (assign, nonatomic) NSInteger is_collection;//是否收藏
 @property (weak, nonatomic) IBOutlet UIImageView *collectionimage;
 
-@property (nonatomic, strong)NSString *goods_spec;//规格项名字 如果是两个就用+拼接  例子:紫色+m
+@property (nonatomic, copy)NSString *goods_spec;//规格项名字 如果是两个就用+拼接  例子:紫色+m
+@property (nonatomic, copy)NSString *spec_id;//规格项id
 
 @end
 static NSString *firstCell = @"GLHourseDetailFirstCell";
@@ -230,8 +231,6 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
             
         }];
     }
-    
-    
 }
 
 //积分兑换
@@ -245,20 +244,24 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 
 //加入购物车
 - (IBAction)addToCart:(id)sender {
-    
+    //取出 数量
+    GLHourseChangeNumCell *cell = [self.tableView cellForRowAtIndexPath:_indexPath];
     if ([UserModel defaultUser].loginstatus == NO) {
         [MBProgressHUD showError:@"请先登录"];
         return;
     }
+    if ([cell.sumLabel.text integerValue] <= 0) {
+        [MBProgressHUD showError:@"数量不能为0"];
+        return;
+    }
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"goods_id"] = self.goods_id;
     dict[@"type"] = @(self.type);
-    dict[@"spec_id"] = @"";
-
-    //取出 数量
-    GLHourseChangeNumCell *cell = [self.tableView cellForRowAtIndexPath:_indexPath];
+    dict[@"spec_id"] = self.spec_id;
+    
     _sum = [cell.sumLabel.text integerValue];
     dict[@"count"] = @(_sum);
   
@@ -295,7 +298,11 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         [MBProgressHUD showError:@"请先登录"];
         return;
     }
-    self.hidesBottomBarWhenPushed = YES;
+    if ([cell.sumLabel.text integerValue] <= 0) {
+        [MBProgressHUD showError:@"数量不能为0"];
+        return;
+    }
+
     GLConfirmOrderController *vc=[[GLConfirmOrderController alloc]init];
     vc.goods_id = self.goods_id;
     vc.goods_count = cell.sumLabel.text;
@@ -478,7 +485,9 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         
         if ([responseObject[@"code"] integerValue] == 1){
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-                self.model.money = responseObject[@"data"][@"marketprice"];
+                self.model.rebate = responseObject[@"data"][@"marketprice"];
+                self.model.money = responseObject[@"data"][@"productprice"];
+                self.spec_id = responseObject[@"data"][@"spec_id"];
                 [self.tableView reloadData];
             }
         }

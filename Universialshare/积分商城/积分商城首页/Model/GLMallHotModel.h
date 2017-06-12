@@ -19,4 +19,6 @@
 
 @property (nonatomic, copy)NSString *mall_id;
 
+
+
 @end
