@@ -540,8 +540,8 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 //确定
 -(void)Buynow{
     self.goods_spec = @"";
-    if (self.rankArray.count <= 0) {
-        [MBProgressHUD showError:@"还未选择规格"];
+    if (self.rankArray.count !=  self.standardList.count) {
+        [MBProgressHUD showError:@"请选择所有规格"];
         return;
     }
     
@@ -571,7 +571,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 }
 
 -(void)selectBtnTitle:(NSString *)title andBtn:(UIButton *)btn{
-    
+    [self.rankArray removeAllObjects];
     for (int i=0; i < _standardList.count; i++)
     {
         ChooseRank *view = [self.chooseView.mainscrollview viewWithTag:8000+i];
