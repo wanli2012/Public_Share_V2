@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *xiajiaImageV;
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *specLabel;
 
 @end
 
@@ -57,6 +58,7 @@
         self.typeLabel.text = @"返利商品";
     }else{
          self.typeLabel.text = @"米券商品";
+        self.specLabel.text = [NSString stringWithFormat:@"规格:%@",model.spec];
     }
 }
 

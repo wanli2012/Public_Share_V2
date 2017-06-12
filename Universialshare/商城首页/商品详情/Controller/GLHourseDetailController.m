@@ -259,6 +259,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"goods_id"] = self.goods_id;
     dict[@"type"] = @(self.type);
+    dict[@"spec_id"] = @"";
 
     //取出 数量
     GLHourseChangeNumCell *cell = [self.tableView cellForRowAtIndexPath:_indexPath];
@@ -303,7 +304,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     vc.goods_id = self.goods_id;
     vc.goods_count = cell.sumLabel.text;
     vc.orderType = 2; //订单类型
-    vc.goods_spec = @"0";
+    vc.goods_spec = self.goods_spec;
     [self.navigationController pushViewController:vc animated:YES];
 
 }
@@ -555,20 +556,22 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     }
     self.chooseView.mainscrollview.contentSize = CGSizeMake(0, height);
     
-    //加入购物车按钮
+    //加入购物车按钮  取消
     [self.chooseView.addBtn addTarget:self action:@selector(addGoodsCartBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    //立即购买
+    //立即购买  确定
     [self.chooseView.buyBtn addTarget:self action:@selector(Buynow) forControlEvents:UIControlEventTouchUpInside];
     //取消按钮
-    [self.chooseView.cancelBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+//    [self.chooseView.cancelBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
     //点击黑色透明视图choseView会消失
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
     [self.chooseView.alphaView addGestureRecognizer:tap];
 }
+//取消
 -(void)addGoodsCartBtnClick{
     
     [self dismiss];
 }
+//确定
 -(void)Buynow{
     self.goods_spec = @"";
     if (self.rankArray.count <= 0) {
@@ -602,8 +605,6 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 }
 
 -(void)selectBtnTitle:(NSString *)title andBtn:(UIButton *)btn{
-    
-    [self.rankArray removeAllObjects];
     
     for (int i=0; i < _standardList.count; i++)
     {
