@@ -120,6 +120,7 @@ static NSString *ID = @"GLOrderGoodsCell";
     dict1[@"uid"] = [UserModel defaultUser].uid;
     dict1[@"goods_id"] = self.goods_id;
     dict1[@"goods_count"] = self.goods_count;
+  
     //请求商品信息
     [NetworkManager requestPOSTWithURLStr:@"shop/placeOrderBefore" paramDic:dict1 finish:^(id responseObject) {
         
@@ -198,6 +199,7 @@ static NSString *ID = @"GLOrderGoodsCell";
     dict[@"address_id"] = self.address_id;
     dict[@"remark"] = self.remarkTextV.text;
     dict[@"cart_id"] = self.cart_id;
+    dict[@"goods_spec"] = self.goods_spec;//
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/placeOrderEnd" paramDic:dict finish:^(id responseObject) {
@@ -257,10 +259,10 @@ static NSString *ID = @"GLOrderGoodsCell";
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 140 *autoSizeScaleY;
-    self.tableView.estimatedRowHeight = 44;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    return self.tableView.rowHeight;
+    return 140 *autoSizeScaleY;
+//    self.tableView.estimatedRowHeight = 44;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
+//    return self.tableView.rowHeight;
 }
 
 #pragma 懒加载

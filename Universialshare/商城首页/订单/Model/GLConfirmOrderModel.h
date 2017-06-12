@@ -30,4 +30,6 @@
 
 @property (nonatomic, strong)NSString *cart_url;
 
+@property (nonatomic, strong)NSString *cart_spec;
+
 @end
