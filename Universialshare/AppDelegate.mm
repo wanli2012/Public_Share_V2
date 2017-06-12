@@ -65,8 +65,23 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
    
-        return [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+       return [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+
+}
+
+// 支持所有iOS系统
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
     
+    if ([url.host isEqualToString:@"pay"]) {
+        
+    }else if ([url.host isEqualToString:@"safepay"]){
+        
+    }else{
+        return [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+    }
+
+     return YES;
 }
 
 #pragma mark - 键盘高度处理

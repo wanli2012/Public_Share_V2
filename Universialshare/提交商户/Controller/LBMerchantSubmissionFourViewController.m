@@ -108,9 +108,7 @@
     
         _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"user/getHylist" paramDic:dict finish:^(id responseObject) {
-//        [_loadV removeloadview];
-//        NSLog(@"dict = %@",dict);
-//        NSLog(@"responseObject = %@",responseObject);
+
         if ([responseObject[@"code"] integerValue]==1) {
             self.industryArr = responseObject[@"data"];
         }else{
@@ -363,11 +361,11 @@
         [MBProgressHUD showError:@"联系人手机号不合法"];
         return;
     }
-    if ([self.industrySecLb.text isEqualToString:@"选择"]) {
+    if ([self.industrySecLb.text isEqualToString:@"请选择"] ) {
         [MBProgressHUD showError:@"请选择店铺总类别"];
         return;
     }
-    if ([self.industrySecLb.text isEqualToString:@"选择"]) {
+    if ([self.industrySecLb.text isEqualToString:@"请选择"]) {
         [MBProgressHUD showError:@"请选择店铺具体类别"];
         return;
     }
@@ -430,8 +428,8 @@
     
     NSArray *titleArr = [NSArray arrayWithObjects:@"face_pic",@"con_pic",@"license_pic",@"promise_pic",@"store_pic",@"store_one",@"store_two",@"store_three",@"tg_pic", nil];
 
-    NSLog(@"%@",dict);
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+
+    self.submit.userInteractionEnabled = NO;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
     manager.requestSerializer.timeoutInterval = 20;
@@ -453,13 +451,17 @@
         
     }progress:^(NSProgress *uploadProgress){
         
-//        [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
-//        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-//        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-//        [SVProgressHUD setCornerRadius:8.0];
+        [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+        [SVProgressHUD setCornerRadius:8.0];
+        
+        if (uploadProgress.fractionCompleted == 1.0) {
+            [SVProgressHUD dismiss];
+            self.submit.userInteractionEnabled = YES;
+        }
         
     }success:^(NSURLSessionDataTask *task, id responseObject) {
-        [SVProgressHUD dismiss];
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         if ([dic[@"code"]integerValue]==1) {
             
@@ -470,8 +472,7 @@
         }
         [_loadV removeloadview];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [SVProgressHUD dismiss];
-        [_loadV removeloadview];
+        self.submit.userInteractionEnabled = YES;
         [MBProgressHUD showError:error.localizedDescription];
     }];
     
@@ -608,22 +609,20 @@
         [self.doorNumbersTf becomeFirstResponder];
         return NO;
     }else if (textField == self.doorNumbersTf && [string isEqualToString:@"\n"]){
-        
         [self.bossNametf becomeFirstResponder];
         return NO;
     }else if (textField == self.bossNametf && [string isEqualToString:@"\n"]){
-        
         [self.bossPhoneTf becomeFirstResponder];
         return NO;
     }else if (textField == self.bossPhoneTf && [string isEqualToString:@"\n"]){
         
         [self.connectNameV becomeFirstResponder];
         return NO;
-    }else if (textField == self.connectNameV && [string isEqualToString:@"\n"]){
+    }else if (textField == self.connectName && [string isEqualToString:@"\n"]){
         
         [self.connectPhoneV becomeFirstResponder];
         return NO;
-    }else if (textField == self.connectPhoneV && [string isEqualToString:@"\n"]){
+    }else if (textField == self.connectPhoneTf && [string isEqualToString:@"\n"]){
         
         [self.view endEditing:YES];
         return NO;
@@ -632,6 +631,19 @@
     if (textField == self.bossPhoneTf || textField == self.connectPhoneTf || textField == self.codeTf) {
        return [self validateNumber:string];
       
+    }
+    
+    if (textField == _bossNametf || textField == _connectName) {
+        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NMUBERS] invertedSet];
+        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        if ([string isEqualToString:@""]) {
+            return YES;
+        }
+        if ([string isEqualToString:filtered]) {
+            return NO;
+        }else{
+            return YES;
+        }
     }
     return YES;
     

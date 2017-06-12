@@ -525,6 +525,8 @@
     NSArray *titleArr = @[@"goodsone",@"goodstwo",@"goodsthree"];
     NSArray *titleArrone = @[@"evnone",@"evntwo",@"evnthree"];
     
+    self.ensureBtn.userInteractionEnabled = NO;
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
     manager.requestSerializer.timeoutInterval = 20;
@@ -553,14 +555,18 @@
         
     }progress:^(NSProgress *uploadProgress){
         
-       // [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
-        //        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-        //          [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-        //        [SVProgressHUD setCornerRadius:8.0];
-        
+        [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
+            [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+            [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+            [SVProgressHUD setCornerRadius:8.0];
+
+        if (uploadProgress.fractionCompleted == 1.0) {
+            [SVProgressHUD dismiss];
+             self.ensureBtn.userInteractionEnabled = YES;
+        }
         
     }success:^(NSURLSessionDataTask *task, id responseObject) {
-        //[SVProgressHUD dismiss];
+  
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         
         if ([dic[@"code"]integerValue]==1) {
@@ -576,7 +582,7 @@
             self.typelabelTwo.text = @"请选择";
             [self.imagearrone removeAllObjects];
             [self.imagearr removeAllObjects];
-            [self.imagearr addObject:[UIImage imageNamed:@"照片框-拷贝-9"]];
+            [self.imagearrone addObject:[UIImage imageNamed:@"照片框-拷贝-9"]];
             [self.imagearr addObject:[UIImage imageNamed:@"照片框-拷贝-9"]];
             [self setupimageview];
             [self setupimageviewone];
@@ -585,8 +591,7 @@
             [MBProgressHUD showError:dic[@"message"]];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-        //[SVProgressHUD dismiss];
+         self.ensureBtn.userInteractionEnabled = YES;
         [MBProgressHUD showError:error.localizedDescription];
     }];
 
