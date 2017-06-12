@@ -146,7 +146,7 @@
 
     __weak typeof(self) weakself = self;
     QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"兑换消息",@"imageName":@""},
-                                                                   @{@"title":@"分红消息",@"imageName":@""},
+                                                                   @{@"title":@"激励消息",@"imageName":@""},
                                                                    @{@"title":@"推荐消息",@"imageName":@""},
                                                                    @{@"title":@"下单消息",@"imageName":@""},
                                                                    @{@"title":@"直捐消息",@"imageName":@""},
@@ -156,13 +156,6 @@
                                                 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, 64+5)
                                                           action:^(NSInteger index) {
                                                               
-                                                              if (index == 4) {
-                                                                  _refreshType = NO;
-                                                                  _page=1;
-                                                                  _messageType = 6;
-                                                                  [weakself initdatasource];
-                                                                  return ;
-                                                              }
                                                               _refreshType = NO;
                                                               _page=1;
                                                               _messageType = index + 1;

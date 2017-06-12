@@ -27,10 +27,7 @@
 
 @property(nonatomic,assign)id<ChooseRankDelegate> delegate;
 
-
-
 -(instancetype)initWithTitle:(NSString *)title titleArr:(NSArray *)titleArr andFrame:(CGRect)frame;
-
 
 @end
 

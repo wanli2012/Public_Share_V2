@@ -119,8 +119,6 @@
         
         self.selectBtn.backgroundColor = BackgroundColor;
         self.selectBtn.selected = NO;
-        
-//        NSLog(@"%@-----%@",btn.titleLabel.text,[self.rankArray[btn.tag-10000] sequence]);
     }
     else{
         btn.backgroundColor = MainColor;
