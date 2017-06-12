@@ -90,8 +90,6 @@
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsCate" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
-        
-//        NSLog(@"responseObject = %@",responseObject);
         if ([responseObject[@"code"] integerValue]==1) {
             self.industryArr = responseObject[@"data"];
         }else{
@@ -272,6 +270,14 @@
     }
     if (self.productdesTv.text.length <= 0) {
         [MBProgressHUD showError:@"请输入商品描述"];
+        return;
+    }
+    if (self.oneClassifyLabel.text.length <= 0 || [self.oneClassifyLabel.text isEqualToString:@"请选择一级分类"]) {
+        [MBProgressHUD showError:@"请选择一级分类"];
+        return;
+    }
+    if (self.twoClassifyLabel.text.length <= 0 || [self.twoClassifyLabel.text isEqualToString:@"请选择二级分类"]) {
+        [MBProgressHUD showError:@"请选择二级分类"];
         return;
     }
     if (self.numTf.text.length <= 0) {
