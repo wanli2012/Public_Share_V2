@@ -677,7 +677,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             
             if (!self.headview.headimage.image) {
                 
-                self.headview.headimage.image = [UIImage imageNamed:@"mine_head"];
+                self.headview.headimage.image = [UIImage imageNamed:@"dtx_icon"];
             }
             
             [self.headview.tableview reloadData];

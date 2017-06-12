@@ -104,7 +104,7 @@
     
     if (!self.headimage.image) {
         
-        self.headimage.image = [UIImage imageNamed:@"mine_head"];
+        self.headimage.image = [UIImage imageNamed:@"dtx_icon"];
     }
     
     self.namelebel.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].name];

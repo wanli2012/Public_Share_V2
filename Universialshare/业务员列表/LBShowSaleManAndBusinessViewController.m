@@ -89,7 +89,7 @@
                             @"itemName" : @"推广员"
                             };
     NSDictionary *dict2 = @{@"imageName" : @"",
-                            @"itemName" : @"高级推广员"
+                            @"itemName" : @"推广经理"
                             };
 //    NSDictionary *dict3 = @{@"imageName" : @"密码",
 //                            @"itemName" : @"商户"

@@ -258,7 +258,7 @@ static const CGFloat headerHeight = 0.0f;
         GLMerchant_IncomeCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        [cell.iamgev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataArr[indexPath.row-1][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"熊"]];
+        [cell.iamgev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataArr[indexPath.row-1][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"planceholder"]];
         cell.namelb.text = [NSString stringWithFormat:@"商品名:%@",self.dataArr[indexPath.row-1][@"goods_name"]];
         cell.codelb.text = [NSString stringWithFormat:@"数量:%@",self.dataArr[indexPath.row-1][@"goods_num"]];
         cell.orderlb.text = [NSString stringWithFormat:@"让利模式:%@",self.dataArr[indexPath.row-1][@"rl_type"]];
