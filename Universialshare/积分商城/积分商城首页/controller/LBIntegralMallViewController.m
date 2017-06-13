@@ -62,9 +62,11 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 
     self.view.backgroundColor=[UIColor purpleColor];
     
-    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 160*autoSizeScaleY)
+    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 180*autoSizeScaleY)
                                                           delegate:self
-                                                  placeholderImage:[UIImage imageNamed:LUNBO_PlaceHolder]];
+                                                  placeholderImage:[UIImage imageNamed:LUNBO_PlaceHolder]];//当一张都没有的时候的 占位图
+    //每一张图的占位图
+    _cycleScrollView.placeholderImage = [UIImage imageNamed:LUNBO_PlaceHolder];
     
     _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
@@ -75,7 +77,6 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
                                                      @"banner3(1)"];
     
     self.tableView.tableHeaderView = _cycleScrollView;
-
     [self.tableView registerNib:[UINib nibWithNibName:@"GLIntegralMallTopCell" bundle:nil] forCellReuseIdentifier:topCellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"GLIntegralGoodsCell" bundle:nil] forCellReuseIdentifier:goodsCellID];
     self.searchView.layer.cornerRadius = self.searchView.yy_height / 2;

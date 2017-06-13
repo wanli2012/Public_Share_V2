@@ -19,23 +19,19 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" image="XRPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="OSw-Sz-rWm">
-                        <rect key="frame" x="10" y="10" width="143" height="120"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="120" id="SY0-aF-Skj"/>
-                        </constraints>
+                        <rect key="frame" x="10" y="10" width="143" height="123.5"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yll-ig-TFb">
-                        <rect key="frame" x="10" y="175" width="43" height="16"/>
+                        <rect key="frame" x="10" y="175" width="143" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="aAV-rx-MIB"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="43" id="oL2-8I-RWB"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.93559116129999997" green="0.2449045181" blue="0.0002224964264" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="番茄味苏口崔,美味,口感高 买二憎一" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGC-GI-VmR">
-                        <rect key="frame" x="10" y="130" width="143" height="45"/>
+                        <rect key="frame" x="10" y="138.5" width="143" height="31.5"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="0vR-Gt-wHz"/>
                         </constraints>
@@ -49,10 +45,11 @@
             <constraints>
                 <constraint firstItem="OSw-Sz-rWm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="81P-b1-7wu"/>
                 <constraint firstItem="OSw-Sz-rWm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="AIL-Bq-BAD"/>
-                <constraint firstItem="Yll-ig-TFb" firstAttribute="top" secondItem="cGC-GI-VmR" secondAttribute="bottom" id="aS6-9F-m8s"/>
+                <constraint firstItem="Yll-ig-TFb" firstAttribute="top" secondItem="cGC-GI-VmR" secondAttribute="bottom" constant="5" id="aS6-9F-m8s"/>
+                <constraint firstAttribute="trailing" secondItem="Yll-ig-TFb" secondAttribute="trailing" constant="10" id="bDi-Rj-jRl"/>
+                <constraint firstItem="cGC-GI-VmR" firstAttribute="top" secondItem="OSw-Sz-rWm" secondAttribute="bottom" constant="5" id="jGd-Nf-sTU"/>
                 <constraint firstItem="cGC-GI-VmR" firstAttribute="leading" secondItem="OSw-Sz-rWm" secondAttribute="leading" id="jWN-R4-vdM"/>
                 <constraint firstItem="cGC-GI-VmR" firstAttribute="trailing" secondItem="OSw-Sz-rWm" secondAttribute="trailing" id="kLB-0Q-hdP"/>
-                <constraint firstItem="cGC-GI-VmR" firstAttribute="top" secondItem="OSw-Sz-rWm" secondAttribute="bottom" id="qhm-Nr-OC1"/>
                 <constraint firstAttribute="bottom" secondItem="Yll-ig-TFb" secondAttribute="bottom" constant="10" id="rSi-vH-kwp"/>
                 <constraint firstAttribute="trailing" secondItem="OSw-Sz-rWm" secondAttribute="trailing" constant="10" id="x5q-8K-J9N"/>
                 <constraint firstItem="Yll-ig-TFb" firstAttribute="leading" secondItem="OSw-Sz-rWm" secondAttribute="leading" id="xV2-TF-7dQ"/>
@@ -60,7 +57,6 @@
             <size key="customSize" width="163" height="153"/>
             <connections>
                 <outlet property="imageV" destination="OSw-Sz-rWm" id="J55-dN-3Oh"/>
-                <outlet property="imageViewHeight" destination="SY0-aF-Skj" id="hE8-uc-jA6"/>
                 <outlet property="nameLabel" destination="cGC-GI-VmR" id="qGq-Qi-dgV"/>
                 <outlet property="priceLabel" destination="Yll-ig-TFb" id="Afp-EF-rMy"/>
             </connections>
