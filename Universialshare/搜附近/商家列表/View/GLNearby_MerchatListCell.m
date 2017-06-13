@@ -38,21 +38,23 @@
 
 - (void)setModel:(GLNearby_MerchatListModel *)model{
     _model = model;
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.store_pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.store_pic] placeholderImage:[UIImage imageNamed:MERCHAT_PlaceHolder]];
     if (self.picImageV.image == nil) {
-        self.picImageV.image = [UIImage imageNamed:PlaceHolderImage];
+        self.picImageV.image = [UIImage imageNamed:MERCHAT_PlaceHolder];
     }
     self.nameLabel.text = model.shop_name;
     self.adressLabel.text = [NSString stringWithFormat:@"地址:%@",model.shop_address];
     self.phoneNumLabel.text = [NSString stringWithFormat:@"电话:%@", model.phone];
     
     self.contentLabel.text = [NSString stringWithFormat:@"销售额:¥ %@",model.total_money];
+    
     if ([model.limit floatValue] > 1000) {
-        self.distanceLabel.text = [NSString stringWithFormat:@"%.2fKm", [model.limit floatValue] / 1000];
+        
+        self.distanceLabel.text = [NSString stringWithFormat:@"<%.2fKm", [model.limit floatValue] / 1000];
 
     }else{
         
-        self.distanceLabel.text = [NSString stringWithFormat:@"%@m", model.limit];
+        self.distanceLabel.text = [NSString stringWithFormat:@"<%@m", model.limit];
     }
     
 }

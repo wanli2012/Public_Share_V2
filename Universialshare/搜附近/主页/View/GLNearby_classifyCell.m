@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *picImageWidth;
 
 @end
 
@@ -34,13 +35,13 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.picImageV.layer.cornerRadius = 4;
-    self.picImageV.clipsToBounds = YES;
+    self.picImageV.layer.cornerRadius = 5.f;
+    self.picImageWidth.constant = SCREEN_WIDTH /3 - 20;
 
 }
 - (void)setModel:(GLNearby_NearShopModel *)model{
     _model = model;
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.store_pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.store_pic] placeholderImage:[UIImage imageNamed:MERCHAT_PlaceHolder]];
     
     if (self.picImageV.image == nil) {
         self.picImageV.image = [UIImage imageNamed:PlaceHolderImage];

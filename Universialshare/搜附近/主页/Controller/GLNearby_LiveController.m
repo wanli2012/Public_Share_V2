@@ -277,10 +277,9 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return 130 *autoSizeScaleY;
+        return (SCREEN_WIDTH / 3) + 26;
     }else{
-        
-        return 110 *autoSizeScaleY;
+        return SCREEN_WIDTH / 3;
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
