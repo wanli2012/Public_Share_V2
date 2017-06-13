@@ -224,14 +224,10 @@
         vc.useableScore = self.useableScore;
         vc.pushIndex = 2;
         [weakself.navigationController pushViewController:vc animated:YES];
-        
-
     
     };
     return headerview;
 }
-
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     

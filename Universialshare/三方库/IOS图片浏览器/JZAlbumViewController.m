@@ -79,7 +79,7 @@
     self.sliderLabel.backgroundColor = [UIColor clearColor];
     self.sliderLabel.textColor = [UIColor whiteColor];
     self.sliderLabel.textAlignment = NSTextAlignmentCenter;
-    self.sliderLabel.text = [NSString stringWithFormat:@"%ld/%lu",self.currentIndex+1,(unsigned long)self.imgArr.count];
+    self.sliderLabel.text = [NSString stringWithFormat:@"%zd/%lu",self.currentIndex+1,(unsigned long)self.imgArr.count];
     [self.view addSubview:self.sliderLabel];
     
     // 2.保存按钮

@@ -83,7 +83,7 @@
     self.secondPwdF.returnKeyType = UIReturnKeyDone;
     
     self.contentViewWidth.constant = SCREEN_WIDTH;
-    self.contentViewHeight.constant = SCREEN_HEIGHT;
+    self.contentViewHeight.constant = 450;
 //    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
 //    }else{
 //        self.contentViewHeight.constant = SCREEN_HEIGHT + 100;

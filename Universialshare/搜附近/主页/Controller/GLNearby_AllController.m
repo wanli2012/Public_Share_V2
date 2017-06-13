@@ -151,7 +151,7 @@ static NSString *ID = @"GLNearby_classifyCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
   
-    return SCREEN_WIDTH / 3;
+    return 110 *autoSizeScaleY;
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

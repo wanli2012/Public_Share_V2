@@ -24,6 +24,7 @@
 
 #import "GLGoodsDetailModel.h"
 #import "GLShoppingCartController.h"
+#import "JZAlbumViewController.h"
 
 @interface GLHourseDetailController ()<SDCycleScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,GLTwoButtonCellDelegate,GLHourseChangeNumCellDelegate,ChooseRankDelegate>
 {
@@ -46,6 +47,8 @@
 
 @property (nonatomic, copy)NSString *goods_spec;//规格项名字 如果是两个就用+拼接  例子:紫色+m
 @property (nonatomic, copy)NSString *spec_id;//规格项id
+@property (nonatomic, assign)BOOL  HideNavagation;//是否需要恢复自定义导航栏
+@property(assign , nonatomic)CGPoint offset;//记录偏移
 
 @end
 static NSString *firstCell = @"GLHourseDetailFirstCell";
@@ -72,7 +75,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.goods_spec = @"";
 //    self.navigationItem.title = @"房子详情";
-    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 160)
+    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 180 *autoSizeScaleY)
                                                           delegate:self
                                                   placeholderImage:[UIImage imageNamed:LUNBO_PlaceHolder]];
     
@@ -81,8 +84,9 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
     _cycleScrollView.titleLabelBackgroundColor = [UIColor clearColor];// 图片对应的标题的 背景色。（因为没有设标题）
-    
+    _cycleScrollView.placeholderImage = [UIImage imageNamed:LUNBO_PlaceHolder];
     _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
+    
     self.tableView.tableHeaderView = _cycleScrollView;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    self.tableView.bounces = NO;
@@ -104,7 +108,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     
 }
 - (void)postRequest{
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+
     NSDictionary *dict;
     if ([UserModel defaultUser].loginstatus == YES) {
         dict =@{@"goods_id":self.goods_id,@"uid":[UserModel defaultUser].uid,@"token":[UserModel defaultUser].token};
@@ -280,7 +284,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     }];
  
 }
-
+#pragma mark -- 去结算
 //去结算 订单确认
 - (IBAction)confirmOrder:(id)sender {
     self.hidesBottomBarWhenPushed = YES;
@@ -315,11 +319,17 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     }
     return _cellArr;
 }
+#pragma mark -- SDCycleScrollViewDelegate 点击看大图
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     
+    self.HideNavagation = YES;
+    JZAlbumViewController *jzAlbumVC = [[JZAlbumViewController alloc]init];
+    jzAlbumVC.currentIndex =index;//这个参数表示当前图片的index，默认是0
+    jzAlbumVC.imgArr = [self.cycleScrollView.imageURLStringsGroup copy];//图片数组，可以是url，也可以是UIImage
+    [self presentViewController:jzAlbumVC animated:NO completion:nil];
+    
 }
-
 /** 图片滚动回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
     
@@ -386,6 +396,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         return [self jisuangaodu:arr];
         
     }else{
+        
         return 100;
     }
     

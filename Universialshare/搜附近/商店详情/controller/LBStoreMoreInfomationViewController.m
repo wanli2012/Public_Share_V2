@@ -342,7 +342,7 @@ static const CGFloat headerImageHeight = 180.0f;
        headerview.titleLb.hidden = NO;
     }else if (section == 2){
         if (self.dataDic.count > 0 ) {
-            headerview.titleLb.text = [NSString stringWithFormat:@"热门评论 (%lu)",[self.dataDic[@"com_data"] count]];
+            headerview.titleLb.text = [NSString stringWithFormat:@"热门评论 (%zd)",[self.dataDic[@"com_data"] count]];
             if ([self.dataDic[@"pl_count"]integerValue] > 3) {
                 headerview.moreBt.hidden = YES;
             }else{
@@ -416,9 +416,10 @@ static const CGFloat headerImageHeight = 180.0f;
 //换一批商店
 -(void)BatchStore{
 
-    CGFloat lat = [self.dataDic[@"shop_data"][@"lat"] floatValue ];
-    CGFloat lng = [self.dataDic[@"shop_data"][@"lng"] floatValue ];
-    
+//    CGFloat lat = [self.dataDic[@"shop_data"][@"lat"] floatValue ];
+//    CGFloat lng = [self.dataDic[@"shop_data"][@"lng"] floatValue ];
+    CGFloat lat = [[GLNearby_Model defaultUser].latitude floatValue];
+    CGFloat lng = [[GLNearby_Model defaultUser].longitude floatValue];
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"shop/goToShop" paramDic:@{@"shop_id":self.storeId,@"lat":[NSNumber numberWithFloat:lat],@"lng":[NSNumber numberWithFloat:lng]} finish:^(id responseObject) {
         [_loadV removeloadview];
@@ -560,7 +561,7 @@ static const CGFloat headerImageHeight = 180.0f;
     
     [self.navigationController pushViewController:vc animated:YES];
 }
-#pragma mark -- SDCycleScrollViewDelegate
+#pragma mark -- SDCycleScrollViewDelegate 点击看大图
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
   

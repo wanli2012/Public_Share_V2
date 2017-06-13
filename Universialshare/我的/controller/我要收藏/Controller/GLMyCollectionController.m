@@ -140,7 +140,7 @@ static NSString *ID = @"GLMyCollectionCell";
     
     if (!_nodataV) {
         _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
-        _nodataV.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
     }
     return _nodataV;
     

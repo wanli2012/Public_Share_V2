@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
 @property (weak, nonatomic) IBOutlet UILabel *pre_priceLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageviewWidth;
 
 @end
 
@@ -28,7 +29,7 @@
     self.panicBuyingBtn.clipsToBounds = YES;
     [self changeColor:self.jifenLabel rangeNumber:2666];
     self.imageV.layer.cornerRadius = 4;
-    self.imageV.clipsToBounds = YES;
+    self.imageviewWidth.constant = 120 * autoSizeScaleX;
 }
 
 
