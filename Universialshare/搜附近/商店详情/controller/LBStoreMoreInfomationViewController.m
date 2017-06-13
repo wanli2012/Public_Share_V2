@@ -155,7 +155,7 @@ static const CGFloat headerImageHeight = 180.0f;
         
     }
     
-    if (scrollView.contentOffset.y > -64) {
+    if (scrollView.contentOffset.y > -70) {
         self.tableview.contentInset=UIEdgeInsetsMake(64, 0, 0, 0);
     }else{
         self.tableview.contentInset=UIEdgeInsetsMake(headerImageHeight, 0, 0, 0);

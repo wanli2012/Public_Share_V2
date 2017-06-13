@@ -20,6 +20,7 @@
 #import "GLShareView.h"
 #import "GLSet_MaskVeiw.h"
 #import "JZAlbumViewController.h"
+#import "LBStoreProductDetailAddNumTableViewCell.h"
 
 @interface LBStoreProductDetailInfoViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,CAAnimationDelegate>
 {
@@ -45,6 +46,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *collectionimage;
 @property (assign, nonatomic) NSInteger pl_count;
 @property (assign, nonatomic) NSInteger is_collection;//是否收藏
+@property(assign , nonatomic)CGFloat headerImageHeight;
 
 @end
 
@@ -54,11 +56,13 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.titileLb.text = self.goodname;
+     _headerImageHeight = 180.0f * autoSizeScaleY;
     self.tableView.tableHeaderView = self.cycleScrollView;
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"LBStoreProductDetailInfoTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBStoreProductDetailInfoTableViewCell"];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"LBStoreDetailreplaysTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBStoreDetailreplaysTableViewCell"];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"LBStoreProductDetailAddNumTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBStoreProductDetailAddNumTableViewCell"];
     
     _cntLabel = [[UILabel alloc] initWithFrame:CGRectMake(22, -2, 20, 20)];
     _cntLabel.textColor = TABBARTITLE_COLOR;
@@ -152,7 +156,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (section == 0) {
-        return 1;
+        return 2;
     }else if (section == 1){
         return [self.dataDic[@"com_data"]count];
     }
@@ -162,11 +166,13 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
-        self.tableView.estimatedRowHeight = 125;
-        self.tableView.rowHeight = UITableViewAutomaticDimension;
-        return UITableViewAutomaticDimension;
-        
-        
+        if (indexPath.row == 0) {
+            self.tableView.estimatedRowHeight = 125;
+            self.tableView.rowHeight = UITableViewAutomaticDimension;
+            return UITableViewAutomaticDimension;
+        }else{
+            return 50;
+        }
     }else if (indexPath.section == 1){
         self.tableView.estimatedRowHeight = 90;
         self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -181,42 +187,49 @@
     
     if (indexPath.section == 0) {
         
-        LBStoreProductDetailInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreProductDetailInfoTableViewCell" forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.storelb.text = [NSString stringWithFormat:@"%@",self.storename];
-        
-        cell.moneyLb.text = [NSString stringWithFormat:@"现价%@",self.dataDic[@"goods_data"][@"discount"]];
-        cell.yuanjiLb.text = [NSString stringWithFormat:@"原价%@",self.dataDic[@"goods_data"][@"price"]];
-        cell.infolb.text = [NSString stringWithFormat:@"规格:%@",self.dataDic[@"goods_data"][@"spec_info"]];
-        cell.catalbel.text = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"cate"]];
-        
-        if ([cell.infolb.text rangeOfString:@"null"].location != NSNotFound || [[NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"spec_info"]] isEqualToString:@"0"]) {
-            cell.infolb.text = @"规格:默认";
-        }
-        
-        if ([self.dataDic[@"goods_data"][@"rl_type"] integerValue] == 1) {
-            cell.rebateTypeLb.text = @"20%";
-        }else if ([self.dataDic[@"goods_data"][@"rl_type"] integerValue] == 2) {
-            cell.rebateTypeLb.text = @"10%";
-        }else if ([self.dataDic[@"goods_data"][@"rl_type"] integerValue] == 3) {
-            cell.rebateTypeLb.text = @"5%";
-        }else if ([self.dataDic[@"goods_data"][@"rl_type"] integerValue] == 4) {
-            cell.rebateTypeLb.text = @"3%";
-        }
-        
-        if ([self.dataDic[@"goods_data"][@"attr"] rangeOfString:@"null"].location != NSNotFound || [[NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"attr"]] isEqualToString:@" "]) {
-           cell.namelb.text =  [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"info"]];
+        if (indexPath.row == 0) {
+            LBStoreProductDetailInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreProductDetailInfoTableViewCell" forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.storelb.text = [NSString stringWithFormat:@"%@",self.storename];
+            
+            cell.moneyLb.text = [NSString stringWithFormat:@"现价%@",self.dataDic[@"goods_data"][@"discount"]];
+            cell.yuanjiLb.text = [NSString stringWithFormat:@"原价%@",self.dataDic[@"goods_data"][@"price"]];
+            cell.infolb.text = [NSString stringWithFormat:@"规格:%@",self.dataDic[@"goods_data"][@"spec_info"]];
+            cell.catalbel.text = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"cate"]];
+            
+            if ([cell.infolb.text rangeOfString:@"null"].location != NSNotFound || [[NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"spec_info"]] isEqualToString:@"0"]) {
+                cell.infolb.text = @"规格:默认";
+            }
+            
+            if ([self.dataDic[@"goods_data"][@"rl_type"] integerValue] == 1) {
+                cell.rebateTypeLb.text = @"20%";
+            }else if ([self.dataDic[@"goods_data"][@"rl_type"] integerValue] == 2) {
+                cell.rebateTypeLb.text = @"10%";
+            }else if ([self.dataDic[@"goods_data"][@"rl_type"] integerValue] == 3) {
+                cell.rebateTypeLb.text = @"5%";
+            }else if ([self.dataDic[@"goods_data"][@"rl_type"] integerValue] == 4) {
+                cell.rebateTypeLb.text = @"3%";
+            }
+            
+            if ([self.dataDic[@"goods_data"][@"attr"] rangeOfString:@"null"].location != NSNotFound || [[NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"attr"]] isEqualToString:@" "]) {
+                cell.namelb.text =  [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"info"]];
+            }else{
+                NSString *strone = [NSString stringWithFormat:@"[%@]",self.dataDic[@"goods_data"][@"attr"]];
+                long len1 = [strone length];
+                NSString *strtwo = [NSString stringWithFormat:@"[%@]%@",self.dataDic[@"goods_data"][@"attr"],self.dataDic[@"goods_data"][@"info"]];
+                NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:strtwo];
+                [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,len1)];
+                [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17.0f] range:NSMakeRange(0,len1)];
+                cell.namelb.attributedText = str;
+            }
+            
+            return cell;
         }else{
-            NSString *strone = [NSString stringWithFormat:@"[%@]",self.dataDic[@"goods_data"][@"attr"]];
-            long len1 = [strone length];
-            NSString *strtwo = [NSString stringWithFormat:@"[%@]%@",self.dataDic[@"goods_data"][@"attr"],self.dataDic[@"goods_data"][@"info"]];
-            NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:strtwo];
-            [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,len1)];
-            [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17.0f] range:NSMakeRange(0,len1)];
-            cell.namelb.attributedText = str;
+            LBStoreProductDetailAddNumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreProductDetailAddNumTableViewCell" forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
         }
-    
-        return cell;
         
     }else if (indexPath.section == 1){
         LBStoreDetailreplaysTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreDetailreplaysTableViewCell" forIndexPath:indexPath];
@@ -621,7 +634,7 @@
 -(SDCycleScrollView*)cycleScrollView
 {
     if (!_cycleScrollView) {
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, _headerImageHeight)
                                                               delegate:self
                                                       placeholderImage:[UIImage imageNamed:@"轮播暂位图"]];
         
