@@ -14,8 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *panicBuyingBtn;
 @property (weak, nonatomic) IBOutlet UILabel *jifenLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
+@property (weak, nonatomic) IBOutlet UILabel *pre_priceLabel;
 
 @end
 
@@ -34,7 +34,13 @@
 
 - (void)changeColor:(UILabel*)label rangeNumber:(NSInteger )rangeNum
 {
-    NSString *remainBeans = [NSString stringWithFormat:@"%lu",rangeNum];
+    NSString *remainBeans;
+    if (rangeNum > 10000) {
+        remainBeans = [NSString stringWithFormat:@"%.2f",(float)rangeNum /10000];
+    }else{
+        remainBeans = [NSString stringWithFormat:@"%zd",rangeNum];
+    }
+    
     NSString *totalStr = [NSString stringWithFormat:@"%@ 米券",remainBeans];
     NSMutableAttributedString *textColor = [[NSMutableAttributedString alloc]initWithString:totalStr];
     NSRange rangel = [[textColor string] rangeOfString:remainBeans];
@@ -50,8 +56,16 @@
 
 - (void)setModel:(GLMall_InterestModel *)model{
     _model = model;
+    
     [self changeColor:_jifenLabel rangeNumber:[model.discount integerValue]];
     _nameLabel.text = model.goods_name;
+    
+    if([model.goods_price floatValue] > 10000){
+         _pre_priceLabel.text = [NSString stringWithFormat:@"%.2f米券",[model.goods_price floatValue]/10000];
+    }else{
+        _pre_priceLabel.text = [NSString stringWithFormat:@"%@ 米券",model.goods_price];
+    }
+    
     [_imageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     
 }

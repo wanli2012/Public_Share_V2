@@ -70,9 +70,9 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
     _cycleScrollView.titleLabelBackgroundColor = [UIColor clearColor];// 图片对应的标题的 背景色。（因为没有设标题）
     _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
-    _cycleScrollView.localizationImageNamesGroup = @[@"banner01",
-                                                     @"banner02",
-                                                     @"banner03"];
+    _cycleScrollView.localizationImageNamesGroup = @[@"banner1(1)",
+                                                     @"banner2(1)",
+                                                     @"banner3(1)"];
     
     self.tableView.tableHeaderView = _cycleScrollView;
 
@@ -83,6 +83,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     
     //公告
     [self initInterDataSorceinfomessage];
+    
     [self postRequest];
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -146,7 +147,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
                 for (NSDictionary *dic  in responseObject[@"data"]) {
                     
                     UIImageView *imageV = [[UIImageView alloc] init];
-                    [imageV sd_setImageWithURL:[NSURL URLWithString:dic[@"img_path"]]];
+                    [imageV sd_setImageWithURL:[NSURL URLWithString:dic[@"img_path"]] placeholderImage:[UIImage imageNamed:LUNBO_PlaceHolder]];
                     
                     if(imageV.image){
                         
@@ -211,6 +212,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
 
 }
+
 -(void)initInterDataSorceinfomessage{
     
     CGFloat contentViewH = SCREEN_HEIGHT / 2;
@@ -230,8 +232,9 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     _contentView.webView.scalesPageToFit = YES;
     _contentView.webView.autoresizesSubviews = NO;
     _contentView.webView.autoresizingMask=(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
+    _contentView.webView.scrollView.bounces = NO;
     
-    NSURL *url = [NSURL URLWithString:@"http://192.168.0.100/DGGXWeb/DZGX/index.php/Home/Newsdemo/newestnotice.html"];
+    NSURL *url = [NSURL URLWithString:NOTICE_URL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
    
     [_contentView.webView loadRequest:request];

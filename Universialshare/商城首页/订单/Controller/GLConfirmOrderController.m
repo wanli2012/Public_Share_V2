@@ -259,7 +259,7 @@ static NSString *ID = @"GLOrderGoodsCell";
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 140 *autoSizeScaleY;
+    return 120*autoSizeScaleY;
 //    self.tableView.estimatedRowHeight = 44;
 //    self.tableView.rowHeight = UITableViewAutomaticDimension;
 //    return self.tableView.rowHeight;

@@ -36,7 +36,7 @@
     _nameLabel.text = model.cart_name;
     _fanliLabel.text = [NSString stringWithFormat:@"原价:%@",model.cart_price];
     _priceLabel.text = [NSString stringWithFormat:@"现价:%@",model.cart_realy_price];
-    _sumLabel.text = [NSString stringWithFormat:@"数量:%@",model.cart_number];
+    _sumLabel.text = [NSString stringWithFormat:@"%@ x%@",model.cart_spec,model.cart_number];
     _detailLabel.text = [NSString stringWithFormat:@"类型:%@",model.cart_type];
 }
 
