@@ -21,4 +21,6 @@
 //商品其他介绍
 @property (nonatomic, copy)NSString *goods_details;
 
+@property (nonatomic, copy)NSString *goods_price;//原价
+
 @end

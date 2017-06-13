@@ -28,6 +28,9 @@
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1228047806?mt=8"
 //关于我们网址
 #define ABOUTUS_URL @"https://www.51dztg.com/hyjm/hyjm.html"
+//公告
+#define NOTICE_URL @"https://www.51dztg.com/index.php/Home/Newsdemo/newestnotice.html"
+
 //米家
 #define OrdinaryUser @"10"
 //米商
@@ -38,6 +41,10 @@
 #define TWOSALER @"7"
 //推广员
 #define THREESALER @"8"
+
+#define PlaceHolderImage @"planceholder"
+#define LUNBO_PlaceHolder @"轮播暂位图"
+#define MERCHAT_PlaceHolder @"商户暂位图"
 
 //http://dzgx.joshuaweb.cn/index.php/Home/Regist/index.html
 //分享
@@ -62,7 +69,6 @@
 
 #define KCURRENTCITYINFODEFAULTS [NSUserDefaults standardUserDefaults]
 
-#define PlaceHolderImage @"XRPlaceholder"
 /**
  * 物流地址
  */

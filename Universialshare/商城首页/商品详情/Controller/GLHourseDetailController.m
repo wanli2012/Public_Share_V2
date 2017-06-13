@@ -99,17 +99,6 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 
     _visableCells = [NSMutableArray array];
     
-    //1:积分详情  2:商品详情
-//    if (self.type == 1) {
-//        self.addToCartBtn.hidden = YES;
-//        self.settleBtn.hidden = YES;
-//        self.exchangeBtn.hidden = NO;
-//    }else{
-//        self.addToCartBtn.hidden = NO;
-//        self.settleBtn.hidden = NO;
-//        self.exchangeBtn.hidden = YES;
-//    }
-    
     [self postRequest];
    [self initSpecificationsDataSoruce];
     
@@ -237,7 +226,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 - (IBAction)exchange:(id)sender {
     self.hidesBottomBarWhenPushed = YES;
     GLConfirmOrderController *confirmVC = [[GLConfirmOrderController alloc] init];
-    confirmVC.goods_count = [NSString stringWithFormat:@"%lu",_sum];
+    confirmVC.goods_count = [NSString stringWithFormat:@"%zd",_sum];
     confirmVC.orderType = self.type;
     [self.navigationController pushViewController:confirmVC animated:YES];
 }
@@ -252,6 +241,10 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     }
     if ([cell.sumLabel.text integerValue] <= 0) {
         [MBProgressHUD showError:@"数量不能为0"];
+        return;
+    }
+    if (self.goods_spec.length <= 0) {
+        [MBProgressHUD showError:@"还未选择规格"];
         return;
     }
     
@@ -269,7 +262,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     [NetworkManager requestPOSTWithURLStr:@"shop/addCart" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
-
+        
         if ([responseObject[@"code"] integerValue] == 1){
 
             [MBProgressHUD showSuccess:@"成功加入购物车"];
@@ -302,12 +295,15 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         [MBProgressHUD showError:@"数量不能为0"];
         return;
     }
-
+    if (self.goods_spec.length <= 0) {
+        [MBProgressHUD showError:@"还未选择规格"];
+        return;
+    }
     GLConfirmOrderController *vc=[[GLConfirmOrderController alloc]init];
     vc.goods_id = self.goods_id;
     vc.goods_count = cell.sumLabel.text;
     vc.orderType = 2; //订单类型
-    vc.goods_spec = self.goods_spec;
+    vc.goods_spec = self.spec_id;
     [self.navigationController pushViewController:vc animated:YES];
 
 }

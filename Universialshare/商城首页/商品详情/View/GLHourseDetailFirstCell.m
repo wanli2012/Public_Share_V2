@@ -39,9 +39,9 @@
     
     if ([model.rebate floatValue] > 10000) {
         
-        _fanliLabel.text = [NSString stringWithFormat:@"最高返利:%.2f万米券",[model.rebate floatValue]/10000];
+        _fanliLabel.text = [NSString stringWithFormat:@"现价:%.2f万米券",[model.rebate floatValue]/10000];
     }else{
-        _fanliLabel.text = [NSString stringWithFormat:@"最高返利:%.2f米券",[model.rebate floatValue]];
+        _fanliLabel.text = [NSString stringWithFormat:@"现价:%.2f米券",[model.rebate floatValue]];
     }
     _priceLabel.text = [NSString stringWithFormat:@"¥%@米券",_price];
     _monthSellLabel.text = [NSString stringWithFormat:@"月销%@笔",model.sell_count];
