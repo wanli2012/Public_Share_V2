@@ -158,11 +158,13 @@ static NSString *LeavingID = @"LBStoreSendGoodsLeavingTableViewCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == 0) {
-        self.tableview.estimatedRowHeight = 30;
+        self.tableview.estimatedRowHeight = 75;
         self.tableview.rowHeight = UITableViewAutomaticDimension;
         return UITableViewAutomaticDimension;
     }
-    return 100;
+    self.tableview.estimatedRowHeight = 100;
+    self.tableview.rowHeight = UITableViewAutomaticDimension;
+    return UITableViewAutomaticDimension;
     
 }
 
@@ -174,6 +176,8 @@ static NSString *LeavingID = @"LBStoreSendGoodsLeavingTableViewCell";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         LBWaitOrdersModel *model = self.dataarr[indexPath.section];
         cell.leavingLb.text = [NSString stringWithFormat:@"买家留言: %@",model.order_remark];
+        cell.phone.text = [NSString stringWithFormat:@"tel: %@",model.phone];
+        cell.address.text = [NSString stringWithFormat:@"地址: %@",model.address];
         if ([model.order_remark rangeOfString:@"null"].location != NSNotFound || model.order_remark.length <= 0) {
             cell.leavingLb.text = @"买家留言: 买家没有留下任何足迹";
         }

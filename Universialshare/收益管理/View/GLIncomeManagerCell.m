@@ -35,7 +35,7 @@
         
         self.totalMoneyLabel.text = [NSString stringWithFormat:@"%.2f万",[model.total_money floatValue]/10000];
     }else{
-        self.totalMoneyLabel.text = [NSString stringWithFormat:@"%@",model.total_money ];
+        self.totalMoneyLabel.text = [NSString stringWithFormat:@"%@元",model.total_money ];
     }
 }
 @end
