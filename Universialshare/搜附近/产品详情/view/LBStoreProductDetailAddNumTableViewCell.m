@@ -16,7 +16,7 @@
     self.baseview.clipsToBounds = YES;
     
     self.baseview.layer.borderWidth = 1;
-    self.baseview.layer.borderColor = [UIColor grayColor].CGColor;
+    self.baseview.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     
 }
 
