@@ -50,7 +50,7 @@
 
 - (void)setModel:(GLMall_InterestModel *)model{
     _model = model;
-    [self changeColor:_jifenLabel rangeNumber:[model.goods_price integerValue]];
+    [self changeColor:_jifenLabel rangeNumber:[model.discount integerValue]];
     _nameLabel.text = model.goods_name;
     [_imageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     
