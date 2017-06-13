@@ -78,4 +78,7 @@
 //3%返利的宏
 #define KThreePersent @"4"
 
+//支付宝appid
+#define AlipayAPPID @"2017060207408516"
+
 #endif /* Header_h */
