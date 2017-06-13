@@ -794,6 +794,8 @@
 		F9479B071EEF7E2400581250 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9479B061EEF7E2400581250 /* Foundation.framework */; };
 		F9479B091EEF7E2E00581250 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9479B081EEF7E2E00581250 /* CFNetwork.framework */; };
 		F9479B0B1EEF7E3B00581250 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9479B0A1EEF7E3B00581250 /* CoreMotion.framework */; };
+		F9479B0F1EF0007D00581250 /* LBStoreProductDetailAddNumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9479B0D1EF0007D00581250 /* LBStoreProductDetailAddNumTableViewCell.m */; };
+		F9479B101EF0007D00581250 /* LBStoreProductDetailAddNumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9479B0E1EF0007D00581250 /* LBStoreProductDetailAddNumTableViewCell.xib */; };
 		F94A33F31EAA01A600222A86 /* LBMineCenterPayPagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94A33F11EAA01A600222A86 /* LBMineCenterPayPagesViewController.m */; };
 		F94A33F41EAA01A600222A86 /* LBMineCenterPayPagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94A33F21EAA01A600222A86 /* LBMineCenterPayPagesViewController.xib */; };
 		F94A33F91EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94A33F71EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.m */; };
@@ -2357,6 +2359,9 @@
 		F9479B061EEF7E2400581250 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F9479B081EEF7E2E00581250 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		F9479B0A1EEF7E3B00581250 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		F9479B0C1EF0007D00581250 /* LBStoreProductDetailAddNumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBStoreProductDetailAddNumTableViewCell.h; sourceTree = "<group>"; };
+		F9479B0D1EF0007D00581250 /* LBStoreProductDetailAddNumTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBStoreProductDetailAddNumTableViewCell.m; sourceTree = "<group>"; };
+		F9479B0E1EF0007D00581250 /* LBStoreProductDetailAddNumTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBStoreProductDetailAddNumTableViewCell.xib; sourceTree = "<group>"; };
 		F94A33F01EAA01A600222A86 /* LBMineCenterPayPagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterPayPagesViewController.h; sourceTree = "<group>"; };
 		F94A33F11EAA01A600222A86 /* LBMineCenterPayPagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterPayPagesViewController.m; sourceTree = "<group>"; };
 		F94A33F21EAA01A600222A86 /* LBMineCenterPayPagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterPayPagesViewController.xib; sourceTree = "<group>"; };
@@ -5968,6 +5973,9 @@
 				F9516E071ECB068D009F015D /* LBStoreProductDetailInfoTableViewCell.h */,
 				F9516E081ECB068D009F015D /* LBStoreProductDetailInfoTableViewCell.m */,
 				F9516E091ECB068D009F015D /* LBStoreProductDetailInfoTableViewCell.xib */,
+				F9479B0C1EF0007D00581250 /* LBStoreProductDetailAddNumTableViewCell.h */,
+				F9479B0D1EF0007D00581250 /* LBStoreProductDetailAddNumTableViewCell.m */,
+				F9479B0E1EF0007D00581250 /* LBStoreProductDetailAddNumTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -6760,6 +6768,7 @@
 				4A4610271E9CC6360045824F /* UMSShareListController.xib in Resources */,
 				4A5DF5F71ED185DA00BF6AC7 /* GLStoreProductCommentController.xib in Resources */,
 				F9516DEA1ECAD058009F015D /* LBStoreDetailNameTableViewCell.xib in Resources */,
+				F9479B101EF0007D00581250 /* LBStoreProductDetailAddNumTableViewCell.xib in Resources */,
 				F9434D4E1EC16D78001C80A4 /* LBMineCenterRegionQueryViewController.xib in Resources */,
 				F94A33F41EAA01A600222A86 /* LBMineCenterPayPagesViewController.xib in Resources */,
 				4A0162EF1EB0452500C25DCC /* GLCityChooseCell.xib in Resources */,
@@ -7132,6 +7141,7 @@
 				F92309711E9B8BFF00ECDC94 /* LBMineCenterAddAdreassViewController.m in Sources */,
 				F92309261E9B8BFF00ECDC94 /* LBMineCenterRechargeCashView.m in Sources */,
 				4A4610A51E9CC6360045824F /* ZXDataMatrixX12Encoder.m in Sources */,
+				F9479B0F1EF0007D00581250 /* LBStoreProductDetailAddNumTableViewCell.m in Sources */,
 				F92309301E9B8BFF00ECDC94 /* LBMineCenterserviceNoticeViewController.m in Sources */,
 				F94A33F91EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.m in Sources */,
 				4AAD25821EC188F50054FD06 /* GLReceiveBeansCell.m in Sources */,

@@ -11,6 +11,7 @@
 #import "LBIntegralMallViewController.h"
 #import "GLOrderPayView.h"
 #import "GLSet_MaskVeiw.h"
+#import <AlipaySDK/AlipaySDK.h>
 
 @interface LBMineCenterPayPagesViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -65,6 +66,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postRepuest:) name:@"input_PasswordNotification" object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(Alipaysucess) name:@"Alipaysucess" object:nil];
     
 }
 
@@ -143,23 +146,34 @@
         return;
     }
     
-    CGFloat contentViewH = 300;
-    CGFloat contentViewW = SCREEN_WIDTH;
-    _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    if (self.payType == 1 && self.selectIndex == 0) {
+        CGFloat contentViewH = 300;
+        CGFloat contentViewW = SCREEN_WIDTH;
+        _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _maskV.bgView.alpha = 0.4;
+        _contentView = [[NSBundle mainBundle] loadNibNamed:@"GLOrderPayView" owner:nil options:nil].lastObject;
+        [_contentView.backBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+        _contentView.layer.cornerRadius = 4;
+        _contentView.layer.masksToBounds = YES;
+        _contentView.priceLabel.text = [NSString stringWithFormat:@"¥ %@",self.orderPrice];
+        _contentView.frame = CGRectMake(0, SCREEN_HEIGHT, contentViewW, 0);
+        [_maskV showViewWithContentView:_contentView];
+        [UIView animateWithDuration:0.3 animations:^{
+            _contentView.frame = CGRectMake(0, SCREEN_HEIGHT - contentViewH, contentViewW, contentViewH);
+            [_contentView.passwordF becomeFirstResponder];
+        }];
+    }else{
     
-    _maskV.bgView.alpha = 0.4;
+         if (self.selectIndex == 1){
+            //支付宝支付
+            [self alipayAndWeChatPay:@"1"];
+        }else{
+            //微信支付
+            //[self alipayAndWeChatPay:@"2"];
+            
+        }
     
-    _contentView = [[NSBundle mainBundle] loadNibNamed:@"GLOrderPayView" owner:nil options:nil].lastObject;
-    [_contentView.backBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
-    _contentView.layer.cornerRadius = 4;
-    _contentView.layer.masksToBounds = YES;
-    _contentView.priceLabel.text = [NSString stringWithFormat:@"¥ %@",self.orderPrice];
-    _contentView.frame = CGRectMake(0, SCREEN_HEIGHT, contentViewW, 0);
-    [_maskV showViewWithContentView:_contentView];
-    [UIView animateWithDuration:0.3 animations:^{
-         _contentView.frame = CGRectMake(0, SCREEN_HEIGHT - contentViewH, contentViewW, contentViewH);
-        [_contentView.passwordF becomeFirstResponder];
-    }];
+    }
     
  
 }
@@ -226,7 +240,6 @@
     dict[@"order_id"] = self.order_id;
     dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
     
-    NSLog(@"%@",dict);
     [NetworkManager requestPOSTWithURLStr:@"shop/markPay" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
@@ -261,40 +274,58 @@
     }];
 
 }
+
 - (void)alipayAndWeChatPay:(NSString *)payType{
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
-    
-    //    NSString *orderID = [RSAEncryptor encryptString:self.orderNum publicKey:public_RSA];
-    //    NSString *uid = [RSAEncryptor encryptString:[UserModel defaultUser].uid publicKey:public_RSA];
-    //    dict[@"uid"] = uid;
-    //    dict[@"order_id"] = orderID;
-    
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"order_id"] = self.order_id;
     dict[@"paytype"] = payType;
     
-//    NSLog(@"%@",dict);
     [NetworkManager requestPOSTWithURLStr:@"shop/payParam" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
-        
         [self dismiss];
         if ([responseObject[@"code"] integerValue] == 1){
             
-            self.hidesBottomBarWhenPushed = YES;
-            
-            [MBProgressHUD showSuccess:responseObject[@"message"]];
-            
-            if(self.pushIndex == 1){
-                
-                [self.navigationController popToRootViewControllerAnimated:YES];
-                
-            }else{
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-            
-            self.hidesBottomBarWhenPushed = NO;
+           [ [AlipaySDK defaultService]payOrder:responseObject[@"data"][@"alipay"][@"url"] fromScheme:@"univerAlipay" callback:^(NSDictionary *resultDic) {
+               
+               NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
+               if (orderState==9000) {
+                   self.hidesBottomBarWhenPushed = YES;
+                   if(self.pushIndex == 1){
+                       [self.navigationController popToRootViewControllerAnimated:YES];
+       
+                   }else{
+                       [self.navigationController popViewControllerAnimated:YES];
+                   }
+                   self.hidesBottomBarWhenPushed = NO;
+                   
+               }else{
+                   NSString *returnStr;
+                   switch (orderState) {
+                       case 8000:
+                            returnStr=@"订单正在处理中";
+                           break;
+                       case 4000:
+                           returnStr=@"订单支付失败";
+                           break;
+                       case 6001:
+                           returnStr=@"订单取消";
+                           break;
+                       case 6002:
+                           returnStr=@"网络连接出错";
+                           break;
+                           
+                       default:
+                           break;
+                   }
+                   
+                    [MBProgressHUD showError:returnStr];
+                   
+               }
+    
+            }];
             
         }else{
             
@@ -305,6 +336,20 @@
         [_loadV removeloadview];
         
     }];
+}
+
+//支付宝客户端支付成功之后 发送通知
+-(void)Alipaysucess{
+    
+    self.hidesBottomBarWhenPushed = YES;
+    if(self.pushIndex == 1){
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    self.hidesBottomBarWhenPushed = NO;
+    
 }
 //支付请求
 - (void)postRepuest:(NSNotification *)sender {
@@ -320,13 +365,6 @@
             
             //米子支付
             [self ricePay:sender];
-            
-        }else if (self.selectIndex == 1){
-            //支付宝支付
-            [self alipayAndWeChatPay:@"1"];
-        }else{
-            //微信支付
-            [self alipayAndWeChatPay:@"2"];
             
         }
     }

@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *sumLabel;
 @property (weak, nonatomic) IBOutlet UIButton *SpecificationsBt;
 @property (weak, nonatomic) IBOutlet UILabel *SpecificationsLb;
+@property (weak, nonatomic) IBOutlet UILabel *titleLb;
 
 
 @property (nonatomic, strong)NSIndexPath *indexPath;

@@ -95,6 +95,7 @@
 }
 //注册
 - (IBAction)registerClick:(id)sender {
+    [self.view endEditing:YES];
     GLRegisterController *registerVC = [[GLRegisterController alloc] init];
     registerVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:registerVC animated:YES completion:nil];
@@ -103,7 +104,7 @@
 //登录
 - (IBAction)login:(id)sender {
     
-    
+    [self.view endEditing:YES];
     if (self.phone.text.length <=0 ) {
         [MBProgressHUD showError:@"请输入手机号码或ID"];
         return;

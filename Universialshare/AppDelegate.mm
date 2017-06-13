@@ -79,7 +79,34 @@
     }else if ([url.host isEqualToString:@"safepay"]){
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            NSLog(@"result = %@",resultDic);
+            NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
+            if (orderState==9000) {
+                
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"Alipaysucess" object:nil];
+                
+            }else{
+                NSString *returnStr;
+                switch (orderState) {
+                    case 8000:
+                        returnStr=@"订单正在处理中";
+                        break;
+                    case 4000:
+                        returnStr=@"订单支付失败";
+                        break;
+                    case 6001:
+                        returnStr=@"订单取消";
+                        break;
+                    case 6002:
+                        returnStr=@"网络连接出错";
+                        break;
+                        
+                    default:
+                        break;
+                }
+                
+                [MBProgressHUD showError:returnStr];
+                
+            }
         }];
     }else{
         return [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
@@ -93,7 +120,34 @@
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            NSLog(@"result = %@",resultDic);
+            NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
+            if (orderState==9000) {
+                
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"Alipaysucess" object:nil];
+                
+            }else{
+                NSString *returnStr;
+                switch (orderState) {
+                    case 8000:
+                        returnStr=@"订单正在处理中";
+                        break;
+                    case 4000:
+                        returnStr=@"订单支付失败";
+                        break;
+                    case 6001:
+                        returnStr=@"订单取消";
+                        break;
+                    case 6002:
+                        returnStr=@"网络连接出错";
+                        break;
+                        
+                    default:
+                        break;
+                }
+                
+                [MBProgressHUD showError:returnStr];
+                
+            }
         }];
     }
     return YES;
