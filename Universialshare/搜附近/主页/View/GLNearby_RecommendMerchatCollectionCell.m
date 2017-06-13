@@ -20,6 +20,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.picImageV.layer.cornerRadius = 5.f;
 }
 
 //- (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
@@ -37,7 +38,7 @@
     self.nameLabel.text = model.shop_name;
     [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     if (self.picImageV.image == nil) {
-        self.picImageV.image = [UIImage imageNamed:PlaceHolderImage];
+        self.picImageV.image = [UIImage imageNamed:MERCHAT_PlaceHolder];
     }
 }
 @end

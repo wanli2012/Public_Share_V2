@@ -87,7 +87,6 @@ static NSString *ID = @"GLMyCollectionCell";
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"page"] = [NSString stringWithFormat:@"%d",_page];
-//    dict[@"type"] = @(self.type);
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/myCollection_list" paramDic:dict finish:^(id responseObject) {
@@ -95,7 +94,7 @@ static NSString *ID = @"GLMyCollectionCell";
         [self endRefresh];
 
         if ([responseObject[@"code"] integerValue] == 1) {
-//            NSLog(@"%@",responseObject);
+
             for (NSDictionary *dict in responseObject[@"data"]) {
                 GLMyCollectionModel *model = [GLMyCollectionModel mj_objectWithKeyValues:dict];
                 [_models addObject:model];
@@ -106,13 +105,26 @@ static NSString *ID = @"GLMyCollectionCell";
             [MBProgressHUD showError:@"已经没有更多数据了"];
         }
         
+        if (self.models.count <= 0) {
+            self.nodataV.hidden = NO;
+        }else{
+            self.nodataV.hidden = YES;
+        }
         
         [self.tableView reloadData];
     } enError:^(NSError *error) {
         [self endRefresh];
         [_loadV removeloadview];
-        self.nodataV.hidden = NO;
         [MBProgressHUD showError:error.localizedDescription];
+        
+        if (self.models.count <= 0) {
+            self.nodataV.hidden = NO;
+        }else{
+            self.nodataV.hidden = YES;
+        }
+        
+        [self.tableView reloadData];
+
     }];
 }
 - (NSMutableArray *)models{
@@ -128,7 +140,7 @@ static NSString *ID = @"GLMyCollectionCell";
     
     if (!_nodataV) {
         _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
-        _nodataV.frame = CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT - 114);
+        _nodataV.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
     }
     return _nodataV;
     

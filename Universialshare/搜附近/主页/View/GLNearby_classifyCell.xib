@@ -102,6 +102,7 @@
                 <outlet property="numberLabel" destination="VFM-C2-anV" id="eBg-Bm-khC"/>
                 <outlet property="phoneLabel" destination="6Z2-US-Dn2" id="BFN-UB-KZP"/>
                 <outlet property="picImageV" destination="FCh-Pl-qYx" id="t7Y-oc-jqk"/>
+                <outlet property="picImageWidth" destination="mhx-s0-1yX" id="bcv-dD-vkD"/>
             </connections>
             <point key="canvasLocation" x="34.5" y="57"/>
         </tableViewCell>

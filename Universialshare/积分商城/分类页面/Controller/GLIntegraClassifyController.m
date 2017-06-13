@@ -122,7 +122,7 @@ static NSString *ID = @"GLClassifyCell";
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"sel_rank"] = @(_sortType);
     dict[@"sel_type"] = _classifyType;
-    dict[@"page"] = [NSString stringWithFormat:@"%ld",_page];
+    dict[@"page"] = [NSString stringWithFormat:@"%zd",_page];
 
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/getMarkGoods" paramDic:dict finish:^(id responseObject) {
@@ -191,7 +191,7 @@ static NSString *ID = @"GLClassifyCell";
     _contentV = [[NSBundle mainBundle] loadNibNamed:@"GLClassifyView" owner:nil options:nil].lastObject;
     __weak typeof(self)weakSelf = self;
     _contentV.block = ^(NSString * str){
-        NSLog(@"arr =  == = = =  = ===%@",str);
+    
         _classifyType = str;
         [weakSelf updateData:YES];
         [weakSelf dismiss];

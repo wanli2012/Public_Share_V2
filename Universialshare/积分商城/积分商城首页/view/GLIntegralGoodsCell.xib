@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="XRPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="lgg-2J-rlx">
-                        <rect key="frame" x="10" y="5" width="140" height="117"/>
+                        <rect key="frame" x="10" y="5" width="140" height="116"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="140" id="awb-1U-ZdM"/>
                         </constraints>
@@ -33,8 +33,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GG8-Fg-r5K">
-                        <rect key="frame" x="230" y="97" width="72" height="25"/>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GG8-Fg-r5K">
+                        <rect key="frame" x="230" y="96" width="72" height="25"/>
                         <color key="backgroundColor" red="0.80893534420000002" green="0.158609271" blue="0.18252518770000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="M5Q-mA-N09"/>
@@ -49,7 +49,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2666积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bZ-6h-WKC">
-                        <rect key="frame" x="160" y="54" width="59" height="20"/>
+                        <rect key="frame" x="160" y="53" width="59" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="El9-dJ-ege"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="59" id="SMY-Qc-I2R"/>
@@ -58,24 +58,34 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2666积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FM-pg-UGM">
-                        <rect key="frame" x="160" y="103.5" width="50.5" height="12"/>
+                        <rect key="frame" x="160" y="103" width="59" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="ERu-Vn-Wx8"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etN-0W-LjP">
-                        <rect key="frame" x="160" y="109" width="50.5" height="1"/>
+                        <rect key="frame" x="160" y="108" width="59" height="1"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="Icp-sG-SlE"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tUh-Ml-iQE">
+                        <rect key="frame" x="0.0" y="125" width="312" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="c6r-oO-Z8d"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="lgg-2J-rlx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="1Gb-FF-1tD"/>
                     <constraint firstItem="dBG-P4-mWz" firstAttribute="top" secondItem="lgg-2J-rlx" secondAttribute="top" constant="5" id="DH4-9l-Li1"/>
+                    <constraint firstItem="tUh-Ml-iQE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="DzJ-9D-fpw"/>
+                    <constraint firstAttribute="trailing" secondItem="tUh-Ml-iQE" secondAttribute="trailing" id="E0D-ey-M3u"/>
+                    <constraint firstAttribute="bottom" secondItem="tUh-Ml-iQE" secondAttribute="bottom" id="LKk-uq-7WP"/>
                     <constraint firstItem="4FM-pg-UGM" firstAttribute="leading" secondItem="etN-0W-LjP" secondAttribute="leading" id="MSB-5T-4qC"/>
                     <constraint firstItem="9bZ-6h-WKC" firstAttribute="centerY" secondItem="lgg-2J-rlx" secondAttribute="centerY" id="NJi-0b-KGt"/>
                     <constraint firstItem="4FM-pg-UGM" firstAttribute="trailing" secondItem="etN-0W-LjP" secondAttribute="trailing" id="SsP-Uu-Mnv"/>

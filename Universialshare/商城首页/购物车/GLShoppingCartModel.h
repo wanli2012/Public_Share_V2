@@ -32,6 +32,6 @@
 
 @property (nonatomic, copy)NSString *spec;
 
-
+@property (nonatomic, copy)NSString *spec_id;
 
 @end

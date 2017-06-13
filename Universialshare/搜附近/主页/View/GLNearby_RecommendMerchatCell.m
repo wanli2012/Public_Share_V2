@@ -49,7 +49,7 @@ static NSString *ID = @"GLNearby_RecommendMerchatCollectionCell";
 //    layout = (UICollectionViewFlowLayout *)collectionViewLayout;
 //    layout.estimatedItemSize = CGSizeMake(SCREEN_WIDTH / 3, 130);
     
-    return CGSizeMake(SCREEN_WIDTH / 3, 130);
+    return CGSizeMake(SCREEN_WIDTH / 3, SCREEN_WIDTH / 3 + 26);
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     

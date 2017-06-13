@@ -81,8 +81,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     dict[@"trade_id"] = model.trade_id;
     dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
     dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
-  
-//    NSLog(@"dict = %@",dict);
+
     _loadV = [LoadWaitView addloadview:self.view.bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
         
@@ -288,12 +287,9 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return 130 *autoSizeScaleY;
+        return (SCREEN_WIDTH / 3) + 26;
     }else{
-//        self.tableView.rowHeight = UITableViewAutomaticDimension;
-//        self.tableView.estimatedRowHeight = 44;
-        return 110 *autoSizeScaleY;
-//        return self.tableView.rowHeight;
+        return SCREEN_WIDTH / 3;
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
