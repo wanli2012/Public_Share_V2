@@ -74,7 +74,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 //    self.navigationItem.title = @"房子详情";
     _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 160)
                                                           delegate:self
-                                                  placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+                                                  placeholderImage:[UIImage imageNamed:LUNBO_PlaceHolder]];
     
     _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     _cycleScrollView.clipsToBounds = YES;

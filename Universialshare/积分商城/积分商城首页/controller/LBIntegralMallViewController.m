@@ -64,7 +64,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     
     _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 160*autoSizeScaleY)
                                                           delegate:self
-                                                  placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+                                                  placeholderImage:[UIImage imageNamed:LUNBO_PlaceHolder]];
     
     _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
@@ -106,14 +106,6 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 }
 - (void)dismiss{
     
-//    [UIView animateWithDuration:0.2 animations:^{
-//        _contentView.frame = CGRectMake(40, SCREEN_HEIGHT, SCREEN_WIDTH - 80, 300);
-//        
-//    }completion:^(BOOL finished) {
-//        
-//        [_maskV removeFromSuperview];
-//    }];
-    //
     [UIView animateWithDuration:0.5 animations:^{
         
         _maskV.transform = CGAffineTransformMakeScale(0.07, 0.07);
@@ -249,50 +241,6 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
         _contentView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
         _contentView.alpha = 1;
     }];
-
-//     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-   
-//    [NetworkManager requestPOSTWithURLStr:@"index/notice" paramDic:nil finish:^(id responseObject) {
-//        [_loadV removeloadview];
-//        
-//        if ([responseObject[@"code"] integerValue] == 1) {
-//  
-//            CGFloat contentViewH = SCREEN_HEIGHT / 2;
-//            CGFloat contentViewW = SCREEN_WIDTH - 40;
-//            CGFloat contentViewX = 20;
-//            _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//            
-//            _maskV.bgView.alpha = 0.3;
-//            
-//            _contentView = [[NSBundle mainBundle] loadNibNamed:@"GLHomePageNoticeView" owner:nil options:nil].lastObject;
-//            _contentView.contentViewW.constant = SCREEN_WIDTH - 40;
-//            _contentView.contentViewH.constant = SCREEN_HEIGHT / 2 - 30;
-//            _contentView.layer.cornerRadius = 5;
-//            _contentView.layer.masksToBounds = YES;
-//            
-//            _htmlString = [NSString stringWithFormat:@"<!DOCTYPE html><html>%@</html>",responseObject[@"data"][@"content"]];
-//            _htmlString = [_htmlString stringByReplacingOccurrencesOfString:@"\\\"" withString:responseObject[@"data"][@"content"]];
-//            
-//            [_contentView.webView loadHTMLString:_htmlString baseURL:nil];
-//            _contentView.titleLabel.text = responseObject[@"data"][@"title"];
-//            
-//            [_maskV showViewWithContentView:_contentView];
-//            
-//            _contentView.frame = CGRectMake(contentViewX, (SCREEN_HEIGHT - contentViewH)/2, contentViewW, contentViewH);
-//            //缩放
-//            _contentView.transform=CGAffineTransformMakeScale(0.01f, 0.01f);
-//            _contentView.alpha = 0;
-//            [UIView animateWithDuration:0.2 animations:^{
-//                
-//                _contentView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-//                _contentView.alpha = 1;
-//            }];
-//  
-//        }
-//        
-//    } enError:^(NSError *error) {
-//        [_loadV removeloadview];
-//    }];
     
 }
 

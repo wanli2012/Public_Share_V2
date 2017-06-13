@@ -70,7 +70,7 @@ static NSString *ID = @"GLShoppingCell";
     [NetworkManager requestPOSTWithURLStr:@"shop/myCartList" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
-        NSLog(@"responseObject = %@",responseObject);
+       
         
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 
@@ -94,61 +94,38 @@ static NSString *ID = @"GLShoppingCell";
 
 //去结算
 - (void)clearingMore:(UIButton *)sender{
-    if ([sender.titleLabel.text isEqualToString:@"去结算"]) {
-        if (_yesSum > 0) {
-            
-            NSMutableString *goods_idStrM = [NSMutableString string];
-            NSMutableString *goods_numStrM = [NSMutableString string];
-            NSMutableString *cart_idM = [NSMutableString string];
-            for (int i = 0; i < _models.count; i ++) {
-                if ([self.selectArr[i] boolValue]) {
-                    GLShoppingCartModel *model = _models[i];
-                    [goods_idStrM appendFormat:@"%@,",model.goods_id];
-                    [goods_numStrM appendFormat:@"%@,",model.num];
-                    [cart_idM appendFormat:@"%@,",model.cart_id];
-                }
+    if (_yesSum > 0) {
+        
+        NSMutableString *goods_idStrM = [NSMutableString string];
+        NSMutableString *goods_numStrM = [NSMutableString string];
+        NSMutableString *cart_idM = [NSMutableString string];
+        NSMutableString *goods_specIdStrM = [NSMutableString string];
+        for (int i = 0; i < _models.count; i ++) {
+            if ([self.selectArr[i] boolValue]) {
+                GLShoppingCartModel *model = _models[i];
+                [goods_idStrM appendFormat:@"%@,",model.goods_id];
+                [goods_numStrM appendFormat:@"%@,",model.num];
+                [cart_idM appendFormat:@"%@,",model.cart_id];
+                [goods_specIdStrM appendFormat:@"%@,",model.spec_id];
             }
-            
-            [goods_idStrM deleteCharactersInRange:NSMakeRange([goods_idStrM length]-1, 1)];
-            [goods_numStrM deleteCharactersInRange:NSMakeRange([goods_numStrM length]-1, 1)];
-            [cart_idM deleteCharactersInRange:NSMakeRange([cart_idM length]-1, 1)];
-            self.hidesBottomBarWhenPushed = YES;
-            GLConfirmOrderController *payVC = [[GLConfirmOrderController alloc] init];
-            payVC.goods_id = goods_idStrM;
-            payVC.goods_count = goods_numStrM;
-            payVC.cart_id = cart_idM;
-            NSLog(@"goods_idStrM = %@,goods_numStrM = %@",goods_idStrM,goods_numStrM);
-            
-            [self.navigationController pushViewController:payVC animated:YES];
-        }else{
-            [MBProgressHUD showError:@"请选择商品"];
         }
         
-    }else{
+        [goods_idStrM deleteCharactersInRange:NSMakeRange([goods_idStrM length]-1, 1)];
+        [goods_numStrM deleteCharactersInRange:NSMakeRange([goods_numStrM length]-1, 1)];
+        [cart_idM deleteCharactersInRange:NSMakeRange([cart_idM length]-1, 1)];
+        [goods_specIdStrM deleteCharactersInRange:NSMakeRange([goods_specIdStrM length]-1, 1)];
         
-//        NSLog(@"删除%ld件商品",_totalNum);
-//        
-//        NSMutableIndexSet *indexs = [NSMutableIndexSet indexSet];
-//        // 遍历选中的数据源的index并添加到set里面
-//        for (int i = 0; i < self.selectArr.count; i ++) {
-//            if ([self.selectArr[i] boolValue] == YES) {
-//                [indexs addIndex:i];
-//                _totalPrice -= [_dataSource[i] integerValue] * [_numArr[i] integerValue];
-//            }
-//        }
-//        _totalNum = 0;
-//        self.selectedNumLabel.text = [NSString stringWithFormat:@"已选中%ld件商品",_totalNum];
-//        self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额¥ %ld元",_totalPrice];
-//        //  删除选中数据源 并更新tableView
-////        [dataSource removeObjectsAtIndexes:indexs];
-//        [self.selectArr removeObjectsAtIndexes:indexs];
-//        [self.dataSource removeObjectsAtIndexes:indexs];
-//        [_numArr removeObjectsAtIndexes:indexs];
-//        
-//        [self updateTitleNum];
-//        
-//        [self.tableView reloadData];
-//        
+        self.hidesBottomBarWhenPushed = YES;
+        
+        GLConfirmOrderController *payVC = [[GLConfirmOrderController alloc] init];
+        payVC.goods_id = goods_idStrM;
+        payVC.goods_count = goods_numStrM;
+        payVC.cart_id = cart_idM;
+        payVC.goods_spec = goods_specIdStrM;
+        
+        [self.navigationController pushViewController:payVC animated:YES];
+    }else{
+        [MBProgressHUD showError:@"请选择商品"];
     }
 }
 //全选
@@ -177,8 +154,8 @@ static NSString *ID = @"GLShoppingCell";
     if(self.seleteAllBtn.selected){
         
         [self.seleteAllBtn setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
-        self.selectedNumLabel.text = [NSString stringWithFormat:@"已选中%lu件商品",_totalNum];
-        self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额¥ %ld元",_totalPrice];
+        self.selectedNumLabel.text = [NSString stringWithFormat:@"已选中%zd件商品",_totalNum];
+        self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额¥ %zd元",_totalPrice];
         
     }else{
         
@@ -209,8 +186,8 @@ static NSString *ID = @"GLShoppingCell";
         _totalPrice -= [self.dataSource[index] integerValue]* [_numArr[index] integerValue];
     }
 
-    self.selectedNumLabel.text = [NSString stringWithFormat:@"已选中%ld件商品",_totalNum];
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额%ld元",_totalPrice];
+    self.selectedNumLabel.text = [NSString stringWithFormat:@"已选中%zd件商品",_totalNum];
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额%zd元",_totalPrice];
     [self.selectArr replaceObjectAtIndex:index withObject:@(isSelected)];
 
     
@@ -228,7 +205,7 @@ static NSString *ID = @"GLShoppingCell";
 }
 
 - (void)updateTitleNum {
-    self.navigationItem.title = [NSString stringWithFormat:@"购物车(%ld)",_totalNum];
+    self.navigationItem.title = [NSString stringWithFormat:@"购物车(%zd)",_totalNum];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
