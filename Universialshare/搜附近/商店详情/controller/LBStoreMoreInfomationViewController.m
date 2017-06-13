@@ -342,7 +342,7 @@ static const CGFloat headerImageHeight = 180.0f;
        headerview.titleLb.hidden = NO;
     }else if (section == 2){
         if (self.dataDic.count > 0 ) {
-            headerview.titleLb.text = [NSString stringWithFormat:@"热门评论 (%u)",[self.dataDic[@"com_data"] count]];
+            headerview.titleLb.text = [NSString stringWithFormat:@"热门评论 (%lu)",[self.dataDic[@"com_data"] count]];
             if ([self.dataDic[@"pl_count"]integerValue] > 3) {
                 headerview.moreBt.hidden = YES;
             }else{
@@ -577,13 +577,13 @@ static const CGFloat headerImageHeight = 180.0f;
     if (!_cycleScrollView) {
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, -headerImageHeight, SCREEN_WIDTH, headerImageHeight)
                                                               delegate:self
-                                                      placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+                                                      placeholderImage:[UIImage imageNamed:@"轮播暂位图"]];
         
         _cycleScrollView.localizationImageNamesGroup = @[];
         
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
         _cycleScrollView.titleLabelBackgroundColor = [UIColor groupTableViewBackgroundColor];// 图片对应的标题的 背景色。（因为没有设标题）
-        
+        _cycleScrollView.placeholderImage = [UIImage imageNamed:@"轮播暂位图"];
         _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
     }
     

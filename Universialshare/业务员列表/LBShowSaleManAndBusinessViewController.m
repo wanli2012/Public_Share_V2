@@ -91,10 +91,7 @@
     NSDictionary *dict2 = @{@"imageName" : @"",
                             @"itemName" : @"推广经理"
                             };
-//    NSDictionary *dict3 = @{@"imageName" : @"密码",
-//                            @"itemName" : @"商户"
-//                            };
-    
+
      NSArray *dataArray = @[dict1,dict2];
     
     _dataArray = dataArray;
@@ -127,8 +124,6 @@
     [self transitionFromVC:self.currentViewController toviewController:_faildVc];
     [self fitFrameForChildViewController:_faildVc];
 }
-
-
 - (IBAction)businessEvent:(UIButton *)sender {
     
     [UIView animateWithDuration:0.3 animations:^{

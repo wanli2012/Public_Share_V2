@@ -785,6 +785,15 @@
 		F9434D561EC19046001C80A4 /* LBMineCenterWantToSignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9434D541EC19046001C80A4 /* LBMineCenterWantToSignUpViewController.xib */; };
 		F947384D1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F947384B1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.m */; };
 		F947384E1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F947384C1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.xib */; };
+		F9479AFC1EEF7DC400581250 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F9479AFA1EEF7DC400581250 /* AlipaySDK.bundle */; };
+		F9479AFD1EEF7DC400581250 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9479AFB1EEF7DC400581250 /* AlipaySDK.framework */; };
+		F9479AFF1EEF7DF400581250 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F9479AFE1EEF7DF400581250 /* libz.tbd */; };
+		F9479B011EEF7E0300581250 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F9479B001EEF7E0300581250 /* libc++.tbd */; };
+		F9479B031EEF7E1400581250 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9479B021EEF7E1400581250 /* CoreText.framework */; };
+		F9479B051EEF7E1D00581250 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9479B041EEF7E1D00581250 /* UIKit.framework */; };
+		F9479B071EEF7E2400581250 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9479B061EEF7E2400581250 /* Foundation.framework */; };
+		F9479B091EEF7E2E00581250 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9479B081EEF7E2E00581250 /* CFNetwork.framework */; };
+		F9479B0B1EEF7E3B00581250 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9479B0A1EEF7E3B00581250 /* CoreMotion.framework */; };
 		F94A33F31EAA01A600222A86 /* LBMineCenterPayPagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94A33F11EAA01A600222A86 /* LBMineCenterPayPagesViewController.m */; };
 		F94A33F41EAA01A600222A86 /* LBMineCenterPayPagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94A33F21EAA01A600222A86 /* LBMineCenterPayPagesViewController.xib */; };
 		F94A33F91EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94A33F71EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.m */; };
@@ -2339,6 +2348,15 @@
 		F947384A1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBOrderRebatePendingViewController.h; sourceTree = "<group>"; };
 		F947384B1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBOrderRebatePendingViewController.m; sourceTree = "<group>"; };
 		F947384C1EE14C4100EC6A8F /* LBOrderRebatePendingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBOrderRebatePendingViewController.xib; sourceTree = "<group>"; };
+		F9479AFA1EEF7DC400581250 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		F9479AFB1EEF7DC400581250 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		F9479AFE1EEF7DF400581250 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		F9479B001EEF7E0300581250 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		F9479B021EEF7E1400581250 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		F9479B041EEF7E1D00581250 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F9479B061EEF7E2400581250 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F9479B081EEF7E2E00581250 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		F9479B0A1EEF7E3B00581250 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F94A33F01EAA01A600222A86 /* LBMineCenterPayPagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterPayPagesViewController.h; sourceTree = "<group>"; };
 		F94A33F11EAA01A600222A86 /* LBMineCenterPayPagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterPayPagesViewController.m; sourceTree = "<group>"; };
 		F94A33F21EAA01A600222A86 /* LBMineCenterPayPagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterPayPagesViewController.xib; sourceTree = "<group>"; };
@@ -2626,6 +2644,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9479B0B1EEF7E3B00581250 /* CoreMotion.framework in Frameworks */,
+				F9479B091EEF7E2E00581250 /* CFNetwork.framework in Frameworks */,
+				F9479B071EEF7E2400581250 /* Foundation.framework in Frameworks */,
+				F9479B051EEF7E1D00581250 /* UIKit.framework in Frameworks */,
+				F9479B031EEF7E1400581250 /* CoreText.framework in Frameworks */,
+				F9479B011EEF7E0300581250 /* libc++.tbd in Frameworks */,
+				F9479AFF1EEF7DF400581250 /* libz.tbd in Frameworks */,
 				F90C45361ED6B692001650BD /* AssetsLibrary.framework in Frameworks */,
 				F9126ED11EA058EE004785EA /* libstdc++.6.0.9.tbd in Frameworks */,
 				F9126ECF1EA058E0004785EA /* CoreTelephony.framework in Frameworks */,
@@ -2643,6 +2668,7 @@
 				4A46101F1E9CC6360045824F /* libUMSocial_Sdk_5.2.1.a in Frameworks */,
 				4F9D6A29F2E5B95EBA14BE59 /* Pods_Universialshare.framework in Frameworks */,
 				4A4610291E9CC6360045824F /* libSocialSinaSSO.a in Frameworks */,
+				F9479AFD1EEF7DC400581250 /* AlipaySDK.framework in Frameworks */,
 				F9126EDE1EA05984004785EA /* libcrypto.a in Frameworks */,
 				F9126ED81EA0597B004785EA /* BaiduMapAPI_Location.framework in Frameworks */,
 				F9126ED71EA0597B004785EA /* BaiduMapAPI_Base.framework in Frameworks */,
@@ -3190,6 +3216,7 @@
 		4A460D9B1E9CC6350045824F /* 三方库 */ = {
 			isa = PBXGroup;
 			children = (
+				F9479AF91EEF7DC400581250 /* 支付宝 */,
 				F96CEE411EE79B76000B6D91 /* DWBubbleMenuButton.h */,
 				F96CEE421EE79B76000B6D91 /* DWBubbleMenuButton.m */,
 				F94E92B31ED9108200CBEDB8 /* PopMenuTableViewCell.h */,
@@ -4874,6 +4901,13 @@
 		BB2598459FE627C586E51511 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F9479B0A1EEF7E3B00581250 /* CoreMotion.framework */,
+				F9479B081EEF7E2E00581250 /* CFNetwork.framework */,
+				F9479B061EEF7E2400581250 /* Foundation.framework */,
+				F9479B041EEF7E1D00581250 /* UIKit.framework */,
+				F9479B021EEF7E1400581250 /* CoreText.framework */,
+				F9479B001EEF7E0300581250 /* libc++.tbd */,
+				F9479AFE1EEF7DF400581250 /* libz.tbd */,
 				F90C45351ED6B692001650BD /* AssetsLibrary.framework */,
 				F9126EDC1EA05984004785EA /* libcrypto.a */,
 				F9126EDD1EA05984004785EA /* libssl.a */,
@@ -5750,6 +5784,15 @@
 			path = "我要报名";
 			sourceTree = "<group>";
 		};
+		F9479AF91EEF7DC400581250 /* 支付宝 */ = {
+			isa = PBXGroup;
+			children = (
+				F9479AFA1EEF7DC400581250 /* AlipaySDK.bundle */,
+				F9479AFB1EEF7DC400581250 /* AlipaySDK.framework */,
+			);
+			path = "支付宝";
+			sourceTree = "<group>";
+		};
 		F94A33EF1EAA015200222A86 /* 支付页面 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6505,6 +6548,7 @@
 				F923092B1E9B8BFF00ECDC94 /* LBMineCenterBalanceRechargeViewController.xib in Resources */,
 				F9061FD81E83C4730080E9D9 /* Assets.xcassets in Resources */,
 				4AAD259F1EC189070054FD06 /* GLMine_MyHeartCell.xib in Resources */,
+				F9479AFC1EEF7DC400581250 /* AlipaySDK.bundle in Resources */,
 				4A50045F1EE14FA9002D1964 /* LBHomepopinfoView.xib in Resources */,
 				4A2F521A1EC7084000ECA95D /* GLEvaluateCell.xib in Resources */,
 				F92309391E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeDetailOneTableViewCell.xib in Resources */,
@@ -7617,6 +7661,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Universialshare",
 					"$(PROJECT_DIR)/Universialshare/三方库",
+					"$(PROJECT_DIR)/Universialshare/三方库/支付宝",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Universialshare/universialshare.pch";
@@ -7675,6 +7720,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Universialshare",
 					"$(PROJECT_DIR)/Universialshare/三方库",
+					"$(PROJECT_DIR)/Universialshare/三方库/支付宝",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Universialshare/universialshare.pch";
