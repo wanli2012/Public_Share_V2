@@ -10,5 +10,8 @@
 
 @interface LBStoreSendGoodsLeavingTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *leavingLb;
+@property (weak, nonatomic) IBOutlet UILabel *phone;
+@property (weak, nonatomic) IBOutlet UILabel *address;
+
 
 @end

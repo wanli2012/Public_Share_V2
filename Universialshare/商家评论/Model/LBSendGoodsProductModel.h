@@ -15,8 +15,9 @@
 @property (copy, nonatomic)NSString *goods_num;
 @property (copy, nonatomic)NSString *order_goods_id;
 @property (copy, nonatomic)NSString *user_name;
-@property (copy, nonatomic)NSString *phone;
 @property (copy, nonatomic)NSString *goods_name;
 @property (copy, nonatomic)NSString *goods_price;
 @property (copy, nonatomic)NSString *is_receipt;
+@property (copy, nonatomic)NSString *goods_spec;
+
 @end

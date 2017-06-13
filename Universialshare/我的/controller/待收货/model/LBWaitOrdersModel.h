@@ -17,6 +17,9 @@
 @property (copy, nonatomic)NSString *order_type;
 @property (copy, nonatomic)NSString *order_remark;
 
+@property (copy, nonatomic)NSString *phone;
+@property (copy, nonatomic)NSString *address;
+
 @property (strong, nonatomic)NSMutableArray *dataArr;
 
 @property (assign, nonatomic)BOOL isExpanded;//是否展开

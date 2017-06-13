@@ -52,8 +52,8 @@ static NSString *ID = @"GLIncomeManagerCell";
     
     [self.tableView registerNib:[UINib nibWithNibName:@"GLIncomeManagerCell" bundle:nil] forCellReuseIdentifier:ID];
     _model = [[GLIncomeManagerModel alloc] init];
-    _model.shop_name = @"你哈也的你大爷街";
-    _model.shop_address = @"天府三街中百大道天府三街中百街中";
+    _model.shop_name = @"";
+    _model.shop_address = @"";
     
     [self.view addSubview:self.CalendarView];
     
@@ -170,8 +170,12 @@ static NSString *ID = @"GLIncomeManagerCell";
         }else{
             self.nodataV.hidden = YES;
         }
+        
+         self.totalLabel.text =[NSString stringWithFormat:@"¥%@",responseObject[@"total_money"]];
+        if ([self.totalLabel.text rangeOfString:@"null"].location != NSNotFound) {
+             self.totalLabel.text = @"¥0";
+        }
 
-        self.totalLabel.text =[NSString stringWithFormat:@"%@",responseObject[@"total_money"]];
         [self.tableView reloadData];
     } enError:^(NSError *error) {
         [self endRefresh];

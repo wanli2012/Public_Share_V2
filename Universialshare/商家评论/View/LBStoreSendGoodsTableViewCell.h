@@ -18,13 +18,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *button;
 @property (weak, nonatomic) IBOutlet UILabel *codelb;
 @property (weak, nonatomic) IBOutlet UILabel *namelb;
-@property (weak, nonatomic) IBOutlet UILabel *phonelb;
 @property (weak, nonatomic) IBOutlet UILabel *timelb;
 @property (strong, nonatomic) NSIndexPath  *indexpath;
 @property (assign, nonatomic) id<LBStoreSendGoodsDelegete>  delegete;
 @property (strong, nonatomic)LBSendGoodsProductModel *WaitOrdersListModel;
 @property (weak, nonatomic) IBOutlet UIImageView *imagev;
 @property (weak, nonatomic) IBOutlet UILabel *pricelb;
-@property (weak, nonatomic) IBOutlet UILabel *LeavingLb;
+@property (weak, nonatomic) IBOutlet UILabel *goods_specLb;
 
 @end
