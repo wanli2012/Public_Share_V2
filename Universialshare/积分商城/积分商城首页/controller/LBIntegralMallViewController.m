@@ -300,7 +300,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
    
     self.hidesBottomBarWhenPushed = YES;
     GLHourseDetailController *detailVC = [[GLHourseDetailController alloc] init];
-    detailVC.navigationItem.title = @"积分兑换详情";
+    detailVC.navigationItem.title = @"米券兑换详情";
     if (tap.view.tag == 11) {
         GLMallHotModel *model = self.hotModels[0];
         detailVC.goods_id = model.mall_id;
@@ -454,7 +454,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     if(indexPath.section != 0 ){
         
         GLHourseDetailController *detailVC = [[GLHourseDetailController alloc] init];
-        detailVC.navigationItem.title = @"积分兑换详情";
+        detailVC.navigationItem.title = @"米券兑换详情";
         GLMall_InterestModel *model = self.interestModels[indexPath.row];
         detailVC.goods_id = model.goods_id;
         //    GLSubmitFirstController *submitVC = [[GLSubmitFirstController alloc] init];
