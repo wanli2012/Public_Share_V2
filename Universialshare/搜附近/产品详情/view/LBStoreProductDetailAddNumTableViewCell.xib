@@ -40,6 +40,9 @@
                                 <state key="normal" title="-">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="reduceButtonEvent:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="trf-dY-eau"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVT-C9-vuK">
                                 <rect key="frame" x="31" y="0.0" width="35" height="30"/>
@@ -57,6 +60,9 @@
                                 <state key="normal" title="+">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addButtonevent:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Z6I-TC-hLW"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -85,6 +91,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="baseview" destination="omf-z1-Hmt" id="Lgf-Bk-EOD"/>
+                <outlet property="numLb" destination="RVT-C9-vuK" id="fui-Qc-z0Q"/>
             </connections>
         </tableViewCell>
     </objects>

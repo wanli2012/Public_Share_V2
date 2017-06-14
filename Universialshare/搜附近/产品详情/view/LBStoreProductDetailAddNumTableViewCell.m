@@ -18,12 +18,29 @@
     self.baseview.layer.borderWidth = 1;
     self.baseview.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
     
+    self.numLb.text = @"1";
+    
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (IBAction)reduceButtonEvent:(UIButton *)sender {
+    
+    if ([self.numLb.text isEqualToString:@"1"]) {
+        return;
+    }
+    self.numLb.text = [NSString stringWithFormat:@"%ld",[self.numLb.text integerValue] - 1];
+    
+    if (self.retureNum) {
+        self.retureNum([self.numLb.text integerValue]);
+    }
+}
 
-    // Configure the view for the selected state
+- (IBAction)addButtonevent:(UIButton *)sender {
+    
+    self.numLb.text = [NSString stringWithFormat:@"%ld",[self.numLb.text integerValue] + 1];
+    
+    if (self.retureNum) {
+        self.retureNum([self.numLb.text integerValue]);
+    }
 }
 
 @end
