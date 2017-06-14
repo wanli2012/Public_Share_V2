@@ -44,7 +44,7 @@
     [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.store_pic] placeholderImage:[UIImage imageNamed:MERCHAT_PlaceHolder]];
     
     if (self.picImageV.image == nil) {
-        self.picImageV.image = [UIImage imageNamed:PlaceHolderImage];
+        self.picImageV.image = [UIImage imageNamed:MERCHAT_PlaceHolder];
     }
     self.nameLabel.text = model.shop_name;
     self.addressLabel.text = [NSString stringWithFormat:@"地址:%@",model.shop_address];
