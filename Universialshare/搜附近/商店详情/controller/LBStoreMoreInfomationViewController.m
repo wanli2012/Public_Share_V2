@@ -411,7 +411,6 @@ static const CGFloat headerImageHeight = 180.0f;
             break;
     }
 
-
 }
 //换一批商店
 -(void)BatchStore{
