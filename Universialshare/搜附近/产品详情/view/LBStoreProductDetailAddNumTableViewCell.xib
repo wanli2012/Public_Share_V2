@@ -29,20 +29,21 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="omf-z1-Hmt">
-                        <rect key="frame" x="50.5" y="6.5" width="85" height="30"/>
+                        <rect key="frame" x="50.5" y="6.5" width="100" height="30"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rh6-pZ-ENP">
-                                <rect key="frame" x="0.0" y="0.0" width="25" height="30"/>
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="25" id="211-tc-h0b"/>
+                                    <constraint firstAttribute="width" constant="30" id="211-tc-h0b"/>
                                 </constraints>
                                 <state key="normal" title="-">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVT-C9-vuK">
-                                <rect key="frame" x="25" y="0.0" width="35" height="30"/>
+                                <rect key="frame" x="31" y="0.0" width="35" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="4sz-9S-NUL"/>
                                 </constraints>
@@ -51,23 +52,23 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jpK-Q5-dsT">
-                                <rect key="frame" x="60" y="0.0" width="25" height="30"/>
+                                <rect key="frame" x="67" y="0.0" width="33" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="+">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="jpK-Q5-dsT" secondAttribute="trailing" id="9mF-pM-UQn"/>
                             <constraint firstAttribute="bottom" secondItem="Rh6-pZ-ENP" secondAttribute="bottom" id="ASA-2R-004"/>
                             <constraint firstAttribute="height" constant="30" id="Ghj-d8-XZ4"/>
                             <constraint firstAttribute="bottom" secondItem="RVT-C9-vuK" secondAttribute="bottom" id="KlV-nY-sjX"/>
-                            <constraint firstItem="RVT-C9-vuK" firstAttribute="leading" secondItem="Rh6-pZ-ENP" secondAttribute="trailing" id="Qc4-Kj-IaV"/>
+                            <constraint firstItem="RVT-C9-vuK" firstAttribute="leading" secondItem="Rh6-pZ-ENP" secondAttribute="trailing" constant="1" id="Qc4-Kj-IaV"/>
                             <constraint firstItem="Rh6-pZ-ENP" firstAttribute="leading" secondItem="omf-z1-Hmt" secondAttribute="leading" id="cW6-m0-Wwl"/>
-                            <constraint firstAttribute="width" constant="85" id="djw-xp-YFR"/>
-                            <constraint firstItem="jpK-Q5-dsT" firstAttribute="leading" secondItem="RVT-C9-vuK" secondAttribute="trailing" id="ewM-hN-Y9r"/>
+                            <constraint firstAttribute="width" constant="100" id="djw-xp-YFR"/>
+                            <constraint firstItem="jpK-Q5-dsT" firstAttribute="leading" secondItem="RVT-C9-vuK" secondAttribute="trailing" constant="1" id="ewM-hN-Y9r"/>
                             <constraint firstItem="Rh6-pZ-ENP" firstAttribute="top" secondItem="omf-z1-Hmt" secondAttribute="top" id="m3H-f3-Plw"/>
                             <constraint firstAttribute="bottom" secondItem="jpK-Q5-dsT" secondAttribute="bottom" id="oV9-bU-JuG"/>
                             <constraint firstItem="RVT-C9-vuK" firstAttribute="top" secondItem="omf-z1-Hmt" secondAttribute="top" id="s4m-C6-lfK"/>
