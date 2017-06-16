@@ -26,7 +26,12 @@
     NSString *timeStr = [dateFormatter1 stringFromDate:currentDate];
     
     self.dateLabel.text = timeStr;
-    self.numberLabel.text = @"10";
-//    self.typeLabel.text = model.donatetype;
+    
+    if ([model.num rangeOfString:@"null"].location != NSNotFound) {
+        self.numberLabel.text = @"0";
+    }else{
+       self.numberLabel.text = model.num;
+    }
+
 }
 @end

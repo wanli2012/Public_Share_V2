@@ -113,7 +113,7 @@ static NSString *ID = @"GLEncourageBeansCell";
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
-    dict[@"page"] = [NSString stringWithFormat:@"%ld",_page];
+    dict[@"page"] = [NSString stringWithFormat:@"%ld",(long)_page];
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"user/myfh_list" paramDic:dict finish:^(id responseObject) {

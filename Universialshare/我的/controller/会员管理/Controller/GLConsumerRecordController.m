@@ -125,8 +125,6 @@ static NSString *ID = @"GLConsumerRecordCell";
         
         [_loadV removeloadview];
         [self endRefresh];
-//        NSLog(@"dict = %@",dict);
-//        NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 

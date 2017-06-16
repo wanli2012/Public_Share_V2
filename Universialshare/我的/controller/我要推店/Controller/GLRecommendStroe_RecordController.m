@@ -176,8 +176,12 @@ static NSString *ID = @"GLRecommendStore_RecordCell";
     
     cell.namelb.text = [NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"truename"]];
     cell.adresslb.text = [NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"address"]];
-    cell.codelb.text = [NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"code"]];
+    cell.codelb.text = [NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"sn_code"]];
     cell.timelb.text = [formattime formateTimeYM:self.dataarr[indexPath.row][@"addtime"]];
+    
+    if ([cell.codelb.text rangeOfString:@"null"].location != NSNotFound) {
+        cell.codelb.text = @"";
+    }
     
     return cell;
 }

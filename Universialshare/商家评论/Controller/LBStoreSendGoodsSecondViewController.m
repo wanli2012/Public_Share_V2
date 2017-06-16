@@ -87,6 +87,8 @@ static NSString *LeavingID = @"LBStoreSendGoodsLeavingTableViewCell";
                     ordersMdel.order_id = responseObject[@"data"][i][@"order_id"];
                     ordersMdel.order_number = responseObject[@"data"][i][@"order_num"];
                     ordersMdel.order_type = responseObject[@"data"][i][@"order_type"];
+                    ordersMdel.phone = responseObject[@"data"][i][@"phone"];
+                    ordersMdel.address = responseObject[@"data"][i][@"address"];
                     ordersMdel.isExpanded = NO;
                     for (int j =0; j < [responseObject[@"data"][i][@"son"]count]; j++) {
                         LBSendGoodsProductModel   *listmodel = [LBSendGoodsProductModel mj_objectWithKeyValues:responseObject[@"data"][i][@"son"][j]];
@@ -180,6 +182,12 @@ static NSString *LeavingID = @"LBStoreSendGoodsLeavingTableViewCell";
         cell.address.text = [NSString stringWithFormat:@"地址: %@",model.address];
         if ([model.order_remark rangeOfString:@"null"].location != NSNotFound || model.order_remark.length <= 0) {
             cell.leavingLb.text = @"买家留言: 买家没有留下任何足迹";
+        }
+        if ([model.address rangeOfString:@"null"].location != NSNotFound || model.address.length <= 0) {
+            cell.address.text = @"地址: 买家好懒，地址都不给我";
+        }
+        if ([model.phone rangeOfString:@"null"].location != NSNotFound || model.phone.length <= 0) {
+            cell.phone.text = @"tel: 买家好懒，联系方式都不给我";
         }
         return cell;
     }

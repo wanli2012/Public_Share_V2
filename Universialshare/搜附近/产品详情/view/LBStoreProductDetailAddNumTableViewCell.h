@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface LBStoreProductDetailAddNumTableViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UIView *baseview;
+@property (weak, nonatomic) IBOutlet UILabel *numLb;
+
+@property (copy , nonatomic)void(^retureNum)(NSInteger num);
 
 @end

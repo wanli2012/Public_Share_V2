@@ -27,6 +27,7 @@
 
     CALayer         *layer;
     NSInteger       _cnt;      // 记录个数
+    NSInteger       _num;      // 记录购买商品个数 默认为1
     UILabel     *_cntLabel;
     
     GLShareView *_shareV;
@@ -56,6 +57,7 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.titileLb.text = self.goodname;
+    _num = 1;
      _headerImageHeight = 180.0f * autoSizeScaleY;
     self.tableView.tableHeaderView = self.cycleScrollView;
     [self.tableView registerNib:[UINib nibWithNibName:@"LBStoreProductDetailInfoTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBStoreProductDetailInfoTableViewCell"];
@@ -227,7 +229,10 @@
         }else{
             LBStoreProductDetailAddNumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBStoreProductDetailAddNumTableViewCell" forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
+            cell.retureNum = ^(NSInteger num) {
+                _num = num;
+                
+            };
             return cell;
         }
         
@@ -285,7 +290,7 @@
         headerview.moreBt.hidden = YES;
     }else if (section == 1){
         if (self.dataDic.count > 0 ) {
-            headerview.titleLb.text = [NSString stringWithFormat:@"评论 (%d)",self.pl_count];
+            headerview.titleLb.text = [NSString stringWithFormat:@"评论 (%ld)",(long)self.pl_count];
                 headerview.moreBt.hidden = NO;
 //            if ([self.dataDic[@"pl_count"]integerValue] > 3) {
 //                 headerview.moreBt.hidden = NO;
@@ -335,7 +340,7 @@
     self.hidesBottomBarWhenPushed = YES;
     GLConfirmOrderController *vc=[[GLConfirmOrderController alloc]init];
     vc.goods_id = self.goodId;
-    vc.goods_count = @"1";
+    vc.goods_count = [NSString stringWithFormat:@"%ld",(long)_num];
     vc.orderType = 2; //订单类型
     [self.navigationController pushViewController:vc animated:YES];
 
@@ -430,7 +435,7 @@
         dict[@"token"] = [UserModel defaultUser].token;
         dict[@"uid"] = [UserModel defaultUser].uid;
         dict[@"goods_id"] = self.goodId;
-        dict[@"count"] = @(1);
+        dict[@"count"] = @(_num);
         dict[@"type"] = @(2);
         
         _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
@@ -639,7 +644,7 @@
                                                       placeholderImage:[UIImage imageNamed:@"轮播暂位图"]];
         
         _cycleScrollView.localizationImageNamesGroup = @[];
-
+        _cycleScrollView.placeholderImageContentMode = UIViewContentModeScaleAspectFill;
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
         _cycleScrollView.titleLabelBackgroundColor = [UIColor groupTableViewBackgroundColor];// 图片对应的标题的 背景色。（因为没有设标题）
         _cycleScrollView.placeholderImage = [UIImage imageNamed:@"轮播暂位图"];

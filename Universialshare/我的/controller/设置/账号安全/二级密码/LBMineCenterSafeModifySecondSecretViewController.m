@@ -110,21 +110,22 @@
 
 - (IBAction)clickNextBt:(UIButton *)sender {
     
-    if (_sixSecret.length <=0 || _sixSecret.length >6) {
-        [MBProgressHUD showError:@"密码长度错误"];
+    if ( _sixSecret.length != 6) {
+        [MBProgressHUD showError:@"请输入六位密码"];
         return;
     }
+    
+     NSString *encryptsecret = [RSAEncryptor encryptString:_sixSecret publicKey:public_RSA];
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/checkTwoPass" paramDic:@{@"token":[UserModel defaultUser].token,@"uid":[UserModel defaultUser].uid,@"psd":_sixSecret} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"user/checkTwoPass" paramDic:@{@"token":[UserModel defaultUser].token,@"uid":[UserModel defaultUser].uid,@"psd":encryptsecret} finish:^(id responseObject) {
         [_loadV removeloadview];
-        if ([responseObject[@"code"] integerValue]==1) {
+        if ([responseObject[@"data"][@"status"] integerValue]==1) {
             
             [self.view endEditing:YES];
             [self.scrollview setContentOffset:CGPointMake(SCREEN_WIDTH - 60, 0) animated:YES];
-            
-            
+        
         }else{
-            [MBProgressHUD showError:responseObject[@"message"]];
+            [MBProgressHUD showError:responseObject[@"data"][@"count"]];
         }
     } enError:^(NSError *error) {
         [_loadV removeloadview];

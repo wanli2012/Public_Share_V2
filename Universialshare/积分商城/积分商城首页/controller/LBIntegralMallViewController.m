@@ -72,9 +72,9 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
     _cycleScrollView.titleLabelBackgroundColor = [UIColor clearColor];// 图片对应的标题的 背景色。（因为没有设标题）
     _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
-    _cycleScrollView.localizationImageNamesGroup = @[@"banner1(1)",
-                                                     @"banner2(1)",
-                                                     @"banner3(1)"];
+    _cycleScrollView.localizationImageNamesGroup = @[@"banner01.jpg",
+                                                     @"banner02.jpg",
+                                                     @"banner03.jpg"];
     
     self.tableView.tableHeaderView = _cycleScrollView;
     [self.tableView registerNib:[UINib nibWithNibName:@"GLIntegralMallTopCell" bundle:nil] forCellReuseIdentifier:topCellID];

@@ -26,11 +26,9 @@
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (nonatomic, strong)NSMutableArray *models;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextF;
-
 @property (nonatomic, assign) CLLocationCoordinate2D coors2; // 纬度
 @property (nonatomic, copy)NSString *latitude;
 @property (nonatomic, copy)NSString *longitude;
-
 @property (strong , nonatomic)BMKReverseGeoCodeOption *option;//地址
 @property (nonatomic, strong)SlideTabBarView *slideV;
 @property (nonatomic, strong)UIView *placeHolderView;
@@ -60,7 +58,6 @@
 
         if ([responseObject[@"code"] integerValue] == 1){
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-//                NSLog(@"responseObject = %@",responseObject);
                 for (NSDictionary *dic  in responseObject[@"data"][@"trade"]) {
                     
                     GLNearby_TradeOneModel *model = [GLNearby_TradeOneModel mj_objectWithKeyValues:dic];

@@ -40,6 +40,14 @@
     NSString *dateStr = [fm stringFromDate:date];
     self.consumerDateLabel.text = [NSString stringWithFormat:@"时间:%@",dateStr];
     
+    if ([self.consumerDateLabel.text rangeOfString:@"null"].location != NSNotFound) {
+        self.consumerDateLabel.text = @"时间:";
+    }
+    
+    if ([self.priceLabel.text rangeOfString:@"null"].location != NSNotFound) {
+        self.priceLabel.text = @"分红:¥ 0";
+    }
+    
     if ([model.rl_type integerValue] == 1) {//20%
         self.typeImageV.image = [UIImage imageNamed:@"智能20%"];
         
@@ -53,9 +61,7 @@
         self.typeImageV.image = [UIImage imageNamed:@"智能3%"];
     }
     
-    if (model.thumb.length > 0 ) {
-        
-        [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@""]];
-    }
+        [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"planceholder"]];
+    
 }
 @end

@@ -97,13 +97,13 @@ static NSString *ID = @"GLOrderGoodsCell";
         if ([responseObject[@"code"] integerValue] == 1){
 
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-                
-                self.address_id = responseObject[@"address_id"];
+        
                 for (NSDictionary *dic in responseObject[@"data"]) {
                     if ([dic[@"is_default"] intValue] == 1) {
                         self.nameLabel.text = [NSString stringWithFormat:@"收货人:%@",dic[@"collect_name"]];
                         self.phoneLabel.text = [NSString stringWithFormat:@"电话号码:%@",dic[@"s_phone"]];
                         self.addressLabel.text = [NSString stringWithFormat:@"收货地址:%@",dic[@"s_address"]];
+                        self.address_id = [NSString stringWithFormat:@"%@",dic[@"address_id"]];
                     }
                 }
             }
@@ -127,7 +127,7 @@ static NSString *ID = @"GLOrderGoodsCell";
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == 1){
             
-            self.totalSumLabel.text = [NSString stringWithFormat:@"合计:¥%@",responseObject[@"data"][@"all_realy_price"]];
+            self.totalSumLabel.text = [NSString stringWithFormat:@"合计:¥%.2f",[responseObject[@"data"][@"all_realy_price"] floatValue] ];
             self.yunfeiLabel.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"all_delivery"]];
             
             for (NSDictionary *dic in responseObject[@"data"][@"goods_list"]) {
@@ -218,6 +218,8 @@ static NSString *ID = @"GLOrderGoodsCell";
             
             [self.navigationController pushViewController:payVC animated:YES];
             
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
         }
         
     } enError:^(NSError *error) {

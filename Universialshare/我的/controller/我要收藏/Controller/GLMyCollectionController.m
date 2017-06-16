@@ -197,7 +197,7 @@ static NSString *ID = @"GLMyCollectionCell";
             dict[@"token"] = [UserModel defaultUser].token;
             dict[@"uid"] = [UserModel defaultUser].uid;
             if ([model.goods_type isEqualToString:@"2"]) {//积分收藏
-                dict[@"GID"] = model.goods_id;
+                dict[@"GID"] = model.goodsID;
             }else{
                 dict[@"GID"] = model.goodsID;
             }
@@ -247,7 +247,7 @@ static NSString *ID = @"GLMyCollectionCell";
     self.hidesBottomBarWhenPushed = YES;
     if ([model.goods_type isEqualToString:@"2"]) {//积分收藏
         GLHourseDetailController *vc = [[GLHourseDetailController alloc] init];
-        vc.goods_id = model.goods_id;
+        vc.goods_id = model.goodsID;
         vc.is_notice = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }else{

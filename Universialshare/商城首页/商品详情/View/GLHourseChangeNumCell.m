@@ -21,9 +21,16 @@
 }
 
 - (IBAction)changeNum:(UIButton *)sender {
-    if ([_delegate respondsToSelector:@selector(changeNum:indexPath:)]) { // 如果协议响应
+    
+    if (sender.tag == 20) {
+         self.sumLabel.text = [NSString stringWithFormat:@"%d",[self.sumLabel.text integerValue] - 1];
+    }else{
+        self.sumLabel.text = [NSString stringWithFormat:@"%d",[self.sumLabel.text integerValue] + 1];
+    }
+    
+    if ([_delegate respondsToSelector:@selector(changeNum:)]) { // 如果协议响应
        
-        [_delegate changeNum:sender.tag indexPath:self.indexPath];
+        [_delegate changeNum:self.sumLabel.text];
     }
 }
 //选择规格

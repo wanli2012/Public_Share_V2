@@ -109,14 +109,13 @@ static NSString *ID = @"GLRecommendCell";
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
-    dict[@"page"] = [NSString stringWithFormat:@"%ld",_page];
+    dict[@"page"] = [NSString stringWithFormat:@"%ld",(long)_page];
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"user/rec_list" paramDic:dict finish:^(id responseObject) {
        
         [_loadV removeloadview];
         [self endRefresh];
-//        NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1) {
             
             for (NSDictionary *dict in responseObject[@"data"]) {

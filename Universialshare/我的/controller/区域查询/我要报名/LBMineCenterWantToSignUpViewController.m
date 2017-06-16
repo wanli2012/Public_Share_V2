@@ -150,8 +150,7 @@
         return;
     }
     if (self.areaLb.text.length <= 0) {
-        [MBProgressHUD showError:@"选择区域"];
-        return;
+        self.areaLb.text = @"";
     }
     
     if (self.nameft.text.length <= 0) {

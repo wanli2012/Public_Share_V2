@@ -30,6 +30,7 @@
 
 @property (nonatomic, copy)NSString *city_id;
 @property (nonatomic,assign)NSInteger page;
+@property (nonatomic, strong)GLNearby_ClassifyHeaderView *headerV;
 
 @end
 
@@ -43,6 +44,10 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     [self.tableView registerNib:[UINib nibWithNibName:ID2 bundle:nil] forCellReuseIdentifier:ID2];
+    
+    _headerV = [[GLNearby_ClassifyHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 70)];
+    self.tableView.tableHeaderView = _headerV;
+    
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
@@ -60,11 +65,12 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     self.tableView.mj_header = header;
     [self updateData:YES];
     
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-//    
+//
 //    [MXNavigationBarManager reStoreToCustomNavigationBar:self];
 //    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
 }
@@ -82,7 +88,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
     dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
 
-    _loadV = [LoadWaitView addloadview:self.view.bounds tagert:self.view];
+    _loadV = [LoadWaitView addloadview:[UIApplication sharedApplication].keyWindow.bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
@@ -105,14 +111,10 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                     [self.recommendModels addObject:model];
                 }
                 
-                GLNearby_ClassifyHeaderView *headerV = [[GLNearby_ClassifyHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 70)];
-                self.tableView.tableHeaderView = headerV;
-                headerV.dataSource = self.tradeTwoModels;
-                
-                __weak typeof(self) weakSelf = self;
-                
-                headerV.block = ^(NSString *typeID,NSInteger count){
-                    
+                _headerV.dataSource = self.tradeTwoModels;
+            __weak __typeof(self) weakSelf = self;
+                _headerV.block = ^(NSString *typeID,NSInteger count){
+                   
                     if ([typeID isEqualToString:@"全部"]) {
                         
                         if (count % 4 == 0) {
@@ -130,7 +132,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                     }else{
                         
                         for (int i = 0; i < self.tradeTwoModels.count; i ++) {
-                            GLNearby_TradeOneModel *model = self.tradeTwoModels[i];
+                            GLNearby_TradeOneModel *model = weakSelf.tradeTwoModels[i];
                             if ([typeID isEqualToString:model.trade_name]) {
                                 _two_trade_id = model.trade_id;
                             }
@@ -142,7 +144,6 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                     [weakSelf.tableView reloadData];
                     
                 };
-                
 
             }
         }
@@ -269,20 +270,22 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        GLNearby_RecommendMerchatCell *cell = [tableView dequeueReusableCellWithIdentifier:ID2];
+        
+        GLNearby_RecommendMerchatCell *cell = [tableView dequeueReusableCellWithIdentifier:ID2 forIndexPath:indexPath];
         cell.selectionStyle = 0;
         cell.models = self.recommendModels;
-        [cell.collectionView reloadData];
         return cell;
         
     }else{
         
-        GLNearby_classifyCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        GLNearby_classifyCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
         cell.selectionStyle = 0;
         cell.model = self.nearModels[indexPath.row];
         return cell;
         
     }
+    
+     return [[UITableViewCell alloc]init];
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

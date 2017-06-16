@@ -648,22 +648,6 @@
 		F91964EF1EB36C68008A8616 /* MerchantInformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F91964EE1EB36C68008A8616 /* MerchantInformationModel.m */; };
 		F923091A1E9B8BFF00ECDC94 /* HWCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = F92308361E9B8BFE00ECDC94 /* HWCalendar.m */; };
 		F923091B1E9B8BFF00ECDC94 /* HWOptionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F92308381E9B8BFE00ECDC94 /* HWOptionButton.m */; };
-		F923091C1E9B8BFF00ECDC94 /* LBMineCenterMyBalanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F923083A1E9B8BFE00ECDC94 /* LBMineCenterMyBalanceViewController.m */; };
-		F923091D1E9B8BFF00ECDC94 /* LBMineCenterMyBalanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F923083B1E9B8BFE00ECDC94 /* LBMineCenterMyBalanceViewController.xib */; };
-		F923091E1E9B8BFF00ECDC94 /* LBMineCenterDetailedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F923083E1E9B8BFE00ECDC94 /* LBMineCenterDetailedView.m */; };
-		F923091F1E9B8BFF00ECDC94 /* LBMineCenterDetailedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F923083F1E9B8BFE00ECDC94 /* LBMineCenterDetailedView.xib */; };
-		F92309201E9B8BFF00ECDC94 /* LBMineCenterMyBalabceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F92308411E9B8BFE00ECDC94 /* LBMineCenterMyBalabceTableViewCell.m */; };
-		F92309211E9B8BFF00ECDC94 /* LBMineCenterMyBalabceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92308421E9B8BFE00ECDC94 /* LBMineCenterMyBalabceTableViewCell.xib */; };
-		F92309221E9B8BFF00ECDC94 /* LBMineCenterRechargeBankCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F92308441E9B8BFE00ECDC94 /* LBMineCenterRechargeBankCardTableViewCell.m */; };
-		F92309231E9B8BFF00ECDC94 /* LBMineCenterRechargeBankCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92308451E9B8BFE00ECDC94 /* LBMineCenterRechargeBankCardTableViewCell.xib */; };
-		F92309241E9B8BFF00ECDC94 /* LBMineCenterRechargeBankCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = F92308471E9B8BFE00ECDC94 /* LBMineCenterRechargeBankCardView.m */; };
-		F92309251E9B8BFF00ECDC94 /* LBMineCenterRechargeBankCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92308481E9B8BFE00ECDC94 /* LBMineCenterRechargeBankCardView.xib */; };
-		F92309261E9B8BFF00ECDC94 /* LBMineCenterRechargeCashView.m in Sources */ = {isa = PBXBuildFile; fileRef = F923084A1E9B8BFE00ECDC94 /* LBMineCenterRechargeCashView.m */; };
-		F92309271E9B8BFF00ECDC94 /* LBMineCenterRechargeCashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F923084B1E9B8BFE00ECDC94 /* LBMineCenterRechargeCashView.xib */; };
-		F92309281E9B8BFF00ECDC94 /* LBMineCenterAddBankCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F923084E1E9B8BFE00ECDC94 /* LBMineCenterAddBankCardViewController.m */; };
-		F92309291E9B8BFF00ECDC94 /* LBMineCenterAddBankCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F923084F1E9B8BFE00ECDC94 /* LBMineCenterAddBankCardViewController.xib */; };
-		F923092A1E9B8BFF00ECDC94 /* LBMineCenterBalanceRechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F92308511E9B8BFE00ECDC94 /* LBMineCenterBalanceRechargeViewController.m */; };
-		F923092B1E9B8BFF00ECDC94 /* LBMineCenterBalanceRechargeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92308521E9B8BFE00ECDC94 /* LBMineCenterBalanceRechargeViewController.xib */; };
 		F923092C1E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F92308571E9B8BFE00ECDC94 /* LBMineCenterFlyNoticeDetailViewController.m */; };
 		F923092D1E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92308581E9B8BFE00ECDC94 /* LBMineCenterFlyNoticeDetailViewController.xib */; };
 		F923092E1E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F923085A1E9B8BFE00ECDC94 /* LBMineCenterFlyNoticeViewController.m */; };
@@ -963,6 +947,8 @@
 		F97F09DE1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09DC1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib */; };
 		F97F09E21EC98AEA000D3B30 /* LBAddMineProductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F09E01EC98AEA000D3B30 /* LBAddMineProductionViewController.m */; };
 		F97F09E31EC98AEA000D3B30 /* LBAddMineProductionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09E11EC98AEA000D3B30 /* LBAddMineProductionViewController.xib */; };
+		F99264A51EF38367001857A4 /* libUMessage_Sdk_1.5.0a.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F99264A31EF38367001857A4 /* libUMessage_Sdk_1.5.0a.a */; };
+		F99264A71EF3838E001857A4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F99264A61EF3838E001857A4 /* UserNotifications.framework */; };
 		F9E3A5391EEA7EF0009B9F16 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E3A5381EEA7EF0009B9F16 /* UIView+Extension.m */; };
 		F9E3A53F1EEA7F40009B9F16 /* ChooseRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E3A53C1EEA7F40009B9F16 /* ChooseRank.m */; };
 		F9E3A5401EEA7F40009B9F16 /* ChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E3A53E1EEA7F40009B9F16 /* ChooseView.m */; };
@@ -2138,30 +2124,6 @@
 		F92308361E9B8BFE00ECDC94 /* HWCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWCalendar.m; sourceTree = "<group>"; };
 		F92308371E9B8BFE00ECDC94 /* HWOptionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWOptionButton.h; sourceTree = "<group>"; };
 		F92308381E9B8BFE00ECDC94 /* HWOptionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWOptionButton.m; sourceTree = "<group>"; };
-		F92308391E9B8BFE00ECDC94 /* LBMineCenterMyBalanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterMyBalanceViewController.h; sourceTree = "<group>"; };
-		F923083A1E9B8BFE00ECDC94 /* LBMineCenterMyBalanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterMyBalanceViewController.m; sourceTree = "<group>"; };
-		F923083B1E9B8BFE00ECDC94 /* LBMineCenterMyBalanceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterMyBalanceViewController.xib; sourceTree = "<group>"; };
-		F923083D1E9B8BFE00ECDC94 /* LBMineCenterDetailedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterDetailedView.h; sourceTree = "<group>"; };
-		F923083E1E9B8BFE00ECDC94 /* LBMineCenterDetailedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterDetailedView.m; sourceTree = "<group>"; };
-		F923083F1E9B8BFE00ECDC94 /* LBMineCenterDetailedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterDetailedView.xib; sourceTree = "<group>"; };
-		F92308401E9B8BFE00ECDC94 /* LBMineCenterMyBalabceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterMyBalabceTableViewCell.h; sourceTree = "<group>"; };
-		F92308411E9B8BFE00ECDC94 /* LBMineCenterMyBalabceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterMyBalabceTableViewCell.m; sourceTree = "<group>"; };
-		F92308421E9B8BFE00ECDC94 /* LBMineCenterMyBalabceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterMyBalabceTableViewCell.xib; sourceTree = "<group>"; };
-		F92308431E9B8BFE00ECDC94 /* LBMineCenterRechargeBankCardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterRechargeBankCardTableViewCell.h; sourceTree = "<group>"; };
-		F92308441E9B8BFE00ECDC94 /* LBMineCenterRechargeBankCardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterRechargeBankCardTableViewCell.m; sourceTree = "<group>"; };
-		F92308451E9B8BFE00ECDC94 /* LBMineCenterRechargeBankCardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterRechargeBankCardTableViewCell.xib; sourceTree = "<group>"; };
-		F92308461E9B8BFE00ECDC94 /* LBMineCenterRechargeBankCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterRechargeBankCardView.h; sourceTree = "<group>"; };
-		F92308471E9B8BFE00ECDC94 /* LBMineCenterRechargeBankCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterRechargeBankCardView.m; sourceTree = "<group>"; };
-		F92308481E9B8BFE00ECDC94 /* LBMineCenterRechargeBankCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterRechargeBankCardView.xib; sourceTree = "<group>"; };
-		F92308491E9B8BFE00ECDC94 /* LBMineCenterRechargeCashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterRechargeCashView.h; sourceTree = "<group>"; };
-		F923084A1E9B8BFE00ECDC94 /* LBMineCenterRechargeCashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterRechargeCashView.m; sourceTree = "<group>"; };
-		F923084B1E9B8BFE00ECDC94 /* LBMineCenterRechargeCashView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterRechargeCashView.xib; sourceTree = "<group>"; };
-		F923084D1E9B8BFE00ECDC94 /* LBMineCenterAddBankCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterAddBankCardViewController.h; sourceTree = "<group>"; };
-		F923084E1E9B8BFE00ECDC94 /* LBMineCenterAddBankCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterAddBankCardViewController.m; sourceTree = "<group>"; };
-		F923084F1E9B8BFE00ECDC94 /* LBMineCenterAddBankCardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterAddBankCardViewController.xib; sourceTree = "<group>"; };
-		F92308501E9B8BFE00ECDC94 /* LBMineCenterBalanceRechargeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterBalanceRechargeViewController.h; sourceTree = "<group>"; };
-		F92308511E9B8BFE00ECDC94 /* LBMineCenterBalanceRechargeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterBalanceRechargeViewController.m; sourceTree = "<group>"; };
-		F92308521E9B8BFE00ECDC94 /* LBMineCenterBalanceRechargeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterBalanceRechargeViewController.xib; sourceTree = "<group>"; };
 		F92308561E9B8BFE00ECDC94 /* LBMineCenterFlyNoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterFlyNoticeDetailViewController.h; sourceTree = "<group>"; };
 		F92308571E9B8BFE00ECDC94 /* LBMineCenterFlyNoticeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterFlyNoticeDetailViewController.m; sourceTree = "<group>"; };
 		F92308581E9B8BFE00ECDC94 /* LBMineCenterFlyNoticeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterFlyNoticeDetailViewController.xib; sourceTree = "<group>"; };
@@ -2627,6 +2589,10 @@
 		F97F09DF1EC98AEA000D3B30 /* LBAddMineProductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBAddMineProductionViewController.h; sourceTree = "<group>"; };
 		F97F09E01EC98AEA000D3B30 /* LBAddMineProductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBAddMineProductionViewController.m; sourceTree = "<group>"; };
 		F97F09E11EC98AEA000D3B30 /* LBAddMineProductionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBAddMineProductionViewController.xib; sourceTree = "<group>"; };
+		F99264A31EF38367001857A4 /* libUMessage_Sdk_1.5.0a.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.5.0a.a; sourceTree = "<group>"; };
+		F99264A41EF38367001857A4 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
+		F99264A61EF3838E001857A4 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		F99264A81EF38544001857A4 /* Universialshare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Universialshare.entitlements; sourceTree = "<group>"; };
 		F9E3A5371EEA7EF0009B9F16 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		F9E3A5381EEA7EF0009B9F16 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		F9E3A53B1EEA7F40009B9F16 /* ChooseRank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseRank.h; sourceTree = "<group>"; };
@@ -2649,6 +2615,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F99264A71EF3838E001857A4 /* UserNotifications.framework in Frameworks */,
 				F9479B0B1EEF7E3B00581250 /* CoreMotion.framework in Frameworks */,
 				F9479B091EEF7E2E00581250 /* CFNetwork.framework in Frameworks */,
 				F9479B071EEF7E2400581250 /* Foundation.framework in Frameworks */,
@@ -2660,6 +2627,7 @@
 				F9126ED11EA058EE004785EA /* libstdc++.6.0.9.tbd in Frameworks */,
 				F9126ECF1EA058E0004785EA /* CoreTelephony.framework in Frameworks */,
 				F9126EDB1EA0597B004785EA /* BaiduMapAPI_Utils.framework in Frameworks */,
+				F99264A51EF38367001857A4 /* libUMessage_Sdk_1.5.0a.a in Frameworks */,
 				F9126ECD1EA058D0004785EA /* libsqlite3.0.tbd in Frameworks */,
 				F9126ED91EA0597B004785EA /* BaiduMapAPI_Map.framework in Frameworks */,
 				F9126ECB1EA058B5004785EA /* Security.framework in Frameworks */,
@@ -3221,6 +3189,7 @@
 		4A460D9B1E9CC6350045824F /* 三方库 */ = {
 			isa = PBXGroup;
 			children = (
+				F99264A21EF38367001857A4 /* UMessage_Sdk_1.5.0a */,
 				F9479AF91EEF7DC400581250 /* 支付宝 */,
 				F96CEE411EE79B76000B6D91 /* DWBubbleMenuButton.h */,
 				F96CEE421EE79B76000B6D91 /* DWBubbleMenuButton.m */,
@@ -4906,6 +4875,7 @@
 		BB2598459FE627C586E51511 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F99264A61EF3838E001857A4 /* UserNotifications.framework */,
 				F9479B0A1EEF7E3B00581250 /* CoreMotion.framework */,
 				F9479B081EEF7E2E00581250 /* CFNetwork.framework */,
 				F9479B061EEF7E2400581250 /* Foundation.framework */,
@@ -4961,6 +4931,7 @@
 		F9061FCA1E83C4720080E9D9 /* Universialshare */ = {
 			isa = PBXGroup;
 			children = (
+				F99264A81EF38544001857A4 /* Universialshare.entitlements */,
 				F9061FCE1E83C4720080E9D9 /* AppDelegate.h */,
 				F9061FCF1E83C4720080E9D9 /* AppDelegate.mm */,
 				F9061FD11E83C4720080E9D9 /* ViewController.h */,
@@ -5261,56 +5232,8 @@
 				F92308361E9B8BFE00ECDC94 /* HWCalendar.m */,
 				F92308371E9B8BFE00ECDC94 /* HWOptionButton.h */,
 				F92308381E9B8BFE00ECDC94 /* HWOptionButton.m */,
-				F92308391E9B8BFE00ECDC94 /* LBMineCenterMyBalanceViewController.h */,
-				F923083A1E9B8BFE00ECDC94 /* LBMineCenterMyBalanceViewController.m */,
-				F923083B1E9B8BFE00ECDC94 /* LBMineCenterMyBalanceViewController.xib */,
-				F923083C1E9B8BFE00ECDC94 /* view */,
-				F923084C1E9B8BFE00ECDC94 /* 充值 */,
-				F92308531E9B8BFE00ECDC94 /* 提现 */,
 			);
 			path = "余额";
-			sourceTree = "<group>";
-		};
-		F923083C1E9B8BFE00ECDC94 /* view */ = {
-			isa = PBXGroup;
-			children = (
-				F923083D1E9B8BFE00ECDC94 /* LBMineCenterDetailedView.h */,
-				F923083E1E9B8BFE00ECDC94 /* LBMineCenterDetailedView.m */,
-				F923083F1E9B8BFE00ECDC94 /* LBMineCenterDetailedView.xib */,
-				F92308401E9B8BFE00ECDC94 /* LBMineCenterMyBalabceTableViewCell.h */,
-				F92308411E9B8BFE00ECDC94 /* LBMineCenterMyBalabceTableViewCell.m */,
-				F92308421E9B8BFE00ECDC94 /* LBMineCenterMyBalabceTableViewCell.xib */,
-				F92308431E9B8BFE00ECDC94 /* LBMineCenterRechargeBankCardTableViewCell.h */,
-				F92308441E9B8BFE00ECDC94 /* LBMineCenterRechargeBankCardTableViewCell.m */,
-				F92308451E9B8BFE00ECDC94 /* LBMineCenterRechargeBankCardTableViewCell.xib */,
-				F92308461E9B8BFE00ECDC94 /* LBMineCenterRechargeBankCardView.h */,
-				F92308471E9B8BFE00ECDC94 /* LBMineCenterRechargeBankCardView.m */,
-				F92308481E9B8BFE00ECDC94 /* LBMineCenterRechargeBankCardView.xib */,
-				F92308491E9B8BFE00ECDC94 /* LBMineCenterRechargeCashView.h */,
-				F923084A1E9B8BFE00ECDC94 /* LBMineCenterRechargeCashView.m */,
-				F923084B1E9B8BFE00ECDC94 /* LBMineCenterRechargeCashView.xib */,
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
-		F923084C1E9B8BFE00ECDC94 /* 充值 */ = {
-			isa = PBXGroup;
-			children = (
-				F923084D1E9B8BFE00ECDC94 /* LBMineCenterAddBankCardViewController.h */,
-				F923084E1E9B8BFE00ECDC94 /* LBMineCenterAddBankCardViewController.m */,
-				F923084F1E9B8BFE00ECDC94 /* LBMineCenterAddBankCardViewController.xib */,
-				F92308501E9B8BFE00ECDC94 /* LBMineCenterBalanceRechargeViewController.h */,
-				F92308511E9B8BFE00ECDC94 /* LBMineCenterBalanceRechargeViewController.m */,
-				F92308521E9B8BFE00ECDC94 /* LBMineCenterBalanceRechargeViewController.xib */,
-			);
-			path = "充值";
-			sourceTree = "<group>";
-		};
-		F92308531E9B8BFE00ECDC94 /* 提现 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "提现";
 			sourceTree = "<group>";
 		};
 		F92308551E9B8BFE00ECDC94 /* 消息 */ = {
@@ -6365,6 +6288,15 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		F99264A21EF38367001857A4 /* UMessage_Sdk_1.5.0a */ = {
+			isa = PBXGroup;
+			children = (
+				F99264A31EF38367001857A4 /* libUMessage_Sdk_1.5.0a.a */,
+				F99264A41EF38367001857A4 /* UMessage.h */,
+			);
+			path = UMessage_Sdk_1.5.0a;
+			sourceTree = "<group>";
+		};
 		F9E3A53A1EEA7F40009B9F16 /* ChooseView */ = {
 			isa = PBXGroup;
 			children = (
@@ -6448,6 +6380,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = GCU762TQ3E;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					F9061FE01E83C4730080E9D9 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -6498,10 +6435,8 @@
 				4AB9E1851ED6BA6600BE0420 /* GLMerchant_IncomeCell.xib in Resources */,
 				4AFFA52D1ECBDA57004FDEA7 /* GLNearby_MerchatListController.xib in Resources */,
 				4A46103C1E9CC6360045824F /* ios-social-sdk-socialbar.html in Resources */,
-				F92309291E9B8BFF00ECDC94 /* LBMineCenterAddBankCardViewController.xib in Resources */,
 				F92309421E9B8BFF00ECDC94 /* LBMineCenterseverceNoticeTableViewCell.xib in Resources */,
 				4A4610311E9CC6360045824F /* README.txt in Resources */,
-				F923091D1E9B8BFF00ECDC94 /* LBMineCenterMyBalanceViewController.xib in Resources */,
 				F92ED4931EDE5E3A00B3B3DB /* Cochin.ttc in Resources */,
 				4A4610321E9CC6360045824F /* iOS-social-analytics-releasenote.html in Resources */,
 				F92309881E9B8BFF00ECDC94 /* LBMineCenterPriviteInfoViewController.xib in Resources */,
@@ -6521,7 +6456,6 @@
 				F9520A291EAE170400B4D665 /* LBMineStoreAllOrdersViewController.xib in Resources */,
 				4A2F522A1EC7084100ECA95D /* GLTwoButtonCell.xib in Resources */,
 				4AFCDC771ED2EE09007C1681 /* GLMerchat_CommentGoodCell.xib in Resources */,
-				F923091F1E9B8BFF00ECDC94 /* LBMineCenterDetailedView.xib in Resources */,
 				F966B4161EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.xib in Resources */,
 				4A3D17B11ECC507B00F85A3B /* GLRecommendStroe_RecordController.xib in Resources */,
 				F9516E0B1ECB068D009F015D /* LBStoreProductDetailInfoTableViewCell.xib in Resources */,
@@ -6553,7 +6487,6 @@
 				4A4610341E9CC6360045824F /* ios-social-sdk-comment-detail.html in Resources */,
 				F923094E1E9B8BFF00ECDC94 /* LBMineMessageSetupViewController.xib in Resources */,
 				4A46111D1E9CCC010045824F /* Mine_sixPart.xcassets in Resources */,
-				F923092B1E9B8BFF00ECDC94 /* LBMineCenterBalanceRechargeViewController.xib in Resources */,
 				F9061FD81E83C4730080E9D9 /* Assets.xcassets in Resources */,
 				4AAD259F1EC189070054FD06 /* GLMine_MyHeartCell.xib in Resources */,
 				F9479AFC1EEF7DC400581250 /* AlipaySDK.bundle in Resources */,
@@ -6561,7 +6494,6 @@
 				4A2F521A1EC7084000ECA95D /* GLEvaluateCell.xib in Resources */,
 				F92309391E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeDetailOneTableViewCell.xib in Resources */,
 				4AA0D5CA1EAEF9DB00CB8F77 /* GLClassifyCell.xib in Resources */,
-				F92309231E9B8BFF00ECDC94 /* LBMineCenterRechargeBankCardTableViewCell.xib in Resources */,
 				4AAD25401EC188C90054FD06 /* GLBuyBackRecordCell.xib in Resources */,
 				F94D6E241E9DFB2700412E64 /* LBHomeLoginFortgetSecretViewController.xib in Resources */,
 				4A4610361E9CC6360045824F /* ios-social-sdk-like.html in Resources */,
@@ -6599,7 +6531,6 @@
 				F91029C21EC5831300246D04 /* LBMySalesmanListFaildViewController.xib in Resources */,
 				F92309541E9B8BFF00ECDC94 /* LBMyOrderPendingEvaluationViewController.xib in Resources */,
 				F9434D561EC19046001C80A4 /* LBMineCenterWantToSignUpViewController.xib in Resources */,
-				F92309271E9B8BFF00ECDC94 /* LBMineCenterRechargeCashView.xib in Resources */,
 				F9121B231EB2044300DAB7A2 /* LBMyOrderAlreadyPaymentViewController.xib in Resources */,
 				4AAD252F1EC188C90054FD06 /* GLBuyBackChooseCardController.xib in Resources */,
 				4A460A081E9CB8050045824F /* LoadWaitView.xib in Resources */,
@@ -6612,7 +6543,6 @@
 				F91964EC1EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.xib in Resources */,
 				F9520A131EADD74D00B4D665 /* MerchantSubmission.xcassets in Resources */,
 				4A4609D71E9CB78E0045824F /* GLRecommendController.xib in Resources */,
-				F92309211E9B8BFF00ECDC94 /* LBMineCenterMyBalabceTableViewCell.xib in Resources */,
 				4AAD257A1EC188F50054FD06 /* GLMine_MyBeansController.xib in Resources */,
 				4A4610381E9CC6360045824F /* ios-social-sdk-login-quick.html in Resources */,
 				F92309351E9B8BFF00ECDC94 /* LBMineMessageSeviceViewController.xib in Resources */,
@@ -6687,7 +6617,6 @@
 				4A2F52221EC7084100ECA95D /* GLHourseDetailFirstCell.xib in Resources */,
 				4AAD253C1EC188C90054FD06 /* GLBankCardCellTableViewCell.xib in Resources */,
 				F92309481E9B8BFF00ECDC94 /* LBMineMessageHotPickTableViewCell.xib in Resources */,
-				F92309251E9B8BFF00ECDC94 /* LBMineCenterRechargeBankCardView.xib in Resources */,
 				F92309331E9B8BFF00ECDC94 /* LBMineMessageHotPickViewController.xib in Resources */,
 				4AAD25A81EC189A90054FD06 /* GLMyCollectionController.xib in Resources */,
 				4A0D97951E9729C100A26B84 /* GLTopCell.xib in Resources */,
@@ -6952,7 +6881,6 @@
 				F923095F1E9B8BFF00ECDC94 /* LBMyOrderUnsubscribeRecordTableViewCell.m in Sources */,
 				4A4611131E9CC6370045824F /* ZXMultiDetector.m in Sources */,
 				4AAD252E1EC188C90054FD06 /* GLBuyBackChooseCardController.m in Sources */,
-				F92309221E9B8BFF00ECDC94 /* LBMineCenterRechargeBankCardTableViewCell.m in Sources */,
 				F9126EE81EA0599B004785EA /* LBBaiduMapViewController.m in Sources */,
 				4A4610B01E9CC6370045824F /* ZXAI01320xDecoder.m in Sources */,
 				F92F93791EE6A4F00030A1A8 /* NullSafe.m in Sources */,
@@ -7050,7 +6978,6 @@
 				4A4610991E9CC6360045824F /* ZXDataMatrixDetector.m in Sources */,
 				4A4611011E9CC6370045824F /* ZXQRCodeDecodedBitStreamParser.m in Sources */,
 				4A5C70CB1ED66850001110B6 /* GLMerchat_StoreModel.m in Sources */,
-				F92309281E9B8BFF00ECDC94 /* LBMineCenterAddBankCardViewController.m in Sources */,
 				F9662FF91EE252BD00FD61AF /* LBSendGoodsProductModel.m in Sources */,
 				4A4610C51E9CC6370045824F /* ZXAbstractRSSReader.m in Sources */,
 				4A4610EB1E9CC6370045824F /* ZXPDF417Codeword.m in Sources */,
@@ -7139,7 +7066,6 @@
 				4A4611001E9CC6370045824F /* ZXQRCodeDataMask.m in Sources */,
 				4A5F66C11ECA93D70048F339 /* GLNearby_PlayController.m in Sources */,
 				F92309711E9B8BFF00ECDC94 /* LBMineCenterAddAdreassViewController.m in Sources */,
-				F92309261E9B8BFF00ECDC94 /* LBMineCenterRechargeCashView.m in Sources */,
 				4A4610A51E9CC6360045824F /* ZXDataMatrixX12Encoder.m in Sources */,
 				F9479B0F1EF0007D00581250 /* LBStoreProductDetailAddNumTableViewCell.m in Sources */,
 				F92309301E9B8BFF00ECDC94 /* LBMineCenterserviceNoticeViewController.m in Sources */,
@@ -7147,7 +7073,6 @@
 				4AAD25821EC188F50054FD06 /* GLReceiveBeansCell.m in Sources */,
 				F90B991E1ED417FC00E75C95 /* formattime.m in Sources */,
 				4A16C63A1ECD7C7C00DF2E5E /* GLNearby_TradeOneModel.m in Sources */,
-				F923091E1E9B8BFF00ECDC94 /* LBMineCenterDetailedView.m in Sources */,
 				4A46106A1E9CC6360045824F /* ZXVINParsedResult.m in Sources */,
 				4AA0D5AC1EAEEC8400CB8F77 /* LBIntegralMallViewController.m in Sources */,
 				4A460A5D1E9CC0310045824F /* SubLBXScanViewController.m in Sources */,
@@ -7179,7 +7104,6 @@
 				4A4610131E9CC6360045824F /* LBXScanNative.m in Sources */,
 				F90620071E83C5D00080E9D9 /* LBLoginNavigationViewController.m in Sources */,
 				4A5004601EE14FA9002D1964 /* LBMerchantcreditTableViewCell.m in Sources */,
-				F923091C1E9B8BFF00ECDC94 /* LBMineCenterMyBalanceViewController.m in Sources */,
 				4A4609F71E9CB78E0045824F /* GLDonationController.m in Sources */,
 				4A4610151E9CC6360045824F /* LBXScanResult.m in Sources */,
 				4AAD25B01EC18EA70054FD06 /* GLMyCollectionModel.m in Sources */,
@@ -7192,7 +7116,6 @@
 				4A782F9C1EDE59DE008784BF /* GLIntegralMall_SearchController.m in Sources */,
 				F966B3CA1EAC3D79007260FC /* LBMineCenterOrderDetailFiveTableViewCell.m in Sources */,
 				4A0162EE1EB0452500C25DCC /* GLCityChooseCell.m in Sources */,
-				F92309241E9B8BFF00ECDC94 /* LBMineCenterRechargeBankCardView.m in Sources */,
 				4AAD25A71EC189A90054FD06 /* GLMyCollectionController.m in Sources */,
 				F92309621E9B8BFF00ECDC94 /* XBTagTitleModel.m in Sources */,
 				F92309851E9B8BFF00ECDC94 /* LBMineCenterSafeChangePhoneViewController.m in Sources */,
@@ -7290,7 +7213,6 @@
 				4AA0D5A21EAEEC0600CB8F77 /* GLIntegralGoodsCell.m in Sources */,
 				4A2F51D11EC6FE2900ECA95D /* GLConsumerRecordController.m in Sources */,
 				4AFFA5311ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.m in Sources */,
-				F92309201E9B8BFF00ECDC94 /* LBMineCenterMyBalabceTableViewCell.m in Sources */,
 				4A4610DD1E9CC6370045824F /* ZXUPCAReader.m in Sources */,
 				F923091A1E9B8BFF00ECDC94 /* HWCalendar.m in Sources */,
 				F9564DF71EC84C3F007F3677 /* LBSelectRegionalAgentView.m in Sources */,
@@ -7456,7 +7378,6 @@
 				4A4610B11E9CC6370045824F /* ZXAI01392xDecoder.m in Sources */,
 				F966B3F71EAC8C8A007260FC /* LBShowSaleManAndBusinessViewController.m in Sources */,
 				4A5F66A51ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.m in Sources */,
-				F923092A1E9B8BFF00ECDC94 /* LBMineCenterBalanceRechargeViewController.m in Sources */,
 				F966B3E21EAC7E38007260FC /* LBMyBusinessListDetailViewController.m in Sources */,
 				4AB9E14D1ED6B7EE00BE0420 /* GLMerchat_ModifyView.m in Sources */,
 				F955A78F1EE011F3004141A4 /* LBStoreSendGoodsSecondViewController.m in Sources */,
@@ -7663,6 +7584,8 @@
 			baseConfigurationReference = FC2B7A4A425FAC91F43C98C0 /* Pods-Universialshare.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Universialshare/Universialshare.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = GCU762TQ3E;
 				ENABLE_BITCODE = NO;
@@ -7688,6 +7611,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Universialshare/Lib",
 					"$(PROJECT_DIR)/Universialshare",
+					"$(PROJECT_DIR)/Universialshare/三方库/UMessage_Sdk_1.5.0a",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -7715,6 +7639,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.UniversalShare.Universialshare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -7723,6 +7649,8 @@
 			baseConfigurationReference = 5F26EB2407F06AA6E9CA0664 /* Pods-Universialshare.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Universialshare/Universialshare.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = GCU762TQ3E;
 				ENABLE_BITCODE = NO;
@@ -7748,6 +7676,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Universialshare/Lib",
 					"$(PROJECT_DIR)/Universialshare",
+					"$(PROJECT_DIR)/Universialshare/三方库/UMessage_Sdk_1.5.0a",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -7775,6 +7704,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.UniversalShare.Universialshare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

@@ -50,38 +50,14 @@
         model.bean = @"0";
     }
     
-    if([model.money floatValue] > 10000){
-        
-        self.consumeLabel.text = [NSString stringWithFormat:@"%.2f万",[model.money floatValue]/10000];
-        
-    }else{
-        
         self.consumeLabel.text = model.money;
-    }
-    if([model.zjl floatValue] > 10000){
-        
-        self.encourageSumLabel.text = [NSString stringWithFormat:@"%.2f万",[model.zjl floatValue]/10000];
-        
-    }else{
-        
+    
         self.encourageSumLabel.text = model.zjl;
-    }
-    if([model.jl_love floatValue] > 10000){
-        
-        self.heartSumLabel.text = [NSString stringWithFormat:@"%.2f万",[model.jl_love floatValue]/10000];
-        
-    }else{
-        
+    
         self.heartSumLabel.text = model.jl_love;
-    }
-    if([model.end_love floatValue] > 10000){
-        
-        self.encouragingLabel.text = [NSString stringWithFormat:@"%.2f万",[model.end_love floatValue]/10000];
-        
-    }else{
-        
+    
         self.encouragingLabel.text = model.end_love;
-    }
+    
 
 
 }

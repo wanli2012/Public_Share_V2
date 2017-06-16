@@ -24,4 +24,6 @@
 
 @property (nonatomic,copy)NSString *phone;//电话
 
+@property (nonatomic,copy)NSString *pic;//电话
+
 @end
