@@ -16,4 +16,6 @@ typedef void(^typeBlock)(NSString *typeID,NSInteger headerViewHeight);
 
 @property (nonatomic, strong)NSMutableArray *dataSource;
 
+@property (nonatomic, strong)UICollectionView *collectionView;
+
 @end

@@ -644,7 +644,7 @@
                                                       placeholderImage:[UIImage imageNamed:@"轮播暂位图"]];
         
         _cycleScrollView.localizationImageNamesGroup = @[];
-
+        _cycleScrollView.placeholderImageContentMode = UIViewContentModeScaleAspectFill;
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
         _cycleScrollView.titleLabelBackgroundColor = [UIColor groupTableViewBackgroundColor];// 图片对应的标题的 背景色。（因为没有设标题）
         _cycleScrollView.placeholderImage = [UIImage imageNamed:@"轮播暂位图"];

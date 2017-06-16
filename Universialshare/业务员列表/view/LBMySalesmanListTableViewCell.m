@@ -53,7 +53,7 @@
     self.trueNameLabel.text=[NSString stringWithFormat:@"%@",model.truename];
     self.saleLb.text=[NSString stringWithFormat:@"¥%@",model.money];
     
-    [self.imagev sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"熊"]];
+    [self.imagev sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"dtx_icon"]];
 
 }
 

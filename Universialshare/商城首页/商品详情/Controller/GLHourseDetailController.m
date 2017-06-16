@@ -1,4 +1,4 @@
-//
+                    //
 //  GLHourseDetailController.m
 //  Universialshare
 //
@@ -74,6 +74,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     _status = 1;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.goods_spec = @"";
+    _sum = 1;
 //    self.navigationItem.title = @"房子详情";
     _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 180 *autoSizeScaleY)
                                                           delegate:self
@@ -82,6 +83,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     _cycleScrollView.clipsToBounds = YES;
     _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
+    _cycleScrollView.placeholderImageContentMode = UIViewContentModeScaleAspectFill;
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
     _cycleScrollView.titleLabelBackgroundColor = [UIColor clearColor];// 图片对应的标题的 背景色。（因为没有设标题）
     _cycleScrollView.placeholderImage = [UIImage imageNamed:LUNBO_PlaceHolder];
@@ -364,12 +366,15 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         if (![self.goods_spec isEqualToString:@""]) {
             cell.SpecificationsLb.text = self.goods_spec;
         }
+        
+        cell.sumLabel.text = [NSString stringWithFormat:@"%d",_sum];
+       
         GLcell = cell;
         
     }else{
 
         NSArray *arr = self.model.attr;
-        GLHourseDetailThirdCell *cell = [[GLHourseDetailThirdCell alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0) andDatasource:arr :@"商品参数" ];
+        GLHourseDetailThirdCell *cell = [[GLHourseDetailThirdCell alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0) andDatasource:arr :@"商品属性" ];
         GLcell = cell;
 
     }
@@ -442,28 +447,9 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     }
     return upY + 30;
 }
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    scrollView.bounces = (scrollView.contentOffset.y >= 0) ? YES : NO;
 
-}
-//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-//    
-//}
-- (void)changeNum:(NSInteger )tag indexPath:(NSIndexPath *)indexPath{
-    GLHourseChangeNumCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    _sum = [cell.sumLabel.text intValue];
-    
-    if (tag == 20) {
-        _sum -= 1;
-        if (_sum < 0) {
-            _sum = 0;
-        }
-    }else{
-        _sum += 1;
-    }
-    cell.sumLabel.text = [NSString stringWithFormat:@"%ld",(long)_sum];
-    [self.tableView reloadData];
-    
+- (void)changeNum:(NSString *)text{
+    _sum = [text  integerValue];
 }
 //请求规格
 -(void)initSpecificationsDataSoruce{

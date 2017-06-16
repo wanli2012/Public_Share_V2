@@ -141,7 +141,7 @@
     cell.index = indexPath.row;
     cell.deleteBt.hidden = YES;
     [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"thumb"]]] placeholderImage:[UIImage imageNamed:@"planceholder"] options:SDWebImageAllowInvalidSSLCertificates];
-    cell.namelb.text = [NSString stringWithFormat:@"订单号:%@",self.dataarr[indexPath.row][@"order_num"]];
+    cell.namelb.text = [NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"order_num"]];
     cell.numlb.text = [NSString stringWithFormat:@"总价:¥%@",self.dataarr[indexPath.row][@"order_money"]];
     cell.priceLb.text = [NSString stringWithFormat:@"数量:%@",self.dataarr[indexPath.row][@"total"]];
     
@@ -174,7 +174,15 @@
     dic1[@"mark"] = dic[@"mark"];
     dic1[@"comment"] = dic[@"comment"];
     
-    [self.dataarr[_refreshindex][@"goods_data"] replaceObjectAtIndex:row withObject:dic1];
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:self.dataarr[_refreshindex][@"goods_data"]];
+    
+    [arr replaceObjectAtIndex:row withObject:dic1];
+    
+    NSMutableDictionary *dic2=[NSMutableDictionary dictionaryWithDictionary:self.dataarr[_refreshindex]];
+    
+    dic2[@"goods_data"] = arr;
+    
+    [self.dataarr replaceObjectAtIndex:_refreshindex withObject:dic2];
     
     [self.tableview reloadData];
 }

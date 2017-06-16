@@ -32,7 +32,7 @@
 
 @property (nonatomic, strong)NSMutableArray *dataSource;
 
-@property (nonatomic, assign)NSInteger totalPrice;
+@property (nonatomic, assign)CGFloat totalPrice;
 
 @property (nonatomic, assign)NSInteger totalNum;
 
@@ -140,7 +140,7 @@ static NSString *ID = @"GLShoppingCell";
         if (self.seleteAllBtn.selected) {
             tempBool = YES;
             _yesSum = self.selectArr.count;
-            _totalPrice += [self.dataSource[i] integerValue] * [_numArr[i] integerValue];
+            _totalPrice += [self.dataSource[i] floatValue] * [_numArr[i] floatValue];
             _totalNum += [_numArr[i] integerValue];
         }else{
             tempBool = NO;
@@ -155,7 +155,7 @@ static NSString *ID = @"GLShoppingCell";
         
         [self.seleteAllBtn setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
         self.selectedNumLabel.text = [NSString stringWithFormat:@"已选中%zd件商品",_totalNum];
-        self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额¥ %zd元",_totalPrice];
+        self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额¥ %.2f元",_totalPrice];
         
     }else{
         
@@ -179,15 +179,15 @@ static NSString *ID = @"GLShoppingCell";
     if (isSelected) {
          _yesSum += 1;
         _totalNum += [_numArr[index] integerValue];
-        _totalPrice += [self.dataSource[index] integerValue] * [_numArr[index] integerValue];
+        _totalPrice += [self.dataSource[index] floatValue] * [_numArr[index] floatValue];
     }else{
         _yesSum -= 1;
         _totalNum -= [_numArr[index] integerValue];
-        _totalPrice -= [self.dataSource[index] integerValue]* [_numArr[index] integerValue];
+        _totalPrice -= [self.dataSource[index] floatValue]* [_numArr[index] floatValue];
     }
 
     self.selectedNumLabel.text = [NSString stringWithFormat:@"已选中%zd件商品",_totalNum];
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额%zd元",_totalPrice];
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额%.2f元",_totalPrice];
     [self.selectArr replaceObjectAtIndex:index withObject:@(isSelected)];
 
     

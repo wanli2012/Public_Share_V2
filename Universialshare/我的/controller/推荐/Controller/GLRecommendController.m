@@ -111,7 +111,7 @@
 }
 
 - (void)shareClick:(UIButton *)sender {
-    
+    [self dismiss];
     if (sender == _shareV.weiboShareBtn) {
         [self shareTo:@[UMShareToSina]];
     }else if (sender == _shareV.weixinShareBtn){
@@ -123,16 +123,16 @@
 }
 - (void)shareTo:(NSArray *)type{
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name];
-    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"大众共享";
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"全民团购网";
     
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name];
-    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"大众共享";
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"全民团购网";
     
     [UMSocialData defaultData].extConfig.sinaData.urlResource.url = [NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name];
     //    [UMSocialData defaultData].extConfig.sinaData.title = @"加入我们吧";
     
     UIImage *image=[UIImage imageNamed:@"mine_logo"];
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:type content:[NSString stringWithFormat:@"大众团购网，团购欢乐齐分享!(用safari浏览器打开)%@",[NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name]] image:image location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:type content:[NSString stringWithFormat:@"全民团购网，团购欢乐齐分享!(用safari浏览器打开)%@",[NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name]] image:image location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
         
         if (response.responseCode == UMSResponseCodeSuccess) {
           

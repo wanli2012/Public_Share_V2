@@ -48,7 +48,7 @@
     [self.tableview registerNib:[UINib nibWithNibName:@"LBMineCenterPayPagesTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMineCenterPayPagesTableViewCell"];
     
     self.ordercode.text = self.order_sn;
-    self.orderMoney.text = self.orderPrice;
+    self.orderMoney.text = [NSString stringWithFormat:@"%.2f",[self.orderPrice floatValue]];
 
     if (self.payType == 1) {
         self.orderMTitleLb.text = @"订单金额:";
@@ -146,7 +146,7 @@
         return;
     }
     
-    if (self.payType == 1 && self.selectIndex == 0) {
+    if ((self.payType == 1 || self.payType == 2)  && self.selectIndex == 0) {
         CGFloat contentViewH = 300;
         CGFloat contentViewW = SCREEN_WIDTH;
         _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -245,13 +245,11 @@
         [_loadV removeloadview];
         
         [self dismiss];
-        //        NSLog(@"%@",responseObject);
+
         if ([responseObject[@"code"] integerValue] == 1){
             
-            
-            self.hidesBottomBarWhenPushed = YES;
-            
             [MBProgressHUD showSuccess:responseObject[@"message"]];
+            self.hidesBottomBarWhenPushed = YES;
             
             if(self.pushIndex == 1){
                 

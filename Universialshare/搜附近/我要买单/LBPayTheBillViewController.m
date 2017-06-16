@@ -13,6 +13,7 @@
 #import "GLSet_MaskVeiw.h"
 #import "GLOrderPayView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <AlipaySDK/AlipaySDK.h>
 
 @interface LBPayTheBillViewController ()<UITextFieldDelegate>
 {
@@ -47,8 +48,10 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.title = @"支付";
+    self.payType = 0;
+    self.modelType = 0;
     
-    [self.imagev sd_setImageWithURL:[NSURL URLWithString:self.pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+    [self.imagev sd_setImageWithURL:[NSURL URLWithString:self.pic] placeholderImage:[UIImage imageNamed:@"商户暂位图"]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
@@ -63,31 +66,42 @@
 }
 - (IBAction)ensurePay:(id)sender {
     
-//    if (![self.selectB containsObject:@(YES)]){
-//        [MBProgressHUD showError:@"请选择支付方式"];
-//        return;
-//    }
+    if (self.moneytf.text.length <= 0) {
+        [MBProgressHUD showError:@"请填写支付金额"];
+        return;
+    }
+    if (self.payType == 0) {
+        [MBProgressHUD showError:@"请选择支付类型"];
+        return;
+    }
+    if (self.modelType == 0) {
+        [MBProgressHUD showError:@"请选择奖金模式"];
+        return;
+    }
     
-    CGFloat contentViewH = 300;
-    CGFloat contentViewW = SCREEN_WIDTH;
-    _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    
-    _maskV.bgView.alpha = 0.4;
-    
-    _contentView = [[NSBundle mainBundle] loadNibNamed:@"GLOrderPayView" owner:nil options:nil].lastObject;
-    [_contentView.backBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
-    _contentView.layer.cornerRadius = 4;
-    _contentView.layer.masksToBounds = YES;
-    _contentView.priceLabel.text = [NSString stringWithFormat:@"¥ %@",self.moneytf.text];
-    _contentView.frame = CGRectMake(0, SCREEN_HEIGHT, contentViewW, 0);
-    [_maskV showViewWithContentView:_contentView];
-    [UIView animateWithDuration:0.3 animations:^{
-        _contentView.frame = CGRectMake(0, SCREEN_HEIGHT - contentViewH, contentViewW, contentViewH);
-        [_contentView.passwordF becomeFirstResponder];
-    }];
-
-    
-    
+    if (self.payType == 1) {//支付宝
+        [self ricePay:nil];
+    }else if (self.payType == 2) {//微信支付
+        
+    }else if (self.payType == 4) {//米子支付
+        CGFloat contentViewH = 300;
+        CGFloat contentViewW = SCREEN_WIDTH;
+        _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        
+        _maskV.bgView.alpha = 0.4;
+        
+        _contentView = [[NSBundle mainBundle] loadNibNamed:@"GLOrderPayView" owner:nil options:nil].lastObject;
+        [_contentView.backBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+        _contentView.layer.cornerRadius = 4;
+        _contentView.layer.masksToBounds = YES;
+        _contentView.priceLabel.text = [NSString stringWithFormat:@"¥ %@",self.moneytf.text];
+        _contentView.frame = CGRectMake(0, SCREEN_HEIGHT, contentViewW, 0);
+        [_maskV showViewWithContentView:_contentView];
+        [UIView animateWithDuration:0.3 animations:^{
+            _contentView.frame = CGRectMake(0, SCREEN_HEIGHT - contentViewH, contentViewW, contentViewH);
+            [_contentView.passwordF becomeFirstResponder];
+        }];
+    }
     
 }
 - (void)dismiss{
@@ -103,18 +117,8 @@
 //支付请求
 - (void)postRepuest:(NSNotification *)sender {
     
-    if (self.payType == 1) {
-        
-        //支付宝支付
-        
-    }else if (self.payType == 2){
-        //微信支付
-        
-    }else{
         //米子支付
         [self ricePay:sender];
-        
-    }
     
 }
 
@@ -124,15 +128,13 @@
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"shop_uid"] = self.shop_uid;
-    dict[@"type"] = [NSString stringWithFormat:@"%zd",self.payType]; //支付方式: 1 支付宝 2 微信 3:米子
+    dict[@"type"] = [NSString stringWithFormat:@"%zd",self.payType]; //支付方式: 1 支付宝 2 微信 4:米子
     dict[@"price"] = self.moneytf.text;//价格
     dict[@"remark"] = self.infoTf.text;//备注
     dict[@"rl_type"] = [NSString stringWithFormat:@"%zd",self.modelType];//让利模式 1:20%  2:10%  3:5%
     dict[@"version"] = @"3";//版本 3:Ios
-    //    dict[@"crypt"] = @"";
+
     dict[@"pwd"] =  [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
-    
-//    NSLog(@"dict = %@",dict);
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"shop/faceToFacePay" paramDic:dict finish:^(id responseObject) {
@@ -141,6 +143,46 @@
         
         if ([responseObject[@"code"] integerValue]==1) {
            
+            if (self.payType == 1) {
+                
+                [ [AlipaySDK defaultService]payOrder:responseObject[@"data"][@"alipay"][@"url"] fromScheme:@"univerAlipay" callback:^(NSDictionary *resultDic) {
+                    
+                    NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
+                    if (orderState==9000) {
+                        
+                        [MBProgressHUD showError:@"支付成功"];
+
+                    }else{
+                        NSString *returnStr;
+                        switch (orderState) {
+                            case 8000:
+                                returnStr=@"订单正在处理中";
+                                break;
+                            case 4000:
+                                returnStr=@"订单支付失败";
+                                break;
+                            case 6001:
+                                returnStr=@"订单取消";
+                                break;
+                            case 6002:
+                                returnStr=@"网络连接出错";
+                                break;
+                                
+                            default:
+                                break;
+                        }
+                        
+                        [MBProgressHUD showError:returnStr];
+                        
+                    }
+                    
+                }];
+                
+            }else if (self.payType == 2){
+            
+            }else if (self.payType == 4){
+                 [MBProgressHUD showError:@"支付成功"];
+            }
             [self.navigationController popViewControllerAnimated:YES];
         }
         
@@ -166,7 +208,8 @@
     
     [alertView addAction:[TYAlertAction actionWithTitle:@"支付宝支付" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
           self.methodTf.text = action.title;
-        self.payType = 1;
+          self.payType = 1;
+        
     }]];
     
     [alertView addAction:[TYAlertAction actionWithTitle:@"米子支付" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
@@ -216,7 +259,6 @@
     
    
 }
-
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
 

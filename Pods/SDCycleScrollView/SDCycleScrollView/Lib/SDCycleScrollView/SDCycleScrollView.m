@@ -91,7 +91,6 @@ NSString * const ID = @"cycleCell";
     _currentPageDotColor = [UIColor whiteColor];
     _pageDotColor = [UIColor lightGrayColor];
     _bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
-    _placeholderImageContentMode = UIViewContentModeScaleAspectFill;
     
     self.backgroundColor = [UIColor lightGrayColor];
     
@@ -158,11 +157,12 @@ NSString * const ID = @"cycleCell";
     
     if (!self.backgroundImageView) {
         UIImageView *bgImageView = [UIImageView new];
-        bgImageView.contentMode = self.placeholderImageContentMode;
-        bgImageView.clipsToBounds = YES;
         [self insertSubview:bgImageView belowSubview:self.mainView];
         self.backgroundImageView = bgImageView;
     }
+    
+     self.backgroundImageView.contentMode = self.placeholderImageContentMode;
+     self.backgroundImageView.clipsToBounds = YES;
     
     self.backgroundImageView.image = placeholderImage;
 }

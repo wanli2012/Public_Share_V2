@@ -7,6 +7,7 @@
 //
 
 #import "GLRecommendRcordCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface GLRecommendRcordCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *picImageV;
@@ -45,10 +46,24 @@
     self.jinagliLabel.text = model.zyf_money;
     self.phoneNumLabel.text = model.phone;
     self.IDLabel.text = model.uid;
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"dtx_icon"]];
     if ([model.group_id integerValue] == [OrdinaryUser integerValue]) {
-        
+        self.levelLabel.text = @"会员";
     }
-    self.levelLabel.text = model.group_id;
+    if ([model.group_id integerValue] == [Retailer integerValue]) {
+        self.levelLabel.text = @"商户";
+    }
+    if ([model.group_id integerValue] == [ONESALER integerValue]) {
+         self.levelLabel.text = @"副总";
+    }
+    if ([model.group_id integerValue] == [TWOSALER integerValue]) {
+         self.levelLabel.text = @"推广经理";
+    }
+    if ([model.group_id integerValue] == [THREESALER integerValue]) {
+         self.levelLabel.text = @"推广员";
+    }
+    
+    
 }
 
 

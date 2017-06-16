@@ -35,7 +35,7 @@ static NSString *ID = @"GLRecommendRcordCell";
 }
 -(UITableView*)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT + 44)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
     }
     return _tableView;
 }
@@ -99,14 +99,13 @@ static NSString *ID = @"GLRecommendRcordCell";
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
-    dict[@"page"] = [NSString stringWithFormat:@"%ld",_page];
+    dict[@"page"] = [NSString stringWithFormat:@"%ld",(long)_page];
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"user/rec_all_list" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
          [self endRefresh];
         if ([responseObject[@"code"] integerValue] == 1) {
-//            NSLog(@"%@",responseObject);
             for (NSDictionary *dict in responseObject[@"data"]) {
                 
                 GLRecommendRecordModel *model = [GLRecommendRecordModel mj_objectWithKeyValues:dict];

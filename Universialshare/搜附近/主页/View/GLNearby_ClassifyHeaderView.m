@@ -11,8 +11,6 @@
 #import "GLNearby_TradeOneModel.h"
 
 @interface GLNearby_ClassifyHeaderView ()<UICollectionViewDelegate,UICollectionViewDataSource>
-@property (nonatomic, strong)UICollectionView *collectionView;
-
 
 @property (nonatomic, strong)NSMutableArray *tempDataSource;
 
@@ -31,17 +29,19 @@ static NSString *ID = @"GLNearby_ClassifyConcollectionCell";
     if (self = [super initWithFrame:frame]) {
         /* 添加子控件的代码*/
         self.backgroundColor = YYSRGBColor(184, 184, 184, 0.2);
-//        self.backgroundColor = [UIColor redColor];
         [self addSubview:self.collectionView];
         [self.collectionView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellWithReuseIdentifier:ID];
-        
+       
     }
     return self;
 }
-- (void)layoutSubviews{
+
+-(void)layoutSubviews{
     [super layoutSubviews];
-    self.collectionView.frame = CGRectMake(0, 0, self.bounds.size.width,self.bounds.size.height - 10);
+    
+     self.collectionView.frame = CGRectMake(0, 0, self.bounds.size.width,self.bounds.size.height - 10);
 }
+
 #pragma UICollectionViewDelegete UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
@@ -56,8 +56,7 @@ static NSString *ID = @"GLNearby_ClassifyConcollectionCell";
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
    
     GLNearby_ClassifyConcollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-//    cell.isChangeColor = self.isSeletedArr[indexPath.row];
-    
+
     if (self.dataSource.count >8) {
         cell.titleLabel.text = self.tempDataSource[indexPath.row];
     }else{
@@ -125,8 +124,7 @@ static NSString *ID = @"GLNearby_ClassifyConcollectionCell";
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height) collectionViewLayout:layout];
-        
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;

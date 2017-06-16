@@ -14,7 +14,6 @@
 #import "LBMineMessageViewController.h"
 #import "LBMineCenterReceivingGoodsViewController.h"
 #import "LBMineCenterMyOrderViewController.h"
-#import "LBMineCenterMyBalanceViewController.h"
 
 #import "GLMyHeartController.h"
 #import "GLDirectDonationController.h"
@@ -319,42 +318,6 @@
                 self.hidesBottomBarWhenPushed=NO;
             }
                 break;
-            case 6:
-                
-            {
-                self.hidesBottomBarWhenPushed=YES;
-                LBMineCenterMyBalanceViewController *vc=[[LBMineCenterMyBalanceViewController alloc]init];
-                vc.vcIndex = 1;
-                [self.navigationController pushViewController:vc animated:YES];
-                self.hidesBottomBarWhenPushed=NO;
-                
-            }
-                
-                break;
-            case 7:
-            {
-                {
-                    self.hidesBottomBarWhenPushed=YES;
-                    LBMineCenterMyBalanceViewController *vc=[[LBMineCenterMyBalanceViewController alloc]init];
-                    vc.vcIndex = 2;
-                    [self.navigationController pushViewController:vc animated:YES];
-                    self.hidesBottomBarWhenPushed=NO;
-                    
-                }
-                
-            }
-                break;
-            case 8:
-            {
-                self.hidesBottomBarWhenPushed=YES;
-                LBMineCenterMyBalanceViewController *vc=[[LBMineCenterMyBalanceViewController alloc]init];
-                vc.vcIndex = 3;
-                [self.navigationController pushViewController:vc animated:YES];
-                self.hidesBottomBarWhenPushed=NO;
-                
-            }
-                break;
-                
                 
             default:
                 break;

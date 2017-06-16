@@ -66,8 +66,8 @@ static const CGFloat headerImageHeight = 180.0f;
     [self.tableview addSubview:self.cycleScrollView];
     self.tableview.contentInset=UIEdgeInsetsMake(headerImageHeight, 0, 0, 0);
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:self.shareButton];
-    self.navigationItem.rightBarButtonItem=item;
+    //UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:self.shareButton];
+    //self.navigationItem.rightBarButtonItem=item;
     
      [self initBarManager];
     
@@ -580,7 +580,7 @@ static const CGFloat headerImageHeight = 180.0f;
                                                       placeholderImage:[UIImage imageNamed:@"轮播暂位图"]];
         
         _cycleScrollView.localizationImageNamesGroup = @[];
-        
+        _cycleScrollView.placeholderImageContentMode = UIViewContentModeScaleAspectFill;
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
         _cycleScrollView.titleLabelBackgroundColor = [UIColor groupTableViewBackgroundColor];// 图片对应的标题的 背景色。（因为没有设标题）
         _cycleScrollView.placeholderImage = [UIImage imageNamed:@"轮播暂位图"];

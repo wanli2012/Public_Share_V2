@@ -262,18 +262,17 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        GLNearby_RecommendMerchatCell *cell = [tableView dequeueReusableCellWithIdentifier:ID2];
+        GLNearby_RecommendMerchatCell *cell = [tableView dequeueReusableCellWithIdentifier:ID2 forIndexPath:indexPath];
         cell.selectionStyle = 0;
         cell.models = self.recommendModels;
         [cell.collectionView reloadData];
         return cell;
     }else{
         
-        GLNearby_classifyCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        GLNearby_classifyCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
         cell.selectionStyle = 0;
         cell.model = self.nearModels[indexPath.row];
         return cell;
-        
     }
     
 }

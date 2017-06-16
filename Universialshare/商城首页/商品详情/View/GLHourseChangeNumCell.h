@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @protocol GLHourseChangeNumCellDelegate <NSObject>
 
-- (void)changeNum:(NSInteger )tag indexPath:(NSIndexPath *)indexPath;
+- (void)changeNum:(NSString* )text;
 - (void)SpecificationsEvent;
 
 @end
