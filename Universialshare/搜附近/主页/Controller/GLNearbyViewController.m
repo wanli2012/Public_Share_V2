@@ -62,6 +62,7 @@
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
 //                NSLog(@"responseObject = %@",responseObject);
                 for (NSDictionary *dic  in responseObject[@"data"][@"trade"]) {
+                    
                     GLNearby_TradeOneModel *model = [GLNearby_TradeOneModel mj_objectWithKeyValues:dic];
                     [self.models addObject:model];
                 }

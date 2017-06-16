@@ -13,7 +13,6 @@
 #import "BaseNavigationViewController.h"
 
 #import "GLLoginController.h"
-#import "GLLoginController.h"
 
 #import "LBImprovePersonalDataViewController.h"
 #import "LBShowSaleManAndBusinessViewController.h"
