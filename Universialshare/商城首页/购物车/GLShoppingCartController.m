@@ -55,7 +55,7 @@ static NSString *ID = @"GLShoppingCell";
     
      [self.clearingBtn addTarget:self action:@selector(clearingMore:) forControlEvents:UIControlEventTouchUpInside];
 //    self.selectedNumLabel.text = [NSString stringWithFormat:@"已选中%ld件商品",_totalNum];
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额¥ %lu元",(long)_totalPrice];
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额¥ %lu",(long)_totalPrice];
     [self updateTitleNum];
     [self postRequest];
     
@@ -155,12 +155,12 @@ static NSString *ID = @"GLShoppingCell";
         
         [self.seleteAllBtn setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
         self.selectedNumLabel.text = [NSString stringWithFormat:@"已选中%zd件商品",_totalNum];
-        self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额¥ %.2f元",_totalPrice];
+        self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额¥ %.2f",_totalPrice];
         
     }else{
         
         self.selectedNumLabel.text = [NSString stringWithFormat:@"已选中0件商品"];
-        self.totalPriceLabel.text = @"总金额¥ 0元";
+        self.totalPriceLabel.text = @"总金额¥ 0";
         [self.seleteAllBtn setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
         _totalNum = 0;
         _totalPrice = 0;
@@ -187,7 +187,7 @@ static NSString *ID = @"GLShoppingCell";
     }
 
     self.selectedNumLabel.text = [NSString stringWithFormat:@"已选中%zd件商品",_totalNum];
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额%.2f元",_totalPrice];
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额¥%.2f",_totalPrice];
     [self.selectArr replaceObjectAtIndex:index withObject:@(isSelected)];
 
     
