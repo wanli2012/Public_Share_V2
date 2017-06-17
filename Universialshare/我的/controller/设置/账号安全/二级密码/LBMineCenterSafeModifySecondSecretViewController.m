@@ -119,13 +119,13 @@
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"user/checkTwoPass" paramDic:@{@"token":[UserModel defaultUser].token,@"uid":[UserModel defaultUser].uid,@"psd":encryptsecret} finish:^(id responseObject) {
         [_loadV removeloadview];
-        if ([responseObject[@"data"][@"status"] integerValue]==1) {
+        if ([responseObject[@"code"]integerValue]==1) {
             
             [self.view endEditing:YES];
             [self.scrollview setContentOffset:CGPointMake(SCREEN_WIDTH - 60, 0) animated:YES];
         
         }else{
-            [MBProgressHUD showError:responseObject[@"data"][@"count"]];
+            [MBProgressHUD showError:responseObject[@"message"]];
         }
     } enError:^(NSError *error) {
         [_loadV removeloadview];
@@ -227,6 +227,10 @@
         return NO;
     }else if (textField == self.basTRepSecTf && [string isEqualToString:@"\n"]) {
         [self.view endEditing:YES];
+        return NO;
+    }
+    
+    if (_sixSecret.length >= 6 && ![string isEqualToString:@""]) {
         return NO;
     }
     
