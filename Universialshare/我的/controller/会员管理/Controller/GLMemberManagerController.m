@@ -225,13 +225,13 @@ static NSString *ID = @"GLMemberManagerCell";
         GLMemberModel *model = self.models[indexPath.row];
         consumerVC.uid = model.uid;
         consumerVC.dataArray = @[_dict2,_dict4,_dict1,_dict3];
-        
+        consumerVC.usertype = self.type;
     }else{
         
         GLMemberModel *model = self.modelsone[indexPath.row];
         consumerVC.uid = model.uid;
         consumerVC.dataArray = @[_dict2,_dict4];
-        
+        consumerVC.usertype = self.type;
     }
     
     [self.navigationController pushViewController:consumerVC animated:YES];
