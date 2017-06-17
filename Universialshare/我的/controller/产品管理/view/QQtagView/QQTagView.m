@@ -77,8 +77,8 @@
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(4, 5, 16, 16)];
         imageView.image = [UIImage imageNamed:@"qqqq"];
         [rightVeiw addSubview:imageView];
-        Item.rightView = rightVeiw;
-        Item.rightViewMode = UITextFieldViewModeAlways;
+//        Item.rightView = rightVeiw;
+//        Item.rightViewMode = UITextFieldViewModeAlways;
         Item.padding = UIEdgeInsetsMake(10, 10, 10, 26);//字体与控件的距离
         Item.Style = QQTagStyleEditNone;
         Item.EditShowColor = SelectColor;
@@ -88,13 +88,15 @@
     Item.text =text;
     Item.tag = tag;
     Item.mydelagete = self;
-    Item.frame = CGRectMake(frame.origin.x, frame.origin.y, Item.frame.size.width, Item.frame.size.height);
-    [Item sizeToFit];
+    CGSize size = [text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]}];
+    Item.frame = CGRectMake(frame.origin.x, frame.origin.y, size.width + 10 , 30 );
+    //[Item sizeToFit];
     [self addSubview:Item];
 
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
     [UIView beginAnimations:nil context:nil];
     CGFloat paddingRight = self.padding.right;
     CGFloat cellspace = 5;

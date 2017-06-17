@@ -70,7 +70,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"添加商品";
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -107,8 +107,6 @@
  
     [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsAttr" paramDic:dict1 finish:^(id responseObject) {
 //        [_loadV removeloadview];
-        
-//        NSLog(@"responseObject = %@",responseObject);
         if ([responseObject[@"code"] integerValue]== 1) {
             
             _tagView = [[QQTagView alloc] init];
@@ -300,6 +298,7 @@
         [MBProgressHUD showError:@"至少上传一张图片"];
         return;
     }
+    self.submitBt.userInteractionEnabled = NO;
     NSString *cate_id = [NSString stringWithFormat:@"%@,%@",self.industryArr[self.isChoseFirstClassify][@"cate_id"],_industryArr[_isChoseFirstClassify][@"son"][_isChoseSecondClassify][@"cate_id"]];
     
     NSMutableString *attr_id = [[NSMutableString alloc] init];
@@ -348,12 +347,17 @@
     }progress:^(NSProgress *uploadProgress){
         
         [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
-        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-        [SVProgressHUD setCornerRadius:8.0];
+//        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+//        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+//        [SVProgressHUD setCornerRadius:8.0];
+        
+        if (uploadProgress.fractionCompleted == 1.0) {
+             [SVProgressHUD dismiss];
+            self.submitBt.userInteractionEnabled = YES;
+        }
         
     }success:^(NSURLSessionDataTask *task, id responseObject) {
-        [SVProgressHUD dismiss];
+
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         if ([dic[@"code"]integerValue]==1) {
             
@@ -364,7 +368,7 @@
         }
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [SVProgressHUD dismiss];
+      self.submitBt.userInteractionEnabled = YES;
         [MBProgressHUD showError:error.localizedDescription];
     }];
 

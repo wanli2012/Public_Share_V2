@@ -242,10 +242,9 @@
         [MBProgressHUD showError:@"请输入城市"];
         return;
     }
-    if (self.areaTf.text.length <=0 ) {
-        [MBProgressHUD showError:@"请输入区域"];
-        return;
-    }
+//    if (self.areaTf.text.length <=0 ) {
+//        [MBProgressHUD showError:@"请输入区域"];
+//    }
     if (self.secrestTf.text.length <=0 ) {
         [MBProgressHUD showError:@"请输入密码"];
         return;

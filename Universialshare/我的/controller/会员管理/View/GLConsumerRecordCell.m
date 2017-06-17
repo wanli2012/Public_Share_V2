@@ -29,7 +29,7 @@
 - (void)setModel:(GLMemberConsumerModel *)model{
     _model = model;
     self.nameLabel.text = model.goods_name;
-    self.priceLabel.text = [NSString stringWithFormat:@"分红:¥ %@",model.fh_price];
+    self.priceLabel.text = [NSString stringWithFormat:@"激励:¥ %@",model.fh_price];
     self.consumerSumLabel.text = [NSString stringWithFormat:@"消费:¥ %@", model.total_price];
     
     NSDateFormatter *fm = [[NSDateFormatter alloc] init];
@@ -45,7 +45,7 @@
     }
     
     if ([self.priceLabel.text rangeOfString:@"null"].location != NSNotFound) {
-        self.priceLabel.text = @"分红:¥ 0";
+        self.priceLabel.text = @"激励:¥ 0";
     }
     
     if ([model.rl_type integerValue] == 1) {//20%

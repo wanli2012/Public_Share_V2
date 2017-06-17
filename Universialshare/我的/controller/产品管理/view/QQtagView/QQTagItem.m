@@ -7,7 +7,6 @@
 //
 
 #import "QQTagItem.h"
-
 @implementation QQTagItem
 - (instancetype)init
 {
@@ -15,18 +14,22 @@
         self.textColor = [UIColor whiteColor];
         self.font = [UIFont systemFontOfSize:15];
         self.textAlignment = NSTextAlignmentCenter;
-        self.delegate = self;
+//        self.delegate = self;
         self.backgroundColor = ShowColor;
         self.textColor = [UIColor darkGrayColor];
-        self.layer.cornerRadius = 5.f;
+        self.layer.cornerRadius = 3.f;
         self.clipsToBounds = YES;
+       
+        self.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(textFieldDidBeginEditing)];
+        [self addGestureRecognizer:tapgesture];
     }
     return self;
 }
--(void)textFieldDidBeginEditing:(UITextField*)textField
+-(void)textFieldDidBeginEditing
 
 {
-    [textField resignFirstResponder];
+
 //设置选中与正常颜色
     if (self.Style == QQTagStyleNone) {
         self.backgroundColor = ShowColor;
@@ -45,14 +48,7 @@
     }
     
 }
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
 
-{
-    [textField resignFirstResponder];
-    
-    return YES;
-    
-}
 - (void)setEditShowColor:(UIColor *)EditShowColor
 {
     self.backgroundColor = EditShowColor;
