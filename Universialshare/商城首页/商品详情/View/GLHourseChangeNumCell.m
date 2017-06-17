@@ -23,9 +23,12 @@
 - (IBAction)changeNum:(UIButton *)sender {
     
     if (sender.tag == 20) {
-         self.sumLabel.text = [NSString stringWithFormat:@"%d",[self.sumLabel.text integerValue] - 1];
+         self.sumLabel.text = [NSString stringWithFormat:@"%zd",[self.sumLabel.text integerValue] - 1];
+        if([self.sumLabel.text integerValue] <= 1){
+            self.sumLabel.text = @"1";
+        }
     }else{
-        self.sumLabel.text = [NSString stringWithFormat:@"%d",[self.sumLabel.text integerValue] + 1];
+        self.sumLabel.text = [NSString stringWithFormat:@"%zd",[self.sumLabel.text integerValue] + 1];
     }
     
     if ([_delegate respondsToSelector:@selector(changeNum:)]) { // 如果协议响应
