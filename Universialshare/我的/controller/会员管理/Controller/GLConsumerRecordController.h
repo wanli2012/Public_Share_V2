@@ -14,4 +14,6 @@
 
 @property (nonatomic, copy)NSArray *dataArray;
 
+@property (nonatomic, assign)NSInteger usertype;
+
 @end

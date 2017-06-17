@@ -166,14 +166,12 @@
     
 }
 
-
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     LBMyOrdersHeaderView *headerview = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LBMyOrdersHeaderView"];
     
     if (!headerview) {
         headerview = [[LBMyOrdersHeaderView alloc] initWithReuseIdentifier:@"LBMyOrdersHeaderView"];
-        
     }
     __weak typeof(self)  weakself = self;
     LBMyOrdersModel *sectionModel = self.dataarr[section];
