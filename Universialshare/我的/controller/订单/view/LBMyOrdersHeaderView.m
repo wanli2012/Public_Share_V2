@@ -182,7 +182,7 @@
         _orderStaues.backgroundColor=[UIColor clearColor];
         _orderStaues.textColor=[UIColor blackColor];
         _orderStaues.font=[UIFont systemFontOfSize:13];
-        _orderStaues.text = @"订单类型:积分订单";
+        _orderStaues.text = @"订单类型:";
         
     }
     

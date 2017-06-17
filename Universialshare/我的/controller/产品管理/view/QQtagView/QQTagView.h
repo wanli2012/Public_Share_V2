@@ -12,7 +12,6 @@
 @class QQTagView,QQTagItem;
 @protocol QQTagViewDelegate <NSObject>
 
-
 - (void)QQTagView:(QQTagView *)QQTagView sizeChange:(CGRect)newSize;
 - (void)QQTagView:(QQTagView *)QQTagView QQTagItem:(QQTagItem *)QQTagItem;
 

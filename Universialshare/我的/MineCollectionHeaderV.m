@@ -160,7 +160,7 @@
             cell.infoL.text = @"0";
         }
     }else if (indexPath.row == 3){
-        cell.infoL.text = [UserModel defaultUser].djs_bean;
+        cell.infoL.text = [UserModel defaultUser].recommendMark;
      
         if ([cell.infoL.text isEqualToString:@""]) {
             cell.infoL.text = @"0";

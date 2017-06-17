@@ -39,10 +39,9 @@
                 image.userInteractionEnabled=YES;
                 [image addSubview:self.doneBt];
             }
-            
+    
             [self.scrollView addSubview:image];
         }
-    
 }
 
 - (IBAction)pidaotu:(UIButton *)sender {

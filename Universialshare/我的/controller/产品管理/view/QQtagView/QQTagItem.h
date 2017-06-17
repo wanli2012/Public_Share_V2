@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger,QQTagStyle){
 
 @end
 
-@interface QQTagItem :  UITextField<UITextFieldDelegate>
+@interface QQTagItem :  UILabel<UITextFieldDelegate>
 
 @property (nonatomic,assign) QQTagStyle Style;
 @property (nonatomic,assign) id<QQTagItemDelegate> mydelagete;

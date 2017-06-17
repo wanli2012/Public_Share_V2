@@ -77,7 +77,18 @@
         }
     }];
     //打开日志，方便调试
-    [UMessage setLogEnabled:YES];
+    //[UMessage setLogEnabled:YES];
+    
+    [UMessage addTag:@"男"
+            response:^(id responseObject, NSInteger remain, NSError *error) {
+                //add your codes
+
+            }];
+    
+    [UMessage addTag:@"女"
+            response:^(id responseObject, NSInteger remain, NSError *error) {
+                //add your codes
+            }];
     
     return YES;
 }
@@ -86,6 +97,12 @@
 {
     // 1.2.7版本开始不需要用户再手动注册devicetoken，SDK会自动注册
     [UMessage registerDeviceToken:deviceToken];
+    
+//    NSString * token = [[[[deviceToken description]
+//                          stringByReplacingOccurrencesOfString: @"<" withString: @""]
+//                         stringByReplacingOccurrencesOfString: @">" withString: @""]
+//                        stringByReplacingOccurrencesOfString: @" " withString: @""];
+
 }
 
 //iOS10以下使用这个方法接收通知
@@ -98,12 +115,11 @@
         //定制自定的的弹出框
         if([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
         {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"标题"
-                                                                message:@"Test On ApplicationStateActive"
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:userInfo[@"aps"][@"alert"][@"title"]
+                                                                message:userInfo[@"aps"][@"alert"][@"body"]
                                                                delegate:self
                                                       cancelButtonTitle:@"确定"
                                                       otherButtonTitles:nil];
-    
             [alertView show];
     
         }
@@ -116,6 +132,12 @@
         //应用处于前台时的远程推送接受
         //关闭U-Push自带的弹出框
         [UMessage setAutoAlert:NO];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:userInfo[@"aps"][@"alert"][@"title"]
+                                                            message:userInfo[@"aps"][@"alert"][@"body"]
+                                                           delegate:self
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil];
+         [alertView show];
         //必须加这句代码
         [UMessage didReceiveRemoteNotification:userInfo];
         
@@ -131,6 +153,14 @@
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         //应用处于后台时的远程推送接受
+        //关闭U-Push自带的弹出框
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:userInfo[@"aps"][@"alert"][@"title"]
+                                                            message:userInfo[@"aps"][@"alert"][@"body"]
+                                                           delegate:self
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil];
+        
+        [alertView show];
         //必须加这句代码
         [UMessage didReceiveRemoteNotification:userInfo];
         

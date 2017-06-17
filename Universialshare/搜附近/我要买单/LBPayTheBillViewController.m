@@ -62,7 +62,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
-
 }
 - (IBAction)ensurePay:(id)sender {
     
@@ -76,6 +75,11 @@
     }
     if (self.modelType == 0) {
         [MBProgressHUD showError:@"请选择奖金模式"];
+        return;
+    }
+    
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [MBProgressHUD showError:@"请先登录"];
         return;
     }
     

@@ -6379,7 +6379,7 @@
 					F9061FC71E83C4720080E9D9 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = GCU762TQ3E;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -7639,8 +7639,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.UniversalShare.Universialshare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "a250dd17-97a1-495f-81df-8bc4adb356c3";
+				PROVISIONING_PROFILE_SPECIFIER = quanmtg;
 			};
 			name = Debug;
 		};
@@ -7704,8 +7704,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.UniversalShare.Universialshare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "a250dd17-97a1-495f-81df-8bc4adb356c3";
+				PROVISIONING_PROFILE_SPECIFIER = quanmtg;
 			};
 			name = Release;
 		};
