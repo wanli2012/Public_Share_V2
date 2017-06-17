@@ -367,7 +367,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
             cell.SpecificationsLb.text = self.goods_spec;
         }
         
-        cell.sumLabel.text = [NSString stringWithFormat:@"%d",_sum];
+        cell.sumLabel.text = [NSString stringWithFormat:@"%zd",_sum];
        
         GLcell = cell;
         
