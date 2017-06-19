@@ -145,7 +145,7 @@
     cell.orderCode.text = [NSString stringWithFormat:@"订单号:%@",self.dataarr[indexPath.row][@"order_num"]];
     cell.name.text = [NSString stringWithFormat:@"名称:%@",self.dataarr[indexPath.row][@"goods_name"]];
     cell.momey.text = [NSString stringWithFormat:@"订单金额:%@元",self.dataarr[indexPath.row][@"line_money"]];
-    cell.mode.text = [NSString stringWithFormat:@"激励模式:%@",self.dataarr[indexPath.row][@"rlmodel_type"]];
+    cell.mode.text = [NSString stringWithFormat:@"奖励模式:%@",self.dataarr[indexPath.row][@"rlmodel_type"]];
     cell.time.text = [NSString stringWithFormat:@"下单时间:%@",self.dataarr[indexPath.row][@"addtime"]];
     
     return cell;

@@ -71,11 +71,11 @@
     self.priceLb.text = [NSString stringWithFormat:@"价格: %@",_myorderRebateModel.goods_price];
 
     if ([_myorderRebateModel.is_receipt isEqualToString:@"4"]) {//生效
-        [self.deleteBt setTitle:@"已分红" forState:UIControlStateNormal];
+        [self.deleteBt setTitle:@"已奖励" forState:UIControlStateNormal];
         self.deleteBt.backgroundColor = [UIColor grayColor];
         self.deleteBt.userInteractionEnabled = NO;
     }else{//未生效
-        [self.deleteBt setTitle:@"开始分红" forState:UIControlStateNormal];
+        [self.deleteBt setTitle:@"开始奖励" forState:UIControlStateNormal];
         self.deleteBt.backgroundColor = TABBARTITLE_COLOR;
         self.deleteBt.userInteractionEnabled = YES;
     }
