@@ -230,6 +230,10 @@
         [MBProgressHUD showError:@"请输入验证码"];
         return;
     }
+    if (self.trueNameLabel.text.length <=0 ) {
+        [MBProgressHUD showError:@"请输入真实姓名"];
+        return;
+    }
     if (self.levelTf.text.length <=0 ) {
         [MBProgressHUD showError:@"请输入等级"];
         return;
@@ -279,8 +283,6 @@
     
     NSArray *titleArr = [NSArray arrayWithObjects:@"face_pic",@"con_pic", nil];
 
-    NSLog(@"%@",dic);
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
     manager.requestSerializer.timeoutInterval = 20;
@@ -305,9 +307,13 @@
         [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
 
         [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+        
+        if (uploadProgress.fractionCompleted == 1.0) {
+             [SVProgressHUD dismiss];
+        }
 
     }success:^(NSURLSessionDataTask *task, id responseObject) {
-        [SVProgressHUD dismiss];
+       
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         if ([dic[@"code"]integerValue]==1) {
             
@@ -316,10 +322,7 @@
         }else{
             [MBProgressHUD showError:dic[@"message"]];
         }
-        [_loadV removeloadview];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [SVProgressHUD dismiss];
-        [_loadV removeloadview];
         [MBProgressHUD showError:error.localizedDescription];
     }];
  
