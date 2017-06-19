@@ -6379,7 +6379,7 @@
 					F9061FC71E83C4720080E9D9 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = GCU762TQ3E;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -7587,7 +7587,7 @@
 				CODE_SIGN_ENTITLEMENTS = Universialshare/Universialshare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = GCU762TQ3E;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7639,8 +7639,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.UniversalShare.Universialshare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a250dd17-97a1-495f-81df-8bc4adb356c3";
-				PROVISIONING_PROFILE_SPECIFIER = quanmtg;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -7652,7 +7652,7 @@
 				CODE_SIGN_ENTITLEMENTS = Universialshare/Universialshare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = GCU762TQ3E;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7704,8 +7704,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.UniversalShare.Universialshare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a250dd17-97a1-495f-81df-8bc4adb356c3";
-				PROVISIONING_PROFILE_SPECIFIER = quanmtg;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

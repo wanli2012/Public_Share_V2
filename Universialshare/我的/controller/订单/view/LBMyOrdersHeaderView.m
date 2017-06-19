@@ -15,7 +15,6 @@
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         [self initerface];
     }
-    
     return self;
 }
 
@@ -104,8 +103,6 @@
     }
     
 }
-
-
 
 -(void)tapgestureSection{
     self.sectionModel.isExpanded = !self.sectionModel.isExpanded;
