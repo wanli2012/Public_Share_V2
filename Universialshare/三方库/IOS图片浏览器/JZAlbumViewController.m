@@ -162,7 +162,7 @@
     if (![currentPhotoView isKindOfClass:[PhotoView class]]) {
         //url数组
         CGRect frame = CGRectMake(index*_scrollView.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height);
-        PhotoView *photoV;
+        PhotoView *photoV = [[PhotoView alloc]init];
         if ([self.imgArr[index] isKindOfClass:[NSString class]]) {
              photoV = [[PhotoView alloc] initWithFrame:frame withPhotoUrl:[self.imgArr objectAtIndex:index]];
         }else if ([self.imgArr[index] isKindOfClass:[UIImage class]]){

@@ -17,7 +17,9 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
 
-    if (self = [super initWithFrame:frame]) {
+    self = [super initWithFrame:frame];
+    
+    if (self != nil) {
         NSArray *viewArray = [[NSBundle mainBundle] loadNibNamed:@"LoadWaitView" owner:self options:nil];
         
         self = viewArray[0];
@@ -30,7 +32,7 @@
         [self initinterface];
         
     }
-    return self;
+    return [super initWithFrame:frame];
 
 }
 

@@ -14,7 +14,7 @@
     if (self == [super init]) {
         [self setValuesForKeysWithDictionary:dict];
     }
-    return self;
+    return [super init];
 }
 
 + (instancetype)MenuModelWithDict:(NSDictionary *)dict{

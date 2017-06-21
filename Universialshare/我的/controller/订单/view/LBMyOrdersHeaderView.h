@@ -10,6 +10,7 @@
 #import "LBMyOrdersModel.h"
 
 typedef void(^GWHeadViewExpandCallback)(BOOL isExpanded);
+
 @interface LBMyOrdersHeaderView : UITableViewHeaderFooterView
 
 @property (nonatomic, copy)GWHeadViewExpandCallback expandCallback;

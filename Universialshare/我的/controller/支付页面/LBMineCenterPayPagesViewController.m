@@ -12,6 +12,8 @@
 #import "GLOrderPayView.h"
 #import "GLSet_MaskVeiw.h"
 #import <AlipaySDK/AlipaySDK.h>
+#import "WXApi.h"
+
 
 @interface LBMineCenterPayPagesViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -169,7 +171,7 @@
             [self alipayAndWeChatPay:@"1"];
         }else{
             //微信支付
-            //[self alipayAndWeChatPay:@"2"];
+            [self alipayAndWeChatPay:@"2"];
             
         }
     
@@ -285,45 +287,16 @@
         [_loadV removeloadview];
         [self dismiss];
         if ([responseObject[@"code"] integerValue] == 1){
-            
-           [ [AlipaySDK defaultService]payOrder:responseObject[@"data"][@"alipay"][@"url"] fromScheme:@"univerAlipay" callback:^(NSDictionary *resultDic) {
-               
-               NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
-               if (orderState==9000) {
-                   self.hidesBottomBarWhenPushed = YES;
-                   if(self.pushIndex == 1){
-                       [self.navigationController popToRootViewControllerAnimated:YES];
-       
-                   }else{
-                       [self.navigationController popViewControllerAnimated:YES];
-                   }
-                   self.hidesBottomBarWhenPushed = NO;
-                   
-               }else{
-                   NSString *returnStr;
-                   switch (orderState) {
-                       case 8000:
-                            returnStr=@"订单正在处理中";
-                           break;
-                       case 4000:
-                           returnStr=@"订单支付失败";
-                           break;
-                       case 6001:
-                           returnStr=@"订单取消";
-                           break;
-                       case 6002:
-                           returnStr=@"网络连接出错";
-                           break;
-                           
-                       default:
-                           break;
-                   }
-                   
-                    [MBProgressHUD showError:returnStr];
-                   
-               }
-    
-            }];
+            //调起微信支付
+            PayReq* req = [[PayReq alloc] init];
+            req.openID=responseObject[@"data"][@"appid"];
+            req.partnerId = responseObject[@"data"][@"partnerid"];
+            req.prepayId = responseObject[@"data"][@"prepayid"];
+            req.nonceStr = responseObject[@"data"][@"noncestr"];
+            //req.timeStamp = stamp.intValue;
+            req.package = responseObject[@"data"][@"package"];
+            req.sign = responseObject[@"data"][@"sign"];
+            [WXApi sendReq:req];
             
         }else{
             

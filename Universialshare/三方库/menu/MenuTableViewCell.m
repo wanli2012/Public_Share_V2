@@ -13,7 +13,9 @@
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self != nil) {
         [self setUpUI];
     }
     return self;

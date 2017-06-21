@@ -784,6 +784,7 @@
 		F94A33F41EAA01A600222A86 /* LBMineCenterPayPagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94A33F21EAA01A600222A86 /* LBMineCenterPayPagesViewController.xib */; };
 		F94A33F91EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94A33F71EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.m */; };
 		F94A33FA1EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94A33F81EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.xib */; };
+		F94AFF131EF8C6D200DC34F8 /* LBFaceToFacePayHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F94AFF121EF8C6D200DC34F8 /* LBFaceToFacePayHeaderView.m */; };
 		F94D317D1EAF1A2300309029 /* LBRecommendedSalesmanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94D317B1EAF1A2300309029 /* LBRecommendedSalesmanViewController.m */; };
 		F94D317E1EAF1A2300309029 /* LBRecommendedSalesmanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94D317C1EAF1A2300309029 /* LBRecommendedSalesmanViewController.xib */; };
 		F94D31971EAF3AED00309029 /* LBRecommendedBusinessAuditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94D31951EAF3AED00309029 /* LBRecommendedBusinessAuditTableViewCell.m */; };
@@ -2330,6 +2331,8 @@
 		F94A33F61EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterPayPagesTableViewCell.h; sourceTree = "<group>"; };
 		F94A33F71EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterPayPagesTableViewCell.m; sourceTree = "<group>"; };
 		F94A33F81EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterPayPagesTableViewCell.xib; sourceTree = "<group>"; };
+		F94AFF111EF8C6D200DC34F8 /* LBFaceToFacePayHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBFaceToFacePayHeaderView.h; sourceTree = "<group>"; };
+		F94AFF121EF8C6D200DC34F8 /* LBFaceToFacePayHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBFaceToFacePayHeaderView.m; sourceTree = "<group>"; };
 		F94D317A1EAF1A2300309029 /* LBRecommendedSalesmanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBRecommendedSalesmanViewController.h; sourceTree = "<group>"; };
 		F94D317B1EAF1A2300309029 /* LBRecommendedSalesmanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBRecommendedSalesmanViewController.m; sourceTree = "<group>"; };
 		F94D317C1EAF1A2300309029 /* LBRecommendedSalesmanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBRecommendedSalesmanViewController.xib; sourceTree = "<group>"; };
@@ -5381,6 +5384,8 @@
 				F92308AF1E9B8BFF00ECDC94 /* LBMyOrderUnsubscribeRecordTableViewCell.xib */,
 				F9121B2B1EB21BC500DAB7A2 /* LBMyOrdersHeaderView.h */,
 				F9121B2C1EB21BC500DAB7A2 /* LBMyOrdersHeaderView.m */,
+				F94AFF111EF8C6D200DC34F8 /* LBFaceToFacePayHeaderView.h */,
+				F94AFF121EF8C6D200DC34F8 /* LBFaceToFacePayHeaderView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -7159,6 +7164,7 @@
 				F958C07F1EA4615A003C9CFB /* LBMineCenterUsualUnderOrderTableViewCell.m in Sources */,
 				F92309341E9B8BFF00ECDC94 /* LBMineMessageSeviceViewController.m in Sources */,
 				4A4610681E9CC6360045824F /* ZXVCardResultParser.m in Sources */,
+				F94AFF131EF8C6D200DC34F8 /* LBFaceToFacePayHeaderView.m in Sources */,
 				F92309631E9B8BFF00ECDC94 /* XBPageCell.m in Sources */,
 				4A07A8891EA0BBF1005A9B67 /* GLNoneOfDonationController.m in Sources */,
 				4A4610F01E9CC6370045824F /* ZXPDF417DetectionResultRowIndicatorColumn.m in Sources */,

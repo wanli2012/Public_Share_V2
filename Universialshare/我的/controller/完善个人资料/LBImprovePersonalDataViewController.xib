@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,6 +22,8 @@
                 <outlet property="otherImage" destination="H9f-Sa-2D8" id="Cs7-1D-ItF"/>
                 <outlet property="positiveImage" destination="x1w-6q-Y8q" id="3Df-ou-aVE"/>
                 <outlet property="saleImage" destination="fdS-fV-zuh" id="odL-aG-KYE"/>
+                <outlet property="saleimageConstrait" destination="eUn-Cw-ElI" id="29l-2D-wbM"/>
+                <outlet property="saletile" destination="Juz-oX-Anu" id="akQ-R0-xO8"/>
                 <outlet property="sixSecretTf" destination="La4-Bf-qcy" id="HWj-MB-0OR"/>
                 <outlet property="sixSecretTf1" destination="gaT-hT-6yE" id="0zw-bp-IbM"/>
                 <outlet property="surebutton" destination="Hxr-6y-JsA" id="lc0-AU-Tvk"/>
@@ -197,7 +199,7 @@
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jYV-3D-hcT">
-                                    <rect key="frame" x="10" y="694" width="355" height="40"/>
+                                    <rect key="frame" x="10" y="690" width="355" height="40"/>
                                     <color key="backgroundColor" red="0.77709561589999998" green="0.19865089650000001" blue="0.056773729619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="NeO-A3-eFx"/>
@@ -241,7 +243,7 @@
                                     </connections>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hxr-6y-JsA">
-                                    <rect key="frame" x="10" y="644" width="355" height="40"/>
+                                    <rect key="frame" x="10" y="640" width="355" height="40"/>
                                     <color key="backgroundColor" red="0.14404621719999999" green="0.60565376280000005" blue="0.14635491370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="G3J-UF-REv"/>
@@ -434,7 +436,6 @@
                                 <constraint firstAttribute="height" constant="760" id="d4H-Ff-lKX"/>
                                 <constraint firstAttribute="trailing" secondItem="RNW-W9-kIT" secondAttribute="trailing" id="dlZ-eW-JPr"/>
                                 <constraint firstItem="Sbf-75-i2J" firstAttribute="leading" secondItem="pNR-VR-bAq" secondAttribute="leading" id="eOg-g1-aQh"/>
-                                <constraint firstItem="Hxr-6y-JsA" firstAttribute="top" secondItem="fdS-fV-zuh" secondAttribute="bottom" constant="30" id="fAd-a7-wuG"/>
                                 <constraint firstAttribute="trailing" secondItem="USW-GR-t1u" secondAttribute="trailing" id="gJg-fD-hQd"/>
                                 <constraint firstItem="aav-U0-pAm" firstAttribute="leading" secondItem="pNR-VR-bAq" secondAttribute="leading" id="goX-ax-MKA"/>
                                 <constraint firstAttribute="trailing" secondItem="zel-99-T88" secondAttribute="trailing" id="kUx-n5-cCy"/>
@@ -443,6 +444,7 @@
                                 <constraint firstItem="gmN-cG-0Nr" firstAttribute="leading" secondItem="pNR-VR-bAq" secondAttribute="leading" constant="10" id="oc1-9s-ozF"/>
                                 <constraint firstAttribute="trailing" secondItem="Hxr-6y-JsA" secondAttribute="trailing" constant="10" id="p8u-mT-5AM"/>
                                 <constraint firstAttribute="trailing" secondItem="jYV-3D-hcT" secondAttribute="trailing" constant="10" id="qzg-tz-WXQ"/>
+                                <constraint firstAttribute="bottom" secondItem="jYV-3D-hcT" secondAttribute="bottom" constant="30" id="r61-Gb-1Zd"/>
                                 <constraint firstItem="H9f-Sa-2D8" firstAttribute="bottom" secondItem="x1w-6q-Y8q" secondAttribute="bottom" id="vyn-HN-hfm"/>
                                 <constraint firstItem="jYV-3D-hcT" firstAttribute="top" secondItem="Hxr-6y-JsA" secondAttribute="bottom" constant="10" id="ynI-w8-51X"/>
                             </constraints>

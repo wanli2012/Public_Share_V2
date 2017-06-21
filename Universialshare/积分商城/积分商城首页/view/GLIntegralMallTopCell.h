@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol GLIntegralMallTopCellDelegete <NSObject>
+
+-(void)tapgestureTag:(UITapGestureRecognizer*)Tag;
+
+@end
+
 @interface GLIntegralMallTopCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *firstView;
 @property (weak, nonatomic) IBOutlet UIView *secondView;
@@ -15,5 +21,5 @@
 
 @property (weak, nonatomic) IBOutlet UIView *moreView;
 @property (nonatomic, strong)NSArray *models;
-
+@property (nonatomic, assign)id<GLIntegralMallTopCellDelegete> delegete;
 @end

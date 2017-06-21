@@ -260,7 +260,7 @@ static NSString *ID = @"GLClassifyCell";
     GLHourseDetailController *detailVC = [[GLHourseDetailController alloc] init];
     GLintegralGoodsModel *model = self.models[indexPath.row];
     detailVC.goods_id = model.goods_id;
-    detailVC.navigationItem.title = @"积分商品详情";
+    detailVC.navigationItem.title = @"米券商品详情";
     [self.navigationController pushViewController:detailVC animated:YES];
     
 }

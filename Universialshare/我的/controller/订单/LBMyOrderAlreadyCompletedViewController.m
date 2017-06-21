@@ -13,6 +13,7 @@
 #import "LBMyOrdersHeaderView.h"
 #import "LBMyOrdersModel.h"
 #import "LBMyOrdersListModel.h"
+#import "LBFaceToFacePayHeaderView.h"
 
 @interface LBMyOrderAlreadyCompletedViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 
@@ -92,12 +93,12 @@
                      ordersMdel.order_type = responseObject[@"data"][i][@"order_type"];
                      ordersMdel.realy_price = responseObject[@"data"][i][@"realy_price"];
                      ordersMdel.total = responseObject[@"data"][i][@"total"];
+                    ordersMdel.shop_name = responseObject[@"data"][i][@"shop_name"];
                      ordersMdel.isExpanded = NO;
                     ordersMdel.MyOrdersListModel = responseObject[@"data"][i][@"goods"];
                     [self.dataarr addObject:ordersMdel];
                 }
             }
-            
             [self.tableview reloadData];
             
         }else if ([responseObject[@"code"] integerValue]==3){
@@ -106,8 +107,6 @@
 
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
-
-            
         }
     } enError:^(NSError *error) {
         [_loadV removeloadview];
@@ -194,12 +193,42 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    return 85;
+    LBMyOrdersModel *model= (LBMyOrdersModel*)self.dataarr[section];
+    if ([model.order_type isEqualToString:@"3"]) {//面对面支付
+         return 110;
+        
+    }else{
+         return 85;
+        
+    }
     
 }
 
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+     LBMyOrdersModel *sectionModel = self.dataarr[section];
+    
+    if ([sectionModel.order_type isEqualToString:@"3"]) {//面对面支付
+        LBFaceToFacePayHeaderView *headerview = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LBFaceToFacePayHeaderView"];
+        
+        if (!headerview) {
+            headerview = [[LBFaceToFacePayHeaderView alloc] initWithReuseIdentifier:@"LBFaceToFacePayHeaderView"];
+            
+        }
+        headerview.sectionModel = sectionModel;
+         headerview.DeleteBt.hidden = NO;
+        headerview.section = section;
+        headerview.returnDeleteBt = ^(NSInteger section){
+            self.deleteRow =section;
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"您确定要删除吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            
+            [alert show];
+            
+            
+        };
+        return headerview;
+        
+    }
     
     LBMyOrdersHeaderView *headerview = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LBMyOrdersHeaderView"];
     
@@ -208,7 +237,7 @@
         
     }
     
-    LBMyOrdersModel *sectionModel = self.dataarr[section];
+   headerview.section = section;
     headerview.sectionModel = sectionModel;
     headerview.expandCallback = ^(BOOL isExpanded) {
         

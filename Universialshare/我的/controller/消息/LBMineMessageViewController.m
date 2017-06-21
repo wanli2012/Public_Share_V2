@@ -46,8 +46,7 @@
     button.backgroundColor=[UIColor clearColor];
     [button addTarget:self action:@selector(infomationSetUp) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *ba=[[UIBarButtonItem alloc]initWithCustomView:button];
-    
+    //UIBarButtonItem *ba=[[UIBarButtonItem alloc]initWithCustomView:button];
     //self.navigationItem.rightBarButtonItem = ba;
     
 }

@@ -48,7 +48,7 @@
 
 //http://dzgx.joshuaweb.cn/index.php/Home/Regist/index.html
 //分享
-#define SHARE_URL @"http://dzgx.joshuaweb.cn/index.php/Home/Regist/index.html?mod=member&act=register&username="
+#define SHARE_URL @"https://www.51dztg.com/index.php/Home/Regist/index.html"
 #define UMSHARE_APPKEY @"58cf31dcf29d982906001f63"
 //微信分享
 #define WEIXI_APPKEY @"wx3719a66cd8983420"

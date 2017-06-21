@@ -14,7 +14,7 @@
 
 
 
-//@property (nonatomic, strong)NSMutableArray *chooseArr;
+@property (nonatomic, assign)BOOL isSelectedItem;
 @property (nonatomic, copy)NSString *chooseStr;
 @property (nonatomic, strong)NSMutableArray *cellArr;
 
@@ -43,16 +43,16 @@ static NSString *ID = @"GLClassifyRecommendCell";
     
 }
 - (IBAction)ensureClick:(id)sender {
-    BOOL isSelectedItem = NO;
     for(int i = 0 ; i < self.cellArr.count ; i++) {
         GLClassifyRecommendCell *cell = self.cellArr[i];
         if (cell.status) {
             self.block(_chooseStr);
-            isSelectedItem = YES;
+            _isSelectedItem = YES;
             break;
         }
+        
         if(i == self.cellArr.count - 1){
-            isSelectedItem = NO;
+            _isSelectedItem = NO;
             [MBProgressHUD showError:@"请选择分类"];
         }
         
