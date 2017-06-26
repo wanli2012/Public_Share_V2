@@ -20,7 +20,7 @@
         lab.font = [UIFont systemFontOfSize:14];
         [self addSubview:lab];
         
-        BOOL  isLineReturn = NO;
+        BOOL  isLineReturn;
         float upX = 10;
         float upY = 40;
         for (int i = 0; i<arr.count; i++) {
@@ -28,10 +28,10 @@
           
             NSDictionary *dic = [NSDictionary dictionaryWithObject:[UIFont boldSystemFontOfSize:14] forKey:NSFontAttributeName];
             CGSize size = [str sizeWithAttributes:dic];
-            //NSLog(@"%f",size.height);
+
             if ( upX > (self.frame.size.width-20 -size.width-35)) {
                 
-                isLineReturn = YES;
+               // isLineReturn = YES;
                 upX = 10;
                 upY += 30;
             }
@@ -70,7 +70,7 @@
 }
 -(void)touchbtn:(UIButton *)btn
 {
-    NSLog(@"%d",btn.selected);
+
     if (btn.selected == NO) {
         
         self.seletIndex = (int)btn.tag-100;

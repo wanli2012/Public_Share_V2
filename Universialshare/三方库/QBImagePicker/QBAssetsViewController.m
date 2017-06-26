@@ -494,6 +494,7 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
+
     if (kind == UICollectionElementKindSectionFooter) {
         UICollectionReusableView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
                                                                                   withReuseIdentifier:@"FooterView"
@@ -547,8 +548,7 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
         
         return footerView;
     }
-    
-    return nil;
+    return [[UICollectionReusableView alloc]init];
 }
 
 

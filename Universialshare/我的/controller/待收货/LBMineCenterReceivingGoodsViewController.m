@@ -203,7 +203,6 @@
     [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
 
-    
     return headerview;
 }
 

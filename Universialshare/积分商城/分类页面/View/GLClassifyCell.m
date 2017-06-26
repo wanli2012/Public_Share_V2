@@ -31,6 +31,6 @@
     [_imageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     
     _nameLabel.text = model.goods_name;
-    _priceLabel.text = [NSString stringWithFormat:@"%@积分",model.goods_price];
+    _priceLabel.text = [NSString stringWithFormat:@"%@米券",model.goods_price];
 }
 @end

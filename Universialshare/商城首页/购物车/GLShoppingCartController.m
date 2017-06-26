@@ -135,7 +135,7 @@ static NSString *ID = @"GLShoppingCell";
     _totalNum = 0;
     for (int i = 0; i< self.selectArr.count; i ++) {
         
-        BOOL tempBool = [self.selectArr[i] boolValue];
+        BOOL tempBool;
         
         if (self.seleteAllBtn.selected) {
             tempBool = YES;

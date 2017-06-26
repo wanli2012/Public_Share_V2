@@ -18,6 +18,7 @@
 @property (copy, nonatomic)NSString *realy_price;
 @property (copy, nonatomic)NSString *total;
 @property (copy, nonatomic)NSString *mark;
+@property (copy, nonatomic)NSString *shop_name;
 
 @property (copy, nonatomic)NSString *crypt;
 

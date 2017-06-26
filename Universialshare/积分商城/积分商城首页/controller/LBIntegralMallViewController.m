@@ -29,7 +29,7 @@
 #import "GLHomePageNoticeView.h"
 #import "GLConfirmOrderController.h"
 
-@interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,GLIntegralGoodsCellDelegate>
+@interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,GLIntegralGoodsCellDelegate,GLIntegralMallTopCellDelegete>
 {
     LoadWaitView * _loadV;
     NSInteger _page;
@@ -169,10 +169,10 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     }];
 
     
-//    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/main" paramDic:@{} finish:^(id responseObject) {
         
-//        [_loadV removeloadview];
+        [_loadV removeloadview];
         [self endRefresh];
 
         if ([responseObject[@"code"] integerValue] == 1){
@@ -190,7 +190,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
         [self.tableView reloadData];
         
     } enError:^(NSError *error) {
-//        [_loadV removeloadview];
+       [_loadV removeloadview];
         [self endRefresh];
         [self.tableView reloadData];
         
@@ -245,22 +245,26 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     
 }
 
-- (void)classifyClick:(UITapGestureRecognizer *)tap {
+- (void)tapgestureTag:(UITapGestureRecognizer *)Tag {
    
+    if (_hotModels.count <= 0) {
+        return;
+    }
+    
     self.hidesBottomBarWhenPushed = YES;
     GLHourseDetailController *detailVC = [[GLHourseDetailController alloc] init];
     detailVC.navigationItem.title = @"米券兑换详情";
-    if (tap.view.tag == 11) {
+    if (Tag.view.tag == 11) {
         GLMallHotModel *model = self.hotModels[0];
         detailVC.goods_id = model.mall_id;
         [self.navigationController pushViewController:detailVC animated:YES];
 
-    }else if (tap.view.tag == 12){
+    }else if (Tag.view.tag == 12){
         GLMallHotModel *model = self.hotModels[1];
         detailVC.goods_id = model.mall_id;
         [self.navigationController pushViewController:detailVC animated:YES];
 
-    }else if (tap.view.tag == 13){
+    }else if (Tag.view.tag == 13){
         GLMallHotModel *model = self.hotModels[2];
         detailVC.goods_id = model.mall_id;
         [self.navigationController pushViewController:detailVC animated:YES];
@@ -357,26 +361,12 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
         GLIntegralMallTopCell *cell = [tableView dequeueReusableCellWithIdentifier:topCellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (self.hotModels.count == 3) {
-            
             cell.models = self.hotModels;
-            
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(classifyClick:)];
-            UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(classifyClick:)];
-            UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(classifyClick:)];
-            
-            cell.firstView.tag = 11;
-            cell.secondView.tag = 12;
-            cell.thirdView.tag = 13;
-            [cell.firstView addGestureRecognizer:tap];
-            [cell.secondView addGestureRecognizer:tap2];
-            [cell.thirdView addGestureRecognizer:tap3];
         }
+        cell.delegete = self;
         
-        cell.moreView.tag = 14;
-        UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(classifyClick:)];
-        [cell.moreView addGestureRecognizer:tap4];
         return cell;
         
     }else{

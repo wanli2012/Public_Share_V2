@@ -102,7 +102,7 @@
     CGFloat cellspace = 5;
     CGFloat y = self.padding.top;
     CGFloat x = self.padding.left;
-    CGRect frame;
+    CGRect frame = CGRectZero;
     for(UIView *tag in self.subviews) {
         frame = tag.frame;
         frame.origin.x = x;

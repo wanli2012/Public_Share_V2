@@ -18,9 +18,11 @@
 #import "yindaotuViewController.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "UMessage.h"
+#import "WXApi.h"
+
 #import <UserNotifications/UserNotifications.h>
 
-@interface AppDelegate ()<UNUserNotificationCenterDelegate>
+@interface AppDelegate ()<UNUserNotificationCenterDelegate,WXApiDelegate>
 
 @property(strong,nonatomic)BMKMapManager* mapManager;
 @property(strong,nonatomic)NSDictionary* userInfo;
@@ -56,6 +58,10 @@
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:WEIBO_APPKEY
                                               secret:WEIBO_SECRET
                                          RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    /**
+     *微信支付
+     */
+    [WXApi registerApp:WEIXI_APPKEY withDescription:@"dztg"];
     
     /**
      *推送
@@ -78,17 +84,6 @@
     }];
     //打开日志，方便调试
     //[UMessage setLogEnabled:YES];
-    
-    [UMessage addTag:@"男"
-            response:^(id responseObject, NSInteger remain, NSError *error) {
-                //add your codes
-
-            }];
-    
-    [UMessage addTag:@"女"
-            response:^(id responseObject, NSInteger remain, NSError *error) {
-                //add your codes
-            }];
     
     return YES;
 }
@@ -181,7 +176,12 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
    
-       return [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+    if ([url.host isEqualToString:@"pay"]) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
+    else{
+        return [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+    }
 
 }
 
@@ -190,7 +190,7 @@
 {
     
     if ([url.host isEqualToString:@"pay"]) {
-        
+        return [WXApi handleOpenURL:url delegate:self];
     }else if ([url.host isEqualToString:@"safepay"]){
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
@@ -232,7 +232,10 @@
 // NOTE: 9.0以后使用新API接口
 -(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
     
-    if ([url.host isEqualToString:@"safepay"]) {
+    if ([url.host isEqualToString:@"pay"]) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
+   else if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
             NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
@@ -269,6 +272,38 @@
     
 }
 
+/**
+ *微信支付
+ */
+-(void) onResp:(BaseResp*)resp
+{
+    NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+    NSString *strTitle;
+    
+    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+        strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
+    }
+    if([resp isKindOfClass:[PayResp class]]){
+        //支付返回结果，实际支付结果需要去微信服务器端查询
+        strTitle = [NSString stringWithFormat:@"支付结果"];
+        
+        switch (resp.errCode) {
+            case WXSuccess:
+                strMsg = @"支付结果：成功！";
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"wxpaysucess" object:nil];
+                break;
+            case WXErrCodeUserCancel:
+                strMsg = @"支付结果：取消！";
+                break;
+                
+            default:
+                strMsg = [NSString stringWithFormat:@"支付结果：失败"];
+                break;
+        }
+    }
+    [MBProgressHUD showError:strMsg];
+}
 
 #pragma mark - 键盘高度处理
 - (void)iqKeyboardShowOrHide {

@@ -127,7 +127,7 @@
     }
     
     // 调整anchorPoint
-    CGPoint aPoint = CGPointMake(0.5, 0.5);
+    CGPoint aPoint ;
     if (CGRectGetMaxY(self.frame) > kScreenHeight) {
         aPoint = CGPointMake(arrowPointX / self.width, 1);
     }else{

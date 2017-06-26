@@ -14,7 +14,7 @@
 {
     // get the size of the elements here for readability
     CGSize imageSize = self.imageView.frame.size;
-    CGSize titleSize = self.titleLabel.frame.size;
+    CGSize titleSize ;
     
     // lower the text and push it left to center it
     self.titleEdgeInsets = UIEdgeInsetsMake(0.0, - imageSize.width, - (imageSize.height + spacing/2), 0.0);
@@ -33,7 +33,7 @@
 {
     // get the size of the elements here for readability
     CGSize imageSize = self.imageView.frame.size;
-    CGSize titleSize = self.titleLabel.frame.size;
+    CGSize titleSize ;
     
     // lower the text and push it left to center it
     self.titleEdgeInsets = UIEdgeInsetsMake(0.0, - imageSize.width, 0.0, imageSize.width + spacing/2);
@@ -75,7 +75,7 @@
 {
     // get the size of the elements here for readability
     CGSize imageSize = self.imageView.frame.size;
-    CGSize titleSize = self.titleLabel.frame.size;
+    CGSize titleSize ;
     
     // lower the text and push it left to center it
     self.titleEdgeInsets = UIEdgeInsetsMake(0.0, - imageSize.width, 0.0, 0.0);

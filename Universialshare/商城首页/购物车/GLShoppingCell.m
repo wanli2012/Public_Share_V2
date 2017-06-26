@@ -55,7 +55,7 @@
     }
     
     if ([model.goods_type integerValue] == 1) {
-        self.typeLabel.text = @"返利商品";
+        self.typeLabel.text = @"奖励商品";
     }else{
         self.typeLabel.text = @"米券商品";
         self.specLabel.text = [NSString stringWithFormat:@"规格:%@",model.spec];

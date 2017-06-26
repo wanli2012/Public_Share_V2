@@ -164,7 +164,7 @@
         return;
     }
     if (self.modeltf.text.length <= 0) {
-        [MBProgressHUD showError:@"请选择激励模式"];
+        [MBProgressHUD showError:@"请选择奖励模式"];
         return;
     }
     if (self.moneyTf.text.length <= 0) {
@@ -411,26 +411,26 @@
 #pragma mark - 点击激励模式选择
 -(void)threeButtonE{
     self.userytpe = [KThreePersent integerValue];
-    self.modeltf.text = @"3%激励模式";
+    self.modeltf.text = @"3%奖励模式";
     [self incentiveModelMaskVtapgestureLb];
     
 }
 
 -(void)sixbuttonE{
     self.userytpe=3;
-    self.modeltf.text=@"5%激励模式";
+    self.modeltf.text=@"5%奖励模式";
     [self incentiveModelMaskVtapgestureLb];
     
 }
 -(void)twenteenButtonE{
     self.userytpe=2;
-    self.modeltf.text=@"10%激励模式";
+    self.modeltf.text=@"10%奖励模式";
     [self incentiveModelMaskVtapgestureLb];
     
 }
 -(void)twentyFbuttonE{
     self.userytpe=1;
-    self.modeltf.text=@"20%激励模式";
+    self.modeltf.text=@"20%奖励模式";
     [self incentiveModelMaskVtapgestureLb];
     
 }

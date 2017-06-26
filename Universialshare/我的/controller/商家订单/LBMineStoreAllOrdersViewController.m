@@ -147,7 +147,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.namelb.text = [NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"goods_name"]];
     cell.numlb.text = [NSString stringWithFormat:@"数量:%@",self.dataarr[indexPath.row][@"goods_total"]];
-    cell.modelLb.text = [NSString stringWithFormat:@"激励模式:%@",self.dataarr[indexPath.row][@"rlmodel_type"]];
+    cell.modelLb.text = [NSString stringWithFormat:@"奖励模式:%@",self.dataarr[indexPath.row][@"rlmodel_type"]];
     cell.moneyLb.text = [NSString stringWithFormat:@"实付款:%@",self.dataarr[indexPath.row][@"line_money"]];
     cell.orderCode.text = [NSString stringWithFormat:@"订单号:%@",self.dataarr[indexPath.row][@"order_num"]];
     

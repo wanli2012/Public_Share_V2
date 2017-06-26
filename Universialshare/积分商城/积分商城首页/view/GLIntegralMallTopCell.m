@@ -35,11 +35,26 @@
     [self changeColor:self.jifenLabel2 rangeNumber:2666];
     [self changeColor:self.jifenLabel3 rangeNumber:2666];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(classifyClick:)];
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(classifyClick:)];
+    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(classifyClick:)];
+    
+    self.firstView.tag = 11;
+    self.secondView.tag = 12;
+    self.thirdView.tag = 13;
+    [self.firstView addGestureRecognizer:tap];
+    [self.secondView addGestureRecognizer:tap2];
+    [self.thirdView addGestureRecognizer:tap3];
+    
+    self.moreView.tag = 14;
+    UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(classifyClick:)];
+    [self.moreView addGestureRecognizer:tap4];
+    
 }
 
 - (NSMutableAttributedString *)changeColor:(UILabel*)label rangeNumber:(NSInteger )rangeNum
 {
-    NSString *remainBeans = [NSString stringWithFormat:@"%lu",rangeNum];
+    NSString *remainBeans = [NSString stringWithFormat:@"%lu",(long)rangeNum];
     NSString *totalStr = [NSString stringWithFormat:@"%@ 米券",remainBeans];
     NSMutableAttributedString *textColor = [[NSMutableAttributedString alloc]initWithString:totalStr];
     NSRange rangel = [[textColor string] rangeOfString:remainBeans];
@@ -70,6 +85,12 @@
         
         [_jifenLabel3 setAttributedText:[self changeColor:_jifenLabel rangeNumber:[model3.mall_inte integerValue]]];
     }
+
+}
+
+-(void)classifyClick:(UITapGestureRecognizer*)gesture{
+
+    [self.delegete tapgestureTag:gesture];
 
 }
 @end

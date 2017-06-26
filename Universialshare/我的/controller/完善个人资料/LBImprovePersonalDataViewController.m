@@ -34,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *manImage;
 @property (weak, nonatomic) IBOutlet UIImageView *womanimage;
 @property (weak, nonatomic) IBOutlet UITextField *adresstf;
+@property (weak, nonatomic) IBOutlet UILabel *saletile;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *saleimageConstrait;
 
 @property (assign, nonatomic)NSInteger tapIndex;//判断点击的是那个图片
 
@@ -145,12 +147,14 @@
         return;
     }
     
-    
-    if (!self.saleImage.image || [UIImagePNGRepresentation(self.saleImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-4"])]) {
-        [MBProgressHUD showError:@"请上传消费承诺书"];
-        return;
+    if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
+        if (!self.saleImage.image || [UIImagePNGRepresentation(self.saleImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-4"])]) {
+            [MBProgressHUD showError:@"请上传消费承诺书"];
+            return;
+        }
+       
     }
-    
+   
     if (self.adresstf.text.length <= 0) {
         [MBProgressHUD showError:@"请输入地址"];
         return;
@@ -168,9 +172,18 @@
     dict[@"twopwd"]=encryptsecret;
     dict[@"address"]=self.adresstf.text;
     
-    NSArray *imageViewArr = [NSArray arrayWithObjects:self.positiveImage,self.otherImage,self.saleImage, nil];
+    NSArray *imageViewArr = @[];;
+    NSArray *titleArr = @[];
+    if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
+        imageViewArr = [NSArray arrayWithObjects:self.positiveImage,self.otherImage,self.saleImage, nil];
+        
+        titleArr = [NSArray arrayWithObjects:@"face_pic",@"con_pic",@"u_buypic", nil];
+    }else{
+        imageViewArr = [NSArray arrayWithObjects:self.positiveImage,self.otherImage, nil];
+        
+        titleArr = [NSArray arrayWithObjects:@"face_pic",@"con_pic", nil];
+    }
     
-    NSArray *titleArr = [NSArray arrayWithObjects:@"face_pic",@"con_pic",@"u_buypic", nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
@@ -383,13 +396,26 @@
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     self.contentW.constant =SCREEN_WIDTH;
-    self.contentH.constant =760;
     
     self.surebutton.layer.cornerRadius = 4;
     self.surebutton.clipsToBounds = YES;
     
     self.exitbt.layer.cornerRadius = 4;
     self.exitbt.clipsToBounds = YES;
+    
+    if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
+        
+         self.contentH.constant =760;
+        self.saletile.hidden = NO;
+        self.saleImage.hidden = NO;
+        self.saleimageConstrait.constant = 110;
+    }else{
+         self.contentH.constant =650;
+        self.saletile.hidden = YES;
+        self.saleImage.hidden = YES;
+        self.saleimageConstrait.constant = 0;
+    
+    }
 
 }
 

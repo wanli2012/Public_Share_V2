@@ -108,7 +108,7 @@
                 [self.dataarr removeAllObjects];
             }
             [MBProgressHUD showError:responseObject[@"message"]];
-            
+             [self.tableview reloadData];
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
             

@@ -184,7 +184,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)viewWillAppear:(BOOL)animated{
-    
+    [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
     
     UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
