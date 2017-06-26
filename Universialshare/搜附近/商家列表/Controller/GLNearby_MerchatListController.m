@@ -210,7 +210,6 @@ static NSString *ID = @"GLNearby_MerchatListCell";
         
         [self.cityBtn setTitle:[GLNearby_Model defaultUser].city forState:UIControlStateNormal];
     }
-    
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

@@ -629,7 +629,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             }
             if ([[UserModel defaultUser].truename rangeOfString:@"null"].location != NSNotFound) {
                 
-                [UserModel defaultUser].banknumber = @"";
+                [UserModel defaultUser].truename = @"";
             }
             
             [usermodelachivar achive];

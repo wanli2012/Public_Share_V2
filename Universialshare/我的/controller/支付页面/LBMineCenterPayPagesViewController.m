@@ -169,7 +169,7 @@
             [self alipayAndWeChatPay:@"1"];
         }else{
             //微信支付
-            //[self alipayAndWeChatPay:@"2"];
+            [self alipayAndWeChatPay:@"2"];
             
         }
     

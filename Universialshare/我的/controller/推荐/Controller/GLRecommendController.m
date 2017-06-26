@@ -55,19 +55,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
-//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-//    
-//    CGFloat shareVH = SCREEN_HEIGHT /5;
-//    [UIView animateWithDuration:0.2 animations:^{
-//        
-//        _shareV.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, shareVH);
-//        
-//    }completion:^(BOOL finished) {
-//        [_shareV removeFromSuperview];
-//        _shareV = nil;
-//    }];
-//}
 //分享页面消失
 - (void)dismiss{
     CGFloat shareVH = SCREEN_HEIGHT /5;
@@ -119,20 +106,19 @@
     }else if (sender == _shareV.friendShareBtn){
         [self shareTo:@[UMShareToWechatTimeline]];
     }
-    
 }
 - (void)shareTo:(NSArray *)type{
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name];
-    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"全民团购网";
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"大众团购";
     
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name];
-    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"全民团购网";
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"大众团购";
     
     [UMSocialData defaultData].extConfig.sinaData.urlResource.url = [NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name];
     //    [UMSocialData defaultData].extConfig.sinaData.title = @"加入我们吧";
     
     UIImage *image=[UIImage imageNamed:@"mine_logo"];
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:type content:[NSString stringWithFormat:@"全民团购网，团购欢乐齐分享!(用safari浏览器打开)%@",[NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name]] image:image location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:type content:[NSString stringWithFormat:@"大众团购，团购欢乐齐分享!(用safari浏览器打开)%@",[NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].name]] image:image location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
         
         if (response.responseCode == UMSResponseCodeSuccess) {
           

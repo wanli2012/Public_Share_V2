@@ -35,13 +35,13 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
-    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isdirect1"] isEqualToString:@"YES"]) {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isdirect1"] isEqualToString:@"YES"]) {
         self.window.rootViewController = [[BasetabbarViewController alloc]init];
         
     }else{
+        
         self.window.rootViewController = [[yindaotuViewController alloc]init];
     }
-    
     
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc]init];
