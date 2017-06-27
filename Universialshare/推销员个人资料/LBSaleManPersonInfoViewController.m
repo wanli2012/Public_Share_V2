@@ -60,11 +60,11 @@
     }else if (indexPath.row == 1) {
         cell.typelb.text = @"类别";
         if ([[UserModel defaultUser].usrtype isEqualToString:@"6"]) {
-            cell.infolb.text = @"副总";
+            cell.infolb.text = @"大区创客";
         }else if ([[UserModel defaultUser].usrtype isEqualToString:@"7"]) {
-            cell.infolb.text = @"高级推广员";
+            cell.infolb.text = @"城市创客";
         }else if ([[UserModel defaultUser].usrtype isEqualToString:@"8"]) {
-            cell.infolb.text = @"推广员";
+            cell.infolb.text = @"创客";
         }
         
     }else if (indexPath.row == 2) {

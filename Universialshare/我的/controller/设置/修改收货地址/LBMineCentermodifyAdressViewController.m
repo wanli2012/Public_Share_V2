@@ -214,9 +214,8 @@
     if([lastVC isKindOfClass:[GLConfirmOrderController class]]){
     
         self.block(cell.nameLb.text,cell.phoneLb.text,cell.adressLn.text);
+         [self.navigationController popViewControllerAnimated:YES];
     }
-    
-    [self.navigationController popViewControllerAnimated:YES];
     
 }
 //添加地址

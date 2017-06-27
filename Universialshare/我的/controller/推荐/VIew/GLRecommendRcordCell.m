@@ -54,13 +54,13 @@
         self.levelLabel.text = @"商户";
     }
     if ([model.group_id integerValue] == [ONESALER integerValue]) {
-         self.levelLabel.text = @"副总";
+         self.levelLabel.text = @"大区创客";
     }
     if ([model.group_id integerValue] == [TWOSALER integerValue]) {
-         self.levelLabel.text = @"推广经理";
+         self.levelLabel.text = @"城市创客";
     }
     if ([model.group_id integerValue] == [THREESALER integerValue]) {
-         self.levelLabel.text = @"推广员";
+         self.levelLabel.text = @"创客";
     }
     
     

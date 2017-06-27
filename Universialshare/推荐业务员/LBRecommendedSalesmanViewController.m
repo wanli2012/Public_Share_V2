@@ -54,7 +54,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"添加推广员";
+    self.navigationItem.title = @"添加创客";
     self.view.backgroundColor=[UIColor whiteColor];
     self.navigationController.navigationBar.hidden = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -194,14 +194,14 @@
 }
 -(void)sixbuttonE{
     self.levelStr= TWOSALER;
-    self.levelTf.text=@"高级推广员";
+    self.levelTf.text=@"城市创客";
     [self.incentiveModelMaskV removeFromSuperview];
     [self.incentiveModelV removeFromSuperview];
     
 }
 -(void)twenteenButtonE{
     self.levelStr = THREESALER;
-    self.levelTf.text=@"推广员";
+    self.levelTf.text=@"创客";
     [self.incentiveModelMaskV removeFromSuperview];
     [self.incentiveModelV removeFromSuperview];
     

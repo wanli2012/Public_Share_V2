@@ -88,7 +88,7 @@
     if ([_sectionModel.order_type isEqualToString:@"1"]) {
          _orderStaues.text = @"订单类型:消费订单";
     }else{
-         _orderStaues.text = @"订单类型:其他订单";
+         _orderStaues.text = @"订单类型:米券订单";
 
     }
     

@@ -44,7 +44,7 @@
         self.window.rootViewController = [[yindaotuViewController alloc]init];
     }
     
-    
+    [[NSUserDefaults standardUserDefaults]setObject:@"YES" forKey:@"isShow"];//是否展示公告
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc]init];
     BOOL ret = [_mapManager start:@"AEgIAA5j2QlPKPMIuNoOat6j3ZAagsFd" generalDelegate:self];

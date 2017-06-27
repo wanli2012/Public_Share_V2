@@ -46,8 +46,8 @@
     
     _model = model;
     self.IDLabel.text=[NSString stringWithFormat:@"用户ID:%@",model.username];
-    self.tgLabel.text=[NSString stringWithFormat:@"推广员:%@人",model.djtg];
-    self.gtLabel.text=[NSString stringWithFormat:@"高级推广员:%@人",model.gjtg];
+    self.tgLabel.text=[NSString stringWithFormat:@"创客:%@人",model.djtg];
+    self.gtLabel.text=[NSString stringWithFormat:@"城市创客:%@人",model.gjtg];
     self.shopNumLabel.text=[NSString stringWithFormat:@"商家:%@家",model.shop];
     self.addTimeLabel.text=[NSString stringWithFormat:@"推荐时间:%@",model.addtime];
     self.trueNameLabel.text=[NSString stringWithFormat:@"%@",model.truename];

@@ -14,6 +14,7 @@
 #import "GLOrderPayView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <AlipaySDK/AlipaySDK.h>
+#import "WXApi.h"
 
 @interface LBPayTheBillViewController ()<UITextFieldDelegate>
 {
@@ -56,6 +57,19 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postRepuest:) name:@"input_PasswordNotification" object:nil];
+    /**
+     *支付宝支付成功
+     */
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(wxpaysucess) name:@"Alipaysucess" object:nil];
+    /**
+     *微信支付成功 回调
+     */
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(wxpaysucess) name:@"wxpaysucess" object:nil];
+}
+
+-(void)wxpaysucess{
+    
+    [self.navigationController popViewControllerAnimated:YES];
 
 }
 
@@ -86,7 +100,7 @@
     if (self.payType == 1) {//支付宝
         [self ricePay:nil];
     }else if (self.payType == 2) {//微信支付
-        
+        [self WeChatPay:@"2"];
     }else if (self.payType == 4) {//米子支付
         CGFloat contentViewH = 300;
         CGFloat contentViewW = SCREEN_WIDTH;
@@ -125,6 +139,47 @@
         [self ricePay:sender];
     
 }
+
+- (void)WeChatPay:(NSString *)payType{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"shop_uid"] = self.shop_uid;
+    dict[@"type"] = [NSString stringWithFormat:@"%zd",self.payType]; //支付方式: 1 支付宝 2 微信 4:米子
+    dict[@"price"] = self.moneytf.text;//价格
+    dict[@"remark"] = self.infoTf.text;//备注
+    dict[@"rl_type"] = [NSString stringWithFormat:@"%zd",self.modelType];//让利模式 1:20%  2:10%  3:5%
+    dict[@"version"] = @"3";//版本 3:Ios
+   // dict[@"pwd"] =  [RSAEncryptor encryptString:@"" publicKey:public_RSA];
+
+    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"shop/faceToFacePay" paramDic:dict finish:^(id responseObject) {
+        
+        [_loadV removeloadview];
+        [self dismiss];
+        if ([responseObject[@"code"] integerValue] == 1){
+            //调起微信支付
+            PayReq* req = [[PayReq alloc] init];
+            req.openID=responseObject[@"data"][@"weixinpay"][@"appid"];
+            req.partnerId = responseObject[@"data"][@"weixinpay"][@"partnerid"];
+            req.prepayId = responseObject[@"data"][@"weixinpay"][@"prepayid"];
+            req.nonceStr = responseObject[@"data"][@"weixinpay"][@"noncestr"];
+            req.timeStamp = [responseObject[@"data"][@"weixinpay"][@"timestamp"] intValue];
+            req.package = responseObject[@"data"][@"weixinpay"][@"package"];
+            req.sign = responseObject[@"data"][@"weixinpay"][@"sign"];
+            [WXApi sendReq:req];
+            
+        }else{
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        
+    }];
+}
+
 
 - (void)ricePay:(NSNotification *)sender {
     
@@ -184,10 +239,13 @@
                 
             }else if (self.payType == 2){
             
-            }else if (self.payType == 4){
+            }else if (self.payType == 3){
                  [MBProgressHUD showError:@"支付成功"];
             }
-            [self.navigationController popViewControllerAnimated:YES];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+            
         }
         
         [MBProgressHUD showError:[NSString stringWithFormat:@"%@",responseObject[@"message"]]];

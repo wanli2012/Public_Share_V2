@@ -40,7 +40,6 @@
     
     [self.tableview registerNib:[UINib nibWithNibName:@"LBMyOrderListTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMyOrderListTableViewCell"];
     _page = 1;
-    [self initdatasource];
     [self.tableview addSubview:self.nodataV];
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -66,6 +65,8 @@
     
     self.tableview.mj_header = header;
     self.tableview.mj_footer = footer;
+    
+    [self initdatasource];
     
 }
 
