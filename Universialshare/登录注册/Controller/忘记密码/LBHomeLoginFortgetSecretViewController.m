@@ -216,7 +216,6 @@
         [self.selectUserTypeView removeFromSuperview];
     }];
     
-    
 }
 
 #pragma mark - 选择用户类型

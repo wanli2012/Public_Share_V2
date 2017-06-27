@@ -75,7 +75,6 @@ static NSString *ID = @"GLMine_InfoCell";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:_buttonedt];
     
     [self updateInfo];
-      
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -342,7 +341,6 @@ static NSString *ID = @"GLMine_InfoCell";
                 cell.adressLb.hidden= YES;
                 cell.textTf.text = self.recomendName;
             }
-            
             
             
             __weak typeof(self) weakself = self;

@@ -106,7 +106,7 @@
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     
-        _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"user/getHylist" paramDic:dict finish:^(id responseObject) {
 
         if ([responseObject[@"code"] integerValue]==1) {
@@ -471,9 +471,11 @@
             [MBProgressHUD showError:dic[@"message"]];
         }
         [_loadV removeloadview];
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         self.submit.userInteractionEnabled = YES;
         [MBProgressHUD showError:error.localizedDescription];
+        
     }];
     
 }
