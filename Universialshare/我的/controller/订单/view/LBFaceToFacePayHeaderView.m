@@ -97,7 +97,7 @@
     if ([_sectionModel.order_type integerValue] == 1) {
         self.orderStore.text = @"订单类型:消费订单";
     }else if ([_sectionModel.order_type integerValue] == 2){
-        self.orderStore.text = @"订单类型:其他订单";
+        self.orderStore.text = @"订单类型:米券订单";
         
     }else if ([_sectionModel.order_type integerValue] == 3){
         self.orderStore.text = @"订单类型:面对面订单";

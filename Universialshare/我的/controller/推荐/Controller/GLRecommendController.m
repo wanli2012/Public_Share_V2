@@ -20,6 +20,8 @@
 }
 @property (weak, nonatomic) IBOutlet UIImageView *codeImageV;
 @property (weak, nonatomic) IBOutlet UIView *contentV;
+@property (weak, nonatomic) IBOutlet UILabel *versionLb;
+@property (weak, nonatomic) IBOutlet UILabel *NewVersionLb;
 
 @end
 
@@ -49,12 +51,57 @@
     [self.codeImageV addGestureRecognizer:ges];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+    // app版本
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    
+    self.versionLb.text = [NSString stringWithFormat:@"当前版本: v%@",app_Version];
+    
+    [self getAppVersion];//获取最新版本号
+    
+}
+
+-(void)getAppVersion{
+
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/html",@"application/json",nil];
+    
+    manager.requestSerializer.timeoutInterval=10;
+    // 加上这行代码，https ssl 验证。
+    [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
+    
+    
+    [manager POST:DOWNLOAD_URL parameters:@{} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
+        NSArray *array = responseObject[@"results"];
+        NSDictionary *dict = [array lastObject];
+         self.NewVersionLb.text = [NSString stringWithFormat:@"最新版本: v%@",dict[@"version"]];
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+    }];
+
 }
 - (void)dealloc{
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    
+//    CGFloat shareVH = SCREEN_HEIGHT /5;
+//    [UIView animateWithDuration:0.2 animations:^{
+//        
+//        _shareV.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, shareVH);
+//        
+//    }completion:^(BOOL finished) {
+//        [_shareV removeFromSuperview];
+//        _shareV = nil;
+//    }];
+//}
 //分享页面消失
 - (void)dismiss{
     CGFloat shareVH = SCREEN_HEIGHT /5;
@@ -106,21 +153,20 @@
     }else if (sender == _shareV.friendShareBtn){
         [self shareTo:@[UMShareToWechatTimeline]];
     }
+    
 }
-
 - (void)shareTo:(NSArray *)type{
-    //http://itunes.apple.com/cn/app/id533655318?mt=8
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@",[UserModel defaultUser].name];
-    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"大众团购";
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"大众团购网";
     
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@",[UserModel defaultUser].name];
-    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"大众团购";
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@",DOWNLOAD_URL];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"大众团购网";
     
-    [UMSocialData defaultData].extConfig.sinaData.urlResource.url = [NSString stringWithFormat:@"%@",[UserModel defaultUser].name];
+    [UMSocialData defaultData].extConfig.sinaData.urlResource.url = [NSString stringWithFormat:@"%@",DOWNLOAD_URL];
     //    [UMSocialData defaultData].extConfig.sinaData.title = @"加入我们吧";
     
     UIImage *image=[UIImage imageNamed:@"mine_logo"];
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:type content:[NSString stringWithFormat:@"大众团购，团购欢乐齐分享!%@",[NSString stringWithFormat:@"%@",[UserModel defaultUser].name]] image:image location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:type content:[NSString stringWithFormat:@"大众团购网，团购欢乐齐分享!(用safari浏览器打开)%@",[NSString stringWithFormat:@"%@",DOWNLOAD_URL]] image:image location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
         
         if (response.responseCode == UMSResponseCodeSuccess) {
           

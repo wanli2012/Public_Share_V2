@@ -116,30 +116,8 @@
 		4A460A0A1E9CB8050045824F /* NodataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A460A061E9CB8050045824F /* NodataView.xib */; };
 		4A460A161E9CBBE20045824F /* GLNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460A141E9CBBE20045824F /* GLNoticeView.m */; };
 		4A460A171E9CBBE20045824F /* GLNoticeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A460A151E9CBBE20045824F /* GLNoticeView.xib */; };
-		4A460A5A1E9CC0310045824F /* MyQRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460A541E9CC0310045824F /* MyQRViewController.m */; };
-		4A460A5B1E9CC0310045824F /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460A561E9CC0310045824F /* ScanResultViewController.m */; };
-		4A460A5C1E9CC0310045824F /* ScanResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A460A571E9CC0310045824F /* ScanResultViewController.xib */; };
-		4A460A5D1E9CC0310045824F /* SubLBXScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460A591E9CC0310045824F /* SubLBXScanViewController.m */; };
 		4A460D311E9CC2C50045824F /* GLShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460D2F1E9CC2C50045824F /* GLShareView.m */; };
 		4A460D321E9CC2C50045824F /* GLShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A460D301E9CC2C50045824F /* GLShareView.xib */; };
-		4A4610061E9CC6360045824F /* CodeScan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A460D9C1E9CC6350045824F /* CodeScan.bundle */; };
-		4A46100C1E9CC6360045824F /* UIActionSheet+LBXAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460DAD1E9CC6350045824F /* UIActionSheet+LBXAlertAction.m */; };
-		4A46100D1E9CC6360045824F /* UIAlertController+supportedInterfaceOrientations.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460DAF1E9CC6350045824F /* UIAlertController+supportedInterfaceOrientations.m */; };
-		4A46100E1E9CC6360045824F /* UIAlertView+LBXAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460DB11E9CC6350045824F /* UIAlertView+LBXAlertAction.m */; };
-		4A46100F1E9CC6360045824F /* LBXAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460DB31E9CC6350045824F /* LBXAlertAction.m */; };
-		4A4610101E9CC6360045824F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4A460DB41E9CC6350045824F /* LICENSE */; };
-		4A4610111E9CC6360045824F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 4A460DB51E9CC6350045824F /* README.md */; };
-		4A4610121E9CC6360045824F /* LBXScanLineAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460DB81E9CC6350045824F /* LBXScanLineAnimation.m */; };
-		4A4610131E9CC6360045824F /* LBXScanNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460DBA1E9CC6350045824F /* LBXScanNative.m */; };
-		4A4610141E9CC6360045824F /* LBXScanNetAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460DBC1E9CC6350045824F /* LBXScanNetAnimation.m */; };
-		4A4610151E9CC6360045824F /* LBXScanResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460DBE1E9CC6350045824F /* LBXScanResult.m */; };
-		4A4610161E9CC6360045824F /* LBXScanVideoZoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460DC01E9CC6350045824F /* LBXScanVideoZoomView.m */; };
-		4A4610171E9CC6360045824F /* LBXScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460DC21E9CC6350045824F /* LBXScanView.m */; };
-		4A4610181E9CC6360045824F /* LBXScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460DC41E9CC6350045824F /* LBXScanViewController.m */; };
-		4A4610191E9CC6360045824F /* LBXScanViewStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460DC61E9CC6350045824F /* LBXScanViewStyle.m */; };
-		4A46101A1E9CC6360045824F /* LBXScanWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460DC81E9CC6350045824F /* LBXScanWrapper.m */; };
-		4A46101B1E9CC6360045824F /* LBXZXCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460DCA1E9CC6350045824F /* LBXZXCapture.m */; };
-		4A46101C1E9CC6360045824F /* ZXingWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A460DCD1E9CC6350045824F /* ZXingWrapper.m */; };
 		4A46101E1E9CC6360045824F /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A460DD11E9CC6350045824F /* UMSocialLocalizable.strings */; };
 		4A46101F1E9CC6360045824F /* libUMSocial_Sdk_5.2.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A460DDF1E9CC6350045824F /* libUMSocial_Sdk_5.2.1.a */; };
 		4A4610201E9CC6360045824F /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A460DE11E9CC6350045824F /* UMSCommentDetailController.xib */; };
@@ -940,7 +918,30 @@
 		F966B4101EACB0C0007260FC /* LBSaleManPersonInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F966B40E1EACB0C0007260FC /* LBSaleManPersonInfoViewController.xib */; };
 		F966B4151EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F966B4131EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.m */; };
 		F966B4161EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F966B4141EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.xib */; };
+		F96CE1CE1EFD128C00D88BB0 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F96CE1CD1EFD128C00D88BB0 /* ImageIO.framework */; };
 		F96CEE431EE79B76000B6D91 /* DWBubbleMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F96CEE421EE79B76000B6D91 /* DWBubbleMenuButton.m */; };
+		F97374611EFE03B200520D03 /* CodeScan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F973743B1EFE03B200520D03 /* CodeScan.bundle */; };
+		F97374621EFE03B200520D03 /* UIActionSheet+LBXAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F97374401EFE03B200520D03 /* UIActionSheet+LBXAlertAction.m */; };
+		F97374631EFE03B200520D03 /* UIAlertController+supportedInterfaceOrientations.m in Sources */ = {isa = PBXBuildFile; fileRef = F97374421EFE03B200520D03 /* UIAlertController+supportedInterfaceOrientations.m */; };
+		F97374641EFE03B200520D03 /* UIAlertView+LBXAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F97374441EFE03B200520D03 /* UIAlertView+LBXAlertAction.m */; };
+		F97374651EFE03B200520D03 /* LBXAlertAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F97374461EFE03B200520D03 /* LBXAlertAction.m */; };
+		F97374661EFE03B200520D03 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F97374471EFE03B200520D03 /* LICENSE */; };
+		F97374671EFE03B200520D03 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = F97374481EFE03B200520D03 /* README.md */; };
+		F97374681EFE03B200520D03 /* LBXScanLineAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F973744B1EFE03B200520D03 /* LBXScanLineAnimation.m */; };
+		F97374691EFE03B200520D03 /* LBXScanNative.m in Sources */ = {isa = PBXBuildFile; fileRef = F973744D1EFE03B200520D03 /* LBXScanNative.m */; };
+		F973746A1EFE03B200520D03 /* LBXScanNetAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F973744F1EFE03B200520D03 /* LBXScanNetAnimation.m */; };
+		F973746B1EFE03B200520D03 /* LBXScanResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F97374511EFE03B200520D03 /* LBXScanResult.m */; };
+		F973746C1EFE03B200520D03 /* LBXScanVideoZoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97374531EFE03B200520D03 /* LBXScanVideoZoomView.m */; };
+		F973746D1EFE03B200520D03 /* LBXScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97374551EFE03B200520D03 /* LBXScanView.m */; };
+		F973746E1EFE03B200520D03 /* LBXScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97374571EFE03B200520D03 /* LBXScanViewController.m */; };
+		F973746F1EFE03B200520D03 /* LBXScanViewStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = F97374591EFE03B200520D03 /* LBXScanViewStyle.m */; };
+		F97374701EFE03B200520D03 /* LBXScanWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F973745B1EFE03B200520D03 /* LBXScanWrapper.m */; };
+		F97374711EFE03B200520D03 /* LBXZXCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = F973745D1EFE03B200520D03 /* LBXZXCapture.m */; };
+		F97374721EFE03B200520D03 /* ZXingWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F97374601EFE03B200520D03 /* ZXingWrapper.m */; };
+		F973747B1EFE049D00520D03 /* MyQRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97374751EFE049D00520D03 /* MyQRViewController.m */; };
+		F973747C1EFE049D00520D03 /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97374771EFE049D00520D03 /* ScanResultViewController.m */; };
+		F973747D1EFE049D00520D03 /* ScanResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97374781EFE049D00520D03 /* ScanResultViewController.xib */; };
+		F973747E1EFE049D00520D03 /* SubLBXScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F973747A1EFE049D00520D03 /* SubLBXScanViewController.m */; };
 		F97644D91EA5BAEA00AFA22B /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = F97644D81EA5BAEA00AFA22B /* RSAEncryptor.m */; };
 		F97F09D81EC9402A000D3B30 /* LBProductManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F09D61EC9402A000D3B30 /* LBProductManagementViewController.m */; };
 		F97F09D91EC9402A000D3B30 /* LBProductManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09D71EC9402A000D3B30 /* LBProductManagementViewController.xib */; };
@@ -1151,50 +1152,9 @@
 		4A460A131E9CBBE20045824F /* GLNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNoticeView.h; sourceTree = "<group>"; };
 		4A460A141E9CBBE20045824F /* GLNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNoticeView.m; sourceTree = "<group>"; };
 		4A460A151E9CBBE20045824F /* GLNoticeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNoticeView.xib; sourceTree = "<group>"; };
-		4A460A531E9CC0310045824F /* MyQRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyQRViewController.h; sourceTree = "<group>"; };
-		4A460A541E9CC0310045824F /* MyQRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyQRViewController.m; sourceTree = "<group>"; };
-		4A460A551E9CC0310045824F /* ScanResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultViewController.h; sourceTree = "<group>"; };
-		4A460A561E9CC0310045824F /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
-		4A460A571E9CC0310045824F /* ScanResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScanResultViewController.xib; sourceTree = "<group>"; };
-		4A460A581E9CC0310045824F /* SubLBXScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubLBXScanViewController.h; sourceTree = "<group>"; };
-		4A460A591E9CC0310045824F /* SubLBXScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubLBXScanViewController.m; sourceTree = "<group>"; };
 		4A460D2E1E9CC2C50045824F /* GLShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLShareView.h; sourceTree = "<group>"; };
 		4A460D2F1E9CC2C50045824F /* GLShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLShareView.m; sourceTree = "<group>"; };
 		4A460D301E9CC2C50045824F /* GLShareView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLShareView.xib; sourceTree = "<group>"; };
-		4A460D9C1E9CC6350045824F /* CodeScan.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CodeScan.bundle; sourceTree = "<group>"; };
-		4A460DAC1E9CC6350045824F /* UIActionSheet+LBXAlertAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+LBXAlertAction.h"; sourceTree = "<group>"; };
-		4A460DAD1E9CC6350045824F /* UIActionSheet+LBXAlertAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+LBXAlertAction.m"; sourceTree = "<group>"; };
-		4A460DAE1E9CC6350045824F /* UIAlertController+supportedInterfaceOrientations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+supportedInterfaceOrientations.h"; sourceTree = "<group>"; };
-		4A460DAF1E9CC6350045824F /* UIAlertController+supportedInterfaceOrientations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+supportedInterfaceOrientations.m"; sourceTree = "<group>"; };
-		4A460DB01E9CC6350045824F /* UIAlertView+LBXAlertAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+LBXAlertAction.h"; sourceTree = "<group>"; };
-		4A460DB11E9CC6350045824F /* UIAlertView+LBXAlertAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+LBXAlertAction.m"; sourceTree = "<group>"; };
-		4A460DB21E9CC6350045824F /* LBXAlertAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXAlertAction.h; sourceTree = "<group>"; };
-		4A460DB31E9CC6350045824F /* LBXAlertAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXAlertAction.m; sourceTree = "<group>"; };
-		4A460DB41E9CC6350045824F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		4A460DB51E9CC6350045824F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		4A460DB71E9CC6350045824F /* LBXScanLineAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanLineAnimation.h; sourceTree = "<group>"; };
-		4A460DB81E9CC6350045824F /* LBXScanLineAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanLineAnimation.m; sourceTree = "<group>"; };
-		4A460DB91E9CC6350045824F /* LBXScanNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanNative.h; sourceTree = "<group>"; };
-		4A460DBA1E9CC6350045824F /* LBXScanNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanNative.m; sourceTree = "<group>"; };
-		4A460DBB1E9CC6350045824F /* LBXScanNetAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanNetAnimation.h; sourceTree = "<group>"; };
-		4A460DBC1E9CC6350045824F /* LBXScanNetAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanNetAnimation.m; sourceTree = "<group>"; };
-		4A460DBD1E9CC6350045824F /* LBXScanResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanResult.h; sourceTree = "<group>"; };
-		4A460DBE1E9CC6350045824F /* LBXScanResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanResult.m; sourceTree = "<group>"; };
-		4A460DBF1E9CC6350045824F /* LBXScanVideoZoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanVideoZoomView.h; sourceTree = "<group>"; };
-		4A460DC01E9CC6350045824F /* LBXScanVideoZoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanVideoZoomView.m; sourceTree = "<group>"; };
-		4A460DC11E9CC6350045824F /* LBXScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanView.h; sourceTree = "<group>"; };
-		4A460DC21E9CC6350045824F /* LBXScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanView.m; sourceTree = "<group>"; };
-		4A460DC31E9CC6350045824F /* LBXScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanViewController.h; sourceTree = "<group>"; };
-		4A460DC41E9CC6350045824F /* LBXScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanViewController.m; sourceTree = "<group>"; };
-		4A460DC51E9CC6350045824F /* LBXScanViewStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanViewStyle.h; sourceTree = "<group>"; };
-		4A460DC61E9CC6350045824F /* LBXScanViewStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanViewStyle.m; sourceTree = "<group>"; };
-		4A460DC71E9CC6350045824F /* LBXScanWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanWrapper.h; sourceTree = "<group>"; };
-		4A460DC81E9CC6350045824F /* LBXScanWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanWrapper.m; sourceTree = "<group>"; };
-		4A460DC91E9CC6350045824F /* LBXZXCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXZXCapture.h; sourceTree = "<group>"; };
-		4A460DCA1E9CC6350045824F /* LBXZXCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXZXCapture.m; sourceTree = "<group>"; };
-		4A460DCB1E9CC6350045824F /* LBXZXCaptureDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXZXCaptureDelegate.h; sourceTree = "<group>"; };
-		4A460DCC1E9CC6350045824F /* ZXingWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXingWrapper.h; sourceTree = "<group>"; };
-		4A460DCD1E9CC6350045824F /* ZXingWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXingWrapper.m; sourceTree = "<group>"; };
 		4A460DD21E9CC6350045824F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		4A460DD41E9CC6350045824F /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		4A460DD51E9CC6350045824F /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -2579,8 +2539,50 @@
 		F966B4121EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBSaleManPersonInfoTableViewCell.h; sourceTree = "<group>"; };
 		F966B4131EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBSaleManPersonInfoTableViewCell.m; sourceTree = "<group>"; };
 		F966B4141EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBSaleManPersonInfoTableViewCell.xib; sourceTree = "<group>"; };
+		F96CE1CD1EFD128C00D88BB0 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		F96CEE411EE79B76000B6D91 /* DWBubbleMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWBubbleMenuButton.h; sourceTree = "<group>"; };
 		F96CEE421EE79B76000B6D91 /* DWBubbleMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWBubbleMenuButton.m; sourceTree = "<group>"; };
+		F973743B1EFE03B200520D03 /* CodeScan.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CodeScan.bundle; sourceTree = "<group>"; };
+		F973743F1EFE03B200520D03 /* UIActionSheet+LBXAlertAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+LBXAlertAction.h"; sourceTree = "<group>"; };
+		F97374401EFE03B200520D03 /* UIActionSheet+LBXAlertAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+LBXAlertAction.m"; sourceTree = "<group>"; };
+		F97374411EFE03B200520D03 /* UIAlertController+supportedInterfaceOrientations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+supportedInterfaceOrientations.h"; sourceTree = "<group>"; };
+		F97374421EFE03B200520D03 /* UIAlertController+supportedInterfaceOrientations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+supportedInterfaceOrientations.m"; sourceTree = "<group>"; };
+		F97374431EFE03B200520D03 /* UIAlertView+LBXAlertAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+LBXAlertAction.h"; sourceTree = "<group>"; };
+		F97374441EFE03B200520D03 /* UIAlertView+LBXAlertAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+LBXAlertAction.m"; sourceTree = "<group>"; };
+		F97374451EFE03B200520D03 /* LBXAlertAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXAlertAction.h; sourceTree = "<group>"; };
+		F97374461EFE03B200520D03 /* LBXAlertAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXAlertAction.m; sourceTree = "<group>"; };
+		F97374471EFE03B200520D03 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		F97374481EFE03B200520D03 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F973744A1EFE03B200520D03 /* LBXScanLineAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanLineAnimation.h; sourceTree = "<group>"; };
+		F973744B1EFE03B200520D03 /* LBXScanLineAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanLineAnimation.m; sourceTree = "<group>"; };
+		F973744C1EFE03B200520D03 /* LBXScanNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanNative.h; sourceTree = "<group>"; };
+		F973744D1EFE03B200520D03 /* LBXScanNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanNative.m; sourceTree = "<group>"; };
+		F973744E1EFE03B200520D03 /* LBXScanNetAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanNetAnimation.h; sourceTree = "<group>"; };
+		F973744F1EFE03B200520D03 /* LBXScanNetAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanNetAnimation.m; sourceTree = "<group>"; };
+		F97374501EFE03B200520D03 /* LBXScanResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanResult.h; sourceTree = "<group>"; };
+		F97374511EFE03B200520D03 /* LBXScanResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanResult.m; sourceTree = "<group>"; };
+		F97374521EFE03B200520D03 /* LBXScanVideoZoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanVideoZoomView.h; sourceTree = "<group>"; };
+		F97374531EFE03B200520D03 /* LBXScanVideoZoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanVideoZoomView.m; sourceTree = "<group>"; };
+		F97374541EFE03B200520D03 /* LBXScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanView.h; sourceTree = "<group>"; };
+		F97374551EFE03B200520D03 /* LBXScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanView.m; sourceTree = "<group>"; };
+		F97374561EFE03B200520D03 /* LBXScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanViewController.h; sourceTree = "<group>"; };
+		F97374571EFE03B200520D03 /* LBXScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanViewController.m; sourceTree = "<group>"; };
+		F97374581EFE03B200520D03 /* LBXScanViewStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanViewStyle.h; sourceTree = "<group>"; };
+		F97374591EFE03B200520D03 /* LBXScanViewStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanViewStyle.m; sourceTree = "<group>"; };
+		F973745A1EFE03B200520D03 /* LBXScanWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanWrapper.h; sourceTree = "<group>"; };
+		F973745B1EFE03B200520D03 /* LBXScanWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanWrapper.m; sourceTree = "<group>"; };
+		F973745C1EFE03B200520D03 /* LBXZXCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXZXCapture.h; sourceTree = "<group>"; };
+		F973745D1EFE03B200520D03 /* LBXZXCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXZXCapture.m; sourceTree = "<group>"; };
+		F973745E1EFE03B200520D03 /* LBXZXCaptureDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXZXCaptureDelegate.h; sourceTree = "<group>"; };
+		F973745F1EFE03B200520D03 /* ZXingWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXingWrapper.h; sourceTree = "<group>"; };
+		F97374601EFE03B200520D03 /* ZXingWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXingWrapper.m; sourceTree = "<group>"; };
+		F97374741EFE049D00520D03 /* MyQRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyQRViewController.h; sourceTree = "<group>"; };
+		F97374751EFE049D00520D03 /* MyQRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyQRViewController.m; sourceTree = "<group>"; };
+		F97374761EFE049D00520D03 /* ScanResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultViewController.h; sourceTree = "<group>"; };
+		F97374771EFE049D00520D03 /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
+		F97374781EFE049D00520D03 /* ScanResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScanResultViewController.xib; sourceTree = "<group>"; };
+		F97374791EFE049D00520D03 /* SubLBXScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubLBXScanViewController.h; sourceTree = "<group>"; };
+		F973747A1EFE049D00520D03 /* SubLBXScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubLBXScanViewController.m; sourceTree = "<group>"; };
 		F97644D71EA5BAEA00AFA22B /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
 		F97644D81EA5BAEA00AFA22B /* RSAEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
 		F97F09D51EC9402A000D3B30 /* LBProductManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBProductManagementViewController.h; sourceTree = "<group>"; };
@@ -2618,6 +2620,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F96CE1CE1EFD128C00D88BB0 /* ImageIO.framework in Frameworks */,
 				F99264A71EF3838E001857A4 /* UserNotifications.framework in Frameworks */,
 				F9479B0B1EEF7E3B00581250 /* CoreMotion.framework in Frameworks */,
 				F9479B091EEF7E2E00581250 /* CFNetwork.framework in Frameworks */,
@@ -3175,23 +3178,12 @@
 			path = "自定义View";
 			sourceTree = "<group>";
 		};
-		4A460A521E9CC0310045824F /* 扫码 */ = {
-			isa = PBXGroup;
-			children = (
-				4A460A531E9CC0310045824F /* MyQRViewController.h */,
-				4A460A541E9CC0310045824F /* MyQRViewController.m */,
-				4A460A551E9CC0310045824F /* ScanResultViewController.h */,
-				4A460A561E9CC0310045824F /* ScanResultViewController.m */,
-				4A460A571E9CC0310045824F /* ScanResultViewController.xib */,
-				4A460A581E9CC0310045824F /* SubLBXScanViewController.h */,
-				4A460A591E9CC0310045824F /* SubLBXScanViewController.m */,
-			);
-			path = "扫码";
-			sourceTree = "<group>";
-		};
 		4A460D9B1E9CC6350045824F /* 三方库 */ = {
 			isa = PBXGroup;
 			children = (
+				F973743B1EFE03B200520D03 /* CodeScan.bundle */,
+				F973743C1EFE03B200520D03 /* LBXAlertAction */,
+				F97374491EFE03B200520D03 /* LBXScan */,
 				F99264A21EF38367001857A4 /* UMessage_Sdk_1.5.0a */,
 				F9479AF91EEF7DC400581250 /* 支付宝 */,
 				F96CEE411EE79B76000B6D91 /* DWBubbleMenuButton.h */,
@@ -3206,9 +3198,6 @@
 				F90C450C1ED6AD8A001650BD /* QBImagePicker */,
 				F966597D1ED57EB2000DD67F /* IOS图片浏览器 */,
 				F9126EEC1EA059A9004785EA /* mapapi.bundle */,
-				4A460D9C1E9CC6350045824F /* CodeScan.bundle */,
-				4A460DA91E9CC6350045824F /* LBXAlertAction */,
-				4A460DB61E9CC6350045824F /* LBXScan */,
 				4A460DCF1E9CC6350045824F /* umeng_ios_social_sdk_5.2.1_arm64_custom */,
 				4A460E161E9CC6350045824F /* ZXingObjC */,
 				4A4610001E9CC6360045824F /* ZYCornerRadius */,
@@ -3219,69 +3208,6 @@
 				F9E3A53A1EEA7F40009B9F16 /* ChooseView */,
 			);
 			path = "三方库";
-			sourceTree = "<group>";
-		};
-		4A460DA91E9CC6350045824F /* LBXAlertAction */ = {
-			isa = PBXGroup;
-			children = (
-				4A460DAA1E9CC6350045824F /* LBXAlertAction */,
-				4A460DB41E9CC6350045824F /* LICENSE */,
-				4A460DB51E9CC6350045824F /* README.md */,
-			);
-			path = LBXAlertAction;
-			sourceTree = "<group>";
-		};
-		4A460DAA1E9CC6350045824F /* LBXAlertAction */ = {
-			isa = PBXGroup;
-			children = (
-				4A460DAB1E9CC6350045824F /* Class */,
-				4A460DB21E9CC6350045824F /* LBXAlertAction.h */,
-				4A460DB31E9CC6350045824F /* LBXAlertAction.m */,
-			);
-			path = LBXAlertAction;
-			sourceTree = "<group>";
-		};
-		4A460DAB1E9CC6350045824F /* Class */ = {
-			isa = PBXGroup;
-			children = (
-				4A460DAC1E9CC6350045824F /* UIActionSheet+LBXAlertAction.h */,
-				4A460DAD1E9CC6350045824F /* UIActionSheet+LBXAlertAction.m */,
-				4A460DAE1E9CC6350045824F /* UIAlertController+supportedInterfaceOrientations.h */,
-				4A460DAF1E9CC6350045824F /* UIAlertController+supportedInterfaceOrientations.m */,
-				4A460DB01E9CC6350045824F /* UIAlertView+LBXAlertAction.h */,
-				4A460DB11E9CC6350045824F /* UIAlertView+LBXAlertAction.m */,
-			);
-			path = Class;
-			sourceTree = "<group>";
-		};
-		4A460DB61E9CC6350045824F /* LBXScan */ = {
-			isa = PBXGroup;
-			children = (
-				4A460DB71E9CC6350045824F /* LBXScanLineAnimation.h */,
-				4A460DB81E9CC6350045824F /* LBXScanLineAnimation.m */,
-				4A460DB91E9CC6350045824F /* LBXScanNative.h */,
-				4A460DBA1E9CC6350045824F /* LBXScanNative.m */,
-				4A460DBB1E9CC6350045824F /* LBXScanNetAnimation.h */,
-				4A460DBC1E9CC6350045824F /* LBXScanNetAnimation.m */,
-				4A460DBD1E9CC6350045824F /* LBXScanResult.h */,
-				4A460DBE1E9CC6350045824F /* LBXScanResult.m */,
-				4A460DBF1E9CC6350045824F /* LBXScanVideoZoomView.h */,
-				4A460DC01E9CC6350045824F /* LBXScanVideoZoomView.m */,
-				4A460DC11E9CC6350045824F /* LBXScanView.h */,
-				4A460DC21E9CC6350045824F /* LBXScanView.m */,
-				4A460DC31E9CC6350045824F /* LBXScanViewController.h */,
-				4A460DC41E9CC6350045824F /* LBXScanViewController.m */,
-				4A460DC51E9CC6350045824F /* LBXScanViewStyle.h */,
-				4A460DC61E9CC6350045824F /* LBXScanViewStyle.m */,
-				4A460DC71E9CC6350045824F /* LBXScanWrapper.h */,
-				4A460DC81E9CC6350045824F /* LBXScanWrapper.m */,
-				4A460DC91E9CC6350045824F /* LBXZXCapture.h */,
-				4A460DCA1E9CC6350045824F /* LBXZXCapture.m */,
-				4A460DCB1E9CC6350045824F /* LBXZXCaptureDelegate.h */,
-				4A460DCC1E9CC6350045824F /* ZXingWrapper.h */,
-				4A460DCD1E9CC6350045824F /* ZXingWrapper.m */,
-			);
-			path = LBXScan;
 			sourceTree = "<group>";
 		};
 		4A460DCF1E9CC6350045824F /* umeng_ios_social_sdk_5.2.1_arm64_custom */ = {
@@ -4878,6 +4804,7 @@
 		BB2598459FE627C586E51511 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F96CE1CD1EFD128C00D88BB0 /* ImageIO.framework */,
 				F99264A61EF3838E001857A4 /* UserNotifications.framework */,
 				F9479B0A1EEF7E3B00581250 /* CoreMotion.framework */,
 				F9479B081EEF7E2E00581250 /* CFNetwork.framework */,
@@ -4941,6 +4868,7 @@
 				F9061FD21E83C4720080E9D9 /* ViewController.m */,
 				F96659861ED592FF000DD67F /* yindaotuViewController.h */,
 				F96659871ED592FF000DD67F /* yindaotuViewController.m */,
+				F97374731EFE049D00520D03 /* 扫码 */,
 				4A0D97031E9729C100A26B84 /* 商城首页 */,
 				4A4608F51E9CA0880045824F /* 积分商城 */,
 				F9520A1A1EADF40600B4D665 /* 使用加载网页 */,
@@ -5208,7 +5136,6 @@
 				F91274931EA0E58400B7A539 /* 商家订单 */,
 				F9126EE01EA0599B004785EA /* 地图 */,
 				F9126EB31EA05692004785EA /* 个人信息 */,
-				4A460A521E9CC0310045824F /* 扫码 */,
 				F92308341E9B8BFE00ECDC94 /* 余额 */,
 				F92308551E9B8BFE00ECDC94 /* 消息 */,
 				F92308901E9B8BFE00ECDC94 /* 普通用户线上订单 */,
@@ -6249,6 +6176,83 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		F973743C1EFE03B200520D03 /* LBXAlertAction */ = {
+			isa = PBXGroup;
+			children = (
+				F973743D1EFE03B200520D03 /* LBXAlertAction */,
+				F97374471EFE03B200520D03 /* LICENSE */,
+				F97374481EFE03B200520D03 /* README.md */,
+			);
+			path = LBXAlertAction;
+			sourceTree = "<group>";
+		};
+		F973743D1EFE03B200520D03 /* LBXAlertAction */ = {
+			isa = PBXGroup;
+			children = (
+				F973743E1EFE03B200520D03 /* Class */,
+				F97374451EFE03B200520D03 /* LBXAlertAction.h */,
+				F97374461EFE03B200520D03 /* LBXAlertAction.m */,
+			);
+			path = LBXAlertAction;
+			sourceTree = "<group>";
+		};
+		F973743E1EFE03B200520D03 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				F973743F1EFE03B200520D03 /* UIActionSheet+LBXAlertAction.h */,
+				F97374401EFE03B200520D03 /* UIActionSheet+LBXAlertAction.m */,
+				F97374411EFE03B200520D03 /* UIAlertController+supportedInterfaceOrientations.h */,
+				F97374421EFE03B200520D03 /* UIAlertController+supportedInterfaceOrientations.m */,
+				F97374431EFE03B200520D03 /* UIAlertView+LBXAlertAction.h */,
+				F97374441EFE03B200520D03 /* UIAlertView+LBXAlertAction.m */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		F97374491EFE03B200520D03 /* LBXScan */ = {
+			isa = PBXGroup;
+			children = (
+				F973744A1EFE03B200520D03 /* LBXScanLineAnimation.h */,
+				F973744B1EFE03B200520D03 /* LBXScanLineAnimation.m */,
+				F973744C1EFE03B200520D03 /* LBXScanNative.h */,
+				F973744D1EFE03B200520D03 /* LBXScanNative.m */,
+				F973744E1EFE03B200520D03 /* LBXScanNetAnimation.h */,
+				F973744F1EFE03B200520D03 /* LBXScanNetAnimation.m */,
+				F97374501EFE03B200520D03 /* LBXScanResult.h */,
+				F97374511EFE03B200520D03 /* LBXScanResult.m */,
+				F97374521EFE03B200520D03 /* LBXScanVideoZoomView.h */,
+				F97374531EFE03B200520D03 /* LBXScanVideoZoomView.m */,
+				F97374541EFE03B200520D03 /* LBXScanView.h */,
+				F97374551EFE03B200520D03 /* LBXScanView.m */,
+				F97374561EFE03B200520D03 /* LBXScanViewController.h */,
+				F97374571EFE03B200520D03 /* LBXScanViewController.m */,
+				F97374581EFE03B200520D03 /* LBXScanViewStyle.h */,
+				F97374591EFE03B200520D03 /* LBXScanViewStyle.m */,
+				F973745A1EFE03B200520D03 /* LBXScanWrapper.h */,
+				F973745B1EFE03B200520D03 /* LBXScanWrapper.m */,
+				F973745C1EFE03B200520D03 /* LBXZXCapture.h */,
+				F973745D1EFE03B200520D03 /* LBXZXCapture.m */,
+				F973745E1EFE03B200520D03 /* LBXZXCaptureDelegate.h */,
+				F973745F1EFE03B200520D03 /* ZXingWrapper.h */,
+				F97374601EFE03B200520D03 /* ZXingWrapper.m */,
+			);
+			path = LBXScan;
+			sourceTree = "<group>";
+		};
+		F97374731EFE049D00520D03 /* 扫码 */ = {
+			isa = PBXGroup;
+			children = (
+				F97374741EFE049D00520D03 /* MyQRViewController.h */,
+				F97374751EFE049D00520D03 /* MyQRViewController.m */,
+				F97374761EFE049D00520D03 /* ScanResultViewController.h */,
+				F97374771EFE049D00520D03 /* ScanResultViewController.m */,
+				F97374781EFE049D00520D03 /* ScanResultViewController.xib */,
+				F97374791EFE049D00520D03 /* SubLBXScanViewController.h */,
+				F973747A1EFE049D00520D03 /* SubLBXScanViewController.m */,
+			);
+			path = "扫码";
+			sourceTree = "<group>";
+		};
 		F97644D01EA5B66300AFA22B /* RSA密钥 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6467,7 +6471,6 @@
 				4A2A00C21EC70D9400052CA7 /* GLConfirmOrderController.xib in Resources */,
 				F9516DF41ECAD6C5009F015D /* LBStoreDetailHotProductTableViewCell.xib in Resources */,
 				F923098F1E9B8BFF00ECDC94 /* LBMineCenterCollectionViewCell.xib in Resources */,
-				4A4610061E9CC6360045824F /* CodeScan.bundle in Resources */,
 				4A50044F1EE14F8D002D1964 /* LBMoreOperateView.xib in Resources */,
 				4A4610231E9CC6360045824F /* UMShareEditViewController.xib in Resources */,
 				4A5F66AC1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib in Resources */,
@@ -6561,6 +6564,7 @@
 				F923096F1E9B8BFF00ECDC94 /* LBMineCentermodifyAdressTableViewCell.xib in Resources */,
 				4A5F66B81ECA93AC0048F339 /* GLNearby_EatController.xib in Resources */,
 				F9101B351ECEFBCC0079BB2E /* LBPayTheBillViewController.xib in Resources */,
+				F97374611EFE03B200520D03 /* CodeScan.bundle in Resources */,
 				4A2A00C71EC70D9400052CA7 /* GLOrderGoodsCell.xib in Resources */,
 				F906201C1E83C8770080E9D9 /* tabbarimage.xcassets in Resources */,
 				F923098A1E9B8BFF00ECDC94 /* LBMineViewController.xib in Resources */,
@@ -6608,8 +6612,9 @@
 				4A2F52121EC7084000ECA95D /* GLHourseDetailController.xib in Resources */,
 				F91964E71EB2EB0E008A8616 /* SelectionOfSalesmanLevelView.xib in Resources */,
 				4AAD25311EC188C90054FD06 /* GLBuyBackChooseController.xib in Resources */,
-				4A460A5C1E9CC0310045824F /* ScanResultViewController.xib in Resources */,
 				F92309601E9B8BFF00ECDC94 /* LBMyOrderUnsubscribeRecordTableViewCell.xib in Resources */,
+				F973747D1EFE049D00520D03 /* ScanResultViewController.xib in Resources */,
+				F97374661EFE03B200520D03 /* LICENSE in Resources */,
 				F9516DEF1ECAD416009F015D /* LBStoreDetailAdressTableViewCell.xib in Resources */,
 				F923093B1E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeDetailTableViewCell.xib in Resources */,
 				4A50045D1EE14FA9002D1964 /* LBConsumptionSeriesViewTableViewCell.xib in Resources */,
@@ -6695,7 +6700,6 @@
 				4AFFA5321ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.xib in Resources */,
 				F961AA1C1E9CDD3400275F52 /* GLRegisterController.xib in Resources */,
 				F958C0821EA4A3F9003C9CFB /* personCenter.xcassets in Resources */,
-				4A4610101E9CC6360045824F /* LICENSE in Resources */,
 				F92309841E9B8BFF00ECDC94 /* LBMineCenterSafeBindPhoneViewController.xib in Resources */,
 				F966B3BC1EAC3D3E007260FC /* LBMineCenterOrderDetailTwoTableViewCell.xib in Resources */,
 				4A4610391E9CC6360045824F /* ios-social-sdk-shake.html in Resources */,
@@ -6848,7 +6852,6 @@
 				4A4610641E9CC6360045824F /* ZXTextParsedResult.m in Sources */,
 				4A46111B1E9CC6370045824F /* UIImageView+CornerRadius.m in Sources */,
 				F90C452B1ED6AD8A001650BD /* QBAlbumCell.m in Sources */,
-				4A4610181E9CC6360045824F /* LBXScanViewController.m in Sources */,
 				4A46106F1E9CC6360045824F /* ZXCGImageLuminanceSource.m in Sources */,
 				4A4610C01E9CC6370045824F /* ZXRSSExpandedGeneralAppIdDecoder.m in Sources */,
 				4A46109D1E9CC6360045824F /* ZXDataMatrixDefaultPlacement.m in Sources */,
@@ -6871,26 +6874,26 @@
 				4AAD25391EC188C90054FD06 /* GLBankCardModel.m in Sources */,
 				4AAD253F1EC188C90054FD06 /* GLBuyBackRecordCell.m in Sources */,
 				4AFCDC601ED2B159007C1681 /* GLMerchat_CommentModel.m in Sources */,
-				4A4610171E9CC6360045824F /* LBXScanView.m in Sources */,
-				4A4610191E9CC6360045824F /* LBXScanViewStyle.m in Sources */,
 				4A5DF5F61ED185DA00BF6AC7 /* GLStoreProductCommentController.m in Sources */,
 				4A4611101E9CC6370045824F /* ZXQRCodeEncoder.m in Sources */,
 				4A4610E31E9CC6370045824F /* ZXUPCEANWriter.m in Sources */,
 				4A4610AE1E9CC6370045824F /* ZXAbstractExpandedDecoder.m in Sources */,
 				F961AA1D1E9CDD3400275F52 /* LoginIdentityView.m in Sources */,
 				4AAD257C1EC188F50054FD06 /* GLRecommendBeansController.m in Sources */,
+				F97374681EFE03B200520D03 /* LBXScanLineAnimation.m in Sources */,
 				4A46105F1E9CC6360045824F /* ZXSMSParsedResult.m in Sources */,
 				F9516E0A1ECB068D009F015D /* LBStoreProductDetailInfoTableViewCell.m in Sources */,
 				4AAD253B1EC188C90054FD06 /* GLBankCardCellTableViewCell.m in Sources */,
 				F9643F171ECFE74E001B707B /* TYAlertView.m in Sources */,
 				F923095F1E9B8BFF00ECDC94 /* LBMyOrderUnsubscribeRecordTableViewCell.m in Sources */,
+				F97374701EFE03B200520D03 /* LBXScanWrapper.m in Sources */,
 				4A4611131E9CC6370045824F /* ZXMultiDetector.m in Sources */,
+				F973746B1EFE03B200520D03 /* LBXScanResult.m in Sources */,
 				4AAD252E1EC188C90054FD06 /* GLBuyBackChooseCardController.m in Sources */,
 				F9126EE81EA0599B004785EA /* LBBaiduMapViewController.m in Sources */,
 				4A4610B01E9CC6370045824F /* ZXAI01320xDecoder.m in Sources */,
 				F92F93791EE6A4F00030A1A8 /* NullSafe.m in Sources */,
 				F96CEE431EE79B76000B6D91 /* DWBubbleMenuButton.m in Sources */,
-				4A46101A1E9CC6360045824F /* LBXScanWrapper.m in Sources */,
 				4A4610D81E9CC6370045824F /* ZXITFWriter.m in Sources */,
 				4A0D97901E9729C100A26B84 /* GLHomeRecommendCollectionCell.m in Sources */,
 				4A4610C71E9CC6370045824F /* ZXRSSDataCharacter.m in Sources */,
@@ -6919,6 +6922,7 @@
 				4A0023F71E84AD6700B2A9FE /* UIButton+SetEdgeInsets.m in Sources */,
 				4AAD255A1EC188D70054FD06 /* GLDirectDnationView.m in Sources */,
 				F92309571E9B8BFF00ECDC94 /* LBMyOrderPendingRefundViewController.m in Sources */,
+				F973746A1EFE03B200520D03 /* LBXScanNetAnimation.m in Sources */,
 				4A4610A41E9CC6360045824F /* ZXDataMatrixTextEncoder.m in Sources */,
 				F9643F161ECFE74E001B707B /* TYAlertScaleFadeAnimation.m in Sources */,
 				F92ED49E1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.m in Sources */,
@@ -6934,7 +6938,6 @@
 				F9121B2A1EB21A8900DAB7A2 /* LBMyOrdersListModel.m in Sources */,
 				4A4610D41E9CC6370045824F /* ZXEAN8Reader.m in Sources */,
 				4A46110A1E9CC6370045824F /* ZXQRCodeDetector.m in Sources */,
-				4A46100C1E9CC6360045824F /* UIActionSheet+LBXAlertAction.m in Sources */,
 				F951EB0A1EA1E6EC00D6708E /* LBMineSelectCustomerTypeView.m in Sources */,
 				4A2F52231EC7084100ECA95D /* GLHourseDetailThirdCell.m in Sources */,
 				F951C76C1EB02DF10014A71D /* LBWaitOrdersModel.m in Sources */,
@@ -6967,6 +6970,7 @@
 				4A4610451E9CC6360045824F /* ZXAztecState.m in Sources */,
 				F9643F141ECFE74E001B707B /* TYAlertDropDownAnimation.m in Sources */,
 				F92309771E9B8BFF00ECDC94 /* LBMineCentermodifyAdressViewController.m in Sources */,
+				F973747B1EFE049D00520D03 /* MyQRViewController.m in Sources */,
 				4A50044E1EE14F8D002D1964 /* LBMoreOperateView.m in Sources */,
 				4AA0D5A61EAEEC0600CB8F77 /* GLIntegralMallTopCell.m in Sources */,
 				4AAD25361EC188C90054FD06 /* GLBuyBackRecord_FinishController.m in Sources */,
@@ -6976,10 +6980,10 @@
 				4A4610C21E9CC6370045824F /* ZXRSSExpandedPair.m in Sources */,
 				4AA0D5D11EAF1EF700CB8F77 /* GLMallHotModel.m in Sources */,
 				F961A9D81E9C75AF00275F52 /* UIView+SFrame.m in Sources */,
-				4A46101C1E9CC6360045824F /* ZXingWrapper.m in Sources */,
 				4AAD25801EC188F50054FD06 /* GLEncourageBeansCell.m in Sources */,
 				4AAD25551EC188D70054FD06 /* GLDirectDonationController.m in Sources */,
 				4A46108A1E9CC6360045824F /* ZXDecodeHints.m in Sources */,
+				F97374691EFE03B200520D03 /* LBXScanNative.m in Sources */,
 				4A4610991E9CC6360045824F /* ZXDataMatrixDetector.m in Sources */,
 				4A4611011E9CC6370045824F /* ZXQRCodeDecodedBitStreamParser.m in Sources */,
 				4A5C70CB1ED66850001110B6 /* GLMerchat_StoreModel.m in Sources */,
@@ -6988,6 +6992,7 @@
 				4A4610EB1E9CC6370045824F /* ZXPDF417Codeword.m in Sources */,
 				F92309611E9B8BFF00ECDC94 /* XBScrollPageController.m in Sources */,
 				4A4610971E9CC6360045824F /* ZXDataMatrixDecoder.m in Sources */,
+				F973747E1EFE049D00520D03 /* SubLBXScanViewController.m in Sources */,
 				F92309891E9B8BFF00ECDC94 /* LBMineViewController.m in Sources */,
 				F92309921E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.m in Sources */,
 				4A5F66BC1ECA93C50048F339 /* GLNearby_LiveController.m in Sources */,
@@ -6995,7 +7000,6 @@
 				F923097F1E9B8BFF00ECDC94 /* LBMineCenterSafeSecondSecretViewController.m in Sources */,
 				4A4610B41E9CC6370045824F /* ZXAI013x0xDecoder.m in Sources */,
 				4A1D78ED1EADF81900374386 /* GLCityModel.m in Sources */,
-				4A46101B1E9CC6360045824F /* LBXZXCapture.m in Sources */,
 				4A46110D1E9CC6370045824F /* ZXQRCodeFinderPatternInfo.m in Sources */,
 				4A4610FC1E9CC6370045824F /* ZXPDF417ResultMetadata.m in Sources */,
 				F90C452D1ED6AD8A001650BD /* QBAssetCell.m in Sources */,
@@ -7031,12 +7035,14 @@
 				F92309471E9B8BFF00ECDC94 /* LBMineMessageHotPickTableViewCell.m in Sources */,
 				4A4609D91E9CB78E0045824F /* GLRecommendRecordModel.m in Sources */,
 				4A46106E1E9CC6360045824F /* ZXCapture.m in Sources */,
+				F97374651EFE03B200520D03 /* LBXAlertAction.m in Sources */,
 				4A4610541E9CC6360045824F /* ZXExpandedProductParsedResult.m in Sources */,
 				4A4609FB1E9CB78E0045824F /* GLDonationRecordModel.m in Sources */,
 				4A46108D1E9CC6360045824F /* ZXErrors.m in Sources */,
 				F9126EEB1EA0599B004785EA /* UIImage+Rotate.m in Sources */,
 				4A2F522B1EC7084100ECA95D /* TypeView.m in Sources */,
 				4AD551521EB36E4D00C04062 /* SYDatePicker.m in Sources */,
+				F97374641EFE03B200520D03 /* UIAlertView+LBXAlertAction.m in Sources */,
 				4AAD25841EC188F50054FD06 /* GLRecommendCell.m in Sources */,
 				F9E3A53F1EEA7F40009B9F16 /* ChooseRank.m in Sources */,
 				4A4610A11E9CC6360045824F /* ZXDataMatrixHighLevelEncoder.m in Sources */,
@@ -7048,7 +7054,6 @@
 				4A46110E1E9CC6370045824F /* ZXQRCode.m in Sources */,
 				4A4610E61E9CC6370045824F /* ZXModulusPoly.m in Sources */,
 				4A16C63D1ECD842100DF2E5E /* GLNearby_NearShopModel.m in Sources */,
-				4A4610121E9CC6360045824F /* LBXScanLineAnimation.m in Sources */,
 				4A4610701E9CC6360045824F /* ZXImage.m in Sources */,
 				4A4610D11E9CC6370045824F /* ZXCode93Reader.m in Sources */,
 				F92F937D1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.m in Sources */,
@@ -7080,7 +7085,6 @@
 				4A16C63A1ECD7C7C00DF2E5E /* GLNearby_TradeOneModel.m in Sources */,
 				4A46106A1E9CC6360045824F /* ZXVINParsedResult.m in Sources */,
 				4AA0D5AC1EAEEC8400CB8F77 /* LBIntegralMallViewController.m in Sources */,
-				4A460A5D1E9CC0310045824F /* SubLBXScanViewController.m in Sources */,
 				4A2F521D1EC7084000ECA95D /* GLHomeLiveCell.m in Sources */,
 				F9520A281EAE170400B4D665 /* LBMineStoreAllOrdersViewController.m in Sources */,
 				4AB9E1B91ED6E97E00BE0420 /* QQTagItem.m in Sources */,
@@ -7106,11 +7110,9 @@
 				F923096E1E9B8BFF00ECDC94 /* LBMineCentermodifyAdressTableViewCell.m in Sources */,
 				F961A9CC1E9C750300275F52 /* UILabel+UILabel_ChangeLineSpaceAndWordSpace.m in Sources */,
 				F94E92BA1ED9108200CBEDB8 /* QQPopMenuView.m in Sources */,
-				4A4610131E9CC6360045824F /* LBXScanNative.m in Sources */,
 				F90620071E83C5D00080E9D9 /* LBLoginNavigationViewController.m in Sources */,
 				4A5004601EE14FA9002D1964 /* LBMerchantcreditTableViewCell.m in Sources */,
 				4A4609F71E9CB78E0045824F /* GLDonationController.m in Sources */,
-				4A4610151E9CC6360045824F /* LBXScanResult.m in Sources */,
 				4AAD25B01EC18EA70054FD06 /* GLMyCollectionModel.m in Sources */,
 				4A4610791E9CC6360045824F /* ZXBitMatrix.m in Sources */,
 				4A4610591E9CC6360045824F /* ZXISBNResultParser.m in Sources */,
@@ -7137,14 +7139,12 @@
 				4A4610461E9CC6360045824F /* ZXAztecToken.m in Sources */,
 				F9516DE91ECAD058009F015D /* LBStoreDetailNameTableViewCell.m in Sources */,
 				4AAD257B1EC188F50054FD06 /* GLReceiveBeansController.m in Sources */,
-				4A4610111E9CC6360045824F /* README.md in Sources */,
 				4A4610D31E9CC6370045824F /* ZXEAN13Writer.m in Sources */,
 				4A4610F81E9CC6370045824F /* ZXPDF417ErrorCorrection.m in Sources */,
 				4A4610E41E9CC6370045824F /* ZXUPCEReader.m in Sources */,
 				4A4610AD1E9CC6360045824F /* ZXGenericMultipleBarcodeReader.m in Sources */,
 				F923096C1E9B8BFF00ECDC94 /* LBSetUpViewController.m in Sources */,
 				F97F09E21EC98AEA000D3B30 /* LBAddMineProductionViewController.m in Sources */,
-				4A4610161E9CC6360045824F /* LBXScanVideoZoomView.m in Sources */,
 				F9520A1E1EADF40600B4D665 /* LBViewProtocolViewController.m in Sources */,
 				4A4611121E9CC6370045824F /* ZXQRCodeMatrixUtil.m in Sources */,
 				F9121B181EB17CEC00DAB7A2 /* IncentiveModel.m in Sources */,
@@ -7175,16 +7175,18 @@
 				4AA0D6011EAF693D00CB8F77 /* GLintegralGoodsModel.m in Sources */,
 				4A3D17BA1ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.m in Sources */,
 				F9121B2D1EB21BC500DAB7A2 /* LBMyOrdersHeaderView.m in Sources */,
-				4A46100E1E9CC6360045824F /* UIAlertView+LBXAlertAction.m in Sources */,
 				4A4610D51E9CC6370045824F /* ZXEAN8Writer.m in Sources */,
 				F966B3EC1EAC7E97007260FC /* LBMySalesmanListDeatilViewController.m in Sources */,
 				4A4610921E9CC6360045824F /* ZXResultPoint.m in Sources */,
+				F973746D1EFE03B200520D03 /* LBXScanView.m in Sources */,
 				F923098C1E9B8BFF00ECDC94 /* LBMineCenterHotPickModel.m in Sources */,
 				4A4610B51E9CC6370045824F /* ZXAI01AndOtherAIs.m in Sources */,
 				F923093A1E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeDetailTableViewCell.m in Sources */,
 				4A4611031E9CC6370045824F /* ZXQRCodeDecoderMetaData.m in Sources */,
 				F94A33F31EAA01A600222A86 /* LBMineCenterPayPagesViewController.m in Sources */,
 				F92DA0191ECDA163004CBAA8 /* MenuModel.m in Sources */,
+				F97374671EFE03B200520D03 /* README.md in Sources */,
+				F973746C1EFE03B200520D03 /* LBXScanVideoZoomView.m in Sources */,
 				4A4610901E9CC6360045824F /* ZXPlanarYUVLuminanceSource.m in Sources */,
 				4A4610B91E9CC6370045824F /* ZXRSSExpandedBlockParsedResult.m in Sources */,
 				4A4610CB1E9CC6370045824F /* ZXCodaBarReader.m in Sources */,
@@ -7231,9 +7233,11 @@
 				F9516E011ECAE2DB009F015D /* LBStoreDetailHeaderView.m in Sources */,
 				F961AA1B1E9CDD3400275F52 /* GLRegisterController.m in Sources */,
 				4A2A00C11EC70D9400052CA7 /* GLConfirmOrderController.m in Sources */,
+				F973746E1EFE03B200520D03 /* LBXScanViewController.m in Sources */,
 				F94D6E231E9DFB2700412E64 /* LBHomeLoginFortgetSecretViewController.m in Sources */,
 				F961A9E51E9C7B4700275F52 /* MBProgressHUD+LB.m in Sources */,
 				4A4610F41E9CC6370045824F /* ZXPDF417.m in Sources */,
+				F97374621EFE03B200520D03 /* UIActionSheet+LBXAlertAction.m in Sources */,
 				4A4610BA1E9CC6370045824F /* ZXRSSExpandedCurrentParsingState.m in Sources */,
 				4A2F521B1EC7084000ECA95D /* GLGoodsInfoCell.m in Sources */,
 				4AB508CD1EB190A20057EB3B /* GLShoppingCartModel.m in Sources */,
@@ -7260,11 +7264,11 @@
 				4A2F52131EC7084000ECA95D /* GLGoodsDetailModel.m in Sources */,
 				4A4610C11E9CC6370045824F /* ZXBitArrayBuilder.m in Sources */,
 				4A46106D1E9CC6360045824F /* ZXWifiResultParser.m in Sources */,
-				4A460A5B1E9CC0310045824F /* ScanResultViewController.m in Sources */,
 				4AFCDC7B1ED2EE77007C1681 /* GLMerchat_CommentTableController.m in Sources */,
 				4A46104D1E9CC6360045824F /* ZXAddressBookParsedResult.m in Sources */,
 				4A5F669F1ECA89FA0048F339 /* GLNearbyViewController.m in Sources */,
 				F92DA01A1ECDA163004CBAA8 /* UIView+AdjustFrame.m in Sources */,
+				F97374711EFE03B200520D03 /* LBXZXCapture.m in Sources */,
 				4A4610661E9CC6360045824F /* ZXURIResultParser.m in Sources */,
 				4A5F66AB1ECA89FA0048F339 /* GLNearby_SectionHeaderView.m in Sources */,
 				4A4610B81E9CC6370045824F /* ZXAnyAIDecoder.m in Sources */,
@@ -7283,6 +7287,7 @@
 				4A46110F1E9CC6370045824F /* ZXQRCodeBlockPair.m in Sources */,
 				4AA0D5B61EAEED8B00CB8F77 /* GLSet_MaskVeiw.m in Sources */,
 				4A460A091E9CB8050045824F /* NodataView.m in Sources */,
+				F97374631EFE03B200520D03 /* UIAlertController+supportedInterfaceOrientations.m in Sources */,
 				4A460A161E9CBBE20045824F /* GLNoticeView.m in Sources */,
 				4A4610471E9CC6360045824F /* ZXAztecDetectorResult.m in Sources */,
 				4A4610651E9CC6360045824F /* ZXURIParsedResult.m in Sources */,
@@ -7302,11 +7307,10 @@
 				4A4611161E9CC6370045824F /* ZXQRCodeReader.m in Sources */,
 				F95E83661ED7C48800E60F46 /* LBHomeIncomeView.m in Sources */,
 				F90620051E83C5D00080E9D9 /* BaseNavigationViewController.m in Sources */,
-				4A46100F1E9CC6360045824F /* LBXAlertAction.m in Sources */,
+				F973746F1EFE03B200520D03 /* LBXScanViewStyle.m in Sources */,
 				4A3D17B51ECC514400F85A3B /* GLRecommendStore_RecordCell.m in Sources */,
 				4A46103F1E9CC6360045824F /* ZXAztecDetector.m in Sources */,
 				4A4611021E9CC6370045824F /* ZXQRCodeDecoder.m in Sources */,
-				4A460A5A1E9CC0310045824F /* MyQRViewController.m in Sources */,
 				F923096A1E9B8BFF00ECDC94 /* LBMyOrderCheckUnsubscribeRecordViewController.m in Sources */,
 				F96659821ED57EB2000DD67F /* JZAlbumViewController.m in Sources */,
 				4A0D97921E9729C100A26B84 /* GLHotCell.m in Sources */,
@@ -7342,7 +7346,6 @@
 				4A4610F31E9CC6370045824F /* ZXPDF417DetectorResult.m in Sources */,
 				4AFCDC5C1ED2B0B0007C1681 /* GLMerchat_CommentCell.m in Sources */,
 				4A4610E21E9CC6370045824F /* ZXUPCEANReader.m in Sources */,
-				4A46100D1E9CC6360045824F /* UIAlertController+supportedInterfaceOrientations.m in Sources */,
 				4A46105B1E9CC6360045824F /* ZXProductParsedResult.m in Sources */,
 				4A4610711E9CC6360045824F /* ZXMathUtils.m in Sources */,
 				4A4609FC1E9CB78E0045824F /* GLDonationMaskView.m in Sources */,
@@ -7359,6 +7362,7 @@
 				4A4610CC1E9CC6370045824F /* ZXCodaBarWriter.m in Sources */,
 				4A4610A61E9CC6360045824F /* ZXDataMatrixReader.m in Sources */,
 				F951C76F1EB02E050014A71D /* LBWaitOrdersListModel.m in Sources */,
+				F97374721EFE03B200520D03 /* ZXingWrapper.m in Sources */,
 				4A2F51CC1EC6E5F600ECA95D /* GLMemberManagerCell.m in Sources */,
 				4A4610C81E9CC6370045824F /* ZXRSSFinderPattern.m in Sources */,
 				F923095D1E9B8BFF00ECDC94 /* LBMyOrderListTableViewCell.m in Sources */,
@@ -7395,6 +7399,7 @@
 				4A4610D91E9CC6370045824F /* ZXMultiFormatOneDReader.m in Sources */,
 				4A4610761E9CC6360045824F /* ZXReedSolomonDecoder.m in Sources */,
 				4AFCDC571ED29039007C1681 /* GLMerchat_CommentController.m in Sources */,
+				F973747C1EFE049D00520D03 /* ScanResultViewController.m in Sources */,
 				F955A78A1EE011E0004141A4 /* LBStoreSendGoodsListFirstViewController.m in Sources */,
 				F9101B341ECEFBCC0079BB2E /* LBPayTheBillViewController.m in Sources */,
 				4A2A00C81EC70D9400052CA7 /* GLOrderPayView.m in Sources */,
@@ -7408,7 +7413,6 @@
 				F9121B1D1EB1DC4F00DAB7A2 /* LBMineStoreOrderingOneTableViewCell.m in Sources */,
 				4A46106C1E9CC6360045824F /* ZXWifiParsedResult.m in Sources */,
 				4A4610BB1E9CC6370045824F /* ZXRSSExpandedDecodedChar.m in Sources */,
-				4A4610141E9CC6360045824F /* LBXScanNetAnimation.m in Sources */,
 				4A46109C1E9CC6360045824F /* ZXDataMatrixC40Encoder.m in Sources */,
 				4A2F51D61EC6FF9900ECA95D /* GLConsumerRecordCell.m in Sources */,
 				F966B3D41EAC3DAF007260FC /* LBMineCenterOrderDetailSevenTableViewCell.m in Sources */,
@@ -7593,7 +7597,7 @@
 				CODE_SIGN_ENTITLEMENTS = Universialshare/Universialshare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = GCU762TQ3E;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7658,7 +7662,7 @@
 				CODE_SIGN_ENTITLEMENTS = Universialshare/Universialshare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = GCU762TQ3E;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -101,7 +101,7 @@ static NSString *ID = @"GLOrderGoodsCell";
                 for (NSDictionary *dic in responseObject[@"data"]) {
                     if ([dic[@"is_default"] intValue] == 1) {
                         self.nameLabel.text = [NSString stringWithFormat:@"收货人:%@",dic[@"collect_name"]];
-                        self.phoneLabel.text = [NSString stringWithFormat:@"电话号码:%@",dic[@"s_phone"]];
+                        self.phoneLabel.text = [NSString stringWithFormat:@"tel:%@",dic[@"s_phone"]];
                         self.addressLabel.text = [NSString stringWithFormat:@"收货地址:%@",dic[@"s_address"]];
                         self.address_id = [NSString stringWithFormat:@"%@",dic[@"address_id"]];
                     }

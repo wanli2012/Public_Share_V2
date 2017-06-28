@@ -100,6 +100,8 @@ static NSString *ID = @"GLShoppingCell";
         NSMutableString *goods_numStrM = [NSMutableString string];
         NSMutableString *cart_idM = [NSMutableString string];
         NSMutableString *goods_specIdStrM = [NSMutableString string];
+        BOOL a = NO;
+        BOOL b = NO;
         for (int i = 0; i < _models.count; i ++) {
             if ([self.selectArr[i] boolValue]) {
                 GLShoppingCartModel *model = _models[i];
@@ -107,6 +109,12 @@ static NSString *ID = @"GLShoppingCell";
                 [goods_numStrM appendFormat:@"%@,",model.num];
                 [cart_idM appendFormat:@"%@,",model.cart_id];
                 [goods_specIdStrM appendFormat:@"%@,",model.spec_id];
+                
+                if ([model.goods_type integerValue]== 1) {
+                    a = YES;
+                }else  {
+                    b = YES;
+                }
             }
         }
         
@@ -115,14 +123,16 @@ static NSString *ID = @"GLShoppingCell";
         [cart_idM deleteCharactersInRange:NSMakeRange([cart_idM length]-1, 1)];
         [goods_specIdStrM deleteCharactersInRange:NSMakeRange([goods_specIdStrM length]-1, 1)];
         
+        if (a==YES && b == YES) {
+            [MBProgressHUD showError:@"两种类型商品不能同时支付"];
+            return;
+        }
         self.hidesBottomBarWhenPushed = YES;
-        
         GLConfirmOrderController *payVC = [[GLConfirmOrderController alloc] init];
         payVC.goods_id = goods_idStrM;
         payVC.goods_count = goods_numStrM;
         payVC.cart_id = cart_idM;
         payVC.goods_spec = goods_specIdStrM;
-        
         [self.navigationController pushViewController:payVC animated:YES];
     }else{
         [MBProgressHUD showError:@"请选择商品"];

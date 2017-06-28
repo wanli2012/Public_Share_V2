@@ -80,6 +80,11 @@
 //    layera.frame = self.registerBtn.bounds;
 //    [self.registerBtn.layer addSublayer:layera];
     
+    if ([UserModel defaultUser].phone != nil && [[UserModel defaultUser].phone length] > 0) {
+        self.phone.text = [UserModel defaultUser].phone;
+    }
+
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *adresstf;
 @property (weak, nonatomic) IBOutlet UILabel *saletile;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *saleimageConstrait;
+@property (weak, nonatomic) IBOutlet UILabel *chengluoshu;
 
 @property (assign, nonatomic)NSInteger tapIndex;//判断点击的是那个图片
 
@@ -147,13 +148,12 @@
         return;
     }
     
-    if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
+
         if (!self.saleImage.image || [UIImagePNGRepresentation(self.saleImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-4"])]) {
             [MBProgressHUD showError:@"请上传消费承诺书"];
             return;
+    
         }
-       
-    }
    
     if (self.adresstf.text.length <= 0) {
         [MBProgressHUD showError:@"请输入地址"];
@@ -403,17 +403,20 @@
     self.exitbt.layer.cornerRadius = 4;
     self.exitbt.clipsToBounds = YES;
     
+    self.contentH.constant =760;
+    self.saletile.hidden = NO;
+    self.saleImage.hidden = NO;
+    self.saleimageConstrait.constant = 110;
+    
     if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
         
-         self.contentH.constant =760;
-        self.saletile.hidden = NO;
-        self.saleImage.hidden = NO;
-        self.saleimageConstrait.constant = 110;
+        self.chengluoshu.text = @"消费承诺书";
+        
+    }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
+        self.chengluoshu.text = @"商户承诺书";
+        
     }else{
-         self.contentH.constant =650;
-        self.saletile.hidden = YES;
-        self.saleImage.hidden = YES;
-        self.saleimageConstrait.constant = 0;
+        self.chengluoshu.text = @"创客承诺书";
     
     }
 

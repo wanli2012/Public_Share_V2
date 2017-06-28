@@ -71,6 +71,22 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(Alipaysucess) name:@"Alipaysucess" object:nil];
     
+    /**
+     *微信支付成功 回调
+     */
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(wxpaysucess) name:@"wxpaysucess" object:nil];
+    
+}
+
+-(void)wxpaysucess{
+    
+    if(self.pushIndex == 1){
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -168,10 +184,10 @@
     
          if (self.selectIndex == 1){
             //支付宝支付
-            [self alipayAndWeChatPay:@"1"];
+            [self alipay:@"1"];
         }else{
             //微信支付
-            [self alipayAndWeChatPay:@"2"];
+            [self WeChatPay:@"2"];
             
         }
     
@@ -275,7 +291,41 @@
 
 }
 
-- (void)alipayAndWeChatPay:(NSString *)payType{
+- (void)WeChatPay:(NSString *)payType{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"order_id"] = self.order_id;
+    dict[@"paytype"] = payType;
+    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"shop/payParam" paramDic:dict finish:^(id responseObject) {
+        
+        [_loadV removeloadview];
+        [self dismiss];
+        if ([responseObject[@"code"] integerValue] == 1){
+            //调起微信支付
+            PayReq* req = [[PayReq alloc] init];
+            req.openID=responseObject[@"data"][@"weixinpay"][@"appid"];
+            req.partnerId = responseObject[@"data"][@"weixinpay"][@"partnerid"];
+            req.prepayId = responseObject[@"data"][@"weixinpay"][@"prepayid"];
+            req.nonceStr = responseObject[@"data"][@"weixinpay"][@"noncestr"];
+            req.timeStamp = [responseObject[@"data"][@"weixinpay"][@"timestamp"] intValue];
+            req.package = responseObject[@"data"][@"weixinpay"][@"package"];
+            req.sign = responseObject[@"data"][@"weixinpay"][@"sign"];
+            [WXApi sendReq:req];
+            
+        }else{
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        
+    }];
+}
+
+- (void)alipay:(NSString *)payType{
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
@@ -287,16 +337,45 @@
         [_loadV removeloadview];
         [self dismiss];
         if ([responseObject[@"code"] integerValue] == 1){
-            //调起微信支付
-            PayReq* req = [[PayReq alloc] init];
-            req.openID=responseObject[@"data"][@"appid"];
-            req.partnerId = responseObject[@"data"][@"partnerid"];
-            req.prepayId = responseObject[@"data"][@"prepayid"];
-            req.nonceStr = responseObject[@"data"][@"noncestr"];
-            //req.timeStamp = stamp.intValue;
-            req.package = responseObject[@"data"][@"package"];
-            req.sign = responseObject[@"data"][@"sign"];
-            [WXApi sendReq:req];
+            
+            [ [AlipaySDK defaultService]payOrder:responseObject[@"data"][@"alipay"][@"url"] fromScheme:@"univerAlipay" callback:^(NSDictionary *resultDic) {
+                
+                NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
+                if (orderState==9000) {
+                    self.hidesBottomBarWhenPushed = YES;
+                    if(self.pushIndex == 1){
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+                        
+                    }else{
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                    self.hidesBottomBarWhenPushed = NO;
+                    
+                }else{
+                    NSString *returnStr;
+                    switch (orderState) {
+                        case 8000:
+                            returnStr=@"订单正在处理中";
+                            break;
+                        case 4000:
+                            returnStr=@"订单支付失败";
+                            break;
+                        case 6001:
+                            returnStr=@"订单取消";
+                            break;
+                        case 6002:
+                            returnStr=@"网络连接出错";
+                            break;
+                            
+                        default:
+                            break;
+                    }
+                    
+                    [MBProgressHUD showError:returnStr];
+                    
+                }
+                
+            }];
             
         }else{
             

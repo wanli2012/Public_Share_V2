@@ -389,7 +389,7 @@
         return;
     }
     if (!self.undertakingTwo.image || [UIImagePNGRepresentation(self.undertakingTwo.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-9"])]) {
-        [MBProgressHUD showError:@"请上传推广员承诺书"];
+        [MBProgressHUD showError:@"请上传创客承诺书"];
         return;
     }
     

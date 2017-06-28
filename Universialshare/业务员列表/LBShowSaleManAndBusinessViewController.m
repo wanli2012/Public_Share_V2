@@ -86,10 +86,10 @@
     };
     
     NSDictionary *dict1 = @{@"imageName" : @"",
-                            @"itemName" : @"推广员"
+                            @"itemName" : @"创客"
                             };
     NSDictionary *dict2 = @{@"imageName" : @"",
-                            @"itemName" : @"推广经理"
+                            @"itemName" : @"城市创客"
                             };
 
      NSArray *dataArray = @[dict1,dict2];

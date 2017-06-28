@@ -32,12 +32,18 @@
     self.navigationController.navigationBar.hidden = YES;
     
     self.noticeLabel.text = @"扫描二维码你的朋友也可以下载大众共享客户端";
-    self.versionLabel.text = @"当前版本:V 1.0.1";
     
     [self.backBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 0, 5, 30)];
     [self.shareBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 25, 5, 0)];
     self.imageWidth.constant = 150 * autoSizeScaleX;
     [self logoQrCode];
+    
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+    // app版本
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    
+    self.versionLabel.text = [NSString stringWithFormat:@"当前版本: v%@",app_Version];
     
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

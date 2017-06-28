@@ -49,7 +49,7 @@
                                         <constraint firstAttribute="width" constant="14" id="y4G-BK-7uO"/>
                                     </constraints>
                                 </imageView>
-                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入商店名或ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kcb-KZ-RHV">
+                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入商店名或地址" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kcb-KZ-RHV">
                                     <rect key="frame" x="34" y="0.0" width="165" height="24"/>
                                     <gestureRecognizers/>
                                     <nil key="textColor"/>

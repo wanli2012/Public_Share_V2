@@ -82,8 +82,11 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     self.searchView.layer.cornerRadius = self.searchView.yy_height / 2;
     self.searchView.clipsToBounds = YES;
     
-    //公告
-    [self initInterDataSorceinfomessage];
+    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isShow"] isEqualToString:@"YES"]) {
+    
+        //公告
+        [self initInterDataSorceinfomessage];
+    }
     
     [self postRequest];
     __weak __typeof(self) weakSelf = self;
@@ -207,6 +210,8 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 }
 
 -(void)initInterDataSorceinfomessage{
+    
+     [[NSUserDefaults standardUserDefaults]setObject:@"NO" forKey:@"isShow"];//展示过就不要展示了，重启App在调
     
     CGFloat contentViewH = SCREEN_HEIGHT / 2;
     CGFloat contentViewW = SCREEN_WIDTH - 40;
