@@ -306,7 +306,7 @@
         
         [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
 
-        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+       // [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
         
         if (uploadProgress.fractionCompleted == 1.0) {
              [SVProgressHUD dismiss];

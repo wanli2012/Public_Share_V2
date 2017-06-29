@@ -58,37 +58,54 @@
     
     self.versionLb.text = [NSString stringWithFormat:@"当前版本: v%@",app_Version];
     
-    [self getAppVersion];//获取最新版本号
-    
+     [self Postpath:GET_VERSION];
 }
 
--(void)getAppVersion{
-
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/html",@"application/json",nil];
-    
-    manager.requestSerializer.timeoutInterval=10;
-    // 加上这行代码，https ssl 验证。
-    [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
-    
-    
-    [manager POST:DOWNLOAD_URL parameters:@{} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-
-        NSArray *array = responseObject[@"results"];
-        NSDictionary *dict = [array lastObject];
-         self.NewVersionLb.text = [NSString stringWithFormat:@"最新版本: v%@",dict[@"version"]];
-
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-
-    }];
-
-}
 - (void)dealloc{
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+-(void)Postpath:(NSString *)path
+{
+    
+    NSURL *url = [NSURL URLWithString:path];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                       timeoutInterval:10];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    
+    NSOperationQueue *queue = [NSOperationQueue new];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response,NSData *data,NSError *error){
+        NSMutableDictionary *receiveStatusDic=[[NSMutableDictionary alloc]init];
+        if (data) {
+            
+            NSDictionary *receiveDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+            if ([[receiveDic valueForKey:@"resultCount"] intValue]>0) {
+                
+                [receiveStatusDic setValue:@"1" forKey:@"status"];
+                [receiveStatusDic setValue:[[[receiveDic valueForKey:@"results"] objectAtIndex:0] valueForKey:@"version"]   forKey:@"version"];
+            }else{
+                
+                [receiveStatusDic setValue:@"-1" forKey:@"status"];
+            }
+        }else{
+            [receiveStatusDic setValue:@"-1" forKey:@"status"];
+        }
+        
+        [self performSelectorOnMainThread:@selector(receiveData:) withObject:receiveStatusDic waitUntilDone:NO];
+    }];
+    
+}
+
+-(void)receiveData:(id)sender
+{
+    self.NewVersionLb.text = [NSString stringWithFormat:@"最新版本:v%@",sender[@"version"]];
+    
+}
 
 //- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
 //    
@@ -157,16 +174,16 @@
 }
 - (void)shareTo:(NSArray *)type{
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@",[UserModel defaultUser].name];
-    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"大众团购网";
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"大众团购";
     
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@",DOWNLOAD_URL];
-    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"大众团购网";
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"大众团购";
     
     [UMSocialData defaultData].extConfig.sinaData.urlResource.url = [NSString stringWithFormat:@"%@",DOWNLOAD_URL];
     //    [UMSocialData defaultData].extConfig.sinaData.title = @"加入我们吧";
     
     UIImage *image=[UIImage imageNamed:@"mine_logo"];
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:type content:[NSString stringWithFormat:@"大众团购网，团购欢乐齐分享!(用safari浏览器打开)%@",[NSString stringWithFormat:@"%@",DOWNLOAD_URL]] image:image location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:type content:[NSString stringWithFormat:@"大众团购，团购欢乐齐分享!(用safari浏览器打开)%@",[NSString stringWithFormat:@"%@",DOWNLOAD_URL]] image:image location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
         
         if (response.responseCode == UMSResponseCodeSuccess) {
           
