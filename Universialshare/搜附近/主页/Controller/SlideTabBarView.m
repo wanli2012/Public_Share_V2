@@ -181,20 +181,20 @@
         UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 35)];
         if (i < 3) {
             
-            GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades[i];
+//            GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades[i];
             
-            if ([model.trade_id integerValue] == 39) {
-                label1.text = @"批发零售";
-            }else if([model.trade_id integerValue] == 40){
-                label1.text = @"餐饮住宿";
-                
-            }else if([model.trade_id integerValue] == 49){
-                label1.text = @"休闲娱乐";
-                
-            }else{
-                
+//            if ([model.trade_id integerValue] == 39) {
+//                label1.text = @"批发零售";
+//            }else if([model.trade_id integerValue] == 40){
+//                label1.text = @"餐饮住宿";
+//                
+//            }else if([model.trade_id integerValue] == 49){
+//                label1.text = @"休闲娱乐";
+//                
+//            }else{
+            
                 label1.text = name1[i];
-            }
+//            }
         }else{
             label1.text = name1[i];
         }
