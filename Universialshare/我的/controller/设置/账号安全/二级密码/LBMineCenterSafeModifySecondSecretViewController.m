@@ -230,7 +230,7 @@
         return NO;
     }
     
-    if (_sixSecret.length >= 6 && ![string isEqualToString:@""]) {
+    if (_sixSecret.length >= 6 && ![string isEqualToString:@""] && textField == self.soldecretTf) {
         return NO;
     }
     

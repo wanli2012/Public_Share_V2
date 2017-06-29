@@ -300,7 +300,7 @@ GLNearby_AllController *all;
     CGRect tableNewFrame = CGRectMake(pageNumber * _mViewFrame.size.width, 0, _mViewFrame.size.width, _mViewFrame.size.height - TOPHEIGHT);
     
     UIView *view = _scrollTableViews[tabviewTag];
-//    NSLog(@"%@",_scrollTableViews[tabviewTag]);
+
     view.frame = tableNewFrame;
     if ([view isKindOfClass:[eat class]]) {
         

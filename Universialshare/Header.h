@@ -25,6 +25,8 @@
 #define URL_Base @"https://www.51dztg.com/index.php/app/"
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1228047806?mt=8"
+//获取appStore上的最新版本号地址
+#define GET_VERSION  @"https://itunes.apple.com/lookup?id=1228047806"
 //关于我们网址
 #define ABOUTUS_URL @"https://www.51dztg.com/hyjm/hyjm.html"
 //公告
