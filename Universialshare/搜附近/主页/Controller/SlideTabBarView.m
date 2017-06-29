@@ -246,8 +246,7 @@ GLNearby_AllController *all;
 
     for (int i = 0; i < _tabCount; i ++) {
         
-        if (i == 0) {
-            
+        if (i == 0 && _tabCount >1) {
             eat = [[GLNearby_EatController alloc] init];
   
             [self.viewController addChildViewController:eat];
@@ -256,7 +255,7 @@ GLNearby_AllController *all;
             [_scrollTableViews addObject:eat.view];
             [_scrollView addSubview:eat.view];
 
-        } else if (i == 1) {
+        } else if (i == 1 && _tabCount > 2) {
             live = [[GLNearby_LiveController alloc] init];
 
             [self.viewController addChildViewController:live];
@@ -265,7 +264,7 @@ GLNearby_AllController *all;
             [_scrollTableViews addObject:live.view];
             [_scrollView addSubview:live.view];
             
-        }else if (i == 2) {
+        }else if (i == 2 && _tabCount >3) {
             play = [[GLNearby_PlayController alloc] init];
    
             [self.viewController addChildViewController:play];
@@ -274,7 +273,7 @@ GLNearby_AllController *all;
             [_scrollTableViews addObject:play.view];
             [_scrollView addSubview:play.view];
             
-        }else if(i == 3){
+        }else if(i == (_tabCount - 1)){
             all = [[GLNearby_AllController alloc] init];
    
             [self.viewController addChildViewController:all];

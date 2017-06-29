@@ -154,4 +154,5 @@ static NSString *ID = @"GLNearby_ClassifyConcollectionCell";
     }
     return _isSeletedArr;
 }
+
 @end

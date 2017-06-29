@@ -30,6 +30,7 @@
 @property (nonatomic, copy)NSString *city_id;
 @property (nonatomic, assign)NSInteger page;
 
+@property (nonatomic, strong)GLNearby_ClassifyHeaderView *headerV;
 @end
 
 static NSString *ID = @"GLNearby_classifyCell";
@@ -57,6 +58,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
     
     self.tableView.mj_header = header;
+    self.tableView.tableHeaderView = self.headerV;
     [self updateData:YES];
     
 }
@@ -100,13 +102,12 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                     [self.recommendModels addObject:model];
                 }
                 
-                GLNearby_ClassifyHeaderView *headerV = [[GLNearby_ClassifyHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 70)];
-                self.tableView.tableHeaderView = headerV;
-                headerV.dataSource = self.tradeTwoModels;
                 
-                __weak typeof(self) weakSelf = self;
+                _headerV = [[GLNearby_ClassifyHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 70)];
+                self.tableView.tableHeaderView = _headerV;
+                _headerV.dataSource = self.tradeTwoModels;                __weak typeof(self) weakSelf = self;
                 
-                headerV.block = ^(NSString *typeID,NSInteger count){
+                _headerV.block = ^(NSString *typeID,NSInteger count){
                     
                     if ([typeID isEqualToString:@"全部"]) {
                         
@@ -122,8 +123,8 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                         weakSelf.tableView.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 70);
                     }else{
                         
-                        for (int i = 0; i < self.tradeTwoModels.count; i ++) {
-                            GLNearby_TradeOneModel *model = self.tradeTwoModels[i];
+                        for (int i = 0; i < weakSelf.tradeTwoModels.count; i ++) {
+                            GLNearby_TradeOneModel *model = weakSelf.tradeTwoModels[i];
                             if ([typeID isEqualToString:model.trade_name]) {
                                 _two_trade_id = model.trade_id;
                             }
@@ -294,6 +295,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     
     [self.viewController.navigationController pushViewController:store animated:YES];
     self.viewController.hidesBottomBarWhenPushed = NO;
+    
 }
 
 - (NSMutableArray *)nearModels{

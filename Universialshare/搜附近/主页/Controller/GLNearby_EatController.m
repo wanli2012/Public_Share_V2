@@ -45,8 +45,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     [self.tableView registerNib:[UINib nibWithNibName:ID2 bundle:nil] forCellReuseIdentifier:ID2];
     
-    _headerV = [[GLNearby_ClassifyHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 70)];
-    self.tableView.tableHeaderView = _headerV;
+    
     
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -111,6 +110,8 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                     [self.recommendModels addObject:model];
                 }
                 
+                _headerV = [[GLNearby_ClassifyHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 70)];
+                self.tableView.tableHeaderView = _headerV;
                 _headerV.dataSource = self.tradeTwoModels;
             __weak __typeof(self) weakSelf = self;
                 _headerV.block = ^(NSString *typeID,NSInteger count){
