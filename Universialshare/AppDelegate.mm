@@ -22,7 +22,7 @@
 
 #import <UserNotifications/UserNotifications.h>
 
-@interface AppDelegate ()<UNUserNotificationCenterDelegate,WXApiDelegate>
+@interface AppDelegate ()<UNUserNotificationCenterDelegate,WXApiDelegate,UIAlertViewDelegate>
 
 @property(strong,nonatomic)BMKMapManager* mapManager;
 @property(strong,nonatomic)NSDictionary* userInfo;
@@ -113,8 +113,9 @@
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:userInfo[@"aps"][@"alert"][@"title"]
                                                                 message:userInfo[@"aps"][@"alert"][@"body"]
                                                                delegate:self
-                                                      cancelButtonTitle:@"确定"
-                                                      otherButtonTitles:nil];
+                                                      cancelButtonTitle:@"取消"
+                                                      otherButtonTitles:@"立即更新", nil];
+            
             [alertView show];
     
         }
@@ -127,12 +128,6 @@
         //应用处于前台时的远程推送接受
         //关闭U-Push自带的弹出框
         [UMessage setAutoAlert:NO];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:userInfo[@"aps"][@"alert"][@"title"]
-                                                            message:userInfo[@"aps"][@"alert"][@"body"]
-                                                           delegate:self
-                                                  cancelButtonTitle:@"确定"
-                                                  otherButtonTitles:nil];
-         [alertView show];
         //必须加这句代码
         [UMessage didReceiveRemoteNotification:userInfo];
         
@@ -152,8 +147,8 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:userInfo[@"aps"][@"alert"][@"title"]
                                                             message:userInfo[@"aps"][@"alert"][@"body"]
                                                            delegate:self
-                                                  cancelButtonTitle:@"确定"
-                                                  otherButtonTitles:nil];
+                                                  cancelButtonTitle:@"取消"
+                                                  otherButtonTitles:@"立即更新", nil];
         
         [alertView show];
         //必须加这句代码
@@ -163,10 +158,6 @@
         //应用处于后台时的本地推送接受
     }
 }
-
-
-
-
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
@@ -303,6 +294,16 @@
         }
     }
     [MBProgressHUD showError:strMsg];
+}
+
+#pragma mark ----- uialertviewdelegete
+//下载
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:DOWNLOAD_URL]];
+    }
+
 }
 
 #pragma mark - 键盘高度处理

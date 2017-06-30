@@ -19,5 +19,4 @@
 
 -(void)removeloadview;//移除
 
-
 @end

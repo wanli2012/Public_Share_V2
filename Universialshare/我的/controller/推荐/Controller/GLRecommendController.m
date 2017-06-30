@@ -103,7 +103,7 @@
 
 -(void)receiveData:(id)sender
 {
-    self.NewVersionLb.text = [NSString stringWithFormat:@"最新版本:v%@",sender[@"version"]];
+    self.NewVersionLb.text = [NSString stringWithFormat:@"最新版本: v%@",sender[@"version"]];
     
 }
 
