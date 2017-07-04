@@ -236,24 +236,27 @@
             
         }else{
             
+            if ([responseObject count] == 0) {
+                
+                [MBProgressHUD showError:@"数据请求失败,请稍后重试"];
+                
+            }else{
+                
             [MBProgressHUD showError:responseObject[@"message"]];
+                
+            }
         }
          [self dismiss];
     } enError:^(NSError *error) {
+         [self dismiss];
         [_loadV removeloadview];
-        
+        [MBProgressHUD showError:error.localizedDescription];
     }];
 
 }
 - (void)integralPay:(NSNotification *)sender {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
-    
-    //    NSString *orderID = [RSAEncryptor encryptString:self.orderNum publicKey:public_RSA];
-    //    NSString *uid = [RSAEncryptor encryptString:[UserModel defaultUser].uid publicKey:public_RSA];
-    //    dict[@"uid"] = uid;
-    //    dict[@"order_id"] = orderID;
-    
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"order_id"] = self.order_id;
     dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
@@ -274,18 +277,27 @@
                 [self.navigationController popToRootViewControllerAnimated:YES];
                 
             }else{
+                
                 [self.navigationController popViewControllerAnimated:YES];
             }
             
             self.hidesBottomBarWhenPushed = NO;
             
         }else{
-            
-            [MBProgressHUD showError:responseObject[@"message"]];
+            if ([responseObject count] == 0) {
+                
+                [MBProgressHUD showError:@"数据请求失败,请稍后重试"];
+                
+            }else{
+                
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
         }
         
     } enError:^(NSError *error) {
         [_loadV removeloadview];
+        [self dismiss];
+         [MBProgressHUD showError:error.localizedDescription];
         
     }];
 
@@ -320,8 +332,9 @@
         }
         
     } enError:^(NSError *error) {
+
         [_loadV removeloadview];
-        
+         [MBProgressHUD showError:error.localizedDescription];
     }];
 }
 
@@ -384,7 +397,7 @@
         
     } enError:^(NSError *error) {
         [_loadV removeloadview];
-        
+         [MBProgressHUD showError:error.localizedDescription];
     }];
 }
 
