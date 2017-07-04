@@ -219,8 +219,8 @@
         [_loadV removeloadview];
 
         if ([responseObject[@"code"] integerValue] == 1){
-            [MBProgressHUD showSuccess:responseObject[@"message"]];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 self.hidesBottomBarWhenPushed = YES;
                 if(self.pushIndex == 1){
                     
@@ -229,7 +229,7 @@
                 }else{
                     [self.navigationController popViewControllerAnimated:YES];
                 }
-                
+                [MBProgressHUD showSuccess:responseObject[@"message"]];
                 self.hidesBottomBarWhenPushed = NO;
             });
             
@@ -265,9 +265,8 @@
         [self dismiss];
 
         if ([responseObject[@"code"] integerValue] == 1){
-            
-            [MBProgressHUD showSuccess:responseObject[@"message"]];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 self.hidesBottomBarWhenPushed = YES;
                 if(self.pushIndex == 1){
                     
@@ -276,7 +275,7 @@
                 }else{
                     [self.navigationController popViewControllerAnimated:YES];
                 }
-                
+                [MBProgressHUD showSuccess:responseObject[@"message"]];
                 self.hidesBottomBarWhenPushed = NO;
             });
             
