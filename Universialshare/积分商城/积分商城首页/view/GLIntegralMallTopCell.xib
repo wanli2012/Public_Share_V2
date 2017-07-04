@@ -142,6 +142,7 @@
                             <constraint firstItem="S06-4u-ZPx" firstAttribute="top" secondItem="WGS-xE-7yr" secondAttribute="top" constant="1" id="EPx-AI-tWD"/>
                             <constraint firstItem="HHW-c9-yKl" firstAttribute="height" secondItem="S06-4u-ZPx" secondAttribute="height" id="EgE-VY-C1C"/>
                             <constraint firstAttribute="bottom" secondItem="BPh-TH-rp3" secondAttribute="bottom" constant="1" id="IAa-pH-tvD"/>
+                            <constraint firstAttribute="height" constant="127" id="JiY-7N-GlQ"/>
                             <constraint firstItem="HHW-c9-yKl" firstAttribute="centerY" secondItem="S06-4u-ZPx" secondAttribute="centerY" id="KaZ-nI-D7Y"/>
                             <constraint firstItem="45h-Yb-PCA" firstAttribute="centerY" secondItem="rOZ-Vb-7k1" secondAttribute="centerY" id="QOr-Bv-LLj"/>
                             <constraint firstItem="u9d-8y-eJV" firstAttribute="bottom" secondItem="uxL-5R-mJg" secondAttribute="bottom" id="Vj7-g7-3h6"/>
@@ -214,6 +215,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="firstView" destination="S06-4u-ZPx" id="xK1-YN-vwG"/>
+                <outlet property="goodsViewHeight" destination="JiY-7N-GlQ" id="yEP-VO-kb2"/>
                 <outlet property="imageV" destination="VMm-hc-La2" id="0ne-rp-z9b"/>
                 <outlet property="imageV2" destination="R3G-8m-rTf" id="ejC-kQ-S4u"/>
                 <outlet property="imageV3" destination="VK3-JT-8Fl" id="Ghg-EB-1An"/>
@@ -227,7 +229,7 @@
                 <outlet property="titleLabel2" destination="u9d-8y-eJV" id="8sU-G6-9CU"/>
                 <outlet property="titleLabel3" destination="Dso-sH-vPA" id="Hnn-Gl-TuK"/>
             </connections>
-            <point key="canvasLocation" x="73.5" y="-412"/>
+            <point key="canvasLocation" x="65" y="-611"/>
         </tableViewCell>
     </objects>
     <resources>

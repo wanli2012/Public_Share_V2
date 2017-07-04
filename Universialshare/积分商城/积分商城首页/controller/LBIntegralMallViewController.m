@@ -260,19 +260,28 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     GLHourseDetailController *detailVC = [[GLHourseDetailController alloc] init];
     detailVC.navigationItem.title = @"米券兑换详情";
     if (Tag.view.tag == 11) {
-        GLMallHotModel *model = self.hotModels[0];
-        detailVC.goods_id = model.mall_id;
-        [self.navigationController pushViewController:detailVC animated:YES];
+        if ((Tag.view.tag - 11) < _hotModels.count) {
+            
+            GLMallHotModel *model = self.hotModels[0];
+            detailVC.goods_id = model.mall_id;
+            [self.navigationController pushViewController:detailVC animated:YES];
+        }
 
     }else if (Tag.view.tag == 12){
-        GLMallHotModel *model = self.hotModels[1];
-        detailVC.goods_id = model.mall_id;
-        [self.navigationController pushViewController:detailVC animated:YES];
+        if ((Tag.view.tag - 11) < _hotModels.count) {
+            
+            GLMallHotModel *model = self.hotModels[1];
+            detailVC.goods_id = model.mall_id;
+            [self.navigationController pushViewController:detailVC animated:YES];
+        }
 
     }else if (Tag.view.tag == 13){
-        GLMallHotModel *model = self.hotModels[2];
-        detailVC.goods_id = model.mall_id;
-        [self.navigationController pushViewController:detailVC animated:YES];
+        if ((Tag.view.tag - 11) < _hotModels.count) {
+            
+            GLMallHotModel *model = self.hotModels[2];
+            detailVC.goods_id = model.mall_id;
+            [self.navigationController pushViewController:detailVC animated:YES];
+        }
         
     }else{
         
@@ -368,7 +377,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
         if (self.hotModels.count == 3) {
             cell.models = self.hotModels;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+ 
         }
         cell.delegete = self;
         
