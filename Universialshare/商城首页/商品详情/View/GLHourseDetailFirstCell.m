@@ -47,6 +47,16 @@
     _monthSellLabel.text = [NSString stringWithFormat:@"月销%@笔",model.sell_count];
     _yunfeiLabel.text = [NSString stringWithFormat:@"运费:%@元",model.posttage];
     
+    if ([_priceLabel.text rangeOfString:@"null"].location != NSNotFound) {
+        _priceLabel.text = [NSString stringWithFormat:@"¥0.00米券"];
+    }
+    if ([_monthSellLabel.text rangeOfString:@"null"].location != NSNotFound) {
+        _monthSellLabel.text = [NSString stringWithFormat:@"月销0笔"];
+    }
+    if ([_yunfeiLabel.text rangeOfString:@"null"].location != NSNotFound) {
+        _yunfeiLabel.text = [NSString stringWithFormat:@"运费:0.00元"];
+    }
+    
     NSMutableString *attrStr = [NSMutableString string];
     
     for (int i = 0; i < model.attr.count; i ++) {

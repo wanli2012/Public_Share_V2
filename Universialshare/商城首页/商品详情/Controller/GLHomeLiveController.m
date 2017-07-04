@@ -151,7 +151,6 @@
     
     if (sender == self.areaBtn) {
         [self.areaBtn setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
-        _chooseVC.dataSource = @[@"1",@"2",@"2",@"2",@"2",@"2",@"2",@"2",@"2",@"2",@"2",@"2",@"2",@"2",@"2",@"2",@"2",@"2",@"2",@"2"];
         self.areaBtn.selected = !self.areaBtn.selected;
         
         self.unitPriceBtn.selected = NO;
@@ -160,7 +159,6 @@
         self.sizeBtn.selected = NO;
     }else if(sender == self.unitPriceBtn){
         [self.unitPriceBtn setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
-        _chooseVC.dataSource = @[@"2"];
         self.unitPriceBtn.selected = !self.unitPriceBtn.selected;
         
         self.areaBtn.selected = NO;
@@ -170,7 +168,6 @@
     }else if(sender == self.houseTypeBtn){
         
         [self.houseTypeBtn setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
-        _chooseVC.dataSource = @[@"3",@"2"];
         self.houseTypeBtn.selected = !self.houseTypeBtn.selected;
         
         self.areaBtn.selected = NO;
@@ -181,7 +178,6 @@
     }else if(sender == self.priceBtn){
         
         [self.priceBtn setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
-        _chooseVC.dataSource = @[@"4",@"2",@"2"];
         self.priceBtn.selected = !self.priceBtn.selected;
         
         self.areaBtn.selected = NO;
@@ -192,7 +188,6 @@
     }else if(sender == self.sizeBtn){
         
         [self.sizeBtn setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
-        _chooseVC.dataSource = @[@"5",@"2",@"2",@"2",@"2"];
         self.sizeBtn.selected = !self.sizeBtn.selected;
         
         self.areaBtn.selected = NO;

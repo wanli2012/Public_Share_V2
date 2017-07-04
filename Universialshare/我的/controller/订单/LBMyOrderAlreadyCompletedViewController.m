@@ -189,7 +189,6 @@
 //    LBMineCenterOrderDetailViewController *vc=[[LBMineCenterOrderDetailViewController alloc]init];
 //    [self.navigationController pushViewController:vc animated:YES];
     
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

@@ -239,7 +239,7 @@
                 
             }else if (self.payType == 2){
             
-            }else if (self.payType == 3){
+            }else if (self.payType == 4){
                  [MBProgressHUD showError:@"支付成功"];
             }
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

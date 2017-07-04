@@ -180,7 +180,6 @@ static NSString *ID = @"GLMine_InfoCell";
                 [formData appendPartWithFileData:data name:@"pic" fileName:fileName mimeType:@"image/png"];
             }
             
-            
         }progress:^(NSProgress *uploadProgress){
             
         }success:^(NSURLSessionDataTask *task, id responseObject) {
