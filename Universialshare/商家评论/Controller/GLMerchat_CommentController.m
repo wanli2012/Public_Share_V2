@@ -155,10 +155,10 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
 //选择了某个cell
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     GLMerchat_CommentGoodsModel *model = self.models[indexPath.row];
-    if ([model.pl_count integerValue] <= 0) {
-        [MBProgressHUD showError:@"暂无评论"];
-        return;
-    }
+//    if ([model.pl_count integerValue] <= 0) {
+//        [MBProgressHUD showError:@"暂无评论"];
+//        return;
+//    }
     self.hidesBottomBarWhenPushed = YES;
     GLMerchat_CommentTableController *commentVC = [[GLMerchat_CommentTableController alloc] init];
     commentVC.model = model;

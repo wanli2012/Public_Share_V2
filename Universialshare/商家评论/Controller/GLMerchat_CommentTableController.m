@@ -10,6 +10,7 @@
 #import "GLMerchat_CommentCell.h"
 #import "GLMerchat_CommentModel.h"
 #import "SDCycleScrollView.h"
+#import "JZAlbumViewController.h"
 
 @interface GLMerchat_CommentTableController ()<SDCycleScrollViewDelegate,GLMerchat_CommentCellDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
@@ -261,13 +262,25 @@ static NSString *ID = @"GLMerchat_CommentCell";
         _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
         _cycleScrollView.titleLabelBackgroundColor = [UIColor groupTableViewBackgroundColor];// 图片对应的标题的 背景色。（因为没有设标题）
-        
+        _cycleScrollView.imageURLStringsGroup = @[self.model.thumb];
         _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
+        _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     }
     
     return _cycleScrollView;
     
 }
+#pragma mark 点击看大图
+/** 点击图片回调 */
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    
+    JZAlbumViewController *jzAlbumVC = [[JZAlbumViewController alloc]init];
+    jzAlbumVC.currentIndex =index;//这个参数表示当前图片的index，默认是0
+    jzAlbumVC.imgArr = [self.cycleScrollView.imageURLStringsGroup copy];//图片数组，可以是url，也可以是UIImage
+    [self presentViewController:jzAlbumVC animated:NO completion:nil];
+    
+}
+
 
 - (void)comment:(NSInteger)index{
     _index = index;
@@ -275,7 +288,7 @@ static NSString *ID = @"GLMerchat_CommentCell";
     [self.view addSubview:self.commentView];
     [_commentTF becomeFirstResponder];
 }
-#pragma uitextfieldDelegate
+#pragma mark uitextfieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
 //    NSLog(@"点击了搜索");
