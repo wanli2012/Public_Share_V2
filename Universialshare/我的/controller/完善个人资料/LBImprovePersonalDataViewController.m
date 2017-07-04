@@ -249,7 +249,6 @@
     UIActionSheet* actionSheet = [[UIActionSheet alloc]initWithTitle:@"请选择图片来源" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"去相册选择",@"用相机拍照", nil];
     [actionSheet showInView:self.view];
     
-    
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -265,7 +264,6 @@
             break;
     }
 }
-
 
 -(void)getpicture{
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
