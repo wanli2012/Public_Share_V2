@@ -219,20 +219,19 @@
         [_loadV removeloadview];
 
         if ([responseObject[@"code"] integerValue] == 1){
-            
-            self.hidesBottomBarWhenPushed = YES;
-            
             [MBProgressHUD showSuccess:responseObject[@"message"]];
-            
-            if(self.pushIndex == 1){
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.hidesBottomBarWhenPushed = YES;
+                if(self.pushIndex == 1){
+                    
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    
+                }else{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
                 
-                [self.navigationController popToRootViewControllerAnimated:YES];
-                
-            }else{
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-            
-            self.hidesBottomBarWhenPushed = NO;
+                self.hidesBottomBarWhenPushed = NO;
+            });
             
         }else{
             
@@ -240,6 +239,7 @@
         }
          [self dismiss];
     } enError:^(NSError *error) {
+         [MBProgressHUD showError:error.localizedDescription];
         [_loadV removeloadview];
         
     }];
@@ -267,17 +267,18 @@
         if ([responseObject[@"code"] integerValue] == 1){
             
             [MBProgressHUD showSuccess:responseObject[@"message"]];
-            self.hidesBottomBarWhenPushed = YES;
-            
-            if(self.pushIndex == 1){
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.hidesBottomBarWhenPushed = YES;
+                if(self.pushIndex == 1){
+                    
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    
+                }else{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
                 
-                [self.navigationController popToRootViewControllerAnimated:YES];
-                
-            }else{
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-            
-            self.hidesBottomBarWhenPushed = NO;
+                self.hidesBottomBarWhenPushed = NO;
+            });
             
         }else{
             
@@ -285,6 +286,7 @@
         }
         
     } enError:^(NSError *error) {
+        [MBProgressHUD showError:error.localizedDescription];
         [_loadV removeloadview];
         
     }];
@@ -320,6 +322,7 @@
         }
         
     } enError:^(NSError *error) {
+        [MBProgressHUD showError:error.localizedDescription];
         [_loadV removeloadview];
         
     }];
@@ -383,6 +386,7 @@
         }
         
     } enError:^(NSError *error) {
+        [MBProgressHUD showError:error.localizedDescription];
         [_loadV removeloadview];
         
     }];

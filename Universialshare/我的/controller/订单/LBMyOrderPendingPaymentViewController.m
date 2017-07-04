@@ -100,13 +100,15 @@
             [self.tableview reloadData];
             
         }else if ([responseObject[@"code"] integerValue]==3){
-            
+            if (_refreshType == NO) {
+                [self.dataarr removeAllObjects];
+            }
+            [self.tableview reloadData];
             [MBProgressHUD showError:responseObject[@"message"]];
             
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
-            
-            
+
         }
     } enError:^(NSError *error) {
         [_loadV removeloadview];
@@ -192,14 +194,13 @@
         LBMyOrdersModel *model = self.dataarr[section];
         dict[@"order_id"] = model.order_id;
         
-        NSLog(@"dict = %@",dict);
         _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
         [NetworkManager requestPOSTWithURLStr:@"shop/qxOrder" paramDic:dict finish:^(id responseObject) {
             
             [_loadV removeloadview];
             NSLog(@"responseObject = %@",responseObject);
             if ([responseObject[@"code"] integerValue] == 1){
-                [self loadNewData];
+                [weakself loadNewData];
                                 
             }
             [MBProgressHUD showSuccess:responseObject[@"message"]];

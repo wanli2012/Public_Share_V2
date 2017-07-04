@@ -321,8 +321,10 @@
           [self.navigationController popToRootViewControllerAnimated:YES];
         }else{
             [MBProgressHUD showError:dic[@"message"]];
+            [SVProgressHUD dismiss];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [SVProgressHUD dismiss];
         [MBProgressHUD showError:error.localizedDescription];
     }];
  
