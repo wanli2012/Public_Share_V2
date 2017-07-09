@@ -14,7 +14,7 @@
 #import "GLNearby_TradeOneModel.h"
 
 
-#define TOPHEIGHT 40
+#define TOPHEIGHT 80
 #define YYSScreenW  [UIScreen mainScreen].bounds.size.width
 #define YYSScreenH  [UIScreen mainScreen].bounds.size.height
 #define YYSGlobalColor [UIColor colorWithRed:0/255.0 green:222/255.0  blue:0/255.0 alpha:1]
@@ -50,6 +50,8 @@
 @property (nonatomic, copy)NSString *latitude;
 @property (nonatomic, copy)NSString *longitude;
 @property (nonatomic, strong)NSArray *trade_idModels;
+//图标数组
+@property (nonatomic, strong)NSArray *imagesArr;
 
 @end
 
@@ -93,7 +95,8 @@
     }
 
     _slideView = [[UIView alloc] initWithFrame:CGRectMake(0, TOPHEIGHT - 5, width, 2)];
-    [_slideView setBackgroundColor:YYSRGBColor(40, 150, 58,1)];
+//    [_slideView setBackgroundColor:YYSRGBColor(40, 150, 58,1)];
+     [_slideView setBackgroundColor:[UIColor clearColor]];
     [_topScrollView addSubview:_slideView];
 }
 
@@ -178,31 +181,36 @@
         view.backgroundColor = [UIColor whiteColor];
         view.tag = i;
         
-        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 35)];
+        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, TOPHEIGHT - 29, width, 35)];
+        UIImageView *imagev=[[UIImageView alloc]initWithFrame:CGRectMake(5, 10, width - 10, TOPHEIGHT - 30)];
+        label1.tag = 10;
+        imagev.image = [UIImage imageNamed:self.imagesArr[i]];
+        imagev.contentMode = UIViewContentModeScaleAspectFit;
         if (i < 3) {
             
-//            GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades[i];
+            //GLNearby_TradeOneModel *model = [GLNearby_Model defaultUser].trades[i];
             
-//            if ([model.trade_id integerValue] == 39) {
-//                label1.text = @"批发零售";
-//            }else if([model.trade_id integerValue] == 40){
-//                label1.text = @"餐饮住宿";
-//                
-//            }else if([model.trade_id integerValue] == 49){
-//                label1.text = @"休闲娱乐";
-//                
-//            }else{
+            if (i == 0) {
+                label1.text = @"批发零售";
+            }else if(i == 1){
+                label1.text = @"餐饮住宿";
+                
+            }else if(i == 2){
+                label1.text = @"休闲娱乐";
+                
+            }else{
             
                 label1.text = name1[i];
-//            }
+            }
         }else{
             label1.text = name1[i];
         }
         
         label1.textColor = [UIColor darkGrayColor];
         label1.textAlignment = NSTextAlignmentCenter;
-        label1.font = [UIFont systemFontOfSize:15];
+        label1.font = [UIFont systemFontOfSize:13];
         [view addSubview:label1];
+        [view addSubview:imagev];
 
         if (i == 0) {
             label1.textColor = YYSRGBColor(40, 150, 58,1);
@@ -321,14 +329,13 @@ GLNearby_AllController *all;
 - (void) changeBackColorWithPage: (NSInteger) currentPage {
     for (int i = 0; i < _topViews.count; i ++) {
         UIView *tempView = _topViews[i];
-        for (UILabel *label in [tempView subviews]) {
-            if (i == currentPage) {
-                label.textColor = YYSRGBColor(40, 150, 58,1);
-            } else {
-                label.textColor = [UIColor darkGrayColor];
-            }
-        }
+        UILabel  *label = [tempView viewWithTag:10];
         
+        if (i == currentPage) {
+            label.textColor = YYSRGBColor(40, 150, 58,1);
+        } else {
+            label.textColor = [UIColor darkGrayColor];
+        }
     }
 }
 
@@ -402,6 +409,15 @@ GLNearby_AllController *all;
         _slideView.frame = frame;
     }
     
+}
+
+-(NSArray*)imagesArr{
+
+    if (!_imagesArr) {
+        _imagesArr=[NSArray arrayWithObjects:@"批发零售",@"餐饮住宿",@"文化体育",@"全部", nil];
+    }
+
+    return _imagesArr;
 }
 
 @end

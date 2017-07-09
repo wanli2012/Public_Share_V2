@@ -189,7 +189,7 @@
         return;
     }
     if (self.secondPwdT.text == nil || self.secondPwdT.text.length == 0) {
-        [MBProgressHUD showError:@"请输入二级密码"];
+        [MBProgressHUD showError:@"请输入交易密码"];
         return;
     }
     

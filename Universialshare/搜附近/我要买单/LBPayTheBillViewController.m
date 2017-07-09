@@ -65,6 +65,8 @@
      *微信支付成功 回调
      */
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(wxpaysucess) name:@"wxpaysucess" object:nil];
+    
+    self.namelb.text = self.namestr;
 }
 
 -(void)wxpaysucess{

@@ -14,11 +14,12 @@
                 <outlet property="getcodeBt" destination="d0b-yk-WtG" id="OUs-la-QvJ"/>
                 <outlet property="phoneTf" destination="K31-MW-KcV" id="7wc-Sk-uol"/>
                 <outlet property="recomendId" destination="q4m-Rw-aQi" id="Pwg-cV-Tf4"/>
-                <outlet property="registerBt" destination="wKv-UJ-gdK" id="X6r-qj-hXl"/>
+                <outlet property="registerBt" destination="wKv-UJ-gdK" id="OD4-J7-ji5"/>
                 <outlet property="secretTf" destination="m9E-cg-Bp3" id="2nF-mQ-Iix"/>
                 <outlet property="sureSecretTf" destination="zqf-9t-jXB" id="138-e1-VXw"/>
                 <outlet property="verificationTf" destination="tCU-B5-5qR" id="mKp-2e-B8v"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="xieyiBt" destination="qdh-nG-wtl" id="jzJ-Zh-JIh"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -137,9 +138,9 @@
                         <outlet property="delegate" destination="-1" id="gbl-Dx-0cX"/>
                     </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKv-UJ-gdK">
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKv-UJ-gdK">
                     <rect key="frame" x="10" y="377" width="355" height="45"/>
-                    <color key="backgroundColor" red="0.14404621719999999" green="0.60565376280000005" blue="0.14635491370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="uQM-Yq-4LT"/>
                     </constraints>
@@ -176,6 +177,34 @@
                         <action selector="scanEvent:" destination="-1" eventType="touchUpInside" id="iRj-6E-2SA"/>
                     </connections>
                 </button>
+                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册协议" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBU-Wy-Dae">
+                    <rect key="frame" x="45" y="342" width="80" height="20"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="VAF-fq-PA9"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="vGm-L6-yHU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.29016065600000002" green="0.29021644590000001" blue="0.29015710950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="FeV-dJ-C5A" appends="YES" id="U6K-aO-ASv"/>
+                    </connections>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdh-nG-wtl">
+                    <rect key="frame" x="20" y="342" width="20" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="Z5F-zL-vw5"/>
+                        <constraint firstAttribute="height" constant="20" id="fv7-Cx-jsI"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                    <state key="normal" image="添加产品未选中"/>
+                    <state key="selected" image="添加产品选中"/>
+                    <connections>
+                        <action selector="checkRegisterInfo:" destination="-1" eventType="touchUpInside" id="Q0b-wE-Zb1"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -189,6 +218,7 @@
                 <constraint firstAttribute="trailing" secondItem="d0b-yk-WtG" secondAttribute="trailing" constant="10" id="DOa-u2-j3f"/>
                 <constraint firstAttribute="trailing" secondItem="wKv-UJ-gdK" secondAttribute="trailing" constant="10" id="DxX-7Y-DHg"/>
                 <constraint firstItem="zqf-9t-jXB" firstAttribute="trailing" secondItem="m9E-cg-Bp3" secondAttribute="trailing" id="Fd2-mM-qWz"/>
+                <constraint firstItem="qdh-nG-wtl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="G3b-55-fFL"/>
                 <constraint firstItem="K31-MW-KcV" firstAttribute="height" secondItem="938-Pe-Vlq" secondAttribute="height" id="Ise-Ja-mey"/>
                 <constraint firstItem="938-Pe-Vlq" firstAttribute="height" secondItem="cdY-G6-IKH" secondAttribute="height" id="LVm-lP-WhC"/>
                 <constraint firstItem="K31-MW-KcV" firstAttribute="leading" secondItem="q4m-Rw-aQi" secondAttribute="leading" id="Lay-HK-wrc"/>
@@ -211,6 +241,7 @@
                 <constraint firstItem="q4m-Rw-aQi" firstAttribute="height" secondItem="cdY-G6-IKH" secondAttribute="height" id="f9x-lo-g7E"/>
                 <constraint firstItem="tCU-B5-5qR" firstAttribute="centerY" secondItem="exc-r1-sn0" secondAttribute="centerY" id="fBA-2C-KzH"/>
                 <constraint firstItem="Q3E-MS-1Sb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fDJ-eT-4HN"/>
+                <constraint firstItem="qdh-nG-wtl" firstAttribute="top" secondItem="exc-r1-sn0" secondAttribute="bottom" constant="15" id="fwE-pH-mnY"/>
                 <constraint firstItem="q4m-Rw-aQi" firstAttribute="centerY" secondItem="cdY-G6-IKH" secondAttribute="centerY" id="htZ-If-Eqm"/>
                 <constraint firstItem="zqf-9t-jXB" firstAttribute="leading" secondItem="m9E-cg-Bp3" secondAttribute="leading" id="hvo-zp-jAP"/>
                 <constraint firstItem="exc-r1-sn0" firstAttribute="leading" secondItem="K5O-wd-F1o" secondAttribute="leading" id="icy-yE-glD"/>
@@ -220,18 +251,27 @@
                 <constraint firstItem="tCU-B5-5qR" firstAttribute="leading" secondItem="zqf-9t-jXB" secondAttribute="leading" id="rUw-kS-CM7"/>
                 <constraint firstItem="P6t-3L-cMm" firstAttribute="height" secondItem="938-Pe-Vlq" secondAttribute="height" id="u9M-wS-nEN"/>
                 <constraint firstItem="ciV-YP-4k3" firstAttribute="height" secondItem="Q3E-MS-1Sb" secondAttribute="height" id="uXT-oG-iKc"/>
+                <constraint firstItem="dBU-Wy-Dae" firstAttribute="leading" secondItem="qdh-nG-wtl" secondAttribute="trailing" constant="5" id="vlu-dt-7HU"/>
                 <constraint firstItem="d0b-yk-WtG" firstAttribute="centerY" secondItem="exc-r1-sn0" secondAttribute="centerY" id="wOJ-yG-dhV"/>
                 <constraint firstItem="K5O-wd-F1o" firstAttribute="height" secondItem="P6t-3L-cMm" secondAttribute="height" id="xzq-oE-oel"/>
                 <constraint firstItem="U6E-cK-cuH" firstAttribute="leading" secondItem="q4m-Rw-aQi" secondAttribute="trailing" constant="20" id="ySe-yM-hUd"/>
                 <constraint firstItem="cdY-G6-IKH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="zDV-7m-DMT"/>
+                <constraint firstItem="dBU-Wy-Dae" firstAttribute="centerY" secondItem="qdh-nG-wtl" secondAttribute="centerY" id="zof-ya-PPe"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
+        <tapGestureRecognizer id="FeV-dJ-C5A">
+            <connections>
+                <action selector="tapgestureRegisterInfo:" destination="-1" id="oif-Tm-CMP"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="mine_regist_scan" width="40" height="40"/>
+        <image name="添加产品未选中" width="33" height="33"/>
+        <image name="添加产品选中" width="33" height="33"/>
         <image name="返回键-拷贝" width="8" height="15"/>
     </resources>
 </document>

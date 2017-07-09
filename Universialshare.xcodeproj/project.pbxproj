@@ -713,7 +713,6 @@
 		F92309861E9B8BFF00ECDC94 /* LBMineCenterSafeChangePhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92309001E9B8BFF00ECDC94 /* LBMineCenterSafeChangePhoneViewController.xib */; };
 		F92309871E9B8BFF00ECDC94 /* LBMineCenterPriviteInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F92309031E9B8BFF00ECDC94 /* LBMineCenterPriviteInfoViewController.m */; };
 		F92309881E9B8BFF00ECDC94 /* LBMineCenterPriviteInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92309041E9B8BFF00ECDC94 /* LBMineCenterPriviteInfoViewController.xib */; };
-		F92309891E9B8BFF00ECDC94 /* LBMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F92309071E9B8BFF00ECDC94 /* LBMineViewController.m */; };
 		F923098A1E9B8BFF00ECDC94 /* LBMineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92309081E9B8BFF00ECDC94 /* LBMineViewController.xib */; };
 		F923098B1E9B8BFF00ECDC94 /* MineCollectionHeaderV.m in Sources */ = {isa = PBXBuildFile; fileRef = F923090A1E9B8BFF00ECDC94 /* MineCollectionHeaderV.m */; };
 		F923098C1E9B8BFF00ECDC94 /* LBMineCenterHotPickModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F923090D1E9B8BFF00ECDC94 /* LBMineCenterHotPickModel.m */; };
@@ -959,6 +958,9 @@
 		F9F7804A1ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F780481ED2EB6900A498D6 /* LBMineCenterMYOrderEvaluationDetailOneTableViewCell.xib */; };
 		F9F7804E1ED2F8FE00A498D6 /* LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F7804C1ED2F8FE00A498D6 /* LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.m */; };
 		F9F7804F1ED2F8FE00A498D6 /* LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F7804D1ED2F8FE00A498D6 /* LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.xib */; };
+		F9FC9A911F0F9F3F00B3AD0C /* GLMine_CompleteInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FC9A8F1F0F9F3F00B3AD0C /* GLMine_CompleteInfoView.m */; };
+		F9FC9A921F0F9F3F00B3AD0C /* GLMine_CompleteInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FC9A901F0F9F3F00B3AD0C /* GLMine_CompleteInfoView.xib */; };
+		F9FC9A941F0F9FB600B3AD0C /* LBMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FC9A931F0F9FB600B3AD0C /* LBMineViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2221,7 +2223,6 @@
 		F92309031E9B8BFF00ECDC94 /* LBMineCenterPriviteInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterPriviteInfoViewController.m; sourceTree = "<group>"; };
 		F92309041E9B8BFF00ECDC94 /* LBMineCenterPriviteInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterPriviteInfoViewController.xib; sourceTree = "<group>"; };
 		F92309061E9B8BFF00ECDC94 /* LBMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineViewController.h; sourceTree = "<group>"; };
-		F92309071E9B8BFF00ECDC94 /* LBMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineViewController.m; sourceTree = "<group>"; };
 		F92309081E9B8BFF00ECDC94 /* LBMineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineViewController.xib; sourceTree = "<group>"; };
 		F92309091E9B8BFF00ECDC94 /* MineCollectionHeaderV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineCollectionHeaderV.h; sourceTree = "<group>"; };
 		F923090A1E9B8BFF00ECDC94 /* MineCollectionHeaderV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineCollectionHeaderV.m; sourceTree = "<group>"; };
@@ -2612,6 +2613,10 @@
 		F9F7804B1ED2F8FE00A498D6 /* LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.h; sourceTree = "<group>"; };
 		F9F7804C1ED2F8FE00A498D6 /* LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.m; sourceTree = "<group>"; };
 		F9F7804D1ED2F8FE00A498D6 /* LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.xib; sourceTree = "<group>"; };
+		F9FC9A8E1F0F9F3F00B3AD0C /* GLMine_CompleteInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_CompleteInfoView.h; sourceTree = "<group>"; };
+		F9FC9A8F1F0F9F3F00B3AD0C /* GLMine_CompleteInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_CompleteInfoView.m; sourceTree = "<group>"; };
+		F9FC9A901F0F9F3F00B3AD0C /* GLMine_CompleteInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_CompleteInfoView.xib; sourceTree = "<group>"; };
+		F9FC9A931F0F9FB600B3AD0C /* LBMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineViewController.m; sourceTree = "<group>"; };
 		FC2B7A4A425FAC91F43C98C0 /* Pods-Universialshare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Universialshare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Universialshare/Pods-Universialshare.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5112,7 +5117,7 @@
 			children = (
 				F92308331E9B8BFE00ECDC94 /* controller */,
 				F92309061E9B8BFF00ECDC94 /* LBMineViewController.h */,
-				F92309071E9B8BFF00ECDC94 /* LBMineViewController.m */,
+				F9FC9A931F0F9FB600B3AD0C /* LBMineViewController.m */,
 				F92309081E9B8BFF00ECDC94 /* LBMineViewController.xib */,
 				F92309091E9B8BFF00ECDC94 /* MineCollectionHeaderV.h */,
 				F923090A1E9B8BFF00ECDC94 /* MineCollectionHeaderV.m */,
@@ -5581,6 +5586,9 @@
 				F951EB081EA1E6EC00D6708E /* LBMineSelectCustomerTypeView.h */,
 				F951EB091EA1E6EC00D6708E /* LBMineSelectCustomerTypeView.m */,
 				F951EB0B1EA1E70900D6708E /* LBMineSelectCustomerTypeView.xib */,
+				F9FC9A8E1F0F9F3F00B3AD0C /* GLMine_CompleteInfoView.h */,
+				F9FC9A8F1F0F9F3F00B3AD0C /* GLMine_CompleteInfoView.m */,
+				F9FC9A901F0F9F3F00B3AD0C /* GLMine_CompleteInfoView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -6596,6 +6604,7 @@
 				F966B3F81EAC8C8A007260FC /* LBShowSaleManAndBusinessViewController.xib in Resources */,
 				F9434D501EC16D78001C80A4 /* LBMineCenterRegionQueryTableViewCell.xib in Resources */,
 				F91274A81EA0E6BC00B7A539 /* LBMineStoreOrderingTableViewCell.xib in Resources */,
+				F9FC9A921F0F9F3F00B3AD0C /* GLMine_CompleteInfoView.xib in Resources */,
 				F966B4041EAC9BC4007260FC /* LBMySalesmanListDeatilTableViewCell.xib in Resources */,
 				F923092F1E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeViewController.xib in Resources */,
 				F93F84D21E9F02C500F76E0B /* loadWait.xcassets in Resources */,
@@ -6993,7 +7002,6 @@
 				F92309611E9B8BFF00ECDC94 /* XBScrollPageController.m in Sources */,
 				4A4610971E9CC6360045824F /* ZXDataMatrixDecoder.m in Sources */,
 				F973747E1EFE049D00520D03 /* SubLBXScanViewController.m in Sources */,
-				F92309891E9B8BFF00ECDC94 /* LBMineViewController.m in Sources */,
 				F92309921E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.m in Sources */,
 				4A5F66BC1ECA93C50048F339 /* GLNearby_LiveController.m in Sources */,
 				4A417C0D1ED82C390074BDBA /* GLMySalesmanModel.m in Sources */,
@@ -7315,6 +7323,7 @@
 				F96659821ED57EB2000DD67F /* JZAlbumViewController.m in Sources */,
 				4A0D97921E9729C100A26B84 /* GLHotCell.m in Sources */,
 				4A4610491E9CC6360045824F /* ZXAztecWriter.m in Sources */,
+				F9FC9A911F0F9F3F00B3AD0C /* GLMine_CompleteInfoView.m in Sources */,
 				F961A9D61E9C75AF00275F52 /* predicateModel.m in Sources */,
 				4A1FE7321EC978FB0000A357 /* GLRecommendStoreController.m in Sources */,
 				F923092C1E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeDetailViewController.m in Sources */,
@@ -7389,6 +7398,7 @@
 				F966B3F71EAC8C8A007260FC /* LBShowSaleManAndBusinessViewController.m in Sources */,
 				4A5F66A51ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.m in Sources */,
 				F966B3E21EAC7E38007260FC /* LBMyBusinessListDetailViewController.m in Sources */,
+				F9FC9A941F0F9FB600B3AD0C /* LBMineViewController.m in Sources */,
 				4AB9E14D1ED6B7EE00BE0420 /* GLMerchat_ModifyView.m in Sources */,
 				F955A78F1EE011F3004141A4 /* LBStoreSendGoodsSecondViewController.m in Sources */,
 				4A4610BF1E9CC6370045824F /* ZXRSSExpandedFieldParser.m in Sources */,
@@ -7595,7 +7605,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Universialshare/Universialshare.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sichuan Sanjun Technology Co., Ltd. (GCU762TQ3E)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = GCU762TQ3E;
 				ENABLE_BITCODE = NO;
@@ -7660,7 +7670,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Universialshare/Universialshare.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sichuan Sanjun Technology Co., Ltd. (GCU762TQ3E)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = GCU762TQ3E;
 				ENABLE_BITCODE = NO;

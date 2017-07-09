@@ -15,7 +15,11 @@
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 #import <BaiduMapAPI_Search/BMKSearchComponent.h>
-
+#import "LBXScanView.h"
+#import "LBXScanResult.h"
+#import "LBXScanWrapper.h"
+#import "SubLBXScanViewController.h"
+#import "LBPayTheBillViewController.h"
 
 @interface GLNearbyViewController ()<UITextFieldDelegate>
 {
@@ -32,6 +36,7 @@
 @property (strong , nonatomic)BMKReverseGeoCodeOption *option;//地址
 @property (nonatomic, strong)SlideTabBarView *slideV;
 @property (nonatomic, strong)UIView *placeHolderView;
+@property (strong, nonatomic)LoadWaitView *loadV;
 
 @end
 
@@ -50,6 +55,90 @@
     _mapView.zoomLevel=20;//地图级别
     [self.locService startUserLocationService];
     _mapView.userTrackingMode = BMKUserTrackingModeNone;//设置定位的状态
+}
+//扫码
+- (IBAction)ScanButton:(UIButton *)sender {
+    
+    //设置扫码区域参数
+    LBXScanViewStyle *style = [[LBXScanViewStyle alloc]init];
+    style.centerUpOffset = 60;
+    style.xScanRetangleOffset = 30;
+    
+    if ([UIScreen mainScreen].bounds.size.height <= 480 )
+    {
+        //3.5inch 显示的扫码缩小
+        style.centerUpOffset = 40;
+        style.xScanRetangleOffset = 20;
+    }
+    
+    
+    style.alpa_notRecoginitonArea = 0.6;
+    
+    style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle_Inner;
+    style.photoframeLineW = 2.0;
+    style.photoframeAngleW = 16;
+    style.photoframeAngleH = 16;
+    
+    style.isNeedShowRetangle = NO;
+    
+    style.anmiationStyle = LBXScanViewAnimationStyle_NetGrid;
+    
+    //使用的支付宝里面网格图片
+    UIImage *imgFullNet = [UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_full_net"];
+    
+    
+    style.animationImage = imgFullNet;
+    
+    
+    [self openScanVCWithStyle:style];
+    
+}
+- (void)openScanVCWithStyle:(LBXScanViewStyle*)style
+{
+    self.hidesBottomBarWhenPushed = YES;
+    SubLBXScanViewController *vc = [SubLBXScanViewController new];
+    vc.style = style;
+    //vc.isOpenInterestRect = YES;
+    __weak typeof(self) weakself = self;
+    vc.retureCode = ^(NSString *codeStr){
+       //跳转
+        [weakself getStoreInfo:codeStr];//返回信息
+        
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+     self.hidesBottomBarWhenPushed = NO;
+}
+
+-(void)getStoreInfo:(NSString*)str{
+
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"shop_name"] = str;
+    __weak typeof(self) weakself = self;
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"shop/getShopData" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            
+            weakself.hidesBottomBarWhenPushed = YES;
+            LBPayTheBillViewController *vc=[[LBPayTheBillViewController alloc]init];
+            vc.namestr = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_name"]];
+            vc.pic = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"store_pic"]];
+            vc.shop_uid = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_id"]];
+            [self.navigationController pushViewController:vc animated:YES];
+            weakself.hidesBottomBarWhenPushed = NO;
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+
+
 }
 
 - (void)postRequest {

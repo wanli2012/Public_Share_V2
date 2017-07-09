@@ -126,7 +126,9 @@
     //如置为NO，建议自己添加对应域名的校验逻辑。
     securityPolicy.validatesDomainName = NO;
     
-    securityPolicy.pinnedCertificates = [NSSet setWithObjects:certData, nil];
+    NSSet *set = [[NSSet alloc] initWithObjects:certData, nil];
+    securityPolicy.pinnedCertificates = set;
+    
     
     return securityPolicy;
 }

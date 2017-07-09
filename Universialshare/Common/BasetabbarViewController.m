@@ -42,6 +42,16 @@
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(refreshInterface) name:@"refreshInterface" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(exitLogin) name:@"exitLogin" object:nil];
+    
+}
+//完善资料退出跳转登录
+-(void)exitLogin{
+        
+        GLLoginController *loginVC = [[GLLoginController alloc] init];
+        BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
+        nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:nav animated:YES completion:nil];
     
 }
 
@@ -145,12 +155,14 @@
        
         if ([UserModel defaultUser].loginstatus == YES) {
             
-            if ([[UserModel defaultUser].rzstatus isEqualToString:@"0"] || [[UserModel defaultUser].rzstatus isEqualToString:@"3"]) {
-                
-                LBImprovePersonalDataViewController *infoVC = [[LBImprovePersonalDataViewController alloc] init];
-                infoVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                [self presentViewController:infoVC animated:YES completion:nil];
-                return NO;
+            if (![[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
+                if ([[UserModel defaultUser].rzstatus isEqualToString:@"0"] || [[UserModel defaultUser].rzstatus isEqualToString:@"3"]) {
+                    
+                    LBImprovePersonalDataViewController *infoVC = [[LBImprovePersonalDataViewController alloc] init];
+                    infoVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                    [self presentViewController:infoVC animated:YES completion:nil];
+                    return NO;
+                }
             }
             return YES;
         }

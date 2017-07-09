@@ -74,10 +74,20 @@
         [self.deleteBt setTitle:@"已奖励" forState:UIControlStateNormal];
         self.deleteBt.backgroundColor = [UIColor grayColor];
         self.deleteBt.userInteractionEnabled = NO;
-    }else{//未生效
+    }else  if([_myorderRebateModel.is_receipt isEqualToString:@"2"]){//未发货
+        [self.deleteBt setTitle:@"未发货" forState:UIControlStateNormal];
+        self.deleteBt.backgroundColor = [UIColor grayColor];
+        self.deleteBt.userInteractionEnabled = NO;
+    }else  if([_myorderRebateModel.is_receipt isEqualToString:@"3"]){//待收货
+        [self.deleteBt setTitle:@"待收货" forState:UIControlStateNormal];
+        self.deleteBt.backgroundColor = [UIColor grayColor];
+        self.deleteBt.userInteractionEnabled = NO;
+    }else{
+    
         [self.deleteBt setTitle:@"开始奖励" forState:UIControlStateNormal];
         self.deleteBt.backgroundColor = TABBARTITLE_COLOR;
         self.deleteBt.userInteractionEnabled = YES;
+    
     }
 
 }

@@ -337,7 +337,7 @@ static const CGFloat headerHeight = 0.0f;
             [self initdatasource];
     }else{
         //NSLog(@"date1 = date2");
-        [MBProgressHUD showError:@"选择的时间不能相同"];
+       [self initdatasource];
     }
     
     

@@ -11,6 +11,7 @@
 #import "LBXScanResult.h"
 #import "LBXScanWrapper.h"
 #import "SubLBXScanViewController.h"
+#import "LBViewProtocolViewController.h"
 
 @interface GLRegisterController ()
 
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *getcodeBt;
 @property (weak, nonatomic) IBOutlet UIButton *registerBt;
 @property (strong, nonatomic)LoadWaitView *loadV;
+@property (weak, nonatomic) IBOutlet UIButton *xieyiBt;
 
 @end
 
@@ -31,6 +33,31 @@
     [super viewDidLoad];
     
 }
+//注册协议
+- (IBAction)tapgestureRegisterInfo:(UITapGestureRecognizer *)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBViewProtocolViewController *vc=[[LBViewProtocolViewController alloc]init];
+    vc.webUrl = REGISTER_URL;
+    vc.navTitle = @"注册协议";
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+//查看注册协议
+- (IBAction)checkRegisterInfo:(UIButton *)sender {
+    
+    sender.selected = !sender.selected;
+    
+    if (sender.selected) {
+        self.registerBt.enabled = YES;
+        self.registerBt.backgroundColor = TABBARTITLE_COLOR;
+    }else{
+        self.registerBt.enabled = NO;
+        self.registerBt.backgroundColor = [UIColor lightGrayColor];
+    }
+    
+}
+
 //获取验证码
 - (IBAction)getcode:(UIButton *)sender {
     
@@ -249,11 +276,26 @@
 }
 
 - (IBAction)back:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
+    
+}
+
+-(void)updateViewConstraints{
+    [super updateViewConstraints];
+    
+    self.registerBt.layer.cornerRadius = 4;
+    self.registerBt.clipsToBounds = YES;
 
 }
 

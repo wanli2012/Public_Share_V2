@@ -154,4 +154,20 @@
     }];
 }
 
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (textField == self.cardTextF && [string isEqualToString:@"\n"]) {
+        [self.addressF becomeFirstResponder];
+        return NO;
+        
+    }else if (textField == self.addressF && [string isEqualToString:@"\n"]){
+        
+        [self.view endEditing:YES];
+        return NO;
+    }
+    return YES;
+    
+}
+
+
 @end

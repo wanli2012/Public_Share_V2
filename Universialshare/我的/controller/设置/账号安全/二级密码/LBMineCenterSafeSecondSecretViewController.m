@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = NO;
-    self.navigationItem.title = @"二级密码";
+    self.navigationItem.title = @"交易密码";
 }
 
 

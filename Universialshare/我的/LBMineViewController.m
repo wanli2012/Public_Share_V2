@@ -43,8 +43,9 @@
 
 #import "LBMerchantSubmissionFourViewController.h"
 #import "LBRecommendedSalesmanViewController.h"
+#import "GLMine_CompleteInfoView.h"
 
-@interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
+@interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate>{
     UIImageView *_imageviewLeft;
 }
 
@@ -57,6 +58,12 @@
 @property (strong, nonatomic)NSString *ordertype;//订单类型 默认为线上类型 1 为线上 2线下
 
 @property (strong, nonatomic)NSMutableArray *CarouselArr;//轮播图图片
+
+@property (nonatomic, strong)GLMine_CompleteInfoView *infoContentV;
+
+@property (nonatomic, strong)UIView *maskV;
+
+@property (strong, nonatomic)LoadWaitView *loadV;
 
 @end
 
@@ -233,11 +240,6 @@
                     GLMemberManagerController *vc = [[GLMemberManagerController alloc] init];
                     [self.navigationController pushViewController:vc animated:YES];
                     self.hidesBottomBarWhenPushed=NO;
-                }else{
-                    self.hidesBottomBarWhenPushed=YES;
-                    GLNoneOfDonationController *vc = [[GLNoneOfDonationController alloc] init];
-                    [self.navigationController pushViewController:vc animated:YES];
-                    self.hidesBottomBarWhenPushed=NO;
                 }
                 
             }
@@ -266,7 +268,7 @@
                 self.hidesBottomBarWhenPushed=YES;
                 if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
                     
-//                    GLMerchant_IncomeController *vc = [[GLMerchant_IncomeController alloc] init];
+//                  GLMerchant_IncomeController *vc = [[GLMerchant_IncomeController alloc] init];
                     GLMine_MyBeansController *vc = [[GLMine_MyBeansController alloc] init];
                     [self.navigationController pushViewController:vc animated:YES];
                     
@@ -282,15 +284,25 @@
                 break;
             case 3:
             {
-                self.hidesBottomBarWhenPushed=YES;
-               
-
-                GLBuyBackController *vc=[[GLBuyBackController alloc]init];
                 
-                [self.navigationController pushViewController:vc animated:YES];
+                if ([[UserModel defaultUser].rzstatus isEqualToString:@"2"]) {
+                    self.hidesBottomBarWhenPushed=YES;
+                    GLBuyBackController *vc=[[GLBuyBackController alloc]init];
+                    [self.navigationController pushViewController:vc animated:YES];
+                    self.hidesBottomBarWhenPushed=NO;
+                }else if ([[UserModel defaultUser].rzstatus isEqualToString:@"1"]) {
+                    [MBProgressHUD showError:@"审核中"];
+                }else{
+                    [self.view addSubview:self.maskV];
+                    [self.maskV addSubview:self.infoContentV];
+                    self.infoContentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
+                    [UIView animateWithDuration:0.2 animations:^{
+                        
+                        self.infoContentV.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
+                    }];
+
+                  }
                 }
-                self.hidesBottomBarWhenPushed=NO;
-            
                 break;
             case 4:
             {
@@ -697,6 +709,113 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     
 }
 
+- (void)maskViewTap {
+    
+    [self.infoContentV removeFromSuperview];
+    [self.maskV removeFromSuperview];
+}
+//会员不全信息
+- (void)addQtIDandOilCardID{
+    
+    if (self.infoContentV.qtIDTextF.text.length == 0) {
+        [MBProgressHUD showError:@"请输入身份证号"];
+        return;
+    }
+    if (self.infoContentV.oilCardTextF.text.length == 0) {
+        [MBProgressHUD showError:@"请输入真实姓名"];
+        return;
+    }
+    
+    if(![predicateModel validateIdentityCard:self.infoContentV.qtIDTextF.text]){
+        [MBProgressHUD showError:@"输入的身份证不合法"];
+        return;
+    }
+    
+    if (self.infoContentV.paySecretTf.text.length == 0) {
+        [MBProgressHUD showError:@"请输入交易密码"];
+        return;
+    }
+    if (self.infoContentV.paySecretTf.text.length != 6) {
+        [MBProgressHUD showError:@"请输入6位交易密码"];
+        return;
+    }
+    
+    if (self.infoContentV.ensureSecretTf.text.length == 0) {
+        [MBProgressHUD showError:@"请确认交易密码"];
+        return;
+    }
+    
+    if ([self.infoContentV.ensureSecretTf.text isEqualToString:self.infoContentV.paySecretTf.text]) {
+        [MBProgressHUD showError:@"两次输入的密码不一致"];
+        return;
+    }
+
+    NSString *encryptsecret = [RSAEncryptor encryptString:self.infoContentV.ensureSecretTf.text publicKey:public_RSA];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"truename"] = self.infoContentV.oilCardTextF.text;
+    dict[@"idcard"] = self.infoContentV.qtIDTextF.text;
+    dict[@"twopwd"] = encryptsecret;
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"user/bqUserInfo" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            [self maskViewTap];
+            [UserModel defaultUser].idcard = self.infoContentV.qtIDTextF.text;
+            [UserModel defaultUser].truename = self.infoContentV.oilCardTextF.text;
+            [UserModel defaultUser].rzstatus = @"2";
+            [usermodelachivar achive];
+            
+            self.hidesBottomBarWhenPushed=YES;
+            GLBuyBackController *vc=[[GLBuyBackController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+    
+        }
+        
+        [MBProgressHUD showError:responseObject[@"message"]];
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+
+    
+}
+
+- (BOOL)isPureNumandCharacters:(NSString *)string
+{
+    string = [string stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]];
+    if(string.length > 0)
+    {
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (textField == self.infoContentV.qtIDTextF && [string isEqualToString:@"\n"]) {
+        [self.infoContentV.oilCardTextF becomeFirstResponder];
+        return NO;
+        
+    }else if (textField == self.infoContentV.oilCardTextF && [string isEqualToString:@"\n"]){
+        
+        [self.infoContentV.paySecretTf becomeFirstResponder];
+        return NO;
+    }else if (textField == self.infoContentV.paySecretTf && [string isEqualToString:@"\n"]){
+        
+        [self.view endEditing:YES];
+        return NO;
+    }
+    return YES;
+    
+}
+
 -(NSMutableArray*)CarouselArr{
 
     if (!_CarouselArr) {
@@ -704,5 +823,36 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 
     return _CarouselArr;
+}
+
+- (GLMine_CompleteInfoView *)infoContentV{
+    if (!_infoContentV) {
+        _infoContentV = [[NSBundle mainBundle] loadNibNamed:@"GLMine_CompleteInfoView" owner:nil options:nil].lastObject;
+        
+        _infoContentV.layer.cornerRadius = 5.f;
+        
+        _infoContentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 40, 260);
+        
+        [_infoContentV.cancelBtn addTarget:self action:@selector(maskViewTap) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_infoContentV.okBtn addTarget:self action:@selector(addQtIDandOilCardID) forControlEvents:UIControlEventTouchUpInside];
+        
+        _infoContentV.oilCardTextF.delegate = self;
+        _infoContentV.qtIDTextF.delegate = self;
+        _infoContentV.paySecretTf.delegate = self;
+        _infoContentV.ensureSecretTf.delegate = self;
+        
+    }
+    return _infoContentV;
+}
+- (UIView *)maskV{
+    if (!_maskV) {
+        _maskV = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _maskV.backgroundColor = YYSRGBColor(0, 0, 0, 0.2);
+        
+        UITapGestureRecognizer *maskViewTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(maskViewTap)];
+        [_maskV addGestureRecognizer:maskViewTap];
+    }
+    return _maskV;
 }
 @end

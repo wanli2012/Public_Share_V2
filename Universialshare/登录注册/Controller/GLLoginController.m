@@ -102,8 +102,9 @@
 - (IBAction)registerClick:(id)sender {
     [self.view endEditing:YES];
     GLRegisterController *registerVC = [[GLRegisterController alloc] init];
-    registerVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:registerVC animated:YES completion:nil];
+//    registerVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//    [self presentViewController:registerVC animated:YES completion:nil];
+    [self.navigationController pushViewController:registerVC animated:YES];
 }
 
 //登录
@@ -195,7 +196,7 @@
             [UserModel defaultUser].vsnAddress = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"vsnAddress"]];
             [UserModel defaultUser].vsnUpdateTime = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"vsnUpdateTime"]];
             [UserModel defaultUser].djs_bean = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"djs_bean"]];
-            
+        
             [UserModel defaultUser].idcard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"idcard"]];
             [UserModel defaultUser].truename = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"truename"]];
             [UserModel defaultUser].tjr = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"tjr"]];
@@ -225,6 +226,16 @@
             if ([[UserModel defaultUser].tjrname rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].tjrname = @"";
+            }
+            
+            if ([[UserModel defaultUser].truename rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].truename = @"";
+            }
+            
+            if ([[UserModel defaultUser].idcard rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].idcard = @"";
             }
             
             if ([self.usertype isEqualToString:Retailer]) {//零售商
