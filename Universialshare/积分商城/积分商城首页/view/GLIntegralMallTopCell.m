@@ -65,7 +65,7 @@
 
 - (void)setModels:(NSArray *)models{
     _models = models;
-    if (models.count != 0) {
+    if (models.count == 3) {
         
         GLMallHotModel *model = models[0];
         [_imageV sd_setImageWithURL:[NSURL URLWithString:model.mall_url] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
@@ -85,6 +85,7 @@
         
         [_jifenLabel3 setAttributedText:[self changeColor:_jifenLabel rangeNumber:[model3.mall_inte integerValue]]];
     }
+
 
 }
 

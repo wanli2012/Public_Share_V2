@@ -193,9 +193,9 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                     GLNearby_TradeOneModel *model = [GLNearby_TradeOneModel mj_objectWithKeyValues:dic];
                     [self.tradeTwoModels addObject:model];
                 }
-
             }
         }
+        
         [self.tableView reloadData];
     } enError:^(NSError *error) {
         [_loadV removeloadview];

@@ -54,13 +54,16 @@ static NSString *ID = @"GLNearby_RecommendMerchatCollectionCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     [self viewController].hidesBottomBarWhenPushed = YES;
-    LBStoreMoreInfomationViewController *store = [[LBStoreMoreInfomationViewController alloc] init];
-    
-    [[self viewController].navigationController pushViewController:store animated:YES];
-    store.lat = [[GLNearby_Model defaultUser].latitude floatValue];
-    store.lng = [[GLNearby_Model defaultUser].longitude floatValue];
-    GLNearby_NearShopModel *model = self.models[indexPath.row];
-    store.storeId = model.shop_id;
+    if (indexPath.row < self.models.count) {
+        
+        LBStoreMoreInfomationViewController *store = [[LBStoreMoreInfomationViewController alloc] init];
+        
+        [[self viewController].navigationController pushViewController:store animated:YES];
+        store.lat = [[GLNearby_Model defaultUser].latitude floatValue];
+        store.lng = [[GLNearby_Model defaultUser].longitude floatValue];
+        GLNearby_NearShopModel *model = self.models[indexPath.row];
+        store.storeId = model.shop_id;
+    }
     
     [self viewController].hidesBottomBarWhenPushed = NO;
 

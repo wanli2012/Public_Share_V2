@@ -22,4 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIView *moreView;
 @property (nonatomic, strong)NSArray *models;
 @property (nonatomic, assign)id<GLIntegralMallTopCellDelegete> delegete;
+@property (nonatomic, assign)NSInteger index;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *goodsViewHeight;
+
 @end
