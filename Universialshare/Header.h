@@ -21,8 +21,9 @@
 #define autoSizeScaleY (SCREEN_HEIGHT/568.f)
 
 #define ADAPT(x) SCREEN_WIDTH / 375 *(x)
-//119.23.213.255
-#define URL_Base @"https://www.51dztg.com/index.php/app/"
+//http://dzgx.joshuaweb.cn/index.php
+//#define URL_Base @"https://www.51dztg.com/index.php/app/"
+#define URL_Base @"http://dzgx.joshuaweb.cn/index.php/app/"
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1228047806?mt=8"
 //获取appStore上的最新版本号地址
@@ -39,7 +40,7 @@
 //米商
 #define Retailer @"9"
 //副总
-#define ONESALER @"6"
+#define ONESALER @"13"
 //高级推广员
 #define TWOSALER @"7"
 //推广员
