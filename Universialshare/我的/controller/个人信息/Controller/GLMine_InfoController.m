@@ -104,8 +104,6 @@ static NSString *ID = @"GLMine_InfoCell";
     self.recomendID = [UserModel defaultUser].tjr;
     self.recomendName = [UserModel defaultUser].tjrname;
     
-    
-
 }
 //编辑按钮
 -(void)edtingInfo:(UIButton*)sender{

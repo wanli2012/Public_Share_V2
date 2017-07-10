@@ -53,19 +53,9 @@
 
 - (IBAction)exitButton:(UIButton *)sender {
     
-    
-    if ([self.status isEqualToString:@"1"]) {
-        
-        GLLoginController *loginVC = [[GLLoginController alloc] init];
-        BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
-        nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self presentViewController:nav animated:YES completion:nil];
-        
-    }else{
-    
-     [self dismissViewControllerAnimated:YES completion:nil];
-    
-    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"exitLogin" object:nil];
+
 }
 
 //选择正面
@@ -174,16 +164,10 @@
     
     NSArray *imageViewArr = @[];;
     NSArray *titleArr = @[];
-    if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
-        imageViewArr = [NSArray arrayWithObjects:self.positiveImage,self.otherImage,self.saleImage, nil];
-        
-        titleArr = [NSArray arrayWithObjects:@"face_pic",@"con_pic",@"u_buypic", nil];
-    }else{
-        imageViewArr = [NSArray arrayWithObjects:self.positiveImage,self.otherImage, nil];
-        
-        titleArr = [NSArray arrayWithObjects:@"face_pic",@"con_pic", nil];
-    }
     
+    imageViewArr = [NSArray arrayWithObjects:self.positiveImage,self.otherImage,self.saleImage, nil];
+        
+    titleArr = [NSArray arrayWithObjects:@"face_pic",@"con_pic",@"u_buypic", nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应

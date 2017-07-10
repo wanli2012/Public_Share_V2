@@ -232,7 +232,7 @@
         return;
     }
     if (self.secondPwdF.text == nil||self.secondPwdF.text.length == 0) {
-        [MBProgressHUD showError:@"请输入二级密码"];
+        [MBProgressHUD showError:@"请输入交易密码"];
         return;
     }
     

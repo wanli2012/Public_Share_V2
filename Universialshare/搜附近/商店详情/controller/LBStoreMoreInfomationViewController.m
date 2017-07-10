@@ -557,6 +557,7 @@ static const CGFloat headerImageHeight = 180.0f;
      if (![self.dataDic[@"shop_data"][@"pic1"] isEqual:[NSNull null]]) {
         vc.pic = self.dataDic[@"shop_data"][@"pic1"];
     };
+    vc.namestr = [NSString stringWithFormat:@"%@",self.dataDic[@"shop_data"][@"shop_name"]];
     
     [self.navigationController pushViewController:vc animated:YES];
 }

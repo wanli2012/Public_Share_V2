@@ -74,14 +74,30 @@
                                 <outletCollection property="gestureRecognizers" destination="l0U-Lv-HWA" appends="YES" id="IWf-OG-Fcu"/>
                             </connections>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhO-Wv-fDc">
+                            <rect key="frame" x="289" y="29.5" width="40" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="8M0-FG-bL2"/>
+                                <constraint firstAttribute="height" constant="25" id="h3x-XB-I1s"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" image="saomiao1">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="ScanButton:" destination="-1" eventType="touchUpInside" id="SWl-na-HKN"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="x5F-X8-yYe" firstAttribute="leading" secondItem="xAs-x6-HFY" secondAttribute="leading" constant="5" id="0Fv-Gh-K2S"/>
                         <constraint firstItem="wsc-Eq-btn" firstAttribute="centerX" secondItem="xAs-x6-HFY" secondAttribute="centerX" id="51x-Dh-3uD"/>
                         <constraint firstItem="x5F-X8-yYe" firstAttribute="top" secondItem="xAs-x6-HFY" secondAttribute="top" constant="20" id="DFJ-kW-UgK"/>
+                        <constraint firstItem="nhO-Wv-fDc" firstAttribute="centerY" secondItem="wsc-Eq-btn" secondAttribute="centerY" id="KzE-Vt-cvG"/>
                         <constraint firstAttribute="bottom" secondItem="x5F-X8-yYe" secondAttribute="bottom" id="NpD-CQ-L9M"/>
                         <constraint firstItem="wsc-Eq-btn" firstAttribute="height" secondItem="x5F-X8-yYe" secondAttribute="height" constant="-20" id="YnV-nA-228"/>
+                        <constraint firstAttribute="trailing" secondItem="nhO-Wv-fDc" secondAttribute="trailing" constant="10" id="amC-in-Ky8"/>
                         <constraint firstItem="wsc-Eq-btn" firstAttribute="leading" secondItem="x5F-X8-yYe" secondAttribute="trailing" constant="5" id="cvk-8z-mJg"/>
                         <constraint firstItem="wsc-Eq-btn" firstAttribute="centerY" secondItem="x5F-X8-yYe" secondAttribute="centerY" id="dK7-AB-jL2"/>
                         <constraint firstAttribute="height" constant="64" id="wV8-sY-eZ0"/>
@@ -105,6 +121,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="saomiao1" width="80" height="80"/>
         <image name="搜索" width="15" height="14"/>
     </resources>
 </document>
