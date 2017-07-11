@@ -172,6 +172,7 @@
     }
     
 }
+
 - (void)shareTo:(NSArray *)type{
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@",DOWNLOAD_URL];
     [UMSocialData defaultData].extConfig.wechatSessionData.title = @"大众团购";
