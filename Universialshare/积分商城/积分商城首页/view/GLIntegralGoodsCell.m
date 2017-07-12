@@ -67,7 +67,7 @@
         _pre_priceLabel.text = [NSString stringWithFormat:@"%@ 米券",model.goods_price];
     }
     
-    [_imageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+    [_imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?x-oss-process=style/miquan",model.thumb]] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     
 }
 

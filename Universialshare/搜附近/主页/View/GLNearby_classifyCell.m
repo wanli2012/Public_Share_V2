@@ -41,7 +41,7 @@
 }
 - (void)setModel:(GLNearby_NearShopModel *)model{
     _model = model;
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.store_pic] placeholderImage:[UIImage imageNamed:MERCHAT_PlaceHolder]];
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?x-oss-process=style/guangguang",model.store_pic]] placeholderImage:[UIImage imageNamed:MERCHAT_PlaceHolder]];
 
     self.nameLabel.text = model.shop_name;
     self.addressLabel.text = [NSString stringWithFormat:@"地址:%@",model.shop_address];
