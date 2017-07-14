@@ -2446,7 +2446,7 @@
 		F961AA111E9CDD3400275F52 /* GLLoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLLoginController.xib; sourceTree = "<group>"; };
 		F961AA121E9CDD3400275F52 /* GLRegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRegisterController.h; sourceTree = "<group>"; };
 		F961AA131E9CDD3400275F52 /* GLRegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLRegisterController.m; sourceTree = "<group>"; };
-		F961AA141E9CDD3400275F52 /* GLRegisterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLRegisterController.xib; sourceTree = "<group>"; };
+		F961AA141E9CDD3400275F52 /* GLRegisterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GLRegisterController.xib; path = ../GLRegisterController.xib; sourceTree = "<group>"; };
 		F961AA161E9CDD3400275F52 /* LoginIdentityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginIdentityView.h; sourceTree = "<group>"; };
 		F961AA171E9CDD3400275F52 /* LoginIdentityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginIdentityView.m; sourceTree = "<group>"; };
 		F961AA181E9CDD3400275F52 /* LoginIdentityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginIdentityView.xib; sourceTree = "<group>"; };
@@ -5739,6 +5739,7 @@
 		F94D6E1F1E9DFB0300412E64 /* 忘记密码 */ = {
 			isa = PBXGroup;
 			children = (
+				F961AA141E9CDD3400275F52 /* GLRegisterController.xib */,
 				F94D6E201E9DFB2700412E64 /* LBHomeLoginFortgetSecretViewController.h */,
 				F94D6E211E9DFB2700412E64 /* LBHomeLoginFortgetSecretViewController.m */,
 				F94D6E221E9DFB2700412E64 /* LBHomeLoginFortgetSecretViewController.xib */,
@@ -5946,7 +5947,6 @@
 				F961AA111E9CDD3400275F52 /* GLLoginController.xib */,
 				F961AA121E9CDD3400275F52 /* GLRegisterController.h */,
 				F961AA131E9CDD3400275F52 /* GLRegisterController.m */,
-				F961AA141E9CDD3400275F52 /* GLRegisterController.xib */,
 				F94D6E1F1E9DFB0300412E64 /* 忘记密码 */,
 				F961AA151E9CDD3400275F52 /* view */,
 			);
