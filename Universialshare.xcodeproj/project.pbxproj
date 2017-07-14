@@ -723,6 +723,7 @@
 		F92309911E9B8BFF00ECDC94 /* LBMineCenterinfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92309161E9B8BFF00ECDC94 /* LBMineCenterinfoTableViewCell.xib */; };
 		F92309921E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F92309181E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.m */; };
 		F92309931E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92309191E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.xib */; };
+		F9251C6B1F15C8CB00522FCB /* https.cer in Resources */ = {isa = PBXBuildFile; fileRef = F9251C6A1F15C8CB00522FCB /* https.cer */; };
 		F92D9FF11ECD8FBE004CBAA8 /* LCStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F92D9FF01ECD8FBE004CBAA8 /* LCStarRatingView.m */; };
 		F92DA0181ECDA163004CBAA8 /* CommonMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA0131ECDA163004CBAA8 /* CommonMenuView.m */; };
 		F92DA0191ECDA163004CBAA8 /* MenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA0151ECDA163004CBAA8 /* MenuModel.m */; };
@@ -784,7 +785,6 @@
 		F94E92BA1ED9108200CBEDB8 /* QQPopMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = F94E92B71ED9108200CBEDB8 /* QQPopMenuView.m */; };
 		F94F29571ED6651A00E52573 /* LBImprovePersonalDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94F29551ED6651A00E52573 /* LBImprovePersonalDataViewController.m */; };
 		F94F29581ED6651A00E52573 /* LBImprovePersonalDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94F29561ED6651A00E52573 /* LBImprovePersonalDataViewController.xib */; };
-		F95150891EC06F9100BDCF53 /* https.cer in Resources */ = {isa = PBXBuildFile; fileRef = F95150881EC06F9100BDCF53 /* https.cer */; };
 		F9516DE01ECA8C76009F015D /* LBStoreMoreInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9516DDE1ECA8C76009F015D /* LBStoreMoreInfomationViewController.m */; };
 		F9516DE11ECA8C76009F015D /* LBStoreMoreInfomationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9516DDF1ECA8C76009F015D /* LBStoreMoreInfomationViewController.xib */; };
 		F9516DE51ECAA129009F015D /* MXNavigationBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F9516DE41ECAA129009F015D /* MXNavigationBarManager.m */; };
@@ -2239,6 +2239,7 @@
 		F92309171E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterMessageTableViewCell.h; sourceTree = "<group>"; };
 		F92309181E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterMessageTableViewCell.m; sourceTree = "<group>"; };
 		F92309191E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterMessageTableViewCell.xib; sourceTree = "<group>"; };
+		F9251C6A1F15C8CB00522FCB /* https.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = https.cer; sourceTree = "<group>"; };
 		F92D9FEF1ECD8FBE004CBAA8 /* LCStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCStarRatingView.h; sourceTree = "<group>"; };
 		F92D9FF01ECD8FBE004CBAA8 /* LCStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCStarRatingView.m; sourceTree = "<group>"; };
 		F92DA0121ECDA163004CBAA8 /* CommonMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMenuView.h; sourceTree = "<group>"; };
@@ -2327,7 +2328,6 @@
 		F94F29541ED6651A00E52573 /* LBImprovePersonalDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBImprovePersonalDataViewController.h; sourceTree = "<group>"; };
 		F94F29551ED6651A00E52573 /* LBImprovePersonalDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBImprovePersonalDataViewController.m; sourceTree = "<group>"; };
 		F94F29561ED6651A00E52573 /* LBImprovePersonalDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBImprovePersonalDataViewController.xib; sourceTree = "<group>"; };
-		F95150881EC06F9100BDCF53 /* https.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = https.cer; sourceTree = "<group>"; };
 		F9516DDD1ECA8C76009F015D /* LBStoreMoreInfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBStoreMoreInfomationViewController.h; sourceTree = "<group>"; };
 		F9516DDE1ECA8C76009F015D /* LBStoreMoreInfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBStoreMoreInfomationViewController.m; sourceTree = "<group>"; };
 		F9516DDF1ECA8C76009F015D /* LBStoreMoreInfomationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBStoreMoreInfomationViewController.xib; sourceTree = "<group>"; };
@@ -4907,7 +4907,7 @@
 				F906201F1E83CC900080E9D9 /* Header.h */,
 				F92ED4921EDE5E3A00B3B3DB /* Cochin.ttc */,
 				F92ED4941EDE603B00B3B3DB /* Arial Black.ttf */,
-				F95150881EC06F9100BDCF53 /* https.cer */,
+				F9251C6A1F15C8CB00522FCB /* https.cer */,
 				F9061FCB1E83C4720080E9D9 /* Supporting Files */,
 			);
 			path = Universialshare;
@@ -6705,7 +6705,6 @@
 				F97F09D91EC9402A000D3B30 /* LBProductManagementViewController.xib in Resources */,
 				4A5F66A61ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.xib in Resources */,
 				4A2F51CD1EC6E5F600ECA95D /* GLMemberManagerCell.xib in Resources */,
-				F95150891EC06F9100BDCF53 /* https.cer in Resources */,
 				4AFFA5321ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.xib in Resources */,
 				F961AA1C1E9CDD3400275F52 /* GLRegisterController.xib in Resources */,
 				F958C0821EA4A3F9003C9CFB /* personCenter.xcassets in Resources */,
@@ -6713,6 +6712,7 @@
 				F966B3BC1EAC3D3E007260FC /* LBMineCenterOrderDetailTwoTableViewCell.xib in Resources */,
 				4A4610391E9CC6360045824F /* ios-social-sdk-shake.html in Resources */,
 				4A4610271E9CC6360045824F /* UMSShareListController.xib in Resources */,
+				F9251C6B1F15C8CB00522FCB /* https.cer in Resources */,
 				4A5DF5F71ED185DA00BF6AC7 /* GLStoreProductCommentController.xib in Resources */,
 				F9516DEA1ECAD058009F015D /* LBStoreDetailNameTableViewCell.xib in Resources */,
 				F9479B101EF0007D00581250 /* LBStoreProductDetailAddNumTableViewCell.xib in Resources */,

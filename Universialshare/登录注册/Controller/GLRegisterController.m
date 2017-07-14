@@ -272,7 +272,7 @@
         self.recomendId.text = codeStr;
         
     };
-    [self presentViewController:vc animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)back:(id)sender {

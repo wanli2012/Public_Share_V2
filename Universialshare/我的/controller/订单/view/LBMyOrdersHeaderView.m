@@ -100,6 +100,9 @@
     }else if ([_sectionModel.order_type integerValue] == 2){
         self.orderStaues.text = @"订单类型:米券订单";
     
+    }else if ([_sectionModel.order_type integerValue] == 3){
+        self.orderStaues.text = @"订单类型:面对面订单";
+        
     }
     
 }

@@ -263,8 +263,14 @@
         self.retureCode(strResult.strScanned);
     }
     
-    [self.navigationController popViewControllerAnimated:YES];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:NO];
+    if (self.navigationController.topViewController == self) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    
+    
+    
 }
 
 

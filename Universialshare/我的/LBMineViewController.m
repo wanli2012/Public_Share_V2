@@ -745,7 +745,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         return;
     }
     
-    if ([self.infoContentV.ensureSecretTf.text isEqualToString:self.infoContentV.paySecretTf.text]) {
+    if (![self.infoContentV.ensureSecretTf.text isEqualToString:self.infoContentV.paySecretTf.text]) {
         [MBProgressHUD showError:@"两次输入的密码不一致"];
         return;
     }
