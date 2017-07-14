@@ -61,11 +61,11 @@
     [self changeColor:_jifenLabel rangeNumber:[model.discount integerValue]];
     _nameLabel.text = model.goods_name;
     
-    if([model.goods_price floatValue] > 10000){
-         _pre_priceLabel.text = [NSString stringWithFormat:@"%.2f米券",[model.goods_price floatValue]/10000];
-    }else{
+//    if([model.goods_price floatValue] > 10000){
+//         _pre_priceLabel.text = [NSString stringWithFormat:@"%.2f米券",[model.goods_price floatValue]/10000];
+//    }else{
         _pre_priceLabel.text = [NSString stringWithFormat:@"%@ 米券",model.goods_price];
-    }
+//    }
     
     [_imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?x-oss-process=style/miquan",model.thumb]] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     

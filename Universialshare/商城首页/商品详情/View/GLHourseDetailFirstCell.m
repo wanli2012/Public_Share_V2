@@ -30,20 +30,10 @@
 
 - (void)setModel:(GLGoodsDetailModel *)model{
     _model = model;
-    
-    if ([model.money floatValue] > 10000) {
-        _price = [NSString stringWithFormat:@"%.2f万米券",[model.money floatValue]/10000];
-    }else{
-        _price = model.money;
-    }
-    
-    if ([model.rebate floatValue] > 10000) {
-        
-        _fanliLabel.text = [NSString stringWithFormat:@"现价:%.2f万米券",[model.rebate floatValue]/10000];
-    }else{
-        _fanliLabel.text = [NSString stringWithFormat:@"现价:%.2f米券",[model.rebate floatValue]];
-    }
-    _priceLabel.text = [NSString stringWithFormat:@"¥%@米券",_price];
+
+    _fanliLabel.text = [NSString stringWithFormat:@"现价:%.2f米券",[model.rebate floatValue]];
+
+    _priceLabel.text = [NSString stringWithFormat:@"¥%@米券",model.money];
     _monthSellLabel.text = [NSString stringWithFormat:@"月销%@笔",model.sell_count];
     _yunfeiLabel.text = [NSString stringWithFormat:@"运费:%@元",model.posttage];
     
