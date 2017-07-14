@@ -179,6 +179,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
         [self endRefresh];
 
         if ([responseObject[@"code"] integerValue] == 1){
+            
             for (NSDictionary *dic in responseObject[@"data"][@"mall_tabe"]) {
                 
                 GLMallHotModel *model = [GLMallHotModel mj_objectWithKeyValues:dic];
