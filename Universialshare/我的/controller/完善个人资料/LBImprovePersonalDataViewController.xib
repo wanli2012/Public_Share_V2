@@ -205,7 +205,7 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="NeO-A3-eFx"/>
                                     </constraints>
-                                    <state key="normal" title="退出">
+                                    <state key="normal" title="退出登录">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
