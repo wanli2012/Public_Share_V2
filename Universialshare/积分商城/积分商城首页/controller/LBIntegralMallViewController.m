@@ -183,15 +183,20 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 
         if ([responseObject[@"code"] integerValue] == 1){
             if([responseObject[@"data"] count] != 0){
-                
-                for (NSDictionary *dic in responseObject[@"data"][@"mall_tabe"]) {
+                if([responseObject[@"data"][@"mall_tabe"] count]){
                     
-                    GLMallHotModel *model = [GLMallHotModel mj_objectWithKeyValues:dic];
-                    [_hotModels addObject:model];
+                    for (NSDictionary *dic in responseObject[@"data"][@"mall_tabe"]) {
+                        
+                        GLMallHotModel *model = [GLMallHotModel mj_objectWithKeyValues:dic];
+                        [_hotModels addObject:model];
+                    }
                 }
-                for (NSDictionary *dic in responseObject[@"data"][@"inte_list"]) {
-                    GLMall_InterestModel *model = [GLMall_InterestModel mj_objectWithKeyValues:dic];
-                    [_interestModels addObject:model];
+                if ([responseObject[@"data"][@"inte_list"] count]) {
+                    
+                    for (NSDictionary *dic in responseObject[@"data"][@"inte_list"]) {
+                        GLMall_InterestModel *model = [GLMall_InterestModel mj_objectWithKeyValues:dic];
+                        [_interestModels addObject:model];
+                    }
                 }
                 if ([responseObject[@"data"][@"banner_url"] count] != 0) {
                     
