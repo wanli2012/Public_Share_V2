@@ -45,6 +45,8 @@
 
 @property (nonatomic, strong)NSMutableArray *hotModels;
 @property (nonatomic, strong)NSMutableArray *interestModels;
+@property (nonatomic, strong)NSMutableArray *bannerArr;
+
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 
 //公告
@@ -132,27 +134,74 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 
     [self.hotModels removeAllObjects];
     [self.interestModels removeAllObjects];
+    [self.bannerArr removeAllObjects];
+//    
+//    [NetworkManager requestPOSTWithURLStr:@"index/banner_list" paramDic:@{@"type":@"6"} finish:^(id responseObject) {
+//
+//        if ([responseObject[@"code"] integerValue] == 1){
+//            NSMutableArray *arrM = [NSMutableArray array];
+//            
+//            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+//                
+//                for (NSDictionary *dic  in responseObject[@"data"]) {
+//                    
+//                    UIImageView *imageV = [[UIImageView alloc] init];
+//                    [imageV sd_setImageWithURL:[NSURL URLWithString:dic[@"img_path"]] placeholderImage:[UIImage imageNamed:LUNBO_PlaceHolder]];
+//                    
+//                    if(imageV.image){
+//                        
+//                        [arrM addObject:dic[@"img_path"]];
+//                    }
+//                }
+//                if (arrM.count  <= 0) {
+//                    
+//                    _cycleScrollView.imageURLStringsGroup = arrM;
+//                }else{
+//                    _cycleScrollView.localizationImageNamesGroup = @[@"banner01",
+//                                                                     @"banner02",
+//                                                                     @"banner03"];
+//                }
+//                
+//            }else{
+//                _cycleScrollView.localizationImageNamesGroup = @[@"banner01",
+//                                                                 @"banner02",
+//                                                                 @"banner03"];
+//            }
+//        }
+//        [self.tableView reloadData];
+//    } enError:^(NSError *error) {
+//        [MBProgressHUD showError:error.description];
+//        [self.tableView reloadData];
+//    }];
+
     
-    [NetworkManager requestPOSTWithURLStr:@"index/banner_list" paramDic:@{@"type":@"6"} finish:^(id responseObject) {
+    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"shop/main" paramDic:@{} finish:^(id responseObject) {
+        
+        [_loadV removeloadview];
+        [self endRefresh];
 
         if ([responseObject[@"code"] integerValue] == 1){
-            NSMutableArray *arrM = [NSMutableArray array];
-            
-            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+            if([responseObject[@"data"] count] != 0){
                 
-                for (NSDictionary *dic  in responseObject[@"data"]) {
+                for (NSDictionary *dic in responseObject[@"data"][@"mall_tabe"]) {
                     
-                    UIImageView *imageV = [[UIImageView alloc] init];
-                    [imageV sd_setImageWithURL:[NSURL URLWithString:dic[@"img_path"]] placeholderImage:[UIImage imageNamed:LUNBO_PlaceHolder]];
+                    GLMallHotModel *model = [GLMallHotModel mj_objectWithKeyValues:dic];
+                    [_hotModels addObject:model];
+                }
+                for (NSDictionary *dic in responseObject[@"data"][@"inte_list"]) {
+                    GLMall_InterestModel *model = [GLMall_InterestModel mj_objectWithKeyValues:dic];
+                    [_interestModels addObject:model];
+                }
+                if ([responseObject[@"data"][@"banner_url"] count] != 0) {
                     
-                    if(imageV.image){
-                        
-                        [arrM addObject:dic[@"img_path"]];
+                    for (NSDictionary *dic in responseObject[@"data"][@"banner_url"]) {
+                        [self.bannerArr addObject:dic[@"image_url"]];
                     }
                 }
-                if (arrM.count  <= 0) {
+                if (self.bannerArr.count > 0) {
                     
-                    _cycleScrollView.imageURLStringsGroup = arrM;
+                    _cycleScrollView.imageURLStringsGroup = self.bannerArr;
                 }else{
                     _cycleScrollView.localizationImageNamesGroup = @[@"banner01",
                                                                      @"banner02",
@@ -163,35 +212,12 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
                 _cycleScrollView.localizationImageNamesGroup = @[@"banner01",
                                                                  @"banner02",
                                                                  @"banner03"];
-            }
-        }
-        [self.tableView reloadData];
-    } enError:^(NSError *error) {
-        [MBProgressHUD showError:error.description];
-        [self.tableView reloadData];
-    }];
-
-    
-    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/main" paramDic:@{} finish:^(id responseObject) {
-        
-        [_loadV removeloadview];
-        [self endRefresh];
-
-        if ([responseObject[@"code"] integerValue] == 1){
-            for (NSDictionary *dic in responseObject[@"data"][@"mall_tabe"]) {
                 
-                GLMallHotModel *model = [GLMallHotModel mj_objectWithKeyValues:dic];
-                [_hotModels addObject:model];
-            }
-            for (NSDictionary *dic in responseObject[@"data"][@"inte_list"]) {
-                GLMall_InterestModel *model = [GLMall_InterestModel mj_objectWithKeyValues:dic];
-                [_interestModels addObject:model];
             }
         }
-        
+     
         [self.tableView reloadData];
-        
+     
     } enError:^(NSError *error) {
        [_loadV removeloadview];
         [self endRefresh];
@@ -432,7 +458,12 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     }
     return _interestModels;
 }
-
+- (NSMutableArray *)bannerArr{
+    if (!_bannerArr) {
+        _bannerArr = [[NSMutableArray alloc] init];
+    }
+    return _bannerArr;
+}
 
 
 @end

@@ -81,7 +81,7 @@
         [_jifenLabel2 setAttributedText:[self changeColor:_jifenLabel rangeNumber:[model2.mall_inte integerValue]]];
         
         GLMallHotModel *model3 = models[2];
-        [_imageV3 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?x-oss-process=style/miquan",model.mall_url]] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+        [_imageV3 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?x-oss-process=style/miquan",model3.mall_url]] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
         _titleLabel3.text = model3.mall_name;
         
         [_jifenLabel3 setAttributedText:[self changeColor:_jifenLabel rangeNumber:[model3.mall_inte integerValue]]];
