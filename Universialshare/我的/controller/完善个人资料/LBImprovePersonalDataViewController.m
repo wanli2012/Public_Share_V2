@@ -144,12 +144,14 @@
         return;
     }
     
-
+    
+    if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
         if (!self.saleImage.image || [UIImagePNGRepresentation(self.saleImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-4"])]) {
             [MBProgressHUD showError:@"请上传消费承诺书"];
             return;
-    
+            
         }
+    }
    
     if (self.adresstf.text.length <= 0) {
         [MBProgressHUD showError:@"请输入地址"];
@@ -171,9 +173,15 @@
     NSArray *imageViewArr = @[];;
     NSArray *titleArr = @[];
     
-    imageViewArr = [NSArray arrayWithObjects:self.positiveImage,self.otherImage,self.saleImage, nil];
+    if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
+        imageViewArr = [NSArray arrayWithObjects:self.positiveImage,self.otherImage,self.saleImage, nil];
         
-    titleArr = [NSArray arrayWithObjects:@"face_pic",@"con_pic",@"u_buypic", nil];
+        titleArr = [NSArray arrayWithObjects:@"face_pic",@"con_pic",@"u_buypic", nil];
+    }else{
+        imageViewArr = [NSArray arrayWithObjects:self.positiveImage,self.otherImage, nil];
+        
+        titleArr = [NSArray arrayWithObjects:@"face_pic",@"con_pic", nil];
+    }
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
@@ -391,7 +399,6 @@
     self.exitbt.layer.cornerRadius = 4;
     self.exitbt.clipsToBounds = YES;
     
-    self.contentH.constant =760;
     self.saletile.hidden = NO;
     self.saleImage.hidden = NO;
     self.saleimageConstrait.constant = 110;
@@ -399,13 +406,20 @@
     if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
         
         self.chengluoshu.text = @"消费承诺书";
+        self.chengluoshu.hidden = YES;
+        self.saleImage.hidden = YES;
+         self.contentH.constant =650;
         
     }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
         self.chengluoshu.text = @"商户承诺书";
-        
+        self.chengluoshu.hidden = NO;
+        self.saleImage.hidden = NO;
+         self.contentH.constant =760;
     }else{
         self.chengluoshu.text = @"创客承诺书";
-    
+        self.chengluoshu.hidden = YES;
+        self.saleImage.hidden = YES;
+         self.contentH.constant =650;
     }
 
 }

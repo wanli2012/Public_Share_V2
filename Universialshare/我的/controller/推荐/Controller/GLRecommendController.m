@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIView *contentV;
 @property (weak, nonatomic) IBOutlet UILabel *versionLb;
 @property (weak, nonatomic) IBOutlet UILabel *NewVersionLb;
+@property (strong, nonatomic) NSString *recommendUrl;
 
 @end
 
@@ -36,6 +37,7 @@
     self.contentV.layer.cornerRadius = 5.f;
     self.contentV.clipsToBounds = YES;
     
+    self.recommendUrl = [NSString stringWithFormat:@"%@%@",RECOMMEND_REGISTER_URL,[UserModel defaultUser].name];
     //自定义导航栏右键
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(SCREEN_WIDTH - 60, 14, 60, 30);
@@ -174,17 +176,17 @@
 }
 
 - (void)shareTo:(NSArray *)type{
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@",DOWNLOAD_URL];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@",self.recommendUrl];
     [UMSocialData defaultData].extConfig.wechatSessionData.title = @"大众团购";
     
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@",DOWNLOAD_URL];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@",self.recommendUrl];
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"大众团购";
     
-    [UMSocialData defaultData].extConfig.sinaData.urlResource.url = [NSString stringWithFormat:@"%@",DOWNLOAD_URL];
+    [UMSocialData defaultData].extConfig.sinaData.urlResource.url = [NSString stringWithFormat:@"%@",self.recommendUrl];
     //    [UMSocialData defaultData].extConfig.sinaData.title = @"加入我们吧";
     
     UIImage *image=[UIImage imageNamed:@"mine_logo"];
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:type content:[NSString stringWithFormat:@"大众团购，团购欢乐齐分享!(用safari浏览器打开)%@",[NSString stringWithFormat:@"%@",DOWNLOAD_URL]] image:image location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:type content:[NSString stringWithFormat:@"大众团购，团购欢乐齐分享!(用safari浏览器打开)%@",[NSString stringWithFormat:@"%@",self.recommendUrl]] image:image location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
         
         if (response.responseCode == UMSResponseCodeSuccess) {
           
@@ -215,7 +217,7 @@
     [qrImageFilter setDefaults];
     
     //将字符串转换成 NSdata (虽然二维码本质上是 字符串,但是这里需要转换,不转换就崩溃)
-    NSString *contentStr = [NSString stringWithFormat:@"%@",[UserModel defaultUser].name];
+    NSString *contentStr = [NSString stringWithFormat:@"%@",self.recommendUrl];
 //    NSString *contentStr = @"";
     NSData *qrImageData = [contentStr dataUsingEncoding:NSUTF8StringEncoding];
     
