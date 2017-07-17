@@ -84,11 +84,11 @@ static NSString *ID = @"GLMine_InfoCell";
     
     if ([[UserModel defaultUser].usrtype isEqualToString:Retailer] && [[UserModel defaultUser].AudiThrough isEqualToString:@"1"]) {
         
-        _titlesArr = @[@"头像",@"用户名",@"ID",@"店铺地址",@"商家类型",@"身份证号",@"推荐人ID",@"推荐人姓名"];
+        _titlesArr = @[@"头像",@"用户名",@"ID",@"店铺地址",@"商家类型",@"证件号",@"推荐人ID",@"推荐人姓名"];
         
     }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser] || [[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
         
-        _titlesArr = @[@"头像",@"用户名",@"ID",@"身份证号",@"推荐人ID",@"推荐人姓名"];
+        _titlesArr = @[@"头像",@"用户名",@"ID",@"证件号",@"推荐人ID",@"推荐人姓名"];
     }
     
     
