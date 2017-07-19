@@ -106,8 +106,6 @@
     } backViewTap:^{
         weakSelf.flag = YES; // 这里的目的是，让rightButton点击，可再次pop出menu
     }];
-    
-  
 }
 
 - (IBAction)salemanEvent:(UIButton *)sender {

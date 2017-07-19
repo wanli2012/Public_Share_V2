@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="129.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLi-aM-NZo">
@@ -34,8 +34,8 @@
                             <constraint firstAttribute="height" constant="70" id="v7U-5z-LFc"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ke1-6u-mU6">
-                        <rect key="frame" x="90" y="54" width="115" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="0人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ke1-6u-mU6">
+                        <rect key="frame" x="90" y="54" width="193.5" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="CT6-rb-8VY"/>
                         </constraints>
@@ -44,13 +44,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100家" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIn-EF-Dz4">
-                        <rect key="frame" x="90" y="78.5" width="225" height="16"/>
+                        <rect key="frame" x="90" y="78" width="225" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-01-01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pL7-vN-wkG">
-                        <rect key="frame" x="90" y="99.5" width="225" height="15"/>
+                        <rect key="frame" x="90" y="99" width="225" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="qQT-X3-yBq"/>
                         </constraints>
@@ -58,11 +58,11 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000万元" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ziz-QF-y3I">
-                        <rect key="frame" x="210" y="57.5" width="100" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0元" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ziz-QF-y3I">
+                        <rect key="frame" x="288.5" y="58" width="21.5" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="INu-86-9FT"/>
-                            <constraint firstAttribute="width" constant="100" id="OHZ-Qn-vin"/>
+                            <constraint firstAttribute="height" constant="15" id="INu-86-9FT"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="OHZ-Qn-vin"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.77709561589999998" green="0.19865089650000001" blue="0.056773729619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

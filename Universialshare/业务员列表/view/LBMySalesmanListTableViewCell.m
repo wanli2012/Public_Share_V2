@@ -45,13 +45,28 @@
 - (void)setModel:(GLMySalesmanModel *)model{
     
     _model = model;
-    self.IDLabel.text=[NSString stringWithFormat:@"用户ID:%@",model.username];
-    self.tgLabel.text=[NSString stringWithFormat:@"创客:%@人",model.djtg];
-    self.gtLabel.text=[NSString stringWithFormat:@"城市创客:%@人",model.gjtg];
-    self.shopNumLabel.text=[NSString stringWithFormat:@"商家:%@家",model.shop];
-    self.addTimeLabel.text=[NSString stringWithFormat:@"推荐时间:%@",model.addtime];
-    self.trueNameLabel.text=[NSString stringWithFormat:@"%@",model.truename];
-    self.saleLb.text=[NSString stringWithFormat:@"¥%@",model.money];
+
+    if ([self.typestr isEqualToString:@"1"]) {
+        self.IDLabel.text=[NSString stringWithFormat:@"用户ID:%@",model.username];
+        self.tgLabel.text=[NSString stringWithFormat:@"商家:%@家",model.shop];
+        self.gtLabel.text=[NSString stringWithFormat:@"时间:%@",model.addtime];
+        self.trueNameLabel.text=[NSString stringWithFormat:@"%@",model.truename];
+        self.saleLb.text=[NSString stringWithFormat:@"¥%@",model.money];
+        self.shopNumLabel.hidden = YES;
+        self.addTimeLabel.hidden = YES;
+    }else{
+    
+        self.IDLabel.text=[NSString stringWithFormat:@"用户ID:%@",model.username];
+        self.tgLabel.text=[NSString stringWithFormat:@"创客:%@人",model.djtg];
+        self.gtLabel.text=[NSString stringWithFormat:@"城市创客:%@人",model.gjtg];
+        self.shopNumLabel.text=[NSString stringWithFormat:@"商家:%@家",model.shop];
+        self.addTimeLabel.text=[NSString stringWithFormat:@"推荐时间:%@",model.addtime];
+        self.trueNameLabel.text=[NSString stringWithFormat:@"%@",model.truename];
+        self.saleLb.text=[NSString stringWithFormat:@"¥%@",model.money];
+        self.shopNumLabel.hidden = NO;
+        self.addTimeLabel.hidden = NO;
+    
+    }
     
     [self.imagev sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"dtx_icon"]];
 

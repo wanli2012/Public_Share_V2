@@ -42,9 +42,9 @@
     
     if([model.limit floatValue] > 1000){
         
-        self.distanceLabel.text = [NSString stringWithFormat:@"< %.2fKm",[model.limit floatValue]/1000];
+        self.distanceLabel.text = [NSString stringWithFormat:@"%.2fkm",[model.limit floatValue]/1000];
     }else{
-        self.distanceLabel.text = [NSString stringWithFormat:@"< %@m",model.limit];
+        self.distanceLabel.text = [NSString stringWithFormat:@"%@m",model.limit];
     }
     
 }

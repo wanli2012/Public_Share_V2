@@ -13,7 +13,7 @@
 #import "SubLBXScanViewController.h"
 #import "LBViewProtocolViewController.h"
 
-@interface GLRegisterController ()
+@interface GLRegisterController ()<UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *recomendId;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTf;
@@ -129,18 +129,20 @@
         [MBProgressHUD showError:@"请输入验证码"];
         return;
     }
-//    NSString *encryptphone = [RSAEncryptor encryptString:self.phoneTf.text publicKey:public_RSA];
-      NSString *encryptsecret = [RSAEncryptor encryptString:self.secretTf.text publicKey:public_RSA];
-//    NSString *encryptrecoemd = [RSAEncryptor encryptString:self.recomendId.text publicKey:public_RSA];
-//    NSString *encrypteyzm = [RSAEncryptor encryptString:self.verificationTf.text publicKey:public_RSA];
 
- 
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/register" paramDic:@{@"userphone":self.phoneTf.text , @"password":encryptsecret , @"uid":self.recomendId.text , @"yzm":self.verificationTf.text} finish:^(id responseObject) {
-        [_loadV removeloadview];
+     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"user/get_give_id" paramDic:@{@"uid":self.recomendId.text } finish:^(id responseObject) {
+           [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
-             [MBProgressHUD showError:responseObject[@"message"]];
-              [self.navigationController popViewControllerAnimated:YES];
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示"
+                                                                message:[NSString stringWithFormat:@"您的推荐人为%@",responseObject[@"data"][@"count"]]
+                                                               delegate:self
+                                                      cancelButtonTitle:@"取消"
+                                                      otherButtonTitles:@"立即注册", nil];
+            
+            [alertView show];
+            
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
         }
@@ -149,7 +151,29 @@
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
-    
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+     NSString *encryptsecret = [RSAEncryptor encryptString:self.secretTf.text publicKey:public_RSA];
+    if (buttonIndex == 1) {
+        _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+        [NetworkManager requestPOSTWithURLStr:@"user/register" paramDic:@{@"userphone":self.phoneTf.text , @"password":encryptsecret , @"uid":self.recomendId.text , @"yzm":self.verificationTf.text} finish:^(id responseObject) {
+            [_loadV removeloadview];
+            if ([responseObject[@"code"] integerValue]==1) {
+                [MBProgressHUD showError:responseObject[@"message"]];
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
+        } enError:^(NSError *error) {
+            [_loadV removeloadview];
+            [MBProgressHUD showError:error.localizedDescription];
+            
+        }];
+
+    }
+
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{

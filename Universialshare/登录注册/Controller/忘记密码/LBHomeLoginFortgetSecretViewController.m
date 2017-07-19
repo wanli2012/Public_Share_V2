@@ -250,7 +250,7 @@
 //副总
 -(void)ServiceBtE{
     _usertype=Retailer;
-    self.usertypeTf.text=@"副总 ";
+    self.usertypeTf.text=@"大区创客 ";
     [UIView animateWithDuration:0.3 animations:^{
         self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
         
