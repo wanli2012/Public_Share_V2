@@ -53,7 +53,6 @@
 }
 //判断邮箱格式是否正确
 +(BOOL)isValidateEmail:(NSString *)email
-
 {
     
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
@@ -73,7 +72,8 @@
     }
     NSString *regex2 = @"^(\\d{14}|\\d{17})(\\d|[xX])$";
     NSPredicate *identityCardPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex2];
-    return [identityCardPredicate evaluateWithObject:identityCard];
+//    return [identityCardPredicate evaluateWithObject:identityCard];
+    return YES;
 }
 +(BOOL) IsBankCard:(NSString *)cardNumber;
 {
