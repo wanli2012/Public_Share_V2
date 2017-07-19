@@ -387,7 +387,6 @@ static const CGFloat headerImageHeight = 180.0f;
 
 }
 
-
 -(void)checkmoreinfo:(NSInteger)index{
 
     switch (index) {
@@ -415,8 +414,6 @@ static const CGFloat headerImageHeight = 180.0f;
 //换一批商店
 -(void)BatchStore{
 
-//    CGFloat lat = [self.dataDic[@"shop_data"][@"lat"] floatValue ];
-//    CGFloat lng = [self.dataDic[@"shop_data"][@"lng"] floatValue ];
     CGFloat lat = [[GLNearby_Model defaultUser].latitude floatValue];
     CGFloat lng = [[GLNearby_Model defaultUser].longitude floatValue];
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
