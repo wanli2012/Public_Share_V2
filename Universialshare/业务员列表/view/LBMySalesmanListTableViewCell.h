@@ -17,7 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *businessNum;
 
-
+@property (strong , nonatomic)NSString *typestr;//身份类型
 
 @property (copy , nonatomic)void(^returntapgestureimage)();
 

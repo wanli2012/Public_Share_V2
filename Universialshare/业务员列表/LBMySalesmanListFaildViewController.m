@@ -134,7 +134,7 @@
     
     NSDictionary *dic = notification.userInfo;
     
-    self.type = dic[@"indexVc"];
+    self.type = [NSString stringWithFormat:@"%@",dic[@"indexVc"]];
     [self updateData:YES];
 }
 
@@ -145,6 +145,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if ([self.type isEqualToString:@"1"]) {
+
+        return 100;
+    }
     return 130;
     
 }
@@ -154,8 +158,9 @@
     LBMySalesmanListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBMySalesmanListTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.index = indexPath.row;
+    cell.typestr = self.type;
     cell.model = self.models[indexPath.row];
-    
+        
     //    __weak typeof(self) weakself =self;
     //    cell.returntapgestureimage = ^(NSInteger index){
     //

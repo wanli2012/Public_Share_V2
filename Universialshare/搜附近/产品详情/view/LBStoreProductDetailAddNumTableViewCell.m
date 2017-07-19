@@ -27,7 +27,7 @@
     if ([self.numLb.text isEqualToString:@"1"]) {
         return;
     }
-    self.numLb.text = [NSString stringWithFormat:@"%d",[self.numLb.text integerValue] - 1];
+    self.numLb.text = [NSString stringWithFormat:@"%ld",[self.numLb.text integerValue] - 1];
     
     if (self.retureNum) {
         self.retureNum([self.numLb.text integerValue]);
@@ -36,7 +36,7 @@
 
 - (IBAction)addButtonevent:(UIButton *)sender {
     
-    self.numLb.text = [NSString stringWithFormat:@"%d",[self.numLb.text integerValue] + 1];
+    self.numLb.text = [NSString stringWithFormat:@"%ld",[self.numLb.text integerValue] + 1];
     
     if (self.retureNum) {
         self.retureNum([self.numLb.text integerValue]);
