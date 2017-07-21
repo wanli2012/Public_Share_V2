@@ -139,39 +139,80 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
     LBMineCenterinfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBMineCenterinfoTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.nameLb.text= [NSString stringWithFormat:@"%@",self.titleArr[indexPath.row]];
     
-    if (indexPath.row == 0) {
-        cell.infoL.text = [UserModel defaultUser].mark;
-        if ([cell.infoL.text isEqualToString:@""]) {
-            cell.infoL.text = @"0";
+    if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
+        
+        if (indexPath.row == 0) {
+            cell.infoL.text = [UserModel defaultUser].surplusLimit;
+            if ([cell.infoL.text isEqualToString:@""] || [cell.infoL.text rangeOfString:@"null"].location != NSNotFound) {
+                cell.infoL.text = @"0";
+            }
+        }else if (indexPath.row == 1) {
+            cell.infoL.text = [UserModel defaultUser].allLimit;
+            if ([cell.infoL.text isEqualToString:@""] || [cell.infoL.text rangeOfString:@"null"].location != NSNotFound) {
+                cell.infoL.text = @"0";
+            }
+        }else if (indexPath.row == 2) {
+            cell.infoL.text = [UserModel defaultUser].mark;
+            if ([cell.infoL.text isEqualToString:@""] || [cell.infoL.text rangeOfString:@"null"].location != NSNotFound) {
+                cell.infoL.text = @"0";
+            }
+        }else if (indexPath.row == 3){
+            cell.infoL.text = [UserModel defaultUser].loveNum;
+            if ([cell.infoL.text isEqualToString:@""] || [cell.infoL.text rangeOfString:@"null"].location != NSNotFound) {
+                cell.infoL.text = @"0";
+            }
+        }else if (indexPath.row == 4){
+            cell.infoL.text = [UserModel defaultUser].ketiBean;
+            if ([cell.infoL.text isEqualToString:@""]) {
+                cell.infoL.text = @"0";
+            }
+        }else if (indexPath.row == 5){
+            cell.infoL.text = [UserModel defaultUser].recommendMark;
+            
+            if ([cell.infoL.text isEqualToString:@""]) {
+                cell.infoL.text = @"0";
+            }
+        }else if (indexPath.row == 6){
+            cell.infoL.text = [UserModel defaultUser].lastFanLiTime;
+            if ([cell.infoL.text isEqualToString:@""]) {
+                cell.infoL.text = @"暂无";
+            }
         }
-    }else if (indexPath.row == 1){
-        cell.infoL.text = [UserModel defaultUser].loveNum;
-        if ([cell.infoL.text isEqualToString:@""] || [cell.infoL.text rangeOfString:@"null"].location != NSNotFound) {
-            cell.infoL.text = @"0";
-        }
-    }else if (indexPath.row == 2){
-        cell.infoL.text = [UserModel defaultUser].ketiBean;
-        if ([cell.infoL.text isEqualToString:@""]) {
-            cell.infoL.text = @"0";
-        }
-    }else if (indexPath.row == 3){
-        cell.infoL.text = [UserModel defaultUser].recommendMark;
-     
-        if ([cell.infoL.text isEqualToString:@""]) {
-            cell.infoL.text = @"0";
-        }
-    }else if (indexPath.row == 4){
-        cell.infoL.text = [UserModel defaultUser].lastFanLiTime;
-        if ([cell.infoL.text isEqualToString:@""]) {
-            cell.infoL.text = @"暂无";
+        
+    }else{
+        
+        if (indexPath.row == 0) {
+            cell.infoL.text = [UserModel defaultUser].mark;
+            if ([cell.infoL.text isEqualToString:@""]) {
+                cell.infoL.text = @"0";
+            }
+        }else if (indexPath.row == 1){
+            cell.infoL.text = [UserModel defaultUser].loveNum;
+            if ([cell.infoL.text isEqualToString:@""] || [cell.infoL.text rangeOfString:@"null"].location != NSNotFound) {
+                cell.infoL.text = @"0";
+            }
+        }else if (indexPath.row == 2){
+            cell.infoL.text = [UserModel defaultUser].ketiBean;
+            if ([cell.infoL.text isEqualToString:@""]) {
+                cell.infoL.text = @"0";
+            }
+        }else if (indexPath.row == 3){
+            cell.infoL.text = [UserModel defaultUser].recommendMark;
+            
+            if ([cell.infoL.text isEqualToString:@""]) {
+                cell.infoL.text = @"0";
+            }
+        }else if (indexPath.row == 4){
+            cell.infoL.text = [UserModel defaultUser].lastFanLiTime;
+            if ([cell.infoL.text isEqualToString:@""]) {
+                cell.infoL.text = @"暂无";
+            }
         }
     }
-    
     
     return cell;
     
@@ -295,7 +336,12 @@
 -(NSArray*)titleArr{
 
     if (!_titleArr) {
-        _titleArr=[NSArray arrayWithObjects:@"米券",@"积分",@"米子",@"推荐米子",@"上个奖励日", nil];
+        
+        if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
+             _titleArr=[NSArray arrayWithObjects:@"剩余额度",@"总额度",@"米券",@"积分",@"米子",@"推荐米子",@"上个奖励日", nil];
+        }else{
+         _titleArr=[NSArray arrayWithObjects:@"米券",@"积分",@"米子",@"推荐米子",@"上个奖励日", nil];
+        }
     }
 return _titleArr;
     

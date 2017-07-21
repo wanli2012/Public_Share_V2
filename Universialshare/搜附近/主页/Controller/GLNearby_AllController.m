@@ -84,6 +84,7 @@ static NSString *ID = @"GLNearby_classifyCell";
     [NetworkManager requestPOSTWithURLStr:@"shop/searchNearShopByContent" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
+        
         if ([responseObject[@"code"] integerValue]==1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 for (NSDictionary *dic  in responseObject[@"data"][@"shop_data"]) {
@@ -151,7 +152,7 @@ static NSString *ID = @"GLNearby_classifyCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
   
-    return 110 *autoSizeScaleY;
+    return 125 *autoSizeScaleY;
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

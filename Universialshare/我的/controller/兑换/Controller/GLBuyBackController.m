@@ -16,6 +16,9 @@
 
 #import "GLBuyBackChooseController.h"
 #import "GLBankCardModel.h"
+#import "QQPopMenuView.h"
+#import "LBMineSelectCustomerTypeView.h"
+#import "LBMeterChangePointsRecordViewController.h"
 
 @interface GLBuyBackController ()<UITextFieldDelegate,UIScrollViewDelegate>
 {
@@ -51,7 +54,14 @@
 
 @property (weak, nonatomic) IBOutlet UIView *headView;
 
+@property (weak, nonatomic) IBOutlet UITextField *methodtf;
+@property (assign, nonatomic)NSInteger typeIndex;
+
 @property (nonatomic, assign)int type;
+
+@property (strong, nonatomic)LBMineSelectCustomerTypeView *SelectCustomerTypeView;
+@property (strong, nonatomic)UIView *maskView;
+@property (strong, nonatomic)NSString *ordertype;
 
 @end
 
@@ -70,8 +80,10 @@
     [self.backBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 0, 5, 20)];
 
     self.scrollView.delegate = self;
+    self.ordertype = @"1";
+    self.typeArr = @[@{@"title":@"理财一",@"imageName":@""},@{@"title":@"理财二",@"imageName":@""},@{@"title":@"理财三",@"imageName":@""} ];
 
-    self.noticeLabel.text = [NSString stringWithFormat:@" 1. 兑换建议优先选择工商银行\n 2. 单笔最多兑换50000颗米子\n 3.T+1:一天后到账,手续费为兑换数量的6%%\n    T+3:三天后到账,手续费为兑换数量的3%%\n    T+7:七天后到账,手续费为5颗米子 "] ;
+    self.noticeLabel.text = [NSString stringWithFormat:@" 1. 兑换建议优先选择工商银行\n 2. 单笔最多兑换50000颗米子\n 3.T+1:一天后到账,手续费为兑换数量的%.2lf%%\n    T+3:三天后到账,手续费为兑换数量的%.2lf%%\n    T+7:七天后到账,手续费为兑换数量的%.2lf%%\n 4.理财一：50%%兑换为现金, 兑换金额的20%%转换为积分，收取10%%服务费，20%%转化为米券 \n 5.理财二：兑换金额的70%%转换为积分，收取10%%服务费，20%%转化为米券\n 6.理财三：兑换金额的50%%转换为积分，收取10%%服务费，20%%转化为米券，20%%兑换为现金，同时收取对应的手续费\n 7.投资后米子和积分按1:5的比例返还积分\n 8.兑换米子数量至少为1000米子且为500的倍数 ", [[UserModel defaultUser].t_one floatValue]*100, [[UserModel defaultUser].t_two floatValue] *100, [[UserModel defaultUser].t_three floatValue] * 100] ;
 
 //    [UILabel changeLineSpaceForLabel:self.noticeLabel WithSpace:5.0];
 
@@ -83,7 +95,7 @@
     self.secondPwdF.returnKeyType = UIReturnKeyDone;
     
     self.contentViewWidth.constant = SCREEN_WIDTH;
-    self.contentViewHeight.constant = 450;
+    self.contentViewHeight.constant = 630;
 //    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
 //    }else{
 //        self.contentViewHeight.constant = SCREEN_HEIGHT + 100;
@@ -307,6 +319,40 @@
     }
     return YES;
 }
+//理财方式
+- (IBAction)tapgestureMethod:(UITapGestureRecognizer *)sender {
+    
+    UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
+    CGRect rect=[sender.view convertRect: sender.view.bounds toView:window];
+    
+    __weak typeof(self) weakself = self;
+    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:self.typeArr
+                              
+                                                           width:120
+                                                triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, rect.origin.y+20)
+                                                          action:^(NSInteger index) {
+                                                              
+                                                              self.methodtf.text = weakself.typeArr[index][@"title"];
+                                                              self.typeIndex = index + 1;
+                                                              
+                                                              if (index == 0) {
+                                                                  self.buybackNumF.text = @"";
+                                                                  self.buybackNumF.placeholder = @"请输入100的整数倍";
+                                                              }else{
+                                                                  self.buybackNumF.text = @"";
+                                                                  self.buybackNumF.placeholder = @"请输入500的整数倍至少1000";
+
+                                                              }
+                                                              
+                                                          }];
+    
+    popview.isHideImage = YES;
+    
+    [popview show];
+}
+
+
+
 - (IBAction)ensureClick:(id)sender {
 
     if ([[NSString stringWithFormat:@"%ld",[self.cardNumLabel.text integerValue]] isEqualToString:@"0"]) {
@@ -324,10 +370,35 @@
         return;
     }
     
-    if ([self.buybackNumF.text integerValue] %100 != 0){
+    if (self.typeIndex == 1) {
+        if ([self.buybackNumF.text integerValue] %100 != 0){
             [MBProgressHUD showError:@"数量必须是100的整数倍!"];
             return;
+        }
+    }else{
+    
+        if ([self.buybackNumF.text floatValue] <1000) {
+            [MBProgressHUD showError:@"至少兑换1000"];
+            return;
+        }
+        
+        if ([self.buybackNumF.text floatValue] > [self.remainBeanLabel.text floatValue]) {
+            [MBProgressHUD showError:@"兑换米子超过可兑换米子"];
+            return;
+        }
+        
+        if ([self.buybackNumF.text integerValue] % 500  != 0) {
+            [MBProgressHUD showError:@"兑换米子需是500的整数倍"];
+            return;
+        }
+
     }
+    
+    if (self.methodtf.text.length <= 0) {
+        [MBProgressHUD showError:@"请选择理财方式"];
+        return;
+    }
+    
 
     if ( [self.buybackNumF.text integerValue] > 50000){
         [MBProgressHUD showError:[NSString stringWithFormat:@"单笔最多兑换50000颗%@",NormalMoney]];
@@ -345,9 +416,10 @@
     NSString *title = NSLocalizedString(@"请选择类型", nil);
     NSString *message = NSLocalizedString(@"", nil);
     NSString *cancelButtonTitle = NSLocalizedString(@"取消", nil);
-    NSString *T1ButtonTitle = NSLocalizedString(@"T + 1 (手续费为6%)", nil);
-    NSString *T3ButtonTitle = NSLocalizedString(@"T + 3 (手续费为3%)", nil);
-    NSString *T7ButtonTitle = NSLocalizedString(@"T + 7 (手续费为5颗米子)", nil);
+    
+    NSString *T1ButtonTitle = [NSString stringWithFormat:@"T + 1 (手续费为%.2lf%%)",[[UserModel defaultUser].t_one floatValue]*100];
+    NSString *T3ButtonTitle = [NSString stringWithFormat:@"T + 3 (手续费为%.2lf%%)",[[UserModel defaultUser].t_two floatValue]*100];
+    NSString *T7ButtonTitle = [NSString stringWithFormat:@"T + 7 (手续费为%.2lf%%)",[[UserModel defaultUser].t_three floatValue]*100];
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     
@@ -375,10 +447,10 @@
         
         if ([self.beanStyleLabel.text isEqualToString:NormalMoney]) {
             
-            contentView.contentLabel.text = [NSString stringWithFormat:@"手续费为兑换数量的6%%"];
+            contentView.contentLabel.text = [NSString stringWithFormat:@"手续费为兑换数量的%.2lf%%",[[UserModel defaultUser].t_one floatValue]*100];
         }else{
             
-            contentView.contentLabel.text = [NSString stringWithFormat:@"手续费为兑换数量的6%%"];
+            contentView.contentLabel.text = [NSString stringWithFormat:@"手续费为兑换数量的%.2lf%%",[[UserModel defaultUser].t_one floatValue]*100];
         }
         self.type = 1;
         [_maskV showViewWithContentView:contentView];
@@ -387,10 +459,10 @@
     UIAlertAction *T3Action = [UIAlertAction actionWithTitle:T3ButtonTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         if ([self.beanStyleLabel.text isEqualToString:NormalMoney]) {
             
-            contentView.contentLabel.text = [NSString stringWithFormat:@"手续费为兑换数量的3%%"];
+            contentView.contentLabel.text = [NSString stringWithFormat:@"手续费为兑换数量的%.2lf%%",[[UserModel defaultUser].t_two floatValue]*100];
         }else{
             
-            contentView.contentLabel.text = [NSString stringWithFormat:@"手续费为兑换数量的3%%"];
+            contentView.contentLabel.text = [NSString stringWithFormat:@"手续费为兑换数量的%.2lf%%",[[UserModel defaultUser].t_two floatValue]*100];
         }
         self.type = 2;
         [_maskV showViewWithContentView:contentView];
@@ -400,10 +472,10 @@
         
         if ([self.beanStyleLabel.text isEqualToString:NormalMoney]) {
             
-            contentView.contentLabel.text = [NSString stringWithFormat:@"手续费为5颗米子"];
+            contentView.contentLabel.text =  [NSString stringWithFormat:@"手续费为兑换数量的%.2lf%%",[[UserModel defaultUser].t_three floatValue]*100];
         }else{
             
-            contentView.contentLabel.text = [NSString stringWithFormat:@"手续费为5颗米子"];
+            contentView.contentLabel.text =  [NSString stringWithFormat:@"手续费为兑换数量的%.2lf%%",[[UserModel defaultUser].t_three floatValue]*100];
         }
         self.type = 3;
         [_maskV showViewWithContentView:contentView];
@@ -450,6 +522,7 @@
     }else{
         dict[@"donatetype"] = @"0";
     }
+     dict[@"typer"] = @(self.typeIndex);
 
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"user/back" paramDic:dict finish:^(id responseObject) {
@@ -457,8 +530,9 @@
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == 1) {
             [self cancelBuyback];
-            self.secondPwdF.text = nil;
-            self.buybackNumF.text = nil;
+            self.secondPwdF.text = @"";
+            self.buybackNumF.text = @"";
+            self.methodtf.text = @"";
             
             //刷新信息
             [self updateData];
@@ -479,10 +553,13 @@
 
 //跳转兑换记录
 - (IBAction)buyBackRecord:(id)sender {
-    self.hidesBottomBarWhenPushed = YES;
-    GLBuyBackRecordController *recordVC = [[GLBuyBackRecordController alloc] init];
     
-    [self.navigationController pushViewController:recordVC animated:YES];
+    [self.view addSubview:self.maskView];
+    self.SelectCustomerTypeView.titileLb.text = @"请选择记录类型";
+    self.SelectCustomerTypeView.labelOne.text = @"兑换记录";
+    self.SelectCustomerTypeView.labelTwo.text = @"理财记录";
+    [self.maskView addSubview:self.SelectCustomerTypeView];
+
 }
 
 - (IBAction)chooseBank:(id)sender {
@@ -569,5 +646,84 @@
 
    
 }
+
+//线上订单
+-(void)selectonlineorder{
+    
+    self.ordertype = @"1";
+    self.SelectCustomerTypeView.imagev1.image = [UIImage imageNamed:@"location_on"];
+    self.SelectCustomerTypeView.imagev2.image = [UIImage imageNamed:@"location_off"];
+    
+}
+//线下订单
+-(void)selectunderlineorder{
+    
+    self.ordertype = @"2";
+    self.SelectCustomerTypeView.imagev1.image = [UIImage imageNamed:@"location_off"];
+    self.SelectCustomerTypeView.imagev2.image = [UIImage imageNamed:@"location_on"];
+    
+}
+#pragma mark ---- 选择线上线下订单类型
+-(void)selectCustomerTypeViewCancelBt{
+    
+    [self.maskView removeFromSuperview];
+    [self.SelectCustomerTypeView removeFromSuperview];
+}
+
+-(void)selectCustomerTypeViewsureBt{
+    
+    
+    if ([self.ordertype isEqualToString:@"1"]) {//线上
+        self.hidesBottomBarWhenPushed = YES;
+        GLBuyBackRecordController *recordVC = [[GLBuyBackRecordController alloc] init];
+        
+        [self.navigationController pushViewController:recordVC animated:YES];
+        [self.maskView removeFromSuperview];
+        [self.SelectCustomerTypeView removeFromSuperview];
+    }else  if ([self.ordertype isEqualToString:@"2"]) {//线下
+        
+        self.hidesBottomBarWhenPushed = YES;
+        LBMeterChangePointsRecordViewController *recordVC = [[LBMeterChangePointsRecordViewController alloc] init];
+        [self.navigationController pushViewController:recordVC animated:YES];
+        [self.maskView removeFromSuperview];
+        [self.SelectCustomerTypeView removeFromSuperview];
+    }
+    
+}
+
+
+-(UIView*)maskView{
+    
+    if (!_maskView) {
+        _maskView=[[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        [_maskView setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.2f]];
+        
+    }
+    return _maskView;
+    
+}
+
+-(LBMineSelectCustomerTypeView*)SelectCustomerTypeView{
+    
+    if (!_SelectCustomerTypeView) {
+        _SelectCustomerTypeView=[[NSBundle mainBundle]loadNibNamed:@"LBMineSelectCustomerTypeView" owner:self options:nil].firstObject;
+        _SelectCustomerTypeView.frame=CGRectMake(20, (SCREEN_HEIGHT - 210)/2, SCREEN_WIDTH-40, 201);
+        _SelectCustomerTypeView.alpha=1;
+        UITapGestureRecognizer *shanVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectonlineorder)];
+        
+        [_SelectCustomerTypeView.baseView1 addGestureRecognizer:shanVgesture];
+        UITapGestureRecognizer *lingVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectunderlineorder)];
+        [_SelectCustomerTypeView.baseView2 addGestureRecognizer:lingVgesture];
+        [_SelectCustomerTypeView.cancelBt addTarget:self action:@selector(selectCustomerTypeViewCancelBt) forControlEvents:UIControlEventTouchUpInside];
+        [_SelectCustomerTypeView.sureBt addTarget:self action:@selector(selectCustomerTypeViewsureBt) forControlEvents:UIControlEventTouchUpInside];
+        _SelectCustomerTypeView.layer.cornerRadius = 4;
+        _SelectCustomerTypeView.clipsToBounds = YES;
+        
+    }
+    
+    return _SelectCustomerTypeView;
+    
+}
+
 
 @end

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -151,7 +151,10 @@
                 <outlet property="cancelBt" destination="P2v-I9-Ekr" id="r04-2v-Bay"/>
                 <outlet property="imagev1" destination="sxC-gY-lOy" id="lYZ-I3-f0B"/>
                 <outlet property="imagev2" destination="Tt8-yr-98Q" id="51a-ZM-gMy"/>
+                <outlet property="labelOne" destination="KgS-Ng-Ggd" id="ugm-dN-qqU"/>
+                <outlet property="labelTwo" destination="oPU-wb-7Wn" id="ivi-7d-ORc"/>
                 <outlet property="sureBt" destination="N6e-1Z-2fk" id="7kf-YZ-XcY"/>
+                <outlet property="titileLb" destination="6z3-vp-eGM" id="hkF-1b-Pze"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="54"/>
         </view>

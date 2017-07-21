@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *picImageWidth;
+@property (weak, nonatomic) IBOutlet UILabel *surpluslimitLb;
 
 @end
 
@@ -39,6 +40,7 @@
     self.addressLabel.text = [NSString stringWithFormat:@"地址:%@",model.shop_address];
     self.phoneLabel.text = [NSString stringWithFormat:@"电话:%@",model.phone];
     self.numberLabel.text = [NSString stringWithFormat:@"销售额:¥ %@",model.total_money];
+     self.surpluslimitLb.text = [NSString stringWithFormat:@"今日剩余额度: ¥%@",model.surplusLimit];
     
     if([model.limit floatValue] > 1000){
         

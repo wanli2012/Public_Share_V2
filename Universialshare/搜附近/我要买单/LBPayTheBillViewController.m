@@ -67,6 +67,8 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(wxpaysucess) name:@"wxpaysucess" object:nil];
     
     self.namelb.text = self.namestr;
+    
+    self.moneytf.placeholder = [NSString stringWithFormat:@"最多可消费¥%@",self.surplusLimit];
 }
 
 -(void)wxpaysucess{
@@ -78,6 +80,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    self.tabBarController.tabBar.hidden = YES;
 }
 - (IBAction)ensurePay:(id)sender {
     

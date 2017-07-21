@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -680,9 +680,19 @@
                                                 <constraint firstItem="bAI-Vj-kBf" firstAttribute="leading" secondItem="LkF-A3-Mcy" secondAttribute="leading" id="zDF-Og-3FQ"/>
                                             </constraints>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*请确保资料的真实性，否则审核不能通过，默认商家登录密码为联系人电话号码后6位" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBV-gI-rcu">
+                                            <rect key="frame" x="10" y="1296" width="335" height="21.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="ZxJ-02-32y"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                            <color key="textColor" red="0.77709561589999998" green="0.19865089650000001" blue="0.056773729619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstItem="bBV-gI-rcu" firstAttribute="top" secondItem="mTx-6o-bzZ" secondAttribute="bottom" constant="1" id="1cX-H9-LNG"/>
                                         <constraint firstItem="L1F-Kd-giS" firstAttribute="top" secondItem="QsC-Wt-0yw" secondAttribute="bottom" constant="10" id="28C-xP-hpN"/>
                                         <constraint firstItem="Uiw-ML-bpy" firstAttribute="leading" secondItem="0jo-zD-FyS" secondAttribute="leading" constant="10" id="2IC-ZF-pyu"/>
                                         <constraint firstItem="iBc-IM-d5Q" firstAttribute="leading" secondItem="0jo-zD-FyS" secondAttribute="leading" constant="10" id="4vh-xp-UP4"/>
@@ -714,12 +724,14 @@
                                         <constraint firstItem="iBc-IM-d5Q" firstAttribute="top" secondItem="Uiw-ML-bpy" secondAttribute="bottom" constant="10" id="eP2-RN-jH9"/>
                                         <constraint firstItem="for-wy-2rY" firstAttribute="top" secondItem="lHl-hp-iRq" secondAttribute="bottom" constant="10" id="huE-GJ-qjI"/>
                                         <constraint firstItem="LkF-A3-Mcy" firstAttribute="top" secondItem="0jo-zD-FyS" secondAttribute="top" constant="5" id="kCZ-me-er4"/>
+                                        <constraint firstItem="bBV-gI-rcu" firstAttribute="leading" secondItem="0jo-zD-FyS" secondAttribute="leading" constant="10" id="l5M-Xx-4JE"/>
                                         <constraint firstItem="lHl-hp-iRq" firstAttribute="top" secondItem="tnQ-Bl-uxw" secondAttribute="bottom" constant="10" id="lEh-Yy-GSk"/>
                                         <constraint firstAttribute="trailing" secondItem="LkF-A3-Mcy" secondAttribute="trailing" id="lMJ-YE-nac"/>
                                         <constraint firstItem="drQ-m2-kfU" firstAttribute="centerX" secondItem="0jo-zD-FyS" secondAttribute="centerX" id="nuv-7f-O7T"/>
                                         <constraint firstAttribute="trailing" secondItem="QsC-Wt-0yw" secondAttribute="trailing" constant="10" id="qWi-Mj-OwS"/>
                                         <constraint firstItem="tnQ-Bl-uxw" firstAttribute="leading" secondItem="0jo-zD-FyS" secondAttribute="leading" constant="10" id="sW6-RB-k7x"/>
                                         <constraint firstItem="pHU-hZ-Xw1" firstAttribute="leading" secondItem="0jo-zD-FyS" secondAttribute="leading" constant="10" id="tZb-vx-CJC"/>
+                                        <constraint firstAttribute="trailing" secondItem="bBV-gI-rcu" secondAttribute="trailing" constant="10" id="uPO-aE-SzY"/>
                                         <constraint firstItem="ZZN-7W-zEz" firstAttribute="leading" secondItem="L1F-Kd-giS" secondAttribute="trailing" constant="10" id="vof-av-vXm"/>
                                         <constraint firstItem="L1F-Kd-giS" firstAttribute="leading" secondItem="0jo-zD-FyS" secondAttribute="leading" constant="10" id="wYU-KP-1xA"/>
                                         <constraint firstItem="pHU-hZ-Xw1" firstAttribute="top" secondItem="ZZN-7W-zEz" secondAttribute="bottom" constant="10" id="zkh-aW-lRd"/>

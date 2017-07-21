@@ -12,5 +12,8 @@
 @interface GLBuyBackRecordCell : UITableViewCell
 
 @property(nonatomic, strong)GLBuyBackRecordModel *model;
+@property (weak, nonatomic) IBOutlet UILabel *beanTypeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end

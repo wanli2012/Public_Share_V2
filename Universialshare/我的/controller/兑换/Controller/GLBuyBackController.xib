@@ -26,6 +26,7 @@
                 <outlet property="detailImageV" destination="Uyo-f0-rZQ" id="gOm-WB-cB7"/>
                 <outlet property="ensureBtn" destination="xvJ-Tg-8w6" id="okP-rb-Iqb"/>
                 <outlet property="headView" destination="Qnk-vF-ZT2" id="d7N-Yt-4gm"/>
+                <outlet property="methodtf" destination="TSs-a6-iOO" id="cax-tl-FmO"/>
                 <outlet property="noticeLabel" destination="PHM-g6-YsZ" id="tAf-mb-CTl"/>
                 <outlet property="remainBeanLabel" destination="EUm-Rv-5jV" id="DyH-ec-5l3"/>
                 <outlet property="remainBeanStyleLabel" destination="1Hj-h9-COF" id="TeU-6u-cyU"/>
@@ -256,7 +257,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwp-jf-tHM">
-                                    <rect key="frame" x="0.0" y="320" width="375" height="120"/>
+                                    <rect key="frame" x="0.0" y="375" width="375" height="120"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="兑换须知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hiD-Ch-yLd">
                                             <rect key="frame" x="161" y="10" width="53.5" height="16"/>
@@ -265,7 +266,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHM-g6-YsZ">
-                                            <rect key="frame" x="188" y="36" width="0.0" height="0.0"/>
+                                            <rect key="frame" x="10" y="36" width="355" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="k61-07-oOf"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -273,9 +277,11 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstItem="hiD-Ch-yLd" firstAttribute="top" secondItem="iwp-jf-tHM" secondAttribute="top" constant="10" id="3Wx-fp-GZz"/>
                                         <constraint firstItem="PHM-g6-YsZ" firstAttribute="top" secondItem="hiD-Ch-yLd" secondAttribute="bottom" constant="10" id="LfM-rT-i0r"/>
                                         <constraint firstAttribute="height" constant="120" id="NYG-Fy-iN0"/>
-                                        <constraint firstItem="hiD-Ch-yLd" firstAttribute="top" secondItem="iwp-jf-tHM" secondAttribute="top" constant="10" id="T8O-cO-7um"/>
+                                        <constraint firstItem="PHM-g6-YsZ" firstAttribute="leading" secondItem="iwp-jf-tHM" secondAttribute="leading" constant="10" id="YUl-bG-qfV"/>
+                                        <constraint firstAttribute="trailing" secondItem="PHM-g6-YsZ" secondAttribute="trailing" constant="10" id="YgJ-5P-GGQ"/>
                                         <constraint firstItem="PHM-g6-YsZ" firstAttribute="centerX" secondItem="iwp-jf-tHM" secondAttribute="centerX" id="j8S-TV-JaO"/>
                                         <constraint firstItem="hiD-Ch-yLd" firstAttribute="centerX" secondItem="iwp-jf-tHM" secondAttribute="centerX" id="q8N-tx-Fz2"/>
                                     </constraints>
@@ -383,13 +389,51 @@
                                         <constraint firstAttribute="trailing" secondItem="X44-Dl-iUx" secondAttribute="trailing" id="zWm-gk-NkU"/>
                                     </constraints>
                                 </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HAW-A6-pVx">
+                                    <rect key="frame" x="0.0" y="320" width="375" height="45"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="理财方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXy-GD-cNh">
+                                            <rect key="frame" x="10" y="12.5" width="53.5" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="8rJ-iG-XGw"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="IVz-dr-IPE"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入理财方式" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TSs-a6-iOO">
+                                            <rect key="frame" x="88.5" y="0.0" width="276.5" height="45"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <gestureRecognizers/>
+                                    <constraints>
+                                        <constraint firstItem="CXy-GD-cNh" firstAttribute="leading" secondItem="HAW-A6-pVx" secondAttribute="leading" constant="10" id="3ax-fl-Jm8"/>
+                                        <constraint firstItem="TSs-a6-iOO" firstAttribute="leading" secondItem="CXy-GD-cNh" secondAttribute="trailing" constant="25" id="4tm-wg-Mqn"/>
+                                        <constraint firstItem="TSs-a6-iOO" firstAttribute="top" secondItem="HAW-A6-pVx" secondAttribute="top" id="8t8-yQ-xF3"/>
+                                        <constraint firstAttribute="height" constant="45" id="Amb-CM-FeY"/>
+                                        <constraint firstAttribute="bottom" secondItem="TSs-a6-iOO" secondAttribute="bottom" id="GsA-X9-3Y1"/>
+                                        <constraint firstItem="CXy-GD-cNh" firstAttribute="centerY" secondItem="HAW-A6-pVx" secondAttribute="centerY" id="JXb-wQ-TG3"/>
+                                        <constraint firstAttribute="trailing" secondItem="TSs-a6-iOO" secondAttribute="trailing" constant="10" id="uxh-jl-IZI"/>
+                                    </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="laS-6c-0Zu" appends="YES" id="cTE-qA-CrB"/>
+                                    </connections>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="iwp-jf-tHM" secondAttribute="trailing" id="8zg-Ou-BYI"/>
-                                <constraint firstItem="iwp-jf-tHM" firstAttribute="top" secondItem="E8z-Z2-JRh" secondAttribute="bottom" id="Ahe-NV-M6C"/>
+                                <constraint firstItem="HAW-A6-pVx" firstAttribute="leading" secondItem="eHv-25-s53" secondAttribute="leading" id="9IH-JQ-bPx"/>
                                 <constraint firstItem="13I-zT-rt3" firstAttribute="leading" secondItem="eHv-25-s53" secondAttribute="leading" id="DBr-fv-5ah"/>
                                 <constraint firstItem="Qnk-vF-ZT2" firstAttribute="leading" secondItem="eHv-25-s53" secondAttribute="leading" id="HAT-OX-mao"/>
+                                <constraint firstItem="iwp-jf-tHM" firstAttribute="top" secondItem="HAW-A6-pVx" secondAttribute="bottom" constant="10" id="J8B-EA-RUU"/>
+                                <constraint firstAttribute="trailing" secondItem="HAW-A6-pVx" secondAttribute="trailing" id="Kt5-mG-al3"/>
+                                <constraint firstItem="HAW-A6-pVx" firstAttribute="top" secondItem="E8z-Z2-JRh" secondAttribute="bottom" id="Kv3-LT-Bw7"/>
                                 <constraint firstItem="iwp-jf-tHM" firstAttribute="leading" secondItem="eHv-25-s53" secondAttribute="leading" id="MfI-Wu-2ba"/>
                                 <constraint firstAttribute="trailing" secondItem="13I-zT-rt3" secondAttribute="trailing" id="aSr-oW-W5i"/>
                                 <constraint firstAttribute="trailing" secondItem="Qnk-vF-ZT2" secondAttribute="trailing" id="aVp-Ar-Bav"/>
@@ -442,6 +486,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="6.5" y="-165.5"/>
         </view>
+        <tapGestureRecognizer id="laS-6c-0Zu">
+            <connections>
+                <action selector="tapgestureMethod:" destination="-1" id="5hJ-DF-inY"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="bank_nopicture" width="66" height="66"/>

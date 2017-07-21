@@ -43,4 +43,8 @@
 
 @property (nonatomic, copy)NSString *pic;
 
+@property (nonatomic, copy)NSString *allLimit;
+
+@property (nonatomic, copy)NSString *surplusLimit;
+
 @end

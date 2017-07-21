@@ -44,6 +44,7 @@
 #import "LBMerchantSubmissionFourViewController.h"
 #import "LBRecommendedSalesmanViewController.h"
 #import "GLMine_CompleteInfoView.h"
+#import "LBMeterChangePointsViewController.h"
 
 @interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate>{
     UIImageView *_imageviewLeft;
@@ -194,6 +195,7 @@
                 GLBuyBackController *vc=[[GLBuyBackController alloc]init];
                 [self.navigationController pushViewController:vc animated:YES];
                 self.hidesBottomBarWhenPushed=NO;
+               
             }
                 break;
             case 4:
@@ -284,12 +286,13 @@
                 break;
             case 3:
             {
-                
                 if ([[UserModel defaultUser].rzstatus isEqualToString:@"2"]) {
+
                     self.hidesBottomBarWhenPushed=YES;
                     GLBuyBackController *vc=[[GLBuyBackController alloc]init];
                     [self.navigationController pushViewController:vc animated:YES];
                     self.hidesBottomBarWhenPushed=NO;
+                    
                 }else if ([[UserModel defaultUser].rzstatus isEqualToString:@"1"]) {
                     [MBProgressHUD showError:@"审核中"];
                 }else{
@@ -313,9 +316,15 @@
                     [self.navigationController pushViewController:vc animated:YES];
                     
                 }else{
-                    //区域查询
-                    LBProductManagementViewController *vc = [[LBProductManagementViewController alloc] init];
-                    [self.navigationController pushViewController:vc animated:YES];
+                    
+                    if ([[UserModel defaultUser].rzstatus isEqualToString:@"2"]) {
+                        //区域查询
+                        LBProductManagementViewController *vc = [[LBProductManagementViewController alloc] init];
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }else if ([[UserModel defaultUser].rzstatus isEqualToString:@"1"]) {
+                        [MBProgressHUD showError:@"审核中"];
+                    }
+                   
                 }
                 self.hidesBottomBarWhenPushed=NO;
 
@@ -386,6 +395,9 @@
             }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]){
             
                 [weakself.view addSubview:weakself.maskView];
+                weakself.SelectCustomerTypeView.titileLb.text = @"请选择用户订单类型";
+                weakself.SelectCustomerTypeView.labelOne.text = @"线上订单";
+                 weakself.SelectCustomerTypeView.labelTwo.text = @"线下订单";
                 [weakself.maskView addSubview:weakself.SelectCustomerTypeView];
             
             }
@@ -555,22 +567,24 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 -(void)selectCustomerTypeViewsureBt{
     
-    if ([self.ordertype isEqualToString:@"1"]) {//线上
-        self.hidesBottomBarWhenPushed=YES;
-        LBMineCenterMyOrderViewController *vc=[[LBMineCenterMyOrderViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-        self.hidesBottomBarWhenPushed=NO;
-        [self.maskView removeFromSuperview];
-        [self.SelectCustomerTypeView removeFromSuperview];
-    }else  if ([self.ordertype isEqualToString:@"2"]) {//线下
-        
-        self.hidesBottomBarWhenPushed=YES;
-        LBMineCenterUsualUnderOrderViewController *vc=[[LBMineCenterUsualUnderOrderViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-        self.hidesBottomBarWhenPushed=NO;
-        [self.maskView removeFromSuperview];
-        [self.SelectCustomerTypeView removeFromSuperview];
-    }
+
+        if ([self.ordertype isEqualToString:@"1"]) {//线上
+            self.hidesBottomBarWhenPushed=YES;
+            LBMineCenterMyOrderViewController *vc=[[LBMineCenterMyOrderViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+            [self.maskView removeFromSuperview];
+            [self.SelectCustomerTypeView removeFromSuperview];
+        }else  if ([self.ordertype isEqualToString:@"2"]) {//线下
+            
+            self.hidesBottomBarWhenPushed=YES;
+            LBMineCenterUsualUnderOrderViewController *vc=[[LBMineCenterUsualUnderOrderViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+            [self.maskView removeFromSuperview];
+            [self.SelectCustomerTypeView removeFromSuperview];
+        }
+    
 }
 
 -(LBMineSelectCustomerTypeView*)SelectCustomerTypeView{
@@ -626,6 +640,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [UserModel defaultUser].idcard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"idcard"]];
             [UserModel defaultUser].headPic = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"pic"]];
             [UserModel defaultUser].AudiThrough = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"status"]];
+            [UserModel defaultUser].t_one = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"t_one"]];
+            [UserModel defaultUser].t_two = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"t_two"]];
+            [UserModel defaultUser].t_three = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"t_three"]];
+            
+            [UserModel defaultUser].allLimit = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"allLimit"]];
+            [UserModel defaultUser].isapplication = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isapplication"]];
+            [UserModel defaultUser].surplusLimit = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"surplusLimit"]];
             
             if ([[UserModel defaultUser].idcard rangeOfString:@"null"].location != NSNotFound) {
                 

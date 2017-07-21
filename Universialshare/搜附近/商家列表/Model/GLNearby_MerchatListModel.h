@@ -30,4 +30,8 @@
 
 @property (nonatomic, copy)NSString *uid;
 
+@property (nonatomic, copy)NSString *allLimit;
+
+@property (nonatomic, copy)NSString *surplusLimit;
+
 @end

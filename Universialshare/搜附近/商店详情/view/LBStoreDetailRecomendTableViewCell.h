@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *descrebLb;
 @property (weak, nonatomic) IBOutlet UILabel *styeLb;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLb;
+@property (weak, nonatomic) IBOutlet UILabel *surpluslimitLb;
 
 @end
