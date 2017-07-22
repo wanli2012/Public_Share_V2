@@ -631,6 +631,7 @@
     }
     
     if (textField == self.bossPhoneTf || textField == self.connectPhoneTf || textField == self.codeTf) {
+        
        return [self validateNumber:string];
       
     }
@@ -654,7 +655,7 @@
 //只能输入整数
 - (BOOL)validateNumber:(NSString*)number {
     BOOL res =YES;
-    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"];
     int i =0;
     while (i < number.length) {
         NSString * string = [number substringWithRange:NSMakeRange(i,1)];
