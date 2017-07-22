@@ -20,7 +20,6 @@
 @property (assign, nonatomic)BOOL secondBool;
 @property (weak, nonatomic) IBOutlet UIButton *chooseBt;
 
-
 @end
 
 @implementation LBHomeIncomeViewController
