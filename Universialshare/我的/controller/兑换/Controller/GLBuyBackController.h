@@ -10,4 +10,6 @@
 
 @interface GLBuyBackController : UIViewController
 
+@property (strong, nonatomic)NSArray *typeArr;
+
 @end

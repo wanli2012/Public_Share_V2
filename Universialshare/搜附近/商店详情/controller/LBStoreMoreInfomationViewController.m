@@ -227,7 +227,7 @@ static const CGFloat headerImageHeight = 180.0f;
         return UITableViewAutomaticDimension;
         
     }else if (indexPath.section == 3){
-        return 80;
+        return 100;
     }
 
     return 0;
@@ -292,6 +292,7 @@ static const CGFloat headerImageHeight = 180.0f;
         cell.nameLb.text = [NSString stringWithFormat:@"%@",self.lovedataArr[indexPath.row][@"shop_name"]];
          cell.descrebLb.text = [NSString stringWithFormat:@"%@",self.lovedataArr[indexPath.row][@"shop_type"]];
         cell.styeLb.text = [NSString stringWithFormat:@"%@",self.lovedataArr[indexPath.row][@"shop_area"]];
+        cell.surpluslimitLb.text = [NSString stringWithFormat:@"今日剩余额度: ¥%@",self.lovedataArr[indexPath.row][@"surplusLimit"]];
         
         if ([self.lovedataArr[indexPath.row][@"limit"] integerValue] >=0 && [self.lovedataArr[indexPath.row][@"limit"] integerValue] < 1000) {
             cell.distanceLb.text = [NSString stringWithFormat:@"%@m",self.lovedataArr[indexPath.row][@"limit"]];
@@ -555,6 +556,7 @@ static const CGFloat headerImageHeight = 180.0f;
         vc.pic = self.dataDic[@"shop_data"][@"pic1"];
     };
     vc.namestr = [NSString stringWithFormat:@"%@",self.dataDic[@"shop_data"][@"shop_name"]];
+    vc.surplusLimit = [NSString stringWithFormat:@"%@",self.dataDic[@"shop_data"][@"surplusLimit"]];
     
     [self.navigationController pushViewController:vc animated:YES];
 }

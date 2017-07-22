@@ -53,7 +53,7 @@
 -(BOOL)webView:(UIWebView* )webView shouldStartLoadWithRequest:(NSURLRequest* )request navigationType:(UIWebViewNavigationType)navigationType
 {
     //网页加载之前会调用此方法
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    //_loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     //retrun YES 表示正常加载网页 返回NO 将停止网页加载
     return YES;
 }
@@ -68,6 +68,8 @@
     //网页加载完成调用此方法
     [_loadV removeloadview];
 }
+
+
 
 -(void)webView:(UIWebView* )webView didFailLoadWithError:(NSError* )error
 { 

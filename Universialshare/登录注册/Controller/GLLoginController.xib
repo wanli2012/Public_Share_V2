@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -148,6 +148,20 @@
                                 <action selector="forgetButtonEvent:" destination="-1" eventType="touchUpInside" id="umu-N6-xd7"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gs4-fg-9Yh">
+                            <rect key="frame" x="127" y="496" width="80" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="1rv-Kc-5RS"/>
+                                <constraint firstAttribute="height" constant="30" id="z5J-zI-1TV"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <state key="normal" title="常见问题? ">
+                                <color key="titleColor" red="0.14404621719999999" green="0.60565376280000005" blue="0.14635491370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="useInfoamtion:" destination="-1" eventType="touchUpInside" id="lyY-we-gbD"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -176,6 +190,7 @@
                         <constraint firstAttribute="trailing" secondItem="xFo-Xk-3GM" secondAttribute="trailing" constant="10" id="pTD-mA-7FO"/>
                         <constraint firstItem="KVO-gV-ihj" firstAttribute="leading" secondItem="zxk-kR-rPG" secondAttribute="trailing" constant="20" id="tIS-Mu-5i5"/>
                         <constraint firstItem="2N6-Vj-ynp" firstAttribute="top" secondItem="hev-LI-5dm" secondAttribute="bottom" constant="10" id="uHA-eT-iR5"/>
+                        <constraint firstAttribute="bottom" secondItem="gs4-fg-9Yh" secondAttribute="bottom" constant="10" id="vnU-Ae-HFb"/>
                         <constraint firstAttribute="trailing" secondItem="CAy-Ks-J5I" secondAttribute="trailing" constant="20" id="wxh-AJ-ivT"/>
                         <constraint firstItem="zxk-kR-rPG" firstAttribute="top" secondItem="6Jn-r6-mkG" secondAttribute="top" constant="100" id="xJn-eS-Uhi"/>
                         <constraint firstItem="xFo-Xk-3GM" firstAttribute="leading" secondItem="6Jn-r6-mkG" secondAttribute="leading" constant="10" id="zQK-33-GaY"/>
@@ -192,6 +207,7 @@
                 <constraint firstItem="abd-yP-9FP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pdJ-Vs-adk"/>
                 <constraint firstItem="kN5-Rz-8e5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="tLk-Om-ZQW"/>
                 <constraint firstItem="kN5-Rz-8e5" firstAttribute="centerY" secondItem="abd-yP-9FP" secondAttribute="centerY" id="tjs-jY-wfg"/>
+                <constraint firstItem="gs4-fg-9Yh" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vsY-et-gK5"/>
                 <constraint firstItem="abd-yP-9FP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="zNR-hk-iW6"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

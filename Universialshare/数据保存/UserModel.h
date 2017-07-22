@@ -46,6 +46,15 @@
 @property (nonatomic ,copy)NSString  *shop_address;//商家地址
 @property (nonatomic ,copy)NSString  *shop_type;//商家类型
 
+//兑换比例
+@property (nonatomic ,copy)NSString  *t_one;
+@property (nonatomic ,copy)NSString  *t_two;
+@property (nonatomic ,copy)NSString  *t_three;
+//商家额度
+@property (nonatomic ,copy)NSString  *surplusLimit;//剩余额度
+@property (nonatomic ,copy)NSString  *allLimit;//总额度
+@property (nonatomic ,copy)NSString  *isapplication;//判断是否正在申请额度 0 为没有申请 1 为正在申请
+
 //@property (nonatomic ,copy)NSString  *defaultBanknumber;//默认银行卡号
 @property (nonatomic ,copy)NSString  *defaultBankname;//默认银行名
 @property (nonatomic ,copy)NSString  *defaultBankIcon;//默认银行图标

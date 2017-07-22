@@ -17,5 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imagev2;
 @property (weak, nonatomic) IBOutlet UIButton *cancelBt;
 @property (weak, nonatomic) IBOutlet UIButton *sureBt;
+@property (weak, nonatomic) IBOutlet UILabel *titileLb;
+@property (weak, nonatomic) IBOutlet UILabel *labelOne;
+@property (weak, nonatomic) IBOutlet UILabel *labelTwo;
 
 @end

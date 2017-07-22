@@ -17,4 +17,6 @@
 
 @property (nonatomic, copy)NSString *namestr;
 
+@property (nonatomic, copy)NSString *surplusLimit;
+
 @end

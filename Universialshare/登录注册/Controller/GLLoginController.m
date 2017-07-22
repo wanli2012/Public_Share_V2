@@ -11,6 +11,7 @@
 #import "BasetabbarViewController.h"
 #import "LoginIdentityView.h"
 #import "LBHomeLoginFortgetSecretViewController.h"
+#import "LBViewProtocolViewController.h"
 
 @interface GLLoginController ()<UITextFieldDelegate>
 
@@ -160,6 +161,16 @@
     [self.navigationController pushViewController:vc animated:YES];
 
 }
+//使用说明
+- (IBAction)useInfoamtion:(UIButton *)sender {
+    self.hidesBottomBarWhenPushed = YES;
+    LBViewProtocolViewController *vc=[[LBViewProtocolViewController alloc]init];
+    vc.webUrl = COMMONPROBLE;
+    vc.navTitle = @"常见问题";
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 
 //确定按
 -(void)surebuttonEvent{
@@ -170,7 +181,6 @@
      NSString *encryptsecret = [RSAEncryptor encryptString:self.scretTf.text publicKey:public_RSA];
 
     [NetworkManager requestPOSTWithURLStr:@"user/login" paramDic:@{@"userphone":self.phone.text,@"password":encryptsecret,@"groupID":self.usertype} finish:^(id responseObject) {
-
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             
@@ -206,6 +216,10 @@
             [UserModel defaultUser].loginstatus = YES;
             [UserModel defaultUser].usrtype = self.usertype;
             [UserModel defaultUser].AudiThrough = @"0";
+            
+            [UserModel defaultUser].t_one = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"t_one"]];
+            [UserModel defaultUser].t_two = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"t_two"]];
+            [UserModel defaultUser].t_three = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"t_three"]];
             
             if ([[UserModel defaultUser].banknumber rangeOfString:@"null"].location != NSNotFound) {
                 
@@ -243,6 +257,11 @@
                 [UserModel defaultUser].shop_address = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_address"]];
                 [UserModel defaultUser].shop_type = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_type"]];
                 [UserModel defaultUser].is_main = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"is_main"]];
+                
+                [UserModel defaultUser].allLimit = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"allLimit"]];
+                [UserModel defaultUser].isapplication = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isapplication"]];
+                [UserModel defaultUser].surplusLimit = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"surplusLimit"]];
+                
                 if ([[UserModel defaultUser].shop_name rangeOfString:@"null"].location != NSNotFound) {
                     
                     [UserModel defaultUser].shop_name = @"";

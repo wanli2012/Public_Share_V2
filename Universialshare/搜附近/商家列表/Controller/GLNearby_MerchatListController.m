@@ -495,7 +495,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 110;
+    return 130;
     
 }
 

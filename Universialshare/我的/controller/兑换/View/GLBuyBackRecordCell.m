@@ -9,12 +9,6 @@
 #import "GLBuyBackRecordCell.h"
 
 @interface GLBuyBackRecordCell()
-@property (weak, nonatomic) IBOutlet UILabel *beanTypeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-
-
-
 
 @end
 

@@ -774,6 +774,8 @@
 		F94D31E41EAF716D00309029 /* LBMineCenterReceivingGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F94D31E01EAF716D00309029 /* LBMineCenterReceivingGoodsTableViewCell.m */; };
 		F94D31E51EAF716D00309029 /* LBMineCenterReceivingGoodsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94D31E11EAF716D00309029 /* LBMineCenterReceivingGoodsTableViewCell.xib */; };
 		F94D31E81EAF7EE200309029 /* LBWaitOrdersHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F94D31E71EAF7EE200309029 /* LBWaitOrdersHeaderView.m */; };
+		F94D5B231F1F53FA00BEFA1C /* LBApplicationLimitView.m in Sources */ = {isa = PBXBuildFile; fileRef = F94D5B221F1F53FA00BEFA1C /* LBApplicationLimitView.m */; };
+		F94D5B251F1F541200BEFA1C /* LBApplicationLimitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94D5B241F1F541200BEFA1C /* LBApplicationLimitView.xib */; };
 		F94D6E1E1E9DC15300412E64 /* loginRegister.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F94D6E1D1E9DC15300412E64 /* loginRegister.xcassets */; };
 		F94D6E231E9DFB2700412E64 /* LBHomeLoginFortgetSecretViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94D6E211E9DFB2700412E64 /* LBHomeLoginFortgetSecretViewController.m */; };
 		F94D6E241E9DFB2700412E64 /* LBHomeLoginFortgetSecretViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94D6E221E9DFB2700412E64 /* LBHomeLoginFortgetSecretViewController.xib */; };
@@ -950,6 +952,10 @@
 		F97F09E31EC98AEA000D3B30 /* LBAddMineProductionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09E11EC98AEA000D3B30 /* LBAddMineProductionViewController.xib */; };
 		F99264A51EF38367001857A4 /* libUMessage_Sdk_1.5.0a.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F99264A31EF38367001857A4 /* libUMessage_Sdk_1.5.0a.a */; };
 		F99264A71EF3838E001857A4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F99264A61EF3838E001857A4 /* UserNotifications.framework */; };
+		F9D2C9551F21F60E0004B75C /* LBMeterChangePointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D2C9531F21F60E0004B75C /* LBMeterChangePointsViewController.m */; };
+		F9D2C9561F21F60F0004B75C /* LBMeterChangePointsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9D2C9541F21F60E0004B75C /* LBMeterChangePointsViewController.xib */; };
+		F9D2C95A1F21FE840004B75C /* LBMeterChangePointsRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D2C9581F21FE840004B75C /* LBMeterChangePointsRecordViewController.m */; };
+		F9D2C95B1F21FE840004B75C /* LBMeterChangePointsRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9D2C9591F21FE840004B75C /* LBMeterChangePointsRecordViewController.xib */; };
 		F9E3A5391EEA7EF0009B9F16 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E3A5381EEA7EF0009B9F16 /* UIView+Extension.m */; };
 		F9E3A53F1EEA7F40009B9F16 /* ChooseRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E3A53C1EEA7F40009B9F16 /* ChooseRank.m */; };
 		F9E3A5401EEA7F40009B9F16 /* ChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E3A53E1EEA7F40009B9F16 /* ChooseView.m */; };
@@ -2312,6 +2318,9 @@
 		F94D31E11EAF716D00309029 /* LBMineCenterReceivingGoodsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterReceivingGoodsTableViewCell.xib; sourceTree = "<group>"; };
 		F94D31E61EAF7EE200309029 /* LBWaitOrdersHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBWaitOrdersHeaderView.h; sourceTree = "<group>"; };
 		F94D31E71EAF7EE200309029 /* LBWaitOrdersHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBWaitOrdersHeaderView.m; sourceTree = "<group>"; };
+		F94D5B211F1F53FA00BEFA1C /* LBApplicationLimitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBApplicationLimitView.h; sourceTree = "<group>"; };
+		F94D5B221F1F53FA00BEFA1C /* LBApplicationLimitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBApplicationLimitView.m; sourceTree = "<group>"; };
+		F94D5B241F1F541200BEFA1C /* LBApplicationLimitView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBApplicationLimitView.xib; sourceTree = "<group>"; };
 		F94D6E1D1E9DC15300412E64 /* loginRegister.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = loginRegister.xcassets; sourceTree = "<group>"; };
 		F94D6E201E9DFB2700412E64 /* LBHomeLoginFortgetSecretViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBHomeLoginFortgetSecretViewController.h; sourceTree = "<group>"; };
 		F94D6E211E9DFB2700412E64 /* LBHomeLoginFortgetSecretViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBHomeLoginFortgetSecretViewController.m; sourceTree = "<group>"; };
@@ -2599,6 +2608,12 @@
 		F99264A41EF38367001857A4 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		F99264A61EF3838E001857A4 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		F99264A81EF38544001857A4 /* Universialshare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Universialshare.entitlements; sourceTree = "<group>"; };
+		F9D2C9521F21F60E0004B75C /* LBMeterChangePointsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMeterChangePointsViewController.h; sourceTree = "<group>"; };
+		F9D2C9531F21F60E0004B75C /* LBMeterChangePointsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMeterChangePointsViewController.m; sourceTree = "<group>"; };
+		F9D2C9541F21F60E0004B75C /* LBMeterChangePointsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMeterChangePointsViewController.xib; sourceTree = "<group>"; };
+		F9D2C9571F21FE840004B75C /* LBMeterChangePointsRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMeterChangePointsRecordViewController.h; sourceTree = "<group>"; };
+		F9D2C9581F21FE840004B75C /* LBMeterChangePointsRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMeterChangePointsRecordViewController.m; sourceTree = "<group>"; };
+		F9D2C9591F21FE840004B75C /* LBMeterChangePointsRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMeterChangePointsRecordViewController.xib; sourceTree = "<group>"; };
 		F9E3A5371EEA7EF0009B9F16 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		F9E3A5381EEA7EF0009B9F16 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		F9E3A53B1EEA7F40009B9F16 /* ChooseRank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseRank.h; sourceTree = "<group>"; };
@@ -4339,6 +4354,12 @@
 				4AAD251C1EC188C90054FD06 /* GLBuyBackRecordController.h */,
 				4AAD251D1EC188C90054FD06 /* GLBuyBackRecordController.m */,
 				4AAD251E1EC188C90054FD06 /* GLBuyBackRecordController.xib */,
+				F9D2C9521F21F60E0004B75C /* LBMeterChangePointsViewController.h */,
+				F9D2C9531F21F60E0004B75C /* LBMeterChangePointsViewController.m */,
+				F9D2C9541F21F60E0004B75C /* LBMeterChangePointsViewController.xib */,
+				F9D2C9571F21FE840004B75C /* LBMeterChangePointsRecordViewController.h */,
+				F9D2C9581F21FE840004B75C /* LBMeterChangePointsRecordViewController.m */,
+				F9D2C9591F21FE840004B75C /* LBMeterChangePointsRecordViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4609,6 +4630,9 @@
 				F95E83681ED7D1A900E60F46 /* LBincomeHeaderFooterView.m */,
 				F95E836A1ED7F93E00E60F46 /* LBIncomeChooseHeaderFooterView.h */,
 				F95E836B1ED7F93E00E60F46 /* LBIncomeChooseHeaderFooterView.m */,
+				F94D5B211F1F53FA00BEFA1C /* LBApplicationLimitView.h */,
+				F94D5B221F1F53FA00BEFA1C /* LBApplicationLimitView.m */,
+				F94D5B241F1F541200BEFA1C /* LBApplicationLimitView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6449,9 +6473,11 @@
 				4AB9E1831ED6BA6600BE0420 /* GLIncomeManagerCell.xib in Resources */,
 				F923095A1E9B8BFF00ECDC94 /* LBMyOrderEveluationSucessCollectionViewCell.xib in Resources */,
 				F9F7804F1ED2F8FE00A498D6 /* LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.xib in Resources */,
+				F9D2C95B1F21FE840004B75C /* LBMeterChangePointsRecordViewController.xib in Resources */,
 				4AB9E1851ED6BA6600BE0420 /* GLMerchant_IncomeCell.xib in Resources */,
 				4AFFA52D1ECBDA57004FDEA7 /* GLNearby_MerchatListController.xib in Resources */,
 				4A46103C1E9CC6360045824F /* ios-social-sdk-socialbar.html in Resources */,
+				F94D5B251F1F541200BEFA1C /* LBApplicationLimitView.xib in Resources */,
 				F92309421E9B8BFF00ECDC94 /* LBMineCenterseverceNoticeTableViewCell.xib in Resources */,
 				4A4610311E9CC6360045824F /* README.txt in Resources */,
 				F92ED4931EDE5E3A00B3B3DB /* Cochin.ttc in Resources */,
@@ -6705,6 +6731,7 @@
 				F97F09D91EC9402A000D3B30 /* LBProductManagementViewController.xib in Resources */,
 				4A5F66A61ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.xib in Resources */,
 				4A2F51CD1EC6E5F600ECA95D /* GLMemberManagerCell.xib in Resources */,
+				F9D2C9561F21F60F0004B75C /* LBMeterChangePointsViewController.xib in Resources */,
 				4AFFA5321ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.xib in Resources */,
 				F961AA1C1E9CDD3400275F52 /* GLRegisterController.xib in Resources */,
 				F958C0821EA4A3F9003C9CFB /* personCenter.xcassets in Resources */,
@@ -7063,6 +7090,7 @@
 				4A4610E61E9CC6370045824F /* ZXModulusPoly.m in Sources */,
 				4A16C63D1ECD842100DF2E5E /* GLNearby_NearShopModel.m in Sources */,
 				4A4610701E9CC6360045824F /* ZXImage.m in Sources */,
+				F9D2C9551F21F60E0004B75C /* LBMeterChangePointsViewController.m in Sources */,
 				4A4610D11E9CC6370045824F /* ZXCode93Reader.m in Sources */,
 				F92F937D1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.m in Sources */,
 				4AFCDC801ED2EE81007C1681 /* GLMerchat_CommentHeaderView.m in Sources */,
@@ -7295,6 +7323,7 @@
 				4A46110F1E9CC6370045824F /* ZXQRCodeBlockPair.m in Sources */,
 				4AA0D5B61EAEED8B00CB8F77 /* GLSet_MaskVeiw.m in Sources */,
 				4A460A091E9CB8050045824F /* NodataView.m in Sources */,
+				F9D2C95A1F21FE840004B75C /* LBMeterChangePointsRecordViewController.m in Sources */,
 				F97374631EFE03B200520D03 /* UIAlertController+supportedInterfaceOrientations.m in Sources */,
 				4A460A161E9CBBE20045824F /* GLNoticeView.m in Sources */,
 				4A4610471E9CC6360045824F /* ZXAztecDetectorResult.m in Sources */,
@@ -7355,6 +7384,7 @@
 				4A4610F31E9CC6370045824F /* ZXPDF417DetectorResult.m in Sources */,
 				4AFCDC5C1ED2B0B0007C1681 /* GLMerchat_CommentCell.m in Sources */,
 				4A4610E21E9CC6370045824F /* ZXUPCEANReader.m in Sources */,
+				F94D5B231F1F53FA00BEFA1C /* LBApplicationLimitView.m in Sources */,
 				4A46105B1E9CC6360045824F /* ZXProductParsedResult.m in Sources */,
 				4A4610711E9CC6360045824F /* ZXMathUtils.m in Sources */,
 				4A4609FC1E9CB78E0045824F /* GLDonationMaskView.m in Sources */,

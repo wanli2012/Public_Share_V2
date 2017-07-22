@@ -117,15 +117,14 @@
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"shop/getShopData" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
-        
         if ([responseObject[@"code"] integerValue]==1) {
-            
-            weakself.hidesBottomBarWhenPushed = YES;
+           weakself.hidesBottomBarWhenPushed = YES;
             LBPayTheBillViewController *vc=[[LBPayTheBillViewController alloc]init];
             vc.namestr = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_name"]];
             vc.pic = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"store_pic"]];
             vc.shop_uid = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_id"]];
-            [self.navigationController pushViewController:vc animated:YES];
+            vc.surplusLimit = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"surplusLimit"]];
+            [weakself.navigationController pushViewController:vc animated:YES];
             weakself.hidesBottomBarWhenPushed = NO;
             
         }else{
@@ -144,7 +143,7 @@
 - (void)postRequest {
     
     [NetworkManager requestPOSTWithURLStr:@"shop/getTradeId" paramDic:@{} finish:^(id responseObject) {
-
+    
         if ([responseObject[@"code"] integerValue] == 1){
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 for (NSDictionary *dic  in responseObject[@"data"][@"trade"]) {
@@ -169,7 +168,7 @@
     
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-
+    self.tabBarController.tabBar.hidden = NO;
     [MXNavigationBarManager reStoreToCustomNavigationBar:self];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
   
