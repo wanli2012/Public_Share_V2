@@ -80,6 +80,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
     
     _loadV = [LoadWaitView addloadview:self.view.bounds tagert:self.view];
+    _loadV.isTap = NO;
     [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
@@ -164,6 +165,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    _loadV.isTap = NO;
     [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
@@ -280,7 +282,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     if (indexPath.section == 0) {
         return (SCREEN_WIDTH / 3) + 26;
     }else{
-        return 125 *autoSizeScaleY;
+        return 110 *autoSizeScaleY;
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

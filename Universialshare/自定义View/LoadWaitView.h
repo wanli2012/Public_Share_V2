@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) NSArray *imageArr;
 
+@property (assign , nonatomic)BOOL  isTap;//判断是否可以点击 默认是可以的
 
 +(LoadWaitView *)addloadview:(CGRect)rect tagert:(id)tagert;//加载
 

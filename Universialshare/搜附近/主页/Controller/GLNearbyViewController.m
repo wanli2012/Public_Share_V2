@@ -113,8 +113,13 @@
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"shop_name"] = str;
+    if ([str rangeOfString:@"SH"].location == NSNotFound) {
+        [MBProgressHUD showError:@"请扫正确的商家二维码"];
+        return;
+    }
     __weak typeof(self) weakself = self;
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    _loadV.isTap = NO;
     [NetworkManager requestPOSTWithURLStr:@"shop/getShopData" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {

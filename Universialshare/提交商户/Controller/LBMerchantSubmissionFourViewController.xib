@@ -176,7 +176,7 @@
                                                 <outletCollection property="gestureRecognizers" destination="s35-kt-LGI" appends="YES" id="Cil-gP-jpp"/>
                                             </connections>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="店铺环境（3张）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHl-hp-iRq">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="店铺环境（1-3张）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHl-hp-iRq">
                                             <rect key="frame" x="10" y="1157" width="335" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="2f8-EK-tA5"/>

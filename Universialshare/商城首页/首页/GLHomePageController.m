@@ -69,7 +69,7 @@ static NSString *recommendID = @"GLHomeRecommendCell";
     [self.tableView registerNib:[UINib nibWithNibName:@"GLTopCell" bundle:nil] forCellReuseIdentifier:topID];
     [self.tableView registerNib:[UINib nibWithNibName:@"GLHotCell" bundle:nil] forCellReuseIdentifier:hotID];
     [self.tableView registerNib:[UINib nibWithNibName:@"GLHomeRecommendCell" bundle:nil] forCellReuseIdentifier:recommendID];
-    
+
  
 }
 - (IBAction)cityChoose:(id)sender {

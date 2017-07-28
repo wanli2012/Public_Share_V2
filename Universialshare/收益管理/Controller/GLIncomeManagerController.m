@@ -201,17 +201,14 @@ static NSString *ID = @"GLIncomeManagerCell";
     NSDate *date2 = [dateFormatter dateFromString:self.timeTwoBtn.titleLabel.text];
     if ([[NSString stringWithFormat:@"%d",[self compareOneDay:date1 withAnotherDay:date2]] isEqualToString:@"1"]) {
         
-        NSLog(@"date1 > date2");
+        [MBProgressHUD showError:@"时间段选择有误"];
         
     }else if ([[NSString stringWithFormat:@"%d",[self compareOneDay:date1 withAnotherDay:date2]] isEqualToString:@"-1"]){
-        
-        NSLog(@"date1 < date2");
         
         [self updateData:YES];
 
     }else{
-        
-        NSLog(@"date1 = date2");
+        [self updateData:YES];
     }
 
 }

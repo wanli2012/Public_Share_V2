@@ -52,10 +52,15 @@
     self.ordercode.text = self.order_sn;
     self.orderMoney.text = [NSString stringWithFormat:@"%.2f",[self.orderPrice floatValue]];
 
-    if (self.payType == 1) {
+    if (self.payType == 1 || self.payType == 3) {
         self.orderMTitleLb.text = @"订单金额:";
-        self.orderType.text = @"消费订单";
-    }else{
+        if (self.payType == 1) {
+            self.orderType.text = @"消费订单";
+        }else{
+            self.orderType.text = @"面对面订单";
+        }
+        
+    }else if(self.payType == 2){
         self.orderMTitleLb.text = @"订单米券:";
         self.orderType.text = @"米券订单";
     }
@@ -108,7 +113,7 @@
     cell.paytitile.text = _dataarr[indexPath.row][@"title"];
     
     if(indexPath.row == 0){//米子
-        if (self.payType == 1) {
+        if (self.payType == 1 || self.payType == 3) {
             
             cell.reuseScoreLabel.text  = [NSString stringWithFormat:@"剩余:%@",[UserModel defaultUser].ketiBean];
         }else{//米券
@@ -164,7 +169,7 @@
         return;
     }
     
-    if ((self.payType == 1 || self.payType == 2)  && self.selectIndex == 0) {
+    if ((self.payType == 1 || self.payType == 2 || self.payType == 3)  && self.selectIndex == 0) {
         CGFloat contentViewH = 300;
         CGFloat contentViewW = SCREEN_WIDTH;
         _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -213,7 +218,6 @@
     dict[@"uid"] = [UserModel defaultUser].uid;
 //    dict[@"order_id"] = self.order_id;
     dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
-
     [NetworkManager requestPOSTWithURLStr:@"shop/ricePayCoupons" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
@@ -229,15 +233,20 @@
                 }else{
                     [self.navigationController popViewControllerAnimated:YES];
                 }
-                [MBProgressHUD showSuccess:responseObject[@"message"]];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                     [MBProgressHUD showSuccess:responseObject[@"message"]];
+                });
                 self.hidesBottomBarWhenPushed = NO;
             });
             
         }else{
             
-            [MBProgressHUD showError:responseObject[@"message"]];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [MBProgressHUD showSuccess:responseObject[@"message"]];
+            });
+            
         }
-         [self dismiss];
+        [self dismiss];
     } enError:^(NSError *error) {
          [MBProgressHUD showError:error.localizedDescription];
         [_loadV removeloadview];
@@ -409,7 +418,7 @@
 
     if (self.payType == 2) {
         
-        //米劵支付(积分)
+        //米劵支付(米粉)
         [self integralPay:sender];
         
     }else{
@@ -428,11 +437,11 @@
 
     if (!_dataarr) {
    
-        if (self.payType == 1) {
+        if (self.payType == 1 || self.payType == 3) {
             _dataarr = [NSArray arrayWithObjects:@{@"image":@"余额",@"title":@"米子支付"},@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"}, nil];
         }else if (self.payType == 2){
         
-           _dataarr=[NSArray arrayWithObjects:@{@"image":@"支付积分",@"title":@"米券支付"}, nil];
+           _dataarr=[NSArray arrayWithObjects:@{@"image":@"支付米粉",@"title":@"米券支付"}, nil];
         }
     }
 

@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *submitBt;//提交
 @property (weak, nonatomic) IBOutlet UIView *imageView;
 @property (strong, nonatomic)NSMutableArray *imageArr;
+@property (strong, nonatomic)NSMutableArray *titleArr;
 @property (assign, nonatomic)NSInteger deleteImageIndex;//删除图片
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTf;
@@ -74,6 +75,9 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"添加商品";
     self.automaticallyAdjustsScrollViewInsets = NO;
+    _titleArr = [NSMutableArray arrayWithObjects:@"one",@"two",@"three", nil];
+    
+    self.shuxingSize = CGRectZero;
     
     self.stype = 1;
     self.indexShelves = 1;
@@ -632,7 +636,7 @@
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     self.contentW.constant = SCREEN_WIDTH;
-    self.contentH.constant = 940;
+    self.contentH.constant = 940  + self.shuxingSize.size.height - 30;
     self.imageViwH.constant = 100;
     
     self.submitBt.layer.cornerRadius = 4;

@@ -159,7 +159,6 @@ static const CGFloat headerImageHeight = 180.0f;
         self.tableview.contentInset=UIEdgeInsetsMake(64, 0, 0, 0);
     }else{
         self.tableview.contentInset=UIEdgeInsetsMake(headerImageHeight, 0, 0, 0);
-    
     }
 }
 
@@ -222,12 +221,12 @@ static const CGFloat headerImageHeight = 180.0f;
         return 90;
         
     }else if (indexPath.section == 2){
-        self.tableview.estimatedRowHeight = 70;
+        self.tableview.estimatedRowHeight = 80;
         self.tableview.rowHeight = UITableViewAutomaticDimension;
         return UITableViewAutomaticDimension;
         
     }else if (indexPath.section == 3){
-        return 100;
+        return 80;
     }
 
     return 0;
@@ -278,11 +277,21 @@ static const CGFloat headerImageHeight = 180.0f;
         cell.timeLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"addtime"]];
         [cell.imagev sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.dataDic[@"com_data"][indexPath.row][@"pic"]]] placeholderImage:[UIImage imageNamed:@"tx_icon"] options:SDWebImageAllowInvalidSSLCertificates];
         
+        
+        if ([self.dataDic[@"com_data"][indexPath.row][@"is_comment"] integerValue] == 2) {
+            cell.replyLb.hidden = NO;
+            cell.replyLb.text = [NSString stringWithFormat:@"商家回复:%@",[self.dataDic[@"com_data"][indexPath.row][@"reply"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            cell.constaritH.constant = 15;
+            cell.constraitTop.constant = 0;
+            
+        }else{
             cell.replyLb.hidden = YES;
             cell.replyLb.text = @"";
             cell.constaritH.constant = 0;
             cell.constraitTop.constant = 6;
-        
+            
+        }
+
          return cell;
         
     }else if (indexPath.section == 3){
@@ -292,7 +301,7 @@ static const CGFloat headerImageHeight = 180.0f;
         cell.nameLb.text = [NSString stringWithFormat:@"%@",self.lovedataArr[indexPath.row][@"shop_name"]];
          cell.descrebLb.text = [NSString stringWithFormat:@"%@",self.lovedataArr[indexPath.row][@"shop_type"]];
         cell.styeLb.text = [NSString stringWithFormat:@"%@",self.lovedataArr[indexPath.row][@"shop_area"]];
-        cell.surpluslimitLb.text = [NSString stringWithFormat:@"今日剩余额度: ¥%@",self.lovedataArr[indexPath.row][@"surplusLimit"]];
+        cell.surpluslimitLb.text = @"";
         
         if ([self.lovedataArr[indexPath.row][@"limit"] integerValue] >=0 && [self.lovedataArr[indexPath.row][@"limit"] integerValue] < 1000) {
             cell.distanceLb.text = [NSString stringWithFormat:@"%@m",self.lovedataArr[indexPath.row][@"limit"]];

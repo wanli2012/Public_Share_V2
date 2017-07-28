@@ -74,13 +74,20 @@ static NSString *ID = @"GLNearby_classifyCell";
         
     }
     
+    if (self.searchTF.text.length <= 0) {
+        [MBProgressHUD showError:@"请输入关键字"];
+        [self endRefresh];
+        return;
+    }
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
     dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
     dict[@"page"] = [NSString stringWithFormat:@"%zd",_page];
     dict[@"content"] = self.searchTF.text;
     
-//    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+   _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    _loadV.isTap = NO;
     [NetworkManager requestPOSTWithURLStr:@"shop/searchNearShopByContent" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
@@ -185,7 +192,6 @@ static NSString *ID = @"GLNearby_classifyCell";
     store.storeId = model.shop_id;
     
     [self.navigationController pushViewController:store animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma 懒加载

@@ -26,6 +26,7 @@
                 <outlet property="detailImageV" destination="Uyo-f0-rZQ" id="gOm-WB-cB7"/>
                 <outlet property="ensureBtn" destination="xvJ-Tg-8w6" id="okP-rb-Iqb"/>
                 <outlet property="headView" destination="Qnk-vF-ZT2" id="d7N-Yt-4gm"/>
+                <outlet property="meterView" destination="Amb-CM-FeY" id="eRJ-Wv-wSt"/>
                 <outlet property="methodtf" destination="TSs-a6-iOO" id="cax-tl-FmO"/>
                 <outlet property="noticeLabel" destination="PHM-g6-YsZ" id="tAf-mb-CTl"/>
                 <outlet property="remainBeanLabel" destination="EUm-Rv-5jV" id="DyH-ec-5l3"/>
@@ -389,7 +390,7 @@
                                         <constraint firstAttribute="trailing" secondItem="X44-Dl-iUx" secondAttribute="trailing" id="zWm-gk-NkU"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HAW-A6-pVx">
+                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HAW-A6-pVx">
                                     <rect key="frame" x="0.0" y="320" width="375" height="45"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="理财方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXy-GD-cNh">

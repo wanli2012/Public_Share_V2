@@ -842,6 +842,10 @@
 		F958C07F1EA4615A003C9CFB /* LBMineCenterUsualUnderOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F958C07D1EA4615A003C9CFB /* LBMineCenterUsualUnderOrderTableViewCell.m */; };
 		F958C0801EA4615A003C9CFB /* LBMineCenterUsualUnderOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F958C07E1EA4615A003C9CFB /* LBMineCenterUsualUnderOrderTableViewCell.xib */; };
 		F958C0821EA4A3F9003C9CFB /* personCenter.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F958C0811EA4A3F9003C9CFB /* personCenter.xcassets */; };
+		F95AE3421F259E6A00946B37 /* GLMine_PersonInfoCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95AE3401F259E6A00946B37 /* GLMine_PersonInfoCodeView.m */; };
+		F95AE3431F259E6A00946B37 /* GLMine_PersonInfoCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95AE3411F259E6A00946B37 /* GLMine_PersonInfoCodeView.xib */; };
+		F95AE35B1F25FDFD00946B37 /* LBReplaceImagesview.m in Sources */ = {isa = PBXBuildFile; fileRef = F95AE35A1F25FDFD00946B37 /* LBReplaceImagesview.m */; };
+		F95AE35D1F25FE2800946B37 /* LBReplaceImagesview.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95AE35C1F25FE2800946B37 /* LBReplaceImagesview.xib */; };
 		F95E83621ED7B7E700E60F46 /* LBHomeIncomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95E83601ED7B7E700E60F46 /* LBHomeIncomeViewController.m */; };
 		F95E83631ED7B7E700E60F46 /* LBHomeIncomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95E83611ED7B7E700E60F46 /* LBHomeIncomeViewController.xib */; };
 		F95E83661ED7C48800E60F46 /* LBHomeIncomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95E83651ED7C48800E60F46 /* LBHomeIncomeView.m */; };
@@ -952,8 +956,6 @@
 		F97F09E31EC98AEA000D3B30 /* LBAddMineProductionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09E11EC98AEA000D3B30 /* LBAddMineProductionViewController.xib */; };
 		F99264A51EF38367001857A4 /* libUMessage_Sdk_1.5.0a.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F99264A31EF38367001857A4 /* libUMessage_Sdk_1.5.0a.a */; };
 		F99264A71EF3838E001857A4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F99264A61EF3838E001857A4 /* UserNotifications.framework */; };
-		F9D2C9551F21F60E0004B75C /* LBMeterChangePointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D2C9531F21F60E0004B75C /* LBMeterChangePointsViewController.m */; };
-		F9D2C9561F21F60F0004B75C /* LBMeterChangePointsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9D2C9541F21F60E0004B75C /* LBMeterChangePointsViewController.xib */; };
 		F9D2C95A1F21FE840004B75C /* LBMeterChangePointsRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D2C9581F21FE840004B75C /* LBMeterChangePointsRecordViewController.m */; };
 		F9D2C95B1F21FE840004B75C /* LBMeterChangePointsRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9D2C9591F21FE840004B75C /* LBMeterChangePointsRecordViewController.xib */; };
 		F9E3A5391EEA7EF0009B9F16 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E3A5381EEA7EF0009B9F16 /* UIView+Extension.m */; };
@@ -2421,6 +2423,12 @@
 		F958C07D1EA4615A003C9CFB /* LBMineCenterUsualUnderOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterUsualUnderOrderTableViewCell.m; sourceTree = "<group>"; };
 		F958C07E1EA4615A003C9CFB /* LBMineCenterUsualUnderOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterUsualUnderOrderTableViewCell.xib; sourceTree = "<group>"; };
 		F958C0811EA4A3F9003C9CFB /* personCenter.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = personCenter.xcassets; sourceTree = "<group>"; };
+		F95AE33F1F259E6A00946B37 /* GLMine_PersonInfoCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_PersonInfoCodeView.h; sourceTree = "<group>"; };
+		F95AE3401F259E6A00946B37 /* GLMine_PersonInfoCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_PersonInfoCodeView.m; sourceTree = "<group>"; };
+		F95AE3411F259E6A00946B37 /* GLMine_PersonInfoCodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_PersonInfoCodeView.xib; sourceTree = "<group>"; };
+		F95AE3591F25FDFD00946B37 /* LBReplaceImagesview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBReplaceImagesview.h; sourceTree = "<group>"; };
+		F95AE35A1F25FDFD00946B37 /* LBReplaceImagesview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBReplaceImagesview.m; sourceTree = "<group>"; };
+		F95AE35C1F25FE2800946B37 /* LBReplaceImagesview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBReplaceImagesview.xib; sourceTree = "<group>"; };
 		F95E835F1ED7B7E700E60F46 /* LBHomeIncomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBHomeIncomeViewController.h; sourceTree = "<group>"; };
 		F95E83601ED7B7E700E60F46 /* LBHomeIncomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBHomeIncomeViewController.m; sourceTree = "<group>"; };
 		F95E83611ED7B7E700E60F46 /* LBHomeIncomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBHomeIncomeViewController.xib; sourceTree = "<group>"; };
@@ -2608,9 +2616,6 @@
 		F99264A41EF38367001857A4 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		F99264A61EF3838E001857A4 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		F99264A81EF38544001857A4 /* Universialshare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Universialshare.entitlements; sourceTree = "<group>"; };
-		F9D2C9521F21F60E0004B75C /* LBMeterChangePointsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMeterChangePointsViewController.h; sourceTree = "<group>"; };
-		F9D2C9531F21F60E0004B75C /* LBMeterChangePointsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMeterChangePointsViewController.m; sourceTree = "<group>"; };
-		F9D2C9541F21F60E0004B75C /* LBMeterChangePointsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMeterChangePointsViewController.xib; sourceTree = "<group>"; };
 		F9D2C9571F21FE840004B75C /* LBMeterChangePointsRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMeterChangePointsRecordViewController.h; sourceTree = "<group>"; };
 		F9D2C9581F21FE840004B75C /* LBMeterChangePointsRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMeterChangePointsRecordViewController.m; sourceTree = "<group>"; };
 		F9D2C9591F21FE840004B75C /* LBMeterChangePointsRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMeterChangePointsRecordViewController.xib; sourceTree = "<group>"; };
@@ -4354,9 +4359,6 @@
 				4AAD251C1EC188C90054FD06 /* GLBuyBackRecordController.h */,
 				4AAD251D1EC188C90054FD06 /* GLBuyBackRecordController.m */,
 				4AAD251E1EC188C90054FD06 /* GLBuyBackRecordController.xib */,
-				F9D2C9521F21F60E0004B75C /* LBMeterChangePointsViewController.h */,
-				F9D2C9531F21F60E0004B75C /* LBMeterChangePointsViewController.m */,
-				F9D2C9541F21F60E0004B75C /* LBMeterChangePointsViewController.xib */,
 				F9D2C9571F21FE840004B75C /* LBMeterChangePointsRecordViewController.h */,
 				F9D2C9581F21FE840004B75C /* LBMeterChangePointsRecordViewController.m */,
 				F9D2C9591F21FE840004B75C /* LBMeterChangePointsRecordViewController.xib */,
@@ -5085,6 +5087,9 @@
 				F9126EB91EA05692004785EA /* GLMine_InfoCell.h */,
 				F9126EBA1EA05692004785EA /* GLMine_InfoCell.m */,
 				F9126EBB1EA05692004785EA /* GLMine_InfoCell.xib */,
+				F95AE3591F25FDFD00946B37 /* LBReplaceImagesview.h */,
+				F95AE35A1F25FDFD00946B37 /* LBReplaceImagesview.m */,
+				F95AE35C1F25FE2800946B37 /* LBReplaceImagesview.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6204,6 +6209,9 @@
 				F966B4121EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.h */,
 				F966B4131EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.m */,
 				F966B4141EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.xib */,
+				F95AE33F1F259E6A00946B37 /* GLMine_PersonInfoCodeView.h */,
+				F95AE3401F259E6A00946B37 /* GLMine_PersonInfoCodeView.m */,
+				F95AE3411F259E6A00946B37 /* GLMine_PersonInfoCodeView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -6497,6 +6505,7 @@
 				4A0D978D1E9729C100A26B84 /* GLHomePageController.xib in Resources */,
 				4AAD25AD1EC18BFF0054FD06 /* GLMyCollectionCell.xib in Resources */,
 				F9520A291EAE170400B4D665 /* LBMineStoreAllOrdersViewController.xib in Resources */,
+				F95AE3431F259E6A00946B37 /* GLMine_PersonInfoCodeView.xib in Resources */,
 				4A2F522A1EC7084100ECA95D /* GLTwoButtonCell.xib in Resources */,
 				4AFCDC771ED2EE09007C1681 /* GLMerchat_CommentGoodCell.xib in Resources */,
 				F966B4161EACB0E6007260FC /* LBSaleManPersonInfoTableViewCell.xib in Resources */,
@@ -6731,7 +6740,6 @@
 				F97F09D91EC9402A000D3B30 /* LBProductManagementViewController.xib in Resources */,
 				4A5F66A61ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.xib in Resources */,
 				4A2F51CD1EC6E5F600ECA95D /* GLMemberManagerCell.xib in Resources */,
-				F9D2C9561F21F60F0004B75C /* LBMeterChangePointsViewController.xib in Resources */,
 				4AFFA5321ECBE9F3004FDEA7 /* GLNearby_MerchatListCell.xib in Resources */,
 				F961AA1C1E9CDD3400275F52 /* GLRegisterController.xib in Resources */,
 				F958C0821EA4A3F9003C9CFB /* personCenter.xcassets in Resources */,
@@ -6739,6 +6747,7 @@
 				F966B3BC1EAC3D3E007260FC /* LBMineCenterOrderDetailTwoTableViewCell.xib in Resources */,
 				4A4610391E9CC6360045824F /* ios-social-sdk-shake.html in Resources */,
 				4A4610271E9CC6360045824F /* UMSShareListController.xib in Resources */,
+				F95AE35D1F25FE2800946B37 /* LBReplaceImagesview.xib in Resources */,
 				F9251C6B1F15C8CB00522FCB /* https.cer in Resources */,
 				4A5DF5F71ED185DA00BF6AC7 /* GLStoreProductCommentController.xib in Resources */,
 				F9516DEA1ECAD058009F015D /* LBStoreDetailNameTableViewCell.xib in Resources */,
@@ -6955,6 +6964,7 @@
 				4A4610621E9CC6360045824F /* ZXTelParsedResult.m in Sources */,
 				4A4610481E9CC6360045824F /* ZXAztecReader.m in Sources */,
 				F92D9FF11ECD8FBE004CBAA8 /* LCStarRatingView.m in Sources */,
+				F95AE3421F259E6A00946B37 /* GLMine_PersonInfoCodeView.m in Sources */,
 				4A0023F71E84AD6700B2A9FE /* UIButton+SetEdgeInsets.m in Sources */,
 				4AAD255A1EC188D70054FD06 /* GLDirectDnationView.m in Sources */,
 				F92309571E9B8BFF00ECDC94 /* LBMyOrderPendingRefundViewController.m in Sources */,
@@ -6985,6 +6995,7 @@
 				4A4610561E9CC6360045824F /* ZXGeoParsedResult.m in Sources */,
 				4A4610C61E9CC6370045824F /* ZXRSS14Reader.m in Sources */,
 				4A4610DC1E9CC6370045824F /* ZXOneDReader.m in Sources */,
+				F95AE35B1F25FDFD00946B37 /* LBReplaceImagesview.m in Sources */,
 				4A4610EF1E9CC6370045824F /* ZXPDF417DetectionResultColumn.m in Sources */,
 				4AB9E1821ED6BA6600BE0420 /* GLIncomeManagerCell.m in Sources */,
 				F9F7804E1ED2F8FE00A498D6 /* LBMineCenterMYOrderEvaluationDetailTwoTableViewCell.m in Sources */,
@@ -7090,7 +7101,6 @@
 				4A4610E61E9CC6370045824F /* ZXModulusPoly.m in Sources */,
 				4A16C63D1ECD842100DF2E5E /* GLNearby_NearShopModel.m in Sources */,
 				4A4610701E9CC6360045824F /* ZXImage.m in Sources */,
-				F9D2C9551F21F60E0004B75C /* LBMeterChangePointsViewController.m in Sources */,
 				4A4610D11E9CC6370045824F /* ZXCode93Reader.m in Sources */,
 				F92F937D1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.m in Sources */,
 				4AFCDC801ED2EE81007C1681 /* GLMerchat_CommentHeaderView.m in Sources */,

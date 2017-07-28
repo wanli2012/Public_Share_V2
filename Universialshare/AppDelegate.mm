@@ -47,11 +47,10 @@
     [[NSUserDefaults standardUserDefaults]setObject:@"YES" forKey:@"isShow"];//是否展示公告
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc]init];
-    BOOL ret = [_mapManager start:@"AEgIAA5j2QlPKPMIuNoOat6j3ZAagsFd" generalDelegate:self];
+    BOOL ret = [_mapManager start:@"YDpxkRgH1YcLhjuvGq3OD4RPGqeS8swt" generalDelegate:self];
     if (!ret) {
         [MBProgressHUD showError:@"启动百度地图失败"];
     }
-    
     //友盟分享
     [UMSocialData setAppKey:UMSHARE_APPKEY];
     [UMSocialWechatHandler setWXAppId:WEIXI_APPKEY appSecret:WEIXI_SECRET url:@"http://www.umeng.com/social"];

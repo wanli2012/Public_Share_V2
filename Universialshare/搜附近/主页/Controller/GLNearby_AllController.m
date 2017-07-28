@@ -81,6 +81,7 @@ static NSString *ID = @"GLNearby_classifyCell";
     dict[@"page"] = [NSString stringWithFormat:@"%zd",_page];
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    _loadV.isTap = NO;
     [NetworkManager requestPOSTWithURLStr:@"shop/searchNearShopByContent" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
@@ -152,7 +153,7 @@ static NSString *ID = @"GLNearby_classifyCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
   
-    return 125 *autoSizeScaleY;
+    return 110 *autoSizeScaleY;
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

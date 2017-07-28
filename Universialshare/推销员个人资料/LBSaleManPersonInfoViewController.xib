@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="headimage" destination="31t-AS-jd5" id="bLv-dM-6cr"/>
                 <outlet property="namelb" destination="r5R-BZ-zba" id="6PI-Ju-Uep"/>
+                <outlet property="scanImage" destination="gFZ-QL-1u6" id="3E3-6p-xOt"/>
                 <outlet property="tableview" destination="hBV-X8-Gdv" id="p1p-zc-wgt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -67,6 +68,17 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gFZ-QL-1u6">
+                            <rect key="frame" x="330" y="25" width="35" height="35"/>
+                            <gestureRecognizers/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="nb0-qy-C1X"/>
+                                <constraint firstAttribute="width" constant="35" id="pOO-YL-vej"/>
+                            </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="Jq2-bm-5x1" appends="YES" id="Mol-W6-cYH"/>
+                            </connections>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.2153950036" green="0.62472254039999997" blue="0.28201466800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <gestureRecognizers/>
@@ -75,12 +87,14 @@
                         <constraint firstItem="r5R-BZ-zba" firstAttribute="leading" secondItem="P0k-6a-LeG" secondAttribute="leading" constant="10" id="2H3-4K-OyU"/>
                         <constraint firstItem="lV3-EZ-XRZ" firstAttribute="centerX" secondItem="P0k-6a-LeG" secondAttribute="centerX" id="3v0-9r-qRg"/>
                         <constraint firstItem="31t-AS-jd5" firstAttribute="centerX" secondItem="P0k-6a-LeG" secondAttribute="centerX" id="9YL-mk-ehE"/>
+                        <constraint firstAttribute="trailing" secondItem="gFZ-QL-1u6" secondAttribute="trailing" constant="10" id="LWe-1O-Xp2"/>
                         <constraint firstItem="r5R-BZ-zba" firstAttribute="top" secondItem="31t-AS-jd5" secondAttribute="bottom" constant="10" id="RG1-Eu-5gs"/>
                         <constraint firstItem="31t-AS-jd5" firstAttribute="top" secondItem="P0k-6a-LeG" secondAttribute="top" constant="70" id="Rp1-Xk-ERj"/>
                         <constraint firstItem="xo6-Hd-eIn" firstAttribute="top" secondItem="P0k-6a-LeG" secondAttribute="top" constant="25" id="V5P-9j-KHI"/>
                         <constraint firstItem="xo6-Hd-eIn" firstAttribute="leading" secondItem="P0k-6a-LeG" secondAttribute="leading" constant="10" id="dNs-fL-rWI"/>
                         <constraint firstAttribute="trailing" secondItem="r5R-BZ-zba" secondAttribute="trailing" constant="10" id="h1V-WX-O0N"/>
                         <constraint firstAttribute="height" constant="200" id="nWa-jl-wel"/>
+                        <constraint firstItem="gFZ-QL-1u6" firstAttribute="top" secondItem="lV3-EZ-XRZ" secondAttribute="top" id="wTr-iy-t2z"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hBV-X8-Gdv">
@@ -109,8 +123,13 @@
                 <action selector="tapgestureheadimage:" destination="-1" id="mYu-ri-eWe"/>
             </connections>
         </tapGestureRecognizer>
+        <tapGestureRecognizer id="Jq2-bm-5x1">
+            <connections>
+                <action selector="tapgestureScanImage:" destination="-1" id="czS-h9-hjR"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="iv_back" width="27" height="51"/>
+        <image name="iv_back" width="13" height="25"/>
     </resources>
 </document>

@@ -66,7 +66,7 @@ static NSString *ID = @"GLBuyBackRecordCell";
 -(void)initdatasource{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/msg_list" paramDic:@{} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"user/getLcLog" paramDic:@{@"uid":[UserModel defaultUser].uid  ,@"token":[UserModel defaultUser].token ,@"page":[NSNumber numberWithInteger:_page]} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
@@ -148,7 +148,16 @@ static NSString *ID = @"GLBuyBackRecordCell";
     
     GLBuyBackRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLBuyBackRecordCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.dateLabel.text = [NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"addtime"]];
+    cell.priceLabel.text = [NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"money"]];
     
+    if ([self.dataarr[indexPath.row][@"bili"]integerValue] == 1) {
+        cell.beanTypeLabel.text = @"理财一";
+    }else  if ([self.dataarr[indexPath.row][@"bili"]integerValue] == 2) {
+        cell.beanTypeLabel.text = @"理财二";
+    }else  if ([self.dataarr[indexPath.row][@"bili"]integerValue] == 3) {
+        cell.beanTypeLabel.text = @"理财三";
+    }
    
     
     return cell;
