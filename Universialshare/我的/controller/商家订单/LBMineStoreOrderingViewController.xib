@@ -37,7 +37,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5k-Qv-JhV">
                             <rect key="frame" x="187.5" y="0.0" width="187.5" height="49"/>
-                            <state key="normal" title="米粉订单">
+                            <state key="normal" title="米分订单">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>

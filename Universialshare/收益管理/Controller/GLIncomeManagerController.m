@@ -146,12 +146,11 @@ static NSString *ID = @"GLIncomeManagerCell";
     dict[@"starttime"] = startTime;
     dict[@"endtime"] = endTime;
     
-//    NSLog(@"dict = %@",dict);
+
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"user/getProfitList" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
-        //        NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1) {
             
             for (NSDictionary *dic in responseObject[@"data"]) {
@@ -171,9 +170,10 @@ static NSString *ID = @"GLIncomeManagerCell";
             self.nodataV.hidden = YES;
         }
         
-         self.totalLabel.text =[NSString stringWithFormat:@"¥%@",responseObject[@"total_money"]];
-        if ([self.totalLabel.text rangeOfString:@"null"].location != NSNotFound) {
-             self.totalLabel.text = @"¥0";
+        NSString *str = [NSString stringWithFormat:@"¥%@",responseObject[@"total_money"]];
+        
+        if ([str rangeOfString:@"null"].location == NSNotFound) {
+            self.totalLabel.text =[NSString stringWithFormat:@"¥%@",responseObject[@"total_money"]];
         }
 
         [self.tableView reloadData];
@@ -181,6 +181,7 @@ static NSString *ID = @"GLIncomeManagerCell";
         [self endRefresh];
         [_loadV removeloadview];
         self.nodataV.hidden = NO;
+         [self.tableView reloadData];
         [MBProgressHUD showError:error.localizedDescription];
     }];
 }

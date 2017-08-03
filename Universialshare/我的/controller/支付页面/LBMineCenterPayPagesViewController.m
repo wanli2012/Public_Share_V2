@@ -26,7 +26,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *sureBt;
 
-@property (strong, nonatomic)  NSArray *dataarr;
+@property (strong, nonatomic)  NSMutableArray *dataarr;
 @property (strong, nonatomic)  NSMutableArray *selectB;
 @property (assign, nonatomic)  NSInteger selectIndex;
 @property (weak, nonatomic) IBOutlet UILabel *orderType;
@@ -64,11 +64,6 @@
         self.orderMTitleLb.text = @"订单米券:";
         self.orderType.text = @"米券订单";
     }
-    for (int i=0; i<_dataarr.count; i++) {
-        
-        [self.selectB addObject:@NO];
-        
-    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
@@ -80,7 +75,65 @@
      *微信支付成功 回调
      */
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(wxpaysucess) name:@"wxpaysucess" object:nil];
+    /**
+     *判断是否展示支付
+     */
+    [self isShowPayInterface];
     
+}
+
+-(void)isShowPayInterface{
+
+    [NetworkManager requestPOSTWithURLStr:@"shop/getPayTypeIsCloseByConfig" paramDic:@{} finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == 1) {
+            
+            if ([responseObject[@"data"][@"alipay"] integerValue] == 1) {
+                if (self.payType == 1 || self.payType == 3) {
+                
+                    [self.dataarr addObject:@{@"image":@"支付宝",@"title":@"支付宝支付"}];
+                }
+            }
+            
+            if ([responseObject[@"data"][@"mz_pay"] integerValue] == 1) {
+                
+                if (self.payType == 1 || self.payType == 3) {
+                    
+                     [self.dataarr addObject:@{@"image":@"余额",@"title":@"米子支付"}];
+                }
+            
+            }
+                
+            if ([responseObject[@"data"][@"mq_pay"] integerValue] == 1) {
+                
+                if (self.payType == 2){
+                    [self.dataarr addObject:@{@"image":@"支付米分",@"title":@"米券支付"}];
+                }
+            }
+                
+            if ([responseObject[@"data"][@"wechat"] integerValue] == 1) {
+                
+                if (self.payType == 1 || self.payType == 3) {
+                    
+                    [self.dataarr addObject:@{@"image":@"微信",@"title":@"微信支付"}];
+                }
+                
+            }
+            
+            for (int i=0; i<_dataarr.count; i++) {
+                
+                [self.selectB addObject:@NO];
+                
+            }
+            
+            [self.tableview reloadData];
+            
+        }
+        
+    } enError:^(NSError *error) {
+        
+    }];
+
 }
 
 -(void)wxpaysucess{
@@ -112,7 +165,7 @@
     cell.payimage.image = [UIImage imageNamed:_dataarr[indexPath.row][@"image"]];
     cell.paytitile.text = _dataarr[indexPath.row][@"title"];
     
-    if(indexPath.row == 0){//米子
+    if([self.dataarr[indexPath.row][@"title"] isEqualToString:@"米子支付"] || [self.dataarr[indexPath.row][@"title"] isEqualToString:@"米券支付"]){//米子
         if (self.payType == 1 || self.payType == 3) {
             
             cell.reuseScoreLabel.text  = [NSString stringWithFormat:@"剩余:%@",[UserModel defaultUser].ketiBean];
@@ -169,7 +222,7 @@
         return;
     }
     
-    if ((self.payType == 1 || self.payType == 2 || self.payType == 3)  && self.selectIndex == 0) {
+    if ((self.payType == 1 || self.payType == 2 || self.payType == 3)  && ([self.dataarr[self.selectIndex][@"title"] isEqualToString:@"米子支付"] || [self.dataarr[self.selectIndex][@"title"] isEqualToString:@"米券支付"])) {
         CGFloat contentViewH = 300;
         CGFloat contentViewW = SCREEN_WIDTH;
         _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -187,7 +240,7 @@
         }];
     }else{
     
-         if (self.selectIndex == 1){
+         if ([self.dataarr[self.selectIndex][@"title"] isEqualToString:@"支付宝支付"]){
             //支付宝支付
             [self alipay:@"1"];
         }else{
@@ -418,7 +471,7 @@
 
     if (self.payType == 2) {
         
-        //米劵支付(米粉)
+        //米劵支付(米分)
         [self integralPay:sender];
         
     }else{
@@ -433,16 +486,11 @@
   
 }
 
--(NSArray*)dataarr{
+-(NSMutableArray*)dataarr{
 
     if (!_dataarr) {
    
-        if (self.payType == 1 || self.payType == 3) {
-            _dataarr = [NSArray arrayWithObjects:@{@"image":@"余额",@"title":@"米子支付"},@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"}, nil];
-        }else if (self.payType == 2){
-        
-           _dataarr=[NSArray arrayWithObjects:@{@"image":@"支付米粉",@"title":@"米券支付"}, nil];
-        }
+        _dataarr = [NSMutableArray array];
     }
 
     return _dataarr;

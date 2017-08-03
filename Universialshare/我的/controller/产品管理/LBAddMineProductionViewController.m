@@ -302,7 +302,6 @@
         [MBProgressHUD showError:@"至少上传一张图片"];
         return;
     }
-    self.submitBt.userInteractionEnabled = NO;
     NSString *cate_id = [NSString stringWithFormat:@"%@,%@",self.industryArr[self.isChoseFirstClassify][@"cate_id"],_industryArr[_isChoseFirstClassify][@"son"][_isChoseSecondClassify][@"cate_id"]];
     
     NSMutableString *attr_id = [[NSMutableString alloc] init];
@@ -331,6 +330,9 @@
                            @"cate_id":cate_id,
                            @"attr_id":attr_id,
                            @"count":[NSNumber numberWithInteger:self.imageArr.count - 1]};
+     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    _loadV.isTap = NO;
+    self.submitBt.userInteractionEnabled = NO;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
     manager.requestSerializer.timeoutInterval = 20;
@@ -340,7 +342,6 @@
         //将图片以表单形式上传
         
         for (int i = 0; i < self.imageArr.count - 1; i ++) {
-            
             NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
             formatter.dateFormat=@"yyyyMMddHHmmss";
             NSString *str=[formatter stringFromDate:[NSDate date]];
@@ -349,7 +350,7 @@
         }
         
     }progress:^(NSProgress *uploadProgress){
-        
+         [_loadV removeloadview];
         [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
 //        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
 //        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
