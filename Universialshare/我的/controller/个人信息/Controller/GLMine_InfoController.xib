@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,6 +14,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_InfoController">
             <connections>
                 <outlet property="codeImageV" destination="eCW-hX-9kg" id="02M-5y-JPz"/>
+                <outlet property="doorImageBt" destination="pWv-3n-Kae" id="gwJ-hu-6DF"/>
                 <outlet property="myLabel" destination="buo-xo-whp" id="BNw-cQ-FHM"/>
                 <outlet property="tableView" destination="xnM-mQ-xPh" id="gbe-Ew-nCk"/>
                 <outlet property="tableViewTop" destination="wh1-8J-Cko" id="zLh-Ah-7eJ"/>
@@ -41,14 +43,31 @@
                         <constraint firstAttribute="width" secondItem="eCW-hX-9kg" secondAttribute="height" multiplier="1:1" id="bF5-pv-Jud"/>
                     </constraints>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWv-3n-Kae">
+                    <rect key="frame" x="282" y="80" width="80" height="30"/>
+                    <color key="backgroundColor" red="0.14404621719999999" green="0.60565376280000005" blue="0.14635491370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="RDo-ld-IfY"/>
+                        <constraint firstAttribute="height" constant="30" id="wgp-EA-Ch2"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="修改门店照">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="repalceDoorImage:" destination="-1" eventType="touchUpInside" id="Fxd-0b-ZwA"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="eCW-hX-9kg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="2Pc-eX-J34"/>
+                <constraint firstItem="pWv-3n-Kae" firstAttribute="top" secondItem="eCW-hX-9kg" secondAttribute="top" id="2iW-hg-I8C"/>
                 <constraint firstAttribute="bottom" secondItem="xnM-mQ-xPh" secondAttribute="bottom" id="2jl-9B-Qg8"/>
                 <constraint firstItem="xnM-mQ-xPh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BZd-P9-9RG"/>
                 <constraint firstItem="eCW-hX-9kg" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.3" id="GvT-2k-Qd8"/>
                 <constraint firstItem="eCW-hX-9kg" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="H0N-8o-vwr"/>
+                <constraint firstAttribute="trailing" secondItem="pWv-3n-Kae" secondAttribute="trailing" constant="10" id="JOn-yL-tDf"/>
                 <constraint firstItem="buo-xo-whp" firstAttribute="top" secondItem="eCW-hX-9kg" secondAttribute="bottom" constant="10" id="KCs-TT-IHe"/>
                 <constraint firstAttribute="trailing" secondItem="xnM-mQ-xPh" secondAttribute="trailing" id="tDg-5g-5YE"/>
                 <constraint firstItem="buo-xo-whp" firstAttribute="centerX" secondItem="eCW-hX-9kg" secondAttribute="centerX" id="uko-qs-zRJ"/>

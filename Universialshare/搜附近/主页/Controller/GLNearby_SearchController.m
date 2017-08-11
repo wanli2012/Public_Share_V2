@@ -9,6 +9,9 @@
 #import "GLNearby_SearchController.h"
 #import "GLNearby_classifyCell.h"
 #import "LBStoreMoreInfomationViewController.h"
+#import "MSSAutoresizeLabelFlow.h"
+#import "projiectmodel.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface GLNearby_SearchController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
@@ -26,6 +29,13 @@
 @property (nonatomic,strong)NodataView *nodataV;
 
 @property (nonatomic, strong)NSMutableArray *nearModels;
+
+@property (nonatomic, strong)NSMutableArray *reCoderArr;
+@property (nonatomic, strong)NSMutableArray *fmdbArr;
+
+@property(nonatomic,strong)MSSAutoresizeLabelFlow *secondView;
+
+@property (nonatomic,strong) projiectmodel      *projiectmodel;//综合项目本地保存
 
 @end
 
@@ -59,8 +69,46 @@ static NSString *ID = @"GLNearby_classifyCell";
     
     self.tableView.mj_header = header;
     self.tableView.mj_footer = footer;
-//    [self updateData:YES];
+    [self getFmdbDatasoruce];
+    [self.view addSubview:_secondView];
+    self.tableView.hidden = YES;
     
+    // 舰艇搜索框
+    [[self.searchTF rac_textSignal]subscribeNext:^(id x) {
+        if ([x isEqualToString:@""]) {
+            self.tableView.hidden = YES;
+            self.secondView.hidden = NO;
+            [self.nearModels removeAllObjects];
+        }
+    }];
+    
+}
+
+-(void)getFmdbDatasoruce{
+
+    self.fmdbArr = nil;
+    self.reCoderArr = nil;
+    _secondView = nil;
+    //获取本地搜索记录
+    _projiectmodel = [projiectmodel greateTableOfFMWithTableName:@"projiectmodel"];
+    
+    if ([_projiectmodel isDataInTheTable]) {
+        self.fmdbArr = [NSMutableArray arrayWithArray:[_projiectmodel queryAllDataOfFMDB]];
+        for (int i = 0; i < [[_projiectmodel queryAllDataOfFMDB]count]; i++) {
+            [self.reCoderArr addObject:[_projiectmodel queryAllDataOfFMDB][i][@"recoder"]];
+        }
+    }else{
+        [self.reCoderArr removeAllObjects];
+        self.fmdbArr = [NSMutableArray array];
+    }
+    
+    _secondView = [[MSSAutoresizeLabelFlow alloc]initWithFrame:CGRectMake(0, 70, SCREEN_WIDTH, SCREEN_HEIGHT - 70) titles:self.reCoderArr selectedHandler:^(NSUInteger index, NSString *title) {
+        
+        self.searchTF.text = [NSString stringWithFormat:@"%@",self.reCoderArr[index]];
+        [self updateData:YES];
+        [self.view endEditing:YES];
+        
+    }];
 }
 
 - (void)updateData:(BOOL)status {
@@ -74,17 +122,47 @@ static NSString *ID = @"GLNearby_classifyCell";
         
     }
     
+    if (self.searchTF.text.length <= 0) {
+        [MBProgressHUD showError:@"请输入关键字"];
+        [self endRefresh];
+        return;
+    }
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
     dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
     dict[@"page"] = [NSString stringWithFormat:@"%zd",_page];
     dict[@"content"] = self.searchTF.text;
     
-//    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+   _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    _loadV.isTap = NO;
     [NetworkManager requestPOSTWithURLStr:@"shop/searchNearShopByContent" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
         if ([responseObject[@"code"] integerValue]==1) {
+            
+
+            
+            BOOL isSava = YES;//是否保存
+            for (int i = 0; i < self.fmdbArr.count; i++) {
+                if ([self.fmdbArr[i][@"recoder"] isEqualToString:self.searchTF.text]) {
+                    isSava = NO;
+                }
+            }
+            
+            if (isSava == YES) {//保存记录
+                [_projiectmodel deleteAllDataOfFMDB];
+                _projiectmodel = [projiectmodel greateTableOfFMWithTableName:@"projiectmodel"];
+                [self.fmdbArr insertObject:@{@"recoder":self.searchTF.text} atIndex:0];
+                if (self.fmdbArr.count > 10) {
+                    [self.fmdbArr  removeObjectsInRange:NSMakeRange(10, self.fmdbArr.count)];
+                }
+                [_projiectmodel insertOfFMWithDataArray:self.fmdbArr];
+            }
+            
+            self.tableView.hidden = NO;
+            self.secondView.hidden = YES;
+            
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 
                 for (NSDictionary *dic  in responseObject[@"data"][@"shop_data"]) {
@@ -97,7 +175,7 @@ static NSString *ID = @"GLNearby_classifyCell";
             
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
-            
+            [self.tableView reloadData];
         }
         
     } enError:^(NSError *error) {
@@ -155,6 +233,7 @@ static NSString *ID = @"GLNearby_classifyCell";
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self updateData:YES];
+    [self.view endEditing:YES];
     return YES;
 }
 #pragma UITableviewDelegate UITableviewDataSource
@@ -185,7 +264,6 @@ static NSString *ID = @"GLNearby_classifyCell";
     store.storeId = model.shop_id;
     
     [self.navigationController pushViewController:store animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma 懒加载
@@ -194,5 +272,17 @@ static NSString *ID = @"GLNearby_classifyCell";
         _nearModels = [NSMutableArray array];
     }
     return _nearModels;
+}
+
+- (NSMutableArray *)reCoderArr{
+    if (!_reCoderArr) {
+        _reCoderArr = [NSMutableArray array];
+    }
+    return _reCoderArr;
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+
 }
 @end

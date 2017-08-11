@@ -9,11 +9,17 @@
 #import "LBSaleManPersonInfoViewController.h"
 #import "LBSaleManPersonInfoTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "GLMine_PersonInfoCodeView.h"
 
 @interface LBSaleManPersonInfoViewController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *headimage;
 @property (weak, nonatomic) IBOutlet UILabel *namelb;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (weak, nonatomic) IBOutlet UIImageView *scanImage;
+
+@property (nonatomic, strong)UIView *maskV;
+
+@property (nonatomic, strong)GLMine_PersonInfoCodeView *contentV;
 @end
 
 @implementation LBSaleManPersonInfoViewController
@@ -32,11 +38,13 @@
     [self.headimage sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].headPic] placeholderImage:[UIImage imageNamed:@"dtx_icon"]];
     
     self.namelb.text = [UserModel defaultUser].truename;
+    
+    [self logoQrCode];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 4;
+    return 5;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -59,24 +67,30 @@
         cell.infolb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].name];
     }else if (indexPath.row == 1) {
         cell.typelb.text = @"类别";
-        if ([[UserModel defaultUser].usrtype isEqualToString:@"6"]) {
+        if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER]) {
             cell.infolb.text = @"大区创客";
-        }else if ([[UserModel defaultUser].usrtype isEqualToString:@"7"]) {
+        }else if ([[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {
             cell.infolb.text = @"城市创客";
-        }else if ([[UserModel defaultUser].usrtype isEqualToString:@"8"]) {
+        }else if ([[UserModel defaultUser].usrtype isEqualToString:THREESALER]) {
             cell.infolb.text = @"创客";
         }
         
     }else if (indexPath.row == 2) {
-        cell.typelb.text = @"上级代理姓名";
+        cell.typelb.text = @"推荐人姓名";
         cell.infolb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].tjrname];
         if (cell.infolb.text.length <= 0) {
             cell.infolb.text=@"无";
         }
     }else if (indexPath.row == 3) {
-        cell.typelb.text = @"上级代理ID";
+        cell.typelb.text = @"推荐人ID";
         cell.infolb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].tjr];
         if (cell.infolb.text.length <= 0) {
+            cell.infolb.text=@"无";
+        }
+    }else if (indexPath.row == 4) {
+        cell.typelb.text = @"证件号码";
+        cell.infolb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].idcard];
+        if (cell.infolb.text.length <= 0 || [[UserModel defaultUser].idcard rangeOfString:@"null"].location != NSNotFound) {
             cell.infolb.text=@"无";
         }
     }
@@ -200,6 +214,68 @@
     
 }
 
+-(void)logoQrCode{
+    
+    //二维码过滤器
+    CIFilter *qrImageFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    
+    //设置过滤器默认属性 (老油条)
+    [qrImageFilter setDefaults];
+    
+    //将字符串转换成 NSdata (虽然二维码本质上是 字符串,但是这里需要转换,不转换就崩溃)
+    NSData *qrImageData = [[UserModel defaultUser].name dataUsingEncoding:NSUTF8StringEncoding];
+    
+    //设置过滤器的 输入值  ,KVC赋值
+    [qrImageFilter setValue:qrImageData forKey:@"inputMessage"];
+    
+    //取出图片
+    CIImage *qrImage = [qrImageFilter outputImage];
+    
+    //但是图片 发现有的小 (27,27),我们需要放大..我们进去CIImage 内部看属性
+    qrImage = [qrImage imageByApplyingTransform:CGAffineTransformMakeScale(20, 20)];
+    
+    //转成 UI的 类型
+    UIImage *qrUIImage = [UIImage imageWithCIImage:qrImage];
+    
+    
+    //----------------给 二维码 中间增加一个 自定义图片----------------
+    //开启绘图,获取图形上下文  (上下文的大小,就是二维码的大小)
+    UIGraphicsBeginImageContext(qrUIImage.size);
+    
+    //把二维码图片画上去. (这里是以,图形上下文,左上角为 (0,0)点)
+    [qrUIImage drawInRect:CGRectMake(0, 0, qrUIImage.size.width, qrUIImage.size.height)];
+    
+    
+    //再把小图片画上去
+    UIImage *sImage = [UIImage imageNamed:@""];
+    
+    CGFloat sImageW = 100;
+    CGFloat sImageH= sImageW;
+    CGFloat sImageX = (qrUIImage.size.width - sImageW) * 0.5;
+    CGFloat sImgaeY = (qrUIImage.size.height - sImageH) * 0.5;
+    
+    [sImage drawInRect:CGRectMake(sImageX, sImgaeY, sImageW, sImageH)];
+    
+    //获取当前画得的这张图片
+    UIImage *finalyImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    //关闭图形上下文
+    UIGraphicsEndImageContext();
+    
+    //设置图片
+    self.scanImage.image = finalyImage;
+}
+//点击二维码
+- (IBAction)tapgestureScanImage:(UITapGestureRecognizer *)sender {
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:self.maskV];
+    [self.maskV addSubview:self.contentV];
+    self.contentV.transform = CGAffineTransformMakeScale(0.1, 0.1);
+    [UIView animateWithDuration:0.2 animations:^{
+        self.contentV.transform=CGAffineTransformMakeScale(1, 1);
+    }];
+}
+
 
 - (IBAction)tapgestureheadimage:(UITapGestureRecognizer *)sender {
    
@@ -207,13 +283,43 @@
     [actionSheet showInView:self.view];
     
 }
-
+- (void)maskViewTap {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentV.transform=CGAffineTransformMakeScale(0.1, 0.00001);
+        
+    } completion:^(BOOL finished) {
+        
+        [self.maskV removeFromSuperview];
+    }];
+}
 
 - (IBAction)backevent:(UIButton *)sender {
     
     [self.navigationController popViewControllerAnimated:YES];
     
 }
+- (UIView *)maskV{
+    if (!_maskV) {
+        _maskV = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _maskV.backgroundColor = YYSRGBColor(0, 0, 0, 0.2);
+        
+        UITapGestureRecognizer *maskViewTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(maskViewTap)];
+        [_maskV addGestureRecognizer:maskViewTap];
+    }
+    return _maskV;
+}
 
+- (GLMine_PersonInfoCodeView *)contentV{
+    if (!_contentV) {
+        _contentV = [[NSBundle mainBundle] loadNibNamed:@"GLMine_PersonInfoCodeView" owner:nil options:nil].lastObject;
+        
+        _contentV.layer.cornerRadius = 5.f;
+        
+        _contentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 40, 200);
+        _contentV.codeImageV.image = self.scanImage.image;
+        
+    }
+    return _contentV;
+}
 
 @end

@@ -367,7 +367,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     GLMall_InterestModel *model = self.interestModels[index];
     vc.goods_id = model.goods_id;
     vc.goods_count = @"1";
-    vc.orderType = 2; //订单类型 2:积分商品
+    vc.orderType = 2; //订单类型 2:米分商品
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 

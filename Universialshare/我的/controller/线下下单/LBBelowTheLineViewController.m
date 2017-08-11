@@ -256,7 +256,7 @@
                 formatter.dateFormat=@"yyyyMMddHHmmss";
                 NSString *str=[formatter stringFromDate:[NSDate date]];
                 NSString *fileName=[NSString stringWithFormat:@"%@two.png",str];
-                NSData *data = UIImagePNGRepresentation(self.imageOne.image);
+                NSData *data = UIImagePNGRepresentation(self.imageTwo.image);
                 [formData appendPartWithFileData:data name:@"xfpz" fileName:fileName mimeType:@"image/png"];
             }
 

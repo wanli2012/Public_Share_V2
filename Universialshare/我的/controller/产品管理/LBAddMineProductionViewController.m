@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *submitBt;//提交
 @property (weak, nonatomic) IBOutlet UIView *imageView;
 @property (strong, nonatomic)NSMutableArray *imageArr;
+@property (strong, nonatomic)NSMutableArray *titleArr;
 @property (assign, nonatomic)NSInteger deleteImageIndex;//删除图片
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTf;
@@ -74,6 +75,9 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"添加商品";
     self.automaticallyAdjustsScrollViewInsets = NO;
+    _titleArr = [NSMutableArray arrayWithObjects:@"one",@"two",@"three", nil];
+    
+    self.shuxingSize = CGRectZero;
     
     self.stype = 1;
     self.indexShelves = 1;
@@ -298,7 +302,6 @@
         [MBProgressHUD showError:@"至少上传一张图片"];
         return;
     }
-    self.submitBt.userInteractionEnabled = NO;
     NSString *cate_id = [NSString stringWithFormat:@"%@,%@",self.industryArr[self.isChoseFirstClassify][@"cate_id"],_industryArr[_isChoseFirstClassify][@"son"][_isChoseSecondClassify][@"cate_id"]];
     
     NSMutableString *attr_id = [[NSMutableString alloc] init];
@@ -327,6 +330,9 @@
                            @"cate_id":cate_id,
                            @"attr_id":attr_id,
                            @"count":[NSNumber numberWithInteger:self.imageArr.count - 1]};
+     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    _loadV.isTap = NO;
+    self.submitBt.userInteractionEnabled = NO;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
     manager.requestSerializer.timeoutInterval = 20;
@@ -336,7 +342,6 @@
         //将图片以表单形式上传
         
         for (int i = 0; i < self.imageArr.count - 1; i ++) {
-            
             NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
             formatter.dateFormat=@"yyyyMMddHHmmss";
             NSString *str=[formatter stringFromDate:[NSDate date]];
@@ -345,7 +350,7 @@
         }
         
     }progress:^(NSProgress *uploadProgress){
-        
+         [_loadV removeloadview];
         [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
 //        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
 //        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
@@ -632,7 +637,7 @@
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     self.contentW.constant = SCREEN_WIDTH;
-    self.contentH.constant = 940;
+    self.contentH.constant = 940  + self.shuxingSize.size.height - 30;
     self.imageViwH.constant = 100;
     
     self.submitBt.layer.cornerRadius = 4;

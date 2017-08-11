@@ -24,7 +24,6 @@
 @property (strong, nonatomic)UIButton *buttonedt;
 @property (strong, nonatomic)NodataView *nodataV;
 
-
 @end
 
 @implementation LBMineSystemMessageViewController

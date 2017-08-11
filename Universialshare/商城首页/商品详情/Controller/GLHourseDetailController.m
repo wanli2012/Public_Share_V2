@@ -228,7 +228,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     }
 }
 
-//积分兑换
+//米分兑换
 - (IBAction)exchange:(id)sender {
     self.hidesBottomBarWhenPushed = YES;
     GLConfirmOrderController *confirmVC = [[GLConfirmOrderController alloc] init];

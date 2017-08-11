@@ -107,6 +107,7 @@
     dict[@"uid"] = [UserModel defaultUser].uid;
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    _loadV.isTap = NO;
     [NetworkManager requestPOSTWithURLStr:@"user/getHylist" paramDic:dict finish:^(id responseObject) {
 
         if ([responseObject[@"code"] integerValue]==1) {
@@ -157,10 +158,11 @@
 }
 //选择一类行业
 - (IBAction)chooseIndustryFirst:(UITapGestureRecognizer *)sender {
+    
     self.chooseType = @"industry";
     LBAddrecomdManChooseAreaViewController *vc=[[LBAddrecomdManChooseAreaViewController alloc]init];
     
-    if (self.industryArr.count != 0) {
+    if (self.industryArr.count > 0) {
         
         vc.provinceArr = self.industryArr;
         vc.titlestr = @"请选择一级行业分类";
@@ -398,10 +400,12 @@
         return;
     }
     
-    if ([UIImagePNGRepresentation(self.InteriorImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-12"])] || [UIImagePNGRepresentation(self.InteriorOneImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-13"])]  || [UIImagePNGRepresentation(self.DoorplateOneimage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"内景2-拷贝"])]) {
+    if ([UIImagePNGRepresentation(self.InteriorImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-12"])] && [UIImagePNGRepresentation(self.InteriorOneImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-13"])]  &&     [UIImagePNGRepresentation(self.DoorplateOneimage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"内景2-拷贝"])]) {
         [MBProgressHUD showError:@"请上传店铺环境照"];
         return;
     }
+    
+    
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
@@ -423,12 +427,25 @@
 
     dict[@"lat"] = self.latStr;//纬度
     dict[@"lng"] = self.longStr;//经度
-  
-    NSArray *imageViewArr = [NSArray arrayWithObjects:self.positiveImage,self.otherSideImage,self.licenseImage,self.undertakingOne,self.doorplateImage,self.InteriorImage,self.InteriorOneImage,self.DoorplateOneimage,self.undertakingTwo ,nil];
+
+    NSMutableArray *imageViewArr = [NSMutableArray arrayWithObjects:self.positiveImage,self.otherSideImage,self.licenseImage,self.undertakingOne,self.doorplateImage,self.undertakingTwo ,nil];
+    NSMutableArray *titleArr = [NSMutableArray arrayWithObjects:@"face_pic",@"con_pic",@"license_pic",@"promise_pic",@"store_pic",@"tg_pic", nil];
     
-    NSArray *titleArr = [NSArray arrayWithObjects:@"face_pic",@"con_pic",@"license_pic",@"promise_pic",@"store_pic",@"store_one",@"store_two",@"store_three",@"tg_pic", nil];
-
-
+    if (![UIImagePNGRepresentation(self.InteriorImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-12"])] ) {
+        [imageViewArr addObject:self.InteriorImage];
+        [titleArr addObject:@"store_one"];
+    }
+    
+    if ( ![UIImagePNGRepresentation(self.InteriorOneImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-13"])] ) {
+        [imageViewArr addObject:self.InteriorOneImage];
+        [titleArr addObject:@"store_two"];
+    }
+    
+    if ( ![UIImagePNGRepresentation(self.DoorplateOneimage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"内景2-拷贝"])]) {
+        [imageViewArr addObject:self.DoorplateOneimage];
+        [titleArr addObject:@"store_three"];
+    }
+    
     self.submit.userInteractionEnabled = NO;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应

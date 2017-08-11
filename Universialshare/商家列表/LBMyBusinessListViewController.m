@@ -213,6 +213,9 @@
     if ([cell.adressLb.text rangeOfString:@"null"].location != NSNotFound) {
         cell.adressLb.text = @"商户地址:";
     }
+    if ([cell.moenyLb.text rangeOfString:@"null"].location != NSNotFound) {
+        cell.moenyLb.text = @"销售额:¥0";
+    }
     __weak typeof(self) weakself =self;
     cell.returnGowhere = ^(NSInteger index){
         if (weakself.HideNavB == NO) {

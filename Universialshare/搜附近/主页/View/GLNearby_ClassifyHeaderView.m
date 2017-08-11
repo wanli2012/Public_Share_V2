@@ -8,151 +8,146 @@
 
 #import "GLNearby_ClassifyHeaderView.h"
 #import "GLNearby_ClassifyConcollectionCell.h"
-#import "GLNearby_TradeOneModel.h"
+#import "LBNearby_classifyItemView.h"
+#import <Masonry/Masonry.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
-@interface GLNearby_ClassifyHeaderView ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface GLNearby_ClassifyHeaderView ()<UIScrollViewDelegate>
 
-@property (nonatomic, strong)NSMutableArray *tempDataSource;
+@property (strong, nonatomic)  UIScrollView *scorllView;
+@property (strong, nonatomic)  UIPageControl *pageControl;
+@property (strong , nonatomic)NSArray *dataArr;
 
-@property (nonatomic, strong)NSMutableArray *isSeletedArr;
 @end
 
-static NSString *ID = @"GLNearby_ClassifyConcollectionCell";
 @implementation GLNearby_ClassifyHeaderView
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-
+    
 }
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    if (self = [super initWithFrame:frame]) {
-        /* 添加子控件的代码*/
-        self.backgroundColor = YYSRGBColor(184, 184, 184, 0.2);
-        [self addSubview:self.collectionView];
-        [self.collectionView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellWithReuseIdentifier:ID];
-       
+
+-(instancetype)initWithFrame:(CGRect)frame withDataArr:(NSArray*)dataArr{
+
+    self = [super initWithFrame:frame];
+    
+    if (self) {
+//        self = [[NSBundle mainBundle]loadNibNamed:@"GLNearby_ClassifyHeaderView" owner:self options:nil].firstObject;
+//        self.frame = frame;
+        self.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        self.dataArr = dataArr;
+        [self initerface];
     }
+    
     return self;
+
 }
 
--(void)layoutSubviews{
-    [super layoutSubviews];
+
+-(void)initerface{
+
+    _pageControl = [[UIPageControl alloc]init];
+     _pageControl.numberOfPages = ((self.dataArr.count - 1) / 10 + 1) ;
+    _pageControl.currentPage = 0;
+    _pageControl.hidesForSinglePage = YES;
+    _pageControl.currentPageIndicatorTintColor = TABBARTITLE_COLOR;
+    _pageControl.pageIndicatorTintColor = [UIColor groupTableViewBackgroundColor];
+    _pageControl.backgroundColor = [UIColor whiteColor];
+    [_pageControl addTarget:self action:@selector(pageControlChanged:) forControlEvents:UIControlEventValueChanged];
     
-     self.collectionView.frame = CGRectMake(0, 0, self.bounds.size.width,self.bounds.size.height - 10);
+    _scorllView = [[UIScrollView alloc] init];
+    _scorllView.pagingEnabled = YES;
+    _scorllView.showsHorizontalScrollIndicator = NO;
+    _scorllView.showsVerticalScrollIndicator = NO;
+    _scorllView.delegate = self;
+    _scorllView.backgroundColor = [UIColor whiteColor];
+       [self addSubview:_scorllView];
+       [self addSubview:_pageControl];
+    
+    [_scorllView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self).offset(0);
+        make.leading.equalTo(self).offset(0);
+        make.top.equalTo(self).offset(0);
+        make.bottom.equalTo(self).offset(-25);
+    }];
+    
+    [_pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self).offset(0);
+        make.leading.equalTo(self).offset(0);
+        make.top.equalTo(self.scorllView.mas_bottom).offset(0);
+        make.height.equalTo(@20);
+    }];
+    
+     _scorllView.contentSize = CGSizeMake(SCREEN_WIDTH * ((self.dataArr.count - 1) / 10 + 1), _scorllView.frame.size.height);
+    [self  initdatasorece];
 }
 
-#pragma UICollectionViewDelegete UICollectionViewDataSource
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    
-    if(self.dataSource.count <=8){
-        return self.dataSource.count;
-    
-    }else{
-        return self.tempDataSource.count;
-    }
-    
-}
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-   
-    GLNearby_ClassifyConcollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
+-(void)initdatasorece{
 
-    if (self.dataSource.count >8) {
-        cell.titleLabel.text = self.tempDataSource[indexPath.row];
-    }else{
+    NSInteger itemW = 50 * autoSizeScaleX ; //每个分类的宽度
+    NSInteger itemH = itemW + 25; // 每个分类的高度
+    NSInteger num = 5 ;//每行展示多少个分类
+    NSInteger padding_x = 10 ;//第一个距离边界多少px
+    NSInteger padding_top = 10 ;//距离顶部多少px
+    NSInteger padding_y = 10 ;//item之间多少px
+    NSInteger item_dis = (SCREEN_WIDTH - padding_x * 2 - num * itemW) / (num - 1);
+    
+    for (int i = 0 ; i <= self.dataArr.count; i++) {
         
-        GLNearby_TradeOneModel *model = self.dataSource[indexPath.row];
-        cell.titleLabel.text = model.trade_name;
-    }
-    
-    return cell;
-}
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return CGSizeMake(SCREEN_WIDTH /4, 30);
-}
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    GLNearby_ClassifyConcollectionCell *cell = (GLNearby_ClassifyConcollectionCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.bgView.backgroundColor = YYSRGBColor(40, 150, 58, 1);
-    cell.titleLabel.textColor = [UIColor whiteColor];
-
-    if([cell.titleLabel.text isEqualToString:@"全部"]){
-        [self.tempDataSource removeAllObjects];
-        for (int i = 0; i < self.dataSource.count; i++) {
-            
-            GLNearby_TradeOneModel *model = self.dataSource[i];
-            [_tempDataSource addObject:model.trade_name];
-            
-        }
-        [self.tempDataSource addObject:@"收起"];
+        LBNearby_classifyItemView *item = [[NSBundle mainBundle]loadNibNamed:@"LBNearby_classifyItemView" owner:nil options:nil].firstObject;
         
-        [self.collectionView reloadData];
-        cell.bgView.backgroundColor =  [UIColor whiteColor];
-        cell.titleLabel.textColor = [UIColor darkGrayColor];
-
-    }
-    if([cell.titleLabel.text isEqualToString:@"收起"]){
-        [self.tempDataSource removeAllObjects];
-        for (int i = 0; i < 7; i++) {
-            GLNearby_TradeOneModel *model = self.dataSource[i];
-
-            [_tempDataSource addObject:model.trade_name];
-        }
-        [_tempDataSource addObject:@"全部"];
+        int  V = i / num;
+        int  H = i % num;
+        int sep = SCREEN_WIDTH * (i / 10);
         
-        [self.collectionView reloadData];
-        cell.bgView.backgroundColor =  [UIColor whiteColor];
-        cell.titleLabel.textColor = [UIColor darkGrayColor];
+        item.tag = 10 + i;
+        item.frame = CGRectMake(sep + padding_x + (itemW + item_dis) * H, padding_x + padding_top + (padding_y + itemH) * (V % 2), itemW , itemH);
+        item.autoresizingMask = UIViewAutoresizingNone;
+        
+        if (i == self.dataArr.count) {
+            item.titleLb.text = @"全部分类";
+            item.imagev.image = [UIImage imageNamed:@"全部分类"];
+        }else{
+            item.titleLb.text = self.dataArr[i][@"trade_name"];
+            [item.imagev sd_setImageWithURL:[NSURL URLWithString:self.dataArr[i][@"thumb"]] placeholderImage:[UIImage imageNamed:@"分类占位图"]];
+        }
+        item.titleLb.font = [UIFont systemFontOfSize:12 * autoSizeScaleX];
+        
+        UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgestureClassfty:)];
+        [item addGestureRecognizer:tapgesture];
+        [_scorllView addSubview:item];
+        
     }
     
-    self.block(cell.titleLabel.text,self.dataSource.count);
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    GLNearby_ClassifyConcollectionCell *cell = (GLNearby_ClassifyConcollectionCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    if([cell.titleLabel.text isEqualToString:@"全部"] || [cell.titleLabel.text isEqualToString:@"收起"]){
-        
-    }else{
-        cell.bgView.backgroundColor = [UIColor whiteColor];
-        cell.titleLabel.textColor = [UIColor darkGrayColor];
-    }
+-(void)pageControlChanged:(UIPageControl*)pageControl{
+
+    NSInteger page = pageControl.currentPage;
+    [self.scorllView setContentOffset:CGPointMake(page * SCREEN_WIDTH, 0) animated:YES];
 
 }
-- (UICollectionView *)collectionView{
-    if (!_collectionView) {
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.minimumLineSpacing = 0;
-        layout.minimumInteritemSpacing = 0;
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        _collectionView.backgroundColor = [UIColor whiteColor];
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
-    }
-    return _collectionView;
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+    NSInteger offset = scrollView.contentOffset.x / SCREEN_WIDTH;
+
+    self.pageControl.currentPage = offset;
+
 }
 
-- (NSMutableArray *)tempDataSource{
-    if (!_tempDataSource) {
-        _tempDataSource = [NSMutableArray array];
-        if (self.dataSource.count > 8) {
-            for (int i = 0; i < 7; i++) {
-                GLNearby_TradeOneModel *model = self.dataSource[i];
-                [_tempDataSource addObject:model.trade_name];
-            }
-            [_tempDataSource addObject:@"全部"];
-        }
-    }
-    return _tempDataSource;
+-(void)tapgestureClassfty:(UITapGestureRecognizer*)tap{
+
+    [self.delegete tapgesture:tap.view.tag];
+
 }
-- (NSMutableArray *)isSeletedArr{
-    if (!_isSeletedArr) {
-        _isSeletedArr = [NSMutableArray array];
-        for (int i = 0; i < self.dataSource.count; i ++) {
-            [_isSeletedArr addObject:@(NO)];
-        }
+
+-(NSArray*)dataArr{
+
+    if (!_dataArr) {
+        _dataArr = [NSArray array];
     }
-    return _isSeletedArr;
+    return _dataArr;
 }
 
 @end

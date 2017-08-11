@@ -62,6 +62,8 @@
 @property (strong, nonatomic)LBMineSelectCustomerTypeView *SelectCustomerTypeView;
 @property (strong, nonatomic)UIView *maskView;
 @property (strong, nonatomic)NSString *ordertype;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *meterView;
+
 
 @end
 
@@ -81,9 +83,12 @@
 
     self.scrollView.delegate = self;
     self.ordertype = @"1";
+    self.typeIndex = 1;
     self.typeArr = @[@{@"title":@"理财一",@"imageName":@""},@{@"title":@"理财二",@"imageName":@""},@{@"title":@"理财三",@"imageName":@""} ];
 
-    self.noticeLabel.text = [NSString stringWithFormat:@" 1. 兑换建议优先选择工商银行\n 2. 单笔最多兑换50000颗米子\n 3.T+1:一天后到账,手续费为兑换数量的%.2lf%%\n    T+3:三天后到账,手续费为兑换数量的%.2lf%%\n    T+7:七天后到账,手续费为兑换数量的%.2lf%%\n 4.理财一：50%%兑换为现金, 兑换金额的20%%转换为积分，收取10%%服务费，20%%转化为米券 \n 5.理财二：兑换金额的70%%转换为积分，收取10%%服务费，20%%转化为米券\n 6.理财三：兑换金额的50%%转换为积分，收取10%%服务费，20%%转化为米券，20%%兑换为现金，同时收取对应的手续费\n 7.投资后米子和积分按1:5的比例返还积分\n 8.兑换米子数量至少为1000米子且为500的倍数 ", [[UserModel defaultUser].t_one floatValue]*100, [[UserModel defaultUser].t_two floatValue] *100, [[UserModel defaultUser].t_three floatValue] * 100] ;
+//    self.noticeLabel.text = [NSString stringWithFormat:@" 1. 兑换建议优先选择工商银行\n 2. 单笔最多兑换50000颗米子\n 3.T+1:一天后到账,手续费为兑换数量的%.2lf%%\n    T+3:三天后到账,手续费为兑换数量的%.2lf%%\n    T+7:七天后到账,手续费为兑换数量的%.2lf%%\n 4.理财一：50%%兑换为现金, 兑换金额的20%%转换为米分，收取10%%服务费，20%%转化为米券 \n 5.理财二：兑换金额的70%%转换为米分，收取10%%服务费，20%%转化为米券\n 6.理财三：兑换金额的50%%转换为米分，收取10%%服务费，20%%转化为米券，20%%兑换为现金，同时收取对应的手续费\n 7.投资后米子和米分按1:5的比例返还米分\n 8.兑换米子数量至少为1000米子且为500的倍数 ", [[UserModel defaultUser].t_one floatValue]*100, [[UserModel defaultUser].t_two floatValue] *100, [[UserModel defaultUser].t_three floatValue] * 100] ;
+    
+     self.noticeLabel.text = [NSString stringWithFormat:@" 1. 兑换建议优先选择工商银行\n 2. 单笔最多兑换50000颗米子\n 3.T+1:一天后到账,手续费为兑换数量的%.2lf%%\n    T+3:三天后到账,手续费为兑换数量的%.2lf%%\n    T+7:七天后到账,手续费为兑换数量的%.2lf%%\n ", [[UserModel defaultUser].t_one floatValue]*100, [[UserModel defaultUser].t_two floatValue] *100, [[UserModel defaultUser].t_three floatValue] * 100] ;
 
 //    [UILabel changeLineSpaceForLabel:self.noticeLabel WithSpace:5.0];
 
@@ -94,8 +99,6 @@
     self.buybackNumF.returnKeyType = UIReturnKeyNext;
     self.secondPwdF.returnKeyType = UIReturnKeyDone;
     
-    self.contentViewWidth.constant = SCREEN_WIDTH;
-    self.contentViewHeight.constant = 630;
 //    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
 //    }else{
 //        self.contentViewHeight.constant = SCREEN_HEIGHT + 100;
@@ -107,6 +110,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(changeBankNum:) name:@"deleteBankCardNotification" object:nil];
     
+}
+
+-(void)updateViewConstraints{
+    [super updateViewConstraints];
+    
+    self.contentViewWidth.constant = SCREEN_WIDTH;
+    self.contentViewHeight.constant = 450;
+    self.meterView.constant = 0;
+
 }
 
 - (void)scrollViewDidScroll:(UIScrollView*)scrollView
@@ -394,10 +406,10 @@
 
     }
     
-    if (self.methodtf.text.length <= 0) {
-        [MBProgressHUD showError:@"请选择理财方式"];
-        return;
-    }
+//    if (self.methodtf.text.length <= 0) {
+//        [MBProgressHUD showError:@"请选择理财方式"];
+//        return;
+//    }
     
 
     if ( [self.buybackNumF.text integerValue] > 50000){
@@ -554,11 +566,15 @@
 //跳转兑换记录
 - (IBAction)buyBackRecord:(id)sender {
     
-    [self.view addSubview:self.maskView];
-    self.SelectCustomerTypeView.titileLb.text = @"请选择记录类型";
-    self.SelectCustomerTypeView.labelOne.text = @"兑换记录";
-    self.SelectCustomerTypeView.labelTwo.text = @"理财记录";
-    [self.maskView addSubview:self.SelectCustomerTypeView];
+//    [self.view addSubview:self.maskView];
+//    self.SelectCustomerTypeView.titileLb.text = @"请选择记录类型";
+//    self.SelectCustomerTypeView.labelOne.text = @"兑换记录";
+//    self.SelectCustomerTypeView.labelTwo.text = @"理财记录";
+//    [self.maskView addSubview:self.SelectCustomerTypeView];
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLBuyBackRecordController *recordVC = [[GLBuyBackRecordController alloc] init];
+    [self.navigationController pushViewController:recordVC animated:YES];
 
 }
 
@@ -672,11 +688,9 @@
 
 -(void)selectCustomerTypeViewsureBt{
     
-    
     if ([self.ordertype isEqualToString:@"1"]) {//线上
         self.hidesBottomBarWhenPushed = YES;
         GLBuyBackRecordController *recordVC = [[GLBuyBackRecordController alloc] init];
-        
         [self.navigationController pushViewController:recordVC animated:YES];
         [self.maskView removeFromSuperview];
         [self.SelectCustomerTypeView removeFromSuperview];

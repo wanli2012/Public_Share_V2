@@ -6,8 +6,7 @@
 //  Copyright © 2017年 四川三君科技有限公司. All rights reserved.
 
 #import "GLNearbyViewController.h"
-#import "SlideTabBarView.h"
-#import "GLNearby_TradeOneModel.h"
+#import "LBRecomendShopModel.h"
 #import "GLNearby_SearchController.h"
 #import "MXNavigationBarManager.h"
 
@@ -20,25 +19,34 @@
 #import "LBXScanWrapper.h"
 #import "SubLBXScanViewController.h"
 #import "LBPayTheBillViewController.h"
+#import "GLNearby_ClassifyHeaderView.h"
+#import "GLNearby_classifyCell.h"
+#import "GLNearby_RecommendMerchatCell.h"
+#import "GLNearby_SectionHeaderView.h"
+#import "LBStoreMoreInfomationViewController.h"
+#import "GLNearby_MerchatListController.h"
 
-@interface GLNearbyViewController ()<UITextFieldDelegate>
-{
-//    LoadWaitView *_loadV;
-    
-}
+@interface GLNearbyViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,ClassifyHeaderViewdelegete>
 @property (weak, nonatomic) IBOutlet UIButton *cityBtn;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
-@property (nonatomic, strong)NSMutableArray *models;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextF;
 @property (nonatomic, assign) CLLocationCoordinate2D coors2; // 纬度
 @property (nonatomic, copy)NSString *latitude;
 @property (nonatomic, copy)NSString *longitude;
 @property (strong , nonatomic)BMKReverseGeoCodeOption *option;//地址
-@property (nonatomic, strong)SlideTabBarView *slideV;
 @property (nonatomic, strong)UIView *placeHolderView;
 @property (strong, nonatomic)LoadWaitView *loadV;
+@property (strong, nonatomic)GLNearby_ClassifyHeaderView *classfyHeaderV;
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (strong, nonatomic)NSArray *tradeArr;
+@property (nonatomic, assign)NSInteger page;
+@property (nonatomic, strong)NSMutableArray *nearArr;
+@property (nonatomic, strong)NSMutableArray *recomendArr;
 
 @end
+
+static NSString *ID = @"GLNearby_classifyCell";
+static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 
 @implementation GLNearbyViewController
 - (void)viewDidLoad {
@@ -53,8 +61,29 @@
     _mapView.delegate = nil; // 此处记得不用的时候需要置nil，否则影响内存的释放
     self.locService.delegate = self;
     _mapView.zoomLevel=20;//地图级别
-    [self.locService startUserLocationService];
     _mapView.userTrackingMode = BMKUserTrackingModeNone;//设置定位的状态
+    
+    
+    [self.tableview addSubview:self.placeHolderView];
+    [self.tableview registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
+    [self.tableview registerNib:[UINib nibWithNibName:ID2 bundle:nil] forCellReuseIdentifier:ID2];
+    //请求数据
+    [self postRequest];
+    
+    __weak __typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf postRequest];
+
+    }];
+    // 设置文字
+    [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
+    
+    [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
+    
+    [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
+    
+    self.tableview.mj_header = header;
 }
 //扫码
 - (IBAction)ScanButton:(UIButton *)sender {
@@ -89,7 +118,6 @@
     
     style.animationImage = imgFullNet;
     
-    
     [self openScanVCWithStyle:style];
     
 }
@@ -113,8 +141,13 @@
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"shop_name"] = str;
+    if ([str rangeOfString:@"SH"].location == NSNotFound) {
+        [MBProgressHUD showError:@"请扫正确的商家二维码"];
+        return;
+    }
     __weak typeof(self) weakself = self;
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    _loadV.isTap = NO;
     [NetworkManager requestPOSTWithURLStr:@"shop/getShopData" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
@@ -137,32 +170,146 @@
         
     }];
 
-
 }
-
+//获取行业分类
 - (void)postRequest {
     
-    [NetworkManager requestPOSTWithURLStr:@"shop/getTradeId" paramDic:@{} finish:^(id responseObject) {
+     [self.locService startUserLocationService];//开始定位
+    __weak typeof(self) weakself = self;
+    _loadV = [LoadWaitView addloadview:self.view.bounds tagert:self.view];
+    _loadV.isTap = NO;
+    [NetworkManager requestPOSTWithURLStr:@"shop/getTradeIdNewVersion" paramDic:@{} finish:^(id responseObject) {
     
+        [_loadV removeloadview];
+        [self endRefresh];
         if ([responseObject[@"code"] integerValue] == 1){
-            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-                for (NSDictionary *dic  in responseObject[@"data"][@"trade"]) {
-                    
-                    GLNearby_TradeOneModel *model = [GLNearby_TradeOneModel mj_objectWithKeyValues:dic];
-                    [self.models addObject:model];
-                }
-                [GLNearby_Model defaultUser].trades = self.models;
-                [self.view addSubview:self.slideV];
-            }
+            weakself.tradeArr = responseObject[@"data"][@"trade"];
+           weakself.tableview.tableHeaderView = weakself.classfyHeaderV;
+            self.placeHolderView.hidden = YES;
         }
         
     } enError:^(NSError *error) {
-
-        [self.view addSubview:self.placeHolderView];
+        [_loadV removeloadview];
+        [self endRefresh];
         [MBProgressHUD showError:error.description];
     }];
     
 }
+//加载数据
+- (void)updateData:(BOOL)status {
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
+    dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
+    
+    [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
+
+        if ([responseObject[@"code"] integerValue] == 1){
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                [self.nearArr removeAllObjects];
+                [self.recomendArr removeAllObjects];
+                [GLNearby_Model defaultUser].city_id = responseObject[@"city_id"];
+                for (NSDictionary *dic  in responseObject[@"data"][@"near_shop"]) {
+                    GLNearby_NearShopModel *model = [GLNearby_NearShopModel mj_objectWithKeyValues:dic];
+                    [self.nearArr addObject:model];
+                }
+                for (NSDictionary *dic in responseObject[@"data"][@"tj_shop"]) {
+                    LBRecomendShopModel *model = [LBRecomendShopModel mj_objectWithKeyValues:dic];
+                    [self.recomendArr addObject:model];
+                }
+                self.placeHolderView.hidden = YES;
+                [self.tableview reloadData];
+                
+            }
+        }
+     
+    } enError:^(NSError *error) {
+      
+        [MBProgressHUD showError:error.description];
+        
+    }];
+    
+}
+- (void)endRefresh {
+    
+    [self.tableview.mj_header endRefreshing];
+    [self.tableview.mj_footer endRefreshing];
+    
+}
+
+#pragma mark --- tableview  delegete
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (section == 0) {
+        return self.recomendArr.count == 0?0:1;
+    }else{
+        return self.nearArr.count;
+    }
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 30 * autoSizeScaleY;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    GLNearby_SectionHeaderView *headV = [[NSBundle mainBundle] loadNibNamed:@"GLNearby_SectionHeaderView" owner:nil options:nil].lastObject;
+    
+    if (section == 0) {
+        headV.titleLabel.text = @"推荐商家";
+        [headV.moreBtn setTitle:@"查看更多" forState:UIControlStateNormal];
+        headV.imagev.image = [UIImage imageNamed:@"tjsj_icon"];
+        headV.moreBtn.tag = 10;
+    }else{
+        headV.titleLabel.text = @"附近商家";
+        [headV.moreBtn setTitle:@"查看全部" forState:UIControlStateNormal];
+        headV.moreBtn.tag = 11;
+        headV.imagev.image = [UIImage imageNamed:@"fjsj_icon"];
+    }
+    [headV.moreBtn addTarget:self action:@selector(more:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return headV;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        
+        GLNearby_RecommendMerchatCell *cell = [tableView dequeueReusableCellWithIdentifier:ID2 forIndexPath:indexPath];
+        cell.selectionStyle = 0;
+        cell.models = self.recomendArr;
+        return cell;
+        
+    }else{
+        
+        GLNearby_classifyCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
+        cell.selectionStyle = 0;
+        cell.model = self.nearArr[indexPath.row];
+        return cell;
+        
+    }
+    
+    return [[UITableViewCell alloc]init];
+    
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        return (SCREEN_WIDTH / 3) + 30;
+    }else{
+        return 110 *autoSizeScaleY;
+    }
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBStoreMoreInfomationViewController *store = [[LBStoreMoreInfomationViewController alloc] init];
+    store.lat = [[GLNearby_Model defaultUser].latitude floatValue];
+    store.lng = [[GLNearby_Model defaultUser].longitude floatValue];
+    [self.navigationController pushViewController:store animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+
 
 -(void)viewWillAppear:(BOOL)animated {
     
@@ -194,14 +341,21 @@
     [GLNearby_Model defaultUser].longitude = [NSString stringWithFormat:@"%f",self.coors2.longitude];
     
     //加载数据
-
-    [self postRequest];
+     [self updateData:YES];
     // 将数据传到反地址编码模型
     self.option.reverseGeoPoint = CLLocationCoordinate2DMake( userLocation.location.coordinate.latitude,  userLocation.location.coordinate.longitude);
     
     // 调用反地址编码方法，让其在代理方法中输出
     [self.geoCode reverseGeoCode:self.option];
     [_locService stopUserLocationService];
+    
+}
+
+- (void)more:(UIButton * )btn {
+    self.hidesBottomBarWhenPushed = YES;
+    GLNearby_MerchatListController *merchatVC = [[GLNearby_MerchatListController alloc] init];
+    [self.navigationController pushViewController:merchatVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
     
 }
 #pragma UITextFieldDelegate
@@ -235,12 +389,18 @@
     }
     
 }
-- (NSMutableArray *)models{
-    if (!_models) {
-        _models = [NSMutableArray array];
-    }
-    return _models;
+
+#pragma mark -----  ClassifyHeaderViewdelegete
+
+-(void)tapgesture:(NSInteger)tag{
+
+    self.hidesBottomBarWhenPushed = YES;
+    GLNearby_MerchatListController *merchatVC = [[GLNearby_MerchatListController alloc] init];
+    [self.navigationController pushViewController:merchatVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
 }
+
 #pragma mark geoCode的Get方法，实现延时加载
 - (BMKGeoCodeSearch *)geoCode
 {
@@ -270,15 +430,9 @@
     return _locService;
 }
 
-- (SlideTabBarView *)slideV{
-    if (!_slideV) {
-        _slideV = [[SlideTabBarView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 49-64) WithCount:(int)self.models.count + 1];
-    }
-    return _slideV;
-}
 - (UIView *)placeHolderView{
     if (!_placeHolderView) {
-        _placeHolderView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 49-64)];
+        _placeHolderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 49-64)];
         CGFloat height = 105;
         CGFloat width = 170;
         UIImageView *imageV = [[UIImageView alloc] init];
@@ -299,6 +453,38 @@
         
     }
     return _placeHolderView;
+}
+
+-(GLNearby_ClassifyHeaderView*)classfyHeaderV{
+
+    if (!_classfyHeaderV) {
+        _classfyHeaderV = [[GLNearby_ClassifyHeaderView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 215 * autoSizeScaleX) withDataArr:self.tradeArr];
+        _classfyHeaderV.autoresizingMask = UIViewAutoresizingNone;
+        _classfyHeaderV.delegete = self;
+    }
+    return _classfyHeaderV;
+}
+
+-(NSArray*)tradeArr{
+
+    if (!_tradeArr) {
+        _tradeArr = [NSArray array];
+    }
+    return _tradeArr;
+}
+
+- (NSMutableArray *)nearArr{
+    if (!_nearArr) {
+        _nearArr = [NSMutableArray array];
+    }
+    return _nearArr;
+}
+
+- (NSMutableArray *)recomendArr{
+    if (!_recomendArr) {
+        _recomendArr = [NSMutableArray array];
+    }
+    return _recomendArr;
 }
 
 @end

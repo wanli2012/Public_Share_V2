@@ -38,7 +38,7 @@
 
 @property (nonatomic, assign)NSInteger payType;
 @property (nonatomic, assign)NSInteger modelType;
-
+@property (nonatomic, strong)NSDictionary *dataDic;
 
 @end
 
@@ -51,7 +51,7 @@
     self.navigationItem.title = @"支付";
     self.payType = 0;
     self.modelType = 0;
-    
+    _dataDic = [NSDictionary dictionary];
     [self.imagev sd_setImageWithURL:[NSURL URLWithString:self.pic] placeholderImage:[UIImage imageNamed:@"商户暂位图"]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
@@ -69,7 +69,24 @@
     self.namelb.text = self.namestr;
     
     self.moneytf.placeholder = [NSString stringWithFormat:@"最多可消费¥%@",self.surplusLimit];
+    
+    [self isShowPayInterface];
 }
+
+-(void)isShowPayInterface{
+    
+    [NetworkManager requestPOSTWithURLStr:@"shop/getPayTypeIsCloseByConfig" paramDic:@{} finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue] == 1) {
+            self.dataDic = responseObject[@"data"];
+        }
+        
+    } enError:^(NSError *error) {
+        
+    }];
+    
+}
+
 
 -(void)wxpaysucess{
     
@@ -266,23 +283,37 @@
 }
 
 - (IBAction)tapgestureMethod:(UITapGestureRecognizer *)sender {
+    if (self.dataDic.count <= 0) {
+         TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"温馨提示" message:@"暂无支付方式"];
+        TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:alertView preferredStyle:TYAlertControllerStyleActionSheet];
+        [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancel handler:^(TYAlertAction *action) {
+            
+        }]];
+        [self presentViewController:alertController animated:YES completion:nil];
+        return;
+    }
+   
     TYAlertView *alertView = [TYAlertView alertViewWithTitle:@"温馨提示" message:@"请选择支付方式"];
-    
-    [alertView addAction:[TYAlertAction actionWithTitle:@"微信支付" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
-          self.methodTf.text = action.title;
-        self.payType = 2;
-    }]];
-    
-    [alertView addAction:[TYAlertAction actionWithTitle:@"支付宝支付" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
-          self.methodTf.text = action.title;
-          self.payType = 1;
-        
-    }]];
-    
-    [alertView addAction:[TYAlertAction actionWithTitle:@"米子支付" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
-           self.methodTf.text = action.title;
-        self.payType = 4;
-    }]];
+    if ([self.dataDic[@"mz_pay"] integerValue] == 1) {
+        [alertView addAction:[TYAlertAction actionWithTitle:@"米子支付" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
+            self.methodTf.text = action.title;
+            self.payType = 4;
+        }]];
+    }
+    if ([self.dataDic[@"alipay"] integerValue] == 1) {
+        [alertView addAction:[TYAlertAction actionWithTitle:@"支付宝支付" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
+            self.methodTf.text = action.title;
+            self.payType = 1;
+            
+        }]];
+    }
+
+    if ([self.dataDic[@"wechat"] integerValue] == 1) {
+        [alertView addAction:[TYAlertAction actionWithTitle:@"微信支付" style:TYAlertActionStyleDefault handler:^(TYAlertAction *action) {
+            self.methodTf.text = action.title;
+            self.payType = 2;
+        }]];
+    }
     [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancel handler:^(TYAlertAction *action) {
 
     }]];

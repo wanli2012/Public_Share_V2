@@ -48,7 +48,7 @@
     self.phoneNumLabel.text = [NSString stringWithFormat:@"电话:%@", model.phone];
     
     self.contentLabel.text = [NSString stringWithFormat:@"销售额:¥ %@",model.total_money];
-    self.surplusLimitLb.text = [NSString stringWithFormat:@"今日剩余额度: ¥%@",model.surplusLimit];
+    self.surplusLimitLb.text = @"";
     
     if ([model.limit floatValue] > 1000) {
         

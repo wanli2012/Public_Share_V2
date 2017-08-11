@@ -10,13 +10,16 @@
 #import "GLMine_InfoCell.h"
 #import "LBBaiduMapViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "LBReplaceImagesview.h"
 
 @interface GLMine_InfoController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     NSArray *_titlesArr;
     NSMutableArray *_valuesArr;
     NSString *_address;
+    BOOL      _ishidecotr;//判断是否隐藏弹出控制器
 }
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *codeImageV;
 @property (weak, nonatomic) IBOutlet UILabel *userStyleLabel;
@@ -32,6 +35,7 @@
 @property (strong, nonatomic)NSString *ID;//用户ID
 @property (strong, nonatomic)NSString *recomendID;//推荐人ID
 @property (strong, nonatomic)NSString *recomendName;//推荐姓名
+@property (strong, nonatomic)NSString *shop_phone;//联系人电话号码
 
 @property (strong, nonatomic)NSString *sprovince;//省
 @property (strong, nonatomic)NSString *scity;//市
@@ -43,6 +47,11 @@
 @property (strong, nonatomic)UIView *pickerViewMask;
 @property (strong, nonatomic)NSArray *usertypeArr;
 @property (strong, nonatomic)LoadWaitView *loadV;
+
+@property (weak, nonatomic) IBOutlet UIButton *doorImageBt;
+@property (strong, nonatomic)LBReplaceImagesview *replaceImagesview;
+@property (strong, nonatomic)UIView *maskView;
+@property (assign, nonatomic)NSInteger  selectimageIndex;
 
 @end
 
@@ -84,11 +93,11 @@ static NSString *ID = @"GLMine_InfoCell";
     
     if ([[UserModel defaultUser].usrtype isEqualToString:Retailer] && [[UserModel defaultUser].AudiThrough isEqualToString:@"1"]) {
         
-        _titlesArr = @[@"头像",@"用户名",@"ID",@"店铺地址",@"商家类型",@"证件号",@"推荐人ID",@"推荐人姓名"];
+        _titlesArr = @[@"头像",@"用户名",@"ID",@"店铺地址",@"商家类型",@"证件号",@"推荐人ID",@"推荐人姓名",@"联系电话"];
         
     }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser] || [[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
         
-        _titlesArr = @[@"头像",@"用户名",@"ID",@"证件号",@"推荐人ID",@"推荐人姓名"];
+        _titlesArr = @[@"头像",@"用户名",@"ID",@"证件号",@"推荐人ID",@"推荐人姓名",@"联系电话"];
     }
     
     
@@ -103,6 +112,7 @@ static NSString *ID = @"GLMine_InfoCell";
     self.shenfCode = [UserModel defaultUser].idcard;
     self.recomendID = [UserModel defaultUser].tjr;
     self.recomendName = [UserModel defaultUser].tjrname;
+    self.shop_phone = [UserModel defaultUser].shop_phone;
     
 }
 //编辑按钮
@@ -120,7 +130,7 @@ static NSString *ID = @"GLMine_InfoCell";
         
         NSDictionary *dic;
         
-        if ((!self.imagehead  || [UIImagePNGRepresentation(self.imagehead) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"mine_head"])]) && [self.username isEqualToString:[UserModel defaultUser].truename] && [self.adress isEqualToString:[UserModel defaultUser].shop_address] && [self.storeType isEqualToString:[UserModel defaultUser].shop_type] && [self.shenfCode isEqualToString:[UserModel defaultUser].idcard] && [self.recomendID isEqualToString:[UserModel defaultUser].tjr] && [self.recomendName isEqualToString:[UserModel defaultUser].tjrname]) {
+        if ((!self.imagehead  || [UIImagePNGRepresentation(self.imagehead) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"mine_head"])]) && [self.username isEqualToString:[UserModel defaultUser].truename] && [self.adress isEqualToString:[UserModel defaultUser].shop_address] && [self.storeType isEqualToString:[UserModel defaultUser].shop_type] && [self.shenfCode isEqualToString:[UserModel defaultUser].idcard] && [self.recomendID isEqualToString:[UserModel defaultUser].tjr] && [self.recomendName isEqualToString:[UserModel defaultUser].tjrname]&& [self.shop_phone isEqualToString:[UserModel defaultUser].shop_phone]) {
             
             [MBProgressHUD showError:@"未做任何修改"];
             return;
@@ -133,6 +143,17 @@ static NSString *ID = @"GLMine_InfoCell";
                 return;
             }
         }
+        
+        if (self.shop_phone.length <= 0 ) {
+            [MBProgressHUD showError:@"请输入联系电话"];
+            return;
+        }
+        
+        if (![predicateModel valiMobile:self.shop_phone]) {
+            [MBProgressHUD showError:@"电话格式错误"];
+            return;
+        }
+
         
         if (self.sprovince == nil) {
             self.sprovince = @"";
@@ -154,9 +175,11 @@ static NSString *ID = @"GLMine_InfoCell";
         }
         if (self.storeType == nil) {
             self.storeType = @"";
+        }if (self.shop_phone == nil) {
+            self.storeType = @"";
         }
        
-        dic=@{@"token":[UserModel defaultUser].token , @"uid":[UserModel defaultUser].uid , @"sprovince":self.sprovince , @"scity":self.scity,@"saera":self.saera,@"saddress":self.adress,@"truename":self.username,@"idcard":self.shenfCode,@"shop_type":self.storeType};
+        dic=@{@"token":[UserModel defaultUser].token , @"uid":[UserModel defaultUser].uid , @"sprovince":self.sprovince , @"scity":self.scity,@"saera":self.saera,@"saddress":self.adress,@"truename":self.username,@"idcard":self.shenfCode,@"shop_type":self.storeType,@"shop_phone":self.shop_phone};
 
         
         _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
@@ -337,6 +360,10 @@ static NSString *ID = @"GLMine_InfoCell";
                 cell.textTf.hidden = NO;
                 cell.adressLb.hidden= YES;
                 cell.textTf.text = self.recomendName;
+            }else if (indexPath.row == 8){
+                cell.textTf.hidden = NO;
+                cell.adressLb.hidden= YES;
+                cell.textTf.text = self.shop_phone;
             }
             
             
@@ -357,6 +384,10 @@ static NSString *ID = @"GLMine_InfoCell";
                 }else if (index == 5){
                     
                     self.shenfCode = content;
+                    
+                }else if (index == 8){
+                    
+                    self.shop_phone = content;
                     
                 }
                 
@@ -417,6 +448,8 @@ static NSString *ID = @"GLMine_InfoCell";
             cell.textTf.text = self.recomendID;
         }else if (indexPath.row == 5){
             cell.textTf.text = self.recomendName;
+        }else if (indexPath.row == 6){
+            cell.textTf.text = self.shop_phone;
         }
         
         
@@ -430,6 +463,10 @@ static NSString *ID = @"GLMine_InfoCell";
             
                 self.shenfCode = content;
             
+            }else if (index == 6){
+                
+                self.shop_phone = content;
+                
             }
         
         };
@@ -462,6 +499,7 @@ static NSString *ID = @"GLMine_InfoCell";
     
     if (indexPath.row == 0) {
         if (_EditBool == YES) {
+            self.selectimageIndex = 1;
             UIActionSheet* actionSheet = [[UIActionSheet alloc]initWithTitle:@"请选择图片来源" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"去相册选择",@"用相机拍照", nil];
             [actionSheet showInView:self.view];
         }
@@ -556,8 +594,20 @@ static NSString *ID = @"GLMine_InfoCell";
         }
         //#warning 这里来做操作，提交的时候要上传
         // 图片保存的路径
-        self.imagehead = [UIImage imageWithData:data];
-        [self.tableView reloadData];
+        
+        if (self.selectimageIndex == 1) {
+            self.imagehead = [UIImage imageWithData:data];
+            [self.tableView reloadData];
+        }
+        if (self.selectimageIndex == 2) {
+            self.replaceImagesview.imageone.image = [UIImage imageWithData:data];
+        }
+        if (self.selectimageIndex == 3) {
+            self.replaceImagesview.imagetwo.image = [UIImage imageWithData:data];
+        }
+        if (self.selectimageIndex == 4) {
+            self.replaceImagesview.imagethree.image = [UIImage imageWithData:data];
+        }
         
         [picker dismissViewControllerAnimated:YES completion:nil];
         
@@ -625,6 +675,25 @@ static NSString *ID = @"GLMine_InfoCell";
 
 
 }
+//修改门店照
+- (IBAction)repalceDoorImage:(UIButton *)sender {
+    
+    [self.view addSubview:self.maskView];
+    [self.maskView addSubview:self.replaceImagesview];
+    self.replaceImagesview.transform = CGAffineTransformMakeScale(0.1, 0.1);
+    [UIView animateWithDuration:0.2 animations:^{
+        self.replaceImagesview.transform=CGAffineTransformMakeScale(1, 1);
+    }];
+    
+}
+-(void)updateViewConstraints{
+    [super updateViewConstraints];
+    
+    self.doorImageBt.layer.cornerRadius = 4;
+    self.doorImageBt.clipsToBounds = YES;
+
+}
+
 
 -(UIPickerView*)pickerView{
 
@@ -650,11 +719,147 @@ static NSString *ID = @"GLMine_InfoCell";
     return _pickerViewMask;
 }
 
+
+
 -(NSArray*)usertypeArr{
     if (!_usertypeArr) {
         _usertypeArr=[NSArray arrayWithObjects:@"制造业",@"服务业", nil];
     }
     return _usertypeArr;
 }
+
+- (LBReplaceImagesview *)replaceImagesview{
+    if (!_replaceImagesview) {
+        _replaceImagesview = [[NSBundle mainBundle] loadNibNamed:@"LBReplaceImagesview" owner:nil options:nil].lastObject;
+        
+        _replaceImagesview.layer.cornerRadius = 5.f;
+        _replaceImagesview.clipsToBounds = YES;
+        
+        _replaceImagesview.frame = CGRectMake(20, (SCREEN_HEIGHT - 250)/2, SCREEN_WIDTH - 40, 250);
+        
+        [_replaceImagesview.cancelBt addTarget:self action:@selector(maskViewTap) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_replaceImagesview.sureBt addTarget:self action:@selector(addQtIDandOilCardID) forControlEvents:UIControlEventTouchUpInside];
+        
+        UITapGestureRecognizer *gestureone=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectonimageone)];
+        [_replaceImagesview.imageone addGestureRecognizer:gestureone];
+        
+        UITapGestureRecognizer *gesturetwo=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectonimagetwo)];
+        [_replaceImagesview.imagetwo addGestureRecognizer:gesturetwo];
+        
+        UITapGestureRecognizer *gesturethree=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectonimagethree)];
+        [_replaceImagesview.imagethree addGestureRecognizer:gesturethree];
+
+    }
+    return _replaceImagesview;
+}
+
+-(UIView*)maskView{
+    
+    if (!_maskView) {
+        _maskView=[[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        [_maskView setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.2f]];
+        
+    }
+    return _maskView;
+    
+}
+//取消
+-(void)maskViewTap{
+
+    [UIView animateWithDuration:0.3 animations:^{
+        self.replaceImagesview.transform=CGAffineTransformMakeScale(0.1, 0.00001);
+        
+    } completion:^(BOOL finished) {
+        
+        [self.maskView removeFromSuperview];
+    }];
+
+}
+//确定
+-(void)addQtIDandOilCardID{
+    
+    if ([UIImagePNGRepresentation(self.replaceImagesview.imageone.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-12"])] ||[UIImagePNGRepresentation(self.replaceImagesview.imagetwo.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-13"])]  ||     [UIImagePNGRepresentation(self.replaceImagesview.imagethree.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"内景2-拷贝"])]) {
+        [MBProgressHUD showError:@"请上传店3张铺环境照"];
+        return;
+    }
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    
+    NSMutableArray *imageViewArr = [NSMutableArray arrayWithObjects:self.replaceImagesview.imageone,self.replaceImagesview.imagetwo,self.replaceImagesview.imagethree,nil];
+    NSMutableArray *titleArr = [NSMutableArray arrayWithObjects:@"store_one",@"store_two",@"store_three", nil];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
+    manager.requestSerializer.timeoutInterval = 20;
+    // 加上这行代码，https ssl 验证。
+    [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
+    [manager POST:[NSString stringWithFormat:@"%@user/setStorePic",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        //将图片以表单形式上传
+        //        NSLog(@"dict = %@",dict);
+        for (int i = 0; i < imageViewArr.count; i ++) {
+            
+            NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+            formatter.dateFormat=@"yyyyMMddHHmmss";
+            NSString *str=[formatter stringFromDate:[NSDate date]];
+            NSString *fileName=[NSString stringWithFormat:@"%@%d.png",str,i];
+            UIImageView *imaev = (UIImageView*)imageViewArr[i];
+            NSData *data = UIImagePNGRepresentation(imaev.image);
+            [formData appendPartWithFileData:data name:titleArr[i] fileName:fileName mimeType:@"image/png"];
+        }
+        
+    }progress:^(NSProgress *uploadProgress){
+        
+        [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
+        
+        if (uploadProgress.fractionCompleted == 1.0) {
+            [SVProgressHUD dismiss];
+            self.replaceImagesview.sureBt.userInteractionEnabled = YES;
+        }
+        
+    }success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if ([dic[@"code"]integerValue]==1) {
+            
+            [MBProgressHUD showError:dic[@"message"]];
+            [self maskViewTap];
+        }else{
+            [MBProgressHUD showError:dic[@"message"]];
+        }
+        [_loadV removeloadview];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        self.replaceImagesview.sureBt.userInteractionEnabled = YES;
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+
+    
+
+}
+//门店照
+-(void)selectonimageone{
+    self.selectimageIndex = 2;
+    UIActionSheet* actionSheet = [[UIActionSheet alloc]initWithTitle:@"请选择图片来源" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"去相册选择",@"用相机拍照", nil];
+    [actionSheet showInView:self.view];
+
+}
+
+-(void)selectonimagetwo{
+    self.selectimageIndex = 3;
+    UIActionSheet* actionSheet = [[UIActionSheet alloc]initWithTitle:@"请选择图片来源" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"去相册选择",@"用相机拍照", nil];
+    [actionSheet showInView:self.view];
+}
+
+-(void)selectonimagethree{
+    self.selectimageIndex = 4;
+    UIActionSheet* actionSheet = [[UIActionSheet alloc]initWithTitle:@"请选择图片来源" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"去相册选择",@"用相机拍照", nil];
+    [actionSheet showInView:self.view];
+
+}
+
+
 
 @end

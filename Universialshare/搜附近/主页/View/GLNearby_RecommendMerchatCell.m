@@ -10,6 +10,7 @@
 #import "GLNearby_RecommendMerchatCollectionCell.h"
 #import "LBStoreMoreInfomationViewController.h"
 #import "GLNearbyViewController.h"
+#import "GLNearby_NearShopModel.h"
 
 @interface GLNearby_RecommendMerchatCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 

@@ -10,7 +10,6 @@
 
 @interface LoadWaitView  ()
 
-
 @end
 
 @implementation LoadWaitView
@@ -21,7 +20,7 @@
     
     if (self != nil) {
         NSArray *viewArray = [[NSBundle mainBundle] loadNibNamed:@"LoadWaitView" owner:self options:nil];
-        
+        self.isTap = YES;
         self = viewArray[0];
         self.frame = frame;
         self.backgroundColor=[UIColor clearColor];
@@ -65,8 +64,13 @@
 
 -(void)tapgestrue{
 
-    [self removeFromSuperview];
-    [self.loadImage stopAnimating];
+    if (self.isTap == YES) {
+        [self removeFromSuperview];
+        [self.loadImage stopAnimating];
+    }else{
+        return;
+    }
+   
 
 }
 

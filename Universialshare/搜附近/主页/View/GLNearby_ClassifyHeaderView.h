@@ -8,14 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^typeBlock)(NSString *typeID,NSInteger headerViewHeight);
+@protocol ClassifyHeaderViewdelegete <NSObject>
+
+-(void)tapgesture:(NSInteger)tag;
+
+@end
 
 @interface GLNearby_ClassifyHeaderView : UIView
 
-@property (nonatomic, copy) typeBlock block;
+-(instancetype)initWithFrame:(CGRect)frame withDataArr:(NSArray*)dataArr;
 
-@property (nonatomic, strong)NSMutableArray *dataSource;
-
-@property (nonatomic, strong)UICollectionView *collectionView;
+@property (assign , nonatomic)id<ClassifyHeaderViewdelegete> delegete;
 
 @end

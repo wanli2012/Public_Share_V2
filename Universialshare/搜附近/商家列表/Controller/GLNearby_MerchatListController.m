@@ -12,7 +12,6 @@
 #import "GLHomeLiveChooseController.h"
 #import "GLNearby_MerchatListModel.h"
 #import "GLCityChooseController.h"
-#import "GLNearby_TradeOneModel.h"
 #import <MapKit/MapKit.h>
 #import "LBStoreMoreInfomationViewController.h"
 #import "GLNearby_NearShopModel.h"
@@ -61,7 +60,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     [self.cityBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 70, 0, 0)];
     
     self.sort = @"1";
-    if (self.index == 11) {
+    if (self.index == 10) {
+        [self.cityBtn setTitle:@"城市" forState:UIControlStateNormal];
+    }else{
         [self.cityBtn setTitle:@"距离" forState:UIControlStateNormal];
     }
     __weak __typeof(self) weakSelf = self;
@@ -232,6 +233,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     self.sortBtn.imageView.transform = CGAffineTransformMakeRotation(0);
 
 }
+//点击地图导航
 - (void)mapTo:(NSInteger)index{
     
     GLNearby_MerchatListModel *model = self.nearModels[index];
@@ -314,27 +316,25 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 //                self.hidesBottomBarWhenPushed = NO;
 
             }else{
-                _chooseVC.dataSource = @[@"1Km",@"3Km",@"10Km",@"全城"];
+                _chooseVC.dataSource = @[@"1km",@"3km",@"10km",@"全城"];
                 _chooseVC.block = ^(NSString *value){
                     [weakSelf.cityBtn setTitle:value forState:UIControlStateNormal];
-                    if ([value isEqualToString:@"1Km"]) {
+                    if ([value isEqualToString:@"1km"]) {
                         
                         weakSelf.limit = @"1";
-                    }else if ([value isEqualToString:@"3Km"]){
+                    }else if ([value isEqualToString:@"3km"]){
                          weakSelf.limit = @"3";
-                    }else if ([value isEqualToString:@"10Km"]){
+                    }else if ([value isEqualToString:@"10km"]){
                         weakSelf.limit = @"10";
                     }else{
                         weakSelf.limit = @"";
                     }
                     if ([weakSelf.cityBtn.titleLabel.text isEqualToString:@"城市"]) {
-                        
                         weakSelf.cityBtn.imageView.image = [UIImage imageNamed:@"下选三角形"];
                     }else{
                         weakSelf.cityBtn.imageView.image = [UIImage imageNamed:@""];
                     }
 
-                    
                     [weakSelf updateData:YES];
                     [weakSelf dismiss];
                 };
@@ -348,9 +348,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
             NSMutableArray *tempArr = [NSMutableArray array];
             NSMutableArray *two_trade_idArr = [NSMutableArray array];
             for (int i = 0; i < self.typeArr.count; i ++) {
-                GLNearby_TradeOneModel *model = self.typeArr[i];
-                [tempArr addObject:model.trade_name];
-                [two_trade_idArr addObject:model.trade_id];
+//                GLNearby_TradeOneModel *model = self.typeArr[i];
+//                [tempArr addObject:model.trade_name];
+//                [two_trade_idArr addObject:model.trade_id];
             }
             [tempArr addObject:@"不限"];
             [two_trade_idArr addObject:@""];
@@ -497,7 +497,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 130;
+    return 115;
     
 }
 

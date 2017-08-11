@@ -338,9 +338,9 @@
     if (!_titleArr) {
         
         if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
-             _titleArr=[NSArray arrayWithObjects:@"剩余额度",@"总额度",@"米券",@"积分",@"米子",@"推荐米子",@"上个奖励日", nil];
+             _titleArr=[NSArray arrayWithObjects:@"剩余额度",@"总额度",@"米券",@"米分",@"米子",@"推荐米子",@"上个奖励日", nil];
         }else{
-         _titleArr=[NSArray arrayWithObjects:@"米券",@"积分",@"米子",@"推荐米子",@"上个奖励日", nil];
+         _titleArr=[NSArray arrayWithObjects:@"米券",@"米分",@"米子",@"推荐米子",@"上个奖励日", nil];
         }
     }
 return _titleArr;

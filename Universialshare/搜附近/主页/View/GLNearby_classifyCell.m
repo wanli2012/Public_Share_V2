@@ -29,7 +29,7 @@
     [super awakeFromNib];
     
     self.picImageV.layer.cornerRadius = 5.f;
-    self.picImageWidth.constant = 120 * autoSizeScaleX;
+    self.picImageWidth.constant = 100 * autoSizeScaleX;
 
 }
 - (void)setModel:(GLNearby_NearShopModel *)model{
@@ -39,8 +39,8 @@
     self.nameLabel.text = model.shop_name;
     self.addressLabel.text = [NSString stringWithFormat:@"地址:%@",model.shop_address];
     self.phoneLabel.text = [NSString stringWithFormat:@"电话:%@",model.phone];
-    self.numberLabel.text = [NSString stringWithFormat:@"销售额:¥ %@",model.total_money];
-     self.surpluslimitLb.text = [NSString stringWithFormat:@"今日剩余额度: ¥%@",model.surplusLimit];
+    self.numberLabel.text = [NSString stringWithFormat:@"销售额:¥%@",model.total_money];
+     self.surpluslimitLb.text =@"";
     
     if([model.limit floatValue] > 1000){
         
@@ -48,6 +48,16 @@
     }else{
         self.distanceLabel.text = [NSString stringWithFormat:@"%@m",model.limit];
     }
+    
+    if ([self.phoneLabel.text rangeOfString:@"null"].location != NSNotFound) {
+        self.phoneLabel.text = @"电话:暂无";
+    }
+    
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:self.numberLabel.text];
+    NSRange range = [self.numberLabel.text rangeOfString:model.total_money];
+    [attStr addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],
+                            NSFontAttributeName:[UIFont systemFontOfSize:15]} range:range];//添加属性
+    [self.numberLabel setAttributedText:attStr];
     
 }
 
