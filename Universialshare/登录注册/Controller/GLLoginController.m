@@ -163,6 +163,7 @@
 }
 //使用说明
 - (IBAction)useInfoamtion:(UIButton *)sender {
+    
     self.hidesBottomBarWhenPushed = YES;
     LBViewProtocolViewController *vc=[[LBViewProtocolViewController alloc]init];
     vc.webUrl = COMMONPROBLE;

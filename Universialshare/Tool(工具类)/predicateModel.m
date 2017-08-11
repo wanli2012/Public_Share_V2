@@ -75,6 +75,7 @@
 //    return [identityCardPredicate evaluateWithObject:identityCard];
     return YES;
 }
+
 +(BOOL) IsBankCard:(NSString *)cardNumber;
 {
     if(cardNumber.length==0)
