@@ -23,17 +23,7 @@
     self.picImageV.layer.cornerRadius = 5.f;
 }
 
-//- (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
-//    [self setNeedsLayout];
-//    [self layoutIfNeeded];
-//    CGSize size = [self.contentView systemLayoutSizeFittingSize:layoutAttributes.size];
-//    CGRect newFrame = layoutAttributes.frame;
-//    newFrame.size.height = size.height;
-//    layoutAttributes.frame = newFrame;
-//    return layoutAttributes;
-//}
-
-- (void)setModel:(GLNearby_NearShopModel *)model{
+- (void)setModel:(LBRecomendShopModel *)model{
     _model = model;
     self.nameLabel.text = model.shop_name;
     [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];

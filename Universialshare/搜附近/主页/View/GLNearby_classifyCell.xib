@@ -51,8 +51,8 @@
                             <constraint firstAttribute="width" constant="60" id="mhx-s0-1yX"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFM-C2-anV">
-                        <rect key="frame" x="80" y="76" width="21" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFM-C2-anV">
+                        <rect key="frame" x="80" y="76" width="0.0" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="1lO-Qk-gtv"/>
                         </constraints>

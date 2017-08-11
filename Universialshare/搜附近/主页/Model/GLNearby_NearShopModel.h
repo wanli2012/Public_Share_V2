@@ -20,31 +20,35 @@
 //"limit": 1991,
 //"phone": "15823261652"
 
-@property (nonatomic, copy)NSString *uid;
+@property (nonatomic, copy)NSString *allLimit;
 
-@property (nonatomic, copy)NSString *shop_name;
-
-@property (nonatomic, copy)NSString *store_pic;
-
-@property (nonatomic, copy)NSString *shop_id;
-
-@property (nonatomic, copy)NSString *shop_address;
-
-@property (nonatomic, copy)NSString *total_money;
-
-@property (nonatomic, copy)NSString *lng;
+@property (nonatomic, copy)NSString *isapplication;
 
 @property (nonatomic, copy)NSString *lat;
 
 @property (nonatomic, copy)NSString *limit;
 
+@property (nonatomic, copy)NSString *lng;
+
 @property (nonatomic, copy)NSString *phone;
+
+@property (nonatomic, copy)NSString *shop_address;
+
+@property (nonatomic, copy)NSString *shop_id;
+
+@property (nonatomic, copy)NSString *shop_name;
+
+@property (nonatomic, copy)NSString *store_pic;
 
 
 @property (nonatomic, copy)NSString *pic;
 
-@property (nonatomic, copy)NSString *allLimit;
-
 @property (nonatomic, copy)NSString *surplusLimit;
+
+@property (nonatomic, copy)NSString *uid;
+
+@property (nonatomic, copy)NSString *today_money;
+
+@property (nonatomic, copy)NSString *total_money;
 
 @end

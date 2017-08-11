@@ -34,7 +34,6 @@
 		4A0D97941E9729C100A26B84 /* GLTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0D975E1E9729C100A26B84 /* GLTopCell.m */; };
 		4A0D97951E9729C100A26B84 /* GLTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0D975F1E9729C100A26B84 /* GLTopCell.xib */; };
 		4A1586011ECED787002488F5 /* GLNearby_Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1586001ECED787002488F5 /* GLNearby_Model.m */; };
-		4A16C63A1ECD7C7C00DF2E5E /* GLNearby_TradeOneModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A16C6391ECD7C7C00DF2E5E /* GLNearby_TradeOneModel.m */; };
 		4A16C63D1ECD842100DF2E5E /* GLNearby_NearShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A16C63C1ECD842100DF2E5E /* GLNearby_NearShopModel.m */; };
 		4A16C6401ECDAECC00DF2E5E /* GLNearby_MerchatListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A16C63F1ECDAECC00DF2E5E /* GLNearby_MerchatListModel.m */; };
 		4A1D78ED1EADF81900374386 /* GLCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1D78EC1EADF81900374386 /* GLCityModel.m */; };
@@ -401,15 +400,6 @@
 		4A5F66AA1ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F669B1ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.xib */; };
 		4A5F66AB1ECA89FA0048F339 /* GLNearby_SectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F669D1ECA89FA0048F339 /* GLNearby_SectionHeaderView.m */; };
 		4A5F66AC1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F669E1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib */; };
-		4A5F66B71ECA93AC0048F339 /* GLNearby_EatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F66B51ECA93AC0048F339 /* GLNearby_EatController.m */; };
-		4A5F66B81ECA93AC0048F339 /* GLNearby_EatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F66B61ECA93AC0048F339 /* GLNearby_EatController.xib */; };
-		4A5F66BC1ECA93C50048F339 /* GLNearby_LiveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F66BA1ECA93C50048F339 /* GLNearby_LiveController.m */; };
-		4A5F66BD1ECA93C50048F339 /* GLNearby_LiveController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F66BB1ECA93C50048F339 /* GLNearby_LiveController.xib */; };
-		4A5F66C11ECA93D70048F339 /* GLNearby_PlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F66BF1ECA93D70048F339 /* GLNearby_PlayController.m */; };
-		4A5F66C21ECA93D70048F339 /* GLNearby_PlayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F66C01ECA93D70048F339 /* GLNearby_PlayController.xib */; };
-		4A5F66C61ECA93E70048F339 /* GLNearby_AllController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F66C41ECA93E70048F339 /* GLNearby_AllController.m */; };
-		4A5F66C71ECA93E70048F339 /* GLNearby_AllController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F66C51ECA93E70048F339 /* GLNearby_AllController.xib */; };
-		4A5F670F1ECAE52D0048F339 /* SlideTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F670E1ECAE52D0048F339 /* SlideTabBarView.m */; };
 		4A73B4CD1EE53C2100A6E4B2 /* GLThreePersentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A73B4CC1EE53C2100A6E4B2 /* GLThreePersentController.m */; };
 		4A782F9C1EDE59DE008784BF /* GLIntegralMall_SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A782F9A1EDE59DE008784BF /* GLIntegralMall_SearchController.m */; };
 		4A782F9D1EDE59DE008784BF /* GLIntegralMall_SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A782F9B1EDE59DE008784BF /* GLIntegralMall_SearchController.xib */; };
@@ -947,6 +937,14 @@
 		F973747C1EFE049D00520D03 /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97374771EFE049D00520D03 /* ScanResultViewController.m */; };
 		F973747D1EFE049D00520D03 /* ScanResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97374781EFE049D00520D03 /* ScanResultViewController.xib */; };
 		F973747E1EFE049D00520D03 /* SubLBXScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F973747A1EFE049D00520D03 /* SubLBXScanViewController.m */; };
+		F97406DF1F3AE53100D440FC /* LBNearby_classifyItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = F97406DE1F3AE53100D440FC /* LBNearby_classifyItemView.m */; };
+		F97406E11F3AE54D00D440FC /* LBNearby_classifyItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97406E01F3AE54D00D440FC /* LBNearby_classifyItemView.xib */; };
+		F974DB9F1F3BEDD3008412F1 /* MSSAutoresizeLabelFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = F974DB981F3BEDD3008412F1 /* MSSAutoresizeLabelFlow.m */; };
+		F974DBA01F3BEDD3008412F1 /* MSSAutoresizeLabelFlowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F974DB9A1F3BEDD3008412F1 /* MSSAutoresizeLabelFlowCell.m */; };
+		F974DBA11F3BEDD3008412F1 /* MSSAutoresizeLabelFlowConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = F974DB9C1F3BEDD3008412F1 /* MSSAutoresizeLabelFlowConfig.m */; };
+		F974DBA21F3BEDD3008412F1 /* MSSAutoresizeLabelFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F974DB9E1F3BEDD3008412F1 /* MSSAutoresizeLabelFlowLayout.m */; };
+		F974DBA51F3BF2C8008412F1 /* projiectmodel.m in Sources */ = {isa = PBXBuildFile; fileRef = F974DBA41F3BF2C8008412F1 /* projiectmodel.m */; };
+		F974DBA81F3C466B008412F1 /* LBRecomendShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F974DBA71F3C466B008412F1 /* LBRecomendShopModel.m */; };
 		F97644D91EA5BAEA00AFA22B /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = F97644D81EA5BAEA00AFA22B /* RSAEncryptor.m */; };
 		F97F09D81EC9402A000D3B30 /* LBProductManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F09D61EC9402A000D3B30 /* LBProductManagementViewController.m */; };
 		F97F09D91EC9402A000D3B30 /* LBProductManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09D71EC9402A000D3B30 /* LBProductManagementViewController.xib */; };
@@ -1031,8 +1029,6 @@
 		4A0D975F1E9729C100A26B84 /* GLTopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLTopCell.xib; sourceTree = "<group>"; };
 		4A1585FF1ECED787002488F5 /* GLNearby_Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_Model.h; sourceTree = "<group>"; };
 		4A1586001ECED787002488F5 /* GLNearby_Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_Model.m; sourceTree = "<group>"; };
-		4A16C6381ECD7C7C00DF2E5E /* GLNearby_TradeOneModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_TradeOneModel.h; sourceTree = "<group>"; };
-		4A16C6391ECD7C7C00DF2E5E /* GLNearby_TradeOneModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_TradeOneModel.m; sourceTree = "<group>"; };
 		4A16C63B1ECD842100DF2E5E /* GLNearby_NearShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_NearShopModel.h; sourceTree = "<group>"; };
 		4A16C63C1ECD842100DF2E5E /* GLNearby_NearShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_NearShopModel.m; sourceTree = "<group>"; };
 		4A16C63E1ECDAECC00DF2E5E /* GLNearby_MerchatListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_MerchatListModel.h; sourceTree = "<group>"; };
@@ -1730,20 +1726,6 @@
 		4A5F669C1ECA89FA0048F339 /* GLNearby_SectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_SectionHeaderView.h; sourceTree = "<group>"; };
 		4A5F669D1ECA89FA0048F339 /* GLNearby_SectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_SectionHeaderView.m; sourceTree = "<group>"; };
 		4A5F669E1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_SectionHeaderView.xib; sourceTree = "<group>"; };
-		4A5F66B41ECA93AC0048F339 /* GLNearby_EatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_EatController.h; sourceTree = "<group>"; };
-		4A5F66B51ECA93AC0048F339 /* GLNearby_EatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_EatController.m; sourceTree = "<group>"; };
-		4A5F66B61ECA93AC0048F339 /* GLNearby_EatController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_EatController.xib; sourceTree = "<group>"; };
-		4A5F66B91ECA93C50048F339 /* GLNearby_LiveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_LiveController.h; sourceTree = "<group>"; };
-		4A5F66BA1ECA93C50048F339 /* GLNearby_LiveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_LiveController.m; sourceTree = "<group>"; };
-		4A5F66BB1ECA93C50048F339 /* GLNearby_LiveController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_LiveController.xib; sourceTree = "<group>"; };
-		4A5F66BE1ECA93D70048F339 /* GLNearby_PlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_PlayController.h; sourceTree = "<group>"; };
-		4A5F66BF1ECA93D70048F339 /* GLNearby_PlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_PlayController.m; sourceTree = "<group>"; };
-		4A5F66C01ECA93D70048F339 /* GLNearby_PlayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_PlayController.xib; sourceTree = "<group>"; };
-		4A5F66C31ECA93E70048F339 /* GLNearby_AllController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_AllController.h; sourceTree = "<group>"; };
-		4A5F66C41ECA93E70048F339 /* GLNearby_AllController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_AllController.m; sourceTree = "<group>"; };
-		4A5F66C51ECA93E70048F339 /* GLNearby_AllController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_AllController.xib; sourceTree = "<group>"; };
-		4A5F670D1ECAE52D0048F339 /* SlideTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideTabBarView.h; sourceTree = "<group>"; };
-		4A5F670E1ECAE52D0048F339 /* SlideTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideTabBarView.m; sourceTree = "<group>"; };
 		4A73B4CB1EE53C2100A6E4B2 /* GLThreePersentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLThreePersentController.h; sourceTree = "<group>"; };
 		4A73B4CC1EE53C2100A6E4B2 /* GLThreePersentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLThreePersentController.m; sourceTree = "<group>"; };
 		4A782F991EDE59DE008784BF /* GLIntegralMall_SearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIntegralMall_SearchController.h; sourceTree = "<group>"; };
@@ -2601,6 +2583,21 @@
 		F97374781EFE049D00520D03 /* ScanResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScanResultViewController.xib; sourceTree = "<group>"; };
 		F97374791EFE049D00520D03 /* SubLBXScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubLBXScanViewController.h; sourceTree = "<group>"; };
 		F973747A1EFE049D00520D03 /* SubLBXScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubLBXScanViewController.m; sourceTree = "<group>"; };
+		F97406DD1F3AE53100D440FC /* LBNearby_classifyItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBNearby_classifyItemView.h; sourceTree = "<group>"; };
+		F97406DE1F3AE53100D440FC /* LBNearby_classifyItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBNearby_classifyItemView.m; sourceTree = "<group>"; };
+		F97406E01F3AE54D00D440FC /* LBNearby_classifyItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBNearby_classifyItemView.xib; sourceTree = "<group>"; };
+		F974DB971F3BEDD3008412F1 /* MSSAutoresizeLabelFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSAutoresizeLabelFlow.h; sourceTree = "<group>"; };
+		F974DB981F3BEDD3008412F1 /* MSSAutoresizeLabelFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSAutoresizeLabelFlow.m; sourceTree = "<group>"; };
+		F974DB991F3BEDD3008412F1 /* MSSAutoresizeLabelFlowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSAutoresizeLabelFlowCell.h; sourceTree = "<group>"; };
+		F974DB9A1F3BEDD3008412F1 /* MSSAutoresizeLabelFlowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSAutoresizeLabelFlowCell.m; sourceTree = "<group>"; };
+		F974DB9B1F3BEDD3008412F1 /* MSSAutoresizeLabelFlowConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSAutoresizeLabelFlowConfig.h; sourceTree = "<group>"; };
+		F974DB9C1F3BEDD3008412F1 /* MSSAutoresizeLabelFlowConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSAutoresizeLabelFlowConfig.m; sourceTree = "<group>"; };
+		F974DB9D1F3BEDD3008412F1 /* MSSAutoresizeLabelFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSAutoresizeLabelFlowLayout.h; sourceTree = "<group>"; };
+		F974DB9E1F3BEDD3008412F1 /* MSSAutoresizeLabelFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSAutoresizeLabelFlowLayout.m; sourceTree = "<group>"; };
+		F974DBA31F3BF2C8008412F1 /* projiectmodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = projiectmodel.h; sourceTree = "<group>"; };
+		F974DBA41F3BF2C8008412F1 /* projiectmodel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = projiectmodel.m; sourceTree = "<group>"; };
+		F974DBA61F3C466B008412F1 /* LBRecomendShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBRecomendShopModel.h; sourceTree = "<group>"; };
+		F974DBA71F3C466B008412F1 /* LBRecomendShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBRecomendShopModel.m; sourceTree = "<group>"; };
 		F97644D71EA5BAEA00AFA22B /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
 		F97644D81EA5BAEA00AFA22B /* RSAEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
 		F97F09D51EC9402A000D3B30 /* LBProductManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBProductManagementViewController.h; sourceTree = "<group>"; };
@@ -3231,6 +3228,7 @@
 				F92DA0111ECDA14B004CBAA8 /* menu */,
 				F9643EFE1ECFE74D001B707B /* TYAlertController */,
 				F9E3A53A1EEA7F40009B9F16 /* ChooseView */,
+				F974DB961F3BEDBB008412F1 /* autoresizeLabel */,
 			);
 			path = "三方库";
 			sourceTree = "<group>";
@@ -4162,23 +4160,9 @@
 		4A5F66871ECA89FA0048F339 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4A5F670D1ECAE52D0048F339 /* SlideTabBarView.h */,
-				4A5F670E1ECAE52D0048F339 /* SlideTabBarView.m */,
 				4A5F66881ECA89FA0048F339 /* GLNearbyViewController.h */,
 				4A5F66891ECA89FA0048F339 /* GLNearbyViewController.m */,
 				4A5F668A1ECA89FA0048F339 /* GLNearbyViewController.xib */,
-				4A5F66B41ECA93AC0048F339 /* GLNearby_EatController.h */,
-				4A5F66B51ECA93AC0048F339 /* GLNearby_EatController.m */,
-				4A5F66B61ECA93AC0048F339 /* GLNearby_EatController.xib */,
-				4A5F66B91ECA93C50048F339 /* GLNearby_LiveController.h */,
-				4A5F66BA1ECA93C50048F339 /* GLNearby_LiveController.m */,
-				4A5F66BB1ECA93C50048F339 /* GLNearby_LiveController.xib */,
-				4A5F66BE1ECA93D70048F339 /* GLNearby_PlayController.h */,
-				4A5F66BF1ECA93D70048F339 /* GLNearby_PlayController.m */,
-				4A5F66C01ECA93D70048F339 /* GLNearby_PlayController.xib */,
-				4A5F66C31ECA93E70048F339 /* GLNearby_AllController.h */,
-				4A5F66C41ECA93E70048F339 /* GLNearby_AllController.m */,
-				4A5F66C51ECA93E70048F339 /* GLNearby_AllController.xib */,
 				4AFCDC851ED319A0007C1681 /* GLNearby_SearchController.h */,
 				4AFCDC861ED319A0007C1681 /* GLNearby_SearchController.m */,
 				4AFCDC871ED319A0007C1681 /* GLNearby_SearchController.xib */,
@@ -4189,12 +4173,14 @@
 		4A5F668B1ECA89FA0048F339 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F974DBA31F3BF2C8008412F1 /* projiectmodel.h */,
+				F974DBA41F3BF2C8008412F1 /* projiectmodel.m */,
 				4A1585FF1ECED787002488F5 /* GLNearby_Model.h */,
 				4A1586001ECED787002488F5 /* GLNearby_Model.m */,
-				4A16C6381ECD7C7C00DF2E5E /* GLNearby_TradeOneModel.h */,
-				4A16C6391ECD7C7C00DF2E5E /* GLNearby_TradeOneModel.m */,
 				4A16C63B1ECD842100DF2E5E /* GLNearby_NearShopModel.h */,
 				4A16C63C1ECD842100DF2E5E /* GLNearby_NearShopModel.m */,
+				F974DBA61F3C466B008412F1 /* LBRecomendShopModel.h */,
+				F974DBA71F3C466B008412F1 /* LBRecomendShopModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4208,6 +4194,9 @@
 				4A5F66931ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.h */,
 				4A5F66941ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.m */,
 				4A5F66951ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.xib */,
+				F97406DD1F3AE53100D440FC /* LBNearby_classifyItemView.h */,
+				F97406DE1F3AE53100D440FC /* LBNearby_classifyItemView.m */,
+				F97406E01F3AE54D00D440FC /* LBNearby_classifyItemView.xib */,
 				4A5F66901ECA89FA0048F339 /* GLNearby_ClassifyConcollectionCell.h */,
 				4A5F66911ECA89FA0048F339 /* GLNearby_ClassifyConcollectionCell.m */,
 				4A5F66921ECA89FA0048F339 /* GLNearby_ClassifyConcollectionCell.xib */,
@@ -6293,6 +6282,21 @@
 			path = "扫码";
 			sourceTree = "<group>";
 		};
+		F974DB961F3BEDBB008412F1 /* autoresizeLabel */ = {
+			isa = PBXGroup;
+			children = (
+				F974DB971F3BEDD3008412F1 /* MSSAutoresizeLabelFlow.h */,
+				F974DB981F3BEDD3008412F1 /* MSSAutoresizeLabelFlow.m */,
+				F974DB991F3BEDD3008412F1 /* MSSAutoresizeLabelFlowCell.h */,
+				F974DB9A1F3BEDD3008412F1 /* MSSAutoresizeLabelFlowCell.m */,
+				F974DB9B1F3BEDD3008412F1 /* MSSAutoresizeLabelFlowConfig.h */,
+				F974DB9C1F3BEDD3008412F1 /* MSSAutoresizeLabelFlowConfig.m */,
+				F974DB9D1F3BEDD3008412F1 /* MSSAutoresizeLabelFlowLayout.h */,
+				F974DB9E1F3BEDD3008412F1 /* MSSAutoresizeLabelFlowLayout.m */,
+			);
+			path = autoresizeLabel;
+			sourceTree = "<group>";
+		};
 		F97644D01EA5B66300AFA22B /* RSA密钥 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6605,7 +6609,6 @@
 				F92309821E9B8BFF00ECDC94 /* LBMineCenterModifyLoginSecretViewController.xib in Resources */,
 				F966B3E31EAC7E38007260FC /* LBMyBusinessListDetailViewController.xib in Resources */,
 				F923096F1E9B8BFF00ECDC94 /* LBMineCentermodifyAdressTableViewCell.xib in Resources */,
-				4A5F66B81ECA93AC0048F339 /* GLNearby_EatController.xib in Resources */,
 				F9101B351ECEFBCC0079BB2E /* LBPayTheBillViewController.xib in Resources */,
 				F97374611EFE03B200520D03 /* CodeScan.bundle in Resources */,
 				4A2A00C71EC70D9400052CA7 /* GLOrderGoodsCell.xib in Resources */,
@@ -6676,7 +6679,6 @@
 				4A0D97951E9729C100A26B84 /* GLTopCell.xib in Resources */,
 				4AAD25561EC188D70054FD06 /* GLDirectDonationController.xib in Resources */,
 				F92309311E9B8BFF00ECDC94 /* LBMineCenterserviceNoticeViewController.xib in Resources */,
-				4A5F66BD1ECA93C50048F339 /* GLNearby_LiveController.xib in Resources */,
 				4AA0D5A31EAEEC0600CB8F77 /* GLIntegralGoodsCell.xib in Resources */,
 				4AAD25811EC188F50054FD06 /* GLEncourageBeansCell.xib in Resources */,
 				4A3D17BB1ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.xib in Resources */,
@@ -6689,7 +6691,6 @@
 				F966B4101EACB0C0007260FC /* LBSaleManPersonInfoViewController.xib in Resources */,
 				4AAD253E1EC188C90054FD06 /* GLBuyBackChooseBankView.xib in Resources */,
 				F955A7901EE011F3004141A4 /* LBStoreSendGoodsSecondViewController.xib in Resources */,
-				4A5F66C21ECA93D70048F339 /* GLNearby_PlayController.xib in Resources */,
 				F92309561E9B8BFF00ECDC94 /* LBMyOrderPendingPaymentViewController.xib in Resources */,
 				4AFCDC891ED319A0007C1681 /* GLNearby_SearchController.xib in Resources */,
 				F923096D1E9B8BFF00ECDC94 /* LBSetUpViewController.xib in Resources */,
@@ -6716,6 +6717,7 @@
 				F9126EF71EA0B086004785EA /* LBMineSystemMessageTableViewCell.xib in Resources */,
 				F966B3B71EAC3BB8007260FC /* LBMineCenterOrderDetailOneTableViewCell.xib in Resources */,
 				4A4610211E9CC6360045824F /* UMSCommentInputController.xib in Resources */,
+				F97406E11F3AE54D00D440FC /* LBNearby_classifyItemView.xib in Resources */,
 				4A2F52201EC7084100ECA95D /* GLHourseChangeNumCell.xib in Resources */,
 				F92ED49F1EDE6D8D00B3B3DB /* LBHomeIncomesecondViewController.xib in Resources */,
 				F95E83631ED7B7E700E60F46 /* LBHomeIncomeViewController.xib in Resources */,
@@ -6761,7 +6763,6 @@
 				4A2F51D71EC6FF9900ECA95D /* GLConsumerRecordCell.xib in Resources */,
 				4AA0D5A71EAEEC0600CB8F77 /* GLIntegralMallTopCell.xib in Resources */,
 				F961AA1E1E9CDD3400275F52 /* LoginIdentityView.xib in Resources */,
-				4A5F66C71ECA93E70048F339 /* GLNearby_AllController.xib in Resources */,
 				F97F09E31EC98AEA000D3B30 /* LBAddMineProductionViewController.xib in Resources */,
 				F966B3ED1EAC7E97007260FC /* LBMySalesmanListDeatilViewController.xib in Resources */,
 				4AE354881EC84BC300BF60CC /* GLMerchat_StoreCell.xib in Resources */,
@@ -6865,11 +6866,13 @@
 				4A46110B1E9CC6370045824F /* ZXQRCodeFinderPattern.m in Sources */,
 				F90C45321ED6AD8A001650BD /* QBSlomoIconView.m in Sources */,
 				F92309381E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeDetailOneTableViewCell.m in Sources */,
+				F974DBA21F3BEDD3008412F1 /* MSSAutoresizeLabelFlowLayout.m in Sources */,
 				F951EB1B1EA1EFD700D6708E /* LBMineCenterUsualUnderOrderTwoViewController.m in Sources */,
 				F9E3A5391EEA7EF0009B9F16 /* UIView+Extension.m in Sources */,
 				4A46107B1E9CC6360045824F /* ZXBoolArray.m in Sources */,
 				F951EB201EA1EFED00D6708E /* LBMineCenterUsualUnderOrderThreeViewController.m in Sources */,
 				F9434D4F1EC16D78001C80A4 /* LBMineCenterRegionQueryTableViewCell.m in Sources */,
+				F974DBA11F3BEDD3008412F1 /* MSSAutoresizeLabelFlowConfig.m in Sources */,
 				4A4610FA1E9CC6370045824F /* ZXPDF417Common.m in Sources */,
 				4A4609F91E9CB78E0045824F /* GLDonationRecordController.m in Sources */,
 				F94D31E21EAF716D00309029 /* LBMineCenterReceivingGoodsViewController.m in Sources */,
@@ -6909,6 +6912,7 @@
 				4A46110C1E9CC6370045824F /* ZXQRCodeFinderPatternFinder.m in Sources */,
 				4AA0D5C81EAEF6C900CB8F77 /* GLClassifyCell.m in Sources */,
 				F94F29571ED6651A00E52573 /* LBImprovePersonalDataViewController.m in Sources */,
+				F974DBA81F3C466B008412F1 /* LBRecomendShopModel.m in Sources */,
 				4AAD25531EC188D70054FD06 /* GLDirectDnationRecordController.m in Sources */,
 				4A4610411E9CC6360045824F /* ZXAztecCode.m in Sources */,
 				F92309551E9B8BFF00ECDC94 /* LBMyOrderPendingPaymentViewController.m in Sources */,
@@ -6924,6 +6928,7 @@
 				4A4610E31E9CC6370045824F /* ZXUPCEANWriter.m in Sources */,
 				4A4610AE1E9CC6370045824F /* ZXAbstractExpandedDecoder.m in Sources */,
 				F961AA1D1E9CDD3400275F52 /* LoginIdentityView.m in Sources */,
+				F97406DF1F3AE53100D440FC /* LBNearby_classifyItemView.m in Sources */,
 				4AAD257C1EC188F50054FD06 /* GLRecommendBeansController.m in Sources */,
 				F97374681EFE03B200520D03 /* LBXScanLineAnimation.m in Sources */,
 				4A46105F1E9CC6360045824F /* ZXSMSParsedResult.m in Sources */,
@@ -7041,7 +7046,6 @@
 				4A4610971E9CC6360045824F /* ZXDataMatrixDecoder.m in Sources */,
 				F973747E1EFE049D00520D03 /* SubLBXScanViewController.m in Sources */,
 				F92309921E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.m in Sources */,
-				4A5F66BC1ECA93C50048F339 /* GLNearby_LiveController.m in Sources */,
 				4A417C0D1ED82C390074BDBA /* GLMySalesmanModel.m in Sources */,
 				F923097F1E9B8BFF00ECDC94 /* LBMineCenterSafeSecondSecretViewController.m in Sources */,
 				4A4610B41E9CC6370045824F /* ZXAI013x0xDecoder.m in Sources */,
@@ -7120,7 +7124,6 @@
 				4A4610D61E9CC6370045824F /* ZXEANManufacturerOrgSupport.m in Sources */,
 				4AAD259B1EC189070054FD06 /* GLTweleveFourController.m in Sources */,
 				4A4611001E9CC6370045824F /* ZXQRCodeDataMask.m in Sources */,
-				4A5F66C11ECA93D70048F339 /* GLNearby_PlayController.m in Sources */,
 				F92309711E9B8BFF00ECDC94 /* LBMineCenterAddAdreassViewController.m in Sources */,
 				4A4610A51E9CC6360045824F /* ZXDataMatrixX12Encoder.m in Sources */,
 				F9479B0F1EF0007D00581250 /* LBStoreProductDetailAddNumTableViewCell.m in Sources */,
@@ -7128,7 +7131,6 @@
 				F94A33F91EAA082100222A86 /* LBMineCenterPayPagesTableViewCell.m in Sources */,
 				4AAD25821EC188F50054FD06 /* GLReceiveBeansCell.m in Sources */,
 				F90B991E1ED417FC00E75C95 /* formattime.m in Sources */,
-				4A16C63A1ECD7C7C00DF2E5E /* GLNearby_TradeOneModel.m in Sources */,
 				4A46106A1E9CC6360045824F /* ZXVINParsedResult.m in Sources */,
 				4AA0D5AC1EAEEC8400CB8F77 /* LBIntegralMallViewController.m in Sources */,
 				4A2F521D1EC7084000ECA95D /* GLHomeLiveCell.m in Sources */,
@@ -7174,7 +7176,6 @@
 				F92309851E9B8BFF00ECDC94 /* LBMineCenterSafeChangePhoneViewController.m in Sources */,
 				4A4610DE1E9CC6370045824F /* ZXUPCAWriter.m in Sources */,
 				F92309591E9B8BFF00ECDC94 /* LBMyOrderEveluationSucessCollectionViewCell.m in Sources */,
-				4A5F66B71ECA93AC0048F339 /* GLNearby_EatController.m in Sources */,
 				4AE3548C1EC85E6C00BF60CC /* GLAddStoreController.m in Sources */,
 				F966B3F21EAC7FBA007260FC /* LBNybusinessListTableViewCell.m in Sources */,
 				F9516DF31ECAD6C5009F015D /* LBStoreDetailHotProductTableViewCell.m in Sources */,
@@ -7193,6 +7194,7 @@
 				F97F09E21EC98AEA000D3B30 /* LBAddMineProductionViewController.m in Sources */,
 				F9520A1E1EADF40600B4D665 /* LBViewProtocolViewController.m in Sources */,
 				4A4611121E9CC6370045824F /* ZXQRCodeMatrixUtil.m in Sources */,
+				F974DB9F1F3BEDD3008412F1 /* MSSAutoresizeLabelFlow.m in Sources */,
 				F9121B181EB17CEC00DAB7A2 /* IncentiveModel.m in Sources */,
 				F9643F181ECFE74E001B707B /* TYBaseAnimation.m in Sources */,
 				4A46109A1E9CC6360045824F /* ZXDataMatrixASCIIEncoder.m in Sources */,
@@ -7238,7 +7240,6 @@
 				4A4610CB1E9CC6370045824F /* ZXCodaBarReader.m in Sources */,
 				4A4611111E9CC6370045824F /* ZXQRCodeMaskUtil.m in Sources */,
 				4A4610521E9CC6360045824F /* ZXEmailAddressResultParser.m in Sources */,
-				4A5F66C61ECA93E70048F339 /* GLNearby_AllController.m in Sources */,
 				4AAD257E1EC188F50054FD06 /* GLReceiveBeansModel.m in Sources */,
 				F966B3DD1EAC7E0C007260FC /* LBMyBusinessListViewController.m in Sources */,
 				F92309361E9B8BFF00ECDC94 /* LBMineMessageViewController.m in Sources */,
@@ -7257,6 +7258,7 @@
 				F97F09D81EC9402A000D3B30 /* LBProductManagementViewController.m in Sources */,
 				4A4610C41E9CC6370045824F /* ZXRSSExpandedRow.m in Sources */,
 				F92309511E9B8BFF00ECDC94 /* LBMyOrderAlreadyCompletedViewController.m in Sources */,
+				F974DBA01F3BEDD3008412F1 /* MSSAutoresizeLabelFlowCell.m in Sources */,
 				4AA0D5C41EAEF4CB00CB8F77 /* GLClassifyRecommendCell.m in Sources */,
 				F90C45331ED6AD8A001650BD /* QBVideoIconView.m in Sources */,
 				4A4610891E9CC6360045824F /* ZXByteMatrix.m in Sources */,
@@ -7431,10 +7433,10 @@
 				F966B3C51EAC3D64007260FC /* LBMineCenterOrderDetailFourTableViewCell.m in Sources */,
 				4A0D97941E9729C100A26B84 /* GLTopCell.m in Sources */,
 				4A46104B1E9CC6360045824F /* ZXAddressBookAUResultParser.m in Sources */,
-				4A5F670F1ECAE52D0048F339 /* SlideTabBarView.m in Sources */,
 				F92309451E9B8BFF00ECDC94 /* LBMineMessageHotPickOneTableViewCell.m in Sources */,
 				4A2F521F1EC7084000ECA95D /* GLHourseChangeNumCell.m in Sources */,
 				4A4610B11E9CC6370045824F /* ZXAI01392xDecoder.m in Sources */,
+				F974DBA51F3BF2C8008412F1 /* projiectmodel.m in Sources */,
 				F966B3F71EAC8C8A007260FC /* LBShowSaleManAndBusinessViewController.m in Sources */,
 				4A5F66A51ECA89FA0048F339 /* GLNearby_ClassifyHeaderView.m in Sources */,
 				F966B3E21EAC7E38007260FC /* LBMyBusinessListDetailViewController.m in Sources */,
