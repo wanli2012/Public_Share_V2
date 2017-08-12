@@ -430,6 +430,7 @@
             [UserModel defaultUser].t_one = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"t_one"]];
             [UserModel defaultUser].t_two = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"t_two"]];
             [UserModel defaultUser].t_three = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"t_three"]];
+            [UserModel defaultUser].isSetTwoPwd = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isSetTwoPwd"]];
             
             if ([[UserModel defaultUser].banknumber rangeOfString:@"null"].location != NSNotFound) {
                 
@@ -460,6 +461,10 @@
             if ([[UserModel defaultUser].idcard rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].idcard = @"";
+            }
+            if ([[UserModel defaultUser].isSetTwoPwd rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].isSetTwoPwd = @"";
             }
             
             if ([self.usertype isEqualToString:Retailer]) {//零售商
