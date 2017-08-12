@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
 }
 
 #pragma UITableViewDelegate UITableViewDatasource
@@ -25,7 +25,13 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
-    cell.textLabel.text = self.dataSource[indexPath.row];
+    if ([self.dataSource[indexPath.row] isKindOfClass:[NSString class]]) {
+        cell.textLabel.text = self.dataSource[indexPath.row];
+    }else{
+        cell.textLabel.text = self.dataSource[indexPath.row][@"trade_name"];
+    }
+    
+ 
     cell.textLabel.font = [UIFont systemFontOfSize:14];
     return cell;
 }
@@ -33,7 +39,9 @@
     
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
-    self.block(cell.textLabel.text);
+    if (self.block) {
+         self.block(cell.textLabel.text,indexPath.row);
+    }
     
 }
 

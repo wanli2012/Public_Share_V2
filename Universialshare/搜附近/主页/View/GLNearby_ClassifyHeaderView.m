@@ -47,7 +47,7 @@
 -(void)initerface{
 
     _pageControl = [[UIPageControl alloc]init];
-     _pageControl.numberOfPages = ((self.dataArr.count - 1) / 10 + 1) ;
+     _pageControl.numberOfPages = ((self.dataArr.count ) / 10 + 1) ;
     _pageControl.currentPage = 0;
     _pageControl.hidesForSinglePage = YES;
     _pageControl.currentPageIndicatorTintColor = TABBARTITLE_COLOR;
@@ -78,7 +78,7 @@
         make.height.equalTo(@20);
     }];
     
-     _scorllView.contentSize = CGSizeMake(SCREEN_WIDTH * ((self.dataArr.count - 1) / 10 + 1), _scorllView.frame.size.height);
+     _scorllView.contentSize = CGSizeMake(SCREEN_WIDTH * ((self.dataArr.count ) / 10 + 1), _scorllView.frame.size.height);
     [self  initdatasorece];
 }
 

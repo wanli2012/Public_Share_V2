@@ -1,12 +1,12 @@
 //
-//  GLNearby_MerchatListController.m
+//  LBNearClassfityViewController.m
 //  Universialshare
 //
-//  Created by 龚磊 on 2017/5/17.
+//  Created by 四川三君科技有限公司 on 2017/8/11.
 //  Copyright © 2017年 四川三君科技有限公司. All rights reserved.
 //
 
-#import "GLNearby_MerchatListController.h"
+#import "LBNearClassfityViewController.h"
 #import "GLNearby_MerchatListCell.h"
 #import "GLSet_MaskVeiw.h"
 #import "GLHomeLiveChooseController.h"
@@ -17,7 +17,7 @@
 #import "GLNearby_NearShopModel.h"
 #import "GLHomeLiveChooseController.h"
 
-@interface GLNearby_MerchatListController ()<UITableViewDataSource,UITableViewDelegate,GLNearby_MerchatListCellDelegate>
+@interface LBNearClassfityViewController ()<UITableViewDataSource,UITableViewDelegate,GLNearby_MerchatListCellDelegate>
 {
     GLSet_MaskVeiw *_maskV;
     UIView *_contentView;
@@ -42,11 +42,10 @@
 @end
 
 static NSString *ID = @"GLNearby_MerchatListCell";
-@implementation GLNearby_MerchatListController
+@implementation LBNearClassfityViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.title = @"商家列表";
     [self.tableView addSubview:self.nodataV];
 
@@ -63,11 +62,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     [self.cityBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 70, 0, 0)];
     
     self.sort = @"1";
-    if (self.index == 10) {
+
         [self.cityBtn setTitle:@"城市" forState:UIControlStateNormal];
-    }else{
-        [self.cityBtn setTitle:@"距离" forState:UIControlStateNormal];
-    }
+   
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
@@ -91,35 +88,38 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     self.tableView.mj_header = header;
     self.tableView.mj_footer = footer;
     [self updateData:YES];
-    [self getAallClassify];//获取全部分类
+    if (self.index == 10) {
+            [self getAallClassify];//获取全部分类
+    }
+
     [self.tableView.mj_header beginRefreshing];
 }
 
 -(void)getAallClassify{
-
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [NetworkManager requestPOSTWithURLStr:@"user/getShopTrade" paramDic:dict finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue] == 1){
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-             
+                
                 [self.tradeArr addObjectsFromArray:responseObject[@"data"]];
                 [self.tradeArr insertObject:@"全部" atIndex:0];
             }
         }
         
     } enError:^(NSError *error) {
-
-       [MBProgressHUD showError:@"数据加载失败"];
+        
+        [MBProgressHUD showError:@"数据加载失败"];
         
     }];
-
+    
 }
 
 - (void)updateData:(BOOL)status {
     
     if (status) {
+        
         _page = 1;
-        [self.nearModels removeAllObjects];
         [self.recModels removeAllObjects];
     }else{
         _page ++;
@@ -130,12 +130,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     dict[@"trade_id"] = self.trade_id;
     dict[@"two_trade_id"] = self.two_trade_id;
     dict[@"sort"] = self.sort;
-    
-    if(self.index == 10){//推荐商家
+    dict[@"city_id"] = self.city_id;
         
-        dict[@"city_id"] = self.city_id;
-        
-        [NetworkManager requestPOSTWithURLStr:@"shop/getMoreRecShop" paramDic:dict finish:^(id responseObject) {
+        [NetworkManager requestPOSTWithURLStr:@"shop/getShopDataNew" paramDic:dict finish:^(id responseObject) {
             [self endRefresh];
             if ([responseObject[@"code"] integerValue] == 1){
                 if (![responseObject[@"data"] isEqual:[NSNull null]]) {
@@ -146,47 +143,22 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                     }
                 }
             }
-            [self.tableView reloadData];
-
+        
             
-        } enError:^(NSError *error) {
-            [self endRefresh];
-             [self.tableView reloadData];
-           [MBProgressHUD showError:@"数据加载失败"];
-        }];
-        
-    }else{//附近商家
-        
-        dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
-        dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
-        dict[@"limit"] = self.limit;
-        [NetworkManager requestPOSTWithURLStr:@"shop/getMoreNearShop" paramDic:dict finish:^(id responseObject) {
-            [self endRefresh];
-            if ([responseObject[@"code"] integerValue] == 1){
-                if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-                    
-                    for (NSDictionary *dic  in responseObject[@"data"]) {
-                        GLNearby_MerchatListModel *model = [GLNearby_MerchatListModel mj_objectWithKeyValues:dic];
-                        [self.nearModels addObject:model];
-                    }
-                }
-            }
-        
             [self.tableView reloadData];
-
+            
+            
         } enError:^(NSError *error) {
             [self endRefresh];
              [self.tableView reloadData];
             [MBProgressHUD showError:@"数据加载失败"];
         }];
-    }
     
 }
 - (void)endRefresh {
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
 }
-
 -(NodataView*)nodataV{
     
     if (!_nodataV) {
@@ -199,7 +171,6 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 - (void)dealloc {
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -218,12 +189,12 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     _contentView.layer.masksToBounds = YES;
     
     _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(rect), SCREEN_WIDTH, SCREEN_HEIGHT)];
-     _maskV.bgView.alpha = 0.1;
+    _maskV.bgView.alpha = 0.1;
     
     [_maskV showViewWithContentView:_contentView];
     _maskV.alpha = 0;
-
-//    self.tabBarController.tabBar.hidden = YES;
+    
+    //    self.tabBarController.tabBar.hidden = YES;
     if ([GLNearby_Model defaultUser].city != nil) {
         
         [self.cityBtn setTitle:[GLNearby_Model defaultUser].city forState:UIControlStateNormal];
@@ -248,7 +219,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     self.cityBtn.imageView.transform = CGAffineTransformMakeRotation(0);
     self.classifyBtn.imageView.transform = CGAffineTransformMakeRotation(0);
     self.sortBtn.imageView.transform = CGAffineTransformMakeRotation(0);
-
+    
 }
 //点击地图导航
 - (void)mapTo:(NSInteger)index{
@@ -289,7 +260,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     [self.cityBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [self.classifyBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [self.sortBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-
+    
     [sender setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
     
     self.cityBtn.selected = NO;
@@ -303,17 +274,16 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     sender.imageView.transform = CGAffineTransformMakeRotation(M_PI);
     
     __weak __typeof(self)weakSelf = self;
-
+    
     switch (sender.tag) {
         case 10:
         {
             
             _chooseVC.view.width = SCREEN_WIDTH;
             _chooseVC2.view.height = 0;
-            if (self.index == 10) {
                 self.hidesBottomBarWhenPushed = YES;
                 GLCityChooseController *cityVC = [[GLCityChooseController alloc] init];
-        
+                
                 cityVC.block = ^(NSString *city,NSString *city_id){
                     
                     [weakSelf.cityBtn setTitle:city forState:UIControlStateNormal];
@@ -332,78 +302,18 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                 };
                 self.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:cityVC animated:YES];
-//                self.hidesBottomBarWhenPushed = NO;
+                //                self.hidesBottomBarWhenPushed = NO;
 
-            }else{
-                _chooseVC.dataSource = @[@"1km",@"3km",@"5km",@"10km",@"全城"];
-                _chooseVC.block = ^(NSString *value,NSInteger index){
-                    [weakSelf.cityBtn setTitle:value forState:UIControlStateNormal];
-                    if ([value isEqualToString:@"1km"]) {
-                        
-                        weakSelf.limit = @"1";
-                    }else if ([value isEqualToString:@"3km"]){
-                         weakSelf.limit = @"3";
-                    }else if ([value isEqualToString:@"5km"]){
-                        weakSelf.limit = @"5";
-                    }else if ([value isEqualToString:@"10km"]){
-                        weakSelf.limit = @"10";
-                    }else{
-                        weakSelf.limit = @"";
-                    }
-                    if ([weakSelf.cityBtn.titleLabel.text isEqualToString:@"城市"]) {
-                        weakSelf.cityBtn.imageView.image = [UIImage imageNamed:@"下选三角形"];
-                    }else{
-                        weakSelf.cityBtn.imageView.image = [UIImage imageNamed:@""];
-                    }
-
-                    [weakSelf updateData:YES];
-                    [weakSelf dismiss];
-                };
-
-            }
-         
         }
             break;
         case 11:
         {
-            _chooseVC.dataSource = self.tradeArr;
-            _chooseVC.view.width = SCREEN_WIDTH / 2 - 40;
-            _chooseVC.isSelect = YES;
-            _chooseVC.block = ^(NSString *value,NSInteger indexF){
-                if (indexF == 0) {
-                    weakSelf.trade_id = @"";
-                    weakSelf.two_trade_id = @"";
-                    [weakSelf updateData:YES];
-                     [weakSelf dismiss];
-                    return ;
-                }
-                weakSelf.trade_id = weakSelf.tradeArr[indexF][@"trade_id"];
-                //二级选项
-                weakSelf.chooseVC2.view.frame = CGRectMake(weakSelf.chooseVC.view.width ,0, SCREEN_WIDTH-weakSelf.chooseVC.view.width, 0);
-                [weakSelf.maskV addSubview:weakSelf.chooseVC2.view];
-                
-                weakSelf.chooseVC2.dataSource = weakSelf.tradeArr[indexF][@"son"];
-              
-                weakSelf.chooseVC2.block = ^(NSString *value,NSInteger index){
-                    [weakSelf.classifyBtn setTitle:value forState:UIControlStateNormal];
-                    weakSelf.two_trade_id = weakSelf.tradeArr[indexF][@"son"][index][@"trade_id"];
-                    [weakSelf dismiss];
-                    [weakSelf updateData:YES];
-                };
-                
-                [UIView animateWithDuration:0.3 animations:^{
-                    if (weakSelf.chooseVC2.dataSource.count < 8) {
-                        weakSelf.chooseVC2.view.height = _chooseVC2.dataSource.count * 44;
-                    }else{
-                        weakSelf.chooseVC2.view.height = SCREEN_HEIGHT * 0.5;
-                    }
-                    
-                }];
-                
-                [weakSelf.chooseVC2.tableView reloadData];
-            };
             
-            [weakSelf.chooseVC.tableView reloadData];
+            if (self.index == 10) {
+                [self showClassifyTrade];
+            }else{
+                 [self showTwoTrande];
+            }
             
         }
             break;
@@ -412,12 +322,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
             
             _chooseVC.view.width = SCREEN_WIDTH;
             _chooseVC2.view.height = 0;
-            if (self.index == 10) {
-                
-                _chooseVC.dataSource = @[@"智能排序",@"好评优先"];
-            }else{
-                _chooseVC.dataSource = @[@"智能排序",@"好评优先",@"离我最近"];
-            }
+
+          _chooseVC.dataSource = @[@"智能排序",@"好评优先"];
+        
             _chooseVC.block = ^(NSString *value,NSInteger index){
                 [weakSelf.sortBtn setTitle:value forState:UIControlStateNormal];
                 if ([value isEqualToString:@"智能排序"]) {
@@ -425,10 +332,8 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                     weakSelf.sort = @"1";
                 }else if ([value isEqualToString:@"好评优先"]){
                     weakSelf.sort = @"2";
-                }else if ([value isEqualToString:@"离我最近"]){
-                    weakSelf.sort = @"3";
                 }
-
+                
                 if ([weakSelf.sortBtn.titleLabel.text isEqualToString:@"排序"]) {
                     
                     weakSelf.sortBtn.imageView.image = [UIImage imageNamed:@"下选三角形"];
@@ -448,14 +353,14 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     
     if (sender.selected) {
         [UIView animateWithDuration:0.3 animations:^{
-                        if (_chooseVC.dataSource.count < 8) {
+            if (_chooseVC.dataSource.count < 8) {
                 _chooseVC.view.yy_height = _chooseVC.dataSource.count * 44;
             }else{
                 _chooseVC.view.yy_height = SCREEN_HEIGHT * 0.5;
             }
-
+            
         }];
-
+        
     }else{
         [UIView animateWithDuration:0.3 animations:^{
             
@@ -465,45 +370,103 @@ static NSString *ID = @"GLNearby_MerchatListCell";
             
             _maskV.alpha = 0;
         }];
-
+        
     }
     
     [_chooseVC.tableView reloadData];
+}
+
+-(void)showClassifyTrade{
+
+    __weak __typeof(self)weakSelf = self;
+    _chooseVC.dataSource = self.tradeArr;
+    _chooseVC.view.width = SCREEN_WIDTH / 2 - 40;
+    _chooseVC.isSelect = YES;
+    _chooseVC.block = ^(NSString *value,NSInteger indexF){
+        if (indexF == 0) {
+            weakSelf.trade_id = @"";
+            weakSelf.two_trade_id = @"";
+            [weakSelf updateData:YES];
+            [weakSelf dismiss];
+            return ;
+        }
+        weakSelf.trade_id = weakSelf.tradeArr[indexF][@"trade_id"];
+        //二级选项
+        weakSelf.chooseVC2.view.frame = CGRectMake(weakSelf.chooseVC.view.width ,0, SCREEN_WIDTH-weakSelf.chooseVC.view.width, 0);
+        [weakSelf.maskV addSubview:weakSelf.chooseVC2.view];
+        
+        weakSelf.chooseVC2.dataSource = weakSelf.tradeArr[indexF][@"son"];
+        
+        weakSelf.chooseVC2.block = ^(NSString *value,NSInteger index){
+            [weakSelf.classifyBtn setTitle:value forState:UIControlStateNormal];
+            weakSelf.two_trade_id = weakSelf.tradeArr[indexF][@"son"][index][@"trade_id"];
+            [weakSelf dismiss];
+            [weakSelf updateData:YES];
+        };
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            if (weakSelf.chooseVC2.dataSource.count < 8) {
+                weakSelf.chooseVC2.view.height = _chooseVC2.dataSource.count * 44;
+            }else{
+                weakSelf.chooseVC2.view.height = SCREEN_HEIGHT * 0.5;
+            }
+            
+        }];
+        
+        [weakSelf.chooseVC2.tableView reloadData];
+    };
+    
+    [weakSelf.chooseVC.tableView reloadData];
+
+}
+
+-(void)showTwoTrande{
+    __weak __typeof(self)weakSelf = self;
+    _chooseVC.view.width = SCREEN_WIDTH;
+    _chooseVC2.view.height = 0;
+    
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:self.typeArr];
+    [arr insertObject:@"全部" atIndex:0];
+    _chooseVC.dataSource = arr;
+    
+    _chooseVC.block = ^(NSString *value,NSInteger index){
+        [weakSelf.sortBtn setTitle:value forState:UIControlStateNormal];
+        if (index == 0) {
+            weakSelf.two_trade_id = @"";
+            [weakSelf updateData:YES];
+            [weakSelf dismiss];
+            return ;
+        }
+        
+        weakSelf.trade_id = weakSelf.typeArr[index][@"trade_id"];
+        [weakSelf updateData:YES];
+        [weakSelf dismiss];
+    };
+
 }
 #pragma UITableviewDelegate UITableviewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    if (self.nearModels.count <= 0 && self.recModels.count <= 0) {
+    if (self.recModels.count <= 0 ) {
         self.nodataV.hidden = NO;
     }else{
         self.nodataV.hidden = YES;
     }
-    if (self.index == 10) {
-        return self.recModels.count;
-    }else{
-        return self.nearModels.count;
-    }
+   
+    return self.recModels.count;
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     GLNearby_MerchatListCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (self.index == 10) {
+   
         
-        if (self.recModels.count != 0) {
-            
-            cell.model = self.recModels[indexPath.row];
-        }
-        cell.distanceLabel.hidden = YES;
-    }else{
-        if (self.nearModels.count != 0) {
-            
-            cell.model = self.nearModels[indexPath.row];
-        }
-        cell.distanceLabel.hidden = NO;
+    if (self.recModels.count != 0) {
+        cell.model = self.recModels[indexPath.row];
     }
+    cell.distanceLabel.hidden = YES;
     cell.selectionStyle = 0;
     cell.delegate = self;
     cell.index = indexPath.row;
@@ -565,5 +528,8 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     }
     return _chooseVC2;
 }
+
+
+
 
 @end

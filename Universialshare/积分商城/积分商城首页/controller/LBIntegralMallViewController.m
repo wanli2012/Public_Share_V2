@@ -7,7 +7,6 @@
 //
 
 #import "LBIntegralMallViewController.h"
-#import "SDCycleScrollView.h"
 #import "GLIntegralHeaderView.h"
 #import "GLIntegralMallTopCell.h"
 #import "GLIntegralGoodsCell.h"
@@ -29,7 +28,11 @@
 #import "GLHomePageNoticeView.h"
 #import "GLConfirmOrderController.h"
 
-@interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,GLIntegralGoodsCellDelegate,GLIntegralMallTopCellDelegete>
+#import "TYCyclePagerView.h"
+#import "TYPageControl.h"
+#import "TYCyclePagerViewCell.h"
+
+@interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,GLIntegralMallTopCellDelegete,TYCyclePagerViewDataSource, TYCyclePagerViewDelegate>
 {
     LoadWaitView * _loadV;
     NSInteger _page;
@@ -40,17 +43,13 @@
 
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong)SDCycleScrollView *cycleScrollView;
-@property (weak, nonatomic) IBOutlet UIButton *cityBtn;
 
 @property (nonatomic, strong)NSMutableArray *hotModels;
 @property (nonatomic, strong)NSMutableArray *interestModels;
 @property (nonatomic, strong)NSMutableArray *bannerArr;
 
-@property (weak, nonatomic) IBOutlet UIView *searchView;
-
-//公告
-
+@property (nonatomic, strong) TYCyclePagerView *pagerView;
+@property (nonatomic, strong) TYPageControl *pageControl;
 
 @end
 
@@ -64,33 +63,15 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 
     self.view.backgroundColor=[UIColor purpleColor];
     
-    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 180*autoSizeScaleY)
-                                                          delegate:self
-                                                  placeholderImage:[UIImage imageNamed:LUNBO_PlaceHolder]];//当一张都没有的时候的 占位图
-    //每一张图的占位图
-    _cycleScrollView.placeholderImage = [UIImage imageNamed:LUNBO_PlaceHolder];
-    
-    _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
-    _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
-    _cycleScrollView.titleLabelBackgroundColor = [UIColor clearColor];// 图片对应的标题的 背景色。（因为没有设标题）
-    _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
-    _cycleScrollView.localizationImageNamesGroup = @[@"banner01.jpg",
-                                                     @"banner02.jpg",
-                                                     @"banner03.jpg"];
-    
-    self.tableView.tableHeaderView = _cycleScrollView;
     [self.tableView registerNib:[UINib nibWithNibName:@"GLIntegralMallTopCell" bundle:nil] forCellReuseIdentifier:topCellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"GLIntegralGoodsCell" bundle:nil] forCellReuseIdentifier:goodsCellID];
-    self.searchView.layer.cornerRadius = self.searchView.yy_height / 2;
-    self.searchView.clipsToBounds = YES;
     
     if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isShow"] isEqualToString:@"YES"]) {
     
         //公告
         [self initInterDataSorceinfomessage];
     }
-    
-    [self postRequest];
+
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
@@ -103,13 +84,51 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     
     [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
     
-    [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
+    [header setTitle:@"服务器正在狂奔..." forState:MJRefreshStateRefreshing];
     
     self.tableView.mj_header = header;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
+    [self postRequest];
+    self.tableView.tableHeaderView = self.pagerView;
+    [_pagerView reloadData];
 }
+
+#pragma mark - TYCyclePagerViewDataSource
+
+- (NSInteger)numberOfItemsInPagerView:(TYCyclePagerView *)pageView {
+    NSLog(@"%@",self.bannerArr);
+    return self.bannerArr.count;
+}
+
+- (UICollectionViewCell *)pagerView:(TYCyclePagerView *)pagerView cellForItemAtIndex:(NSInteger)index {
+    
+    TYCyclePagerViewCell *cell = [pagerView dequeueReusableCellWithReuseIdentifier:@"TYCyclePagerViewCell" forIndex:index];
+    if ([self.bannerArr[index] hasPrefix:@"http:"] || [self.bannerArr[index] hasPrefix:@"https:"]) {
+        [cell.imagev sd_setImageWithURL:[NSURL URLWithString:self.bannerArr[index]] placeholderImage:nil];
+    }else{
+        cell.imagev.image = [UIImage imageNamed:self.bannerArr[index]];
+    }
+
+    return cell;
+}
+
+- (TYCyclePagerViewLayout *)layoutForPagerView:(TYCyclePagerView *)pageView {
+    TYCyclePagerViewLayout *layout = [[TYCyclePagerViewLayout alloc]init];
+    layout.itemSize = CGSizeMake(CGRectGetWidth(pageView.frame) * 0.8, CGRectGetHeight(pageView.frame));
+    layout.itemSpacing = 15;
+    layout.itemHorizontalCenter = YES;
+    return layout;
+}
+
+- (void)pagerView:(TYCyclePagerView *)pageView didScrollFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
+    _pageControl.currentPage = toIndex;
+
+    
+}
+
+
 - (void)dismiss{
     
     [UIView animateWithDuration:0.5 animations:^{
@@ -132,49 +151,6 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 
 - (void)postRequest{
 
-    [self.hotModels removeAllObjects];
-    [self.interestModels removeAllObjects];
-    [self.bannerArr removeAllObjects];
-//    
-//    [NetworkManager requestPOSTWithURLStr:@"index/banner_list" paramDic:@{@"type":@"6"} finish:^(id responseObject) {
-//
-//        if ([responseObject[@"code"] integerValue] == 1){
-//            NSMutableArray *arrM = [NSMutableArray array];
-//            
-//            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-//                
-//                for (NSDictionary *dic  in responseObject[@"data"]) {
-//                    
-//                    UIImageView *imageV = [[UIImageView alloc] init];
-//                    [imageV sd_setImageWithURL:[NSURL URLWithString:dic[@"img_path"]] placeholderImage:[UIImage imageNamed:LUNBO_PlaceHolder]];
-//                    
-//                    if(imageV.image){
-//                        
-//                        [arrM addObject:dic[@"img_path"]];
-//                    }
-//                }
-//                if (arrM.count  <= 0) {
-//                    
-//                    _cycleScrollView.imageURLStringsGroup = arrM;
-//                }else{
-//                    _cycleScrollView.localizationImageNamesGroup = @[@"banner01",
-//                                                                     @"banner02",
-//                                                                     @"banner03"];
-//                }
-//                
-//            }else{
-//                _cycleScrollView.localizationImageNamesGroup = @[@"banner01",
-//                                                                 @"banner02",
-//                                                                 @"banner03"];
-//            }
-//        }
-//        [self.tableView reloadData];
-//    } enError:^(NSError *error) {
-//        [MBProgressHUD showError:error.description];
-//        [self.tableView reloadData];
-//    }];
-
-    
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/main" paramDic:@{} finish:^(id responseObject) {
         
@@ -183,6 +159,8 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 
         if ([responseObject[@"code"] integerValue] == 1){
             if([responseObject[@"data"] count] != 0){
+                [self.hotModels removeAllObjects];
+                [self.interestModels removeAllObjects];
                 if([responseObject[@"data"][@"mall_tabe"] count]){
                     
                     for (NSDictionary *dic in responseObject[@"data"][@"mall_tabe"]) {
@@ -199,25 +177,12 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
                     }
                 }
                 if ([responseObject[@"data"][@"banner_url"] count] != 0) {
-                    
+                    [self.bannerArr removeAllObjects];
                     for (NSDictionary *dic in responseObject[@"data"][@"banner_url"]) {
                         [self.bannerArr addObject:dic[@"image_url"]];
                     }
                 }
-                if (self.bannerArr.count > 0) {
-                    
-                    _cycleScrollView.imageURLStringsGroup = self.bannerArr;
-                }else{
-                    _cycleScrollView.localizationImageNamesGroup = @[@"banner01",
-                                                                     @"banner02",
-                                                                     @"banner03"];
-                }
-                
-            }else{
-                _cycleScrollView.localizationImageNamesGroup = @[@"banner01",
-                                                                 @"banner02",
-                                                                 @"banner03"];
-                
+               [_pagerView reloadData];
             }
         }
      
@@ -236,7 +201,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.hidden = YES;
-    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
 
 }
 
@@ -328,50 +293,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     self.hidesBottomBarWhenPushed = NO;
 }
 
-//城市选择
-- (IBAction)cityChoose:(id)sender {
-    
-//    JFCityViewController *cityViewController = [[JFCityViewController alloc] init];
-//    cityViewController.title = @"城市";
-    GLCityChooseController *cityVC = [[GLCityChooseController alloc] init];
-    __weak typeof(self) weakSelf = self;
-    cityVC.block = ^(NSString *city,NSString *city_id){
-        [weakSelf.cityBtn setTitle:city forState:UIControlStateNormal];
-    };
-    self.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:cityVC animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 
-}
-
-/** 点击图片回调 */
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    
-}
-
-/** 图片滚动回调 */
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
-    
-}
-
-//立即抢购
-- (void)buyNow:(int)index{
-    self.hidesBottomBarWhenPushed = YES;
-    
-    if ([UserModel defaultUser].loginstatus == NO) {
-        [MBProgressHUD showError:@"请先登录"];
-        return;
-    }
-
-    GLConfirmOrderController *vc=[[GLConfirmOrderController alloc]init];
-    GLMall_InterestModel *model = self.interestModels[index];
-    vc.goods_id = model.goods_id;
-    vc.goods_count = @"1";
-    vc.orderType = 2; //订单类型 2:米分商品
-    [self.navigationController pushViewController:vc animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
-
-}
 #pragma UITableviewDelegate UITableviewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
@@ -387,7 +309,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 1) {
-        return 40*autoSizeScaleY;
+        return 60*autoSizeScaleY;
     }else{
         return 0;
     }
@@ -419,7 +341,6 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
         cell.model = self.interestModels[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.index = (int)indexPath.row;
-        cell.delegate = self;
         
         return cell;
 
@@ -427,10 +348,10 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return 185 *autoSizeScaleY;
+        return 110 + (SCREEN_WIDTH - 40)/3;
     }else{
         
-        return 110 *autoSizeScaleY;
+        return 110 * autoSizeScaleX;
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -465,10 +386,44 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 }
 - (NSMutableArray *)bannerArr{
     if (!_bannerArr) {
-        _bannerArr = [[NSMutableArray alloc] init];
+//        _bannerArr = [[NSMutableArray alloc] initWithArray:@[@"banner01.jpg",
+//                                                             @"banner02.jpg",
+//                                                             @"banner03.jpg"]];
+        
+        _bannerArr = [[NSMutableArray alloc]initWithObjects:@"https://dztg-img-oss.oss-cn-shanghai.aliyuncs.com/Public/Uploads/Admin/banner_pic/2017-07-05/595c878bb70fc.jpg", @"http://dztg-img-oss.oss-cn-shanghai.aliyuncs.com/Public/Uploads/Admin/banner_pic/2017-07-03/595a5a3186936.png",@"http://dztg-img-oss.oss-cn-shanghai.aliyuncs.com/Public/Uploads/Admin/banner_pic/2017-07-03/595a5a1ab27af.png",@"http://dztg-img-oss.oss-cn-shanghai.aliyuncs.com/Public/Uploads/Admin/banner_pic/2017-07-03/595a5a0b66132.jpg",@"http://dztg-img-oss.oss-cn-shanghai.aliyuncs.com/Public/Uploads/Admin/banner_pic/2017-07-03/595a59db4a793.jpg", nil];
     }
+    
     return _bannerArr;
 }
 
+
+- (void)addPageControl {
+    TYPageControl *pageControl = [[TYPageControl alloc]init];
+    _pageControl.frame = CGRectMake(0, 180*autoSizeScaleY - 26, SCREEN_WIDTH, 26);
+    pageControl.numberOfPages = self.bannerArr.count;
+    pageControl.currentPageIndicatorSize = CGSizeMake(8, 8);
+    //    pageControl.pageIndicatorImage = [UIImage imageNamed:@"Dot"];
+    //    pageControl.currentPageIndicatorImage = [UIImage imageNamed:@"DotSelected"];
+    //    pageControl.contentInset = UIEdgeInsetsMake(0, 20, 0, 20);
+    //    pageControl.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    //    pageControl.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    //    [pageControl addTarget:self action:@selector(pageControlValueChangeAction:) forControlEvents:UIControlEventValueChanged];
+    _pageControl = pageControl;
+}
+
+-(TYCyclePagerView*)pagerView{
+    if (!_pagerView) {
+        _pagerView = [[TYCyclePagerView alloc]init];
+        _pagerView.frame = CGRectMake(0, 64, CGRectGetWidth(self.view.frame), 180*autoSizeScaleY);
+        _pagerView.layer.borderWidth = 0;
+        _pagerView.autoScrollInterval = 3.0;
+        _pagerView.isInfiniteLoop = YES;
+        _pagerView.dataSource = self;
+        _pagerView.delegate = self;
+        [_pagerView registerNib:[UINib nibWithNibName:@"TYCyclePagerViewCell" bundle:nil] forCellWithReuseIdentifier:@"TYCyclePagerViewCell"];
+    }
+    
+    return _pagerView;
+}
 
 @end

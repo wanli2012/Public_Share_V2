@@ -50,13 +50,12 @@
     self.contentLabel.text = [NSString stringWithFormat:@"销售额:¥ %@",model.total_money];
     self.surplusLimitLb.text = @"";
     
-    if ([model.limit floatValue] > 1000) {
-        
-        self.distanceLabel.text = [NSString stringWithFormat:@"%.2fkm", [model.limit floatValue] / 1000];
-
-    }else{
-        
-        self.distanceLabel.text = [NSString stringWithFormat:@"%@m", model.limit];
+    if (model.limit != nil) {
+        if ([model.limit floatValue] > 1000) {
+            self.distanceLabel.text = [NSString stringWithFormat:@"%.2fkm", [model.limit floatValue] / 1000];
+        }else{
+            self.distanceLabel.text = [NSString stringWithFormat:@"%@m", model.limit];
+        }
     }
     
 }
