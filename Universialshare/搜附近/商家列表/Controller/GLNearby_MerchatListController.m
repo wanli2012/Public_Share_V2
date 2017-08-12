@@ -186,6 +186,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
 }
+
 -(NodataView*)nodataV{
     
     if (!_nodataV) {
@@ -198,6 +199,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 - (void)dealloc {
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
