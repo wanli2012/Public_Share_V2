@@ -849,6 +849,8 @@
 		F9564DFE1EC86217007F3677 /* LBBelowTheLineListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9564DFC1EC86217007F3677 /* LBBelowTheLineListViewController.xib */; };
 		F9564E021EC86251007F3677 /* LBBelowTheLineListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9564E001EC86251007F3677 /* LBBelowTheLineListTableViewCell.m */; };
 		F9564E031EC86251007F3677 /* LBBelowTheLineListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9564E011EC86251007F3677 /* LBBelowTheLineListTableViewCell.xib */; };
+		F956F03F1F3EDFE6001F5397 /* LBDisplayPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F956F03E1F3EDFE6001F5397 /* LBDisplayPageView.m */; };
+		F956F0411F3EDFFA001F5397 /* LBDisplayPageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F956F0401F3EDFFA001F5397 /* LBDisplayPageView.xib */; };
 		F958C07F1EA4615A003C9CFB /* LBMineCenterUsualUnderOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F958C07D1EA4615A003C9CFB /* LBMineCenterUsualUnderOrderTableViewCell.m */; };
 		F958C0801EA4615A003C9CFB /* LBMineCenterUsualUnderOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F958C07E1EA4615A003C9CFB /* LBMineCenterUsualUnderOrderTableViewCell.xib */; };
 		F958C0821EA4A3F9003C9CFB /* personCenter.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F958C0811EA4A3F9003C9CFB /* personCenter.xcassets */; };
@@ -2447,6 +2449,9 @@
 		F9564DFF1EC86251007F3677 /* LBBelowTheLineListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBelowTheLineListTableViewCell.h; sourceTree = "<group>"; };
 		F9564E001EC86251007F3677 /* LBBelowTheLineListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBelowTheLineListTableViewCell.m; sourceTree = "<group>"; };
 		F9564E011EC86251007F3677 /* LBBelowTheLineListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBBelowTheLineListTableViewCell.xib; sourceTree = "<group>"; };
+		F956F03D1F3EDFE6001F5397 /* LBDisplayPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBDisplayPageView.h; sourceTree = "<group>"; };
+		F956F03E1F3EDFE6001F5397 /* LBDisplayPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBDisplayPageView.m; sourceTree = "<group>"; };
+		F956F0401F3EDFFA001F5397 /* LBDisplayPageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBDisplayPageView.xib; sourceTree = "<group>"; };
 		F958C07C1EA4615A003C9CFB /* LBMineCenterUsualUnderOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterUsualUnderOrderTableViewCell.h; sourceTree = "<group>"; };
 		F958C07D1EA4615A003C9CFB /* LBMineCenterUsualUnderOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterUsualUnderOrderTableViewCell.m; sourceTree = "<group>"; };
 		F958C07E1EA4615A003C9CFB /* LBMineCenterUsualUnderOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterUsualUnderOrderTableViewCell.xib; sourceTree = "<group>"; };
@@ -4503,6 +4508,9 @@
 				F91BB1D51F3DF81C00BF46C2 /* TYCyclePagerViewCell.h */,
 				F91BB1D61F3DF81C00BF46C2 /* TYCyclePagerViewCell.m */,
 				F91BB1D71F3DF81C00BF46C2 /* TYCyclePagerViewCell.xib */,
+				F956F03D1F3EDFE6001F5397 /* LBDisplayPageView.h */,
+				F956F03E1F3EDFE6001F5397 /* LBDisplayPageView.m */,
+				F956F0401F3EDFFA001F5397 /* LBDisplayPageView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -6821,6 +6829,7 @@
 				F912749D1EA0E64B00B7A539 /* LBMineStoreTodayOrderingViewController.xib in Resources */,
 				F9126EF71EA0B086004785EA /* LBMineSystemMessageTableViewCell.xib in Resources */,
 				F91BB1C71F3DBA6D00BF46C2 /* LBNearClassfityViewController.xib in Resources */,
+				F956F0411F3EDFFA001F5397 /* LBDisplayPageView.xib in Resources */,
 				F966B3B71EAC3BB8007260FC /* LBMineCenterOrderDetailOneTableViewCell.xib in Resources */,
 				4A4610211E9CC6360045824F /* UMSCommentInputController.xib in Resources */,
 				F97406E11F3AE54D00D440FC /* LBNearby_classifyItemView.xib in Resources */,
@@ -7496,6 +7505,7 @@
 				4AAD25301EC188C90054FD06 /* GLBuyBackChooseController.m in Sources */,
 				4A46107C1E9CC6360045824F /* ZXByteArray.m in Sources */,
 				F9516DF81ECADA5F009F015D /* LBStoreDetailreplaysTableViewCell.m in Sources */,
+				F956F03F1F3EDFE6001F5397 /* LBDisplayPageView.m in Sources */,
 				4A4610401E9CC6360045824F /* ZXAztecBinaryShiftToken.m in Sources */,
 				4A2F52161EC7084000ECA95D /* GLBottomCell.m in Sources */,
 				F91BB1CF1F3DF44B00BF46C2 /* TYCyclePagerTransformLayout.m in Sources */,

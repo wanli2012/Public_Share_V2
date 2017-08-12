@@ -35,7 +35,7 @@
     self.view.backgroundColor=[UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.messageType = 1;
-    self.messageArr = [NSMutableArray arrayWithObjects:@"兑换消息",@"奖励消息",@"推荐消息",@"下单消息",@"直捐消息", nil];
+//    self.messageArr = [NSMutableArray arrayWithObjects:@"兑换消息",@"奖励消息",@"推荐消息",@"下单消息",@"直捐消息",@"其他消息", nil];
     self.tableview.tableFooterView = [UIView new];
     self.tableview.estimatedRowHeight = 70;
     self.tableview.rowHeight = UITableViewAutomaticDimension;
@@ -148,7 +148,7 @@
                                                                    @{@"title":@"奖励消息",@"imageName":@""},
                                                                    @{@"title":@"推荐消息",@"imageName":@""},
                                                                    @{@"title":@"下单消息",@"imageName":@""},
-                                                                   @{@"title":@"直捐消息",@"imageName":@""},
+                                                                   @{@"title":@"其他消息",@"imageName":@""},
                                                                    ]
                               
                                                            width:100
