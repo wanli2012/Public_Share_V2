@@ -27,13 +27,9 @@
 #import "GLSet_MaskVeiw.h"
 #import "GLHomePageNoticeView.h"
 #import "GLConfirmOrderController.h"
+#import "LBFrontView.h"
 
-#import "TYCyclePagerView.h"
-#import "TYPageControl.h"
-#import "TYCyclePagerViewCell.h"
-#import "LBDisplayPageView.h"
-
-@interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,GLIntegralMallTopCellDelegete,TYCyclePagerViewDataSource, TYCyclePagerViewDelegate>
+@interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,GLIntegralMallTopCellDelegete>
 {
     LoadWaitView * _loadV;
     NSInteger _page;
@@ -48,11 +44,7 @@
 @property (nonatomic, strong)NSMutableArray *hotModels;
 @property (nonatomic, strong)NSMutableArray *interestModels;
 @property (nonatomic, strong)NSMutableArray *bannerArr;
-
-@property (nonatomic, strong) TYCyclePagerView *pagerView;
-@property (nonatomic, strong) TYPageControl *pageControl;
-@property (nonatomic, strong) LBDisplayPageView *displayPageView;
-
+@property (nonatomic, strong)LBFrontView *frontView;
 @end
 
 
@@ -96,41 +88,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     /**
      * 数组tableHeaderView
      */
-    [self.pagerView addSubview:self.displayPageView];
-    self.tableView.tableHeaderView = self.pagerView;
-    [_pagerView reloadData];//刷新
-}
-
-#pragma mark - TYCyclePagerViewDataSource
-
-- (NSInteger)numberOfItemsInPagerView:(TYCyclePagerView *)pageView {
-
-    return self.bannerArr.count;
-}
-
-- (UICollectionViewCell *)pagerView:(TYCyclePagerView *)pagerView cellForItemAtIndex:(NSInteger)index {
-    
-    TYCyclePagerViewCell *cell = [pagerView dequeueReusableCellWithReuseIdentifier:@"TYCyclePagerViewCell" forIndex:index];
-    if ([self.bannerArr[index] hasPrefix:@"http:"] || [self.bannerArr[index] hasPrefix:@"https:"]) {
-        [cell.imagev sd_setImageWithURL:[NSURL URLWithString:self.bannerArr[index]] placeholderImage:nil];
-    }else{
-        cell.imagev.image = [UIImage imageNamed:self.bannerArr[index]];
-    }
-
-    return cell;
-}
-
-- (TYCyclePagerViewLayout *)layoutForPagerView:(TYCyclePagerView *)pageView {
-    TYCyclePagerViewLayout *layout = [[TYCyclePagerViewLayout alloc]init];
-    layout.itemSize = CGSizeMake(CGRectGetWidth(pageView.frame) * 0.8, CGRectGetHeight(pageView.frame));
-    layout.itemSpacing = 10;
-    layout.itemHorizontalCenter = YES;
-    return layout;
-}
-
-- (void)pagerView:(TYCyclePagerView *)pageView didScrollFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
-
-     _displayPageView.labelCount.attributedText = [self setLabelAttribute:[NSString stringWithFormat:@"%ld/",(long)toIndex+1] text: [NSString stringWithFormat:@"%ld/%lu",(long)toIndex+1,(unsigned long)self.bannerArr.count]];
+    self.tableView.tableHeaderView = self.frontView;
 
 }
 
@@ -188,9 +146,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
                         [self.bannerArr addObject:dic[@"image_url"]];
                     }
                 }
-                _pageControl.numberOfPages = self.bannerArr.count;
-                 _displayPageView.labelCount.attributedText = [self setLabelAttribute:@"1/" text:[NSString stringWithFormat:@"1/%lu",(unsigned long)self.bannerArr.count]];
-               [_pagerView reloadData];
+
             }
         }
      
@@ -400,62 +356,15 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     }
     return _interestModels;
 }
-- (NSMutableArray *)bannerArr{
-    if (!_bannerArr) {
-        _bannerArr = [[NSMutableArray alloc] initWithArray:@[@"banner01.jpg",
-                                                             @"banner02.jpg",
-                                                             @"banner03.jpg"]];
+-(LBFrontView*)frontView{
 
+    if (!_frontView) {
+        _frontView = [[LBFrontView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
     }
     
-    return _bannerArr;
+    return _frontView;
+
 }
 
--(TYPageControl*)pageControl{
-
-    if (!_pageControl) {
-        _pageControl = [[TYPageControl alloc]init];
-        _pageControl.frame = CGRectMake(0, 180*autoSizeScaleY - 26, SCREEN_WIDTH, 26);
-        _pageControl.numberOfPages = self.bannerArr.count;
-        _pageControl.currentPageIndicatorSize = CGSizeMake(8, 8);
-        //    pageControl.pageIndicatorImage = [UIImage imageNamed:@"Dot"];
-        //    pageControl.currentPageIndicatorImage = [UIImage imageNamed:@"DotSelected"];
-        //    pageControl.contentInset = UIEdgeInsetsMake(0, 20, 0, 20);
-        //    pageControl.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        //    pageControl.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        //    [pageControl addTarget:self action:@selector(pageControlValueChangeAction:) forControlEvents:UIControlEventValueChanged];
-
-    }
-    
-    return _pageControl;
-}
-
--(TYCyclePagerView*)pagerView{
-    if (!_pagerView) {
-        _pagerView = [[TYCyclePagerView alloc]init];
-        _pagerView.frame = CGRectMake(0, 64, CGRectGetWidth(self.view.frame), 180*autoSizeScaleY);
-        _pagerView.layer.borderWidth = 0;
-        _pagerView.autoScrollInterval = 3.0;
-        _pagerView.isInfiniteLoop = YES;
-        _pagerView.dataSource = self;
-        _pagerView.delegate = self;
-        [_pagerView registerNib:[UINib nibWithNibName:@"TYCyclePagerViewCell" bundle:nil] forCellWithReuseIdentifier:@"TYCyclePagerViewCell"];
-    }
-    
-    return _pagerView;
-}
-
--(LBDisplayPageView*)displayPageView{
-
-    if (!_displayPageView) {
-        _displayPageView = [[LBDisplayPageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.pagerView.frame) * 0.8 - 45, 180*autoSizeScaleY - 35, 30, 30)];
-        _displayPageView.backgroundColor = YYSRGBColor(255, 255, 255, 0.5);
-        _displayPageView.layer.cornerRadius = 15;
-        _displayPageView.clipsToBounds = YES;
-        _displayPageView.labelCount.attributedText = [self setLabelAttribute:@"1/" text:[NSString stringWithFormat:@"1/%lu",(unsigned long)self.bannerArr.count]];
-    }
-
-    return _displayPageView;
-}
 
 @end

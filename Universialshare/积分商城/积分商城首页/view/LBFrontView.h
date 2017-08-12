@@ -1,5 +1,5 @@
 //
-//  LBDisplayPageView.h
+//  LBFrontView.h
 //  Universialshare
 //
 //  Created by 四川三君科技有限公司 on 2017/8/12.
@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SDCycleScrollView;
 
-@interface LBDisplayPageView : UIView
-@property (weak, nonatomic) IBOutlet UILabel *labelCount;
+@interface LBFrontView : UIView
+
+@property (strong, nonatomic)SDCycleScrollView *cycleScrollView;
 
 @end

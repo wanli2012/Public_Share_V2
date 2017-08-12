@@ -10,4 +10,7 @@
 
 @interface GLShoppingCartController : UIViewController
 
+@property (nonatomic, assign)BOOL isMainVC;//判断是否是主界面跳转 NO为主界面跳转
+
+
 @end

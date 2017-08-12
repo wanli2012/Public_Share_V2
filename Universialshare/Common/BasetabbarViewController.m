@@ -23,6 +23,7 @@
 #import "GLMerchat_StoreController.h"
 #import "GLMerchat_CommentController.h"
 #import "LBHomeIncomeViewController.h"
+#import "GLShoppingCartController.h"
 
 @interface BasetabbarViewController ()<UITabBarControllerDelegate>
 
@@ -72,55 +73,13 @@
     BaseNavigationViewController *nearbyNav = [[BaseNavigationViewController alloc] initWithRootViewController:nearbyVC];
     nearbyNav.tabBarItem = [self barTitle:@"逛逛" image:@"sfj_icon" selectImage:@"sfj_selected_icon"];
     
-    //门店
-    GLMerchat_StoreController *storeVC = [[GLMerchat_StoreController alloc] init];
-    BaseNavigationViewController *storeNav = [[BaseNavigationViewController alloc] initWithRootViewController:storeVC];
-    storeNav.tabBarItem = [self barTitle:@"门店" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
+    //搜附近
+    GLShoppingCartController *ShoppingVC = [[GLShoppingCartController alloc] init];
+    BaseNavigationViewController *ShoppingNav = [[BaseNavigationViewController alloc] initWithRootViewController:ShoppingVC];
+    ShoppingNav.tabBarItem = [self barTitle:@"购物车" image:@"购物车未点中" selectImage:@"购物车点中"];
     
-    //商家用 评论
-    GLMerchat_CommentController*commentVC = [[GLMerchat_CommentController alloc] init];
-    BaseNavigationViewController *commentNav = [[BaseNavigationViewController alloc] initWithRootViewController:commentVC];
-    commentNav.tabBarItem = [self barTitle:@"商品" image:@"sp_icon" selectImage:@"sp_selected_icon"];
     
-    //商家收益
-    LBHomeIncomeViewController *incomeVC = [[LBHomeIncomeViewController alloc] init];
-    BaseNavigationViewController *incomeNav = [[BaseNavigationViewController alloc] initWithRootViewController:incomeVC];
-    incomeNav.tabBarItem = [self barTitle:@"收益" image:@"sy_normal" selectImage:@"sy_select"];
-    
-    //
-    LBShowSaleManAndBusinessViewController *ManAndBusinessVc = [[LBShowSaleManAndBusinessViewController alloc] init];
-    BaseNavigationViewController *ManAndBusinessNav = [[BaseNavigationViewController alloc] initWithRootViewController:ManAndBusinessVc];
-    ManAndBusinessVc.tabBarItem = [self barTitle:@"创客" image:@"推广员未选中" selectImage:@"推广员选中"];
-    
-    //
-    LBMineStoreOrderingViewController *myodresvc = [[LBMineStoreOrderingViewController alloc] init];
-    BaseNavigationViewController *myordersNav = [[BaseNavigationViewController alloc] initWithRootViewController:myodresvc];
-    myordersNav.tabBarItem = [self barTitle:@"订单" image:@"消费商城未选中状态" selectImage:@"消费商城"];
-    
-    //
-    LBMyBusinessListViewController *businessVc=[[LBMyBusinessListViewController alloc]init];
-    BaseNavigationViewController *businessNav = [[BaseNavigationViewController alloc] initWithRootViewController:businessVc];
-    businessNav.tabBarItem = [self barTitle:@"商家" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
-   
-    //消费商城 (暂时取消了)
-    GLHomePageController *Homevc = [[GLHomePageController alloc] init];
-    BaseNavigationViewController *Homenav = [[BaseNavigationViewController alloc] initWithRootViewController:Homevc];
-    Homenav.tabBarItem = [self barTitle:@"消费商城" image:@"消费商城未选中状态" selectImage:@"消费商城"];
-    
-//    if ([UserModel defaultUser].loginstatus == YES) {//登录状态
-//        if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {//一级业务员(副总) 二级业务员(高级推广员)
-//            self.viewControllers = @[businessNav,ManAndBusinessNav, minenav];
-//        }else if ([[UserModel defaultUser].usrtype isEqualToString:THREESALER]){//三级业务员(普通推广员)
-//            self.viewControllers = @[businessNav, minenav];
-//        }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]){//普通用户
-//            self.viewControllers = @[IntegralMallnav,nearbyNav, minenav];
-//        }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]){//商家
-//            self.viewControllers = @[incomeNav,commentNav,storeNav, minenav];
-//        }
-//    }else{//退出状态
-//    }
-    
-    self.viewControllers = @[nearbyNav ,IntegralMallnav,storeNav, minenav];
+    self.viewControllers = @[IntegralMallnav,nearbyNav,ShoppingNav, minenav];
     
     self.selectedIndex=0;
     
@@ -141,18 +100,8 @@
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
     
-    int index;
-//    if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
-//        index = 2;
-//    }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]){
-//        index = 3;
-//    }else if ([[UserModel defaultUser].usrtype isEqualToString:@"0"] || [UserModel defaultUser].usrtype == nil || [[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]){
-//        index = 2;
-//    }else{
-//        index = 1;
-//    }
-    index = 3;
-    if (viewController == [tabBarController.viewControllers objectAtIndex:index]) {
+    
+    if (viewController == [tabBarController.viewControllers objectAtIndex:3] || viewController == [tabBarController.viewControllers objectAtIndex:2]) {
        
         if ([UserModel defaultUser].loginstatus == YES) {
 //实名认证

@@ -21,13 +21,5 @@
 
 @property (strong, nonatomic)UITableView *tableview;
 
-@property(nonatomic , strong) UIButton *CollectinGoodsBt;//代收货
-@property(nonatomic , strong) UIButton *ShoppingCartBt;//购物车
-@property(nonatomic , strong) UIButton *OrderBt;//订单
-
-@property(nonatomic , copy)void(^returnCollectinGoodsBt)();
-@property(nonatomic , copy)void(^returnShoppingCartBt)();
-@property(nonatomic , copy)void(^returnOrderBt)();
-
 @property (nonatomic, strong)SDCycleScrollView *cycleScrollView;
 @end

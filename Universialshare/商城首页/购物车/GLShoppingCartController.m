@@ -37,6 +37,9 @@
 @property (nonatomic, assign)NSInteger totalNum;
 
 @property (nonatomic, strong)NSMutableArray *models;
+@property (weak, nonatomic) IBOutlet UILabel *navaTitle;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstrait;
+@property (strong, nonatomic)NodataView *nodataV;
 
 @end
 
@@ -56,9 +59,8 @@ static NSString *ID = @"GLShoppingCell";
      [self.clearingBtn addTarget:self action:@selector(clearingMore:) forControlEvents:UIControlEventTouchUpInside];
 //    self.selectedNumLabel.text = [NSString stringWithFormat:@"已选中%ld件商品",_totalNum];
     self.totalPriceLabel.text = [NSString stringWithFormat:@"总金额¥ %lu",(long)_totalPrice];
-    [self updateTitleNum];
-    [self postRequest];
-    
+   
+    [self.tableView addSubview:self.nodataV];
 }
 
 - (void)postRequest {
@@ -66,11 +68,7 @@ static NSString *ID = @"GLShoppingCell";
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     
-    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/myCartList" paramDic:dict finish:^(id responseObject) {
-        
-        [_loadV removeloadview];
-       
         
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 
@@ -84,11 +82,11 @@ static NSString *ID = @"GLShoppingCell";
                     [self.tableView reloadData];
                 }
             }else{
-                [MBProgressHUD showError:responseObject[@"message"]];
+
             }
      
     } enError:^(NSError *error) {
-        [_loadV removeloadview];
+
     }];
 }
 
@@ -215,15 +213,33 @@ static NSString *ID = @"GLShoppingCell";
 }
 
 - (void)updateTitleNum {
-    self.navigationItem.title = [NSString stringWithFormat:@"购物车(%zd)",_totalNum];
+    if (self.isMainVC == NO) {
+        self.navaTitle.text = [NSString stringWithFormat:@"购物车(%zd)",_totalNum];
+    }else{
+        self.navigationItem.title = [NSString stringWithFormat:@"购物车(%zd)",_totalNum];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self updateTitleNum];
+    [self postRequest];
+    if (self.isMainVC == NO) {
+      self.navigationController.navigationBar.hidden = YES;
+        self.bottomConstrait.constant = 49;
+    }else{
+        self.navigationController.navigationBar.hidden = NO;
+        self.bottomConstrait.constant = 0;
+    }
 }
 #pragma  UITableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (self.models.count <= 0) {
+        self.nodataV.hidden = NO;
+    }else{
+        self.nodataV.hidden = YES;
+    }
     return self.models.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -340,8 +356,6 @@ static NSString *ID = @"GLShoppingCell";
     return NO;
 }
 
-
-
 - (UIView *)headerView {
     
     if(_headerView == nil){
@@ -398,5 +412,14 @@ static NSString *ID = @"GLShoppingCell";
         _models = [NSMutableArray array];
     }
     return _models;
+}
+-(NodataView*)nodataV{
+    
+    if (!_nodataV) {
+        _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-114);
+    }
+    return _nodataV;
+    
 }
 @end

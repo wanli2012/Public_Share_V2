@@ -16,6 +16,7 @@
 #import "LBStoreMoreInfomationViewController.h"
 #import "GLNearby_NearShopModel.h"
 #import "GLHomeLiveChooseController.h"
+#import "UIButton+SetEdgeInsets.h"
 
 @interface LBNearClassfityViewController ()<UITableViewDataSource,UITableViewDelegate,GLNearby_MerchatListCellDelegate>
 {
@@ -144,9 +145,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                 }
             }
         
-            
             [self.tableView reloadData];
-            
             
         } enError:^(NSError *error) {
             [self endRefresh];
@@ -287,7 +286,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                 cityVC.block = ^(NSString *city,NSString *city_id){
                     
                     [weakSelf.cityBtn setTitle:city forState:UIControlStateNormal];
-                    
+                     [weakSelf.cityBtn horizontalCenterTitleAndImage:5];
                     if ([weakSelf.cityBtn.titleLabel.text isEqualToString:@"城市"]) {
                         
                         weakSelf.cityBtn.imageView.image = [UIImage imageNamed:@"下选三角形"];
@@ -327,6 +326,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
         
             _chooseVC.block = ^(NSString *value,NSInteger index){
                 [weakSelf.sortBtn setTitle:value forState:UIControlStateNormal];
+                 [weakSelf.sortBtn horizontalCenterTitleAndImage:5];
                 if ([value isEqualToString:@"智能排序"]) {
                     
                     weakSelf.sort = @"1";
@@ -399,6 +399,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
         
         weakSelf.chooseVC2.block = ^(NSString *value,NSInteger index){
             [weakSelf.classifyBtn setTitle:value forState:UIControlStateNormal];
+             [weakSelf.classifyBtn horizontalCenterTitleAndImage:5];
             weakSelf.two_trade_id = weakSelf.tradeArr[indexF][@"son"][index][@"trade_id"];
             [weakSelf dismiss];
             [weakSelf updateData:YES];
@@ -431,6 +432,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     
     _chooseVC.block = ^(NSString *value,NSInteger index){
         [weakSelf.classifyBtn setTitle:value forState:UIControlStateNormal];
+         [weakSelf.classifyBtn horizontalCenterTitleAndImage:5];
         if (index == 0) {
             weakSelf.two_trade_id = @"";
             [weakSelf updateData:YES];
