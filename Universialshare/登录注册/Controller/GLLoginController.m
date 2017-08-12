@@ -336,6 +336,7 @@
     
     [self.view addSubview:self.maskView];
     [self.view addSubview:self.loginView];
+    
     self.loginView.transform = CGAffineTransformMakeScale(0.8, 0.8);
     [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0.2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.loginView.transform = CGAffineTransformMakeScale(1.0, 1.0);
@@ -588,7 +589,6 @@
     self.loginView.cancelBt.layer.cornerRadius = 4;
     self.loginView.cancelBt.clipsToBounds = YES;
 
-
 }
 
 -(LoginIdentityView*)loginView{
@@ -597,9 +597,7 @@
         _loginView=[[NSBundle mainBundle]loadNibNamed:@"LoginIdentityView" owner:self options:nil].firstObject;
         _loginView.frame=CGRectMake(20, (SCREEN_HEIGHT - 300)/2, SCREEN_WIDTH-40, 300);
         _loginView.alpha=1;
-        
 
-        
     }
     
     return _loginView;

@@ -153,16 +153,17 @@
     if (viewController == [tabBarController.viewControllers objectAtIndex:index]) {
        
         if ([UserModel defaultUser].loginstatus == YES) {
+//实名认证
             
-            if (![[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
-                if ([[UserModel defaultUser].rzstatus isEqualToString:@"0"] || [[UserModel defaultUser].rzstatus isEqualToString:@"3"]) {
-                    
-                    LBImprovePersonalDataViewController *infoVC = [[LBImprovePersonalDataViewController alloc] init];
-                    infoVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                    [self presentViewController:infoVC animated:YES completion:nil];
-                    return NO;
-                }
-            }
+//            if (![[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
+//                if ([[UserModel defaultUser].rzstatus isEqualToString:@"0"] || [[UserModel defaultUser].rzstatus isEqualToString:@"3"]) {
+//                    
+//                    LBImprovePersonalDataViewController *infoVC = [[LBImprovePersonalDataViewController alloc] init];
+//                    infoVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//                    [self presentViewController:infoVC animated:YES completion:nil];
+//                    return NO;
+//                }
+//            }
             return YES;
         }
         GLLoginController *loginVC = [[GLLoginController alloc] init];

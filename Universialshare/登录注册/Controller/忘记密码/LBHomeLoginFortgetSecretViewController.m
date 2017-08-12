@@ -8,6 +8,7 @@
 
 #import "LBHomeLoginFortgetSecretViewController.h"
 #import "SelectUserTypeView.h"
+#import "LoginIdentityView.h"
 
 @interface LBHomeLoginFortgetSecretViewController ()<UITextFieldDelegate>
 
@@ -31,6 +32,8 @@
 
 @property (strong, nonatomic)UIView *maskView;
 @property (strong, nonatomic)SelectUserTypeView *selectUserTypeView;
+//@property (strong, nonatomic)LoginIdentityView *selectUserTypeView;
+
 @property (strong, nonatomic)LoadWaitView *loadV;
 
 @property (strong, nonatomic)NSString *usertype;
@@ -42,7 +45,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   self.navigationController.navigationBar.hidden = NO;
+    
+    self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"忘记密码";
     
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgesturechosetype)];
@@ -97,12 +101,9 @@
         [MBProgressHUD showError:@"两次输入的密码不一致"];
         return;
     }
-    
-//    NSString *encryptphone = [RSAEncryptor encryptString:self.phoneTf.text publicKey:public_RSA];
+
     NSString *encryptsecret = [RSAEncryptor encryptString:self.secretTf.text publicKey:public_RSA];
-//    NSString *encryptUsertype = [RSAEncryptor encryptString:[NSString stringWithFormat:@"%ld",(long)self.usertype] publicKey:public_RSA];
-//    NSString *encrypYzm = [RSAEncryptor encryptString:self.yabzTf.text publicKey:public_RSA];
-    
+
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"user/forget_pwd" paramDic:@{@"userphone":self.phoneTf.text , @"password":encryptsecret , @"groupID":self.usertype , @"yzm":self.yabzTf.text} finish:^(id responseObject) {
         [_loadV removeloadview];
@@ -121,10 +122,7 @@
 }
 
 - (IBAction)chooseUsertype:(UIButton *)sender {
-    
-    
-    
-    
+
 }
 - (IBAction)getcode:(UIButton *)sender {
     
@@ -186,20 +184,94 @@
     return YES;
     
 }
-
-
+#pragma mark - 选择用户类型
 //选择身份
 -(void)tapgesturechosetype{
-
+    
+    __weak typeof(self) weakSelf = self;
+    
+    self.selectUserTypeView.block = ^(NSInteger index){
+        
+        switch (index) {
+            case 0://会员
+            {
+                weakSelf.usertype = @"10";
+                weakSelf.usertypeTf.text=@"会员";
+            }
+                break;
+            case 1://商家
+            {
+                weakSelf.usertype = @"9";
+                weakSelf.usertypeTf.text=@"商家";
+            }
+                break;
+            case 2://创客
+            {
+                weakSelf.usertype = @"8";
+                weakSelf.usertypeTf.text=@"创客";
+            }
+                break;
+            case 3://城市创客
+            {
+                weakSelf.usertype = @"7";
+                weakSelf.usertypeTf.text=@"城市创客";
+            }
+                break;
+            case 4://大区创客
+            {
+                weakSelf.usertype = @"13";
+                weakSelf.usertypeTf.text=@"大区创客";
+            }
+                break;
+            case 5://省级服务中心
+            {
+                weakSelf.usertype = @"1";
+                weakSelf.usertypeTf.text=@"省级服务中心";
+            }
+                break;
+            case 6://市级服务中心
+            {
+                weakSelf.usertype = @"2";
+                weakSelf.usertypeTf.text=@"市级服务中心";
+            }
+                break;
+            case 7://区级服务中心
+            {
+                weakSelf.usertype = @"3";
+                weakSelf.usertypeTf.text=@"区级服务中心";
+            }
+                break;
+            case 8://省级行业服务中心
+            {
+                weakSelf.usertype = @"4";
+                weakSelf.usertypeTf.text=@"省级行业服务中心";
+            }
+                break;
+            case 9://市级行业服务中心
+            {
+                weakSelf.usertype = @"5";
+                weakSelf.usertypeTf.text=@"市级行业服务中心";
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+        [weakSelf incentiveModelMaskVtapgestureLb];
+        
+    };
+    
     self.selectUserTypeView.transform = CGAffineTransformMakeScale(1.0, 0);
     self.selectUserTypeView.layer.anchorPoint=CGPointMake(0.5, 0);
     [self.view addSubview:self.maskView];
-    [self.maskView addSubview:self.selectUserTypeView];
+    [self.view addSubview:self.selectUserTypeView];
+    
     [UIView animateWithDuration:0.3 animations:^{
+        
         self.selectUserTypeView.transform=CGAffineTransformIdentity;
         
     } completion:^(BOOL finished) {
-        
         
     }];
 
@@ -216,78 +288,6 @@
         [self.selectUserTypeView removeFromSuperview];
     }];
     
-}
-
-#pragma mark - 选择用户类型
-//会员
--(void)shangbuttonE{
-    _usertype=OrdinaryUser;
-    self.usertypeTf.text=@"会员";
-    [UIView animateWithDuration:0.3 animations:^{
-        self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
-        
-    } completion:^(BOOL finished) {
-        
-        [self.maskView removeFromSuperview];
-        [self.selectUserTypeView removeFromSuperview];
-    }];
-    
-}
-//商家
--(void)lingbuttonE{
-    _usertype=Retailer;
-    self.usertypeTf.text=@"商家";
-    [UIView animateWithDuration:0.3 animations:^{
-        self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
-        
-    } completion:^(BOOL finished) {
-        
-        [self.maskView removeFromSuperview];
-        [self.selectUserTypeView removeFromSuperview];
-    }];
-    
-}
-//副总
--(void)ServiceBtE{
-    _usertype=Retailer;
-    self.usertypeTf.text=@"大区创客 ";
-    [UIView animateWithDuration:0.3 animations:^{
-        self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
-        
-    } completion:^(BOOL finished) {
-        
-        [self.maskView removeFromSuperview];
-        [self.selectUserTypeView removeFromSuperview];
-    }];
-
-}
-//高级推广员
--(void)ManufacturerBtE{
-    _usertype=Retailer;
-    self.usertypeTf.text=@"城市创客";
-    [UIView animateWithDuration:0.3 animations:^{
-        self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
-        
-    } completion:^(BOOL finished) {
-        
-        [self.maskView removeFromSuperview];
-        [self.selectUserTypeView removeFromSuperview];
-    }];
-    
-}
-//推广员
--(void)TraderBtE{
-    
-    _usertype=Retailer;
-    self.usertypeTf.text=@"创客";
-    [UIView animateWithDuration:0.3 animations:^{
-        self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
-        
-    } completion:^(BOOL finished) {
-        
-        [self.maskView removeFromSuperview];
-        [self.selectUserTypeView removeFromSuperview];
-    }];
 }
 
 -(void)updateViewConstraints{
@@ -344,20 +344,18 @@
     
     if (!_selectUserTypeView) {
         _selectUserTypeView=[[NSBundle mainBundle]loadNibNamed:@"SelectUserTypeView" owner:self options:nil].firstObject;
+        
+        _selectUserTypeView.layer.cornerRadius = 10.f;
+        _selectUserTypeView.clipsToBounds = YES;
         _selectUserTypeView.frame=CGRectMake(10, 25, SCREEN_WIDTH-20, 180);
-        [_selectUserTypeView.shanBt addTarget:self action:@selector(shangbuttonE) forControlEvents:UIControlEventTouchUpInside];
-        [_selectUserTypeView.lingBt addTarget:self action:@selector(lingbuttonE) forControlEvents:UIControlEventTouchUpInside];
-        [_selectUserTypeView.ServiceBt addTarget:self action:@selector(ServiceBtE) forControlEvents:UIControlEventTouchUpInside];
-        [_selectUserTypeView.ManufacturerBt addTarget:self action:@selector(ManufacturerBtE) forControlEvents:UIControlEventTouchUpInside];
-        [_selectUserTypeView.TraderBt addTarget:self action:@selector(TraderBtE) forControlEvents:UIControlEventTouchUpInside];
-        //        [_selectUserTypeView.lingshouBt addTarget:self action:@selector(lingshouBtE) forControlEvents:UIControlEventTouchUpInside];
+        
+        _selectUserTypeView.dataSoure  = @[@"会员",@"商家",@"创客",@"城市创客",@"大区创客",@"省级服务中心",@"市级服务中心",@"区级服务中心",@"省级行业服务中心",@"市级行业服务中心"];
         
     }
     
     return _selectUserTypeView;
     
 }
-
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
