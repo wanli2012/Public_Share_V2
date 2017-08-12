@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLLoginController">
             <connections>
                 <outlet property="bgView" destination="6Jn-r6-mkG" id="I03-hD-2DL"/>
+                <outlet property="dropDownBtn" destination="KYg-re-u3C" id="9LI-QH-bfL"/>
+                <outlet property="lineView" destination="xFo-Xk-3GM" id="qn2-c2-7Sf"/>
                 <outlet property="loginBtn" destination="Hv1-np-xFU" id="PtZ-GF-yYL"/>
                 <outlet property="phone" destination="KVO-gV-ihj" id="FnW-CJ-3Ih"/>
                 <outlet property="registerBtn" destination="mRe-Bg-0e7" id="W7D-kQ-RLJ"/>
                 <outlet property="scretTf" destination="CAy-Ks-J5I" id="RED-lP-Ovj"/>
+                <outlet property="tableView" destination="VkT-BT-WH5" id="gpk-J4-2Jj"/>
+                <outlet property="tableViewHeight" destination="sBX-0x-MnW" id="2Gk-i3-F7K"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,7 +29,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abd-yP-9FP">
-                    <rect key="frame" x="166.5" y="30" width="42" height="21"/>
+                    <rect key="frame" x="167" y="30" width="42" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="5B2-sg-lcM"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="9SW-YV-933"/>
@@ -64,7 +68,7 @@
                             </constraints>
                         </imageView>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号码/ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KVO-gV-ihj">
-                            <rect key="frame" x="60" y="100" width="255" height="20"/>
+                            <rect key="frame" x="60" y="100" width="215" height="20"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next"/>
@@ -73,7 +77,7 @@
                             </connections>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CAy-Ks-J5I">
-                            <rect key="frame" x="60" y="141" width="255" height="20"/>
+                            <rect key="frame" x="60" y="141" width="215" height="20"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
@@ -122,12 +126,13 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4x-Xh-Nk5">
-                            <rect key="frame" x="295" y="139.5" width="30" height="23"/>
+                            <rect key="frame" x="275" y="140" width="60" height="23"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="23" id="PKQ-MT-oGc"/>
-                                <constraint firstAttribute="width" constant="30" id="Sf7-bP-8DJ"/>
+                                <constraint firstAttribute="width" constant="60" id="Sf7-bP-8DJ"/>
                             </constraints>
+                            <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="10" maxY="0.0"/>
                             <state key="normal" image="显示"/>
                             <connections>
                                 <action selector="showOrHide:" destination="-1" eventType="touchUpInside" id="206-lW-rNw"/>
@@ -162,36 +167,63 @@
                                 <action selector="useInfoamtion:" destination="-1" eventType="touchUpInside" id="lyY-we-gbD"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYg-re-u3C">
+                            <rect key="frame" x="275" y="99" width="60" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="0xA-Va-3UC"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="10" maxY="0.0"/>
+                            <state key="normal" image="mine_arrow_down"/>
+                            <connections>
+                                <action selector="dropDown:" destination="-1" eventType="touchUpInside" id="FHj-9D-22c"/>
+                            </connections>
+                        </button>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VkT-BT-WH5">
+                            <rect key="frame" x="10" y="132" width="315" height="0.0"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" id="sBX-0x-MnW"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="bza-gj-2wt"/>
+                                <outlet property="delegate" destination="-1" id="hEL-ii-dSC"/>
+                            </connections>
+                        </tableView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="Hv1-np-xFU" firstAttribute="leading" secondItem="6Jn-r6-mkG" secondAttribute="leading" constant="10" id="1TD-lD-7ZY"/>
+                        <constraint firstItem="KYg-re-u3C" firstAttribute="leading" secondItem="KVO-gV-ihj" secondAttribute="trailing" id="2Ph-yX-lfp"/>
                         <constraint firstItem="KVO-gV-ihj" firstAttribute="height" secondItem="zxk-kR-rPG" secondAttribute="height" id="39L-yL-GIP"/>
                         <constraint firstItem="CAy-Ks-J5I" firstAttribute="leading" secondItem="SAc-6M-vsf" secondAttribute="trailing" constant="20" id="8Qp-g5-5K5"/>
                         <constraint firstItem="SAc-6M-vsf" firstAttribute="top" secondItem="xFo-Xk-3GM" secondAttribute="bottom" constant="10" id="A3O-bu-mR3"/>
                         <constraint firstItem="CAy-Ks-J5I" firstAttribute="centerY" secondItem="SAc-6M-vsf" secondAttribute="centerY" id="BAF-ez-uJ1"/>
-                        <constraint firstAttribute="trailing" secondItem="KVO-gV-ihj" secondAttribute="trailing" constant="20" id="BOH-Er-jgu"/>
                         <constraint firstAttribute="trailing" secondItem="hev-LI-5dm" secondAttribute="trailing" constant="10" id="C0e-gz-fps"/>
                         <constraint firstItem="CAy-Ks-J5I" firstAttribute="height" secondItem="SAc-6M-vsf" secondAttribute="height" id="IM0-xy-asU"/>
                         <constraint firstItem="KVO-gV-ihj" firstAttribute="centerY" secondItem="zxk-kR-rPG" secondAttribute="centerY" id="JHv-nM-OQo"/>
+                        <constraint firstItem="VkT-BT-WH5" firstAttribute="top" secondItem="xFo-Xk-3GM" secondAttribute="bottom" constant="1" id="JsL-mL-L3t"/>
                         <constraint firstItem="mRe-Bg-0e7" firstAttribute="centerX" secondItem="Hv1-np-xFU" secondAttribute="centerX" id="K07-9F-7TP"/>
                         <constraint firstItem="hev-LI-5dm" firstAttribute="top" secondItem="CAy-Ks-J5I" secondAttribute="bottom" constant="10" id="Ls6-jm-c8L"/>
-                        <constraint firstAttribute="trailing" secondItem="W4x-Xh-Nk5" secondAttribute="trailing" constant="10" id="MO0-3W-jRy"/>
+                        <constraint firstAttribute="trailing" secondItem="W4x-Xh-Nk5" secondAttribute="trailing" id="MO0-3W-jRy"/>
                         <constraint firstItem="W4x-Xh-Nk5" firstAttribute="centerY" secondItem="SAc-6M-vsf" secondAttribute="centerY" id="NF9-ti-KNW"/>
                         <constraint firstItem="hev-LI-5dm" firstAttribute="leading" secondItem="6Jn-r6-mkG" secondAttribute="leading" constant="10" id="Ofu-cn-C4Q"/>
                         <constraint firstItem="mRe-Bg-0e7" firstAttribute="top" secondItem="Hv1-np-xFU" secondAttribute="bottom" constant="20" id="SiQ-VB-xf4"/>
                         <constraint firstItem="xFo-Xk-3GM" firstAttribute="top" secondItem="KVO-gV-ihj" secondAttribute="bottom" constant="10" id="Tre-ZH-DuY"/>
+                        <constraint firstItem="VkT-BT-WH5" firstAttribute="leading" secondItem="6Jn-r6-mkG" secondAttribute="leading" constant="10" id="Y4m-cb-93h"/>
                         <constraint firstAttribute="trailing" secondItem="Hv1-np-xFU" secondAttribute="trailing" constant="10" id="Zqx-X1-tji"/>
                         <constraint firstItem="Hv1-np-xFU" firstAttribute="top" secondItem="2N6-Vj-ynp" secondAttribute="bottom" constant="25" id="bwm-SK-xYK"/>
+                        <constraint firstItem="W4x-Xh-Nk5" firstAttribute="leading" secondItem="CAy-Ks-J5I" secondAttribute="trailing" id="c7y-HO-4Xn"/>
+                        <constraint firstAttribute="trailing" secondItem="KYg-re-u3C" secondAttribute="trailing" id="eQA-FA-MHo"/>
                         <constraint firstItem="SAc-6M-vsf" firstAttribute="centerX" secondItem="zxk-kR-rPG" secondAttribute="centerX" id="iBC-Lt-Slf"/>
                         <constraint firstItem="mRe-Bg-0e7" firstAttribute="height" secondItem="Hv1-np-xFU" secondAttribute="height" id="iXs-Vy-MAq"/>
                         <constraint firstItem="zxk-kR-rPG" firstAttribute="leading" secondItem="6Jn-r6-mkG" secondAttribute="leading" constant="20" id="jcU-sB-abP"/>
                         <constraint firstAttribute="trailing" secondItem="2N6-Vj-ynp" secondAttribute="trailing" constant="10" id="nyx-mL-7kh"/>
                         <constraint firstAttribute="trailing" secondItem="xFo-Xk-3GM" secondAttribute="trailing" constant="10" id="pTD-mA-7FO"/>
+                        <constraint firstAttribute="trailing" secondItem="VkT-BT-WH5" secondAttribute="trailing" constant="10" id="qXd-sZ-uLG"/>
+                        <constraint firstItem="KYg-re-u3C" firstAttribute="centerY" secondItem="zxk-kR-rPG" secondAttribute="centerY" id="sFH-Of-agw"/>
                         <constraint firstItem="KVO-gV-ihj" firstAttribute="leading" secondItem="zxk-kR-rPG" secondAttribute="trailing" constant="20" id="tIS-Mu-5i5"/>
                         <constraint firstItem="2N6-Vj-ynp" firstAttribute="top" secondItem="hev-LI-5dm" secondAttribute="bottom" constant="10" id="uHA-eT-iR5"/>
                         <constraint firstAttribute="bottom" secondItem="gs4-fg-9Yh" secondAttribute="bottom" constant="10" id="vnU-Ae-HFb"/>
-                        <constraint firstAttribute="trailing" secondItem="CAy-Ks-J5I" secondAttribute="trailing" constant="20" id="wxh-AJ-ivT"/>
                         <constraint firstItem="zxk-kR-rPG" firstAttribute="top" secondItem="6Jn-r6-mkG" secondAttribute="top" constant="100" id="xJn-eS-Uhi"/>
                         <constraint firstItem="xFo-Xk-3GM" firstAttribute="leading" secondItem="6Jn-r6-mkG" secondAttribute="leading" constant="10" id="zQK-33-GaY"/>
                         <constraint firstItem="mRe-Bg-0e7" firstAttribute="width" secondItem="Hv1-np-xFU" secondAttribute="width" id="zWV-GM-c6w"/>
@@ -216,6 +248,7 @@
         </view>
     </objects>
     <resources>
+        <image name="mine_arrow_down" width="15" height="8"/>
         <image name="取消" width="10" height="10"/>
         <image name="密码" width="16" height="16"/>
         <image name="显示" width="16" height="9"/>
