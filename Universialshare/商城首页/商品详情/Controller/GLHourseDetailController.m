@@ -152,6 +152,8 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         [MBProgressHUD showError:@"请先登录"];
         return;
     }
+    
+    
     self.hidesBottomBarWhenPushed = YES;
     GLShoppingCartController *cartVC = [[GLShoppingCartController alloc] init];
     [self.navigationController pushViewController:cartVC animated:YES];
@@ -245,6 +247,10 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         [MBProgressHUD showError:@"请先登录"];
         return;
     }
+    if ([UserModel defaultUser].isSetTwoPwd == 0) {
+        [MBProgressHUD showError:@"请先在设置中设置支付密码"];
+        return;
+    }
     if ([cell.sumLabel.text integerValue] <= 0) {
         [MBProgressHUD showError:@"数量不能为0"];
         return;
@@ -297,6 +303,12 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         [MBProgressHUD showError:@"请先登录"];
         return;
     }
+    
+    if ([UserModel defaultUser].isSetTwoPwd == 0) {
+        [MBProgressHUD showError:@"请先在设置中设置支付密码"];
+        return;
+    }
+    
     if ([cell.sumLabel.text integerValue] <= 0) {
         [MBProgressHUD showError:@"数量不能为0"];
         return;
