@@ -13,6 +13,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    self.imagev.layer.cornerRadius = 4;
+    
 }
 
 @end
