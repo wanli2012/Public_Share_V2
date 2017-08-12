@@ -430,7 +430,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     _chooseVC.dataSource = arr;
     
     _chooseVC.block = ^(NSString *value,NSInteger index){
-        [weakSelf.sortBtn setTitle:value forState:UIControlStateNormal];
+        [weakSelf.classifyBtn setTitle:value forState:UIControlStateNormal];
         if (index == 0) {
             weakSelf.two_trade_id = @"";
             [weakSelf updateData:YES];

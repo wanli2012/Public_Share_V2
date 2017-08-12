@@ -31,6 +31,7 @@
 #import "TYCyclePagerView.h"
 #import "TYPageControl.h"
 #import "TYCyclePagerViewCell.h"
+#import "LBDisplayPageView.h"
 
 @interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,GLIntegralMallTopCellDelegete,TYCyclePagerViewDataSource, TYCyclePagerViewDelegate>
 {
@@ -50,6 +51,7 @@
 
 @property (nonatomic, strong) TYCyclePagerView *pagerView;
 @property (nonatomic, strong) TYPageControl *pageControl;
+@property (nonatomic, strong) LBDisplayPageView *displayPageView;
 
 @end
 
@@ -94,6 +96,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     /**
      * 数组tableHeaderView
      */
+    [self.pagerView addSubview:self.displayPageView];
     self.tableView.tableHeaderView = self.pagerView;
     [_pagerView reloadData];//刷新
 }
@@ -126,7 +129,8 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 }
 
 - (void)pagerView:(TYCyclePagerView *)pageView didScrollFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
-    _pageControl.currentPage = toIndex;
+
+     _displayPageView.labelCount.attributedText = [self setLabelAttribute:[NSString stringWithFormat:@"%ld/",(long)toIndex+1] text: [NSString stringWithFormat:@"%ld/%lu",(long)toIndex+1,(unsigned long)self.bannerArr.count]];
 
 }
 
@@ -184,6 +188,8 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
                         [self.bannerArr addObject:dic[@"image_url"]];
                     }
                 }
+                _pageControl.numberOfPages = self.bannerArr.count;
+                 _displayPageView.labelCount.attributedText = [self setLabelAttribute:@"1/" text:[NSString stringWithFormat:@"1/%lu",(unsigned long)self.bannerArr.count]];
                [_pagerView reloadData];
             }
         }
@@ -372,7 +378,15 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
      self.hidesBottomBarWhenPushed = NO;
 }
 
+-(NSMutableAttributedString*)setLabelAttribute:(NSString*)Atrrstr text:(NSString*)str{
 
+    NSMutableAttributedString *textColor = [[NSMutableAttributedString alloc]initWithString:str];
+    NSRange rangel = [[textColor string] rangeOfString:Atrrstr];
+    [textColor addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:rangel];
+    [textColor addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:13] range:rangel];
+
+    return textColor;
+}
 
 - (NSMutableArray *)hotModels{
     if (!_hotModels) {
@@ -397,19 +411,23 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     return _bannerArr;
 }
 
+-(TYPageControl*)pageControl{
 
-- (void)addPageControl {
-    TYPageControl *pageControl = [[TYPageControl alloc]init];
-    _pageControl.frame = CGRectMake(0, 180*autoSizeScaleY - 26, SCREEN_WIDTH, 26);
-    pageControl.numberOfPages = self.bannerArr.count;
-    pageControl.currentPageIndicatorSize = CGSizeMake(8, 8);
-    //    pageControl.pageIndicatorImage = [UIImage imageNamed:@"Dot"];
-    //    pageControl.currentPageIndicatorImage = [UIImage imageNamed:@"DotSelected"];
-    //    pageControl.contentInset = UIEdgeInsetsMake(0, 20, 0, 20);
-    //    pageControl.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    //    pageControl.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    //    [pageControl addTarget:self action:@selector(pageControlValueChangeAction:) forControlEvents:UIControlEventValueChanged];
-    _pageControl = pageControl;
+    if (!_pageControl) {
+        _pageControl = [[TYPageControl alloc]init];
+        _pageControl.frame = CGRectMake(0, 180*autoSizeScaleY - 26, SCREEN_WIDTH, 26);
+        _pageControl.numberOfPages = self.bannerArr.count;
+        _pageControl.currentPageIndicatorSize = CGSizeMake(8, 8);
+        //    pageControl.pageIndicatorImage = [UIImage imageNamed:@"Dot"];
+        //    pageControl.currentPageIndicatorImage = [UIImage imageNamed:@"DotSelected"];
+        //    pageControl.contentInset = UIEdgeInsetsMake(0, 20, 0, 20);
+        //    pageControl.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        //    pageControl.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        //    [pageControl addTarget:self action:@selector(pageControlValueChangeAction:) forControlEvents:UIControlEventValueChanged];
+
+    }
+    
+    return _pageControl;
 }
 
 -(TYCyclePagerView*)pagerView{
@@ -425,6 +443,19 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     }
     
     return _pagerView;
+}
+
+-(LBDisplayPageView*)displayPageView{
+
+    if (!_displayPageView) {
+        _displayPageView = [[LBDisplayPageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(self.pagerView.frame) * 0.8 - 45, 180*autoSizeScaleY - 35, 30, 30)];
+        _displayPageView.backgroundColor = YYSRGBColor(255, 255, 255, 0.5);
+        _displayPageView.layer.cornerRadius = 15;
+        _displayPageView.clipsToBounds = YES;
+        _displayPageView.labelCount.attributedText = [self setLabelAttribute:@"1/" text:[NSString stringWithFormat:@"1/%lu",(unsigned long)self.bannerArr.count]];
+    }
+
+    return _displayPageView;
 }
 
 @end

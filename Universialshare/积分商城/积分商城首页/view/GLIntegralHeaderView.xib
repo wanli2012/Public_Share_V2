@@ -18,7 +18,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KmD-xT-od6">
                     <rect key="frame" x="0.0" y="0.0" width="227" height="60"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="米券商城列表" translatesAutoresizingMaskIntoConstraints="NO" id="HnJ-do-w81">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="猜你喜欢" translatesAutoresizingMaskIntoConstraints="NO" id="HnJ-do-w81">
                             <rect key="frame" x="10" y="12" width="80" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="YsK-1b-QRw"/>
@@ -58,6 +58,6 @@
         </view>
     </objects>
     <resources>
-        <image name="米券商城列表" width="103" height="28"/>
+        <image name="猜你喜欢" width="103" height="28"/>
     </resources>
 </document>

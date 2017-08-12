@@ -101,9 +101,7 @@ static NSString *ID = @"GLCityChooseCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
-
 {
-    
     //这里是为了指定索引index对应的是哪个section的，默认的话直接返回index就好。其他需要定制的就针对性处理
     if ([title isEqualToString:UITableViewIndexSearch])
     {
