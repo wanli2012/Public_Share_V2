@@ -48,7 +48,6 @@
 @interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate>{
     UIImageView *_imageviewLeft;
 }
-
 @property(nonatomic,strong)UICollectionView *collectionV;
 @property(nonatomic,strong) MineCollectionHeaderV *headview;
 @property(nonatomic,strong)NSArray *titlearr;
@@ -145,7 +144,7 @@
 //UICollectionViewCell的大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    return CGSizeMake((SCREEN_WIDTH-3)/3, ((SCREEN_WIDTH-3)/3)+15);
+    return CGSizeMake((SCREEN_WIDTH)/3, ((SCREEN_WIDTH)/3));
 
 }
 
@@ -363,45 +362,6 @@
                                                        withReuseIdentifier:@"MineCollectionHeaderV"
                                                               forIndexPath:indexPath];
 
-        //待收货
-        __weak typeof(self)  weakself = self;
-        _headview.returnCollectinGoodsBt = ^(){
-            
-            weakself.hidesBottomBarWhenPushed=YES;
-            LBMineCenterReceivingGoodsViewController *vc=[[LBMineCenterReceivingGoodsViewController alloc]init];
-            [weakself.navigationController pushViewController:vc animated:YES];
-            weakself.hidesBottomBarWhenPushed=NO;
-            
-        };
-        //    购物车
-        _headview.returnShoppingCartBt = ^(){
-            weakself.hidesBottomBarWhenPushed = YES;
-            GLShoppingCartController *cartVC = [[GLShoppingCartController alloc] init];
-            [weakself.navigationController pushViewController:cartVC animated:YES];
-            weakself.hidesBottomBarWhenPushed = NO;
-        };
-        //    订单
-        _headview.returnOrderBt = ^(){
-            
-            if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
-                weakself.hidesBottomBarWhenPushed=YES;
-                LBMineStoreOrderingViewController *vc=[[LBMineStoreOrderingViewController alloc]init];
-                vc.hideNavB = YES;
-                [weakself.navigationController pushViewController:vc animated:YES];
-                weakself.hidesBottomBarWhenPushed=NO;
-            
-            }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]){
-            
-                [weakself.view addSubview:weakself.maskView];
-                weakself.SelectCustomerTypeView.titileLb.text = @"请选择用户订单类型";
-                weakself.SelectCustomerTypeView.labelOne.text = @"线上订单";
-                 weakself.SelectCustomerTypeView.labelTwo.text = @"线下订单";
-                [weakself.maskView addSubview:weakself.SelectCustomerTypeView];
-            
-            }
-
-        };
-        
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushToInfoVC)];
         [_headview.headimage addGestureRecognizer:tap];
         
@@ -428,17 +388,17 @@
                     layout:(UICollectionViewLayout *)collectionViewLayout
 minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 1.0f;
+    return 0.0f;
 }
 - (CGFloat) collectionView:(UICollectionView *)collectionView
                     layout:(UICollectionViewLayout *)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 1.0f;
+    return 0.0f;
 }
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     
-    return UIEdgeInsetsMake(0, 0, 1, 0);
+    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 
@@ -476,18 +436,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     if (!_collectionV) {
         
          UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
-         [flowLayout setSectionInset:UIEdgeInsetsMake(0, 0, 10, 0)];
-        if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
-           [flowLayout setHeaderReferenceSize:CGSizeMake(SCREEN_WIDTH, (SCREEN_HEIGHT - 64) * 0.4 + 10)];
-        }else{
-            [flowLayout setHeaderReferenceSize:CGSizeMake(SCREEN_WIDTH, (SCREEN_HEIGHT - 64) * 0.45)];
-        }
+         //[flowLayout setSectionInset:UIEdgeInsetsMake(0, 0, 10, 0)];
+        [flowLayout setHeaderReferenceSize:CGSizeMake(SCREEN_WIDTH,230)];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
         [flowLayout setMinimumInteritemSpacing:0.0];
         [flowLayout setMinimumLineSpacing:0.0];
         
         _collectionV =[[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64 - 50)collectionViewLayout:flowLayout];
-        _collectionV.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        _collectionV.backgroundColor = [UIColor whiteColor];
         _collectionV.alwaysBounceVertical = YES;
         _collectionV.showsVerticalScrollIndicator = NO;
         //设置代理

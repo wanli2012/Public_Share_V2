@@ -356,8 +356,6 @@ static NSString *ID = @"GLShoppingCell";
     return NO;
 }
 
-
-
 - (UIView *)headerView {
     
     if(_headerView == nil){
