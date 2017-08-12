@@ -27,6 +27,38 @@
             endingLineNumber = "299"
             landmarkName = "-integralPay:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__46-[LBMineCenterPayPagesViewController ricePay:]_block_invoke.325"
+                  moduleName = "Universialshare"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gonglei/Desktop/%E6%88%91%E7%9A%84%E9%A1%B9%E7%9B%AE/%E5%A4%A7%E4%BC%97%E5%85%B1%E4%BA%ABv2.0/Universialshare/%E6%88%91%E7%9A%84/controller/%E6%94%AF%E4%BB%98%E9%A1%B5%E9%9D%A2/LBMineCenterPayPagesViewController.m"
+                  timestampString = "524210953.029656"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "299"
+                  endingLineNumber = "299"
+                  offsetFromSymbolStart = "102">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.327"
+                  moduleName = "Universialshare"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gonglei/Desktop/%E6%88%91%E7%9A%84%E9%A1%B9%E7%9B%AE/%E5%A4%A7%E4%BC%97%E5%85%B1%E4%BA%ABv2.0/Universialshare/%E6%88%91%E7%9A%84/controller/%E6%94%AF%E4%BB%98%E9%A1%B5%E9%9D%A2/LBMineCenterPayPagesViewController.m"
+                  timestampString = "524210953.036395"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "299"
+                  endingLineNumber = "299"
+                  offsetFromSymbolStart = "29">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

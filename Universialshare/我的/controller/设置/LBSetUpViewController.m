@@ -11,6 +11,7 @@
 #import "LBMineCenterAccountSafeViewController.h"
 #import "GLSetup_VersionInfoController.h"
 #import "LBViewProtocolViewController.h"
+#import "GLSetup_SwitchIDController.h"
 
 #define PATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0]
 
@@ -42,6 +43,15 @@
     self.navigationController.navigationBar.hidden = NO;
     
 }
+//切换身份
+- (IBAction)switchIdentity:(id)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLSetup_SwitchIDController *switchVC = [[GLSetup_SwitchIDController alloc] init];
+    [self.navigationController pushViewController:switchVC animated:YES];
+}
+
+
 //修改收货地址
 - (IBAction)exchangeAdress:(UITapGestureRecognizer *)sender {
     self.hidesBottomBarWhenPushed = YES;
