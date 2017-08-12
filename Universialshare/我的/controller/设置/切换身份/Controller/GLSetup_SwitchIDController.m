@@ -111,7 +111,6 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    NSLog(@"重新登录了");
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
@@ -224,10 +223,8 @@
             
             [usermodelachivar achive];
             
-            
             [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
-//            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-            
+
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
         }
