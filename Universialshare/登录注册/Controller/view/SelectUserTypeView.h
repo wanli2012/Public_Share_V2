@@ -8,19 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^block)(NSInteger index);
+
 @interface SelectUserTypeView : UIView
-//会员
-@property (weak, nonatomic) IBOutlet UIButton *shanBt;
-//商家
-@property (weak, nonatomic) IBOutlet UIButton *lingBt;
-//副总
-@property (weak, nonatomic) IBOutlet UIButton *ServiceBt;
-//高级推广员
-@property (weak, nonatomic) IBOutlet UIButton *ManufacturerBt;
-//推广员
-@property (weak, nonatomic) IBOutlet UIButton *TraderBt;
-////零售
-//@property (weak, nonatomic) IBOutlet UIButton *lingshouBt;
+
+@property (nonatomic, copy)block block;
+@property (nonatomic, copy)NSArray *dataSoure;
+
 
 
 @end

@@ -73,6 +73,7 @@
 }
 
 -(void)checkrecorderEvent{
+    
     self.hidesBottomBarWhenPushed = YES;
     LBBelowTheLineListViewController *vc=[[LBBelowTheLineListViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];

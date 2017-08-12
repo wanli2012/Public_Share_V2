@@ -56,58 +56,57 @@
 }
 
 - (void)addViewControllers {
-    
-    
-    GLHomePageController *Homevc = [[GLHomePageController alloc] init];
-//    GLLoginController *Homevc = [[GLLoginController alloc] init];
+
+    //米劵商城
     LBIntegralMallViewController *IntegralMallvc = [[LBIntegralMallViewController alloc] init];
+    BaseNavigationViewController *IntegralMallnav = [[BaseNavigationViewController alloc] initWithRootViewController:IntegralMallvc];
+    IntegralMallvc.tabBarItem = [self barTitle:@"米券商城" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
+    
+    //我的
     LBMineViewController *minevc = [[LBMineViewController alloc] init];
-    LBMineStoreOrderingViewController *myodresvc = [[LBMineStoreOrderingViewController alloc] init];
-    LBShowSaleManAndBusinessViewController *ManAndBusinessVc = [[LBShowSaleManAndBusinessViewController alloc] init];
-    LBMyBusinessListViewController *businessVc=[[LBMyBusinessListViewController alloc]init];
-   
+    BaseNavigationViewController *minenav = [[BaseNavigationViewController alloc] initWithRootViewController:minevc];
+    minevc.tabBarItem = [self barTitle:@"我的" image:@"wd_icon" selectImage:@"wd_selected_icon"];
+    
     //搜附近
     GLNearbyViewController *nearbyVC = [[GLNearbyViewController alloc] init];
+    BaseNavigationViewController *nearbyNav = [[BaseNavigationViewController alloc] initWithRootViewController:nearbyVC];
+    nearbyNav.tabBarItem = [self barTitle:@"逛逛" image:@"sfj_icon" selectImage:@"sfj_selected_icon"];
+    
     //门店
     GLMerchat_StoreController *storeVC = [[GLMerchat_StoreController alloc] init];
+    BaseNavigationViewController *storeNav = [[BaseNavigationViewController alloc] initWithRootViewController:storeVC];
+    storeNav.tabBarItem = [self barTitle:@"门店" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
+    
     //商家用 评论
     GLMerchat_CommentController*commentVC = [[GLMerchat_CommentController alloc] init];
+    BaseNavigationViewController *commentNav = [[BaseNavigationViewController alloc] initWithRootViewController:commentVC];
+    commentNav.tabBarItem = [self barTitle:@"商品" image:@"sp_icon" selectImage:@"sp_selected_icon"];
+    
     //商家收益
     LBHomeIncomeViewController *incomeVC = [[LBHomeIncomeViewController alloc] init];
-    
-    //BaseNavigationViewController *Homenav = [[BaseNavigationViewController alloc] initWithRootViewController:Homevc];
-    BaseNavigationViewController *IntegralMallnav = [[BaseNavigationViewController alloc] initWithRootViewController:IntegralMallvc];
-    BaseNavigationViewController *minenav = [[BaseNavigationViewController alloc] initWithRootViewController:minevc];
-    
-    BaseNavigationViewController *ManAndBusinessNav = [[BaseNavigationViewController alloc] initWithRootViewController:ManAndBusinessVc];
-    //BaseNavigationViewController *myordersNav = [[BaseNavigationViewController alloc] initWithRootViewController:myodresvc];
-    BaseNavigationViewController *businessNav = [[BaseNavigationViewController alloc] initWithRootViewController:businessVc];
-    BaseNavigationViewController *nearbyNav = [[BaseNavigationViewController alloc] initWithRootViewController:nearbyVC];
-    BaseNavigationViewController *storeNav = [[BaseNavigationViewController alloc] initWithRootViewController:storeVC];
-    BaseNavigationViewController *commentNav = [[BaseNavigationViewController alloc] initWithRootViewController:commentVC];
     BaseNavigationViewController *incomeNav = [[BaseNavigationViewController alloc] initWithRootViewController:incomeVC];
-    
-    Homevc.title=@"消费商城";
-    IntegralMallvc.title=@"米券商城";
-    minevc.title=@"我的";
-//    storeVC.title = @"门店";
-    commentNav.title = @"商品";
-    incomeNav.title = @"收益";
-    
-    Homevc.tabBarItem = [self barTitle:@"消费商城" image:@"消费商城未选中状态" selectImage:@"消费商城"];
-    IntegralMallvc.tabBarItem = [self barTitle:@"米券商城" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
-    minevc.tabBarItem = [self barTitle:@"我的" image:@"wd_icon" selectImage:@"wd_selected_icon"];
-    ManAndBusinessVc.tabBarItem = [self barTitle:@"创客" image:@"推广员未选中" selectImage:@"推广员选中"];
-    myodresvc.tabBarItem = [self barTitle:@"订单" image:@"消费商城未选中状态" selectImage:@"消费商城"];
-    businessNav.tabBarItem = [self barTitle:@"商家" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
-    nearbyNav.tabBarItem = [self barTitle:@"逛逛" image:@"sfj_icon" selectImage:@"sfj_selected_icon"];
-    storeNav.tabBarItem = [self barTitle:@"门店" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
-    commentNav.tabBarItem = [self barTitle:@"商品" image:@"sp_icon" selectImage:@"sp_selected_icon"];
     incomeNav.tabBarItem = [self barTitle:@"收益" image:@"sy_normal" selectImage:@"sy_select"];
-//    [UserModel defaultUser].usrtype = Retailer;
-//    [UserModel defaultUser].loginstatus = YES;
-
-//    [usermodelachivar achive];
+    
+    //
+    LBShowSaleManAndBusinessViewController *ManAndBusinessVc = [[LBShowSaleManAndBusinessViewController alloc] init];
+    BaseNavigationViewController *ManAndBusinessNav = [[BaseNavigationViewController alloc] initWithRootViewController:ManAndBusinessVc];
+    ManAndBusinessVc.tabBarItem = [self barTitle:@"创客" image:@"推广员未选中" selectImage:@"推广员选中"];
+    
+    //
+    LBMineStoreOrderingViewController *myodresvc = [[LBMineStoreOrderingViewController alloc] init];
+    BaseNavigationViewController *myordersNav = [[BaseNavigationViewController alloc] initWithRootViewController:myodresvc];
+    myordersNav.tabBarItem = [self barTitle:@"订单" image:@"消费商城未选中状态" selectImage:@"消费商城"];
+    
+    //
+    LBMyBusinessListViewController *businessVc=[[LBMyBusinessListViewController alloc]init];
+    BaseNavigationViewController *businessNav = [[BaseNavigationViewController alloc] initWithRootViewController:businessVc];
+    businessNav.tabBarItem = [self barTitle:@"商家" image:@"public_welfare_consumption_normal" selectImage:@"public_welfare_consumption_select"];
+   
+    //消费商城 (暂时取消了)
+    GLHomePageController *Homevc = [[GLHomePageController alloc] init];
+    BaseNavigationViewController *Homenav = [[BaseNavigationViewController alloc] initWithRootViewController:Homevc];
+    Homenav.tabBarItem = [self barTitle:@"消费商城" image:@"消费商城未选中状态" selectImage:@"消费商城"];
+    
     if ([UserModel defaultUser].loginstatus == YES) {//登录状态
         if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {//一级业务员(副总) 二级业务员(高级推广员)
             self.viewControllers = @[businessNav,ManAndBusinessNav, minenav];
@@ -154,16 +153,17 @@
     if (viewController == [tabBarController.viewControllers objectAtIndex:index]) {
        
         if ([UserModel defaultUser].loginstatus == YES) {
+//实名认证
             
-            if (![[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
-                if ([[UserModel defaultUser].rzstatus isEqualToString:@"0"] || [[UserModel defaultUser].rzstatus isEqualToString:@"3"]) {
-                    
-                    LBImprovePersonalDataViewController *infoVC = [[LBImprovePersonalDataViewController alloc] init];
-                    infoVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                    [self presentViewController:infoVC animated:YES completion:nil];
-                    return NO;
-                }
-            }
+//            if (![[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
+//                if ([[UserModel defaultUser].rzstatus isEqualToString:@"0"] || [[UserModel defaultUser].rzstatus isEqualToString:@"3"]) {
+//                    
+//                    LBImprovePersonalDataViewController *infoVC = [[LBImprovePersonalDataViewController alloc] init];
+//                    infoVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//                    [self presentViewController:infoVC animated:YES completion:nil];
+//                    return NO;
+//                }
+//            }
             return YES;
         }
         GLLoginController *loginVC = [[GLLoginController alloc] init];

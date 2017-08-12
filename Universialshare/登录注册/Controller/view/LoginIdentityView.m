@@ -31,7 +31,7 @@
     self.cancelBt.layer.cornerRadius = 5.f;
     self.sureBt.layer.cornerRadius = 5.f;
     
-    self.selectIndex = - 1;
+    self.selectIndex = 0;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"GLLoginIdentityCell" bundle:nil] forCellReuseIdentifier:@"GLLoginIdentityCell"];
   
@@ -74,7 +74,6 @@
     }else{
         
         if (self.selectIndex == indexPath.row) {
-            
             return;
         }
         
@@ -86,10 +85,6 @@
     }
 
     [self.tableView reloadData];
-    
-}
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-
 }
 
 - (NSMutableArray *)isSeleArr{
@@ -100,9 +95,12 @@
         
         for (int i = 0; i < self.dataSoure.count; i ++) {
             
-            [self.isSeleArr addObject:@NO];
+            if(i == 0){
+                [self.isSeleArr addObject:@YES];//默认选中会员
+            }else{
+                [self.isSeleArr addObject:@NO];
+            }
         }
-        
         
     }
     return _isSeleArr;
