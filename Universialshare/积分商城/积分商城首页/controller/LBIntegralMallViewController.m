@@ -90,15 +90,18 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
-    [self postRequest];
+    [self postRequest];//求情数据
+    /**
+     * 数组tableHeaderView
+     */
     self.tableView.tableHeaderView = self.pagerView;
-    [_pagerView reloadData];
+    [_pagerView reloadData];//刷新
 }
 
 #pragma mark - TYCyclePagerViewDataSource
 
 - (NSInteger)numberOfItemsInPagerView:(TYCyclePagerView *)pageView {
-    NSLog(@"%@",self.bannerArr);
+
     return self.bannerArr.count;
 }
 
@@ -117,7 +120,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 - (TYCyclePagerViewLayout *)layoutForPagerView:(TYCyclePagerView *)pageView {
     TYCyclePagerViewLayout *layout = [[TYCyclePagerViewLayout alloc]init];
     layout.itemSize = CGSizeMake(CGRectGetWidth(pageView.frame) * 0.8, CGRectGetHeight(pageView.frame));
-    layout.itemSpacing = 15;
+    layout.itemSpacing = 10;
     layout.itemHorizontalCenter = YES;
     return layout;
 }
@@ -125,7 +128,6 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 - (void)pagerView:(TYCyclePagerView *)pageView didScrollFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
     _pageControl.currentPage = toIndex;
 
-    
 }
 
 
@@ -386,11 +388,10 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 }
 - (NSMutableArray *)bannerArr{
     if (!_bannerArr) {
-//        _bannerArr = [[NSMutableArray alloc] initWithArray:@[@"banner01.jpg",
-//                                                             @"banner02.jpg",
-//                                                             @"banner03.jpg"]];
-        
-        _bannerArr = [[NSMutableArray alloc]initWithObjects:@"https://dztg-img-oss.oss-cn-shanghai.aliyuncs.com/Public/Uploads/Admin/banner_pic/2017-07-05/595c878bb70fc.jpg", @"http://dztg-img-oss.oss-cn-shanghai.aliyuncs.com/Public/Uploads/Admin/banner_pic/2017-07-03/595a5a3186936.png",@"http://dztg-img-oss.oss-cn-shanghai.aliyuncs.com/Public/Uploads/Admin/banner_pic/2017-07-03/595a5a1ab27af.png",@"http://dztg-img-oss.oss-cn-shanghai.aliyuncs.com/Public/Uploads/Admin/banner_pic/2017-07-03/595a5a0b66132.jpg",@"http://dztg-img-oss.oss-cn-shanghai.aliyuncs.com/Public/Uploads/Admin/banner_pic/2017-07-03/595a59db4a793.jpg", nil];
+        _bannerArr = [[NSMutableArray alloc] initWithArray:@[@"banner01.jpg",
+                                                             @"banner02.jpg",
+                                                             @"banner03.jpg"]];
+
     }
     
     return _bannerArr;
