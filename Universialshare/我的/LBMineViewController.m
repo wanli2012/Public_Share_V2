@@ -267,8 +267,7 @@
             {
                 self.hidesBottomBarWhenPushed=YES;
                 if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
-                    
-//                  GLMerchant_IncomeController *vc = [[GLMerchant_IncomeController alloc] init];
+
                     GLMine_MyBeansController *vc = [[GLMine_MyBeansController alloc] init];
                     [self.navigationController pushViewController:vc animated:YES];
                     
@@ -292,8 +291,11 @@
                     self.hidesBottomBarWhenPushed=NO;
                     
                 }else if ([[UserModel defaultUser].rzstatus isEqualToString:@"1"]) {
+                    
                     [MBProgressHUD showError:@"审核中"];
+                    
                 }else{
+                    
                     [self.view addSubview:self.maskV];
                     [self.maskV addSubview:self.infoContentV];
                     self.infoContentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
@@ -482,6 +484,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }else{
             [flowLayout setHeaderReferenceSize:CGSizeMake(SCREEN_WIDTH, (SCREEN_HEIGHT - 64) * 0.45)];
         }
+        
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
         [flowLayout setMinimumInteritemSpacing:0.0];
         [flowLayout setMinimumLineSpacing:0.0];
@@ -768,7 +771,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         [MBProgressHUD showError:@"两次输入的密码不一致"];
         return;
     }
-
+    
     NSString *encryptsecret = [RSAEncryptor encryptString:self.infoContentV.ensureSecretTf.text publicKey:public_RSA];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;

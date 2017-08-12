@@ -271,6 +271,7 @@
     
     NSDictionary *dic = @{@"uid":[UserModel defaultUser].uid,
                           @"token":[UserModel defaultUser].token,
+                          @"group_id":[UserModel defaultUser].groupId,
                           @"phone":self.phonetf.text,
                           @"yzm":self.yanzTf.text,
                           @"grade":self.levelStr,

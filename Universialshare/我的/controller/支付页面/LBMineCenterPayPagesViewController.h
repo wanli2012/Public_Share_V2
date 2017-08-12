@@ -22,6 +22,6 @@
 
 @property (nonatomic, copy) NSString *order_sh; //后台生成的加密字符串
 
-@property (nonatomic, assign)NSInteger pushIndex;//记录从哪个控制器push的 1:米分商城确认订单  2:我的-订单
+@property (nonatomic, assign)NSInteger pushIndex;//记录从哪个控制器push的 1:米劵商城确认订单  2:我的-订单
 
 @end

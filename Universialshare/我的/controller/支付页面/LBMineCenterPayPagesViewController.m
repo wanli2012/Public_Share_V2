@@ -238,6 +238,7 @@
             _contentView.frame = CGRectMake(0, SCREEN_HEIGHT - contentViewH, contentViewW, contentViewH);
             [_contentView.passwordF becomeFirstResponder];
         }];
+        
     }else{
     
          if ([self.dataarr[self.selectIndex][@"title"] isEqualToString:@"支付宝支付"]){
@@ -329,6 +330,7 @@
         if ([responseObject[@"code"] integerValue] == 1){
 
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
                 self.hidesBottomBarWhenPushed = YES;
                 if(self.pushIndex == 1){
                     

@@ -107,19 +107,20 @@
     BaseNavigationViewController *Homenav = [[BaseNavigationViewController alloc] initWithRootViewController:Homevc];
     Homenav.tabBarItem = [self barTitle:@"消费商城" image:@"消费商城未选中状态" selectImage:@"消费商城"];
     
-    if ([UserModel defaultUser].loginstatus == YES) {//登录状态
-        if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {//一级业务员(副总) 二级业务员(高级推广员)
-            self.viewControllers = @[businessNav,ManAndBusinessNav, minenav];
-        }else if ([[UserModel defaultUser].usrtype isEqualToString:THREESALER]){//三级业务员(普通推广员)
-            self.viewControllers = @[businessNav, minenav];
-        }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]){//普通用户
-            self.viewControllers = @[IntegralMallnav,nearbyNav, minenav];
-        }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]){//商家
-            self.viewControllers = @[incomeNav,commentNav,storeNav, minenav];
-        }
-    }else{//退出状态
-        self.viewControllers = @[IntegralMallnav,nearbyNav, minenav];
-    }
+//    if ([UserModel defaultUser].loginstatus == YES) {//登录状态
+//        if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {//一级业务员(副总) 二级业务员(高级推广员)
+//            self.viewControllers = @[businessNav,ManAndBusinessNav, minenav];
+//        }else if ([[UserModel defaultUser].usrtype isEqualToString:THREESALER]){//三级业务员(普通推广员)
+//            self.viewControllers = @[businessNav, minenav];
+//        }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]){//普通用户
+//            self.viewControllers = @[IntegralMallnav,nearbyNav, minenav];
+//        }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]){//商家
+//            self.viewControllers = @[incomeNav,commentNav,storeNav, minenav];
+//        }
+//    }else{//退出状态
+//    }
+    
+    self.viewControllers = @[nearbyNav ,IntegralMallnav,storeNav, minenav];
     
     self.selectedIndex=0;
     
@@ -141,15 +142,16 @@
 {
     
     int index;
-    if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
-        index = 2;
-    }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]){
-        index = 3;
-    }else if ([[UserModel defaultUser].usrtype isEqualToString:@"0"] || [UserModel defaultUser].usrtype == nil || [[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]){
-        index = 2;
-    }else{
-        index = 1;
-    }
+//    if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
+//        index = 2;
+//    }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]){
+//        index = 3;
+//    }else if ([[UserModel defaultUser].usrtype isEqualToString:@"0"] || [UserModel defaultUser].usrtype == nil || [[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]){
+//        index = 2;
+//    }else{
+//        index = 1;
+//    }
+    index = 3;
     if (viewController == [tabBarController.viewControllers objectAtIndex:index]) {
        
         if ([UserModel defaultUser].loginstatus == YES) {

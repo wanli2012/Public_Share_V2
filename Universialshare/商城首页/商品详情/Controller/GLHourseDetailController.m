@@ -43,7 +43,8 @@
 @property (nonatomic, strong)NSMutableArray *cellArr;
 @property (nonatomic, strong)GLGoodsDetailModel *model;
 @property (assign, nonatomic) NSInteger is_collection;//是否收藏
-@property (weak, nonatomic) IBOutlet UIImageView *collectionimage;
+
+@property (weak, nonatomic) IBOutlet UIButton *collectionBtn;
 
 @property (nonatomic, copy)NSString *goods_spec;//规格项名字 如果是两个就用+拼接  例子:紫色+m
 @property (nonatomic, copy)NSString *spec_id;//规格项id
@@ -130,10 +131,10 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         self.cycleScrollView.imageURLStringsGroup = responseObject[@"data"][@"details_banner"];
             
         if ([responseObject[@"data"][@"is_collection"]integerValue] == 0) {
-            self.collectionimage.image = [UIImage imageNamed:@"collect_icon"];
+            [self.collectionBtn setImage:[UIImage imageNamed:@"collect_icon"] forState:UIControlStateNormal];
         }else{
-            self.collectionimage.image = [UIImage imageNamed:@"collect_select_icon"];
-        }
+            [self.collectionBtn setImage:[UIImage imageNamed:@"collect_select_icon"] forState:UIControlStateNormal];
+                    }
         self.is_collection = [responseObject[@"data"][@"is_collection"] integerValue];
 
         }
@@ -180,7 +181,8 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
             
             [_loadV removeloadview];
             if ([responseObject[@"code"] integerValue] == 1){
-                self.collectionimage.image = [UIImage imageNamed:@"collect_select_icon"];
+                
+                [self.collectionBtn setImage:[UIImage imageNamed:@"collect_select_icon"] forState:UIControlStateNormal];
                 self.is_collection = 1;
                 [MBProgressHUD showSuccess:@"收藏成功"];
                 
@@ -207,7 +209,8 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
             
             [_loadV removeloadview];
             if ([responseObject[@"code"] integerValue] == 1){
-                self.collectionimage.image = [UIImage imageNamed:@"collect_icon"];
+    
+                [self.collectionBtn setImage:[UIImage imageNamed:@"collect_icon"] forState:UIControlStateNormal];
                 self.is_collection = 0;
                 if (self.is_notice == YES) {
                     
