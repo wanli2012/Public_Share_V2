@@ -309,6 +309,8 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     LBStoreMoreInfomationViewController *store = [[LBStoreMoreInfomationViewController alloc] init];
     store.lat = [[GLNearby_Model defaultUser].latitude floatValue];
     store.lng = [[GLNearby_Model defaultUser].longitude floatValue];
+    GLNearby_NearShopModel *model = self.nearArr[indexPath.row];
+    store.storeId = model.shop_id;
     [self.navigationController pushViewController:store animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
@@ -322,6 +324,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     self.tabBarController.tabBar.hidden = NO;
     [MXNavigationBarManager reStoreToCustomNavigationBar:self];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
   
 }
 -(void)viewWillDisappear:(BOOL)animated {

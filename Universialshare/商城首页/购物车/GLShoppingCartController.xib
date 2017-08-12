@@ -11,7 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLShoppingCartController">
             <connections>
+                <outlet property="bottomConstrait" destination="XTg-DW-V0c" id="35Q-bF-vif"/>
                 <outlet property="clearingBtn" destination="uqc-IL-g7x" id="Of3-ly-0zw"/>
+                <outlet property="navaTitle" destination="bua-t5-Ob3" id="Sbx-QN-ppF"/>
                 <outlet property="selectedNumLabel" destination="jrz-7X-VpO" id="BoR-wZ-CbT"/>
                 <outlet property="tableView" destination="kxr-wl-Ftm" id="OGV-Qt-fqO"/>
                 <outlet property="totalPriceLabel" destination="NSs-oO-XBz" id="Qrx-ja-xne"/>
@@ -24,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uSu-aE-nrv">
-                    <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="568" width="375" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uqc-IL-g7x">
                             <rect key="frame" x="295" y="0.0" width="80" height="50"/>
@@ -80,23 +82,47 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kxr-wl-Ftm">
-                    <rect key="frame" x="0.0" y="64" width="375" height="553"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="504"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z2s-v4-gwn">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="购物车(0)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bua-t5-Ob3">
+                            <rect key="frame" x="150.5" y="34" width="74" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="S5l-uz-CSv"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="rqs-p0-1Oz"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="bua-t5-Ob3" firstAttribute="centerX" secondItem="z2s-v4-gwn" secondAttribute="centerX" id="on8-kS-N0i"/>
+                        <constraint firstAttribute="bottom" secondItem="bua-t5-Ob3" secondAttribute="bottom" constant="10" id="sAP-Ll-56S"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="kxr-wl-Ftm" firstAttribute="top" secondItem="z2s-v4-gwn" secondAttribute="bottom" id="7Ov-nn-dJB"/>
                 <constraint firstAttribute="trailing" secondItem="kxr-wl-Ftm" secondAttribute="trailing" id="BBd-2G-fdH"/>
                 <constraint firstAttribute="trailing" secondItem="uSu-aE-nrv" secondAttribute="trailing" id="BPw-OY-8Kt"/>
                 <constraint firstItem="kxr-wl-Ftm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JoH-VV-YEH"/>
                 <constraint firstItem="uSu-aE-nrv" firstAttribute="top" secondItem="kxr-wl-Ftm" secondAttribute="bottom" id="Pc3-BD-l4d"/>
-                <constraint firstAttribute="bottom" secondItem="uSu-aE-nrv" secondAttribute="bottom" id="XTg-DW-V0c"/>
+                <constraint firstAttribute="bottom" secondItem="uSu-aE-nrv" secondAttribute="bottom" constant="49" id="XTg-DW-V0c"/>
+                <constraint firstAttribute="trailing" secondItem="z2s-v4-gwn" secondAttribute="trailing" id="lz8-gg-9nP"/>
                 <constraint firstItem="kxr-wl-Ftm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="nns-cs-NOn"/>
                 <constraint firstItem="uSu-aE-nrv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ny3-kr-vSw"/>
+                <constraint firstItem="z2s-v4-gwn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="x1Q-yN-2Ig"/>
+                <constraint firstItem="z2s-v4-gwn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="x6q-pb-hrx"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="55" y="-24"/>
+            <point key="canvasLocation" x="54.5" y="-24.5"/>
         </view>
     </objects>
 </document>
