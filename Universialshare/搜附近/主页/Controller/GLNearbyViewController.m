@@ -25,6 +25,7 @@
 #import "GLNearby_SectionHeaderView.h"
 #import "LBStoreMoreInfomationViewController.h"
 #import "GLNearby_MerchatListController.h"
+#import "LBNearClassfityViewController.h"
 
 @interface GLNearbyViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,ClassifyHeaderViewdelegete>
 @property (weak, nonatomic) IBOutlet UIButton *cityBtn;
@@ -84,6 +85,9 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
     
     self.tableview.mj_header = header;
+    
+    [self.tableview.mj_header beginRefreshing];
+    
 }
 //扫码
 - (IBAction)ScanButton:(UIButton *)sender {
@@ -148,7 +152,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     __weak typeof(self) weakself = self;
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     _loadV.isTap = NO;
-    [NetworkManager requestPOSTWithURLStr:@"shop/getShopData" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getShopData" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
            weakself.hidesBottomBarWhenPushed = YES;
@@ -176,9 +180,9 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     
      [self.locService startUserLocationService];//开始定位
     __weak typeof(self) weakself = self;
-    _loadV = [LoadWaitView addloadview:self.view.bounds tagert:self.view];
-    _loadV.isTap = NO;
-    [NetworkManager requestPOSTWithURLStr:@"shop/getTradeIdNewVersion" paramDic:@{} finish:^(id responseObject) {
+//    _loadV = [LoadWaitView addloadview:self.view.bounds tagert:self.view];
+//    _loadV.isTap = NO;
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getTradeIdNewVersion" paramDic:@{} finish:^(id responseObject) {
     
         [_loadV removeloadview];
         [self endRefresh];
@@ -191,7 +195,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     } enError:^(NSError *error) {
         [_loadV removeloadview];
         [self endRefresh];
-        [MBProgressHUD showError:error.description];
+       [MBProgressHUD showError:@"数据加载失败"];
     }];
     
 }
@@ -202,7 +206,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
     dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
     
-    [NetworkManager requestPOSTWithURLStr:@"shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/serachNearMain" paramDic:dict finish:^(id responseObject) {
 
         if ([responseObject[@"code"] integerValue] == 1){
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
@@ -225,7 +229,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
      
     } enError:^(NSError *error) {
       
-        [MBProgressHUD showError:error.description];
+        [MBProgressHUD showError:@"数据加载失败"];
         
     }];
     
@@ -352,8 +356,11 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 }
 
 - (void)more:(UIButton * )btn {
+    
     self.hidesBottomBarWhenPushed = YES;
     GLNearby_MerchatListController *merchatVC = [[GLNearby_MerchatListController alloc] init];
+    merchatVC.index = btn.tag;
+    merchatVC.city_id = [GLNearby_Model defaultUser].city_id;
     [self.navigationController pushViewController:merchatVC animated:YES];
     self.hidesBottomBarWhenPushed = NO;
     
@@ -394,10 +401,21 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 
 -(void)tapgesture:(NSInteger)tag{
 
-    self.hidesBottomBarWhenPushed = YES;
-    GLNearby_MerchatListController *merchatVC = [[GLNearby_MerchatListController alloc] init];
-    [self.navigationController pushViewController:merchatVC animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+    if ((tag - 10) == self.tradeArr.count) {
+        self.hidesBottomBarWhenPushed = YES;
+        LBNearClassfityViewController *merchatVC = [[LBNearClassfityViewController alloc] init];
+        merchatVC.index = 10;
+        [self.navigationController pushViewController:merchatVC animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }else{
+        self.hidesBottomBarWhenPushed = YES;
+        LBNearClassfityViewController *merchatVC = [[LBNearClassfityViewController alloc] init];
+        merchatVC.typeArr = self.tradeArr[tag - 10][@"son"];
+        merchatVC.trade_id = self.tradeArr[tag - 10][@"trade_id"];
+         merchatVC.city_id = [GLNearby_Model defaultUser].city_id;
+        [self.navigationController pushViewController:merchatVC animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
+    }
     
 }
 

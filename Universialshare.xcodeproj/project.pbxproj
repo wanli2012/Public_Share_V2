@@ -614,6 +614,13 @@
 		F91964EB1EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91964E91EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.m */; };
 		F91964EC1EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91964EA1EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.xib */; };
 		F91964EF1EB36C68008A8616 /* MerchantInformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F91964EE1EB36C68008A8616 /* MerchantInformationModel.m */; };
+		F91BB1C61F3DBA6D00BF46C2 /* LBNearClassfityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BB1C41F3DBA6D00BF46C2 /* LBNearClassfityViewController.m */; };
+		F91BB1C71F3DBA6D00BF46C2 /* LBNearClassfityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91BB1C51F3DBA6D00BF46C2 /* LBNearClassfityViewController.xib */; };
+		F91BB1CF1F3DF44B00BF46C2 /* TYCyclePagerTransformLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BB1CA1F3DF44B00BF46C2 /* TYCyclePagerTransformLayout.m */; };
+		F91BB1D01F3DF44B00BF46C2 /* TYCyclePagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BB1CC1F3DF44B00BF46C2 /* TYCyclePagerView.m */; };
+		F91BB1D11F3DF44B00BF46C2 /* TYPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BB1CE1F3DF44B00BF46C2 /* TYPageControl.m */; };
+		F91BB1D81F3DF81C00BF46C2 /* TYCyclePagerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BB1D61F3DF81C00BF46C2 /* TYCyclePagerViewCell.m */; };
+		F91BB1D91F3DF81C00BF46C2 /* TYCyclePagerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91BB1D71F3DF81C00BF46C2 /* TYCyclePagerViewCell.xib */; };
 		F923091A1E9B8BFF00ECDC94 /* HWCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = F92308361E9B8BFE00ECDC94 /* HWCalendar.m */; };
 		F923091B1E9B8BFF00ECDC94 /* HWOptionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F92308381E9B8BFE00ECDC94 /* HWOptionButton.m */; };
 		F923092C1E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F92308571E9B8BFE00ECDC94 /* LBMineCenterFlyNoticeDetailViewController.m */; };
@@ -2073,6 +2080,18 @@
 		F91964EA1EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBAddrecomdManChooseAreaViewController.xib; sourceTree = "<group>"; };
 		F91964ED1EB36C68008A8616 /* MerchantInformationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantInformationModel.h; sourceTree = "<group>"; };
 		F91964EE1EB36C68008A8616 /* MerchantInformationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantInformationModel.m; sourceTree = "<group>"; };
+		F91BB1C31F3DBA6D00BF46C2 /* LBNearClassfityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBNearClassfityViewController.h; sourceTree = "<group>"; };
+		F91BB1C41F3DBA6D00BF46C2 /* LBNearClassfityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBNearClassfityViewController.m; sourceTree = "<group>"; };
+		F91BB1C51F3DBA6D00BF46C2 /* LBNearClassfityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBNearClassfityViewController.xib; sourceTree = "<group>"; };
+		F91BB1C91F3DF44B00BF46C2 /* TYCyclePagerTransformLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYCyclePagerTransformLayout.h; sourceTree = "<group>"; };
+		F91BB1CA1F3DF44B00BF46C2 /* TYCyclePagerTransformLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYCyclePagerTransformLayout.m; sourceTree = "<group>"; };
+		F91BB1CB1F3DF44B00BF46C2 /* TYCyclePagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYCyclePagerView.h; sourceTree = "<group>"; };
+		F91BB1CC1F3DF44B00BF46C2 /* TYCyclePagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYCyclePagerView.m; sourceTree = "<group>"; };
+		F91BB1CD1F3DF44B00BF46C2 /* TYPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYPageControl.h; sourceTree = "<group>"; };
+		F91BB1CE1F3DF44B00BF46C2 /* TYPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYPageControl.m; sourceTree = "<group>"; };
+		F91BB1D51F3DF81C00BF46C2 /* TYCyclePagerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYCyclePagerViewCell.h; sourceTree = "<group>"; };
+		F91BB1D61F3DF81C00BF46C2 /* TYCyclePagerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYCyclePagerViewCell.m; sourceTree = "<group>"; };
+		F91BB1D71F3DF81C00BF46C2 /* TYCyclePagerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TYCyclePagerViewCell.xib; sourceTree = "<group>"; };
 		F92308351E9B8BFE00ECDC94 /* HWCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWCalendar.h; sourceTree = "<group>"; };
 		F92308361E9B8BFE00ECDC94 /* HWCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWCalendar.m; sourceTree = "<group>"; };
 		F92308371E9B8BFE00ECDC94 /* HWOptionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWOptionButton.h; sourceTree = "<group>"; };
@@ -4267,6 +4286,9 @@
 				4A0162EB1EB0452500C25DCC /* GLCityChooseCell.h */,
 				4A0162EC1EB0452500C25DCC /* GLCityChooseCell.m */,
 				4A0162ED1EB0452500C25DCC /* GLCityChooseCell.xib */,
+				F91BB1D51F3DF81C00BF46C2 /* TYCyclePagerViewCell.h */,
+				F91BB1D61F3DF81C00BF46C2 /* TYCyclePagerViewCell.m */,
+				F91BB1D71F3DF81C00BF46C2 /* TYCyclePagerViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -4274,6 +4296,7 @@
 		4AA0D5A81EAEEC8400CB8F77 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				F91BB1C81F3DF44B00BF46C2 /* TYCyclePagerView */,
 				4AA0D5A91EAEEC8400CB8F77 /* LBIntegralMallViewController.h */,
 				4AA0D5AA1EAEEC8400CB8F77 /* LBIntegralMallViewController.m */,
 				4AA0D5AB1EAEEC8400CB8F77 /* LBIntegralMallViewController.xib */,
@@ -4798,6 +4821,9 @@
 				4AFFA5291ECBDA57004FDEA7 /* GLNearby_MerchatListController.h */,
 				4AFFA52A1ECBDA57004FDEA7 /* GLNearby_MerchatListController.m */,
 				4AFFA52B1ECBDA57004FDEA7 /* GLNearby_MerchatListController.xib */,
+				F91BB1C31F3DBA6D00BF46C2 /* LBNearClassfityViewController.h */,
+				F91BB1C41F3DBA6D00BF46C2 /* LBNearClassfityViewController.m */,
+				F91BB1C51F3DBA6D00BF46C2 /* LBNearClassfityViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5128,6 +5154,19 @@
 				F9121B1C1EB1DC4F00DAB7A2 /* LBMineStoreOrderingOneTableViewCell.xib */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		F91BB1C81F3DF44B00BF46C2 /* TYCyclePagerView */ = {
+			isa = PBXGroup;
+			children = (
+				F91BB1C91F3DF44B00BF46C2 /* TYCyclePagerTransformLayout.h */,
+				F91BB1CA1F3DF44B00BF46C2 /* TYCyclePagerTransformLayout.m */,
+				F91BB1CB1F3DF44B00BF46C2 /* TYCyclePagerView.h */,
+				F91BB1CC1F3DF44B00BF46C2 /* TYCyclePagerView.m */,
+				F91BB1CD1F3DF44B00BF46C2 /* TYPageControl.h */,
+				F91BB1CE1F3DF44B00BF46C2 /* TYPageControl.m */,
+			);
+			path = TYCyclePagerView;
 			sourceTree = "<group>";
 		};
 		F92308321E9B8BFE00ECDC94 /* 我的 */ = {
@@ -6609,6 +6648,7 @@
 				F92309821E9B8BFF00ECDC94 /* LBMineCenterModifyLoginSecretViewController.xib in Resources */,
 				F966B3E31EAC7E38007260FC /* LBMyBusinessListDetailViewController.xib in Resources */,
 				F923096F1E9B8BFF00ECDC94 /* LBMineCentermodifyAdressTableViewCell.xib in Resources */,
+				F91BB1D91F3DF81C00BF46C2 /* TYCyclePagerViewCell.xib in Resources */,
 				F9101B351ECEFBCC0079BB2E /* LBPayTheBillViewController.xib in Resources */,
 				F97374611EFE03B200520D03 /* CodeScan.bundle in Resources */,
 				4A2A00C71EC70D9400052CA7 /* GLOrderGoodsCell.xib in Resources */,
@@ -6715,6 +6755,7 @@
 				4A4610351E9CC6360045824F /* ios-social-sdk-comment-quick.html in Resources */,
 				F912749D1EA0E64B00B7A539 /* LBMineStoreTodayOrderingViewController.xib in Resources */,
 				F9126EF71EA0B086004785EA /* LBMineSystemMessageTableViewCell.xib in Resources */,
+				F91BB1C71F3DBA6D00BF46C2 /* LBNearClassfityViewController.xib in Resources */,
 				F966B3B71EAC3BB8007260FC /* LBMineCenterOrderDetailOneTableViewCell.xib in Resources */,
 				4A4610211E9CC6360045824F /* UMSCommentInputController.xib in Resources */,
 				F97406E11F3AE54D00D440FC /* LBNearby_classifyItemView.xib in Resources */,
@@ -6869,6 +6910,7 @@
 				F974DBA21F3BEDD3008412F1 /* MSSAutoresizeLabelFlowLayout.m in Sources */,
 				F951EB1B1EA1EFD700D6708E /* LBMineCenterUsualUnderOrderTwoViewController.m in Sources */,
 				F9E3A5391EEA7EF0009B9F16 /* UIView+Extension.m in Sources */,
+				F91BB1D81F3DF81C00BF46C2 /* TYCyclePagerViewCell.m in Sources */,
 				4A46107B1E9CC6360045824F /* ZXBoolArray.m in Sources */,
 				F951EB201EA1EFED00D6708E /* LBMineCenterUsualUnderOrderThreeViewController.m in Sources */,
 				F9434D4F1EC16D78001C80A4 /* LBMineCenterRegionQueryTableViewCell.m in Sources */,
@@ -6923,6 +6965,7 @@
 				4AAD25391EC188C90054FD06 /* GLBankCardModel.m in Sources */,
 				4AAD253F1EC188C90054FD06 /* GLBuyBackRecordCell.m in Sources */,
 				4AFCDC601ED2B159007C1681 /* GLMerchat_CommentModel.m in Sources */,
+				F91BB1D01F3DF44B00BF46C2 /* TYCyclePagerView.m in Sources */,
 				4A5DF5F61ED185DA00BF6AC7 /* GLStoreProductCommentController.m in Sources */,
 				4A4611101E9CC6370045824F /* ZXQRCodeEncoder.m in Sources */,
 				4A4610E31E9CC6370045824F /* ZXUPCEANWriter.m in Sources */,
@@ -7109,6 +7152,7 @@
 				F92F937D1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.m in Sources */,
 				4AFCDC801ED2EE81007C1681 /* GLMerchat_CommentHeaderView.m in Sources */,
 				F9121B271EB21A6500DAB7A2 /* LBMyOrdersModel.m in Sources */,
+				F91BB1D11F3DF44B00BF46C2 /* TYPageControl.m in Sources */,
 				F9643F151ECFE74E001B707B /* TYAlertFadeAnimation.m in Sources */,
 				4A4610CE1E9CC6370045824F /* ZXCode128Writer.m in Sources */,
 				4A46109B1E9CC6360045824F /* ZXDataMatrixBase256Encoder.m in Sources */,
@@ -7136,6 +7180,7 @@
 				4A2F521D1EC7084000ECA95D /* GLHomeLiveCell.m in Sources */,
 				F9520A281EAE170400B4D665 /* LBMineStoreAllOrdersViewController.m in Sources */,
 				4AB9E1B91ED6E97E00BE0420 /* QQTagItem.m in Sources */,
+				F91BB1C61F3DBA6D00BF46C2 /* LBNearClassfityViewController.m in Sources */,
 				4A46105A1E9CC6360045824F /* ZXParsedResult.m in Sources */,
 				4A4610841E9CC6360045824F /* ZXIntArray.m in Sources */,
 				4AFCDC761ED2EE09007C1681 /* GLMerchat_CommentGoodcell.m in Sources */,
@@ -7386,6 +7431,7 @@
 				F9516DF81ECADA5F009F015D /* LBStoreDetailreplaysTableViewCell.m in Sources */,
 				4A4610401E9CC6360045824F /* ZXAztecBinaryShiftToken.m in Sources */,
 				4A2F52161EC7084000ECA95D /* GLBottomCell.m in Sources */,
+				F91BB1CF1F3DF44B00BF46C2 /* TYCyclePagerTransformLayout.m in Sources */,
 				4AAD25981EC189070054FD06 /* GLMyHeartController.m in Sources */,
 				4A2F52141EC7084000ECA95D /* GLHourseOptionFrameModel.m in Sources */,
 				F912749C1EA0E64B00B7A539 /* LBMineStoreTodayOrderingViewController.m in Sources */,

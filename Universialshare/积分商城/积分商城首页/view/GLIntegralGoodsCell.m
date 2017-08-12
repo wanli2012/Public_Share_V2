@@ -11,7 +11,6 @@
 #import "UIImageView+WebCache.h"
 
 @interface GLIntegralGoodsCell()
-@property (weak, nonatomic) IBOutlet UIButton *panicBuyingBtn;
 @property (weak, nonatomic) IBOutlet UILabel *jifenLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
@@ -25,11 +24,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.panicBuyingBtn.layer.cornerRadius = 5.f;
-    self.panicBuyingBtn.clipsToBounds = YES;
     [self changeColor:self.jifenLabel rangeNumber:2666];
     self.imageV.layer.cornerRadius = 4;
-    self.imageviewWidth.constant = 120 * autoSizeScaleX;
+    self.imageviewWidth.constant = 100 * autoSizeScaleX;
 }
 
 
@@ -37,22 +34,17 @@
 {
     NSString *remainBeans;
     if (rangeNum > 10000) {
-        remainBeans = [NSString stringWithFormat:@"%.2f",(float)rangeNum /10000];
+        remainBeans = [NSString stringWithFormat:@"%.0f",(float)rangeNum /10000];
     }else{
-        remainBeans = [NSString stringWithFormat:@"%zd",rangeNum];
+        remainBeans = [NSString stringWithFormat:@"%.0f",(float)rangeNum];
     }
     
-    NSString *totalStr = [NSString stringWithFormat:@"%@ 米券",remainBeans];
+    NSString *totalStr = [NSString stringWithFormat:@"%@/米券",remainBeans];
     NSMutableAttributedString *textColor = [[NSMutableAttributedString alloc]initWithString:totalStr];
     NSRange rangel = [[textColor string] rangeOfString:remainBeans];
     [textColor addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:rangel];
     [textColor addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:18] range:rangel];
     [label setAttributedText:textColor];
-}
-- (IBAction)buy:(id)sender {
-    if ([self.delegate respondsToSelector:@selector(buyNow:)]) {
-        [self.delegate buyNow:self.index];
-    }
 }
 
 - (void)setModel:(GLMall_InterestModel *)model{
@@ -61,11 +53,14 @@
     [self changeColor:_jifenLabel rangeNumber:[model.discount integerValue]];
     _nameLabel.text = model.goods_name;
     
-//    if([model.goods_price floatValue] > 10000){
-//         _pre_priceLabel.text = [NSString stringWithFormat:@"%.2f米券",[model.goods_price floatValue]/10000];
-//    }else{
-        _pre_priceLabel.text = [NSString stringWithFormat:@"%@ 米券",model.goods_price];
-//    }
+    _pre_priceLabel.text = [NSString stringWithFormat:@"%.0f/米券",[model.goods_price floatValue]];
+    NSString  *floatStr = [NSString stringWithFormat:@"%.0f",[model.goods_price floatValue]];
+    NSMutableAttributedString *textColor = [[NSMutableAttributedString alloc]initWithString:_pre_priceLabel.text];
+    NSRange rangel = [_pre_priceLabel.text  rangeOfString:floatStr];
+    [textColor addAttribute:NSForegroundColorAttributeName value:YYSRGBColor(121, 120, 120, 1) range:rangel];
+    [textColor addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:rangel];
+    [_pre_priceLabel setAttributedText:textColor];
+
     
     [_imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?x-oss-process=style/miquan",model.thumb]] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     
