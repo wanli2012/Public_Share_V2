@@ -12,8 +12,9 @@
 #import "LoginIdentityView.h"
 #import "LBHomeLoginFortgetSecretViewController.h"
 #import "LBViewProtocolViewController.h"
+#import "GLAccountModel.h"
 
-@interface GLLoginController ()<UITextFieldDelegate>
+@interface GLLoginController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
@@ -27,6 +28,22 @@
 @property (strong, nonatomic)UIView *maskView;
 @property (strong, nonatomic)NSString *usertype;//用户类型 默认为善行者
 @property (strong, nonatomic)LoadWaitView *loadV;
+
+
+@property (nonatomic, strong)NSMutableArray *fmdbArr;
+@property (nonatomic, strong)NSMutableArray *phoneArr;
+@property (nonatomic, strong)NSMutableArray *groupIDArr;
+@property (nonatomic,strong) GLAccountModel *projiectmodel;//综合项目本地保存
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *dropDownBtn;
+@property (weak, nonatomic) IBOutlet UIView *lineView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
+
+@property (nonatomic, assign)BOOL isOpen;//是否展开下拉菜单
+
+@property (nonatomic, strong)NSArray *identifyArr;//身份数组
+
 
 @end
 
@@ -42,51 +59,94 @@
     self.bgView.layer.shadowOpacity = 0.7;//阴影透明度，默认0
     self.bgView.layer.shadowRadius = 5;//阴影半径，默认3
     
-    [self.loginView.cancelBt addTarget:self action:@selector(maskviewgesture) forControlEvents:UIControlEventTouchUpInside];
-    [self.loginView.sureBt addTarget:self action:@selector(surebuttonEvent) forControlEvents:UIControlEventTouchUpInside];
-    
-    UITapGestureRecognizer *maskvgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(maskviewgesture)];
-    [self.maskView addGestureRecognizer:maskvgesture];
-    //选择米家
-    UITapGestureRecognizer *shanVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(shangViewgesture)];
-    [self.loginView.shangView addGestureRecognizer:shanVgesture];
-    //选择米商
-    UITapGestureRecognizer *lingVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(lingViewgesture)];
-    [self.loginView.lingView addGestureRecognizer:lingVgesture];
-    //选择一级业务员
-    UITapGestureRecognizer *OneVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(oneSalerViewgesture)];
-    [self.loginView.oneView addGestureRecognizer:OneVgesture];
-    //选择二级业务员
-    UITapGestureRecognizer *TwoVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(twoSalerViewgesture)];
-    [self.loginView.twoView addGestureRecognizer:TwoVgesture];
-    //选择三级业务员
-    UITapGestureRecognizer *ThreeVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(threeSalerViewgesture)];
-    [self.loginView.threeView addGestureRecognizer:ThreeVgesture];
-    
-    self.currentloginViewimage = self.loginView.shangImage;
-    
-//    CAGradientLayer *layer = [CAGradientLayer new];
-//    //colors存放渐变的颜色的数组
-//    layer.colors=@[(__bridge id)[UIColor whiteColor].CGColor,(__bridge id)TABBARTITLE_COLOR.CGColor,(__bridge id)[UIColor whiteColor].CGColor];
-//    layer.startPoint = CGPointMake(0.5, 0);
-//    layer.endPoint = CGPointMake(0.5, 1);
-//    layer.frame = self.loginBtn.bounds;
-//    [self.loginBtn.layer addSublayer:layer];
-//    
-//    CAGradientLayer *layera = [CAGradientLayer new];
-//    //colors存放渐变的颜色的数组
-//    layera.colors=@[(__bridge id)[UIColor whiteColor].CGColor,(__bridge id)YYSRGBColor(198, 51, 14, 1).CGColor,(__bridge id)[UIColor whiteColor].CGColor];
-//    layera.startPoint = CGPointMake(0.5, 0);
-//    layera.endPoint = CGPointMake(0.5, 1);
-//    layera.frame = self.registerBtn.bounds;
-//    [self.registerBtn.layer addSublayer:layera];
+    [self setPopUI];//设置弹出的选择身份view
     
     if ([UserModel defaultUser].phone != nil && [[UserModel defaultUser].phone length] > 0) {
         self.phone.text = [UserModel defaultUser].phone;
     }
 
+    [self getFmdbDatasoruce];//获取数据库信息
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     
 }
+//设置弹出的身份view
+- (void)setPopUI {
+    
+    self.identifyArr = @[@"会员",@"商家",@"创客",@"城市创客",@"大区创客",@"省级服务中心",@"市级服务中心",@"区级服务中心",@"省级行业服务中心",@"市级行业服务中心"];
+    
+    self.loginView.dataSoure = self.identifyArr;
+    
+    __weak typeof(self) weakSelf = self;
+    
+    self.loginView.block = ^(NSInteger index){
+        switch (index) {
+            case 0://会员
+            {
+                weakSelf.usertype = @"10";
+            }
+                break;
+            case 1://商家
+            {
+                weakSelf.usertype = @"9";
+            }
+                break;
+            case 2://创客
+            {
+                weakSelf.usertype = @"8";
+            }
+                break;
+            case 3://城市创客
+            {
+                weakSelf.usertype = @"7";
+            }
+                break;
+            case 4://大区创客
+            {
+                weakSelf.usertype = @"13";
+            }
+                break;
+            case 5://省级服务中心
+            {
+                weakSelf.usertype = @"1";
+            }
+                break;
+            case 6://市级服务中心
+            {
+                weakSelf.usertype = @"2";
+            }
+                break;
+            case 7:////区级服务中心
+            {
+                weakSelf.usertype = @"3";
+            }
+                break;
+            case 8:////省级行业服务中心
+            {
+                weakSelf.usertype = @"4";
+            }
+                break;
+            case 9:////市级行业服务中心
+            {
+                weakSelf.usertype = @"5";
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+    };
+    
+    [self.loginView.cancelBt addTarget:self action:@selector(maskviewgesture) forControlEvents:UIControlEventTouchUpInside];
+    [self.loginView.sureBt addTarget:self action:@selector(surebuttonEvent) forControlEvents:UIControlEventTouchUpInside];
+    
+    UITapGestureRecognizer *maskvgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(maskviewgesture)];
+    [self.maskView addGestureRecognizer:maskvgesture];
+
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
@@ -98,6 +158,153 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
      [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+//获取数据库的数据
+-(void)getFmdbDatasoruce{
+    
+    self.fmdbArr = nil;
+
+    self.phoneArr = nil;
+    
+    //获取本地搜索记录
+    _projiectmodel = [GLAccountModel greateTableOfFMWithTableName:@"GLAccountModel"];
+    
+    if ([_projiectmodel isDataInTheTable]) {
+        
+        self.fmdbArr = [NSMutableArray arrayWithArray:[_projiectmodel queryAllDataOfFMDB]];
+        for (int i = 0; i < [[_projiectmodel queryAllDataOfFMDB]count]; i++) {
+
+            [self.phoneArr addObject:[_projiectmodel queryAllDataOfFMDB][i][@"phone"]];
+            [self.groupIDArr addObject:[_projiectmodel queryAllDataOfFMDB][i][@"groupID"]];
+       
+        }
+    }else{
+ 
+        [self.phoneArr removeAllObjects];
+        [self.groupIDArr removeAllObjects];
+
+        self.fmdbArr = [NSMutableArray array];
+    }
+}
+
+//以往登录过的账号选择
+- (IBAction)dropDown:(UIButton *)sender {
+    
+    self.isOpen = !self.isOpen;
+    
+    if (self.isOpen) {
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            if (self.phoneArr.count * 30 < 200) {
+                
+                self.tableView.height = self.phoneArr.count * 30;
+            }else{
+                
+                self.tableView.height = 200;
+            }
+            
+        }];
+        
+    }else{
+        [UIView animateWithDuration:0.2 animations:^{
+            
+            self.tableView.height = 0;
+            
+        }];
+    }
+
+}
+
+#pragma mark UITableViewDelegate UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return self.phoneArr.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    
+    NSString *shenfen;
+    switch ([self.groupIDArr[indexPath.row] integerValue]) {
+        case 10://会员
+        {
+            shenfen = @"会员";
+        }
+            break;
+        case 9://米商
+        {
+            shenfen = @"商家";
+        }
+            break;
+        case 13://大区创客
+        {
+            shenfen = @"大区创客";
+        }
+            break;
+        case 7://城市创客
+        {
+            shenfen = @"城市创客";
+        }
+            break;
+        case 8://创客
+        {
+            shenfen = @"创客";
+        }
+            break;
+        case 1://省级服务中心
+        {
+            shenfen = @"省级服务中心";
+        }
+            break;
+        case 2://市级服务中心
+        {
+            shenfen = @"市级服务中心";
+        }
+            break;
+        case 3://区级服务中心
+        {
+            shenfen = @"区级服务中心";
+        }
+            break;
+        case 4://省级行业服务中心
+        {
+            shenfen = @"省级行业服务中心";
+        }
+            break;
+        case 5://市级行业服务中心
+        {
+            shenfen = @"市级行业服务中心";
+        }
+            break;
+    
+        default:
+            break;
+    }
+
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)",self.phoneArr[indexPath.row],shenfen];
+    cell.textLabel.textColor = [UIColor blackColor];
+    cell.backgroundColor = [UIColor whiteColor];
+    cell.textLabel.font = [UIFont systemFontOfSize:13];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 30;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.phone.text = self.phoneArr[indexPath.row];
+    self.isOpen = NO;
+    [UIView animateWithDuration:0.2 animations:^{
+        
+        self.tableView.height = 0;
+        
+    }];
 }
 //注册
 - (IBAction)registerClick:(id)sender {
@@ -161,6 +368,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 
 }
+
 //使用说明
 - (IBAction)useInfoamtion:(UIButton *)sender {
     
@@ -284,7 +492,31 @@
 
             }
             
+            if ([UserModel defaultUser].headPic.length == 0) {
+                
+                [UserModel defaultUser].headPic = PlaceHolderImage;
+                
+            }
             [usermodelachivar achive];
+            
+            BOOL isSava = YES;//是否保存
+            for (int i = 0; i < self.fmdbArr.count; i++) {
+                if ([self.fmdbArr[i][@"name"] isEqualToString:[UserModel defaultUser].name]) {
+                    isSava = NO;
+                }
+            }
+            
+            if (isSava == YES) {//保存记录
+                [_projiectmodel deleteAllDataOfFMDB];
+                _projiectmodel = [GLAccountModel greateTableOfFMWithTableName:@"GLAccountModel"];
+                [self.fmdbArr insertObject:@{@"headPic":[UserModel defaultUser].headPic,@"name":[UserModel defaultUser].name,@"phone":self.phone.text,@"password":self.scretTf.text,@"groupID":self.usertype} atIndex:0];
+                
+                if (self.fmdbArr.count > 15) {
+                    [self.fmdbArr  removeObjectsInRange:NSMakeRange(10, self.fmdbArr.count)];
+                }
+                [_projiectmodel insertOfFMWithDataArray:self.fmdbArr];
+            }
+            
             [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
             [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             
@@ -298,66 +530,6 @@
         
     }];
 
-}
-
-//普通用户
--(void)shangViewgesture{
-    
-    self.usertype = OrdinaryUser;
-    if (self.currentloginViewimage == self.loginView.shangImage) {
-        return;
-    }
-    self.loginView.shangImage.image=[UIImage imageNamed:@"登录选中"];
-    self.currentloginViewimage.image=[UIImage imageNamed:@"登录未选中"];
-    self.currentloginViewimage = self.loginView.shangImage;
-}
-//零售商
--(void)lingViewgesture{
-    
-    self.usertype = Retailer;
-    if (self.currentloginViewimage == self.loginView.lingimage) {
-        return;
-    }
-    self.loginView.lingimage.image=[UIImage imageNamed:@"登录选中"];
-    self.currentloginViewimage.image=[UIImage imageNamed:@"登录未选中"];
-    self.currentloginViewimage = self.loginView.lingimage;
-    
-}
-//一级业务员
--(void)oneSalerViewgesture{
-
-    self.usertype = ONESALER;
-    if (self.currentloginViewimage == self.loginView.oneImage) {
-        return;
-    }
-    self.loginView.oneImage.image=[UIImage imageNamed:@"登录选中"];
-    self.currentloginViewimage.image=[UIImage imageNamed:@"登录未选中"];
-    self.currentloginViewimage = self.loginView.oneImage;
-
-}
-//二级业务员
--(void)twoSalerViewgesture{
-    
-    self.usertype = TWOSALER;
-    if (self.currentloginViewimage == self.loginView.twoImage) {
-        return;
-    }
-    self.loginView.twoImage.image=[UIImage imageNamed:@"登录选中"];
-    self.currentloginViewimage.image=[UIImage imageNamed:@"登录未选中"];
-    self.currentloginViewimage = self.loginView.twoImage;
-    
-}
-//三级业务员
--(void)threeSalerViewgesture{
-    
-    self.usertype = THREESALER;
-    if (self.currentloginViewimage == self.loginView.threeImage) {
-        return;
-    }
-    self.loginView.threeImage.image=[UIImage imageNamed:@"登录选中"];
-    self.currentloginViewimage.image=[UIImage imageNamed:@"登录未选中"];
-    self.currentloginViewimage = self.loginView.threeImage;
-    
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
@@ -423,8 +595,10 @@
     
     if (!_loginView) {
         _loginView=[[NSBundle mainBundle]loadNibNamed:@"LoginIdentityView" owner:self options:nil].firstObject;
-        _loginView.frame=CGRectMake(20, (SCREEN_HEIGHT - 240)/2, SCREEN_WIDTH-40, 240);
+        _loginView.frame=CGRectMake(20, (SCREEN_HEIGHT - 300)/2, SCREEN_WIDTH-40, 300);
         _loginView.alpha=1;
+        
+
         
     }
     
@@ -441,6 +615,24 @@
     }
     return _maskView;
     
+}
+- (NSMutableArray *)fmdbArr{
+    if (!_fmdbArr) {
+        _fmdbArr = [NSMutableArray array];
+    }
+    return _fmdbArr;
+}
+- (NSMutableArray *)phoneArr{
+    if (!_phoneArr) {
+        _phoneArr = [NSMutableArray array];
+    }
+    return _phoneArr;
+}
+- (NSMutableArray *)groupIDArr{
+    if (!_groupIDArr) {
+        _groupIDArr = [NSMutableArray array];
+    }
+    return _groupIDArr;
 }
 
 @end

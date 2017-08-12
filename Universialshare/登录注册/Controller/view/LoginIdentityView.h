@@ -8,32 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^block)(NSInteger index);
+
 @interface LoginIdentityView : UIView
 
-@property (weak, nonatomic) IBOutlet UIView *shangView;
-
-@property (weak, nonatomic) IBOutlet UIView *lingView;
-@property (weak, nonatomic) IBOutlet UIView *oneView;
-@property (weak, nonatomic) IBOutlet UIView *twoView;
-@property (weak, nonatomic) IBOutlet UIView *threeView;
-
-
-
-@property (weak, nonatomic) IBOutlet UIImageView *shangImage;
-@property (weak, nonatomic) IBOutlet UIImageView *lingimage;
-@property (weak, nonatomic) IBOutlet UIImageView *oneImage;
-@property (weak, nonatomic) IBOutlet UIImageView *twoImage;
-@property (weak, nonatomic) IBOutlet UIImageView *threeImage;
-
-
+@property (weak, nonatomic) IBOutlet UIButton *cancelBt;
 @property (weak, nonatomic) IBOutlet UIButton *sureBt;
 
-@property (weak, nonatomic) IBOutlet UIButton *cancelBt;
-
-
-
-
-
-
+@property (nonatomic, copy)block block;
+@property (nonatomic, copy)NSArray *dataSoure;
 
 @end

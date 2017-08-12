@@ -33,6 +33,7 @@
     [super viewDidLoad];
     
 }
+
 //注册协议
 - (IBAction)tapgestureRegisterInfo:(UITapGestureRecognizer *)sender {
     
@@ -43,6 +44,7 @@
     [self.navigationController pushViewController:vc animated:YES];
     
 }
+
 //查看注册协议
 - (IBAction)checkRegisterInfo:(UIButton *)sender {
     
