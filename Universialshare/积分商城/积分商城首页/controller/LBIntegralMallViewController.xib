@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBIntegralMallViewController">
             <connections>
+                <outlet property="navaBaseV" destination="rCq-8t-XiF" id="4ri-Bo-Dwb"/>
                 <outlet property="tableView" destination="68p-6h-T6T" id="ueT-zN-lfN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="68p-6h-T6T">
-                    <rect key="frame" x="0.0" y="-22" width="375" height="640"/>
+                    <rect key="frame" x="0.0" y="-22" width="375" height="689"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="zWf-NI-czc"/>
@@ -52,7 +53,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="rCq-8t-XiF" secondAttribute="trailing" id="Isi-DL-qPr"/>
                 <constraint firstItem="rCq-8t-XiF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="R7H-eD-wAT"/>
-                <constraint firstAttribute="bottom" secondItem="68p-6h-T6T" secondAttribute="bottom" constant="49" id="Rdq-gz-URh"/>
+                <constraint firstAttribute="bottom" secondItem="68p-6h-T6T" secondAttribute="bottom" id="Rdq-gz-URh"/>
                 <constraint firstItem="68p-6h-T6T" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-22" id="ViD-jF-N5q"/>
                 <constraint firstItem="68p-6h-T6T" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cxc-x6-Ue0"/>
                 <constraint firstItem="rCq-8t-XiF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tvd-YU-6v6"/>

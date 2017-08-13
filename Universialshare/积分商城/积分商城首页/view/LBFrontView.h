@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-@class SDCycleScrollView;
+#import "SDCycleScrollView.h"
 
 @interface LBFrontView : UIView
 
 @property (strong, nonatomic)SDCycleScrollView *cycleScrollView;
+@property (weak, nonatomic) IBOutlet UIView *navabaseV;
+
+
+-(void)reloadImage:(NSArray*)arr;
 
 @end
