@@ -661,6 +661,7 @@
 		F91964EB1EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91964E91EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.m */; };
 		F91964EC1EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91964EA1EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.xib */; };
 		F91964EF1EB36C68008A8616 /* MerchantInformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F91964EE1EB36C68008A8616 /* MerchantInformationModel.m */; };
+		F91B63931F402792007726D4 /* MineCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F91B63921F402792007726D4 /* MineCollectionViewFlowLayout.m */; };
 		F91BB1C61F3DBA6D00BF46C2 /* LBNearClassfityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BB1C41F3DBA6D00BF46C2 /* LBNearClassfityViewController.m */; };
 		F91BB1C71F3DBA6D00BF46C2 /* LBNearClassfityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91BB1C51F3DBA6D00BF46C2 /* LBNearClassfityViewController.xib */; };
 		F923091A1E9B8BFF00ECDC94 /* HWCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = F92308361E9B8BFE00ECDC94 /* HWCalendar.m */; };
@@ -2161,6 +2162,8 @@
 		F91964EA1EB30847008A8616 /* LBAddrecomdManChooseAreaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBAddrecomdManChooseAreaViewController.xib; sourceTree = "<group>"; };
 		F91964ED1EB36C68008A8616 /* MerchantInformationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantInformationModel.h; sourceTree = "<group>"; };
 		F91964EE1EB36C68008A8616 /* MerchantInformationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantInformationModel.m; sourceTree = "<group>"; };
+		F91B63911F402792007726D4 /* MineCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		F91B63921F402792007726D4 /* MineCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		F91BB1C31F3DBA6D00BF46C2 /* LBNearClassfityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBNearClassfityViewController.h; sourceTree = "<group>"; };
 		F91BB1C41F3DBA6D00BF46C2 /* LBNearClassfityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBNearClassfityViewController.m; sourceTree = "<group>"; };
 		F91BB1C51F3DBA6D00BF46C2 /* LBNearClassfityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBNearClassfityViewController.xib; sourceTree = "<group>"; };
@@ -5743,6 +5746,8 @@
 				F9FC9A8E1F0F9F3F00B3AD0C /* GLMine_CompleteInfoView.h */,
 				F9FC9A8F1F0F9F3F00B3AD0C /* GLMine_CompleteInfoView.m */,
 				F9FC9A901F0F9F3F00B3AD0C /* GLMine_CompleteInfoView.xib */,
+				F91B63911F402792007726D4 /* MineCollectionViewFlowLayout.h */,
+				F91B63921F402792007726D4 /* MineCollectionViewFlowLayout.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -7389,6 +7394,7 @@
 				4AA0D5CD1EAF17A900CB8F77 /* GLClassifyHeaderView.m in Sources */,
 				4A4610AB1E9CC6360045824F /* ZXMaxiCodeReader.m in Sources */,
 				F90620061E83C5D00080E9D9 /* BasetabbarViewController.m in Sources */,
+				F91B63931F402792007726D4 /* MineCollectionViewFlowLayout.m in Sources */,
 				4A4610A01E9CC6360045824F /* ZXDataMatrixErrorCorrection.m in Sources */,
 				F9516E011ECAE2DB009F015D /* LBStoreDetailHeaderView.m in Sources */,
 				4A2A00C11EC70D9400052CA7 /* GLConfirmOrderController.m in Sources */,

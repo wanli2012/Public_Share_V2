@@ -47,9 +47,11 @@
 
 #import "GLAdModel.h"//广告数据模型
 #import "GLMine_AdController.h"
-
+#import "MineCollectionViewFlowLayout.h"
 //测试 后面请删除
 #import "LBHomeIncomeViewController.h"
+
+static CGFloat headViewH = 300;
 
 @interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,SDCycleScrollViewDelegate>{
     UIImageView *_imageviewLeft;
@@ -71,6 +73,7 @@
 @property (strong, nonatomic)LoadWaitView *loadV;
 
 @property (nonatomic, strong)NSMutableArray *adModels;
+@property (weak, nonatomic) IBOutlet UIView *navaView;
 
 @end
 
@@ -80,12 +83,13 @@
     [super viewDidLoad];
     
     //[self addMySelfPanGesture];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     // 注册表头
     [self.collectionV registerClass:[MineCollectionHeaderV class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MineCollectionHeaderV"];
     [self.collectionV registerNib:[UINib nibWithNibName:@"LBMineCenterCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LBMineCenterCollectionViewCell"];
     
-    [self.view addSubview:self.collectionV];
+    [self.view insertSubview:self.collectionV atIndex:0];
     
      [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshMineCollection) name:@"refreshMine" object:nil];
     
@@ -132,7 +136,7 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return 6;
+    return self.titlearr.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -353,6 +357,8 @@
     }
     
 }
+
+
 -(BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath{
     
     return YES;
@@ -373,7 +379,7 @@
 
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushToInfoVC)];
         [_headview.headimage addGestureRecognizer:tap];
-        
+        [_headview.backimage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[UserModel defaultUser].headPic]]];
         [_headview.headimage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[UserModel defaultUser].headPic]]];
         
         if (!_headview.headimage.image) {
@@ -444,14 +450,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
     if (!_collectionV) {
         
-         UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
+         MineCollectionViewFlowLayout *flowLayout=[[MineCollectionViewFlowLayout alloc] init];
          //[flowLayout setSectionInset:UIEdgeInsetsMake(0, 0, 10, 0)];
-        [flowLayout setHeaderReferenceSize:CGSizeMake(SCREEN_WIDTH,230)];
+        [flowLayout setHeaderReferenceSize:CGSizeMake(SCREEN_WIDTH,headViewH)];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
         [flowLayout setMinimumInteritemSpacing:0.0];
         [flowLayout setMinimumLineSpacing:0.0];
         
-        _collectionV =[[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64 - 50)collectionViewLayout:flowLayout];
+        _collectionV =[[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 50)collectionViewLayout:flowLayout];
         _collectionV.backgroundColor = [UIColor whiteColor];
         _collectionV.alwaysBounceVertical = YES;
         _collectionV.showsVerticalScrollIndicator = NO;
@@ -466,9 +472,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
     if (!_titlearr) {
         if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
-            _titlearr=[NSArray arrayWithObjects:@"会员管理",@"我要下单",@"米柜",@"兑换",@"商品管理",@"推荐",@"余额",@"营业额",@"我的米分", nil];
+            _titlearr=[NSArray arrayWithObjects:@"会员管理",@"我要下单",@"米柜",@"兑换",@"商品管理",@"推荐", nil];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
-           _titlearr=[NSArray arrayWithObjects:@"米分",@"我要推店",@"米柜",@"兑换",@"我的收藏",@"推荐",@"余额",@"营业额",@"我的米分", nil];
+           _titlearr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"我要推店",@"我的米柜",@"兑换",@"收藏",@"推荐", nil];
         }
         else if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {
             _titlearr=[NSArray arrayWithObjects:@"开通商家",@"收益管理",@"开通创客",@"兑换",@"区域查询",@"推荐", nil];
@@ -486,9 +492,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     if (!_imageArr) {
         
         if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
-            _imageArr=[NSArray arrayWithObjects:@"会员管理",@"我要下单",@"米柜",@"兑",@"产品管理",@"我要推荐",@"余额",@"我的信使豆",@"我的积分", nil];
+            _imageArr=[NSArray arrayWithObjects:@"会员管理",@"我要下单",@"米柜",@"兑",@"产品管理",@"我要推荐", nil];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
-            _imageArr=[NSArray arrayWithObjects:@"jf_icon",@"wytd_icon",@"mg_icon",@"兑",@"wdsc_iocn",@"我要推荐",@"余额",@"我的奖励",@"我的积分", nil];
+            _imageArr=[NSArray arrayWithObjects:@"jf_icon",@"wytd_icon",@"mg_icon",@"jf_icon",@"wytd_icon",@"mg_icon",@"兑",@"wdsc_iocn",@"我要推荐", nil];
         }
         else if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {
            _imageArr=[NSArray arrayWithObjects:@"开通米商",@"sygl_icon",@"开通推广员",@"兑",@"qycx_icon",@"我要推荐", nil];
@@ -520,6 +526,19 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     self.SelectCustomerTypeView.imagev1.image = [UIImage imageNamed:@"location_off"];
     self.SelectCustomerTypeView.imagev2.image = [UIImage imageNamed:@"location_on"];
     
+}
+#pragma mark - scrolleViewDelegete
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+    if (scrollView.contentOffset.y <= 0) {
+
+        self.navaView.backgroundColor = YYSRGBColor(181, 230, 85, 0);
+    }else{
+
+        self.navaView.backgroundColor = YYSRGBColor(181, 230, 85, (scrollView.contentOffset.y)/200);
+    
+    }
 }
 #pragma mark ---- 选择线上线下订单类型
 -(void)selectCustomerTypeViewCancelBt{
@@ -825,7 +844,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         
         _infoContentV.layer.cornerRadius = 5.f;
         
-        _infoContentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 40, 260);
+        _infoContentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 40, headViewH);
         
         [_infoContentV.cancelBtn addTarget:self action:@selector(maskViewTap) forControlEvents:UIControlEventTouchUpInside];
         

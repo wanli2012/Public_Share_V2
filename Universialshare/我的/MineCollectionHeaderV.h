@@ -16,6 +16,7 @@
 @property(nonatomic , strong) UIView *baseview1;
 @property(nonatomic , strong) UIView *headview;
 @property(nonatomic , strong) UIImageView *headimage;
+@property(nonatomic , strong) UIImageView *backimage;
 @property(nonatomic , strong) UILabel *namelebel;//用户名
 @property (strong, nonatomic)NSArray *titleArr;
 
