@@ -32,9 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.navigationController.navigationBar.hidden = NO;
-//    self.navigationItem.title = @"商家列表";
-//    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationItem.title = @"商家列表";
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     _page = 1;
     _refreshType = NO;
@@ -134,39 +134,6 @@
     _page++;
     
     [self initdatasource];
-}
-
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    if (self.HideNavB == YES) {
-        self.navigationController.navigationBar.hidden = NO;
-        self.navigationItem.title = @"商家列表";
-        self.automaticallyAdjustsScrollViewInsets = NO;
-        self.bottomH.constant = 0;
-        self.tapH.constant = 64;
-    }else{
-        self.navigationController.navigationBar.hidden = YES;
-        self.navigationItem.title = @"商家列表";
-        self.automaticallyAdjustsScrollViewInsets = NO;
-        self.bottomH.constant = 49;
-        self.tapH.constant = 0;
-    }
-    
-    if ([[UserModel defaultUser].usrtype isEqualToString:THREESALER]) {
-        
-        self.navgationView.hidden = NO;
-        self.navigationH.constant = 64;
-    }else{
-        
-        if (self.HideNavB == YES) {
-            self.navgationView.hidden = YES;
-            self.navigationH.constant = 0;
-        }else{
-            self.navgationView.hidden = NO;
-            self.navigationH.constant = 64;
-        }
-    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

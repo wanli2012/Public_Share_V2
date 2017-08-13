@@ -15,6 +15,7 @@
 
 @interface MineCollectionHeaderV ()<UITableViewDelegate,UITableViewDataSource>
 
+@property(nonatomic , strong) UIVisualEffectView *ruVisualEffectView;
 
 @end
 
@@ -36,12 +37,49 @@
 -(void)loadUI{
     [self addSubview:self.baseview];
     [self addSubview:self.baseview1];
+    [self.baseview addSubview:self.backimage];
+    [self.backimage addSubview:self.ruVisualEffectView];
     [self.baseview addSubview:self.tableview];
     
     [self.baseview addSubview:self.headview];
     [self.headview addSubview:self.headimage];
     [self.baseview addSubview:self.namelebel];
     [self addSubview:self.cycleScrollView];
+    
+    [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self).offset(0);
+        make.leading.equalTo(self).offset(0);
+        make.bottom.equalTo(self).offset(1);
+        make.height.equalTo(@90);
+        
+    }];
+
+    
+    [self.baseview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self).offset(0);
+        make.leading.equalTo(self).offset(0);
+        make.bottom.equalTo(self.cycleScrollView.mas_top).offset(0);
+        make.top.equalTo(self).offset(0);
+        
+    }];
+
+    
+    [self.backimage mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.trailing.equalTo(self.baseview).offset(0);
+        make.leading.equalTo(self.baseview).offset(0);
+        make.top.equalTo(self.baseview).offset(0);
+        make.bottom.equalTo(self.baseview).offset(0);
+    }];
+    
+    [self.ruVisualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.trailing.equalTo(self.baseview).offset(0);
+        make.leading.equalTo(self.baseview).offset(0);
+        make.top.equalTo(self.baseview).offset(0);
+        make.bottom.equalTo(self.baseview).offset(0);
+    }];
+    
     [self.headimage mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.trailing.equalTo(self.headview).offset(-2);
@@ -60,11 +98,11 @@
     [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.trailing.equalTo(self.baseview).offset(-10);
         make.leading.equalTo(self.headview.mas_trailing).offset(30);
-        make.top.equalTo(self.baseview).offset(10);
+        make.top.equalTo(self.baseview).offset(10 + 64);
         make.bottom.equalTo(self.baseview).offset(-10);
         
     }];
-    
+
     [self.headimage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[UserModel defaultUser].headPic]]];
     
     if (!self.headimage.image) {
@@ -79,7 +117,6 @@
         self.namelebel.text = @"用户名";
     }
     
-
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -180,7 +217,7 @@
     
     if (!_baseview) {
         
-    _baseview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 140)];
+    _baseview=[[UIView alloc]init];
     _baseview.backgroundColor=[UIColor whiteColor];
         
     }
@@ -196,7 +233,7 @@
         
         _headview = ({
         
-            UIView *view=[[UIView alloc]initWithFrame:CGRectMake(20 , 15 , 90  , 90 )];
+            UIView *view=[[UIView alloc]initWithFrame:CGRectMake(20 , 15 + 64 , 90  , 90 )];
             view.backgroundColor=YYSRGBColor(253, 180, 165, 1);
             view.layer.cornerRadius = 45;
             view.clipsToBounds = YES;
@@ -223,12 +260,25 @@
 
 }
 
+-(UIImageView *)backimage{
+    
+    if (!_backimage) {
+        _backimage=[[UIImageView alloc]init];
+        _backimage.backgroundColor = [UIColor whiteColor];
+        _backimage.contentMode = UIViewContentModeScaleAspectFill;
+        _backimage.clipsToBounds = YES;
+    }
+    
+    return _backimage;
+    
+}
+
 -(UILabel*)namelebel{
     
     if (!_namelebel) {
         _namelebel=[[UILabel alloc]init];
         _namelebel.backgroundColor=[UIColor clearColor];
-        _namelebel.textColor=[UIColor blackColor];
+        _namelebel.textColor=[UIColor whiteColor];
         _namelebel.font=[UIFont systemFontOfSize:12];
         _namelebel.textAlignment=NSTextAlignmentCenter;
         _namelebel.numberOfLines=0;
@@ -260,7 +310,7 @@
         if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
              _titleArr=[NSArray arrayWithObjects:@"剩余额度",@"总额度",@"米券",@"米分",@"米子",@"推荐米子",@"上个奖励日", nil];
         }else{
-         _titleArr=[NSArray arrayWithObjects:@"米券",@"米分",@"米子",@"推荐米子",@"上个奖励日", nil];
+            _titleArr=[NSArray arrayWithObjects:@"米券",@"米分",@"米子",@"推荐米子",@"上个奖励日", nil];
         }
     }
     
@@ -271,10 +321,12 @@
 -(SDCycleScrollView*)cycleScrollView
 {
     if (!_cycleScrollView) {
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, CGRectGetMaxY(self.baseview.frame) + 1, SCREEN_WIDTH, self.frame.size.height - CGRectGetHeight(self.baseview.frame) )
-                                                              delegate:nil
-                                                      placeholderImage:[UIImage imageNamed:@"商家placeholder"]];
+//        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, CGRectGetMaxY(self.baseview.frame) + 1, SCREEN_WIDTH, self.frame.size.height - CGRectGetHeight(self.baseview.frame) )
+//                                                              delegate:nil
+//                                                      placeholderImage:[UIImage imageNamed:@"商家placeholder"]];
         
+        _cycleScrollView = [[SDCycleScrollView alloc]init];
+        _cycleScrollView.placeholderImage = [UIImage imageNamed:@"商家placeholder"];
         _cycleScrollView.localizationImageNamesGroup = @[];
         _cycleScrollView.placeholderImageContentMode = UIViewContentModeScaleToFill;
         _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
@@ -286,6 +338,18 @@
     }
 
     return _cycleScrollView;
+
+}
+
+-(UIVisualEffectView*)ruVisualEffectView{
+    if (!_ruVisualEffectView) {
+        _ruVisualEffectView = [[UIVisualEffectView alloc]initWithEffect:
+                               
+                               [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+        _ruVisualEffectView.alpha = 0.9;
+    }
+    
+    return _ruVisualEffectView;
 
 }
 @end

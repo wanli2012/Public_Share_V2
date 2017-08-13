@@ -56,7 +56,7 @@
     _scuessVc=[[LBMySalesmanListViewController alloc]init];
     _faildVc=[[LBMySalesmanListFaildViewController alloc]init];
     
-    _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT - 114 - 49)];
+    _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT - 114)];
     [self.view addSubview:_contentView];
     
     [self addChildViewController:_AuditVc];
@@ -161,6 +161,11 @@
     [self popMenu:CGPointMake(SCREEN_WIDTH-30, 50)];
     
 }
+
+- (IBAction)backEvent:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 - (void)popMenu:(CGPoint)point{
     if (self.flag) {
