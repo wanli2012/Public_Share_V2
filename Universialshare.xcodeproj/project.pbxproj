@@ -47,6 +47,8 @@
 		4A2A00C71EC70D9400052CA7 /* GLOrderGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2A00BD1EC70D9400052CA7 /* GLOrderGoodsCell.xib */; };
 		4A2A00C81EC70D9400052CA7 /* GLOrderPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2A00BF1EC70D9400052CA7 /* GLOrderPayView.m */; };
 		4A2A00C91EC70D9400052CA7 /* GLOrderPayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2A00C01EC70D9400052CA7 /* GLOrderPayView.xib */; };
+		4A2BCD8D1F3FFD2400D96222 /* GLMine_RicePayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2BCD8B1F3FFD2400D96222 /* GLMine_RicePayController.m */; };
+		4A2BCD8E1F3FFD2400D96222 /* GLMine_RicePayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2BCD8C1F3FFD2400D96222 /* GLMine_RicePayController.xib */; };
 		4A2F51C71EC6E42C00ECA95D /* GLMemberManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2F51C51EC6E42C00ECA95D /* GLMemberManagerController.m */; };
 		4A2F51C81EC6E42C00ECA95D /* GLMemberManagerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F51C61EC6E42C00ECA95D /* GLMemberManagerController.xib */; };
 		4A2F51CC1EC6E5F600ECA95D /* GLMemberManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2F51CA1EC6E5F600ECA95D /* GLMemberManagerCell.m */; };
@@ -1067,6 +1069,9 @@
 		4A2A00BE1EC70D9400052CA7 /* GLOrderPayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLOrderPayView.h; sourceTree = "<group>"; };
 		4A2A00BF1EC70D9400052CA7 /* GLOrderPayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLOrderPayView.m; sourceTree = "<group>"; };
 		4A2A00C01EC70D9400052CA7 /* GLOrderPayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLOrderPayView.xib; sourceTree = "<group>"; };
+		4A2BCD8A1F3FFD2400D96222 /* GLMine_RicePayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_RicePayController.h; sourceTree = "<group>"; };
+		4A2BCD8B1F3FFD2400D96222 /* GLMine_RicePayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_RicePayController.m; sourceTree = "<group>"; };
+		4A2BCD8C1F3FFD2400D96222 /* GLMine_RicePayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_RicePayController.xib; sourceTree = "<group>"; };
 		4A2F51C41EC6E42C00ECA95D /* GLMemberManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMemberManagerController.h; sourceTree = "<group>"; };
 		4A2F51C51EC6E42C00ECA95D /* GLMemberManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMemberManagerController.m; sourceTree = "<group>"; };
 		4A2F51C61EC6E42C00ECA95D /* GLMemberManagerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMemberManagerController.xib; sourceTree = "<group>"; };
@@ -5821,6 +5826,9 @@
 				F94A33F01EAA01A600222A86 /* LBMineCenterPayPagesViewController.h */,
 				F94A33F11EAA01A600222A86 /* LBMineCenterPayPagesViewController.m */,
 				F94A33F21EAA01A600222A86 /* LBMineCenterPayPagesViewController.xib */,
+				4A2BCD8A1F3FFD2400D96222 /* GLMine_RicePayController.h */,
+				4A2BCD8B1F3FFD2400D96222 /* GLMine_RicePayController.m */,
+				4A2BCD8C1F3FFD2400D96222 /* GLMine_RicePayController.xib */,
 				F94A33F51EAA080700222A86 /* view */,
 			);
 			path = "支付页面";
@@ -6764,6 +6772,7 @@
 				F91964E71EB2EB0E008A8616 /* SelectionOfSalesmanLevelView.xib in Resources */,
 				4AAD25311EC188C90054FD06 /* GLBuyBackChooseController.xib in Resources */,
 				F92309601E9B8BFF00ECDC94 /* LBMyOrderUnsubscribeRecordTableViewCell.xib in Resources */,
+				4A2BCD8E1F3FFD2400D96222 /* GLMine_RicePayController.xib in Resources */,
 				F973747D1EFE049D00520D03 /* ScanResultViewController.xib in Resources */,
 				F97374661EFE03B200520D03 /* LICENSE in Resources */,
 				F9516DEF1ECAD416009F015D /* LBStoreDetailAdressTableViewCell.xib in Resources */,
@@ -7245,6 +7254,7 @@
 				4A2F521D1EC7084000ECA95D /* GLHomeLiveCell.m in Sources */,
 				F9520A281EAE170400B4D665 /* LBMineStoreAllOrdersViewController.m in Sources */,
 				4AB9E1B91ED6E97E00BE0420 /* QQTagItem.m in Sources */,
+				4A2BCD8D1F3FFD2400D96222 /* GLMine_RicePayController.m in Sources */,
 				F91BB1C61F3DBA6D00BF46C2 /* LBNearClassfityViewController.m in Sources */,
 				4A46105A1E9CC6360045824F /* ZXParsedResult.m in Sources */,
 				4A4610841E9CC6360045824F /* ZXIntArray.m in Sources */,

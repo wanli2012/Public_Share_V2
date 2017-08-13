@@ -64,6 +64,7 @@ static NSString *ID = @"GLShoppingCell";
 }
 
 - (void)postRequest {
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
@@ -73,18 +74,21 @@ static NSString *ID = @"GLShoppingCell";
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 
                 if ([responseObject[@"code"] integerValue] == 1){
+                    
+                    [self.models removeAllObjects];
+                    
                     for (NSDictionary *dic in responseObject[@"data"]) {
                         
                         GLShoppingCartModel *model = [GLShoppingCartModel mj_objectWithKeyValues:dic];
                         [self.models addObject:model];
                     }
                     
-                    [self.tableView reloadData];
                 }
             }else{
 
             }
      
+        [self.tableView reloadData];
     } enError:^(NSError *error) {
 
     }];
@@ -233,6 +237,7 @@ static NSString *ID = @"GLShoppingCell";
         self.bottomConstrait.constant = 0;
     }
 }
+
 #pragma  UITableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (self.models.count <= 0) {
@@ -282,7 +287,7 @@ static NSString *ID = @"GLShoppingCell";
 //进入编辑模式，按下出现的编辑按钮后
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    WS(weakself);
+
     [tableView setEditing:NO animated:YES];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
@@ -312,7 +317,7 @@ static NSString *ID = @"GLShoppingCell";
             [NetworkManager requestPOSTWithURLStr:@"shop/delCart" paramDic:dict finish:^(id responseObject) {
                 
                 [_loadV removeloadview];
-//                NSLog(@"dict = %@",dict);
+
                 if ([responseObject[@"code"] integerValue] == 1){
                 
                     

@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.navigationItem.title = @"详情";
     self.automaticallyAdjustsScrollViewInsets = NO;
     NSURL *url = [NSURL URLWithString:self.url];//创建URL
     NSURLRequest* request = [NSURLRequest requestWithURL:url];//创建

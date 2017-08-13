@@ -12,7 +12,7 @@
 
 @property (nonatomic, copy)NSString * goods_count;
 
-//订单类型  1:米分订单 2:消费商品订单
+//订单类型  1:米分订单 2:消费商品订单 3:???
 @property (nonatomic, assign)int orderType;
 
 @property (nonatomic, copy)NSString * goods_id;

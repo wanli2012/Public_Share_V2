@@ -194,61 +194,61 @@
         switch (index) {
             case 0://会员
             {
-                weakSelf.usertype = @"10";
+                weakSelf.usertype = OrdinaryUser;
                 weakSelf.usertypeTf.text=@"会员";
             }
                 break;
             case 1://商家
             {
-                weakSelf.usertype = @"9";
+                weakSelf.usertype = Retailer;
                 weakSelf.usertypeTf.text=@"商家";
             }
                 break;
             case 2://创客
             {
-                weakSelf.usertype = @"8";
+                weakSelf.usertype = THREESALER;
                 weakSelf.usertypeTf.text=@"创客";
             }
                 break;
             case 3://城市创客
             {
-                weakSelf.usertype = @"7";
+                weakSelf.usertype = TWOSALER;
                 weakSelf.usertypeTf.text=@"城市创客";
             }
                 break;
             case 4://大区创客
             {
-                weakSelf.usertype = @"13";
+                weakSelf.usertype = ONESALER;
                 weakSelf.usertypeTf.text=@"大区创客";
             }
                 break;
             case 5://省级服务中心
             {
-                weakSelf.usertype = @"1";
+                weakSelf.usertype = PROVINCE;
                 weakSelf.usertypeTf.text=@"省级服务中心";
             }
                 break;
             case 6://市级服务中心
             {
-                weakSelf.usertype = @"2";
+                weakSelf.usertype = CITY;
                 weakSelf.usertypeTf.text=@"市级服务中心";
             }
                 break;
             case 7://区级服务中心
             {
-                weakSelf.usertype = @"3";
+                weakSelf.usertype = DISTRICT;
                 weakSelf.usertypeTf.text=@"区级服务中心";
             }
                 break;
             case 8://省级行业服务中心
             {
-                weakSelf.usertype = @"4";
+                weakSelf.usertype = PROVINCE_INDUSTRY;
                 weakSelf.usertypeTf.text=@"省级行业服务中心";
             }
                 break;
             case 9://市级行业服务中心
             {
-                weakSelf.usertype = @"5";
+                weakSelf.usertype = CITY_INDUSTRY;
                 weakSelf.usertypeTf.text=@"市级行业服务中心";
             }
                 break;

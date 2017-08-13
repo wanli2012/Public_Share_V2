@@ -40,16 +40,17 @@
 //常见问题
 #define COMMONPROBLE @"https://www.51dztg.com/index.php/Home/Index/question.html"
 
-//米家
-#define OrdinaryUser @"10"
-//米商
-#define Retailer @"9"
-//副总
-#define ONESALER @"13"
-//高级推广员
-#define TWOSALER @"7"
-//推广员
-#define THREESALER @"8"
+
+#define OrdinaryUser @"10"//会员
+#define Retailer @"9"//商家
+#define ONESALER @"13"//大区创客
+#define TWOSALER @"7"//城市创客
+#define THREESALER @"8"//创客
+#define PROVINCE @"1" //省级服务中心
+#define CITY @"2"//市级服务中心
+#define DISTRICT @"3"//区级服务中心
+#define PROVINCE_INDUSTRY @"4"//省级行业服务中心
+#define CITY_INDUSTRY @"5"//市级行业服务中心
 
 #define PlaceHolderImage @"planceholder"
 #define LUNBO_PlaceHolder @"轮播暂位图"
