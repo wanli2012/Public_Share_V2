@@ -9,61 +9,61 @@
 
 #import "GLIntegralGoodsCell.h"
 #import "UIImageView+WebCache.h"
+#import "LBIntegralGoodsCollectionViewCell.h"
 
-@interface GLIntegralGoodsCell()
-@property (weak, nonatomic) IBOutlet UILabel *jifenLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *imageV;
-@property (weak, nonatomic) IBOutlet UILabel *pre_priceLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageviewWidth;
+@interface GLIntegralGoodsCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @end
 
+static NSString *ID = @"LBIntegralGoodsCollectionViewCell";
 @implementation GLIntegralGoodsCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    [self changeColor:self.jifenLabel rangeNumber:2666];
-    self.imageV.layer.cornerRadius = 4;
-    self.imageviewWidth.constant = 100 * autoSizeScaleX;
+     [self.collectionview registerNib:[UINib nibWithNibName:ID bundle:nil] forCellWithReuseIdentifier:ID];
+   
 }
 
+#pragma UICollectionDelegate UICollectionDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.dataArr.count;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    LBIntegralGoodsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
+    cell.model = self.dataArr[indexPath.row];
+    
+    return cell;
+}
 
-- (void)changeColor:(UILabel*)label rangeNumber:(NSInteger )rangeNum
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [self.delegate clickcheckDetail:indexPath.item];
+}
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return CGSizeMake((SCREEN_WIDTH - 26)/2, (SCREEN_WIDTH - 26)/2 + 50);
+    
+}
+
+- (CGFloat) collectionView:(UICollectionView *)collectionView
+                    layout:(UICollectionViewLayout *)collectionViewLayout
+minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    NSString *remainBeans;
-    if (rangeNum > 10000) {
-        remainBeans = [NSString stringWithFormat:@"%.0f",(float)rangeNum /10000];
-    }else{
-        remainBeans = [NSString stringWithFormat:@"%.0f",(float)rangeNum];
-    }
+    return 0.0f;
+}
+- (CGFloat) collectionView:(UICollectionView *)collectionView
+                    layout:(UICollectionViewLayout *)collectionViewLayout
+minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0.0f;
+}
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     
-    NSString *totalStr = [NSString stringWithFormat:@"%@/米券",remainBeans];
-    NSMutableAttributedString *textColor = [[NSMutableAttributedString alloc]initWithString:totalStr];
-    NSRange rangel = [[textColor string] rangeOfString:remainBeans];
-    [textColor addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:rangel];
-    [textColor addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:18] range:rangel];
-    [label setAttributedText:textColor];
+    return UIEdgeInsetsMake(10, 10, 0, 10);
 }
 
-- (void)setModel:(GLMall_InterestModel *)model{
-    _model = model;
-    
-    [self changeColor:_jifenLabel rangeNumber:[model.discount integerValue]];
-    _nameLabel.text = model.goods_name;
-    
-    _pre_priceLabel.text = [NSString stringWithFormat:@"%.0f/米券",[model.goods_price floatValue]];
-    NSString  *floatStr = [NSString stringWithFormat:@"%.0f",[model.goods_price floatValue]];
-    NSMutableAttributedString *textColor = [[NSMutableAttributedString alloc]initWithString:_pre_priceLabel.text];
-    NSRange rangel = [_pre_priceLabel.text  rangeOfString:floatStr];
-    [textColor addAttribute:NSForegroundColorAttributeName value:YYSRGBColor(121, 120, 120, 1) range:rangel];
-    [textColor addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:rangel];
-    [_pre_priceLabel setAttributedText:textColor];
 
-    
-    [_imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?x-oss-process=style/miquan",model.thumb]] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
-    
-}
 
 @end

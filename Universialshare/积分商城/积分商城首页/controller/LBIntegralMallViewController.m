@@ -29,7 +29,7 @@
 #import "GLConfirmOrderController.h"
 #import "LBFrontView.h"
 
-@interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,GLIntegralMallTopCellDelegete>
+@interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,GLIntegralMallTopCellDelegete,GLIntegralGoodsCellDelegate>
 {
     LoadWaitView * _loadV;
     NSInteger _page;
@@ -45,6 +45,8 @@
 @property (nonatomic, strong)NSMutableArray *interestModels;
 @property (nonatomic, strong)NSMutableArray *bannerArr;
 @property (nonatomic, strong)LBFrontView *frontView;
+@property (weak, nonatomic) IBOutlet UIView *navaBaseV;
+
 @end
 
 
@@ -89,6 +91,23 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
      * 数组tableHeaderView
      */
     self.tableView.tableHeaderView = self.frontView;
+
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+    if (scrollView.contentOffset.y <= -20) {
+        self.navaBaseV.hidden = YES;
+        self.frontView.navabaseV.hidden = NO;
+        self.navaBaseV.backgroundColor = YYSRGBColor(181, 230, 85, 0);
+    }else{
+        if (scrollView.contentOffset.y >= 0) {
+             self.navaBaseV.backgroundColor = YYSRGBColor(181, 230, 85, (scrollView.contentOffset.y)/200 * autoSizeScaleX);
+        }
+        self.navaBaseV.hidden = NO;
+        self.frontView.navabaseV.hidden = YES;
+    }
+    
 
 }
 
@@ -147,6 +166,9 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
                     }
                 }
 
+                if (self.bannerArr.count > 0) {
+                    [self.frontView reloadImage:self.bannerArr];
+                }
             }
         }
      
@@ -268,7 +290,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
         return 1;
     }else{
         
-        return self.interestModels.count;
+        return self.interestModels.count == 0?0:1;
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -302,10 +324,10 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
         
     }else{
         GLIntegralGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsCellID];
-        cell.model = self.interestModels[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.index = (int)indexPath.row;
-        
+        cell.dataArr = self.interestModels;
+        cell.delegate  = self;
+
         return cell;
 
     }
@@ -314,24 +336,29 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     if (indexPath.section == 0) {
         return 110 + (SCREEN_WIDTH - 40)/3;
     }else{
-        
-        return 110 * autoSizeScaleX;
+        NSInteger num = 0;
+        if (self.interestModels.count % 2 == 0) {
+            num = self.interestModels.count/2;
+        }else{
+            num = self.interestModels.count/2 + 1;
+        }
+        return ((SCREEN_WIDTH - 26)/2 + 50) * num + 10;
     }
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-     self.hidesBottomBarWhenPushed = YES;
-    if(indexPath.section != 0 ){
-        
+
+#pragma mark -----GLIntegralGoodsCellDelegate
+-(void)clickcheckDetail:(NSInteger)index{
+
+    self.hidesBottomBarWhenPushed = YES;
         GLHourseDetailController *detailVC = [[GLHourseDetailController alloc] init];
         detailVC.navigationItem.title = @"米券兑换详情";
-        GLMall_InterestModel *model = self.interestModels[indexPath.row];
+        GLMall_InterestModel *model = self.interestModels[index];
         detailVC.goods_id = model.goods_id;
         //    GLSubmitFirstController *submitVC = [[GLSubmitFirstController alloc] init];
         detailVC.type = 1;
         [self.navigationController pushViewController:detailVC animated:YES];
-    }
+    self.hidesBottomBarWhenPushed = NO;
 
-     self.hidesBottomBarWhenPushed = NO;
 }
 
 -(NSMutableAttributedString*)setLabelAttribute:(NSString*)Atrrstr text:(NSString*)str{
@@ -356,10 +383,16 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     }
     return _interestModels;
 }
+- (NSMutableArray *)bannerArr{
+    if (!_bannerArr) {
+        _bannerArr = [NSMutableArray array];
+    }
+    return _bannerArr;
+}
 -(LBFrontView*)frontView{
 
     if (!_frontView) {
-        _frontView = [[LBFrontView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
+        _frontView = [[LBFrontView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200 * autoSizeScaleX)];
     }
     
     return _frontView;

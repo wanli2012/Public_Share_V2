@@ -50,6 +50,13 @@
     UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(classifyClick:)];
     [self.moreView addGestureRecognizer:tap4];
     
+    self.imageV.layer.cornerRadius = 3;
+    self.imageV.clipsToBounds = YES;
+    self.imageV2.layer.cornerRadius = 3;
+    self.imageV2.clipsToBounds = YES;
+    self.imageV3.layer.cornerRadius = 3;
+    self.imageV3.clipsToBounds = YES;
+    
 }
 
 - (NSMutableAttributedString *)changeColor:(UILabel*)label rangeNumber:(NSInteger )rangeNum
@@ -59,7 +66,7 @@
     NSMutableAttributedString *textColor = [[NSMutableAttributedString alloc]initWithString:totalStr];
     NSRange rangel = [[textColor string] rangeOfString:remainBeans];
     [textColor addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:rangel];
-    [textColor addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:18] range:rangel];
+    [textColor addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:13] range:rangel];
     return textColor;
 }
 
