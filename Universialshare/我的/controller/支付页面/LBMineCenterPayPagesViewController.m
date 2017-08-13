@@ -177,6 +177,7 @@
     if ([self.selectB[indexPath.row]boolValue] == NO) {
         
         cell.selectimage.image = [UIImage imageNamed:@"支付未选中"];
+        
     }else{
     
         cell.selectimage.image = [UIImage imageNamed:@"支付选中"];
@@ -223,7 +224,14 @@
         return;
     }
     
+    
     if ((self.payType == 1 || self.payType == 2 || self.payType == 3)  && ([self.dataarr[self.selectIndex][@"title"] isEqualToString:@"米子支付"] || [self.dataarr[self.selectIndex][@"title"] isEqualToString:@"米券支付"])) {
+        
+        
+        if ([self.orderPrice floatValue] < [[UserModel defaultUser].ketiBean floatValue]) {
+            
+        }
+        
         CGFloat contentViewH = 300;
         CGFloat contentViewW = SCREEN_WIDTH;
         _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -239,6 +247,7 @@
             _contentView.frame = CGRectMake(0, SCREEN_HEIGHT - contentViewH, contentViewW, contentViewH);
             [_contentView.passwordF becomeFirstResponder];
         }];
+        
         
     }else{
     
