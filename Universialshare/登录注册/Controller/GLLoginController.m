@@ -227,61 +227,29 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     
     NSString *shenfen;
-    switch ([self.groupIDArr[indexPath.row] integerValue]) {
-        case 10://会员
-        {
-            shenfen = @"会员";
-        }
-            break;
-        case 9://米商
-        {
-            shenfen = @"商家";
-        }
-            break;
-        case 13://大区创客
-        {
-            shenfen = @"大区创客";
-        }
-            break;
-        case 7://城市创客
-        {
-            shenfen = @"城市创客";
-        }
-            break;
-        case 8://创客
-        {
-            shenfen = @"创客";
-        }
-            break;
-        case 1://省级服务中心
-        {
-            shenfen = @"省级服务中心";
-        }
-            break;
-        case 2://市级服务中心
-        {
-            shenfen = @"市级服务中心";
-        }
-            break;
-        case 3://区级服务中心
-        {
-            shenfen = @"区级服务中心";
-        }
-            break;
-        case 4://省级行业服务中心
-        {
-            shenfen = @"省级行业服务中心";
-        }
-            break;
-        case 5://市级行业服务中心
-        {
-            shenfen = @"市级行业服务中心";
-        }
-            break;
     
-        default:
-            break;
+    if ([self.groupIDArr[indexPath.row] isEqualToString:OrdinaryUser]) {
+        shenfen = @"会员";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:Retailer]){
+         shenfen = @"商家";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:ONESALER]){
+        shenfen = @"大区创客";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:TWOSALER]){
+        shenfen = @"城市创客";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:THREESALER]){
+        shenfen = @"创客";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:PROVINCE]){
+        shenfen = @"省级服务中心";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:CITY]){
+        shenfen = @"市级服务中心";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:DISTRICT]){
+         shenfen = @"区级服务中心";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:PROVINCE_INDUSTRY]){
+        shenfen = @"省级行业服务中心";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:CITY_INDUSTRY]){
+         shenfen = @"市级行业服务中心";
     }
+    
 
     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)",self.phoneArr[indexPath.row],shenfen];
     cell.textLabel.textColor = [UIColor blackColor];

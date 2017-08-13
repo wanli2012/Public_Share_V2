@@ -108,9 +108,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
         self.frontView.navabaseV.hidden = YES;
     }
     
-
 }
-
 
 - (void)dismiss{
     
@@ -142,8 +140,10 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 
         if ([responseObject[@"code"] integerValue] == 1){
             if([responseObject[@"data"] count] != 0){
+                
                 [self.hotModels removeAllObjects];
                 [self.interestModels removeAllObjects];
+                
                 if([responseObject[@"data"][@"mall_tabe"] count]){
                     
                     for (NSDictionary *dic in responseObject[@"data"][@"mall_tabe"]) {

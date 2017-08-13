@@ -16,6 +16,7 @@
 #import "LBMineCenterPayPagesViewController.h"
 #import "GLOrderGoodsCell.h"
 #import "GLConfirmOrderModel.h"
+#import "GLMine_RicePayController.h"
 
 @interface GLConfirmOrderController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -200,7 +201,22 @@ static NSString *ID = @"GLOrderGoodsCell";
     [NetworkManager requestPOSTWithURLStr:@"shop/placeOrderEnd" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
+        
         if ([responseObject[@"code"] integerValue] == 1){
+            
+            if ([responseObject[@"data"][@"order_type"] integerValue] == 2) {
+                
+                GLMine_RicePayController *riceVC = [[GLMine_RicePayController alloc] init];
+                riceVC.orderPrice = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"total_price"]];
+                riceVC.useableScore = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"user_integal"]];
+                riceVC.order_id = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"order_id"]];
+                riceVC.order_sn = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"ordere_sn"]];
+                riceVC.order_sh = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"order_sh"]];
+
+                [self.navigationController pushViewController:riceVC animated:YES];
+                
+                return ;
+            }
             
             self.hidesBottomBarWhenPushed = YES;
             LBMineCenterPayPagesViewController *payVC = [[LBMineCenterPayPagesViewController alloc] init];

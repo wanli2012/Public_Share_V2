@@ -656,12 +656,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 self.headview.headimage.image = [UIImage imageNamed:@"dtx_icon"];
             }
             
-            [self.headview.tableview reloadData];
             
         }else{
             
         }
         
+        [self.headview.tableview reloadData];
     } enError:^(NSError *error) {
         
     }];
@@ -688,12 +688,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 //获取广告数据
 -(void)getdatasorce{
     
-    [self.adModels removeAllObjects];
-    
     [NetworkManager requestPOSTWithURLStr:@"Shop/advert" paramDic:@{} finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == 1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+
+                [self.adModels removeAllObjects];
+                
                 self.CarouselArr = responseObject[@"data"];
                 NSMutableArray *imageArr=[NSMutableArray array];
                 
