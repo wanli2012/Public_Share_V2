@@ -33,6 +33,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *orderMoney;
 @property (weak, nonatomic) IBOutlet UILabel *orderMTitleLb;
 
+@property (nonatomic, assign)NSInteger paySituation;//1:米劵支付 2:米劵+米子  3:米劵+现金
+
 @end
 
 @implementation GLMine_RicePayController
@@ -43,7 +45,7 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"支付页面";
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.selectIndex = 0;
+    self.selectIndex = -1;
     
     self.tableview.tableFooterView = [UIView new];
     [self.tableview registerNib:[UINib nibWithNibName:@"LBMineCenterPayPagesTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMineCenterPayPagesTableViewCell"];
@@ -170,12 +172,14 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    [UserModel defaultUser].ketiBean = @"300";
+    [usermodelachivar achive];
     //米劵足够
     if ([self.orderPrice floatValue] < [[UserModel defaultUser].mark floatValue] || indexPath.row == 0) {
         [MBProgressHUD showError:@"请优先使用米劵"];
         return;
     }
+    
     //米劵不足
     if ([self.orderPrice floatValue] > [[UserModel defaultUser].mark floatValue]) {
         
@@ -183,40 +187,47 @@
         if(([self.orderPrice floatValue] - [[UserModel defaultUser].mark floatValue]) > [[UserModel defaultUser].ketiBean floatValue]){
             
             if (indexPath.row == 1) {
+                
                 [MBProgressHUD showError:@"米子不足"];
+                
                 return;
-            }else if(indexPath.row == 2){
                 
-                BOOL a=[self.selectB[indexPath.row] boolValue];
+            }else if(indexPath.row == 2 || indexPath.row == 3){
                 
-                [self.selectB replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:!a]];
+                [self choosePayType:indexPath.row];
+
             }
-            
-        }else{
-            
+        }else{//米子足够
+
+            [self choosePayType:indexPath.row];
+        
         }
     }
     
-//    if (self.selectIndex == -1) {
-//        
-//        BOOL a=[self.selectB[indexPath.row]boolValue];
-//        [self.selectB replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:!a]];
-//        self.selectIndex = indexPath.row;
-//        
-//    }else{
-//        
-//        if (self.selectIndex == indexPath.row) {
-//            return;
-//        }
-//        
-//        BOOL a=[self.selectB[indexPath.row]boolValue];
-//        [self.selectB replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:!a]];
-//        [self.selectB replaceObjectAtIndex:self.selectIndex withObject:[NSNumber numberWithBool:NO]];
-//        self.selectIndex = indexPath.row;
-//        
-//    }
-//    
     [self.tableview reloadData];
+    
+}
+
+- (void)choosePayType:(NSInteger )index {
+    
+    if (self.selectIndex == -1) {
+        BOOL a=[self.selectB[index] boolValue];
+        [self.selectB replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:!a]];
+        self.selectIndex = index;
+        
+    }else{
+        
+        if (self.selectIndex == index) {
+            return;
+        }
+        
+        BOOL a=[self.selectB[index]boolValue];
+        [self.selectB replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:!a]];
+        [self.selectB replaceObjectAtIndex:self.selectIndex withObject:[NSNumber numberWithBool:NO]];
+        self.selectIndex = index;
+        
+    }
+
 }
 
 - (void)dismiss{
@@ -228,26 +239,53 @@
         [_maskV removeFromSuperview];
     }];
 }
+
 - (IBAction)surebutton:(UIButton *)sender {
     
-//    if (![self.selectB containsObject:@(YES)]){
-//        [MBProgressHUD showError:@"请选择支付方式"];
-//        return;
-//    }
-    NSInteger situation;
+    if([self.orderPrice floatValue] <= [[UserModel defaultUser].mark floatValue]){//米劵支付
+        self.paySituation = 1;
+    }else if([self.orderPrice floatValue] > [[UserModel defaultUser].mark floatValue]){
+        
+        if(([self.orderPrice floatValue] - [[UserModel defaultUser].mark floatValue]) > [[UserModel defaultUser].ketiBean floatValue]){//米子不足
+            if (![self.selectB[2] boolValue]){
+                [MBProgressHUD showError:@"请选择支付方式"];
+                return;
+            }
+            self.paySituation = 3;
+            
+        }else{//米子足够
+            self.paySituation = 2;
+        }
+    }
     
-    switch (situation) {
-        case 0://有足够的米劵
+    switch (self.paySituation) {
+        case 1://米劵支付
+        {
+            
+            CGFloat contentViewH = 300;
+            CGFloat contentViewW = SCREEN_WIDTH;
+            _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+            _maskV.bgView.alpha = 0.4;
+            _contentView = [[NSBundle mainBundle] loadNibNamed:@"GLOrderPayView" owner:nil options:nil].lastObject;
+            [_contentView.backBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+            _contentView.layer.cornerRadius = 4;
+            _contentView.layer.masksToBounds = YES;
+            _contentView.priceLabel.text = [NSString stringWithFormat:@"¥ %@",self.orderPrice];
+            _contentView.frame = CGRectMake(0, SCREEN_HEIGHT, contentViewW, 0);
+            [_maskV showViewWithContentView:_contentView];
+            [UIView animateWithDuration:0.3 animations:^{
+                _contentView.frame = CGRectMake(0, SCREEN_HEIGHT - contentViewH, contentViewW, contentViewH);
+                [_contentView.passwordF becomeFirstResponder];
+            }];
+
+        }
+            break;
+        case 2://米劵+米子
         {
             
         }
             break;
-        case 1://有米劵,但是不够
-        {
-            
-        }
-            break;
-        case 2://没有米劵
+        case 3://米劵+现金
         {
             
         }
@@ -258,9 +296,7 @@
     }
 
     if (([self.dataarr[self.selectIndex][@"title"] isEqualToString:@"米子支付"] || [self.dataarr[self.selectIndex][@"title"] isEqualToString:@"米券支付"])) {
-        
 
-        
         CGFloat contentViewH = 300;
         CGFloat contentViewW = SCREEN_WIDTH;
         _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
