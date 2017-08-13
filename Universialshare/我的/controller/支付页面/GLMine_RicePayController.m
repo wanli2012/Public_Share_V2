@@ -158,7 +158,7 @@
 //    if([self.dataarr[indexPath.row][@"title"] isEqualToString:@"米子支付"] || [self.dataarr[indexPath. row][@"title"] isEqualToString:@"米券支付"]){
 //        cell.reuseScoreLabel.text = [NSString stringWithFormat:@"剩余:%@",[UserModel defaultUser].mark];
 //    }
-//    
+    
     if ([self.selectB[indexPath.row] boolValue] == NO) {
         
         cell.selectimage.image = [UIImage imageNamed:@"支付未选中"];
@@ -174,6 +174,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [UserModel defaultUser].ketiBean = @"300";
     [usermodelachivar achive];
+    
     //米劵足够
     if ([self.orderPrice floatValue] < [[UserModel defaultUser].mark floatValue] || indexPath.row == 0) {
         [MBProgressHUD showError:@"请优先使用米劵"];
