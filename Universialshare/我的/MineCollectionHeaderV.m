@@ -13,7 +13,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "SDCycleScrollView.h"
 
-@interface MineCollectionHeaderV ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
+@interface MineCollectionHeaderV ()<UITableViewDelegate,UITableViewDataSource>
 
 
 @end
@@ -281,6 +281,7 @@ return _titleArr;
         _cycleScrollView.titleLabelBackgroundColor = [UIColor groupTableViewBackgroundColor];// 图片对应的标题的 背景色。（因为没有设标题）
         
         _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
+
     }
 
     return _cycleScrollView;

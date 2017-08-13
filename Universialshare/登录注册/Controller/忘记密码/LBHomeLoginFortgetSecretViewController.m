@@ -32,7 +32,6 @@
 
 @property (strong, nonatomic)UIView *maskView;
 @property (strong, nonatomic)SelectUserTypeView *selectUserTypeView;
-//@property (strong, nonatomic)LoginIdentityView *selectUserTypeView;
 
 @property (strong, nonatomic)LoadWaitView *loadV;
 
@@ -280,6 +279,7 @@
 -(void)incentiveModelMaskVtapgestureLb{
     
     [UIView animateWithDuration:0.3 animations:^{
+        
         self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
         
     } completion:^(BOOL finished) {

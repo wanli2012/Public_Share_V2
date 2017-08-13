@@ -10,6 +10,7 @@
 #import "LBHomeIncomeFristViewController.h"
 #import "LBHomeIncomesecondViewController.h"
 #import "LBApplicationLimitView.h"
+#import "SelectUserTypeView.h"
 
 @interface LBHomeIncomeViewController ()
 
@@ -23,8 +24,13 @@
 @property (strong, nonatomic)LoadWaitView *loadV;
 
 @property (strong, nonatomic)UIView *maskView;
+@property (strong, nonatomic)UIView *maskView2;
 @property (strong, nonatomic)LBApplicationLimitView *loginView;
 @property (weak, nonatomic) IBOutlet UIButton *applyBt;
+
+@property (strong, nonatomic)SelectUserTypeView *selectUserTypeView;
+
+@property (nonatomic, copy)NSString *type;//限额类型
 
 @end
 
@@ -125,6 +131,8 @@
 - (IBAction)applyMoneny:(UIButton *)sender {
     
     [self.view addSubview:self.maskView];
+    
+    
     [self.view addSubview:self.loginView];
     
 }
@@ -154,7 +162,8 @@
                                                                                 @"uid":[UserModel defaultUser].uid ,
                                                                                 @"token":[UserModel defaultUser].token,
                                                                                 @"userphone":self.loginView.phoneTf.text,
-                                                                                @"money":self.loginView.moneyTF.text  } finish:^(id responseObject)
+                                                                                @"money":self.loginView.moneyTF.text,
+                                                                                @"type":self.type} finish:^(id responseObject)
      {
          
          [_loadV removeloadview];
@@ -176,12 +185,12 @@
          
      }];
 
-
 }
 
 //点击maskview
 -(void)maskviewgesture{
     
+    [self.selectUserTypeView removeFromSuperview];
     [self.maskView removeFromSuperview];
     [self.loginView removeFromSuperview];
     
@@ -251,7 +260,7 @@
     
     if (!_loginView) {
         _loginView=[[NSBundle mainBundle]loadNibNamed:@"LBApplicationLimitView" owner:self options:nil].firstObject;
-        _loginView.frame=CGRectMake(20, (SCREEN_HEIGHT - 230)/2, SCREEN_WIDTH-40, 230);
+        _loginView.frame=CGRectMake(20, (SCREEN_HEIGHT - 230)/2, SCREEN_WIDTH-40, 280);
         _loginView.alpha=1;
         _loginView.layer.cornerRadius = 4;
         _loginView.clipsToBounds = YES;
@@ -259,8 +268,62 @@
          [_loginView.cancelBt addTarget:self action:@selector(maskviewgesture) forControlEvents:UIControlEventTouchUpInside];
          [_loginView.sureBt addTarget:self action:@selector(sureapplication) forControlEvents:UIControlEventTouchUpInside];
         
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(popTypeView)];
+        [_loginView.typeView addGestureRecognizer:tap];
+        _loginView.typeLabel.text = @"每日限额";
+        
     }
     return _loginView;
+    
+}
+//弹出限额类型选择View
+- (void)popTypeView {
+
+    [self.loginView addSubview:self.selectUserTypeView];
+    
+    if (self.selectUserTypeView.height == 0) {
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.selectUserTypeView.height = 80;
+        }];
+        
+    }else{
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.selectUserTypeView.height = 0;
+        }];
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    self.selectUserTypeView.block = ^(NSInteger index){
+        
+        if(index == 0){
+            weakSelf.type = @"1";
+            weakSelf.loginView.typeLabel.text = @"每日限额";
+        }else{
+            weakSelf.type = @"2";
+            weakSelf.loginView.typeLabel.text = @"每单限额";
+        }
+
+    };
+    
+}
+//限额选择View
+-(SelectUserTypeView*)selectUserTypeView{
+    
+    if (!_selectUserTypeView) {
+        
+        _selectUserTypeView=[[NSBundle mainBundle]loadNibNamed:@"SelectUserTypeView" owner:self options:nil].firstObject;
+        
+        _selectUserTypeView.layer.cornerRadius = 10.f;
+        _selectUserTypeView.clipsToBounds = YES;
+        _selectUserTypeView.frame=CGRectMake(100, 150, SCREEN_WIDTH - 40 - 100, 0);
+        
+        _selectUserTypeView.dataSoure  = @[@"每日限额",@"每单限额"];
+        
+    }
+    
+    return _selectUserTypeView;
     
 }
 

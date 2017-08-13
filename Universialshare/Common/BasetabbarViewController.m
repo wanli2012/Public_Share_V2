@@ -100,7 +100,6 @@
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
     
-    
     if (viewController == [tabBarController.viewControllers objectAtIndex:3] || viewController == [tabBarController.viewControllers objectAtIndex:2]) {
        
         if ([UserModel defaultUser].loginstatus == YES) {
@@ -115,6 +114,7 @@
 //                    return NO;
 //                }
 //            }
+            
             return YES;
         }
         GLLoginController *loginVC = [[GLLoginController alloc] init];

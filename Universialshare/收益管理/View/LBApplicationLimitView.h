@@ -22,4 +22,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *sureBt;
 
+@property (weak, nonatomic) IBOutlet UIView *typeView;
+
+@property (weak, nonatomic) IBOutlet UITextField *typeLabel;
+
 @end

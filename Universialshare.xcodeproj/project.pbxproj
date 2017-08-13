@@ -446,6 +446,9 @@
 		4A5F66AA1ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F669B1ECA89FA0048F339 /* GLNearby_RecommendMerchatCollectionCell.xib */; };
 		4A5F66AB1ECA89FA0048F339 /* GLNearby_SectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5F669D1ECA89FA0048F339 /* GLNearby_SectionHeaderView.m */; };
 		4A5F66AC1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F669E1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib */; };
+		4A6C15C71F3F477C0046C150 /* GLAdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15C61F3F477C0046C150 /* GLAdModel.m */; };
+		4A6C15CB1F3F4BBE0046C150 /* GLMine_AdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15C91F3F4BBE0046C150 /* GLMine_AdController.m */; };
+		4A6C15CC1F3F4BBE0046C150 /* GLMine_AdController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15CA1F3F4BBE0046C150 /* GLMine_AdController.xib */; };
 		4A73B4CD1EE53C2100A6E4B2 /* GLThreePersentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A73B4CC1EE53C2100A6E4B2 /* GLThreePersentController.m */; };
 		4A782F9C1EDE59DE008784BF /* GLIntegralMall_SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A782F9A1EDE59DE008784BF /* GLIntegralMall_SearchController.m */; };
 		4A782F9D1EDE59DE008784BF /* GLIntegralMall_SearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A782F9B1EDE59DE008784BF /* GLIntegralMall_SearchController.xib */; };
@@ -1807,6 +1810,11 @@
 		4A5F669C1ECA89FA0048F339 /* GLNearby_SectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNearby_SectionHeaderView.h; sourceTree = "<group>"; };
 		4A5F669D1ECA89FA0048F339 /* GLNearby_SectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNearby_SectionHeaderView.m; sourceTree = "<group>"; };
 		4A5F669E1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNearby_SectionHeaderView.xib; sourceTree = "<group>"; };
+		4A6C15C51F3F477C0046C150 /* GLAdModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLAdModel.h; sourceTree = "<group>"; };
+		4A6C15C61F3F477C0046C150 /* GLAdModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLAdModel.m; sourceTree = "<group>"; };
+		4A6C15C81F3F4BBE0046C150 /* GLMine_AdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_AdController.h; sourceTree = "<group>"; };
+		4A6C15C91F3F4BBE0046C150 /* GLMine_AdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_AdController.m; sourceTree = "<group>"; };
+		4A6C15CA1F3F4BBE0046C150 /* GLMine_AdController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_AdController.xib; sourceTree = "<group>"; };
 		4A73B4CB1EE53C2100A6E4B2 /* GLThreePersentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLThreePersentController.h; sourceTree = "<group>"; };
 		4A73B4CC1EE53C2100A6E4B2 /* GLThreePersentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLThreePersentController.m; sourceTree = "<group>"; };
 		4A782F991EDE59DE008784BF /* GLIntegralMall_SearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLIntegralMall_SearchController.h; sourceTree = "<group>"; };
@@ -5361,6 +5369,9 @@
 				F92309081E9B8BFF00ECDC94 /* LBMineViewController.xib */,
 				F92309091E9B8BFF00ECDC94 /* MineCollectionHeaderV.h */,
 				F923090A1E9B8BFF00ECDC94 /* MineCollectionHeaderV.m */,
+				4A6C15C81F3F4BBE0046C150 /* GLMine_AdController.h */,
+				4A6C15C91F3F4BBE0046C150 /* GLMine_AdController.m */,
+				4A6C15CA1F3F4BBE0046C150 /* GLMine_AdController.xib */,
 				F923090B1E9B8BFF00ECDC94 /* model */,
 				F92309101E9B8BFF00ECDC94 /* view */,
 			);
@@ -5697,6 +5708,8 @@
 				F923090D1E9B8BFF00ECDC94 /* LBMineCenterHotPickModel.m */,
 				F923090E1E9B8BFF00ECDC94 /* LBMineCenterHotPickModelF.h */,
 				F923090F1E9B8BFF00ECDC94 /* LBMineCenterHotPickModelF.m */,
+				4A6C15C51F3F477C0046C150 /* GLAdModel.h */,
+				4A6C15C61F3F477C0046C150 /* GLAdModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -6580,6 +6593,7 @@
 				F90B99231ED419C500E75C95 /* LBCheckMoreHotProductViewController.xib in Resources */,
 				4AE354701EC7F7CD00BF60CC /* 我的.xcassets in Resources */,
 				4AD5514F1EB2E6C900C04062 /* GLSubmitChooseTimeView.xib in Resources */,
+				4A6C15CC1F3F4BBE0046C150 /* GLMine_AdController.xib in Resources */,
 				F9061FDB1E83C4730080E9D9 /* LaunchScreen.storyboard in Resources */,
 				4A1FE7331EC978FB0000A357 /* GLRecommendStoreController.xib in Resources */,
 				4AA0D5AD1EAEEC8400CB8F77 /* LBIntegralMallViewController.xib in Resources */,
@@ -7227,6 +7241,7 @@
 				4A4610841E9CC6360045824F /* ZXIntArray.m in Sources */,
 				4AFCDC761ED2EE09007C1681 /* GLMerchat_CommentGoodcell.m in Sources */,
 				F951C7741EB0C4AA0014A71D /* LBBelowTheLineViewController.m in Sources */,
+				4A6C15CB1F3F4BBE0046C150 /* GLMine_AdController.m in Sources */,
 				4A4610DF1E9CC6370045824F /* ZXUPCEANExtension2Support.m in Sources */,
 				4A4610551E9CC6360045824F /* ZXExpandedProductResultParser.m in Sources */,
 				F956F0441F3F2315001F5397 /* LBFrontView.m in Sources */,
@@ -7288,6 +7303,7 @@
 				4A4610881E9CC6360045824F /* ZXBinaryBitmap.m in Sources */,
 				F94D31E41EAF716D00309029 /* LBMineCenterReceivingGoodsTableViewCell.m in Sources */,
 				F91274A71EA0E6BC00B7A539 /* LBMineStoreOrderingTableViewCell.m in Sources */,
+				4A6C15C71F3F477C0046C150 /* GLAdModel.m in Sources */,
 				4A4610DA1E9CC6370045824F /* ZXMultiFormatUPCEANReader.m in Sources */,
 				F92309431E9B8BFF00ECDC94 /* LBMineMesageServiceTableViewCell.m in Sources */,
 				F9434D4D1EC16D78001C80A4 /* LBMineCenterRegionQueryViewController.m in Sources */,
