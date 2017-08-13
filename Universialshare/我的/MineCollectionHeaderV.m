@@ -263,7 +263,8 @@
          _titleArr=[NSArray arrayWithObjects:@"米券",@"米分",@"米子",@"推荐米子",@"上个奖励日", nil];
         }
     }
-return _titleArr;
+    
+    return _titleArr;
     
 }
 
@@ -271,7 +272,7 @@ return _titleArr;
 {
     if (!_cycleScrollView) {
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, CGRectGetMaxY(self.baseview.frame) + 1, SCREEN_WIDTH, self.frame.size.height - CGRectGetHeight(self.baseview.frame) )
-                                                              delegate:self
+                                                              delegate:nil
                                                       placeholderImage:[UIImage imageNamed:@"商家placeholder"]];
         
         _cycleScrollView.localizationImageNamesGroup = @[];

@@ -629,8 +629,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             }
             
             [usermodelachivar achive];
-      
-
+            
             [self.headview.headimage sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].headPic]];
             
             if (!self.headview.headimage.image) {
@@ -639,11 +638,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             }
             
             [self.headview.tableview reloadData];
-           
+            
         }else{
             
         }
-
+        
     } enError:^(NSError *error) {
         
     }];

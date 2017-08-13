@@ -21,5 +21,4 @@
 
 @property (nonatomic, copy)NSString * goods_spec;
 
-
 @end

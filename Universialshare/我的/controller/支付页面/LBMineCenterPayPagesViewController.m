@@ -177,6 +177,7 @@
     if ([self.selectB[indexPath.row]boolValue] == NO) {
         
         cell.selectimage.image = [UIImage imageNamed:@"支付未选中"];
+        
     }else{
     
         cell.selectimage.image = [UIImage imageNamed:@"支付选中"];
@@ -208,6 +209,7 @@
 }
 
 - (void)dismiss{
+    
     [_contentView.passwordF resignFirstResponder];
     [UIView animateWithDuration:0.3 animations:^{
         _contentView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 300);
@@ -222,7 +224,14 @@
         return;
     }
     
+    
     if ((self.payType == 1 || self.payType == 2 || self.payType == 3)  && ([self.dataarr[self.selectIndex][@"title"] isEqualToString:@"米子支付"] || [self.dataarr[self.selectIndex][@"title"] isEqualToString:@"米券支付"])) {
+        
+        
+        if ([self.orderPrice floatValue] < [[UserModel defaultUser].ketiBean floatValue]) {
+            
+        }
+        
         CGFloat contentViewH = 300;
         CGFloat contentViewW = SCREEN_WIDTH;
         _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -238,6 +247,7 @@
             _contentView.frame = CGRectMake(0, SCREEN_HEIGHT - contentViewH, contentViewW, contentViewH);
             [_contentView.passwordF becomeFirstResponder];
         }];
+        
         
     }else{
     
@@ -259,8 +269,6 @@
     dict[@"token"] = [UserModel defaultUser].token;
     
     NSString *orderID = [NSString stringWithFormat:@"%@_%@_%@",self.order_sh,self.order_id,self.order_sn];
-    //    NSString *uid = [RSAEncryptor encryptString:[UserModel defaultUser].uid publicKey:public_RSA];
-    //    dict[@"uid"] = uid;
     dict[@"order_id"] = [RSAEncryptor encryptString:orderID publicKey:public_RSA];
     
     if (self.selectIndex == 0) {
@@ -269,6 +277,7 @@
     }else{
         dict[@"type"] = @4;
     }
+    
     dict[@"uid"] = [UserModel defaultUser].uid;
 //    dict[@"order_id"] = self.order_id;
     dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
@@ -309,14 +318,10 @@
 
 }
 - (void)integralPay:(NSNotification *)sender {
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
     dict[@"token"] = [UserModel defaultUser].token;
-    
-    //    NSString *orderID = [RSAEncryptor encryptString:self.orderNum publicKey:public_RSA];
-    //    NSString *uid = [RSAEncryptor encryptString:[UserModel defaultUser].uid publicKey:public_RSA];
-    //    dict[@"uid"] = uid;
-    //    dict[@"order_id"] = orderID;
-    
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"order_id"] = self.order_id;
     dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
@@ -332,13 +337,17 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
                 self.hidesBottomBarWhenPushed = YES;
+                
                 if(self.pushIndex == 1){
                     
                     [self.navigationController popToRootViewControllerAnimated:YES];
                     
                 }else{
+                    
                     [self.navigationController popViewControllerAnimated:YES];
+                    
                 }
+                
                 [MBProgressHUD showSuccess:responseObject[@"message"]];
                 self.hidesBottomBarWhenPushed = NO;
             });
@@ -353,7 +362,7 @@
         [_loadV removeloadview];
         
     }];
-
+    
 }
 
 - (void)WeChatPay:(NSString *)payType{
