@@ -208,6 +208,7 @@
 }
 
 - (void)dismiss{
+    
     [_contentView.passwordF resignFirstResponder];
     [UIView animateWithDuration:0.3 animations:^{
         _contentView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 300);
@@ -259,8 +260,6 @@
     dict[@"token"] = [UserModel defaultUser].token;
     
     NSString *orderID = [NSString stringWithFormat:@"%@_%@_%@",self.order_sh,self.order_id,self.order_sn];
-    //    NSString *uid = [RSAEncryptor encryptString:[UserModel defaultUser].uid publicKey:public_RSA];
-    //    dict[@"uid"] = uid;
     dict[@"order_id"] = [RSAEncryptor encryptString:orderID publicKey:public_RSA];
     
     if (self.selectIndex == 0) {
@@ -269,6 +268,7 @@
     }else{
         dict[@"type"] = @4;
     }
+    
     dict[@"uid"] = [UserModel defaultUser].uid;
 //    dict[@"order_id"] = self.order_id;
     dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
@@ -309,14 +309,10 @@
 
 }
 - (void)integralPay:(NSNotification *)sender {
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
     dict[@"token"] = [UserModel defaultUser].token;
-    
-    //    NSString *orderID = [RSAEncryptor encryptString:self.orderNum publicKey:public_RSA];
-    //    NSString *uid = [RSAEncryptor encryptString:[UserModel defaultUser].uid publicKey:public_RSA];
-    //    dict[@"uid"] = uid;
-    //    dict[@"order_id"] = orderID;
-    
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"order_id"] = self.order_id;
     dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
@@ -332,13 +328,17 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
                 self.hidesBottomBarWhenPushed = YES;
+                
                 if(self.pushIndex == 1){
                     
                     [self.navigationController popToRootViewControllerAnimated:YES];
                     
                 }else{
+                    
                     [self.navigationController popViewControllerAnimated:YES];
+                    
                 }
+                
                 [MBProgressHUD showSuccess:responseObject[@"message"]];
                 self.hidesBottomBarWhenPushed = NO;
             });
@@ -353,7 +353,7 @@
         [_loadV removeloadview];
         
     }];
-
+    
 }
 
 - (void)WeChatPay:(NSString *)payType{

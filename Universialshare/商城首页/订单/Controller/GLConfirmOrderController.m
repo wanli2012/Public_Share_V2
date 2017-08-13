@@ -20,7 +20,6 @@
 @interface GLConfirmOrderController ()<UITableViewDelegate,UITableViewDataSource>
 {
     int _sumNum;
-//    GLSet_MaskVeiw *_maskV;
     LoadWaitView * _loadV;
 }
 
@@ -41,7 +40,6 @@
 
 //收货人信息
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
@@ -172,8 +170,7 @@ static NSString *ID = @"GLOrderGoodsCell";
 
 - (void)ensurePassword:(NSNotification *)userInfo{
     [self dismiss];
-   
-//    NSLog(@"userinfo = %@",userInfo.userInfo[@"password"]);
+
 }
   
 
@@ -227,21 +224,8 @@ static NSString *ID = @"GLOrderGoodsCell";
     
 }
 
-//- (IBAction)changeNum:(id)sender {
-//    
-//    if (sender == self.reduceBtn) {
-//        _sumNum -= 1;
-//        if(_sumNum < 1){
-//            _sumNum = 1;
-//        }
-//    }else{
-//        _sumNum += 1;
-//    }
-//    self.numberLabel.text = [NSString stringWithFormat:@"%d",_sumNum];
-//    
-//}
-
 #pragma  UITableveiwdelegate UITableviewdatasource
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.models.count;
 }
@@ -258,10 +242,13 @@ static NSString *ID = @"GLOrderGoodsCell";
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     return 120*autoSizeScaleY;
+    
 //    self.tableView.estimatedRowHeight = 44;
 //    self.tableView.rowHeight = UITableViewAutomaticDimension;
 //    return self.tableView.rowHeight;
+    
 }
 
 #pragma 懒加载
