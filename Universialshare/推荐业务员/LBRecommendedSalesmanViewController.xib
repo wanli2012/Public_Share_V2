@@ -33,11 +33,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="376" height="811"/>
+            <rect key="frame" x="0.0" y="0.0" width="376" height="764"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIv-px-5u2">
-                    <rect key="frame" x="0.0" y="64" width="376" height="747"/>
+                    <rect key="frame" x="0.0" y="64" width="376" height="700"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DYt-67-gRP">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="694"/>
@@ -62,7 +62,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="355" height="50"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手  机  号:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c03-zs-HCz">
-                                                    <rect key="frame" x="10" y="15" width="62.5" height="20"/>
+                                                    <rect key="frame" x="10" y="15" width="63" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="PNY-A2-IvJ"/>
                                                     </constraints>
@@ -71,7 +71,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N6C-Uc-6Mb">
-                                                    <rect key="frame" x="82.5" y="5" width="262.5" height="40"/>
+                                                    <rect key="frame" x="83" y="5" width="262" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="YYU-nk-aXP"/>
                                                     </constraints>
@@ -104,7 +104,7 @@
                                             <rect key="frame" x="0.0" y="50" width="355" height="50"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="验  证  码:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9zB-wv-don">
-                                                    <rect key="frame" x="10" y="15" width="62.5" height="20"/>
+                                                    <rect key="frame" x="10" y="15" width="63" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="FKo-x0-3yl"/>
                                                     </constraints>
@@ -113,7 +113,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vdf-sm-53D">
-                                                    <rect key="frame" x="82.5" y="5" width="162.5" height="40"/>
+                                                    <rect key="frame" x="83" y="5" width="162" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="oU2-4R-84s"/>
                                                     </constraints>
@@ -479,7 +479,7 @@
                                             <rect key="frame" x="0.0" y="401" width="355" height="228"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份证正面照, 身份证反面照" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qOB-cw-phH">
-                                                    <rect key="frame" x="10" y="70" width="166.5" height="18"/>
+                                                    <rect key="frame" x="10" y="70" width="167" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="Os2-rf-aeD"/>
                                                     </constraints>
@@ -512,7 +512,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="50"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确认密码:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Psu-RM-8LJ">
-                                                            <rect key="frame" x="10" y="15" width="61.5" height="20"/>
+                                                            <rect key="frame" x="10" y="15" width="62" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="1tY-yG-e9C"/>
                                                                 <constraint firstAttribute="height" constant="20" id="2R9-A6-WCx"/>
@@ -522,7 +522,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请再次输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aIv-mE-vZC">
-                                                            <rect key="frame" x="81.5" y="5" width="263.5" height="40"/>
+                                                            <rect key="frame" x="82" y="5" width="263" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="cOC-i7-tgY"/>
                                                             </constraints>
@@ -573,7 +573,7 @@
                                             <rect key="frame" x="0.0" y="100" width="355" height="50"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="真实姓名:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbM-G2-ks9">
-                                                    <rect key="frame" x="10" y="15" width="62.5" height="20"/>
+                                                    <rect key="frame" x="10" y="15" width="63" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="ReJ-Gq-tqq"/>
                                                         <constraint firstAttribute="height" constant="20" id="WLq-Be-r6x"/>
@@ -583,7 +583,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入真实姓名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dLt-OQ-4M3">
-                                                    <rect key="frame" x="82.5" y="5" width="262.5" height="40"/>
+                                                    <rect key="frame" x="83" y="5" width="262" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="Ns7-Mh-RBS"/>
                                                     </constraints>
@@ -684,7 +684,7 @@
                 <constraint firstItem="WIv-px-5u2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="ekh-2c-1RC"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="34" y="126.5"/>
+            <point key="canvasLocation" x="34" y="103"/>
         </view>
         <tapGestureRecognizer id="pSX-dO-c3I">
             <connections>

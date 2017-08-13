@@ -45,7 +45,13 @@
 #import "LBRecommendedSalesmanViewController.h"
 #import "GLMine_CompleteInfoView.h"
 
-@interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate>{
+#import "GLAdModel.h"//广告数据模型
+#import "GLMine_AdController.h"
+
+//测试 后面请删除
+#import "LBHomeIncomeViewController.h"
+
+@interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,SDCycleScrollViewDelegate>{
     UIImageView *_imageviewLeft;
 }
 @property(nonatomic,strong)UICollectionView *collectionV;
@@ -63,6 +69,8 @@
 @property (nonatomic, strong)UIView *maskV;
 
 @property (strong, nonatomic)LoadWaitView *loadV;
+
+@property (nonatomic, strong)NSMutableArray *adModels;
 
 @end
 
@@ -101,7 +109,7 @@
      self.navigationController.navigationBar.hidden = YES;
     [self refreshDataSource];
     
-    if (self.CarouselArr.count<=0) {
+    if (self.adModels.count<=0) {
         [self getdatasorce];
     }
     
@@ -330,7 +338,8 @@
             case 5:
             {
                 self.hidesBottomBarWhenPushed=YES;
-                GLRecommendController *vc=[[GLRecommendController alloc]init];
+//                GLRecommendController *vc=[[GLRecommendController alloc]init];
+                LBHomeIncomeViewController *vc =[[LBHomeIncomeViewController alloc] init];
                 
                 [self.navigationController pushViewController:vc animated:YES];
                 self.hidesBottomBarWhenPushed=NO;
@@ -640,41 +649,52 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }];
 }
 
+#pragma mark 点击图片代理
+/** 点击图片回调 */
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
+{
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_AdController *adVC = [[GLMine_AdController alloc] init];
+    GLAdModel *model = self.adModels[index];
+    adVC.url = model.url;
+    [self.navigationController pushViewController:adVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+/** 图片滚动回调 */
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index
+{
+    
+}
+
+//获取广告数据
 -(void)getdatasorce{
     
-    NSDictionary *dic;
+    [self.adModels removeAllObjects];
     
-    if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
-        dic = @{@"type":@"1"};
-    }else if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER]){
-        dic = @{@"type":@"2"};
-    }else if ([[UserModel defaultUser].usrtype isEqualToString:TWOSALER]){
-        dic = @{@"type":@"3"};
-    }else if ([[UserModel defaultUser].usrtype isEqualToString:THREESALER]){
-        dic = @{@"type":@"4"};
-    }
-    [NetworkManager requestPOSTWithURLStr:@"index/banner_list" paramDic:dic finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/advert" paramDic:@{} finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == 1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 self.CarouselArr = responseObject[@"data"];
                 NSMutableArray *imageArr=[NSMutableArray array];
                 
-                for (int i=0; i<[responseObject[@"data"]count]; i++) {
-                    UIImageView *imagev=[[UIImageView alloc]init];
-                    [imagev sd_setImageWithURL:[NSURL URLWithString:responseObject[@"data"][i][@"img_path"]]];
-                    
-                    if (imagev.image) {
-                        [imageArr addObject:responseObject[@"data"][i][@"img_path"]];
-                    }
-                    
+                for (NSDictionary *dic in responseObject[@"data"]) {
+                    GLAdModel *model = [GLAdModel mj_objectWithKeyValues:dic];
+                    [self.adModels addObject:model];
                 }
                 
+                for ( int i = 0; i < self.adModels.count; i ++) {
+                    GLAdModel *model = self.adModels[i];
+                    [imageArr addObject:model.thumb];
+                }
+                
+                self.headview.cycleScrollView.delegate = self;
                 self.headview.cycleScrollView.imageURLStringsGroup = imageArr;
+
             }
             
         }else{
-            
             
         }
         
@@ -829,5 +849,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         [_maskV addGestureRecognizer:maskViewTap];
     }
     return _maskV;
+}
+- (NSMutableArray *)adModels{
+    if (!_adModels) {
+        _adModels = [NSMutableArray array];
+    }
+    return _adModels;
 }
 @end

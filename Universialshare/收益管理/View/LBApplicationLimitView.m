@@ -8,6 +8,12 @@
 
 #import "LBApplicationLimitView.h"
 
+@interface LBApplicationLimitView ()
+
+
+
+@end
+
 @implementation LBApplicationLimitView
 
 

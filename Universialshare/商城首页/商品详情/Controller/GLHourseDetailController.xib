@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLHourseDetailController">
             <connections>
-                <outlet property="addToCartBtn" destination="KMX-kw-OpR" id="unt-mI-Ihc"/>
-                <outlet property="collectionimage" destination="tOk-Ma-xwM" id="B4B-DP-zdC"/>
+                <outlet property="collectionBtn" destination="Xv0-vo-Aph" id="Bz4-D0-etP"/>
                 <outlet property="settleBtn" destination="Ug0-GF-x9i" id="eGk-JU-tO3"/>
                 <outlet property="tableView" destination="Io3-27-tPH" id="BqF-ks-Lpv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -35,11 +35,8 @@
                     <rect key="frame" x="0.0" y="333" width="353" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ug0-GF-x9i">
-                            <rect key="frame" x="273" y="0.0" width="80" height="50"/>
+                            <rect key="frame" x="265" y="0.0" width="88" height="50"/>
                             <color key="backgroundColor" red="0.14404621719999999" green="0.60565376280000005" blue="0.14635491370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="80" id="VGF-cT-2YU"/>
-                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="立即购买">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -48,56 +45,25 @@
                                 <action selector="confirmOrder:" destination="-1" eventType="touchUpInside" id="bcC-47-eIL"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KMX-kw-OpR">
-                            <rect key="frame" x="173" y="0.0" width="100" height="50"/>
-                            <color key="backgroundColor" red="0.35872769360000001" green="0.79393047090000002" blue="0.44500404599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="100" id="VwV-bv-IhQ"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="加入购物车">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xv0-vo-Aph">
+                            <rect key="frame" x="167" y="0.0" width="88" height="50"/>
+                            <state key="normal" image="collect_icon"/>
                             <connections>
-                                <action selector="addToCart:" destination="-1" eventType="touchUpInside" id="Vzr-gn-ukh"/>
+                                <action selector="collection:" destination="-1" eventType="touchUpInside" id="Hih-gi-itP"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N1i-H9-nq2">
-                            <rect key="frame" x="10" y="10" width="30" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="3Dj-Ct-KhW"/>
-                                <constraint firstAttribute="height" constant="30" id="Trb-tA-UER"/>
-                            </constraints>
-                            <state key="normal" image="购物车"/>
-                            <connections>
-                                <action selector="goToCart:" destination="-1" eventType="touchUpInside" id="6VB-wZ-VHm"/>
-                            </connections>
-                        </button>
-                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="collect_icon" translatesAutoresizingMaskIntoConstraints="NO" id="tOk-Ma-xwM">
-                            <rect key="frame" x="70" y="14" width="23" height="23"/>
-                            <gestureRecognizers/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="23" id="0Jm-hs-vZ5"/>
-                                <constraint firstAttribute="width" constant="23" id="w8V-qk-0OU"/>
-                            </constraints>
-                            <connections>
-                                <outletCollection property="gestureRecognizers" destination="cpL-2E-NsB" appends="YES" id="UsH-fT-IRt"/>
-                            </connections>
-                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.96033936740000003" green="0.97251003979999995" blue="0.98073250059999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Ug0-GF-x9i" secondAttribute="trailing" id="56L-0p-pJ7"/>
-                        <constraint firstItem="tOk-Ma-xwM" firstAttribute="centerY" secondItem="N1i-H9-nq2" secondAttribute="centerY" id="5xV-o3-eHd"/>
+                        <constraint firstItem="Ug0-GF-x9i" firstAttribute="width" secondItem="Ays-uN-xzR" secondAttribute="width" multiplier="1/4" id="7dk-u0-yYH"/>
+                        <constraint firstItem="Xv0-vo-Aph" firstAttribute="centerY" secondItem="Ug0-GF-x9i" secondAttribute="centerY" id="Bqa-hw-Wgz"/>
                         <constraint firstAttribute="bottom" secondItem="Ug0-GF-x9i" secondAttribute="bottom" id="GOW-at-7jJ"/>
-                        <constraint firstItem="N1i-H9-nq2" firstAttribute="centerY" secondItem="Ays-uN-xzR" secondAttribute="centerY" id="HSc-nJ-aKe"/>
                         <constraint firstAttribute="height" constant="50" id="HYm-gk-SUW"/>
-                        <constraint firstItem="KMX-kw-OpR" firstAttribute="top" secondItem="Ays-uN-xzR" secondAttribute="top" id="Wgm-sT-Tfj"/>
-                        <constraint firstItem="N1i-H9-nq2" firstAttribute="leading" secondItem="Ays-uN-xzR" secondAttribute="leading" constant="10" id="af6-IS-yGL"/>
                         <constraint firstItem="Ug0-GF-x9i" firstAttribute="top" secondItem="Ays-uN-xzR" secondAttribute="top" id="eca-fU-wQY"/>
-                        <constraint firstAttribute="bottom" secondItem="KMX-kw-OpR" secondAttribute="bottom" id="qMc-7b-Ihs"/>
-                        <constraint firstItem="tOk-Ma-xwM" firstAttribute="leading" secondItem="N1i-H9-nq2" secondAttribute="trailing" constant="30" id="z3T-44-XIj"/>
-                        <constraint firstItem="Ug0-GF-x9i" firstAttribute="leading" secondItem="KMX-kw-OpR" secondAttribute="trailing" id="zVk-TU-yfn"/>
+                        <constraint firstItem="Xv0-vo-Aph" firstAttribute="width" secondItem="Ug0-GF-x9i" secondAttribute="width" id="goe-hx-8q0"/>
+                        <constraint firstItem="Xv0-vo-Aph" firstAttribute="height" secondItem="Ug0-GF-x9i" secondAttribute="height" id="igp-qE-9no"/>
+                        <constraint firstItem="Ug0-GF-x9i" firstAttribute="leading" secondItem="Xv0-vo-Aph" secondAttribute="trailing" constant="10" id="vQS-pu-B2n"/>
                     </constraints>
                 </view>
             </subviews>
@@ -113,16 +79,10 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="33" y="-127"/>
+            <point key="canvasLocation" x="32.5" y="-127.5"/>
         </view>
-        <tapGestureRecognizer id="cpL-2E-NsB">
-            <connections>
-                <action selector="collection:" destination="-1" id="89W-mi-QGi"/>
-            </connections>
-        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="collect_icon" width="16" height="16"/>
-        <image name="购物车" width="20" height="20"/>
     </resources>
 </document>
