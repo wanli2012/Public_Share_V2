@@ -15,7 +15,6 @@
 #import "GLLoginController.h"
 
 #import "LBImprovePersonalDataViewController.h"
-#import "LBShowSaleManAndBusinessViewController.h"
 #import "LBMineStoreOrderingViewController.h"
 #import "LBMyBusinessListViewController.h"
 

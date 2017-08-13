@@ -12,6 +12,7 @@
 #import "editorMaskPresentationController.h"
 #import "LBBaiduMapViewController.h"
 #import "LBMineCenterChooseAreaViewController.h"
+#import "LBMyBusinessListViewController.h"
 
 @interface LBMerchantSubmissionFourViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate,UITextFieldDelegate,UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
 {
@@ -83,6 +84,7 @@
 @property (nonatomic, copy)NSString *longStr;
 
 @property (nonatomic, strong)NSMutableArray *dataArr;
+@property (strong, nonatomic)UIButton *buttonedt;
 
 @end
 
@@ -98,6 +100,25 @@
     self.provinceStrId = @"";
     self.cityStrId = @"";
     self.countryStrId = @"";
+    
+    
+    _buttonedt=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 60)];
+    [_buttonedt setTitle:@"列表" forState:UIControlStateNormal];
+    [_buttonedt setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -10)];
+    _buttonedt.titleLabel.font = [UIFont systemFontOfSize:14];
+    [_buttonedt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_buttonedt addTarget:self action:@selector(merchantList) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:_buttonedt];
+    
+}
+//跳转商家列表
+-(void)merchantList{
+
+    self.hidesBottomBarWhenPushed = YES;
+    LBMyBusinessListViewController *vc=[[LBMyBusinessListViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
 #pragma mark - get data
 - (void)getPickerData {
