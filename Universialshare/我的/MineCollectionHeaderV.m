@@ -264,7 +264,7 @@
     
     if (!_backimage) {
         _backimage=[[UIImageView alloc]init];
-        _backimage.backgroundColor = [UIColor whiteColor];
+        _backimage.backgroundColor = [UIColor blueColor];
         _backimage.contentMode = UIViewContentModeScaleAspectFill;
         _backimage.clipsToBounds = YES;
     }
