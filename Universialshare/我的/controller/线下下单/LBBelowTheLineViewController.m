@@ -61,10 +61,19 @@
     UITapGestureRecognizer *incentiveModelMaskVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(incentiveModelMaskVtapgestureLb)];
     [self.incentiveModelMaskV addGestureRecognizer:incentiveModelMaskVgesture];
     
-    int num = (arc4random() % 10000);
-    NSString *randomNumber = [NSString stringWithFormat:@"%.4d", num];
+    NSString  *stringRandom =  [[NSUserDefaults standardUserDefaults]objectForKey:@"randomNumber"];
     
-    self.yuliuTf.text = randomNumber;
+    if (stringRandom == nil || [stringRandom isEqualToString:@""]) {
+        
+        int num = (arc4random() % 10000);
+        NSString *randomNumber = [NSString stringWithFormat:@"%.4d", num];
+        
+        self.yuliuTf.text = randomNumber;
+        
+        [[NSUserDefaults standardUserDefaults]setObject:randomNumber forKey:@"randomNumber"];//保存
+    }else{
+        self.yuliuTf.text = stringRandom;
+    }
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"记录"] style:UIBarButtonItemStylePlain target:self action:@selector(checkrecorderEvent)];
     item.imageInsets = UIEdgeInsetsMake(5, -5, 0, 5);
@@ -278,6 +287,7 @@
                 
                 [MBProgressHUD showError:dic[@"message"]];
                 [self.navigationController popViewControllerAnimated:YES];
+                 [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"randomNumber"];//清除
                 
             }else{
                 [MBProgressHUD showError:dic[@"message"]];

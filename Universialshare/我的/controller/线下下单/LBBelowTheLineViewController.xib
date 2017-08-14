@@ -478,8 +478,8 @@
                                         <outletCollection property="gestureRecognizers" destination="xQS-fe-fG0" appends="YES" id="N5T-zS-IDa"/>
                                     </connections>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* 打印时请将备注信息填写和此信息一致" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SuD-r4-bdc">
-                                    <rect key="frame" x="89" y="255" width="182" height="10"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* 预留信息必须与打款凭证所填写预留信息一致" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SuD-r4-bdc">
+                                    <rect key="frame" x="89" y="255" width="212.5" height="10"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="10" id="EGx-NY-Xu2"/>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="f7i-pP-C0H"/>

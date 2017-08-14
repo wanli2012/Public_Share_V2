@@ -850,6 +850,7 @@
 		F9564DFE1EC86217007F3677 /* LBBelowTheLineListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9564DFC1EC86217007F3677 /* LBBelowTheLineListViewController.xib */; };
 		F9564E021EC86251007F3677 /* LBBelowTheLineListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9564E001EC86251007F3677 /* LBBelowTheLineListTableViewCell.m */; };
 		F9564E031EC86251007F3677 /* LBBelowTheLineListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9564E011EC86251007F3677 /* LBBelowTheLineListTableViewCell.xib */; };
+		F95670B31F4144320088B9B2 /* newStroll.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F95670B21F4144320088B9B2 /* newStroll.xcassets */; };
 		F956F0441F3F2315001F5397 /* LBFrontView.m in Sources */ = {isa = PBXBuildFile; fileRef = F956F0431F3F2315001F5397 /* LBFrontView.m */; };
 		F956F0461F3F2322001F5397 /* LBFrontView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F956F0451F3F2322001F5397 /* LBFrontView.xib */; };
 		F956F04A1F3F49D9001F5397 /* LBIntegralGoodsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F956F0481F3F49D9001F5397 /* LBIntegralGoodsCollectionViewCell.m */; };
@@ -2453,6 +2454,7 @@
 		F9564DFF1EC86251007F3677 /* LBBelowTheLineListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBelowTheLineListTableViewCell.h; sourceTree = "<group>"; };
 		F9564E001EC86251007F3677 /* LBBelowTheLineListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBelowTheLineListTableViewCell.m; sourceTree = "<group>"; };
 		F9564E011EC86251007F3677 /* LBBelowTheLineListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBBelowTheLineListTableViewCell.xib; sourceTree = "<group>"; };
+		F95670B21F4144320088B9B2 /* newStroll.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = newStroll.xcassets; sourceTree = "<group>"; };
 		F956F0421F3F2315001F5397 /* LBFrontView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBFrontView.h; sourceTree = "<group>"; };
 		F956F0431F3F2315001F5397 /* LBFrontView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBFrontView.m; sourceTree = "<group>"; };
 		F956F0451F3F2322001F5397 /* LBFrontView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBFrontView.xib; sourceTree = "<group>"; };
@@ -5228,6 +5230,7 @@
 				4AA0D5FC1EAF675300CB8F77 /* Integral_Mall.xcassets */,
 				4AE3546F1EC7F7CD00BF60CC /* 我的.xcassets */,
 				F96659841ED58BDD000DD67F /* BootstrapDiagram.xcassets */,
+				F95670B21F4144320088B9B2 /* newStroll.xcassets */,
 			);
 			path = "图片资源";
 			sourceTree = "<group>";
@@ -6665,6 +6668,7 @@
 				4AAD25401EC188C90054FD06 /* GLBuyBackRecordCell.xib in Resources */,
 				4A337DD51F3ED2A900B51A8A /* LBMineCenterSafeModifySecondSecretViewController.xib in Resources */,
 				4A4610361E9CC6360045824F /* ios-social-sdk-like.html in Resources */,
+				F95670B31F4144320088B9B2 /* newStroll.xcassets in Resources */,
 				4A46101E1E9CC6360045824F /* UMSocialLocalizable.strings in Resources */,
 				F92309521E9B8BFF00ECDC94 /* LBMyOrderAlreadyCompletedViewController.xib in Resources */,
 				F951EB1C1EA1EFD700D6708E /* LBMineCenterUsualUnderOrderTwoViewController.xib in Resources */,

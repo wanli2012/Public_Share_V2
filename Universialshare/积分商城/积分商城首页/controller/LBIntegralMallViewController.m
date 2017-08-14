@@ -196,7 +196,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.hidden = YES;
-    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
 
 }
 
@@ -296,7 +296,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (section == 0) {
-        return 1;
+        return self.hotModels.count == 0?0:1;
     }else{
         
         return self.interestModels.count == 0?0:1;
@@ -304,7 +304,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 1) {
-        return 60*autoSizeScaleY;
+        return 65*autoSizeScaleX;
     }else{
         return 0;
     }
@@ -343,6 +343,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
+        
         return 110 + (SCREEN_WIDTH - 40)/3;
     }else{
         NSInteger num = 0;
