@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "GLNearby_NearShopModel.h"
+#import "LBRecomendShopModel.h"
 
 @interface GLNearby_classifyCell : UITableViewCell
 
+
 @property (nonatomic, strong)GLNearby_NearShopModel *model;
+
+@property (nonatomic, strong)LBRecomendShopModel *shopmodel;
 
 @end

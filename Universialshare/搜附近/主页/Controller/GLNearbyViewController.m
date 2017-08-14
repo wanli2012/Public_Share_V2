@@ -43,6 +43,7 @@
 @property (nonatomic, assign)NSInteger page;
 @property (nonatomic, strong)NSMutableArray *nearArr;
 @property (nonatomic, strong)NSMutableArray *recomendArr;
+@property (weak, nonatomic) IBOutlet UIView *baseSearchV;
 
 @end
 
@@ -55,17 +56,14 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.searchView.layer.cornerRadius = self.searchView.yy_height / 2;
-    
     //定位
     [_mapView viewWillAppear];
     _mapView.delegate = nil; // 此处记得不用的时候需要置nil，否则影响内存的释放
     self.locService.delegate = self;
     _mapView.zoomLevel=20;//地图级别
     _mapView.userTrackingMode = BMKUserTrackingModeNone;//设置定位的状态
+    self.tableview.tableHeaderView = self.classfyHeaderV;
     
-    
-    [self.tableview addSubview:self.placeHolderView];
     [self.tableview registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     [self.tableview registerNib:[UINib nibWithNibName:ID2 bundle:nil] forCellReuseIdentifier:ID2];
     //请求数据
@@ -75,7 +73,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         [weakSelf postRequest];
-
+        [self updateData:YES];
     }];
     // 设置文字
     [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
@@ -188,7 +186,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         [self endRefresh];
         if ([responseObject[@"code"] integerValue] == 1){
             weakself.tradeArr = responseObject[@"data"][@"trade"];
-           weakself.tableview.tableHeaderView = weakself.classfyHeaderV;
+            [self.classfyHeaderV initdatasorece:weakself.tradeArr];
             self.placeHolderView.hidden = YES;
         }
         
@@ -247,7 +245,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
-        return self.recomendArr.count == 0?0:1;
+        return self.recomendArr.count ;
     }else{
         return self.nearArr.count;
     }
@@ -255,22 +253,20 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30 * autoSizeScaleY;
+    return 65 * autoSizeScaleX;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     GLNearby_SectionHeaderView *headV = [[NSBundle mainBundle] loadNibNamed:@"GLNearby_SectionHeaderView" owner:nil options:nil].lastObject;
     
     if (section == 0) {
-        headV.titleLabel.text = @"推荐商家";
         [headV.moreBtn setTitle:@"查看更多" forState:UIControlStateNormal];
-        headV.imagev.image = [UIImage imageNamed:@"tjsj_icon"];
+        headV.imagev.image = [UIImage imageNamed:@"推荐商家"];
         headV.moreBtn.tag = 10;
     }else{
-        headV.titleLabel.text = @"附近商家";
         [headV.moreBtn setTitle:@"查看全部" forState:UIControlStateNormal];
         headV.moreBtn.tag = 11;
-        headV.imagev.image = [UIImage imageNamed:@"fjsj_icon"];
+        headV.imagev.image = [UIImage imageNamed:@"附近商家"];
     }
     [headV.moreBtn addTarget:self action:@selector(more:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -279,9 +275,9 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         
-        GLNearby_RecommendMerchatCell *cell = [tableView dequeueReusableCellWithIdentifier:ID2 forIndexPath:indexPath];
+        GLNearby_classifyCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
         cell.selectionStyle = 0;
-        cell.models = self.recomendArr;
+        cell.shopmodel = self.recomendArr[indexPath.row];
         return cell;
         
     }else{
@@ -297,11 +293,9 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        return (SCREEN_WIDTH / 3) + 30;
-    }else{
-        return 110 *autoSizeScaleY;
-    }
+
+    return 120;
+    
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -309,8 +303,13 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     LBStoreMoreInfomationViewController *store = [[LBStoreMoreInfomationViewController alloc] init];
     store.lat = [[GLNearby_Model defaultUser].latitude floatValue];
     store.lng = [[GLNearby_Model defaultUser].longitude floatValue];
-    GLNearby_NearShopModel *model = self.nearArr[indexPath.row];
-    store.storeId = model.shop_id;
+    if (indexPath.section == 0) {
+        LBRecomendShopModel *model = self.recomendArr[indexPath.row];
+        store.storeId = model.shop_id;
+    }else{
+        GLNearby_NearShopModel *model = self.nearArr[indexPath.row];
+        store.storeId = model.shop_id;
+    }
     [self.navigationController pushViewController:store animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
@@ -390,6 +389,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 //        NSLog(@"经纬度为：%f,%f 的位置结果是：%@", result.location.latitude,result.location.longitude, result.address);
         
         [self.cityBtn setTitle:result.addressDetail.city forState:UIControlStateNormal];
+        [self.classfyHeaderV.adressLb setTitle:result.addressDetail.city forState:UIControlStateNormal];
         
         // 定位一次成功后就关闭定位
         [_locService stopUserLocationService];
@@ -420,6 +420,44 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         self.hidesBottomBarWhenPushed = NO;
     }
     
+}
+
+-(void)tapgestureImage:(NSInteger)index{
+
+}
+
+-(void)clickSerachevent{
+ 
+    [self search:nil];
+}
+
+-(void)clickSacnEvent{
+
+    [self ScanButton:nil];
+
+}
+#pragma mark --- scrollvireDelegere
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+    if (scrollView.contentOffset.y <= 0) {
+        self.baseSearchV.hidden = YES;
+        self.classfyHeaderV.searchView.hidden = NO;
+        self.baseSearchV.backgroundColor = YYSRGBColor(181, 230, 85, 0);
+    }else{
+        self.baseSearchV.backgroundColor = YYSRGBColor(181, 230, 85, (scrollView.contentOffset.y)/200 * autoSizeScaleX);
+        self.baseSearchV.hidden = NO;
+        self.classfyHeaderV.searchView.hidden = YES;
+    }
+    
+}
+
+
+-(void)updateViewConstraints{
+    [super updateViewConstraints];
+    self.searchView.layer.cornerRadius = 4;
+    self.searchView.layer.borderWidth = 1;
+    self.searchView.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 #pragma mark geoCode的Get方法，实现延时加载
@@ -479,7 +517,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 -(GLNearby_ClassifyHeaderView*)classfyHeaderV{
 
     if (!_classfyHeaderV) {
-        _classfyHeaderV = [[GLNearby_ClassifyHeaderView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 215 * autoSizeScaleX) withDataArr:self.tradeArr];
+        _classfyHeaderV = [[GLNearby_ClassifyHeaderView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 330 * autoSizeScaleX) withDataArr:self.tradeArr];
         _classfyHeaderV.autoresizingMask = UIViewAutoresizingNone;
         _classfyHeaderV.delegete = self;
     }

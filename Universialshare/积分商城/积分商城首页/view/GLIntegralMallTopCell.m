@@ -72,8 +72,38 @@
 
 - (void)setModels:(NSArray *)models{
     _models = models;
-    if (models.count == 3) {
+    if (models.count == 0) {
+        self.firstView.hidden = YES;
+        self.secondView.hidden = YES;
+        self.thirdView.hidden = YES;
+    }else if (models.count == 1){
+        self.firstView.hidden = NO;
+        self.secondView.hidden = YES;
+        self.thirdView.hidden = YES;
+        GLMallHotModel *model = models[0];
+        //        [NSString stringWithFormat:@"%@?x-oss-process=style/miquan",model.mall_url];
+        [_imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?x-oss-process=style/miquan",model.mall_url]] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+        _titleLabel.text = model.mall_name;
+    }else if (models.count == 2){
+        self.firstView.hidden = NO;
+        self.secondView.hidden = NO;
+        self.thirdView.hidden = YES;
+        GLMallHotModel *model = models[0];
+        //        [NSString stringWithFormat:@"%@?x-oss-process=style/miquan",model.mall_url];
+        [_imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?x-oss-process=style/miquan",model.mall_url]] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+        _titleLabel.text = model.mall_name;
         
+        [_jifenLabel setAttributedText:[self changeColor:_jifenLabel rangeNumber:[model.mall_inte integerValue]]];
+        
+        GLMallHotModel *model2 = models[1];
+        [_imageV2 sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?x-oss-process=style/miquan",model2.mall_url]] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+        _titleLabel2.text = model2.mall_name;
+    }
+   else if (models.count == 3) {
+       self.firstView.hidden = NO;
+       self.secondView.hidden = NO;
+       self.thirdView.hidden = NO;
+       
         GLMallHotModel *model = models[0];
 //        [NSString stringWithFormat:@"%@?x-oss-process=style/miquan",model.mall_url];
         [_imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?x-oss-process=style/miquan",model.mall_url]] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];

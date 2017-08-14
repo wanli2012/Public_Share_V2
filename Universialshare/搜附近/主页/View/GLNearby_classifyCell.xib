@@ -61,7 +61,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxH-DS-RCg">
-                        <rect key="frame" x="281" y="85" width="0.0" height="0.0"/>
+                        <rect key="frame" x="281" y="105" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -102,7 +102,7 @@
                     <constraint firstItem="6Z2-US-Dn2" firstAttribute="top" secondItem="hgH-1Y-SVN" secondAttribute="bottom" constant="7" id="ab2-Wg-gQN"/>
                     <constraint firstItem="hgH-1Y-SVN" firstAttribute="top" secondItem="7b6-yK-W3T" secondAttribute="bottom" constant="7" id="kDW-4a-4eg"/>
                     <constraint firstAttribute="trailing" secondItem="bxH-DS-RCg" secondAttribute="trailing" constant="10" id="lmC-tO-YM5"/>
-                    <constraint firstItem="bxH-DS-RCg" firstAttribute="centerY" secondItem="VFM-C2-anV" secondAttribute="centerY" id="mUA-dB-x9c"/>
+                    <constraint firstItem="bxH-DS-RCg" firstAttribute="centerY" secondItem="VFM-C2-anV" secondAttribute="centerY" constant="20" id="mUA-dB-x9c"/>
                     <constraint firstItem="hgH-1Y-SVN" firstAttribute="leading" secondItem="7b6-yK-W3T" secondAttribute="leading" id="rdP-yS-ayB"/>
                     <constraint firstItem="7b6-yK-W3T" firstAttribute="leading" secondItem="FCh-Pl-qYx" secondAttribute="trailing" constant="10" id="s4r-9P-d4W"/>
                     <constraint firstItem="VFM-C2-anV" firstAttribute="top" secondItem="6Z2-US-Dn2" secondAttribute="bottom" constant="7" id="suf-qy-LRx"/>

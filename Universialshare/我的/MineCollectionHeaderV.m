@@ -264,7 +264,7 @@
     
     if (!_backimage) {
         _backimage=[[UIImageView alloc]init];
-        _backimage.backgroundColor = [UIColor blueColor];
+        _backimage.backgroundColor = [UIColor whiteColor];
         _backimage.contentMode = UIViewContentModeScaleAspectFill;
         _backimage.clipsToBounds = YES;
     }
@@ -332,7 +332,7 @@
         _cycleScrollView.autoScrollTimeInterval = 2;// 自动滚动时间间隔
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
         _cycleScrollView.titleLabelBackgroundColor = [UIColor groupTableViewBackgroundColor];// 图片对应的标题的 背景色。（因为没有设标题）
-        
+        _cycleScrollView.showPageControl = NO;
         _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
 
     }

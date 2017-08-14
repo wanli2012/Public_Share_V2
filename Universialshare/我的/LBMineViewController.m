@@ -193,7 +193,7 @@ static CGFloat headViewH = 300;
 
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushToInfoVC)];
         [_headview.headimage addGestureRecognizer:tap];
-        [_headview.backimage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[UserModel defaultUser].headPic]]];
+        [_headview.backimage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[UserModel defaultUser].headPic]] placeholderImage:[UIImage imageNamed:@"背景渲染图片"]];
         [_headview.headimage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[UserModel defaultUser].headPic]]];
         
         if (!_headview.headimage.image) {

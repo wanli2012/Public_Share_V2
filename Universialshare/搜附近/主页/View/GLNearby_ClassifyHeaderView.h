@@ -11,6 +11,13 @@
 @protocol ClassifyHeaderViewdelegete <NSObject>
 
 -(void)tapgesture:(NSInteger)tag;
+//点击轮播图
+-(void)tapgestureImage:(NSInteger)index;
+//点击扫码
+-(void)clickSacnEvent;
+//点击搜索
+-(void)clickSerachevent;
+
 
 @end
 
@@ -19,5 +26,11 @@
 -(instancetype)initWithFrame:(CGRect)frame withDataArr:(NSArray*)dataArr;
 
 @property (assign , nonatomic)id<ClassifyHeaderViewdelegete> delegete;
+
+@property (weak, nonatomic) IBOutlet UIView *searchView;
+
+@property (weak, nonatomic) IBOutlet UIButton *adressLb;
+
+-(void)initdatasorece:(NSArray*)dataArr;
 
 @end

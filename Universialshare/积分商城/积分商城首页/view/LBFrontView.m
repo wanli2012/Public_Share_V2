@@ -62,6 +62,8 @@
         _cycleScrollView.titleLabelBackgroundColor = [UIColor clearColor];// 图片对应的标题的 背景色。（因为没有设标题）
         _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
         _cycleScrollView.localizationImageNamesGroup = self.imagearr;
+        _cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner选中"];
+        _cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner未选中"];
     }
     
     return _cycleScrollView;

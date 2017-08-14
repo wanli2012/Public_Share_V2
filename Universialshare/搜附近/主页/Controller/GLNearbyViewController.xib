@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLNearbyViewController">
             <connections>
+                <outlet property="baseSearchV" destination="xAs-x6-HFY" id="LWb-hH-HB5"/>
                 <outlet property="cityBtn" destination="x5F-X8-yYe" id="0iH-lq-xah"/>
                 <outlet property="searchTextF" destination="kcb-KZ-RHV" id="Txs-pa-kcI"/>
                 <outlet property="searchView" destination="wsc-Eq-btn" id="MgF-lW-0da"/>
@@ -24,6 +25,14 @@
             <rect key="frame" x="0.0" y="0.0" width="339" height="352"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Qb-b8-t2O">
+                    <rect key="frame" x="0.0" y="0.0" width="339" height="303"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="N8M-XU-rx0"/>
+                        <outlet property="delegate" destination="-1" id="AOH-B1-kNN"/>
+                    </connections>
+                </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAs-x6-HFY">
                     <rect key="frame" x="0.0" y="0.0" width="339" height="64"/>
                     <subviews>
@@ -41,24 +50,24 @@
                             </connections>
                         </button>
                         <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wsc-Eq-btn">
-                            <rect key="frame" x="70" y="25" width="199" height="34"/>
+                            <rect key="frame" x="70" y="27.5" width="199" height="29"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="搜索" translatesAutoresizingMaskIntoConstraints="NO" id="lPw-nS-4My">
-                                    <rect key="frame" x="10" y="10" width="14" height="14"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="搜索白色" translatesAutoresizingMaskIntoConstraints="NO" id="lPw-nS-4My">
+                                    <rect key="frame" x="10" y="7.5" width="14" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="lPw-nS-4My" secondAttribute="height" multiplier="1:1" id="9O9-D3-cjp"/>
                                         <constraint firstAttribute="width" constant="14" id="y4G-BK-7uO"/>
                                     </constraints>
                                 </imageView>
-                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入商店名或地址" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kcb-KZ-RHV">
-                                    <rect key="frame" x="34" y="0.0" width="165" height="34"/>
+                                <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kcb-KZ-RHV">
+                                    <rect key="frame" x="34" y="0.0" width="165" height="29"/>
                                     <gestureRecognizers/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="kcb-KZ-RHV" secondAttribute="bottom" id="0j4-Vq-Ghk"/>
@@ -90,38 +99,30 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="x5F-X8-yYe" firstAttribute="leading" secondItem="xAs-x6-HFY" secondAttribute="leading" constant="5" id="0Fv-Gh-K2S"/>
                         <constraint firstItem="wsc-Eq-btn" firstAttribute="centerX" secondItem="xAs-x6-HFY" secondAttribute="centerX" id="51x-Dh-3uD"/>
                         <constraint firstItem="x5F-X8-yYe" firstAttribute="top" secondItem="xAs-x6-HFY" secondAttribute="top" constant="20" id="DFJ-kW-UgK"/>
                         <constraint firstItem="nhO-Wv-fDc" firstAttribute="centerY" secondItem="wsc-Eq-btn" secondAttribute="centerY" id="KzE-Vt-cvG"/>
                         <constraint firstAttribute="bottom" secondItem="x5F-X8-yYe" secondAttribute="bottom" id="NpD-CQ-L9M"/>
-                        <constraint firstItem="wsc-Eq-btn" firstAttribute="height" secondItem="x5F-X8-yYe" secondAttribute="height" constant="-10" id="YnV-nA-228"/>
+                        <constraint firstItem="wsc-Eq-btn" firstAttribute="height" secondItem="x5F-X8-yYe" secondAttribute="height" constant="-15" id="YnV-nA-228"/>
                         <constraint firstAttribute="trailing" secondItem="nhO-Wv-fDc" secondAttribute="trailing" constant="10" id="amC-in-Ky8"/>
                         <constraint firstItem="wsc-Eq-btn" firstAttribute="leading" secondItem="x5F-X8-yYe" secondAttribute="trailing" constant="5" id="cvk-8z-mJg"/>
                         <constraint firstItem="wsc-Eq-btn" firstAttribute="centerY" secondItem="x5F-X8-yYe" secondAttribute="centerY" id="dK7-AB-jL2"/>
                         <constraint firstAttribute="height" constant="64" id="wV8-sY-eZ0"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Qb-b8-t2O">
-                    <rect key="frame" x="0.0" y="64" width="339" height="239"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="N8M-XU-rx0"/>
-                        <outlet property="delegate" destination="-1" id="AOH-B1-kNN"/>
-                    </connections>
-                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="xAs-x6-HFY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="G45-Yt-q32"/>
                 <constraint firstAttribute="trailing" secondItem="xAs-x6-HFY" secondAttribute="trailing" id="Of8-6H-AuY"/>
+                <constraint firstItem="7Qb-b8-t2O" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SLg-XR-nlU"/>
                 <constraint firstAttribute="trailing" secondItem="7Qb-b8-t2O" secondAttribute="trailing" id="ao2-Rq-Ugz"/>
                 <constraint firstItem="7Qb-b8-t2O" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hQm-Ar-KXY"/>
                 <constraint firstItem="xAs-x6-HFY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="js6-9P-NUR"/>
                 <constraint firstAttribute="bottom" secondItem="7Qb-b8-t2O" secondAttribute="bottom" constant="49" id="qzu-ix-vEw"/>
-                <constraint firstItem="7Qb-b8-t2O" firstAttribute="top" secondItem="xAs-x6-HFY" secondAttribute="bottom" id="yoG-gQ-f9Z"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -135,6 +136,6 @@
     </objects>
     <resources>
         <image name="saomiao1" width="80" height="80"/>
-        <image name="搜索" width="15" height="14"/>
+        <image name="搜索白色" width="16" height="16"/>
     </resources>
 </document>

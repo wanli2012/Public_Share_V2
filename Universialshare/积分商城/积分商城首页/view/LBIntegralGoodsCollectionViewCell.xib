@@ -46,7 +46,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJi-7n-3tp">
-                        <rect key="frame" x="51" y="131" width="20" height="10"/>
+                        <rect key="frame" x="51" y="129" width="20" height="10"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="86G-07-y02"/>
                             <constraint firstAttribute="height" constant="10" id="ddg-iC-FNb"/>
@@ -56,7 +56,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oxb-h9-q7L">
-                        <rect key="frame" x="51" y="135.5" width="20" height="1"/>
+                        <rect key="frame" x="51" y="133.5" width="20" height="1"/>
                         <color key="backgroundColor" red="0.43524378540000003" green="0.43532308939999997" blue="0.43523877859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="HY6-AV-a6K"/>
@@ -68,7 +68,7 @@
                 <constraint firstItem="cJi-7n-3tp" firstAttribute="leading" secondItem="oxb-h9-q7L" secondAttribute="leading" id="026-u6-HIQ"/>
                 <constraint firstItem="r3t-SN-FPK" firstAttribute="top" secondItem="iJc-QQ-jLQ" secondAttribute="bottom" constant="7" id="40h-Jh-eEs"/>
                 <constraint firstItem="iJc-QQ-jLQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="7nd-sx-kpl"/>
-                <constraint firstItem="cJi-7n-3tp" firstAttribute="bottom" secondItem="EFN-ef-9Bh" secondAttribute="bottom" id="9Gd-Ng-7Rb"/>
+                <constraint firstItem="cJi-7n-3tp" firstAttribute="bottom" secondItem="EFN-ef-9Bh" secondAttribute="bottom" constant="-2" id="9Gd-Ng-7Rb"/>
                 <constraint firstAttribute="trailing" secondItem="r3t-SN-FPK" secondAttribute="trailing" id="Atq-DG-D6Z"/>
                 <constraint firstItem="EFN-ef-9Bh" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="1/2" constant="-2" id="Ld8-GJ-YX5"/>
                 <constraint firstItem="iJc-QQ-jLQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="NRX-np-PDz"/>

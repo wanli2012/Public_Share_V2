@@ -24,4 +24,8 @@
 
 @property (nonatomic, copy)NSString *today_money;
 
+@property (nonatomic, copy)NSString *shop_address;
+
+@property (nonatomic, copy)NSString *corporation_phone;
+
 @end

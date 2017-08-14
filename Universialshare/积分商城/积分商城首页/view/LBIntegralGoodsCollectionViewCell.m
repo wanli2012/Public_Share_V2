@@ -25,6 +25,11 @@
     [_imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?x-oss-process=style/miquan",model.thumb]] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     _oldPrice.text = [NSString stringWithFormat:@"%@/米券",_model.goods_price];
     
+    NSMutableAttributedString *textColor = [[NSMutableAttributedString alloc]initWithString:_oldPrice.text];
+    NSRange rangel = [[textColor string] rangeOfString:_model.goods_price];
+    [textColor addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:11] range:rangel];
+    [_oldPrice setAttributedText:textColor];
+    
 }
 
 - (void)changeColor:(UILabel*)label rangeNumber:(NSInteger )rangeNum
