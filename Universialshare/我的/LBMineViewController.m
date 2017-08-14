@@ -645,7 +645,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     if (!_imageArr) {
         
         if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
-            _imageArr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"产品管理",@"mg_icon",@"", nil];
+            _imageArr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"收益管理",@"我的米柜",@"会员管理",@"商品管理",@"门店管理",@"我要下单",@"商品列表",@"推荐",@"兑换",@"收藏", nil];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
             _imageArr=[NSArray arrayWithObjects:@"jf_icon",@"wytd_icon",@"mg_icon",@"jf_icon",@"wytd_icon",@"mg_icon",@"兑",@"wdsc_iocn",@"我要推荐", nil];
         }
