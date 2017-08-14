@@ -326,9 +326,127 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             break;
     }
 }
+
 -(void)MerchantJump:(NSInteger)item{
-    
+    switch (item) {
+        case 0://待收货
+        {
+            self.hidesBottomBarWhenPushed=YES;
+            LBMineCenterReceivingGoodsViewController *vc=[[LBMineCenterReceivingGoodsViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+        }
+            break;
+        case 1://线上订单
+        {
+            self.hidesBottomBarWhenPushed=YES;
+            LBMineCenterMyOrderViewController *vc=[[LBMineCenterMyOrderViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+        }
+            break;
+        case 2://线下订单
+        {
+            LBMineCenterUsualUnderOrderViewController *vc=[[LBMineCenterUsualUnderOrderViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+        }
+            break;
+        case 3://我的米分
+        {
+            self.hidesBottomBarWhenPushed=YES;
+            GLMyHeartController *vc=[[GLMyHeartController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+        }
+            break;
+        case 4://收益管理
+        {
+            self.hidesBottomBarWhenPushed=YES;
+            LBHomeIncomeViewController *vc1=[[LBHomeIncomeViewController alloc]init];
+            [self.navigationController pushViewController:vc1 animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+        }
+            break;
+        case 5://我的米柜
+        {
+            self.hidesBottomBarWhenPushed=YES;
+            GLMine_MyBeansController *vc=[[GLMine_MyBeansController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+        }
+            break;
+        case 6://会员管理
+        {
+            self.hidesBottomBarWhenPushed=YES;
+            GLMemberManagerController *vc=[[GLMemberManagerController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+            
+        }
+            break;
+        case 7://线下下单
+        {
+            self.hidesBottomBarWhenPushed=YES;
+            LBBelowTheLineViewController *vc=[[LBBelowTheLineViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+        }
+            break;
+        case 8://门店管理
+        {
+            self.hidesBottomBarWhenPushed=YES;
+            GLMerchat_StoreController *vc=[[GLMerchat_StoreController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+        }
+            break;
+        case 9://兑换
+        {
+            if ([[UserModel defaultUser].rzstatus isEqualToString:@"2"]) {
+                
+                self.hidesBottomBarWhenPushed=YES;
+                GLBuyBackController *vc=[[GLBuyBackController alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+                self.hidesBottomBarWhenPushed=NO;
+                
+            }else if ([[UserModel defaultUser].rzstatus isEqualToString:@"1"]) {
+                [MBProgressHUD showError:@"审核中"];
+            }else{
+                [self.view addSubview:self.maskV];
+                [self.maskV addSubview:self.infoContentV];
+                self.infoContentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
+                
+                [UIView animateWithDuration:0.2 animations:^{
+                    
+                    self.infoContentV.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
+                    
+                }];
+            }
+        }
+            break;
+        case 10://收藏
+        {
+            self.hidesBottomBarWhenPushed=YES;
+            GLMyCollectionController *vc=[[GLMyCollectionController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+        }
+            break;
+        case 11://推荐
+        {
+            self.hidesBottomBarWhenPushed=YES;
+            GLRecommendController *vc=[[GLRecommendController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
+
 -(void)PromoterJump:(NSInteger)item{
     
     switch (item) {
@@ -510,7 +628,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
     if (!_titlearr) {
         if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
-            _titlearr=[NSArray arrayWithObjects:@"会员管理",@"我要下单",@"米柜",@"兑换",@"商品管理",@"推荐", nil];
+            _titlearr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"收益管理",@"我的米柜",@"会员管理",@"商品管理",@"门店管理",@"我要下单",@"商品列表",@"推荐",@"兑换",@"收藏", nil];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
            _titlearr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"我要推店",@"我的米柜",@"兑换",@"收藏",@"推荐", nil];
         }
@@ -527,7 +645,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     if (!_imageArr) {
         
         if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
-            _imageArr=[NSArray arrayWithObjects:@"会员管理",@"我要下单",@"米柜",@"兑",@"产品管理",@"我要推荐", nil];
+            _imageArr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"产品管理",@"mg_icon",@"", nil];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
             _imageArr=[NSArray arrayWithObjects:@"jf_icon",@"wytd_icon",@"mg_icon",@"jf_icon",@"wytd_icon",@"mg_icon",@"兑",@"wdsc_iocn",@"我要推荐", nil];
         }

@@ -47,21 +47,37 @@
     }
     [_dataBase close];
 }
-//删除数据
--(void)deleteAllDataOfFMDB{
+
+//删除数据(特定一条)
+-(void)deleteAllDataOfFMDB:(NSString *)userName{
+    
     if ([_dataBase open]) {
-        NSString *deleteSql = [NSString stringWithFormat:@"delete from NEW_LIST"];
+        NSString *deleteSql = [NSString stringWithFormat:@"delete from NEW_LIST where name = '%@'",userName];
         BOOL res = [_dataBase executeUpdate:deleteSql];
         if (!res) {
-            //NSLog(@"删除失败");
+            NSLog(@"删除失败");
         } else {
-            //NSLog(@"删除成功");
+            NSLog(@"删除成功");
         }
         [_dataBase close];
     }
     
 }
-
+//删除数据 (所有数据)
+-(void)deleteAllDataOfFMDB{
+    
+    if ([_dataBase open]) {
+        NSString *deleteSql = [NSString stringWithFormat:@"delete from NEW_LIST"];
+        BOOL res = [_dataBase executeUpdate:deleteSql];
+        if (!res) {
+//            NSLog(@"删除失败");
+        } else {
+//            NSLog(@"删除成功");
+        }
+        [_dataBase close];
+    }
+    
+}
 //查询数据
 -(NSArray *)queryAllDataOfFMDB{
     NSMutableArray *dataArr = [@[]mutableCopy];
@@ -84,6 +100,34 @@
     }
     [_dataBase close];
     return [dataArr copy];
+}
+//查询特定数据
+-(NSDictionary *)queryDataOfFMDBWithName:(NSString *)name{
+
+    NSDictionary *dic;
+    // 1.执行查询语句
+    if ([_dataBase open]) {
+        NSString *deleteSql = [NSString stringWithFormat:@"SELECT * FROM NEW_LIST where name = '%@'",name];
+        FMResultSet *resultSet = [_dataBase executeQuery:deleteSql];
+
+//        FMResultSet *resultSet = [_dataBase executeQuery:@"SELECT * FROM NEW_LIST where name = '%@'",name];
+        
+        // 2.遍历结果
+//        while ([resultSet next]) {
+        
+            NSString *headPic = [resultSet stringForColumn:@"headPic"];
+            NSString *name = [resultSet stringForColumn:@"name"];
+            NSString *phone = [resultSet stringForColumn:@"phone"];
+            NSString *password = [resultSet stringForColumn:@"password"];
+            NSString *groupID = [resultSet stringForColumn:@"groupID"];
+            
+           dic = @{@"headPic":headPic,@"name":name,@"phone":phone,@"password":password,@"groupID":groupID};
+            
+//        }
+    }
+    [_dataBase close];
+    
+    return dic;
 }
 
 //判断表中是否存在数据

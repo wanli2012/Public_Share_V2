@@ -68,7 +68,6 @@ static NSString *ID = @"GLIncomeManagerCell";
             weakself.CalendarView.hidden = YES;
         });
     };
-    
 
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -108,6 +107,7 @@ static NSString *ID = @"GLIncomeManagerCell";
 }
 
 - (void)endRefresh {
+    
     [self.tableView.mj_footer endRefreshing];
     [self.tableView.mj_header endRefreshing];
     

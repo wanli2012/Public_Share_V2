@@ -87,7 +87,6 @@
     
         self.imagev.image = [UIImage imageNamed:self.imagearr[index]];
     }
-
 }
 
 -(void)reloadImage:(NSArray *)arr{

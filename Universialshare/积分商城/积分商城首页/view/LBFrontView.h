@@ -13,7 +13,7 @@
 
 @property (strong, nonatomic)SDCycleScrollView *cycleScrollView;
 @property (weak, nonatomic) IBOutlet UIView *navabaseV;
-
+@property (nonatomic, strong)NSArray *models;
 
 -(void)reloadImage:(NSArray*)arr;
 

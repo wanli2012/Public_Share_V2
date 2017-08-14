@@ -28,8 +28,10 @@
 #import "GLHomePageNoticeView.h"
 #import "GLConfirmOrderController.h"
 #import "LBFrontView.h"
+#import "GLAdModel.h"
+#import "GLMine_AdController.h"
 
-@interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,GLIntegralMallTopCellDelegete,GLIntegralGoodsCellDelegate>
+@interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,GLIntegralMallTopCellDelegete,GLIntegralGoodsCellDelegate,SDCycleScrollViewDelegate>
 {
     LoadWaitView * _loadV;
     NSInteger _page;
@@ -87,6 +89,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
     [self postRequest];//求情数据
+    
     /**
      * 数组tableHeaderView
      */
@@ -152,6 +155,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
                         [_hotModels addObject:model];
                     }
                 }
+                
                 if ([responseObject[@"data"][@"inte_list"] count]) {
                     
                     for (NSDictionary *dic in responseObject[@"data"][@"inte_list"]) {
@@ -159,15 +163,25 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
                         [_interestModels addObject:model];
                     }
                 }
-                if ([responseObject[@"data"][@"banner_url"] count] != 0) {
+
+                if ([responseObject[@"data"][@"advert"] count] != 0) {
                     [self.bannerArr removeAllObjects];
-                    for (NSDictionary *dic in responseObject[@"data"][@"banner_url"]) {
-                        [self.bannerArr addObject:dic[@"image_url"]];
+                    for (NSDictionary *dic in responseObject[@"data"][@"advert"]) {
+                        GLAdModel *model = [GLAdModel mj_objectWithKeyValues:dic];
+                        [self.bannerArr addObject:model];
                     }
                 }
 
                 if (self.bannerArr.count > 0) {
-                    [self.frontView reloadImage:self.bannerArr];
+                    
+                    NSMutableArray *imageAr = [NSMutableArray array];
+                    for (int i = 0; i < self.bannerArr.count; i ++) {
+                        GLAdModel *model = self.bannerArr[i];
+                        [imageAr addObject:model.thumb];
+                    }
+                    self.frontView.cycleScrollView.delegate = self;
+                    [self.frontView reloadImage:imageAr];
+                    
                 }
             }
         }
@@ -181,6 +195,23 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
         
     }];
 
+}
+/** 点击图片回调 */
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_AdController *adVC = [[GLMine_AdController alloc] init];
+    GLAdModel *model = self.bannerArr[index];
+    adVC.url = model.url;
+    [self.navigationController pushViewController:adVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+
+    
+}
+
+-(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
