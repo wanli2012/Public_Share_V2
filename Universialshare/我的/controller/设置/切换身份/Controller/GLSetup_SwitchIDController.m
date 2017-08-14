@@ -10,6 +10,8 @@
 #import "GLSetup_SwitchIDCell.h"
 #import "GLAccountModel.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "GLLoginController.h"
+#import "BaseNavigationViewController.h"
 
 @interface GLSetup_SwitchIDController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -111,7 +113,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    
+    if ([self.nameArr[indexPath.row] isEqualToString:[UserModel defaultUser].name]) {
+        [MBProgressHUD showError:@"当前帐号已登录"];
+        return;
+    }
+
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
     
@@ -218,7 +224,6 @@
                 [UserModel defaultUser].shop_address = @"";
                 [UserModel defaultUser].shop_type = @"";
                 [UserModel defaultUser].is_main = @"";
-                
             }
             
             [usermodelachivar achive];
@@ -234,10 +239,33 @@
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
-
     
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";//默认文字为 Delete
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if ([self.nameArr[indexPath.row] isEqualToString:[UserModel defaultUser].name]) {
+            
+            GLLoginController *loginVC = [[GLLoginController alloc] init];
+            BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
+            nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            [self presentViewController:nav animated:YES completion:nil];
+            
+        }
+        
+        [_projiectmodel deleteAllDataOfFMDB:self.nameArr[indexPath.row]];
+        
+        [self getFmdbDatasoruce];
+        [self.tableView reloadData];
+        
+    }
+}
 #pragma 懒加载
 
 - (NSMutableArray *)phoneArr{

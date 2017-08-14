@@ -17,10 +17,14 @@
 +(GLAccountModel *)greateTableOfFMWithTableName:(NSString *)tableName;
 //插入数据
 -(void)insertOfFMWithDataArray:(NSArray*)dataArr;
-//删除数据
+//删除特定数据
+-(void)deleteAllDataOfFMDB:(NSString *)userName;
+//删除所有数据
 -(void)deleteAllDataOfFMDB;
 //查询数据
 -(NSArray*)queryAllDataOfFMDB;
+//查询特定数据
+-(NSDictionary *)queryDataOfFMDBWithName:(NSString *)name;
 //判断表中是否存在数据
 -(BOOL)isDataInTheTable;
 

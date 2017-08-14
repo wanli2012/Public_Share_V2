@@ -277,7 +277,6 @@
         if ([self.selectB[i] boolValue]) {
             yesNum += 1;
         }
-        
     }
     
     if ([[UserModel defaultUser].mark floatValue] == 0) {//米劵为0
@@ -292,7 +291,6 @@
         }else if(self.selectIndex == 3){
    
             self.paySituation = 7;
-            
         }
         
     }else{//米劵不为0
@@ -348,6 +346,7 @@
             break;
     }
 }
+
 //支付请求
 - (void)postRepuest:(NSNotification *)sender paySituation:(NSInteger )paySituation{
     
@@ -370,7 +369,7 @@
             
         }
             break;
-        case 2://米子+米劵
+        case 2://米劵+米子
         {
 
             dict[@"is_rmb"] = @0;
@@ -379,7 +378,7 @@
 
         }
             break;
-        case 3://米子+微信
+        case 3://米劵+微信
         {
             dict[@"pay_type"] = @2;
             dict[@"is_rmb"] = @1;
@@ -388,7 +387,7 @@
             
         }
             break;
-        case 4://米子+支付宝
+        case 4://米劵+支付宝
         {
             dict[@"pay_type"] = @1;
             dict[@"is_rmb"] = @1;
@@ -439,11 +438,25 @@
                     [MBProgressHUD showError:responseObject[@"message"]];
                 }
                     break;
+                    
                 case 3: case 6://带有微信
                 {
                     [MBProgressHUD showError:responseObject[@"message"]];
+                    
+                    //调起微信支付
+                    PayReq* req = [[PayReq alloc] init];
+                    req.openID=responseObject[@"data"][@"weixinpay"][@"appid"];
+                    req.partnerId = responseObject[@"data"][@"weixinpay"][@"partnerid"];
+                    req.prepayId = responseObject[@"data"][@"weixinpay"][@"prepayid"];
+                    req.nonceStr = responseObject[@"data"][@"weixinpay"][@"noncestr"];
+                    req.timeStamp = [responseObject[@"data"][@"weixinpay"][@"timestamp"] intValue];
+                    req.package = responseObject[@"data"][@"weixinpay"][@"package"];
+                    req.sign = responseObject[@"data"][@"weixinpay"][@"sign"];
+                    [WXApi sendReq:req];
+
                 }
                     break;
+                    
                 case 4: case 7://带有支付宝
                 {
                     [[AlipaySDK defaultService]payOrder:responseObject[@"data"][@"alipay"][@"url"] fromScheme:@"univerAlipay" callback:^(NSDictionary *resultDic) {
