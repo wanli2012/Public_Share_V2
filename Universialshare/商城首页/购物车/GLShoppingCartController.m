@@ -169,6 +169,7 @@ static NSString *ID = @"GLShoppingCell";
         payVC.cart_id = cart_idM;
         payVC.goods_spec = goods_specIdStrM;
         [self.navigationController pushViewController:payVC animated:YES];
+        self.hidesBottomBarWhenPushed = NO;
     }else{
         [MBProgressHUD showError:@"请选择商品"];
     }
