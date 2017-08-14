@@ -282,15 +282,15 @@
     
     if ([[UserModel defaultUser].mark floatValue] == 0) {//米劵为0
         if (self.selectIndex == 1) {
-            NSLog(@"米子支付");
+          
             self.paySituation = 5;
             
         }else if(self.selectIndex == 2){
-            NSLog(@"微信支付");
+   
             self.paySituation = 6;
             
         }else if(self.selectIndex == 3){
-            NSLog(@"支付宝支付");
+   
             self.paySituation = 7;
             
         }
@@ -298,7 +298,7 @@
     }else{//米劵不为0
         
         if([self.orderPrice floatValue] <= [[UserModel defaultUser].mark floatValue]){//米劵支付
-            NSLog(@"米劵支付");
+   
             self.paySituation = 1;
             
         }else if([self.orderPrice floatValue] > [[UserModel defaultUser].mark floatValue]){
@@ -312,15 +312,14 @@
             
             if (self.selectIndex == 1) {
                 
-                NSLog(@"米劵 + 米子");
                 self.paySituation = 2;
                 
             }else if(self.selectIndex == 2){
-                NSLog(@"米劵 + 微信");
+
                 self.paySituation = 3;
                 
             }else{
-                NSLog(@"米劵 + 支付宝");
+
                 self.paySituation = 4;
                 
             }
@@ -348,8 +347,6 @@
         default:
             break;
     }
-
-
 }
 //支付请求
 - (void)postRepuest:(NSNotification *)sender paySituation:(NSInteger )paySituation{
@@ -380,42 +377,37 @@
             dict[@"is_mark"] = @6;
             dict[@"password"] = [sender.userInfo objectForKey:@"password"];
 
-            
         }
             break;
         case 3://米子+微信
-        {
-            dict[@"pay_type"] = @1;
-            dict[@"is_rmb"] = @1;
-            dict[@"is_mark"] = @3;
-            dict[@"password"] = [sender.userInfo objectForKey:@"password"];
-
-            
-        }
-            break;
-        case 4://米子+支付宝
         {
             dict[@"pay_type"] = @2;
             dict[@"is_rmb"] = @1;
             dict[@"is_mark"] = @3;
             dict[@"password"] = [sender.userInfo objectForKey:@"password"];
             
+        }
+            break;
+        case 4://米子+支付宝
+        {
+            dict[@"pay_type"] = @1;
+            dict[@"is_rmb"] = @1;
+            dict[@"is_mark"] = @3;
+            dict[@"password"] = [sender.userInfo objectForKey:@"password"];
             
         }
             break;
         case 5://米子
         {
-        
             dict[@"is_rmb"] = @0;
             dict[@"is_mark"] = @4;
             dict[@"password"] = [sender.userInfo objectForKey:@"password"];
-            
             
         }
             break;
         case 6://微信
         {
-            dict[@"pay_type"] = @1;
+            dict[@"pay_type"] = @2;
             dict[@"is_rmb"] = @1;
             dict[@"is_mark"] = @0;
             
@@ -423,7 +415,7 @@
             break;
         case 7://支付宝
         {
-            dict[@"pay_type"] = @2;
+            dict[@"pay_type"] = @1;
             dict[@"is_rmb"] = @1;
             dict[@"is_mark"] = @0;
 
@@ -434,8 +426,6 @@
             break;
     }
     
-    
-    
     [NetworkManager requestPOSTWithURLStr:@"shop/getPayType" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
@@ -443,8 +433,62 @@
         
         if ([responseObject[@"code"] integerValue] == 1){
             
-            [MBProgressHUD showError:responseObject[@"message"]];
-            
+            switch (self.paySituation) {//没有现金
+                case 1: case 2: case 5:
+                {
+                    [MBProgressHUD showError:responseObject[@"message"]];
+                }
+                    break;
+                case 3: case 6://带有微信
+                {
+                    [MBProgressHUD showError:responseObject[@"message"]];
+                }
+                    break;
+                case 4: case 7://带有支付宝
+                {
+                    [[AlipaySDK defaultService]payOrder:responseObject[@"data"][@"alipay"][@"url"] fromScheme:@"univerAlipay" callback:^(NSDictionary *resultDic) {
+                        
+                        NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
+                        if (orderState==9000) {
+                            self.hidesBottomBarWhenPushed = YES;
+                            
+                            [self.navigationController popToRootViewControllerAnimated:YES];
+                            
+                            self.hidesBottomBarWhenPushed = NO;
+                            
+                        }else{
+                            NSString *returnStr;
+                            switch (orderState) {
+                                case 8000:
+                                    returnStr=@"订单正在处理中";
+                                    break;
+                                case 4000:
+                                    returnStr=@"订单支付失败";
+                                    break;
+                                case 6001:
+                                    returnStr=@"订单取消";
+                                    break;
+                                case 6002:
+                                    returnStr=@"网络连接出错";
+                                    break;
+                                    
+                                default:
+                                    break;
+                            }
+                            
+                            [MBProgressHUD showError:returnStr];
+                            
+                        }
+                        
+                    }];
+                   
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+
         }else{
             
             [MBProgressHUD showError:responseObject[@"message"]];
@@ -457,9 +501,10 @@
         
     }];
     
-    
 }
+
 - (void)popSecretView{
+    
     //弹出密码输入框
     CGFloat contentViewH = 300;
     CGFloat contentViewW = SCREEN_WIDTH;
@@ -480,6 +525,7 @@
 }
 
 - (void)WeChatPay:(NSString *)payType{
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
