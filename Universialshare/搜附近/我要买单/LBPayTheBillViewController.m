@@ -202,7 +202,6 @@
     }];
 }
 
-
 - (void)ricePay:(NSNotification *)sender {
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];

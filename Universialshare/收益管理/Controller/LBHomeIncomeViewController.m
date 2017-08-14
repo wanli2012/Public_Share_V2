@@ -136,6 +136,7 @@
     [self.view addSubview:self.loginView];
     
 }
+
 //确认申请
 -(void)sureapplication{
     
