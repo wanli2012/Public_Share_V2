@@ -18,7 +18,7 @@
 {
     LoadWaitView *_loadV;
     GLSet_MaskVeiw *_maskV;
-    GLOrderPayView *_contentView;
+//    GLOrderPayView *_contentView;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -33,7 +33,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *orderMoney;
 @property (weak, nonatomic) IBOutlet UILabel *orderMTitleLb;
 
-@property (nonatomic, assign)NSInteger paySituation;//1:米劵支付 2:米劵+米子  3:米劵+现金
+@property (nonatomic, assign)NSInteger paySituation;//1:米劵支付 2:米劵+米子  3:米劵+微信 4:米劵+支付宝 5:米子支付 6:微信支付 7:支付宝
+@property (nonatomic, strong)GLOrderPayView *contentView;
 
 @end
 
@@ -59,7 +60,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postRepuest:) name:@"input_PasswordNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postRepuest:paySituation:) name:@"input_PasswordNotification" object:nil];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(Alipaysucess) name:@"Alipaysucess" object:nil];
     
@@ -76,59 +77,74 @@
 
 -(void)isShowPayInterface{
     
-    [NetworkManager requestPOSTWithURLStr:@"shop/getPayTypeIsCloseByConfig" paramDic:@{} finish:^(id responseObject) {
-        
-        if ([responseObject[@"code"] integerValue] == 1) {
-            
-            if ([responseObject[@"data"][@"mq_pay"] integerValue] == 1) {
-                
-                [self.dataarr addObject:@{@"image":@"支付米分",@"title":@"米券支付"}];
-                
-            }
-            
-            if ([responseObject[@"data"][@"alipay"] integerValue] == 1) {
-                
-                [self.dataarr addObject:@{@"image":@"支付宝",@"title":@"支付宝支付"}];
-                
-            }
-            
-            if ([responseObject[@"data"][@"mz_pay"] integerValue] == 1) {
-                
-                [self.dataarr addObject:@{@"image":@"余额",@"title":@"米子支付"}];
-                
-            }
-            
-            if ([responseObject[@"data"][@"wechat"] integerValue] == 1) {
-                
-                [self.dataarr addObject:@{@"image":@"微信",@"title":@"微信支付"}];
-                
-            }
-            
-            [self setPayType];
-
-        }
-        
-        [self.tableview reloadData];
-    } enError:^(NSError *error) {
-        
-    }];
+//    [NetworkManager requestPOSTWithURLStr:@"shop/getPayTypeIsCloseByConfig" paramDic:@{} finish:^(id responseObject) {
+//        
+//        if ([responseObject[@"code"] integerValue] == 1) {
+//            
+//            if ([responseObject[@"data"][@"mq_pay"] integerValue] == 1) {
+//                
+//                [self.dataarr addObject:@{@"image":@"支付米分",@"title":@"米券支付"}];
+//                
+//            }
+//            
+//            
+//            if ([responseObject[@"data"][@"mz_pay"] integerValue] == 1) {
+//                
+//                [self.dataarr addObject:@{@"image":@"余额",@"title":@"米子支付"}];
+//                
+//            }
+//            
+//            if ([responseObject[@"data"][@"wechat"] integerValue] == 1) {
+//                
+//                [self.dataarr addObject:@{@"image":@"微信",@"title":@"微信支付"}];
+//                
+//            }
+//            
+//            if ([responseObject[@"data"][@"alipay"] integerValue] == 1) {
+//                
+//                [self.dataarr addObject:@{@"image":@"支付宝",@"title":@"支付宝支付"}];
+//                
+//            }
+//            
+//            [self setPayType];
+//
+//        }
+//        
+//        [self.tableview reloadData];
+//    } enError:^(NSError *error) {
+//        
+//    }];
+    
+    [self.dataarr addObject:@{@"image":@"支付米分",@"title":@"米券支付"}];
+    [self.dataarr addObject:@{@"image":@"余额",@"title":@"米子支付"}];
+    [self.dataarr addObject:@{@"image":@"微信",@"title":@"微信支付"}];
+    [self.dataarr addObject:@{@"image":@"支付宝",@"title":@"支付宝支付"}];
+    
+    [self setPayType];
     
 }
 
 - (void)setPayType {
-    
-    [self.selectB addObject:@YES];
-    
-    if (self.dataarr.count <= 1) {
-        return;
+
+    //没有米劵
+    if ([[UserModel defaultUser].mark floatValue] == 0.0) {
+        
+        for ( int i = 0 ; i < self.dataarr.count; i++) {
+            [self.selectB addObject:@NO];
+        }
+        
+    }else{
+        
+        [self.selectB addObject:@YES];
+        
+        if (self.dataarr.count <= 1) {
+            return;
+        }
+        
+        for ( int i = 1 ; i < self.dataarr.count; i++) {
+            [self.selectB addObject:@NO];
+        }
     }
-    
-    for ( int i = 1 ; i < self.dataarr.count; i++) {
-        [self.selectB addObject:@NO];
-    }
-    
-    
-    
 }
 
 -(void)wxpaysucess{
@@ -154,11 +170,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.payimage.image = [UIImage imageNamed:_dataarr[indexPath.row][@"image"]];
     cell.paytitile.text = _dataarr[indexPath.row][@"title"];
-    
-//    if([self.dataarr[indexPath.row][@"title"] isEqualToString:@"米子支付"] || [self.dataarr[indexPath. row][@"title"] isEqualToString:@"米券支付"]){
-//        cell.reuseScoreLabel.text = [NSString stringWithFormat:@"剩余:%@",[UserModel defaultUser].mark];
-//    }
-//    
+
     if ([self.selectB[indexPath.row] boolValue] == NO) {
         
         cell.selectimage.image = [UIImage imageNamed:@"支付未选中"];
@@ -172,10 +184,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [UserModel defaultUser].ketiBean = @"300";
-    [usermodelachivar achive];
+
     //米劵足够
-    if ([self.orderPrice floatValue] < [[UserModel defaultUser].mark floatValue] || indexPath.row == 0) {
+    if ([self.orderPrice floatValue] < [[UserModel defaultUser].mark floatValue]) {
         [MBProgressHUD showError:@"请优先使用米劵"];
         return;
     }
@@ -203,6 +214,21 @@
         
         }
     }
+    //没有米劵
+    if ([[UserModel defaultUser].mark floatValue] == 0) {
+        if (indexPath.row == 0 ) {
+            [MBProgressHUD showError:@"米劵为0,请选择其他支付方式"];
+            return;
+            
+        }else if(indexPath.row == 1 && [self.orderPrice floatValue] > [[UserModel defaultUser].ketiBean floatValue]){//米子不足
+            [MBProgressHUD showError:@"米子不足,请选择其他支付方式"];
+            return;
+            
+        }else{
+            
+            [self choosePayType:indexPath.row];
+        }
+    }
     
     [self.tableview reloadData];
     
@@ -211,6 +237,7 @@
 - (void)choosePayType:(NSInteger )index {
     
     if (self.selectIndex == -1) {
+        
         BOOL a=[self.selectB[index] boolValue];
         [self.selectB replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:!a]];
         self.selectIndex = index;
@@ -242,174 +269,233 @@
 
 - (IBAction)surebutton:(UIButton *)sender {
     
-    if([self.orderPrice floatValue] <= [[UserModel defaultUser].mark floatValue]){//米劵支付
-        self.paySituation = 1;
-    }else if([self.orderPrice floatValue] > [[UserModel defaultUser].mark floatValue]){
+    //判断选中了几中支付方式
+    int yesNum = 0;
+    
+    for (int i = 0; i < self.selectB.count; i++) {
         
-        if(([self.orderPrice floatValue] - [[UserModel defaultUser].mark floatValue]) > [[UserModel defaultUser].ketiBean floatValue]){//米子不足
-            if (![self.selectB[2] boolValue]){
-                [MBProgressHUD showError:@"请选择支付方式"];
+        if ([self.selectB[i] boolValue]) {
+            yesNum += 1;
+        }
+        
+    }
+    
+    if ([[UserModel defaultUser].mark floatValue] == 0) {//米劵为0
+        if (self.selectIndex == 1) {
+          
+            self.paySituation = 5;
+            
+        }else if(self.selectIndex == 2){
+   
+            self.paySituation = 6;
+            
+        }else if(self.selectIndex == 3){
+   
+            self.paySituation = 7;
+            
+        }
+        
+    }else{//米劵不为0
+        
+        if([self.orderPrice floatValue] <= [[UserModel defaultUser].mark floatValue]){//米劵支付
+   
+            self.paySituation = 1;
+            
+        }else if([self.orderPrice floatValue] > [[UserModel defaultUser].mark floatValue]){
+            
+            if (yesNum < 2){
+                
+                [MBProgressHUD showError:@"米劵不足,请再选择一种支付方式"];
+                
                 return;
             }
-            self.paySituation = 3;
             
-        }else{//米子足够
-            self.paySituation = 2;
+            if (self.selectIndex == 1) {
+                
+                self.paySituation = 2;
+                
+            }else if(self.selectIndex == 2){
+
+                self.paySituation = 3;
+                
+            }else{
+
+                self.paySituation = 4;
+                
+            }
         }
     }
     
     switch (self.paySituation) {
-        case 1://米劵支付
+        case 1: case 2: case 3: case 4: case 5://米劵支付
         {
-            
-            CGFloat contentViewH = 300;
-            CGFloat contentViewW = SCREEN_WIDTH;
-            _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-            _maskV.bgView.alpha = 0.4;
-            _contentView = [[NSBundle mainBundle] loadNibNamed:@"GLOrderPayView" owner:nil options:nil].lastObject;
-            [_contentView.backBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
-            _contentView.layer.cornerRadius = 4;
-            _contentView.layer.masksToBounds = YES;
-            _contentView.priceLabel.text = [NSString stringWithFormat:@"¥ %@",self.orderPrice];
-            _contentView.frame = CGRectMake(0, SCREEN_HEIGHT, contentViewW, 0);
-            [_maskV showViewWithContentView:_contentView];
-            [UIView animateWithDuration:0.3 animations:^{
-                _contentView.frame = CGRectMake(0, SCREEN_HEIGHT - contentViewH, contentViewW, contentViewH);
-                [_contentView.passwordF becomeFirstResponder];
-            }];
-
-        }
-            break;
-        case 2://米劵+米子
-        {
+            [self popSecretView];//弹出密码输入框
             
         }
             break;
-        case 3://米劵+现金
+        case 6://微信支付
         {
-            
+            [self postRepuest:nil paySituation:self.paySituation];
+        }
+            break;
+        case 7://支付宝支付
+        {
+            [self postRepuest:nil paySituation:self.paySituation];
         }
             break;
             
         default:
             break;
     }
-
-    if (([self.dataarr[self.selectIndex][@"title"] isEqualToString:@"米子支付"] || [self.dataarr[self.selectIndex][@"title"] isEqualToString:@"米券支付"])) {
-
-        CGFloat contentViewH = 300;
-        CGFloat contentViewW = SCREEN_WIDTH;
-        _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        _maskV.bgView.alpha = 0.4;
-        _contentView = [[NSBundle mainBundle] loadNibNamed:@"GLOrderPayView" owner:nil options:nil].lastObject;
-        [_contentView.backBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
-        _contentView.layer.cornerRadius = 4;
-        _contentView.layer.masksToBounds = YES;
-        _contentView.priceLabel.text = [NSString stringWithFormat:@"¥ %@",self.orderPrice];
-        _contentView.frame = CGRectMake(0, SCREEN_HEIGHT, contentViewW, 0);
-        [_maskV showViewWithContentView:_contentView];
-        [UIView animateWithDuration:0.3 animations:^{
-            _contentView.frame = CGRectMake(0, SCREEN_HEIGHT - contentViewH, contentViewW, contentViewH);
-            [_contentView.passwordF becomeFirstResponder];
-        }];
-        
-        
-    }else{
-        
-        if ([self.dataarr[self.selectIndex][@"title"] isEqualToString:@"支付宝支付"]){
-            //支付宝支付
-            [self alipay:@"1"];
-        }else{
-            //微信支付
-            [self WeChatPay:@"2"];
-            
-        }
-        
-    }
-    
-    
 }
-- (void)ricePay:(NSNotification *)sender {
+//支付请求
+- (void)postRepuest:(NSNotification *)sender paySituation:(NSInteger )paySituation{
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"orderId"] = self.order_id;
+    //    dict[@"order_id"] =[RSAEncryptor encryptString:[NSString stringWithFormat:@"%@_%@_%@",self.order_sh,self.order_id,self.order_sn] publicKey:public_RSA];
     
-    NSString *orderID = [NSString stringWithFormat:@"%@_%@_%@",self.order_sh,self.order_id,self.order_sn];
-    dict[@"order_id"] = [RSAEncryptor encryptString:orderID publicKey:public_RSA];
+    dict[@"order_id"] = [NSString stringWithFormat:@"%@_%@_%@",self.order_sh,self.order_id,self.order_sn];
     
-    if (self.selectIndex == 0) {
-        
-        dict[@"type"] = @4;
-    }else{
-        dict[@"type"] = @4;
+    switch (self.paySituation) {
+        case 1://米劵支付
+        {
+            //    dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
+ 
+            dict[@"is_rmb"] = @0;
+            dict[@"is_mark"] = @3;
+            dict[@"password"] = [sender.userInfo objectForKey:@"password"];
+            
+        }
+            break;
+        case 2://米子+米劵
+        {
+
+            dict[@"is_rmb"] = @0;
+            dict[@"is_mark"] = @6;
+            dict[@"password"] = [sender.userInfo objectForKey:@"password"];
+
+        }
+            break;
+        case 3://米子+微信
+        {
+            dict[@"pay_type"] = @2;
+            dict[@"is_rmb"] = @1;
+            dict[@"is_mark"] = @3;
+            dict[@"password"] = [sender.userInfo objectForKey:@"password"];
+            
+        }
+            break;
+        case 4://米子+支付宝
+        {
+            dict[@"pay_type"] = @1;
+            dict[@"is_rmb"] = @1;
+            dict[@"is_mark"] = @3;
+            dict[@"password"] = [sender.userInfo objectForKey:@"password"];
+            
+        }
+            break;
+        case 5://米子
+        {
+            dict[@"is_rmb"] = @0;
+            dict[@"is_mark"] = @4;
+            dict[@"password"] = [sender.userInfo objectForKey:@"password"];
+            
+        }
+            break;
+        case 6://微信
+        {
+            dict[@"pay_type"] = @2;
+            dict[@"is_rmb"] = @1;
+            dict[@"is_mark"] = @0;
+            
+        }
+            break;
+        case 7://支付宝
+        {
+            dict[@"pay_type"] = @1;
+            dict[@"is_rmb"] = @1;
+            dict[@"is_mark"] = @0;
+
+        }
+            break;
+            
+        default:
+            break;
     }
     
-    dict[@"uid"] = [UserModel defaultUser].uid;
-    //    dict[@"order_id"] = self.order_id;
-    dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
-    [NetworkManager requestPOSTWithURLStr:@"shop/ricePayCoupons" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"shop/getPayType" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
+        [self dismiss];
         
         if ([responseObject[@"code"] integerValue] == 1){
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                self.hidesBottomBarWhenPushed = YES;
-                [self.navigationController popToRootViewControllerAnimated:YES];
+            switch (self.paySituation) {//没有现金
+                case 1: case 2: case 5:
+                {
+                    [MBProgressHUD showError:responseObject[@"message"]];
+                }
+                    break;
+                case 3: case 6://带有微信
+                {
+                    [MBProgressHUD showError:responseObject[@"message"]];
+                }
+                    break;
+                case 4: case 7://带有支付宝
+                {
+                    [[AlipaySDK defaultService]payOrder:responseObject[@"data"][@"alipay"][@"url"] fromScheme:@"univerAlipay" callback:^(NSDictionary *resultDic) {
+                        
+                        NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
+                        if (orderState==9000) {
+                            self.hidesBottomBarWhenPushed = YES;
+                            
+                            [self.navigationController popToRootViewControllerAnimated:YES];
+                            
+                            self.hidesBottomBarWhenPushed = NO;
+                            
+                        }else{
+                            NSString *returnStr;
+                            switch (orderState) {
+                                case 8000:
+                                    returnStr=@"订单正在处理中";
+                                    break;
+                                case 4000:
+                                    returnStr=@"订单支付失败";
+                                    break;
+                                case 6001:
+                                    returnStr=@"订单取消";
+                                    break;
+                                case 6002:
+                                    returnStr=@"网络连接出错";
+                                    break;
+                                    
+                                default:
+                                    break;
+                            }
+                            
+                            [MBProgressHUD showError:returnStr];
+                            
+                        }
+                        
+                    }];
+                   
+                }
+                    break;
                     
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [MBProgressHUD showSuccess:responseObject[@"message"]];
-                });
-                self.hidesBottomBarWhenPushed = NO;
-            });
-            
-        }else{
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [MBProgressHUD showSuccess:responseObject[@"message"]];
-            });
-            
-        }
-        [self dismiss];
-    } enError:^(NSError *error) {
-        [MBProgressHUD showError:error.localizedDescription];
-        [_loadV removeloadview];
-        
-    }];
-    
-}
-- (void)integralPay:(NSNotification *)sender {
-    
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    
-    dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"uid"] = [UserModel defaultUser].uid;
-    dict[@"order_id"] = self.order_id;
-    dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
-    
-    [NetworkManager requestPOSTWithURLStr:@"shop/markPay" paramDic:dict finish:^(id responseObject) {
-        
-        [_loadV removeloadview];
-        
-        [self dismiss];
-        
-        if ([responseObject[@"code"] integerValue] == 1){
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                self.hidesBottomBarWhenPushed = YES;
-                
-                [self.navigationController popToRootViewControllerAnimated:YES];
-                
-                [MBProgressHUD showSuccess:responseObject[@"message"]];
-                self.hidesBottomBarWhenPushed = NO;
-            });
-            
+                default:
+                    break;
+            }
+
         }else{
             
             [MBProgressHUD showError:responseObject[@"message"]];
         }
         
     } enError:^(NSError *error) {
+        
         [MBProgressHUD showError:error.localizedDescription];
         [_loadV removeloadview];
         
@@ -417,7 +503,29 @@
     
 }
 
+- (void)popSecretView{
+    
+    //弹出密码输入框
+    CGFloat contentViewH = 300;
+    CGFloat contentViewW = SCREEN_WIDTH;
+    _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _maskV.bgView.alpha = 0.4;
+    _contentView = [[NSBundle mainBundle] loadNibNamed:@"GLOrderPayView" owner:nil options:nil].lastObject;
+    [_contentView.backBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    _contentView.layer.cornerRadius = 4;
+    _contentView.layer.masksToBounds = YES;
+    _contentView.priceLabel.text = [NSString stringWithFormat:@"¥ %@",self.orderPrice];
+    _contentView.frame = CGRectMake(0, SCREEN_HEIGHT, contentViewW, 0);
+    [_maskV showViewWithContentView:_contentView];
+    [UIView animateWithDuration:0.3 animations:^{
+        _contentView.frame = CGRectMake(0, SCREEN_HEIGHT - contentViewH, contentViewW, contentViewH);
+        [_contentView.passwordF becomeFirstResponder];
+    }];
+
+}
+
 - (void)WeChatPay:(NSString *)payType{
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
@@ -523,13 +631,44 @@
     self.hidesBottomBarWhenPushed = NO;
     
 }
-//支付请求
-- (void)postRepuest:(NSNotification *)sender {
-    
-    //米劵支付(米分)
-    [self integralPay:sender];
-        
-}
+
+
+//- (void)pay:(NSNotification *)sender{
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//    dict[@"token"] = [UserModel defaultUser].token;
+//    dict[@"uid"] = [UserModel defaultUser].uid;
+//    dict[@"is_rmb"] = @0;
+//    dict[@"is_mark"] = @3;
+//    dict[@"orderId"] = self.order_id;
+////    dict[@"pay_type"] = ;
+////    dict[@"order_id"] =[RSAEncryptor encryptString:[NSString stringWithFormat:@"%@_%@_%@",self.order_sh,self.order_id,self.order_sn] publicKey:public_RSA];
+////    
+////    dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
+//    
+//    dict[@"order_id"] = [NSString stringWithFormat:@"%@_%@_%@",self.order_sh,self.order_id,self.order_sn];
+//    dict[@"password"] = [sender.userInfo objectForKey:@"password"];
+//    
+//    
+//    [NetworkManager requestPOSTWithURLStr:@"shop/getPayType" paramDic:dict finish:^(id responseObject) {
+//        
+//        [_loadV removeloadview];
+//        [self dismiss];
+//        
+//        if ([responseObject[@"code"] integerValue] == 1){
+//            
+//                [MBProgressHUD showError:responseObject[@"message"]];
+//        }else{
+//            
+//            [MBProgressHUD showError:responseObject[@"message"]];
+//        }
+//        
+//    } enError:^(NSError *error) {
+//        [MBProgressHUD showError:error.localizedDescription];
+//        [_loadV removeloadview];
+//        
+//    }];
+//
+//}
 
 -(NSMutableArray*)dataarr{
     
@@ -558,6 +697,14 @@
     self.sureBt.clipsToBounds = YES;
     
 }
+- (GLOrderPayView *)contentView{
+    
+    if (!_contentView) {
+        
 
+    }
+    
+    return _contentView;
+}
 
 @end

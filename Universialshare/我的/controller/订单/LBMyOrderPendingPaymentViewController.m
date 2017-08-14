@@ -8,11 +8,12 @@
 
 #import "LBMyOrderPendingPaymentViewController.h"
 #import "LBMyOrderListTableViewCell.h"
-#import "LBMineCenterPayPagesViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import "LBMyOrdersHeaderView.h"
 #import "LBMyOrdersModel.h"
 #import "LBMyOrdersListModel.h"
+#import "GLMine_RicePayController.h"
+#import "LBMineCenterPayPagesViewController.h"
 
 @interface LBMyOrderPendingPaymentViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -198,7 +199,7 @@
         [NetworkManager requestPOSTWithURLStr:@"shop/qxOrder" paramDic:dict finish:^(id responseObject) {
             
             [_loadV removeloadview];
-            NSLog(@"responseObject = %@",responseObject);
+//            NSLog(@"responseObject = %@",responseObject);
             if ([responseObject[@"code"] integerValue] == 1){
                 [weakself loadNewData];
                                 
@@ -213,16 +214,29 @@
     headerview.returnPayBt = ^(NSInteger index){//支付
         weakself.hidesBottomBarWhenPushed=YES;
         
-        LBMineCenterPayPagesViewController *vc=[[LBMineCenterPayPagesViewController alloc]init];
-        LBMyOrdersModel *model = self.dataarr[section];
-        vc.order_sn =  model.order_num;
-        vc.order_id = model.order_id;
-        vc.order_sh = model.crypt;
-        vc.orderPrice = model.realy_price;
-        vc.payType = [model.order_type intValue];
-        vc.useableScore = self.useableScore;
-        vc.pushIndex = 2;
-        [weakself.navigationController pushViewController:vc animated:YES];
+        if ([sectionModel.order_type integerValue] == 2) {//米劵订单
+            GLMine_RicePayController *vc=[[GLMine_RicePayController alloc]init];
+            LBMyOrdersModel *model = self.dataarr[section];
+            vc.order_sn =  model.order_num;
+            vc.order_id = model.order_id;
+            vc.order_sh = model.crypt;
+            vc.orderPrice = model.realy_price;
+            vc.useableScore = self.useableScore;
+            [weakself.navigationController pushViewController:vc animated:YES];
+
+        }else{//非米劵订单
+            
+            LBMineCenterPayPagesViewController *vc=[[LBMineCenterPayPagesViewController alloc]init];
+            LBMyOrdersModel *model = self.dataarr[section];
+            vc.order_sn =  model.order_num;
+            vc.order_id = model.order_id;
+            vc.order_sh = model.crypt;
+            vc.orderPrice = model.realy_price;
+            vc.payType = [model.order_type intValue];
+            vc.useableScore = self.useableScore;
+            vc.pushIndex = 2;
+            [weakself.navigationController pushViewController:vc animated:YES];
+        }
     
     };
     return headerview;
