@@ -60,7 +60,23 @@ static NSString *ID = @"GLShoppingCell";
    
     [self.tableView addSubview:self.nodataV];
     
-    [self.seleteAllBtn verticalCenterImageAndTitle:10];
+     [self.tableView.mj_header beginRefreshing];
+     [self postRequest];
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [self postRequest];
+        
+    }];
+    
+    // 设置文字
+    [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
+    
+    [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
+    
+    [header setTitle:@"服务器正在狂奔..." forState:MJRefreshStateRefreshing];
+    
+    self.tableView.mj_header = header;
+
 }
 
 - (void)postRequest {
@@ -76,21 +92,38 @@ static NSString *ID = @"GLShoppingCell";
                 if ([responseObject[@"code"] integerValue] == 1){
                     
                     [self.models removeAllObjects];
+                    [self.dataSource removeAllObjects];
+                    [self.numArr removeAllObjects];
                     
                     for (NSDictionary *dic in responseObject[@"data"]) {
                         
                         GLShoppingCartModel *model = [GLShoppingCartModel mj_objectWithKeyValues:dic];
                         [self.models addObject:model];
+                        
+                        for (int i = 0; i < self.models.count; i ++) {
+                            GLShoppingCartModel *model = self.models[i];
+                            [self.dataSource addObject:model.goods_price];
+                        }
+                        
+                        for (int  i = 0; i < self.models.count; i ++) {
+                            BOOL isSelected = NO;
+                            [self.selectArr addObject:@(isSelected)];
+                            GLShoppingCartModel *model = self.models[i];
+                            [self.numArr addObject:model.num];;
+                        }
                     }
                     
+                    [self.tableView reloadData];
+                    
+                }else{
+                     [MBProgressHUD showError:responseObject[@"message"]];
                 }
-            }else{
-
             }
-     
+        [self.tableView.mj_header endRefreshing];
         [self.tableView reloadData];
     } enError:^(NSError *error) {
-
+         [MBProgressHUD showError:@"请求数据失败"];
+        [self.tableView.mj_header endRefreshing];
     }];
 }
 
@@ -140,8 +173,14 @@ static NSString *ID = @"GLShoppingCell";
         [MBProgressHUD showError:@"请选择商品"];
     }
 }
+
 //全选
 - (IBAction)selectAll:(UIButton*)sender {
+    
+    if (self.models.count <= 0) {
+        [MBProgressHUD showError:@"暂无商品"];
+        return;
+    }
     sender.selected = !sender.selected;
     _totalPrice = 0;
     _totalNum = 0;
@@ -162,13 +201,13 @@ static NSString *ID = @"GLShoppingCell";
         [self.selectArr replaceObjectAtIndex:i withObject:@(tempBool)];
         
     }
-
-    if(self.seleteAllBtn.selected){
     
+    if(self.seleteAllBtn.selected){
+        
         self.totalPriceLabel.text = [NSString stringWithFormat:@"合计:¥%.2f",_totalPrice];
         
     }else{
-
+        
         self.totalPriceLabel.text = @"合计:¥ 0";
         _totalNum = 0;
         _totalPrice = 0;
@@ -176,7 +215,9 @@ static NSString *ID = @"GLShoppingCell";
     }
     [self updateTitleNum];
     [self.tableView reloadData];
+    
 }
+
 //选中,取消选中
 - (void)changeStatus:(NSInteger)index {
     
@@ -213,9 +254,9 @@ static NSString *ID = @"GLShoppingCell";
 
 - (void)updateTitleNum {
     if (self.isMainVC == NO) {
-        self.navaTitle.text = [NSString stringWithFormat:@"购物车(%zd)",_totalNum];
+        self.navaTitle.text = [NSString stringWithFormat:@"购物车"];
     }else{
-        self.navigationItem.title = [NSString stringWithFormat:@"购物车(%zd)",_totalNum];
+        self.navigationItem.title = [NSString stringWithFormat:@"购物车"];
     }
 }
 
@@ -223,7 +264,6 @@ static NSString *ID = @"GLShoppingCell";
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
     [self updateTitleNum];
-    [self postRequest];
     if (self.isMainVC == NO) {
       self.navigationController.navigationBar.hidden = YES;
         self.bottomConstrait.constant = 49;
@@ -317,7 +357,7 @@ static NSString *ID = @"GLShoppingCell";
                 
                     [self.selectArr removeObjectAtIndex:indexPath.row];
                     [self.dataSource removeObjectAtIndex:indexPath.row];
-                    [_numArr removeObjectAtIndex:indexPath.row];
+                    [self.numArr removeObjectAtIndex:indexPath.row];
                     [self.models removeObjectAtIndex:indexPath.row];
                     
                     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -329,9 +369,9 @@ static NSString *ID = @"GLShoppingCell";
                         }
                     }
                     if(select){
-                        self.seleteAllBtn.selected = YES;
-                    }else{
                         self.seleteAllBtn.selected = NO;
+                    }else{
+                        self.seleteAllBtn.selected = YES;
                     }
                     
                 }else{
@@ -358,26 +398,31 @@ static NSString *ID = @"GLShoppingCell";
     return NO;
 }
 
+-(void)updateViewConstraints{
+    [super updateViewConstraints];
+    
+     [self.seleteAllBtn horizontalCenterImageAndTitle:10];
+
+}
+
 - (NSMutableArray *)selectArr {
     if (_selectArr == nil) {
         _selectArr = [NSMutableArray array];
-        _numArr = [NSMutableArray array];
-        for (int  i = 0; i < self.models.count; i ++) {
-            BOOL isSelected = NO;
-            [_selectArr addObject:@(isSelected)];
-            GLShoppingCartModel *model = self.models[i];
-            [_numArr addObject:model.num];;
-        }
     }
     return _selectArr;
+}
+
+- (NSMutableArray *)numArr {
+    if (_numArr == nil) {
+
+        _numArr = [NSMutableArray array];
+       
+    }
+    return _numArr;
 }
 - (NSMutableArray *)dataSource{
     if (!_dataSource) {
         _dataSource = [NSMutableArray array];
-        for (int i = 0; i < self.models.count; i ++) {
-            GLShoppingCartModel *model = self.models[i];
-            [_dataSource addObject:model.goods_price];
-        }
     }
     return _dataSource;
 }

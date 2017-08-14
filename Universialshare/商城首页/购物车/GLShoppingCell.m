@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *xiajiaImageV;
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *specLabel;
+@property (weak, nonatomic) IBOutlet UIView *typeview;
 
 @end
 
@@ -29,20 +30,18 @@
     // Initialization code
  
     self.goodsNamelabel.font = [UIFont systemFontOfSize:ADAPT(15)];
+    self.typeview.backgroundColor = YYSRGBColor(0, 0, 0, 0.3);
 
 }
 - (void)setModel:(GLShoppingCartModel *)model {
     _model = model;
     [_imageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     _goodsNamelabel.text = model.goods_name;
-    _amountLabel.text =[NSString stringWithFormat:@"数量:%@",model.num];
+    _amountLabel.text =[NSString stringWithFormat:@"x%@",model.num];
     _detailLabel.text = model.info;
-    if([model.goods_price integerValue] >10000){
-        
-        _priceLabel.text = [NSString stringWithFormat:@"¥ %.2f万元",[model.goods_price floatValue]/10000];
-    }else{
-        _priceLabel.text = [NSString stringWithFormat:@"¥ %@元",model.goods_price];
-    }
+
+    _priceLabel.text = [NSString stringWithFormat:@"¥%@",model.goods_price];
+    
 //    if (_imageV.image == nil) {
 //        _imageV.image = [UIImage imageNamed:@"XRPlaceholder"];
 //    }

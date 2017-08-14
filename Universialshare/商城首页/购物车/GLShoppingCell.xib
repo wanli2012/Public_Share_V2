@@ -53,13 +53,13 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yez-le-6oE">
-                        <rect key="frame" x="170" y="103" width="72" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="¥ 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yez-le-6oE">
+                        <rect key="frame" x="170" y="103" width="112" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="8JZ-dg-3HU"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.93559116129999997" green="0.2449045181" blue="0.0002224964264" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.26410919430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ok-qY-7qz">
@@ -70,12 +70,12 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x 1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgE-tC-Oj7">
-                        <rect key="frame" x="247" y="103" width="60" height="21"/>
+                        <rect key="frame" x="287" y="103" width="20" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="60" id="aAQ-mE-Rnu"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="aAQ-mE-Rnu"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.26410919427871704" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="已下架" translatesAutoresizingMaskIntoConstraints="NO" id="moP-pl-BIF">
@@ -86,19 +86,19 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uyo-vx-qVj">
-                        <rect key="frame" x="40" y="109" width="120" height="15"/>
+                        <rect key="frame" x="40" y="104" width="120" height="20"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10v-PZ-h3E">
-                                <rect key="frame" x="0.0" y="0.0" width="120" height="15"/>
+                                <rect key="frame" x="0.0" y="0.0" width="120" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.77709561589999998" green="0.19865089650000001" blue="0.056773729619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="10v-PZ-h3E" secondAttribute="trailing" id="VPU-L0-9BE"/>
-                            <constraint firstAttribute="height" constant="15" id="Yn9-VD-qlL"/>
+                            <constraint firstAttribute="height" constant="20" id="Yn9-VD-qlL"/>
                             <constraint firstItem="10v-PZ-h3E" firstAttribute="top" secondItem="Uyo-vx-qVj" secondAttribute="top" id="eg2-Xm-WDg"/>
                             <constraint firstAttribute="bottom" secondItem="10v-PZ-h3E" secondAttribute="bottom" id="oU5-56-Vst"/>
                             <constraint firstItem="10v-PZ-h3E" firstAttribute="leading" secondItem="Uyo-vx-qVj" secondAttribute="leading" id="wPu-hT-Zfd"/>
@@ -152,6 +152,7 @@
                 <outlet property="selectedBtn" destination="YQK-Hw-6Ni" id="uHN-j0-QEQ"/>
                 <outlet property="specLabel" destination="oHp-Y0-LmW" id="1ho-i7-AyF"/>
                 <outlet property="typeLabel" destination="10v-PZ-h3E" id="aGp-8k-f41"/>
+                <outlet property="typeview" destination="Uyo-vx-qVj" id="GVd-Qr-Hbu"/>
                 <outlet property="xiajiaImageV" destination="moP-pl-BIF" id="dZJ-f5-RhA"/>
             </connections>
             <point key="canvasLocation" x="169.5" y="-133"/>

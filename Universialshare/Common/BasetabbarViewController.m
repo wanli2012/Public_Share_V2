@@ -43,6 +43,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(refreshInterface) name:@"refreshInterface" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(exitLogin) name:@"exitLogin" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(shopingCar) name:@"shopingCar" object:nil];
     
 }
 //完善资料退出跳转登录
@@ -138,6 +139,12 @@
 - (void)pushToHome{
     
      self.selectedIndex = 0;
+}
+
+-(void)shopingCar{
+
+    self.selectedIndex = 2;
+
 }
 
 @end

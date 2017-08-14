@@ -349,9 +349,14 @@
 - (IBAction)enterCarBuyList:(UIButton *)sender {
     _cnt = 0;
     _cntLabel.hidden = YES;
-    self.hidesBottomBarWhenPushed = YES;
-    GLShoppingCartController *vc=[[GLShoppingCartController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.3;
+    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    animation.type = @"push";
+    // animation.type = kCATransitionFade;
+    [self.view.window.layer addAnimation:animation forKey:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"shopingCar" object:nil];
+    [self.navigationController popToRootViewControllerAnimated:NO];
     
 }
 //收藏
