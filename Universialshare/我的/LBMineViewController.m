@@ -647,10 +647,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
             _imageArr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"收益管理",@"我的米柜",@"会员管理",@"商品管理",@"门店管理",@"我要下单",@"商品列表",@"推荐",@"兑换",@"收藏", nil];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
-            _imageArr=[NSArray arrayWithObjects:@"jf_icon",@"wytd_icon",@"mg_icon",@"jf_icon",@"wytd_icon",@"mg_icon",@"兑",@"wdsc_iocn",@"我要推荐", nil];
+            _imageArr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"我要推店",@"我的米柜",@"兑换",@"收藏",@"推荐", nil];
         }
         else {
-            _imageArr=[NSArray arrayWithObjects:@"开通米商",@"sygl_icon",@"开通推广员",@"兑",@"qycx_icon",@"我要推荐",@"开通米商",@"sygl_icon",@"开通推广员",@"兑",@"qycx_icon",@"我要推荐", nil];
+            _imageArr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"收益管理",@"我的米柜",@"开通商家",@"开通创客",@"创客列表",@"兑换",@"收藏",@"推荐", nil];
         }
     }
     return _imageArr;
