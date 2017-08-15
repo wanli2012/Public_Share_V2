@@ -52,6 +52,8 @@
 #import "LBBelowTheLineViewController.h"
 #import "GLMerchat_CommentController.h"
 
+#import "LBImprovePersonalDataViewController.h"//完善资料  实名认证
+
 static CGFloat headViewH = 300;
 
 @interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,SDCycleScrollViewDelegate>{
@@ -437,15 +439,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             }else if ([[UserModel defaultUser].rzstatus isEqualToString:@"1"]) {
                 [MBProgressHUD showError:@"审核中"];
             }else{
-                [self.view addSubview:self.maskV];
-                [self.maskV addSubview:self.infoContentV];
-                self.infoContentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
-                
-                [UIView animateWithDuration:0.2 animations:^{
-                    
-                    self.infoContentV.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
-                    
-                }];
+                self.hidesBottomBarWhenPushed=YES;
+                LBImprovePersonalDataViewController *vc=[[LBImprovePersonalDataViewController alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+                self.hidesBottomBarWhenPushed=NO;
             }
         }
             break;
