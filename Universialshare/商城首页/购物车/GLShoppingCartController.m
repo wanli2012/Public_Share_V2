@@ -13,9 +13,9 @@
 
 @interface GLShoppingCartController ()<UITableViewDelegate,UITableViewDataSource>
 {
-//    NSMutableArray *_numArr;
-//    NSInteger _yesSum;
+    
     LoadWaitView *_loadV;
+    
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
@@ -37,7 +37,6 @@
 @property (strong, nonatomic)NodataView *nodataV;
 @property (weak, nonatomic) IBOutlet UIButton *seleteAllBtn;
 
-
 @end
 
 static NSString *ID = @"GLShoppingCell";
@@ -53,13 +52,13 @@ static NSString *ID = @"GLShoppingCell";
     [self.tableView registerNib:[UINib nibWithNibName:@"GLShoppingCell" bundle:nil] forCellReuseIdentifier:ID];
 
      [self.clearingBtn addTarget:self action:@selector(clearingMore:) forControlEvents:UIControlEventTouchUpInside];
-//    self.selectedNumLabel.text = [NSString stringWithFormat:@"已选中%ld件商品",_totalNum];
+
     self.totalPriceLabel.text = [NSString stringWithFormat:@"合计:¥ %lu",(long)_totalPrice];
    
     [self.tableView addSubview:self.nodataV];
     
-     [self.tableView.mj_header beginRefreshing];
-     [self postRequest];
+    [self.tableView.mj_header beginRefreshing];
+
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         [self postRequest];
@@ -74,7 +73,20 @@ static NSString *ID = @"GLShoppingCell";
     [header setTitle:@"服务器正在狂奔..." forState:MJRefreshStateRefreshing];
     
     self.tableView.mj_header = header;
+    
+    [self refreshCart];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCart) name:@"refreshCartNotification" object:nil];
 
+}
+
+//刷新界面
+- (void)refreshCart {
+    
+    self.seleteAllBtn.selected = NO;
+    
+    [self postRequest];
+    
 }
 
 - (void)postRequest {
@@ -112,27 +124,32 @@ static NSString *ID = @"GLShoppingCell";
 
 //去结算
 - (void)clearingMore:(UIButton *)sender{
+
+    NSMutableArray *tempArr = [NSMutableArray array];
+    NSMutableArray *tempArr2 = [NSMutableArray array];
+    NSMutableArray *tempArr3 = [NSMutableArray array];
+    NSMutableArray *tempArr4 = [NSMutableArray array];
     
-    if (self.selectArr.count == 0) {
+    for (int i = 0; i < self.models.count; i ++) {
+        GLShoppingCartModel *model = self.models[i];
+        if (model.isSelect) {
+            
+            [tempArr addObject:model.goods_id];
+            [tempArr2 addObject:model.num];
+            [tempArr3 addObject:model.cart_id];
+            [tempArr4 addObject:model.spec_id];
+            
+        }
+    }
+    
+    if (tempArr.count == 0) {
         [MBProgressHUD showError:@"还未选择商品"];
         return;
     }
     
     self.hidesBottomBarWhenPushed = YES;
     GLConfirmOrderController *orderVC = [[GLConfirmOrderController alloc] init];
-    
-    NSMutableArray *tempArr = [NSMutableArray array];
-    NSMutableArray *tempArr2 = [NSMutableArray array];
-    NSMutableArray *tempArr3 = [NSMutableArray array];
-    NSMutableArray *tempArr4 = [NSMutableArray array];
-    
-    for (int i = 0; i < self.selectArr.count; i ++) {
-        GLShoppingCartModel *model = self.models[i];
-        [tempArr addObject:model.goods_id];
-        [tempArr2 addObject:model.num];
-        [tempArr3 addObject:model.cart_id];
-        [tempArr4 addObject:model.spec_id];
-    }
+
     orderVC.goods_id = [tempArr componentsJoinedByString:@","];;
     orderVC.goods_count = [tempArr2 componentsJoinedByString:@","];
     orderVC.cart_id = [tempArr3 componentsJoinedByString:@","];
@@ -155,22 +172,23 @@ static NSString *ID = @"GLShoppingCell";
             GLShoppingCartModel *model = self.models[i];
             model.isSelect = YES;
             num = num + [model.goods_price floatValue] * [model.num floatValue];
-            [self.selectArr addObject:model];
+//            [self.selectArr addObject:model];
         }
     }else{
         [self.selectArr removeAllObjects];
         
         if (self.models.count == 0) {
+            
             return;
         }
         for (int i = 0; i < self.models.count; i++) {
             GLShoppingCartModel *model = self.models[i];
             model.isSelect = NO;
         }
-        
     }
+    _totalPrice = num;
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ %.2f",_totalPrice];
     
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ %.2f",num];
     [self.tableView reloadData];
 
     
@@ -192,7 +210,7 @@ static NSString *ID = @"GLShoppingCell";
             
         }else{
             num = num + [model.goods_price floatValue] * [model.num floatValue];
-            [self.selectArr addObject:model];
+//            [self.selectArr addObject:model];
         }
     }
     
@@ -204,14 +222,15 @@ static NSString *ID = @"GLShoppingCell";
         
         self.seleteAllBtn.selected = YES;
     }
-    
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ %.2f",num];
+    _totalPrice = num;
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ %.2f",_totalPrice];
     
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:index inSection:0], nil] withRowAnimation:UITableViewRowAnimationNone];
     
 }
 
 - (void)updateTitleNum {
+    
     if (self.isMainVC == NO) {
         self.navaTitle.text = [NSString stringWithFormat:@"购物车"];
     }else{
@@ -220,9 +239,11 @@ static NSString *ID = @"GLShoppingCell";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
     [self updateTitleNum];
+    
     if (self.isMainVC == NO) {
       self.navigationController.navigationBar.hidden = YES;
         self.bottomConstrait.constant = 49;
@@ -230,6 +251,7 @@ static NSString *ID = @"GLShoppingCell";
         self.navigationController.navigationBar.hidden = NO;
         self.bottomConstrait.constant = 0;
     }
+    
 }
 
 #pragma  UITableViewDelegate
@@ -242,6 +264,7 @@ static NSString *ID = @"GLShoppingCell";
     }
     return self.models.count == 0 ? 0:self.models.count;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     GLShoppingCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
@@ -259,6 +282,7 @@ static NSString *ID = @"GLShoppingCell";
     [self changeStatus:indexPath.row];
     
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 120;
 }
@@ -267,11 +291,13 @@ static NSString *ID = @"GLShoppingCell";
 {
     return   UITableViewCellEditingStyleDelete;
 }
+
 //先要设Cell可编辑
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
 }
+
 //进入编辑模式，按下出现的编辑按钮后
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -301,11 +327,16 @@ static NSString *ID = @"GLShoppingCell";
 
                 if ([responseObject[@"code"] integerValue] == 1){
 
-                    [self.models removeObjectAtIndex:indexPath.row];
                     
+                    GLShoppingCartModel *model = self.models[indexPath.row];
+                    
+                    self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ %.2f",_totalPrice - [model.goods_price floatValue]];
+                    
+                    [self.models removeObjectAtIndex:indexPath.row];
                     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
                     
                 }else{
+                    
                     [MBProgressHUD showError:responseObject[@"message"]];
                 }
                 

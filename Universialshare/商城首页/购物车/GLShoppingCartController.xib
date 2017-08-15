@@ -46,7 +46,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqu-q8-a4Q">
-                            <rect key="frame" x="187" y="12.5" width="1" height="25"/>
+                            <rect key="frame" x="187" y="13" width="1" height="25"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="1" id="8jq-oa-iAS"/>
@@ -90,7 +90,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="购物车(0)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bua-t5-Ob3">
-                            <rect key="frame" x="150.5" y="34" width="74" height="20"/>
+                            <rect key="frame" x="151" y="34" width="74" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="S5l-uz-CSv"/>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="rqs-p0-1Oz"/>

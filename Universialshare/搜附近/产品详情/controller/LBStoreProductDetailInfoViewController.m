@@ -448,7 +448,7 @@
             
             [_loadV removeloadview];
             if ([responseObject[@"code"] integerValue] == 1){
-                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCartNotification" object:nil];
                 [self addbuycarannimation];
                 
             }else{
@@ -611,7 +611,7 @@
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     if (anim == [layer animationForKey:@"addCar"]) {
-        self.addcarBt.backgroundColor = TABBARTITLE_COLOR;
+        self.addcarBt.backgroundColor = YYSRGBColor(120, 161, 255 , 0.5);
         self.addcarBt.enabled = YES;
         [layer removeFromSuperlayer];
         layer = nil;
