@@ -58,7 +58,7 @@
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="兑换" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHf-kU-m0q">
                             <rect key="frame" x="158" y="32.5" width="57.5" height="19.5"/>
-                            <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="57.5" id="2Ru-Q8-1No"/>
                             </constraints>
@@ -80,7 +80,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.40214681629999999" green="0.59420973060000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="8xF-7K-dca" firstAttribute="leading" secondItem="q9Q-eM-dpB" secondAttribute="leading" constant="10" id="CZa-FN-rLu"/>
                         <constraint firstItem="Ywa-nt-fD4" firstAttribute="centerY" secondItem="8xF-7K-dca" secondAttribute="centerY" id="apN-dS-UFp"/>
@@ -116,7 +116,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.40214681629999999" green="0.59420973060000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="100" id="7a8-za-vIy"/>
                                         <constraint firstItem="1Hj-h9-COF" firstAttribute="leading" secondItem="Qnk-vF-ZT2" secondAttribute="leading" constant="10" id="O4h-Ze-h00"/>
@@ -458,7 +458,7 @@
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvJ-Tg-8w6">
                     <rect key="frame" x="10" y="616" width="355" height="45"/>
-                    <color key="backgroundColor" red="0.15516307950019836" green="0.58942979574203491" blue="0.228211909532547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.40214681629999999" green="0.59420973060000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="QwK-Nn-Hlc"/>
                     </constraints>

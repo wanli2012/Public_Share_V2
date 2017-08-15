@@ -109,7 +109,7 @@
     
     [UIView animateWithDuration:0.3 animations:^{
         self.lineView.frame = CGRectMake(SCREEN_WIDTH / 2, 49, SCREEN_WIDTH / 2, 2);
-         [self.todatbutton setTitleColor:YYSRGBColor(37, 154, 37, 1) forState:UIControlStateNormal];
+         [self.todatbutton setTitleColor:YYSRGBColor(120,161,255, 1) forState:UIControlStateNormal];
         [self.historybutton setTitleColor:YYSRGBColor(0, 0, 0, 1) forState:UIControlStateNormal];
         [self.allButton setTitleColor:YYSRGBColor(0, 0, 0, 1) forState:UIControlStateNormal];
     } completion:^(BOOL finished) {
@@ -141,7 +141,7 @@
     [UIView animateWithDuration:0.3 animations:^{
         [self.historybutton setTitleColor:YYSRGBColor(0, 0, 0, 1) forState:UIControlStateNormal];
         [self.todatbutton setTitleColor:YYSRGBColor(0, 0, 0, 1) forState:UIControlStateNormal];
-        [self.allButton setTitleColor:YYSRGBColor(37, 154, 37, 1) forState:UIControlStateNormal];
+        [self.allButton setTitleColor:YYSRGBColor(120,161,255, 1) forState:UIControlStateNormal];
         self.lineView.frame = CGRectMake(0, 49, SCREEN_WIDTH / 2, 2);
     } completion:^(BOOL finished) {
         
