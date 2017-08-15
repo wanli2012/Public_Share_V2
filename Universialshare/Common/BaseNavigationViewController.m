@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationBar.barTintColor = YYSRGBColor(40, 150, 58, 1);
+    self.navigationBar.barTintColor = YYSRGBColor(120, 161, 255, 1);
     self.navigationBar.tintColor=[UIColor whiteColor];
 //    self.navigationBarHidden = YES;
     
