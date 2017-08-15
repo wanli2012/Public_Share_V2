@@ -443,9 +443,9 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     if (scrollView.contentOffset.y <= 0) {
         self.baseSearchV.hidden = YES;
         self.classfyHeaderV.searchView.hidden = NO;
-        self.baseSearchV.backgroundColor = YYSRGBColor(181, 230, 85, 0);
+        self.baseSearchV.backgroundColor = YYSRGBColor(120, 161, 255, 0);
     }else{
-        self.baseSearchV.backgroundColor = YYSRGBColor(181, 230, 85, (scrollView.contentOffset.y)/200 * autoSizeScaleX);
+        self.baseSearchV.backgroundColor = YYSRGBColor(120, 161, 255, (scrollView.contentOffset.y)/200 * autoSizeScaleX);
         self.baseSearchV.hidden = NO;
         self.classfyHeaderV.searchView.hidden = YES;
     }

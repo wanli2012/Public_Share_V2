@@ -31,7 +31,7 @@
 #import "GLAdModel.h"
 #import "GLMine_AdController.h"
 
-@interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,GLIntegralMallTopCellDelegete,GLIntegralGoodsCellDelegate,SDCycleScrollViewDelegate>
+@interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,GLIntegralMallTopCellDelegete,GLIntegralGoodsCellDelegate,LBFrontViewdelegete>
 {
     LoadWaitView * _loadV;
     NSInteger _page;
@@ -102,10 +102,10 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     if (scrollView.contentOffset.y <= -20) {
         self.navaBaseV.hidden = YES;
         self.frontView.navabaseV.hidden = NO;
-        self.navaBaseV.backgroundColor = YYSRGBColor(181, 230, 85, 0);
+        self.navaBaseV.backgroundColor = YYSRGBColor(120, 161, 255, 0);
     }else{
         if (scrollView.contentOffset.y >= 0) {
-             self.navaBaseV.backgroundColor = YYSRGBColor(181, 230, 85, (scrollView.contentOffset.y)/200 * autoSizeScaleX);
+             self.navaBaseV.backgroundColor = YYSRGBColor(120, 161, 255, (scrollView.contentOffset.y)/200 * autoSizeScaleX);
         }
         self.navaBaseV.hidden = NO;
         self.frontView.navabaseV.hidden = YES;
@@ -179,7 +179,6 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
                         GLAdModel *model = self.bannerArr[i];
                         [imageAr addObject:model.thumb];
                     }
-                    self.frontView.cycleScrollView.delegate = self;
                     [self.frontView reloadImage:imageAr];
                     
                 }
@@ -196,23 +195,17 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     }];
 
 }
-/** 点击图片回调 */
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    
+#pragma mark ----- 点击轮播图查看详情
+-(void)clickScrollViewImage:(NSInteger)index{
+
     self.hidesBottomBarWhenPushed = YES;
     GLMine_AdController *adVC = [[GLMine_AdController alloc] init];
     GLAdModel *model = self.bannerArr[index];
     adVC.url = model.url;
     [self.navigationController pushViewController:adVC animated:YES];
     self.hidesBottomBarWhenPushed = NO;
-
-    
 }
 
--(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
-    
-    
-}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -425,6 +418,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 
     if (!_frontView) {
         _frontView = [[LBFrontView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200 * autoSizeScaleX)];
+        _frontView.delegete = self;
     }
     
     return _frontView;

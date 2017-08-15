@@ -23,7 +23,7 @@
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K7k-vB-7U6">
                             <rect key="frame" x="199" y="42" width="2" height="12"/>
-                            <color key="backgroundColor" red="0.70934766530000004" green="0.90075892209999997" blue="0.3836730719" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.40214681629999999" green="0.59420973060000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="12" id="Wtp-yu-YmR"/>
                                 <constraint firstAttribute="width" constant="2" id="hJ8-dg-7YY"/>
@@ -57,7 +57,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <state key="normal" title="查看更多">
-                                <color key="titleColor" red="0.70941096540000004" green="0.9010375142" blue="0.33326655630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" red="0.40214681629999999" green="0.59420973060000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
                     </subviews>

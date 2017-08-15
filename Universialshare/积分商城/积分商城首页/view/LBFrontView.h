@@ -9,11 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "SDCycleScrollView.h"
 
+@protocol LBFrontViewdelegete <NSObject>
+
+-(void)clickScrollViewImage:(NSInteger)index;
+
+@end
+
 @interface LBFrontView : UIView
 
 @property (strong, nonatomic)SDCycleScrollView *cycleScrollView;
 @property (weak, nonatomic) IBOutlet UIView *navabaseV;
 @property (nonatomic, strong)NSArray *models;
+@property (nonatomic, assign)id<LBFrontViewdelegete>  delegete;
 
 -(void)reloadImage:(NSArray*)arr;
 
