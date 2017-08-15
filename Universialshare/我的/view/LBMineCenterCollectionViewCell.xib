@@ -21,21 +21,42 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K1i-BD-SCJ">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                         <subviews>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGB-VZ-ykU">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Znm-zU-IsW">
                                 <rect key="frame" x="5" y="5" width="90" height="90"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PgM-eU-8vR">
+                                        <rect key="frame" x="0.0" y="15.5" width="90" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="gS2-lV-u0p"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o01-65-vPs">
+                                        <rect key="frame" x="0.0" y="55.5" width="90" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Oii-ES-ldp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                            </button>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="PgM-eU-8vR" secondAttribute="trailing" id="6MF-uJ-IdV"/>
+                                    <constraint firstItem="o01-65-vPs" firstAttribute="top" secondItem="PgM-eU-8vR" secondAttribute="bottom" constant="5" id="HXi-Ug-mly"/>
+                                    <constraint firstItem="o01-65-vPs" firstAttribute="leading" secondItem="Znm-zU-IsW" secondAttribute="leading" id="JPm-kt-bcj"/>
+                                    <constraint firstAttribute="trailing" secondItem="o01-65-vPs" secondAttribute="trailing" id="YJi-gG-J2g"/>
+                                    <constraint firstItem="PgM-eU-8vR" firstAttribute="leading" secondItem="Znm-zU-IsW" secondAttribute="leading" id="fMi-jE-G9x"/>
+                                    <constraint firstItem="PgM-eU-8vR" firstAttribute="centerY" secondItem="Znm-zU-IsW" secondAttribute="centerY" constant="-12" id="vUB-Y7-3Xb"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="kGB-VZ-ykU" secondAttribute="trailing" constant="5" id="YdL-Ig-YHw"/>
-                            <constraint firstAttribute="bottom" secondItem="kGB-VZ-ykU" secondAttribute="bottom" constant="5" id="fvW-iw-UOM"/>
-                            <constraint firstItem="kGB-VZ-ykU" firstAttribute="top" secondItem="K1i-BD-SCJ" secondAttribute="top" constant="5" id="hnk-e8-ChK"/>
-                            <constraint firstItem="kGB-VZ-ykU" firstAttribute="leading" secondItem="K1i-BD-SCJ" secondAttribute="leading" constant="5" id="i8i-7U-0bj"/>
+                            <constraint firstItem="Znm-zU-IsW" firstAttribute="leading" secondItem="K1i-BD-SCJ" secondAttribute="leading" constant="5" id="735-rd-fxy"/>
+                            <constraint firstAttribute="trailing" secondItem="Znm-zU-IsW" secondAttribute="trailing" constant="5" id="iet-tt-toN"/>
+                            <constraint firstItem="Znm-zU-IsW" firstAttribute="top" secondItem="K1i-BD-SCJ" secondAttribute="top" constant="5" id="to6-TW-bDp"/>
+                            <constraint firstAttribute="bottom" secondItem="Znm-zU-IsW" secondAttribute="bottom" constant="5" id="uQ2-1d-YVz"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -48,7 +69,9 @@
                 <constraint firstAttribute="bottom" secondItem="K1i-BD-SCJ" secondAttribute="bottom" id="YU6-2B-1BA"/>
             </constraints>
             <connections>
-                <outlet property="button" destination="kGB-VZ-ykU" id="ism-Dv-jtH"/>
+                <outlet property="baseView" destination="Znm-zU-IsW" id="kox-lU-4RC"/>
+                <outlet property="imagev" destination="PgM-eU-8vR" id="Xtr-4o-yu4"/>
+                <outlet property="titile" destination="o01-65-vPs" id="ein-ht-1FS"/>
             </connections>
         </collectionViewCell>
     </objects>

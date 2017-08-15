@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -81,7 +81,8 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <state key="normal" title="申请额度">
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="2" maxX="48" maxY="2"/>
+                                    <state key="normal" image="iv_back">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <state key="selected" title="收起">
@@ -127,4 +128,7 @@
             <point key="canvasLocation" x="33.5" y="54.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="iv_back" width="13" height="25"/>
+    </resources>
 </document>

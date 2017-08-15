@@ -32,7 +32,6 @@
 #import "GLShoppingCartController.h"
 #import <SDWebImage/UIButton+WebCache.h>
 
-#import "LBMineCenterRegionQueryViewController.h"
 #import "GLMyCollectionController.h"
 #import "GLIncomeManagerController.h"
 #import "GLMemberManagerController.h"
@@ -50,6 +49,8 @@
 //测试 后面请删除
 #import "LBHomeIncomeViewController.h"
 #import "LBShowSaleManAndBusinessViewController.h"
+#import "LBBelowTheLineViewController.h"
+#import "GLMerchat_CommentController.h"
 
 static CGFloat headViewH = 300;
 
@@ -143,10 +144,8 @@ static CGFloat headViewH = 300;
     LBMineCenterCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"LBMineCenterCollectionViewCell" forIndexPath:indexPath];
     cell.backgroundColor=[UIColor whiteColor];
     
-    [cell.button setImage:[UIImage imageNamed:self.imageArr[indexPath.row]] forState:UIControlStateNormal];
-    [cell.button setTitle:[NSString stringWithFormat:@"%@",self.titlearr[indexPath.row]] forState:UIControlStateNormal];
-    
-    [cell.button verticalCenterImageAndTitle:15];
+    cell.imagev.image = [UIImage imageNamed:self.imageArr[indexPath.row]];
+    cell.titile.text = [NSString stringWithFormat:@"%@",self.titlearr[indexPath.row]];
    
     return cell;
     
@@ -401,8 +400,33 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             self.hidesBottomBarWhenPushed=NO;
         }
             break;
-        case 9://兑换
+        case 9://我要下单
         {
+            self.hidesBottomBarWhenPushed=YES;
+            LBBelowTheLineViewController *vc=[[LBBelowTheLineViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+        }
+            break;
+        case 10:   {//商品列表
+            self.hidesBottomBarWhenPushed=YES;
+            GLMerchat_CommentController *vc=[[GLMerchat_CommentController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+
+        }
+            break;
+        case 11://推荐
+        {
+            self.hidesBottomBarWhenPushed=YES;
+            GLRecommendController *vc=[[GLRecommendController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+        }
+            break;
+            
+        case 12:{//兑换
+        
             if ([[UserModel defaultUser].rzstatus isEqualToString:@"2"]) {
                 
                 self.hidesBottomBarWhenPushed=YES;
@@ -425,18 +449,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             }
         }
             break;
-        case 10://收藏
+            
+        case 13://收藏
         {
             self.hidesBottomBarWhenPushed=YES;
             GLMyCollectionController *vc=[[GLMyCollectionController alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
-            self.hidesBottomBarWhenPushed=NO;
-        }
-            break;
-        case 11://推荐
-        {
-            self.hidesBottomBarWhenPushed=YES;
-            GLRecommendController *vc=[[GLRecommendController alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
             self.hidesBottomBarWhenPushed=NO;
         }
@@ -608,7 +625,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         
          MineCollectionViewFlowLayout *flowLayout=[[MineCollectionViewFlowLayout alloc] init];
          //[flowLayout setSectionInset:UIEdgeInsetsMake(0, 0, 10, 0)];
-        [flowLayout setHeaderReferenceSize:CGSizeMake(SCREEN_WIDTH,headViewH)];
+        [flowLayout setHeaderReferenceSize:CGSizeMake(SCREEN_WIDTH,headViewH * autoSizeScaleX)];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
         [flowLayout setMinimumInteritemSpacing:0.0];
         [flowLayout setMinimumLineSpacing:0.0];
@@ -929,7 +946,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         
         _infoContentV.layer.cornerRadius = 5.f;
         
-        _infoContentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 40, headViewH);
+        _infoContentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 250)/2, SCREEN_WIDTH - 40, 250);
         
         [_infoContentV.cancelBtn addTarget:self action:@selector(maskViewTap) forControlEvents:UIControlEventTouchUpInside];
         

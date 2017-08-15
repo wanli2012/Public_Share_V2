@@ -147,7 +147,7 @@ static NSString *ID = @"GLMerchat_StoreCell";
     self.hidesBottomBarWhenPushed = YES;
     GLAddStoreController *addVC = [[GLAddStoreController alloc] init];
     [self.navigationController pushViewController:addVC animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+
     
 }
 #pragma UITableviewDelegate UITableviewDataSource
@@ -250,6 +250,11 @@ static NSString *ID = @"GLMerchat_StoreCell";
         
     }];
 }
+
+- (IBAction)backclick:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(NSMutableArray *)models{
     
     if (!_models) {

@@ -13,6 +13,8 @@
 #import "LBIncomeChooseHeaderFooterView.h"
 #import "HWCalendar.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "LBApplicationLimitView.h"
+#import "SelectUserTypeView.h"
 
 @interface LBHomeIncomesecondViewController ()<UITableViewDelegate,UITableViewDataSource,LBincomeHeaderdelegete,HWCalendarDelegate>
 
@@ -38,6 +40,11 @@
 @property (strong, nonatomic)NSString *underlineMoney;//线下总额
 @property (assign, nonatomic)BOOL  showSearch;//是否展示搜索
 
+@property (strong, nonatomic)UIView *maskView;
+@property (strong, nonatomic)LBApplicationLimitView *loginView;
+@property (strong, nonatomic)SelectUserTypeView *selectUserTypeView;
+@property (nonatomic, copy)NSString *type;//限额类型
+
 @end
 static NSString *ID = @"GLMerchant_IncomeCell";
 static NSString *searchID = @"LBincomeHeaderFooterView";
@@ -59,8 +66,7 @@ static const CGFloat headerHeight = 0.0f;
     [self.tableview addSubview:self.headview];
     [self.tableview addSubview:self.nodataV];
     self.nodataV.hidden = YES;
-    [[UIApplication sharedApplication].keyWindow addSubview:self.backbutton];
-    self.backbutton.hidden = YES;
+    [self.view addSubview:self.backbutton];
     self.tableview.contentInset=UIEdgeInsetsMake(headerHeight, 0, 0, 0);
     [self.tableview setTableHeaderView:self.headview];
     
@@ -208,18 +214,15 @@ static const CGFloat headerHeight = 0.0f;
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     
-    if (self.tableview.contentOffset.y > 300) {
-        self.backbutton.hidden = NO;
+    if ([[UserModel defaultUser].isapplication isEqualToString:@"1"]) {
+        [self.backbutton setTitle:[NSString stringWithFormat:@"等待\n审核"] forState:UIControlStateNormal];
+        self.backbutton.userInteractionEnabled = NO;
     }else{
-        self.backbutton.hidden = YES;
+        [self.backbutton setTitle:[NSString stringWithFormat:@"申请\n额度"] forState:UIControlStateNormal];
+        self.backbutton.userInteractionEnabled = YES;
     }
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.backbutton.hidden = YES;
-    
-}
 
 #pragma UITableviewDelegate UITableviewDataSource
 
@@ -349,10 +352,11 @@ static const CGFloat headerHeight = 0.0f;
     
     
 }
-//返回顶部
+//申请额度
 -(void)backHomeBtbtton{
-    [self.tableview setContentOffset:CGPointMake(0, -headerHeight) animated:YES];
-    
+    [self.view addSubview:self.maskView];
+    [self.view addSubview:self.loginView];
+
 }
 
 #pragma mark - HWCalendarDelegate
@@ -430,6 +434,209 @@ static const CGFloat headerHeight = 0.0f;
 
 }
 
+//确认申请
+-(void)sureapplication{
+    
+    if (self.loginView.phoneTf.text .length <= 0) {
+        [MBProgressHUD showError:@"请输入手机号"];
+        return;
+    }
+    if (self.loginView.yzmTf.text .length <= 0) {
+        [MBProgressHUD showError:@"请输入验证码"];
+        return;
+    }
+    if (self.loginView.moneyTF.text .length <= 0) {
+        [MBProgressHUD showError:@"请输入申请额度"];
+        return;
+    }
+    
+    if ([self.loginView.moneyTF.text  floatValue] <= [[UserModel defaultUser].allLimit floatValue]) {
+        [MBProgressHUD showError:@"输入大于当前额度"];
+        return;
+    }
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"user/applyMoreSaleMoney" paramDic:@{@"yzm":self.loginView.yzmTf.text,
+                                                                                @"uid":[UserModel defaultUser].uid ,
+                                                                                @"token":[UserModel defaultUser].token,
+                                                                                @"userphone":self.loginView.phoneTf.text,
+                                                                                @"money":self.loginView.moneyTF.text,
+                                                                                @"type":self.type} finish:^(id responseObject)
+     {
+         
+         [_loadV removeloadview];
+         
+         if ([responseObject[@"code"] integerValue]==1) {
+             [self maskviewgesture];
+             [self.backbutton setTitle:[NSString stringWithFormat:@"等待\n审核"] forState:UIControlStateNormal];
+             self.backbutton.userInteractionEnabled = NO;
+             [UserModel defaultUser].isapplication = @"1";
+             [usermodelachivar achive];
+             [MBProgressHUD showError:responseObject[@"message"]];
+             
+         }else{
+             [MBProgressHUD showError:responseObject[@"message"]];
+         }
+         
+     } enError:^(NSError *error) {
+         [_loadV removeloadview];
+         [MBProgressHUD showError:error.localizedDescription];
+         
+     }];
+    
+}
+
+//点击maskview
+-(void)maskviewgesture{
+    
+    [self.selectUserTypeView removeFromSuperview];
+    [self.maskView removeFromSuperview];
+    [self.loginView removeFromSuperview];
+    
+}
+
+//获取倒计时
+-(void)startTime{
+    
+    __block int timeout=60; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                [self.loginView.yzmbt setTitle:@"重发验证码" forState:UIControlStateNormal];
+                self.loginView.yzmbt.userInteractionEnabled = YES;
+                self.loginView.yzmbt.backgroundColor = YYSRGBColor(44, 153, 46, 1);
+                self.loginView.yzmbt.titleLabel.font = [UIFont systemFontOfSize:13];
+            });
+        }else{
+            int seconds = timeout % 61;
+            NSString *strTime = [NSString stringWithFormat:@"%.2d秒后重新发送", seconds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.loginView.yzmbt setTitle:[NSString stringWithFormat:@"%@",strTime] forState:UIControlStateNormal];
+                self.loginView.yzmbt.userInteractionEnabled = NO;
+                self.loginView.yzmbt.backgroundColor = YYSRGBColor(184, 184, 184, 1);
+                self.loginView.yzmbt.titleLabel.font = [UIFont systemFontOfSize:11];
+            });
+            timeout--;
+        }
+    });
+    dispatch_resume(_timer);
+    
+}
+
+- (void)getcode:(UIButton *)sender {
+    
+    if (self.loginView.phoneTf.text.length <=0 ) {
+        [MBProgressHUD showError:@"请输入手机号码"];
+        return;
+    }else{
+        if (![predicateModel valiMobile:self.loginView.phoneTf.text]) {
+            [MBProgressHUD showError:@"手机号格式不对"];
+            return;
+        }
+    }
+    
+    [self startTime];//获取倒计时
+    [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:@{@"phone":self.loginView.phoneTf.text} finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            
+        }else{
+            
+        }
+    } enError:^(NSError *error) {
+        
+    }];
+    
+}
+
+
+-(LBApplicationLimitView*)loginView{
+    
+    if (!_loginView) {
+        _loginView=[[NSBundle mainBundle]loadNibNamed:@"LBApplicationLimitView" owner:self options:nil].firstObject;
+        _loginView.frame=CGRectMake(20, (SCREEN_HEIGHT - 64 - 280)/2, SCREEN_WIDTH-40, 280);
+        _loginView.alpha=1;
+        _loginView.layer.cornerRadius = 4;
+        _loginView.clipsToBounds = YES;
+        [_loginView.yzmbt addTarget:self action:@selector(getcode:) forControlEvents:UIControlEventTouchUpInside];
+        [_loginView.cancelBt addTarget:self action:@selector(maskviewgesture) forControlEvents:UIControlEventTouchUpInside];
+        [_loginView.sureBt addTarget:self action:@selector(sureapplication) forControlEvents:UIControlEventTouchUpInside];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(popTypeView)];
+        [_loginView.typeView addGestureRecognizer:tap];
+        _loginView.typeLabel.text = @"每日限额";
+        
+    }
+    return _loginView;
+    
+}
+//弹出限额类型选择View
+- (void)popTypeView {
+    
+    [self.loginView addSubview:self.selectUserTypeView];
+    
+    if (self.selectUserTypeView.height == 0) {
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.selectUserTypeView.height = 80;
+        }];
+        
+    }else{
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.selectUserTypeView.height = 0;
+        }];
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    self.selectUserTypeView.block = ^(NSInteger index){
+        
+        if(index == 0){
+            weakSelf.type = @"1";
+            weakSelf.loginView.typeLabel.text = @"每日限额";
+        }else{
+            weakSelf.type = @"2";
+            weakSelf.loginView.typeLabel.text = @"每单限额";
+        }
+        
+    };
+    
+}
+//限额选择View
+-(SelectUserTypeView*)selectUserTypeView{
+    
+    if (!_selectUserTypeView) {
+        
+        _selectUserTypeView=[[NSBundle mainBundle]loadNibNamed:@"SelectUserTypeView" owner:self options:nil].firstObject;
+        
+        _selectUserTypeView.layer.cornerRadius = 10.f;
+        _selectUserTypeView.clipsToBounds = YES;
+        _selectUserTypeView.frame=CGRectMake(100, 150, SCREEN_WIDTH - 40 - 100, 0);
+        
+        _selectUserTypeView.dataSoure  = @[@"每日限额",@"每单限额"];
+        
+    }
+    
+    return _selectUserTypeView;
+    
+}
+
+-(UIView*)maskView{
+    
+    if (!_maskView) {
+        _maskView=[[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        [_maskView setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.3f]];
+        
+    }
+    return _maskView;
+    
+}
+
 -(LBHomeIncomeView*)headview{
     
     if (!_headview) {
@@ -441,18 +648,17 @@ static const CGFloat headerHeight = 0.0f;
 -(UIButton*)backbutton{
     
     if (!_backbutton) {
-        _backbutton=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 60, SCREEN_HEIGHT - 100, 30, 30)];
-        _backbutton.backgroundColor=[UIColor clearColor];
-        [_backbutton setImage:[UIImage imageNamed:@"backtop_icon"] forState:UIControlStateNormal];
-        _backbutton.titleLabel.font=[UIFont systemFontOfSize:12];
+        _backbutton=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 80, SCREEN_HEIGHT - 150, 60, 60)];
+        _backbutton.backgroundColor=YYSRGBColor(120,161,255, 0.5);
+        _backbutton.titleLabel.font=[UIFont systemFontOfSize:13];
         [_backbutton addTarget:self action:@selector(backHomeBtbtton) forControlEvents:UIControlEventTouchUpInside];
-        [_backbutton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-        _backbutton.layer.cornerRadius =15;
+        [_backbutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _backbutton.layer.cornerRadius =30;
         _backbutton.clipsToBounds =YES;
+        _backbutton.titleLabel.numberOfLines = 0;
     }
     
     return _backbutton;
-    
 }
 -(UIView*)CalendarView{
     
