@@ -19,16 +19,6 @@
     self.baseView.layer.shadowOffset  = CGSizeMake(1, 1);// 阴影的范围
     
     
- //   CALayer *layer = [CALayer layer];
-//    layer.frame = self.baseView.frame;
-//    layer.backgroundColor = [UIColor grayColor].CGColor;
-//    layer.shadowOffset = CGSizeMake(2, 2);
-//    layer.shadowOpacity = 0.5;
-//    layer.cornerRadius = 3;
-//    [self.baseView.layer addSublayer:layer];
-//    
-//    self.baseView.layer.masksToBounds =YES;
-//    self.baseView.layer.cornerRadius =3;
     
 }
 

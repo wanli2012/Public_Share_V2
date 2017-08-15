@@ -121,8 +121,8 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     
     if (status) {
         _page = 1;
+         [self.recModels removeAllObjects];
         [self.nearModels removeAllObjects];
-        [self.recModels removeAllObjects];
     }else{
         _page ++;
     }
@@ -166,7 +166,6 @@ static NSString *ID = @"GLNearby_MerchatListCell";
             [self endRefresh];
             if ([responseObject[@"code"] integerValue] == 1){
                 if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-                    
                     for (NSDictionary *dic  in responseObject[@"data"]) {
                         GLNearby_MerchatListModel *model = [GLNearby_MerchatListModel mj_objectWithKeyValues:dic];
                         [self.nearModels addObject:model];
@@ -255,11 +254,18 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 }
 //点击地图导航
 - (void)mapTo:(NSInteger)index{
-    
-    GLNearby_MerchatListModel *model = self.nearModels[index];
-    
-    CGFloat lat = [model.lat floatValue ];
-    CGFloat lng = [model.lng floatValue ];
+    CGFloat lat =0;
+    CGFloat lng =0;
+    if (self.index == 10) {
+        GLNearby_MerchatListModel *model = self.recModels[index];
+        lat = [model.lat floatValue ];
+        lng = [model.lng floatValue ];
+    }else{
+        GLNearby_MerchatListModel *model = self.nearModels[index];
+         lat = [model.lat floatValue ];
+         lng = [model.lng floatValue ];
+    }
+   
     
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]])// -- 使用 canOpenURL 判断需要在info.plist 的 LSApplicationQueriesSchemes 添加 baidumap 。
     {
@@ -387,9 +393,18 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                 weakSelf.chooseVC2.view.frame = CGRectMake(weakSelf.chooseVC.view.width ,0, SCREEN_WIDTH-weakSelf.chooseVC.view.width, 0);
                 [weakSelf.maskV addSubview:weakSelf.chooseVC2.view];
                 
-                weakSelf.chooseVC2.dataSource = weakSelf.tradeArr[indexF][@"son"];
+                NSMutableArray *arr = [NSMutableArray arrayWithArray:weakSelf.tradeArr[indexF][@"son"]];
+                [arr insertObject:@"全部" atIndex:0];
+
+                weakSelf.chooseVC2.dataSource = arr;
               
                 weakSelf.chooseVC2.block = ^(NSString *value,NSInteger index){
+                    if (indexF == 0) {
+                        weakSelf.two_trade_id = @"";
+                        [weakSelf updateData:YES];
+                        [weakSelf dismiss];
+                        return ;
+                    }
                     [weakSelf.classifyBtn setTitle:value forState:UIControlStateNormal];
                      [weakSelf.classifyBtn horizontalCenterTitleAndImage:5];
                     weakSelf.two_trade_id = weakSelf.tradeArr[indexF][@"son"][index][@"trade_id"];
