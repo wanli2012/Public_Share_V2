@@ -59,6 +59,15 @@
         self.typeLabel.text = @"米券商品";
         self.specLabel.text = [NSString stringWithFormat:@"规格:%@",model.spec];
     }
+    if (model.isSelect == NO) {
+        
+        [self.selectedBtn setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
+    }else{
+        
+        [self.selectedBtn setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
+        
+    }
+
 }
 
 

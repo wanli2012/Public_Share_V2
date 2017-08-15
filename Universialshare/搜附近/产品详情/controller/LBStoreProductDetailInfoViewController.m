@@ -355,7 +355,7 @@
     animation.type = @"push";
     // animation.type = kCATransitionFade;
     [self.view.window.layer addAnimation:animation forKey:nil];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"shopingCar" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shopingCar" object:nil];
     [self.navigationController popToRootViewControllerAnimated:NO];
     
 }
@@ -611,7 +611,7 @@
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     if (anim == [layer animationForKey:@"addCar"]) {
-        self.addcarBt.backgroundColor=YYSRGBColor(91, 202, 113, 1);
+        self.addcarBt.backgroundColor = TABBARTITLE_COLOR;
         self.addcarBt.enabled = YES;
         [layer removeFromSuperlayer];
         layer = nil;
