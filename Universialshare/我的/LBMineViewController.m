@@ -111,7 +111,7 @@ static CGFloat headViewH = 300;
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
      self.navigationController.navigationBar.hidden = YES;
     [self refreshDataSource];
     
@@ -386,28 +386,51 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             
         }
             break;
-        case 7://线下下单
+        case 7://商品管理
         {
             self.hidesBottomBarWhenPushed=YES;
-            LBBelowTheLineViewController *vc=[[LBBelowTheLineViewController alloc]init];
+            LBProductManagementViewController *vc=[[LBProductManagementViewController alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
             self.hidesBottomBarWhenPushed=NO;
         }
             break;
         case 8://门店管理
         {
-            self.hidesBottomBarWhenPushed=YES;
-            GLMerchat_StoreController *vc=[[GLMerchat_StoreController alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
-            self.hidesBottomBarWhenPushed=NO;
+            if ([[UserModel defaultUser].rzstatus isEqualToString:@"2"]) {
+                
+                self.hidesBottomBarWhenPushed=YES;
+                GLMerchat_StoreController *vc=[[GLMerchat_StoreController alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+                self.hidesBottomBarWhenPushed=NO;
+                
+            }else if ([[UserModel defaultUser].rzstatus isEqualToString:@"1"]) {
+                [MBProgressHUD showError:@"审核中"];
+            }else{
+                self.hidesBottomBarWhenPushed=YES;
+                LBImprovePersonalDataViewController *vc=[[LBImprovePersonalDataViewController alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+                self.hidesBottomBarWhenPushed=NO;
+            }
+
         }
             break;
         case 9://我要下单
         {
-            self.hidesBottomBarWhenPushed=YES;
-            LBBelowTheLineViewController *vc=[[LBBelowTheLineViewController alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
-            self.hidesBottomBarWhenPushed=NO;
+            if ([[UserModel defaultUser].rzstatus isEqualToString:@"2"]) {
+                
+                self.hidesBottomBarWhenPushed=YES;
+                LBBelowTheLineViewController *vc=[[LBBelowTheLineViewController alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+                self.hidesBottomBarWhenPushed=NO;
+                
+            }else if ([[UserModel defaultUser].rzstatus isEqualToString:@"1"]) {
+                [MBProgressHUD showError:@"审核中"];
+            }else{
+                self.hidesBottomBarWhenPushed=YES;
+                LBImprovePersonalDataViewController *vc=[[LBImprovePersonalDataViewController alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+                self.hidesBottomBarWhenPushed=NO;
+            }
         }
             break;
         case 10:   {//商品列表
@@ -511,12 +534,27 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             self.hidesBottomBarWhenPushed=NO;
         }
             break;
-        case 6:
+        case 6://开通商户
         {
-            self.hidesBottomBarWhenPushed=YES;
-            LBMerchantSubmissionFourViewController *vc = [[LBMerchantSubmissionFourViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-            self.hidesBottomBarWhenPushed=NO;
+            if ([[UserModel defaultUser].rzstatus isEqualToString:@"2"]) {
+                
+                self.hidesBottomBarWhenPushed=YES;
+                LBMerchantSubmissionFourViewController *vc=[[LBMerchantSubmissionFourViewController alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+                self.hidesBottomBarWhenPushed=NO;
+                
+            }else if ([[UserModel defaultUser].rzstatus isEqualToString:@"1"]) {
+                [MBProgressHUD showError:@"审核中"];
+            }else{
+                
+                self.hidesBottomBarWhenPushed=YES;
+                LBImprovePersonalDataViewController *vc=[[LBImprovePersonalDataViewController alloc]init];
+                
+                [self.navigationController pushViewController:vc animated:YES];
+                
+                self.hidesBottomBarWhenPushed=NO;
+            }
+
         }
             break;
         case 7:
@@ -525,10 +563,24 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 [MBProgressHUD showError:@"您暂无权限访问"];
             }else{
                 
-                self.hidesBottomBarWhenPushed=YES;
-                LBRecommendedSalesmanViewController *vc=[[LBRecommendedSalesmanViewController alloc]init];
-                [self.navigationController pushViewController:vc animated:YES];
-                self.hidesBottomBarWhenPushed=NO;
+                if ([[UserModel defaultUser].rzstatus isEqualToString:@"2"]) {
+                    
+                    self.hidesBottomBarWhenPushed=YES;
+                    LBRecommendedSalesmanViewController *vc=[[LBRecommendedSalesmanViewController alloc]init];
+                    [self.navigationController pushViewController:vc animated:YES];
+                    self.hidesBottomBarWhenPushed=NO;
+                    
+                }else if ([[UserModel defaultUser].rzstatus isEqualToString:@"1"]) {
+                    [MBProgressHUD showError:@"审核中"];
+                }else{
+                    
+                    self.hidesBottomBarWhenPushed=YES;
+                    LBImprovePersonalDataViewController *vc=[[LBImprovePersonalDataViewController alloc]init];
+                    
+                    [self.navigationController pushViewController:vc animated:YES];
+                    
+                    self.hidesBottomBarWhenPushed=NO;
+                }
             }
         }
             break;
@@ -540,8 +592,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             self.hidesBottomBarWhenPushed=NO;
         }
             break;
-        case 9:
+        case 9://兑换
         {
+           
             if ([[UserModel defaultUser].rzstatus isEqualToString:@"2"]) {
                 
                 self.hidesBottomBarWhenPushed=YES;
@@ -552,15 +605,15 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             }else if ([[UserModel defaultUser].rzstatus isEqualToString:@"1"]) {
                 [MBProgressHUD showError:@"审核中"];
             }else{
-                [self.view addSubview:self.maskV];
-                [self.maskV addSubview:self.infoContentV];
-                self.infoContentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
-                [UIView animateWithDuration:0.2 animations:^{
-                    
-                    self.infoContentV.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
-                }];
                 
+                self.hidesBottomBarWhenPushed=YES;
+                LBImprovePersonalDataViewController *vc=[[LBImprovePersonalDataViewController alloc]init];
+                
+                [self.navigationController pushViewController:vc animated:YES];
+                
+                self.hidesBottomBarWhenPushed=NO;
             }
+
         }
             break;
         case 10:

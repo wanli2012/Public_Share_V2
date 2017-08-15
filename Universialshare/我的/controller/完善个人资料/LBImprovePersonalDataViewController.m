@@ -46,10 +46,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+   self.navigationItem.title = @"实名认证";
     self.status = @"0";
     self.sexstr = @"0";
 }
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
@@ -219,16 +220,20 @@
 
     }success:^(NSURLSessionDataTask *task, id responseObject) {
 
+        
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
        
-        if ([dic[@"status"] integerValue]==1) {
-            self.status = @"1";
-            [self.exitbt setTitle:@"重新登录" forState:UIControlStateNormal];
-        }
+//        if ([dic[@"status"] integerValue] == 1) {
+//            self.status = @"1";
+//            [self.exitbt setTitle:@"重新登录" forState:UIControlStateNormal];
+//        }
+        
         if ([dic[@"code"]integerValue]==1) {
             
             [MBProgressHUD showError:@"资料认证中..."];
-            [self dismissViewControllerAnimated:YES completion:nil];
+//            [self dismissViewControllerAnimated:YES completion:nil];
+            
+            [self popoverPresentationController];
             
             [UserModel defaultUser].truename = self.nameTf.text;
             [UserModel defaultUser].idcard = self.codeTf.text;
