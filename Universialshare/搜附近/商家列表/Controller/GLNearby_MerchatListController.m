@@ -17,6 +17,7 @@
 #import "GLNearby_NearShopModel.h"
 #import "GLHomeLiveChooseController.h"
 #import "UIButton+SetEdgeInsets.h"
+#import "MXNavigationBarManager.h"
 
 @interface GLNearby_MerchatListController ()<UITableViewDataSource,UITableViewDelegate,GLNearby_MerchatListCellDelegate>
 {
@@ -205,7 +206,8 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
-    
+    [MXNavigationBarManager reStoreToCustomNavigationBar:self];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
     UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
     CGRect rect=[self.topView convertRect:self.topView.bounds toView:window];
     

@@ -451,8 +451,6 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     }
     
 }
-
-
 -(void)updateViewConstraints{
     [super updateViewConstraints];
     self.searchView.layer.cornerRadius = 4;
