@@ -50,6 +50,10 @@
     self.status = @"0";
     self.sexstr = @"0";
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 
 - (IBAction)exitButton:(UIButton *)sender {
     
