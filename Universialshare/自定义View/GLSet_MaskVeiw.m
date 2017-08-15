@@ -8,9 +8,7 @@
 
 #import "GLSet_MaskVeiw.h"
 
-
 @interface GLSet_MaskVeiw()
-
 
 @end
 

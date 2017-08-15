@@ -34,4 +34,6 @@
 
 @property (nonatomic, copy)NSString *spec_id;
 
+@property (nonatomic, assign)BOOL isSelect;//是否被选
+
 @end

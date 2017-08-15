@@ -355,7 +355,7 @@
     animation.type = @"push";
     // animation.type = kCATransitionFade;
     [self.view.window.layer addAnimation:animation forKey:nil];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"shopingCar" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shopingCar" object:nil];
     [self.navigationController popToRootViewControllerAnimated:NO];
     
 }
@@ -448,7 +448,7 @@
             
             [_loadV removeloadview];
             if ([responseObject[@"code"] integerValue] == 1){
-                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCartNotification" object:nil];
                 [self addbuycarannimation];
                 
             }else{
@@ -611,7 +611,7 @@
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     if (anim == [layer animationForKey:@"addCar"]) {
-        self.addcarBt.backgroundColor=YYSRGBColor(91, 202, 113, 1);
+        self.addcarBt.backgroundColor = YYSRGBColor(120, 161, 255 , 0.5);
         self.addcarBt.enabled = YES;
         [layer removeFromSuperlayer];
         layer = nil;
