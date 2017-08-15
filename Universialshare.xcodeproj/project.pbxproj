@@ -418,16 +418,6 @@
 		4A46111B1E9CC6370045824F /* UIImageView+CornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4610051E9CC6360045824F /* UIImageView+CornerRadius.m */; };
 		4A46111D1E9CCC010045824F /* Mine_sixPart.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A46111C1E9CCC010045824F /* Mine_sixPart.xcassets */; };
 		4A4988081EE9201F00BD820D /* Guangguang.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A4988071EE9201F00BD820D /* Guangguang.xcassets */; };
-		4A50044E1EE14F8D002D1964 /* LBMoreOperateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A50044C1EE14F8D002D1964 /* LBMoreOperateView.m */; };
-		4A50044F1EE14F8D002D1964 /* LBMoreOperateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A50044D1EE14F8D002D1964 /* LBMoreOperateView.xib */; };
-		4A50045C1EE14FA9002D1964 /* LBConsumptionSeriesViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5004511EE14FA9002D1964 /* LBConsumptionSeriesViewTableViewCell.m */; };
-		4A50045D1EE14FA9002D1964 /* LBConsumptionSeriesViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5004521EE14FA9002D1964 /* LBConsumptionSeriesViewTableViewCell.xib */; };
-		4A50045E1EE14FA9002D1964 /* LBHomepopinfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5004541EE14FA9002D1964 /* LBHomepopinfoView.m */; };
-		4A50045F1EE14FA9002D1964 /* LBHomepopinfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5004551EE14FA9002D1964 /* LBHomepopinfoView.xib */; };
-		4A5004601EE14FA9002D1964 /* LBMerchantcreditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5004571EE14FA9002D1964 /* LBMerchantcreditTableViewCell.m */; };
-		4A5004611EE14FA9002D1964 /* LBMerchantcreditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5004581EE14FA9002D1964 /* LBMerchantcreditTableViewCell.xib */; };
-		4A5004621EE14FA9002D1964 /* LBUserKonwViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A50045A1EE14FA9002D1964 /* LBUserKonwViewTableViewCell.m */; };
-		4A5004631EE14FA9002D1964 /* LBUserKonwViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A50045B1EE14FA9002D1964 /* LBUserKonwViewTableViewCell.xib */; };
 		4A5004661EE168EA002D1964 /* GLHomePageNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5004651EE168EA002D1964 /* GLHomePageNoticeView.m */; };
 		4A5004681EE168FD002D1964 /* GLHomePageNoticeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5004671EE168FD002D1964 /* GLHomePageNoticeView.xib */; };
 		4A52F54E1ED911C300075934 /* GLMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A52F54D1ED911C300075934 /* GLMemberModel.m */; };
@@ -1773,21 +1763,6 @@
 		4A4610051E9CC6360045824F /* UIImageView+CornerRadius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CornerRadius.m"; sourceTree = "<group>"; };
 		4A46111C1E9CCC010045824F /* Mine_sixPart.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine_sixPart.xcassets; sourceTree = "<group>"; };
 		4A4988071EE9201F00BD820D /* Guangguang.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Guangguang.xcassets; sourceTree = "<group>"; };
-		4A50044B1EE14F8D002D1964 /* LBMoreOperateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMoreOperateView.h; sourceTree = "<group>"; };
-		4A50044C1EE14F8D002D1964 /* LBMoreOperateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMoreOperateView.m; sourceTree = "<group>"; };
-		4A50044D1EE14F8D002D1964 /* LBMoreOperateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMoreOperateView.xib; sourceTree = "<group>"; };
-		4A5004501EE14FA9002D1964 /* LBConsumptionSeriesViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBConsumptionSeriesViewTableViewCell.h; sourceTree = "<group>"; };
-		4A5004511EE14FA9002D1964 /* LBConsumptionSeriesViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBConsumptionSeriesViewTableViewCell.m; sourceTree = "<group>"; };
-		4A5004521EE14FA9002D1964 /* LBConsumptionSeriesViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBConsumptionSeriesViewTableViewCell.xib; sourceTree = "<group>"; };
-		4A5004531EE14FA9002D1964 /* LBHomepopinfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBHomepopinfoView.h; sourceTree = "<group>"; };
-		4A5004541EE14FA9002D1964 /* LBHomepopinfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBHomepopinfoView.m; sourceTree = "<group>"; };
-		4A5004551EE14FA9002D1964 /* LBHomepopinfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBHomepopinfoView.xib; sourceTree = "<group>"; };
-		4A5004561EE14FA9002D1964 /* LBMerchantcreditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMerchantcreditTableViewCell.h; sourceTree = "<group>"; };
-		4A5004571EE14FA9002D1964 /* LBMerchantcreditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMerchantcreditTableViewCell.m; sourceTree = "<group>"; };
-		4A5004581EE14FA9002D1964 /* LBMerchantcreditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMerchantcreditTableViewCell.xib; sourceTree = "<group>"; };
-		4A5004591EE14FA9002D1964 /* LBUserKonwViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBUserKonwViewTableViewCell.h; sourceTree = "<group>"; };
-		4A50045A1EE14FA9002D1964 /* LBUserKonwViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBUserKonwViewTableViewCell.m; sourceTree = "<group>"; };
-		4A50045B1EE14FA9002D1964 /* LBUserKonwViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBUserKonwViewTableViewCell.xib; sourceTree = "<group>"; };
 		4A5004641EE168EA002D1964 /* GLHomePageNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLHomePageNoticeView.h; sourceTree = "<group>"; };
 		4A5004651EE168EA002D1964 /* GLHomePageNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLHomePageNoticeView.m; sourceTree = "<group>"; };
 		4A5004671EE168FD002D1964 /* GLHomePageNoticeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLHomePageNoticeView.xib; sourceTree = "<group>"; };
@@ -4348,45 +4323,14 @@
 		4A5004471EE14F6B002D1964 /* 公告 */ = {
 			isa = PBXGroup;
 			children = (
-				4A5004481EE14F6B002D1964 /* Controller */,
-				4A5004491EE14F6B002D1964 /* Model */,
 				4A50044A1EE14F6B002D1964 /* View */,
 			);
 			path = "公告";
 			sourceTree = "<group>";
 		};
-		4A5004481EE14F6B002D1964 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		4A5004491EE14F6B002D1964 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		4A50044A1EE14F6B002D1964 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4A50044B1EE14F8D002D1964 /* LBMoreOperateView.h */,
-				4A50044C1EE14F8D002D1964 /* LBMoreOperateView.m */,
-				4A50044D1EE14F8D002D1964 /* LBMoreOperateView.xib */,
-				4A5004501EE14FA9002D1964 /* LBConsumptionSeriesViewTableViewCell.h */,
-				4A5004511EE14FA9002D1964 /* LBConsumptionSeriesViewTableViewCell.m */,
-				4A5004521EE14FA9002D1964 /* LBConsumptionSeriesViewTableViewCell.xib */,
-				4A5004531EE14FA9002D1964 /* LBHomepopinfoView.h */,
-				4A5004541EE14FA9002D1964 /* LBHomepopinfoView.m */,
-				4A5004551EE14FA9002D1964 /* LBHomepopinfoView.xib */,
-				4A5004561EE14FA9002D1964 /* LBMerchantcreditTableViewCell.h */,
-				4A5004571EE14FA9002D1964 /* LBMerchantcreditTableViewCell.m */,
-				4A5004581EE14FA9002D1964 /* LBMerchantcreditTableViewCell.xib */,
-				4A5004591EE14FA9002D1964 /* LBUserKonwViewTableViewCell.h */,
-				4A50045A1EE14FA9002D1964 /* LBUserKonwViewTableViewCell.m */,
-				4A50045B1EE14FA9002D1964 /* LBUserKonwViewTableViewCell.xib */,
 				4A5004641EE168EA002D1964 /* GLHomePageNoticeView.h */,
 				4A5004651EE168EA002D1964 /* GLHomePageNoticeView.m */,
 				4A5004671EE168FD002D1964 /* GLHomePageNoticeView.xib */,
@@ -6635,7 +6579,6 @@
 				4A2A00C21EC70D9400052CA7 /* GLConfirmOrderController.xib in Resources */,
 				F9516DF41ECAD6C5009F015D /* LBStoreDetailHotProductTableViewCell.xib in Resources */,
 				F923098F1E9B8BFF00ECDC94 /* LBMineCenterCollectionViewCell.xib in Resources */,
-				4A50044F1EE14F8D002D1964 /* LBMoreOperateView.xib in Resources */,
 				4A4610231E9CC6360045824F /* UMShareEditViewController.xib in Resources */,
 				4A5F66AC1ECA89FA0048F339 /* GLNearby_SectionHeaderView.xib in Resources */,
 				4AB9E14F1ED6B80200BE0420 /* GLMerchat_ModifyView.xib in Resources */,
@@ -6661,7 +6604,6 @@
 				4A337DCC1F3ED2A900B51A8A /* GLSetup_SwitchIDController.xib in Resources */,
 				4AAD259F1EC189070054FD06 /* GLMine_MyHeartCell.xib in Resources */,
 				F9479AFC1EEF7DC400581250 /* AlipaySDK.bundle in Resources */,
-				4A50045F1EE14FA9002D1964 /* LBHomepopinfoView.xib in Resources */,
 				4A2F521A1EC7084000ECA95D /* GLEvaluateCell.xib in Resources */,
 				F92309391E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeDetailOneTableViewCell.xib in Resources */,
 				4AA0D5CA1EAEF9DB00CB8F77 /* GLClassifyCell.xib in Resources */,
@@ -6675,7 +6617,6 @@
 				4A5F66A81ECA89FA0048F339 /* GLNearby_RecommendMerchatCell.xib in Resources */,
 				F92309911E9B8BFF00ECDC94 /* LBMineCenterinfoTableViewCell.xib in Resources */,
 				4A4610281E9CC6360045824F /* UMSocialSDKResourcesNew.bundle in Resources */,
-				4A5004611EE14FA9002D1964 /* LBMerchantcreditTableViewCell.xib in Resources */,
 				F9126EF21EA0B042004785EA /* LBMineSystemMessageViewController.xib in Resources */,
 				4A0162EA1EB029BA00C25DCC /* GLCityChooseController.xib in Resources */,
 				4A0D97931E9729C100A26B84 /* GLHotCell.xib in Resources */,
@@ -6694,7 +6635,6 @@
 				F96659851ED58BDD000DD67F /* BootstrapDiagram.xcassets in Resources */,
 				F92309581E9B8BFF00ECDC94 /* LBMyOrderPendingRefundViewController.xib in Resources */,
 				4A3D17B61ECC514400F85A3B /* GLRecommendStore_RecordCell.xib in Resources */,
-				4A5004631EE14FA9002D1964 /* LBUserKonwViewTableViewCell.xib in Resources */,
 				4A2F521C1EC7084000ECA95D /* GLGoodsInfoCell.xib in Resources */,
 				F92F937E1EE6B4F90030A1A8 /* LBStoreSendGoodsLeavingTableViewCell.xib in Resources */,
 				F91029C21EC5831300246D04 /* LBMySalesmanListFaildViewController.xib in Resources */,
@@ -6786,7 +6726,6 @@
 				F97374661EFE03B200520D03 /* LICENSE in Resources */,
 				F9516DEF1ECAD416009F015D /* LBStoreDetailAdressTableViewCell.xib in Resources */,
 				F923093B1E9B8BFF00ECDC94 /* LBMineCenterFlyNoticeDetailTableViewCell.xib in Resources */,
-				4A50045D1EE14FA9002D1964 /* LBConsumptionSeriesViewTableViewCell.xib in Resources */,
 				F92309671E9B8BFF00ECDC94 /* LBMineCenterMYOrderEvaluationDetailViewController.xib in Resources */,
 				F92309441E9B8BFF00ECDC94 /* LBMineMesageServiceTableViewCell.xib in Resources */,
 				4A2F52101EC7084000ECA95D /* GLHomeLiveController.xib in Resources */,
@@ -7147,7 +7086,6 @@
 				4A4610451E9CC6360045824F /* ZXAztecState.m in Sources */,
 				F9643F141ECFE74E001B707B /* TYAlertDropDownAnimation.m in Sources */,
 				F973747B1EFE049D00520D03 /* MyQRViewController.m in Sources */,
-				4A50044E1EE14F8D002D1964 /* LBMoreOperateView.m in Sources */,
 				4AA0D5A61EAEEC0600CB8F77 /* GLIntegralMallTopCell.m in Sources */,
 				4AAD25361EC188C90054FD06 /* GLBuyBackRecord_FinishController.m in Sources */,
 				4AFFA52C1ECBDA57004FDEA7 /* GLNearby_MerchatListController.m in Sources */,
@@ -7183,7 +7121,6 @@
 				4A4610F71E9CC6370045824F /* ZXPDF417Dimensions.m in Sources */,
 				4A4610DB1E9CC6370045824F /* ZXOneDimensionalCodeWriter.m in Sources */,
 				4A46108F1E9CC6360045824F /* ZXLuminanceSource.m in Sources */,
-				4A50045C1EE14FA9002D1964 /* LBConsumptionSeriesViewTableViewCell.m in Sources */,
 				4A337DD21F3ED2A900B51A8A /* LBMineCenterSafeForgetSecondSecretViewController.m in Sources */,
 				4A4610911E9CC6360045824F /* ZXResult.m in Sources */,
 				4A4611141E9CC6370045824F /* ZXMultiFinderPatternFinder.m in Sources */,
@@ -7289,7 +7226,6 @@
 				F961A9CC1E9C750300275F52 /* UILabel+UILabel_ChangeLineSpaceAndWordSpace.m in Sources */,
 				F94E92BA1ED9108200CBEDB8 /* QQPopMenuView.m in Sources */,
 				F90620071E83C5D00080E9D9 /* LBLoginNavigationViewController.m in Sources */,
-				4A5004601EE14FA9002D1964 /* LBMerchantcreditTableViewCell.m in Sources */,
 				4A4609F71E9CB78E0045824F /* GLDonationController.m in Sources */,
 				4AAD25B01EC18EA70054FD06 /* GLMyCollectionModel.m in Sources */,
 				4A4610791E9CC6360045824F /* ZXBitMatrix.m in Sources */,
@@ -7349,7 +7285,6 @@
 				F92309501E9B8BFF00ECDC94 /* LBMineCenterMyOrderViewController.m in Sources */,
 				4A4610D21E9CC6370045824F /* ZXEAN13Reader.m in Sources */,
 				4A46107D1E9CC6360045824F /* ZXCharacterSetECI.m in Sources */,
-				4A5004621EE14FA9002D1964 /* LBUserKonwViewTableViewCell.m in Sources */,
 				F956F04A1F3F49D9001F5397 /* LBIntegralGoodsCollectionViewCell.m in Sources */,
 				4AA0D6011EAF693D00CB8F77 /* GLintegralGoodsModel.m in Sources */,
 				4A3D17BA1ECC5BFA00F85A3B /* GLRecommendStroe_RecordDateCell.m in Sources */,
@@ -7553,7 +7488,6 @@
 				F9643F131ECFE74D001B707B /* TYAlertController.m in Sources */,
 				F9516E051ECB0084009F015D /* LBStoreProductDetailInfoViewController.m in Sources */,
 				4A2A00C61EC70D9400052CA7 /* GLOrderGoodsCell.m in Sources */,
-				4A50045E1EE14FA9002D1964 /* LBHomepopinfoView.m in Sources */,
 				F961A9D71E9C75AF00275F52 /* ScaleSizeImage.m in Sources */,
 				4A4610431E9CC6360045824F /* ZXAztecHighLevelEncoder.m in Sources */,
 				4AAD25341EC188C90054FD06 /* GLBuyBackRecord_ApplyController.m in Sources */,

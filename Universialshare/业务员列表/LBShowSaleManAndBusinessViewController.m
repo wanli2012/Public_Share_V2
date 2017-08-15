@@ -112,7 +112,7 @@
     
     [UIView animateWithDuration:0.3 animations:^{
         self.lineView.frame = CGRectMake(0, 48, SCREEN_WIDTH / 3, 1);
-        [self.saleBt setTitleColor:YYSRGBColor(44, 153, 46, 1) forState:UIControlStateNormal];
+        [self.saleBt setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
         [self.businessBt setTitleColor:YYSRGBColor(0, 0, 0, 1) forState:UIControlStateNormal];
         [self.shenheZBt setTitleColor:YYSRGBColor(0, 0, 0, 1) forState:UIControlStateNormal];
     } completion:^(BOOL finished) {
@@ -126,7 +126,7 @@
     
     [UIView animateWithDuration:0.3 animations:^{
         self.lineView.frame = CGRectMake(SCREEN_WIDTH/3 , 48, SCREEN_WIDTH / 3, 1);
-        [self.businessBt setTitleColor:YYSRGBColor(44, 153, 46, 1) forState:UIControlStateNormal];
+        [self.businessBt setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
         [self.saleBt setTitleColor:YYSRGBColor(0, 0, 0, 1) forState:UIControlStateNormal];
         [self.shenheZBt setTitleColor:YYSRGBColor(0, 0, 0, 1) forState:UIControlStateNormal];
     } completion:^(BOOL finished) {
@@ -144,7 +144,7 @@
         self.lineView.frame = CGRectMake(SCREEN_WIDTH/3 * 2, 48, SCREEN_WIDTH / 3, 1);
         [self.saleBt setTitleColor:YYSRGBColor(0, 0, 0, 1) forState:UIControlStateNormal];
         [self.businessBt setTitleColor:YYSRGBColor(0, 0, 0, 1) forState:UIControlStateNormal];
-        [self.shenheZBt setTitleColor:YYSRGBColor(44, 153, 46, 1) forState:UIControlStateNormal];
+        [self.shenheZBt setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
     } completion:^(BOOL finished) {
         
     }];
@@ -222,7 +222,7 @@
     
     if (!_lineView) {
         _lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 48, SCREEN_WIDTH / 3, 1)];
-        _lineView.backgroundColor = YYSRGBColor(44, 153, 46, 1);
+        _lineView.backgroundColor = TABBARTITLE_COLOR;
     }
     
     return _lineView;
