@@ -386,6 +386,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                     weakSelf.two_trade_id = @"";
                     [weakSelf updateData:YES];
                      [weakSelf dismiss];
+                     [weakSelf.classifyBtn setTitle:@"全部" forState:UIControlStateNormal];
                     return ;
                 }
                 weakSelf.trade_id = weakSelf.tradeArr[indexF][@"trade_id"];
@@ -398,14 +399,15 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 
                 weakSelf.chooseVC2.dataSource = arr;
               
-                weakSelf.chooseVC2.block = ^(NSString *value,NSInteger index){
-                    if (indexF == 0) {
+                weakSelf.chooseVC2.block = ^(NSString *value2,NSInteger index){
+                    if (index == 0) {
                         weakSelf.two_trade_id = @"";
                         [weakSelf updateData:YES];
                         [weakSelf dismiss];
+                         [weakSelf.classifyBtn setTitle:value forState:UIControlStateNormal];
                         return ;
                     }
-                    [weakSelf.classifyBtn setTitle:value forState:UIControlStateNormal];
+                    [weakSelf.classifyBtn setTitle:value2 forState:UIControlStateNormal];
                      [weakSelf.classifyBtn horizontalCenterTitleAndImage:5];
                     weakSelf.two_trade_id = weakSelf.tradeArr[indexF][@"son"][index][@"trade_id"];
                     [weakSelf dismiss];
