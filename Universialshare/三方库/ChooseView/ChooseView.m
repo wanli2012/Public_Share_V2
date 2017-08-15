@@ -110,7 +110,7 @@
     addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     addBtn.frame = CGRectMake(0, whiteView.height-40, whiteView.frame.size.width/2, 40);
     
-    [addBtn setBackgroundColor:MainColor];
+    [addBtn setBackgroundColor:[UIColor lightGrayColor]];
     [addBtn setTitleColor:[UIColor whiteColor] forState:0];
     addBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [addBtn setTitle:@"取消" forState:0];
@@ -119,7 +119,7 @@
     //立即购买按钮
     buyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     buyBtn.frame = CGRectMake(whiteView.frame.size.width/2,  whiteView.height-40, whiteView.frame.size.width/2, 40);
-    [buyBtn setBackgroundColor:[UIColor colorWithRed:245/255.0f green:143/255.0f blue:43/255.0f alpha:1]];
+    [buyBtn setBackgroundColor:TABBARTITLE_COLOR];
     [buyBtn setTitleColor:[UIColor whiteColor] forState:0];
     buyBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [buyBtn setTitle:@"确定" forState:0];
