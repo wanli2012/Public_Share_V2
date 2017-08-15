@@ -10,6 +10,7 @@
 #import "LBProductManagementTableViewCell.h"
 #import "LBAddMineProductionViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "LBImprovePersonalDataViewController.h"
 
 @interface LBProductManagementViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,LBProductManagementDelegete>
 
@@ -198,9 +199,21 @@
 
 //添加产品
 - (IBAction)addProductEvent:(UIButton *)sender {
-    self.hidesBottomBarWhenPushed=YES;
-    LBAddMineProductionViewController *vc=[[LBAddMineProductionViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([[UserModel defaultUser].rzstatus isEqualToString:@"2"]) {
+        
+        LBAddMineProductionViewController *vc=[[LBAddMineProductionViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        self.hidesBottomBarWhenPushed=NO;
+        
+    }else if ([[UserModel defaultUser].rzstatus isEqualToString:@"1"]) {
+        [MBProgressHUD showError:@"审核中"];
+    }else{
+
+        LBImprovePersonalDataViewController *vc=[[LBImprovePersonalDataViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        self.hidesBottomBarWhenPushed=NO;
+    }
+    
 }
 //编辑完成
 -(void)edtingEventbutton:(UIButton*)button{
