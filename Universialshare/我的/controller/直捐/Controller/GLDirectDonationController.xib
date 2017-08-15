@@ -92,7 +92,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.40214681629999999" green="0.59420973060000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="hCq-uL-ZSv" firstAttribute="centerY" secondItem="BCC-vI-Xk5" secondAttribute="centerY" id="1ub-vR-7bl"/>
                                         <constraint firstAttribute="height" constant="170" id="4oz-iQ-TBu"/>
@@ -305,7 +305,7 @@
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hds-q4-9jk">
                     <rect key="frame" x="10" y="607" width="355" height="40"/>
-                    <color key="backgroundColor" red="0.033305738119999997" green="0.53065627810000005" blue="0.085619680579999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.40214681629999999" green="0.59420973060000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="fb4-pN-CAn"/>
                     </constraints>
