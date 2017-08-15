@@ -27,7 +27,7 @@
 
 @property (nonatomic, strong)UIButton *rightBtn;
 
-@property (nonatomic, assign)CGFloat totalPrice;
+//@property (nonatomic, assign)CGFloat totalPrice;
 
 @property (nonatomic, assign)NSInteger totalNum;
 
@@ -53,7 +53,7 @@ static NSString *ID = @"GLShoppingCell";
 
      [self.clearingBtn addTarget:self action:@selector(clearingMore:) forControlEvents:UIControlEventTouchUpInside];
 
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"合计:¥ %lu",(long)_totalPrice];
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"合计:¥ 0"];
    
     [self.tableView addSubview:self.nodataV];
     
@@ -82,38 +82,38 @@ static NSString *ID = @"GLShoppingCell";
 
 //刷新界面
 - (void)refreshCart {
-    
-    self.seleteAllBtn.selected = NO;
-    
+        
     [self postRequest];
     
 }
 
 - (void)postRequest {
     
+    self.seleteAllBtn.selected = NO;
+
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     
     [NetworkManager requestPOSTWithURLStr:@"shop/myCartList" paramDic:dict finish:^(id responseObject) {
         
-            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+        [self.models removeAllObjects];
+        if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+            
+            if ([responseObject[@"code"] integerValue] == 1){
                 
-                if ([responseObject[@"code"] integerValue] == 1){
+                for (NSDictionary *dic in responseObject[@"data"]) {
                     
-                    [self.models removeAllObjects];
-                    
-                    for (NSDictionary *dic in responseObject[@"data"]) {
-                        
-                        GLShoppingCartModel *model = [GLShoppingCartModel mj_objectWithKeyValues:dic];
-                        model.isSelect = NO;
-                        [self.models addObject:model];
-                    }
-                }else{
-                     [MBProgressHUD showError:responseObject[@"message"]];
+                    GLShoppingCartModel *model = [GLShoppingCartModel mj_objectWithKeyValues:dic];
+                    model.isSelect = NO;
+                    [self.models addObject:model];
                 }
                 
+            }else{
+                [MBProgressHUD showError:responseObject[@"message"]];
             }
+            
+        }
         [self.tableView.mj_header endRefreshing];
         [self.tableView reloadData];
     } enError:^(NSError *error) {
@@ -163,6 +163,10 @@ static NSString *ID = @"GLShoppingCell";
 //全选
 - (IBAction)selectAll:(UIButton*)sender {
     
+    if(self.models.count == 0){
+        [MBProgressHUD showError:@"暂无可选商品"];
+        return;
+    }
     sender.selected = !sender.selected;
     float  num = 0;
     [self.selectArr removeAllObjects];
@@ -172,7 +176,7 @@ static NSString *ID = @"GLShoppingCell";
             GLShoppingCartModel *model = self.models[i];
             model.isSelect = YES;
             num = num + [model.goods_price floatValue] * [model.num floatValue];
-//            [self.selectArr addObject:model];
+
         }
     }else{
         [self.selectArr removeAllObjects];
@@ -186,8 +190,8 @@ static NSString *ID = @"GLShoppingCell";
             model.isSelect = NO;
         }
     }
-    _totalPrice = num;
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ %.2f",_totalPrice];
+    
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ %.2f",num];
     
     [self.tableView reloadData];
 
@@ -222,8 +226,7 @@ static NSString *ID = @"GLShoppingCell";
         
         self.seleteAllBtn.selected = YES;
     }
-    _totalPrice = num;
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ %.2f",_totalPrice];
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ %.2f",num];
     
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:index inSection:0], nil] withRowAnimation:UITableViewRowAnimationNone];
     
@@ -255,6 +258,7 @@ static NSString *ID = @"GLShoppingCell";
 }
 
 #pragma  UITableViewDelegate
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (self.models.count <= 0) {
@@ -327,12 +331,22 @@ static NSString *ID = @"GLShoppingCell";
 
                 if ([responseObject[@"code"] integerValue] == 1){
 
-                    
-                    GLShoppingCartModel *model = self.models[indexPath.row];
-                    
-                    self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ %.2f",_totalPrice - [model.goods_price floatValue]];
-                    
                     [self.models removeObjectAtIndex:indexPath.row];
+                    
+                    float num = 0.0;
+                    
+                    for (int i = 0; i < self.models.count; i ++) {
+                        
+                        GLShoppingCartModel *model = self.models[i];
+                        
+                        if (model.isSelect) {
+                            
+                             num = num + [model.goods_price floatValue] * [model.num floatValue];
+                        }
+                    }
+
+                    self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ %.2f",num];
+                    
                     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
                     
                 }else{

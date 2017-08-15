@@ -149,6 +149,8 @@ static NSString *ID = @"GLOrderGoodsCell";
 }
 
 - (void)changeAddress{
+    
+    self.hidesBottomBarWhenPushed = YES;
     LBMineCentermodifyAdressViewController *modifyAD = [[LBMineCentermodifyAdressViewController alloc] init];
     modifyAD.block = ^(NSString *name,NSString *phone,NSString *address){
         self.nameLabel.text = [NSString stringWithFormat:@"收货人:%@",name];
@@ -203,6 +205,8 @@ static NSString *ID = @"GLOrderGoodsCell";
         [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue] == 1){
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshCartNotification" object:nil];
             
             if ([responseObject[@"data"][@"order_type"] integerValue] == 2) {
                 

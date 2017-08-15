@@ -584,6 +584,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             }
         }
             break;
+            
         case 8:
         {
             self.hidesBottomBarWhenPushed=YES;
@@ -592,9 +593,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             self.hidesBottomBarWhenPushed=NO;
         }
             break;
+            
         case 9://兑换
         {
-           
             if ([[UserModel defaultUser].rzstatus isEqualToString:@"2"]) {
                 
                 self.hidesBottomBarWhenPushed=YES;
@@ -608,10 +609,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 
                 self.hidesBottomBarWhenPushed=YES;
                 LBImprovePersonalDataViewController *vc=[[LBImprovePersonalDataViewController alloc]init];
-                
                 [self.navigationController pushViewController:vc animated:YES];
-                
                 self.hidesBottomBarWhenPushed=NO;
+                
             }
 
         }
