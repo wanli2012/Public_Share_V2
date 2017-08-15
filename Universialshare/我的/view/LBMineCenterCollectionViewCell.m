@@ -13,10 +13,22 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
    
-    self.button.layer.shadowOpacity = 0.5;// 阴影透明度
-    self.button.layer.shadowColor = [UIColor grayColor].CGColor;// 阴影的颜色
-    self.button.layer.shadowRadius = 3;// 阴影扩散的范围控制
-    self.button.layer.shadowOffset  = CGSizeMake(1, 1);// 阴影的范围
+    self.baseView.layer.shadowOpacity = 0.5;// 阴影透明度
+    self.baseView.layer.shadowColor = [UIColor grayColor].CGColor;// 阴影的颜色
+    self.baseView.layer.shadowRadius = 3;// 阴影扩散的范围控制
+    self.baseView.layer.shadowOffset  = CGSizeMake(1, 1);// 阴影的范围
+    
+    
+ //   CALayer *layer = [CALayer layer];
+//    layer.frame = self.baseView.frame;
+//    layer.backgroundColor = [UIColor grayColor].CGColor;
+//    layer.shadowOffset = CGSizeMake(2, 2);
+//    layer.shadowOpacity = 0.5;
+//    layer.cornerRadius = 3;
+//    [self.baseView.layer addSublayer:layer];
+//    
+//    self.baseView.layer.masksToBounds =YES;
+//    self.baseView.layer.cornerRadius =3;
     
 }
 

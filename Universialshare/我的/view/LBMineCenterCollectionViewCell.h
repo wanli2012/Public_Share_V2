@@ -10,7 +10,8 @@
 
 @interface LBMineCenterCollectionViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIButton *button;
-
+@property (weak, nonatomic) IBOutlet UIView *baseView;
+@property (weak, nonatomic) IBOutlet UIImageView *imagev;
+@property (weak, nonatomic) IBOutlet UILabel *titile;
 
 @end

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="25X-NO-GTN">
-                    <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Bet-bK-KLi"/>
@@ -53,11 +53,35 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8l-FM-LOr">
+                            <rect key="frame" x="10" y="31.5" width="60" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="P8M-Je-qyo"/>
+                                <constraint firstAttribute="width" constant="60" id="SWM-T8-SNK"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="2" maxX="48" maxY="2"/>
+                            <state key="normal" image="iv_back">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" title="收起">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="backclick:" destination="-1" eventType="touchUpInside" id="c3T-6e-IM9"/>
+                            </connections>
+                        </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.40214681629999999" green="0.59420973060000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="ivs-qO-dyc" firstAttribute="centerX" secondItem="VD7-f5-9xB" secondAttribute="centerX" id="HF1-8Z-EbN"/>
                         <constraint firstAttribute="bottom" secondItem="ivs-qO-dyc" secondAttribute="bottom" constant="10" id="Tdz-OC-X4q"/>
+                        <constraint firstItem="m8l-FM-LOr" firstAttribute="leading" secondItem="VD7-f5-9xB" secondAttribute="leading" constant="10" id="cib-mu-Tt7"/>
+                        <constraint firstItem="ivs-qO-dyc" firstAttribute="centerY" secondItem="m8l-FM-LOr" secondAttribute="centerY" id="kGo-WO-Lba"/>
                         <constraint firstAttribute="trailing" secondItem="Zqf-zV-Rkv" secondAttribute="trailing" id="oAw-0r-xfz"/>
                         <constraint firstAttribute="height" constant="64" id="us9-Kc-ys9"/>
                         <constraint firstAttribute="bottom" secondItem="Zqf-zV-Rkv" secondAttribute="bottom" id="ust-4g-6CH"/>
@@ -71,7 +95,7 @@
                 <constraint firstItem="VD7-f5-9xB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JDa-Lv-OGD"/>
                 <constraint firstItem="VD7-f5-9xB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="KFn-95-IxH"/>
                 <constraint firstItem="25X-NO-GTN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ajy-ob-veT"/>
-                <constraint firstAttribute="bottom" secondItem="25X-NO-GTN" secondAttribute="bottom" constant="49" id="bMc-eF-R8H"/>
+                <constraint firstAttribute="bottom" secondItem="25X-NO-GTN" secondAttribute="bottom" id="bMc-eF-R8H"/>
                 <constraint firstAttribute="trailing" secondItem="VD7-f5-9xB" secondAttribute="trailing" id="bdy-ro-Dcn"/>
                 <constraint firstAttribute="trailing" secondItem="25X-NO-GTN" secondAttribute="trailing" id="fV2-I9-XI4"/>
             </constraints>
@@ -81,6 +105,7 @@
         </view>
     </objects>
     <resources>
+        <image name="iv_back" width="13" height="25"/>
         <image name="增加符号" width="13" height="13"/>
     </resources>
 </document>

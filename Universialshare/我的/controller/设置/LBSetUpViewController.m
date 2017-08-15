@@ -12,6 +12,7 @@
 #import "GLSetup_VersionInfoController.h"
 #import "LBViewProtocolViewController.h"
 #import "GLSetup_SwitchIDController.h"
+#import "LBMineCenterRegionQueryViewController.h"
 
 #define PATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0]
 
@@ -106,6 +107,17 @@
     [self.navigationController pushViewController:vc animated:YES];
     
 }
+
+//区域查询
+- (IBAction)areaCheck:(UITapGestureRecognizer *)sender {
+    
+    self.hidesBottomBarWhenPushed=YES;
+    LBMineCenterRegionQueryViewController *vc=[[LBMineCenterRegionQueryViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+
+
 //退出登录
 - (IBAction)exitEvent:(UIButton *)sender {
     

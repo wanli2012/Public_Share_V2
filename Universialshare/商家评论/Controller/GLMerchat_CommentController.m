@@ -185,8 +185,11 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
     self.hidesBottomBarWhenPushed = YES;
     LBStoreSendGoodsListViewController *commentVC = [[LBStoreSendGoodsListViewController alloc] init];
     [self.navigationController pushViewController:commentVC animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+
     
+}
+- (IBAction)clickBack:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

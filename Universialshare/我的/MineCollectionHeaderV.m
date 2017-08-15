@@ -50,7 +50,7 @@
         make.trailing.equalTo(self).offset(0);
         make.leading.equalTo(self).offset(0);
         make.bottom.equalTo(self).offset(1);
-        make.height.equalTo(@90);
+        make.height.equalTo(@(90 * autoSizeScaleX));
         
     }];
 
