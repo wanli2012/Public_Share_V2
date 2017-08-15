@@ -39,8 +39,6 @@ static NSString *ID = @"GLMyCollectionCell";
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMyCollectionCell" bundle:nil] forCellReuseIdentifier:ID];
     
     [self.tableView addSubview:self.nodataV];
-    self.nodataV.hidden = YES;
-    
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
@@ -104,13 +102,7 @@ static NSString *ID = @"GLMyCollectionCell";
             
             [MBProgressHUD showError:@"已经没有更多数据了"];
         }
-        
-        if (self.models.count <= 0) {
-            self.nodataV.hidden = NO;
-        }else{
-            self.nodataV.hidden = YES;
-        }
-        
+    
         [self.tableView reloadData];
     } enError:^(NSError *error) {
         [self endRefresh];
@@ -149,6 +141,11 @@ static NSString *ID = @"GLMyCollectionCell";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (self.models.count <= 0) {
+        self.nodataV.hidden = NO;
+    }else{
+        self.nodataV.hidden = YES;
+    }
     return self.models.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -120,9 +120,8 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 - (void)updateData:(BOOL)status {
     
     if (status) {
-        
-        _page = 1;
         [self.recModels removeAllObjects];
+        _page = 1;
     }else{
         _page ++;
     }
@@ -226,7 +225,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 //点击地图导航
 - (void)mapTo:(NSInteger)index{
     
-    GLNearby_MerchatListModel *model = self.nearModels[index];
+    GLNearby_MerchatListModel *model = self.recModels[index];
     
     CGFloat lat = [model.lat floatValue ];
     CGFloat lng = [model.lng floatValue ];
@@ -398,9 +397,18 @@ static NSString *ID = @"GLNearby_MerchatListCell";
         weakSelf.chooseVC2.view.frame = CGRectMake(weakSelf.chooseVC.view.width ,0, SCREEN_WIDTH-weakSelf.chooseVC.view.width, 0);
         [weakSelf.maskV addSubview:weakSelf.chooseVC2.view];
         
-        weakSelf.chooseVC2.dataSource = weakSelf.tradeArr[indexF][@"son"];
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:weakSelf.tradeArr[indexF][@"son"]];
+        [arr insertObject:@"全部" atIndex:0];
+        
+        weakSelf.chooseVC2.dataSource = arr;
         
         weakSelf.chooseVC2.block = ^(NSString *value,NSInteger index){
+            if (index == 0) {
+                weakSelf.two_trade_id = @"";
+                [weakSelf updateData:YES];
+                [weakSelf dismiss];
+                return ;
+            }
             [weakSelf.classifyBtn setTitle:value forState:UIControlStateNormal];
              [weakSelf.classifyBtn horizontalCenterTitleAndImage:5];
             weakSelf.two_trade_id = weakSelf.tradeArr[indexF][@"son"][index][@"trade_id"];
