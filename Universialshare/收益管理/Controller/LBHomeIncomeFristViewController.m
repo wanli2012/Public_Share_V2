@@ -64,6 +64,7 @@ static const CGFloat headerHeight = 0.0f;
     self.startStr = @"";
     self.endStr = @"";
     self.otype = @"1";
+    self.type = @"1";
     self.onlineMoney = @"营业总额: ¥0";
     [self.tableview addSubview:self.headview];
     [self.tableview addSubview:self.nodataV];
@@ -443,18 +444,21 @@ static const CGFloat headerHeight = 0.0f;
         return;
     }
     
-    if ([self.loginView.moneyTF.text  floatValue] <= [[UserModel defaultUser].allLimit floatValue]) {
+    if ([self.loginView.moneyTF.text  floatValue] >= [[UserModel defaultUser].allLimit floatValue]) {
         [MBProgressHUD showError:@"输入大于当前额度"];
         return;
     }
     
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"yzm"] = self.loginView.yzmTf.text;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"userphone"] = self.loginView.phoneTf.text;
+    dict[@"money"] = self.loginView.moneyTF.text;
+    dict[@"type"] = self.type;
+    
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/applyMoreSaleMoney" paramDic:@{@"yzm":self.loginView.yzmTf.text,
-                                                                                @"uid":[UserModel defaultUser].uid ,
-                                                                                @"token":[UserModel defaultUser].token,
-                                                                                @"userphone":self.loginView.phoneTf.text,
-                                                                                @"money":self.loginView.moneyTF.text,
-                                                                                @"type":self.type} finish:^(id responseObject)
+    [NetworkManager requestPOSTWithURLStr:@"user/applyMoreSaleMoney" paramDic:dict finish:^(id responseObject)
      {
          
          [_loadV removeloadview];
@@ -573,6 +577,23 @@ static const CGFloat headerHeight = 0.0f;
     
     [self.loginView addSubview:self.selectUserTypeView];
     
+    __weak typeof(self) weakSelf = self;
+    
+    self.selectUserTypeView.block = ^(NSInteger index){
+        
+        if(index == 0){
+            weakSelf.type = @"1";
+            weakSelf.loginView.typeLabel.text = @"每日限额";
+        }else{
+            weakSelf.type = @"2";
+            weakSelf.loginView.typeLabel.text = @"每单限额";
+        }
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            weakSelf.selectUserTypeView.height = 0;
+        }];
+    };
+    
     if (self.selectUserTypeView.height == 0) {
         
         [UIView animateWithDuration:0.3 animations:^{
@@ -586,18 +607,8 @@ static const CGFloat headerHeight = 0.0f;
         }];
     }
     
-    __weak typeof(self) weakSelf = self;
-    self.selectUserTypeView.block = ^(NSInteger index){
-        
-        if(index == 0){
-            weakSelf.type = @"1";
-            weakSelf.loginView.typeLabel.text = @"每日限额";
-        }else{
-            weakSelf.type = @"2";
-            weakSelf.loginView.typeLabel.text = @"每单限额";
-        }
-        
-    };
+
+
     
 }
 //限额选择View
@@ -609,7 +620,7 @@ static const CGFloat headerHeight = 0.0f;
         
         _selectUserTypeView.layer.cornerRadius = 10.f;
         _selectUserTypeView.clipsToBounds = YES;
-        _selectUserTypeView.frame=CGRectMake(100, 150, SCREEN_WIDTH - 40 - 100, 0);
+        _selectUserTypeView.frame=CGRectMake(100, 150, SCREEN_WIDTH - 40 - 110, 0);
         
         _selectUserTypeView.dataSoure  = @[@"每日限额",@"每单限额"];
         

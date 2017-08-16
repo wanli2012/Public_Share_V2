@@ -155,11 +155,18 @@
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
     
     self.usertype = OrdinaryUser;
+    
+    if (self.phoneArr.count == 0) {
+        
+        self.dropDownBtn.hidden = YES;
+    }
 
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
      [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    
 }
 //获取数据库的数据
 -(void)getFmdbDatasoruce{
@@ -187,12 +194,15 @@
 
         self.fmdbArr = [NSMutableArray array];
     }
+    
 }
 
 //以往登录过的账号选择
 - (IBAction)dropDown:(UIButton *)sender {
     
     self.isOpen = !self.isOpen;
+    
+    self.tableView.layer.cornerRadius = 5.f;
     
     if (self.isOpen) {
         
@@ -257,7 +267,7 @@
     cell.textLabel.textColor = [UIColor blackColor];
     cell.backgroundColor = [UIColor whiteColor];
     cell.textLabel.font = [UIFont systemFontOfSize:13];
-    
+    cell.backgroundColor = [UIColor lightGrayColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
@@ -366,7 +376,9 @@
      NSString *encryptsecret = [RSAEncryptor encryptString:self.scretTf.text publicKey:public_RSA];
 
     [NetworkManager requestPOSTWithURLStr:@"user/login" paramDic:@{@"userphone":self.phone.text,@"password":encryptsecret,@"groupID":self.usertype} finish:^(id responseObject) {
+        
         [_loadV removeloadview];
+        
         if ([responseObject[@"code"] integerValue]==1) {
             
             [MBProgressHUD showError:responseObject[@"message"]];
@@ -465,6 +477,7 @@
                     
                     [UserModel defaultUser].shop_type = @"";
                 }
+                
             }else{//普通用户
                 [UserModel defaultUser].shop_name = @"";
                 [UserModel defaultUser].shop_address = @"";
@@ -478,6 +491,7 @@
                 [UserModel defaultUser].headPic = PlaceHolderImage;
                 
             }
+            
             [usermodelachivar achive];
             
             BOOL isSava = YES;//是否保存

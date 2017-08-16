@@ -13,8 +13,7 @@ typedef void(^block)(NSInteger index);
 @interface SelectUserTypeView : UIView
 
 @property (nonatomic, copy)block block;
+
 @property (nonatomic, copy)NSArray *dataSoure;
-
-
 
 @end
