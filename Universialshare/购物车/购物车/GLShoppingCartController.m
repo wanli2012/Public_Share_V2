@@ -333,16 +333,28 @@ static NSString *ID = @"GLShoppingCell";
 
                     [self.models removeObjectAtIndex:indexPath.row];
                     
-                    float num = 0.0;
+                    BOOL  b = NO;
+                    float  num = 0;
                     
-                    for (int i = 0; i < self.models.count; i ++) {
-                        
+                    for (int i = 0; i < self.models.count; i++) {
                         GLShoppingCartModel *model = self.models[i];
                         
-                        if (model.isSelect) {
+                        if (model.isSelect == NO) {
+                            b = YES;
                             
-                             num = num + [model.goods_price floatValue] * [model.num floatValue];
+                        }else{
+                            num = num + [model.goods_price floatValue] * [model.num floatValue];
+                            //            [self.selectArr addObject:model];
                         }
+                    }
+                    
+                    if (b == YES) {
+                        
+                        self.seleteAllBtn.selected = NO;
+                        
+                    }else{
+                        
+                        self.seleteAllBtn.selected = YES;
                     }
 
                     self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ %.2f",num];

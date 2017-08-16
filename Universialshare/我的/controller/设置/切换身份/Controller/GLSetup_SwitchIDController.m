@@ -33,6 +33,8 @@
 
 @property (strong, nonatomic)LoadWaitView *loadV;
 
+@property (strong, nonatomic)NodataView *nodataV;
+
 @end
 
 @implementation GLSetup_SwitchIDController
@@ -43,6 +45,8 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.title = @"帐号切换";
     [self.tableView registerNib:[UINib nibWithNibName:@"GLSetup_SwitchIDCell" bundle:nil] forCellReuseIdentifier:@"GLSetup_SwitchIDCell"];
+    [self.tableView addSubview:self.nodataV];
+    self.nodataV.hidden = YES;
     [self getFmdbDatasoruce];
     
 }
@@ -82,6 +86,13 @@
 #pragma mark UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    if (self.nameArr.count == 0) {
+        
+        self.nodataV.hidden = NO;
+    }else{
+        self.nodataV.hidden = YES;
+    }
     return self.nameArr.count;
 }
 
@@ -292,6 +303,15 @@
     }
 }
 #pragma 懒加载
+-(NodataView*)nodataV{
+    
+    if (!_nodataV) {
+        _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
+    }
+    return _nodataV;
+    
+}
 
 - (NSMutableArray *)phoneArr{
     if (!_phoneArr) {
