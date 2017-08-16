@@ -58,14 +58,14 @@
 
 - (IBAction)exitButton:(UIButton *)sender {
     
-    [UserModel defaultUser].loginstatus = NO;
-    [UserModel defaultUser].headPic = @"";
-    [UserModel defaultUser].usrtype = @"0";
-    [usermodelachivar achive];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"exitLogin" object:nil];
+//    [UserModel defaultUser].loginstatus = NO;
+//    [UserModel defaultUser].headPic = @"";
+//    [UserModel defaultUser].usrtype = @"0";
+//    [usermodelachivar achive];
+//    [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
+//    
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//    [[NSNotificationCenter defaultCenter]postNotificationName:@"exitLogin" object:nil];
 
 }
 
@@ -233,7 +233,7 @@
             [MBProgressHUD showError:@"资料认证中..."];
 //            [self dismissViewControllerAnimated:YES completion:nil];
             
-            [self popoverPresentationController];
+            [self.navigationController  popViewControllerAnimated:YES];
             
             [UserModel defaultUser].truename = self.nameTf.text;
             [UserModel defaultUser].idcard = self.codeTf.text;
@@ -245,7 +245,7 @@
             [MBProgressHUD showError:dic[@"message"]];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
+        [SVProgressHUD dismiss];
         [MBProgressHUD showError:error.localizedDescription];
     }];
 }

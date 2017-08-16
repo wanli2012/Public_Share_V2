@@ -84,7 +84,7 @@
             animation.type = @"suckEffect";
             // animation.type = kCATransitionFade;
             [self.view.window.layer addAnimation:animation forKey:nil];
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"exitLogin" object:nil];
             [self.navigationController popViewControllerAnimated:YES];
             
         }else if (alertView.tag == 11){
