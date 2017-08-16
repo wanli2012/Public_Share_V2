@@ -3347,12 +3347,12 @@
 		4A3D4D131F441928003CAE87 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				4A3D4D141F441928003CAE87 /* GLStoreProductCommentController.h */,
-				4A3D4D151F441928003CAE87 /* GLStoreProductCommentController.m */,
-				4A3D4D161F441928003CAE87 /* GLStoreProductCommentController.xib */,
 				4A3D4D171F441928003CAE87 /* LBStoreProductDetailInfoViewController.h */,
 				4A3D4D181F441928003CAE87 /* LBStoreProductDetailInfoViewController.m */,
 				4A3D4D191F441928003CAE87 /* LBStoreProductDetailInfoViewController.xib */,
+				4A3D4D141F441928003CAE87 /* GLStoreProductCommentController.h */,
+				4A3D4D151F441928003CAE87 /* GLStoreProductCommentController.m */,
+				4A3D4D161F441928003CAE87 /* GLStoreProductCommentController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";

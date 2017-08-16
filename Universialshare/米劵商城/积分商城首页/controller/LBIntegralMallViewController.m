@@ -31,6 +31,9 @@
 #import "GLAdModel.h"
 #import "GLMine_AdController.h"
 
+#import "LBStoreMoreInfomationViewController.h"//商家详情
+#import "LBStoreProductDetailInfoViewController.h"//商品详情
+
 @interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,GLIntegralMallTopCellDelegete,GLIntegralGoodsCellDelegate,LBFrontViewdelegete>
 {
     LoadWaitView * _loadV;
@@ -179,6 +182,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
                         GLAdModel *model = self.bannerArr[i];
                         [imageAr addObject:model.thumb];
                     }
+                    
                     [self.frontView reloadImage:imageAr];
                     
                 }
@@ -198,14 +202,39 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 #pragma mark ----- 点击轮播图查看详情
 -(void)clickScrollViewImage:(NSInteger)index{
 
+    if(self.self.bannerArr.count == 0){
+        return;
+    }
+    
+    GLAdModel *model = self.self.bannerArr[index];
+    
     self.hidesBottomBarWhenPushed = YES;
-    GLMine_AdController *adVC = [[GLMine_AdController alloc] init];
-    GLAdModel *model = self.bannerArr[index];
-    adVC.url = model.url;
-    [self.navigationController pushViewController:adVC animated:YES];
+    
+    if ([model.type integerValue] == 1) {//内部广告
+        if([model.jumptype integerValue] == 1){//跳转商户
+            
+            LBStoreMoreInfomationViewController *storeVC = [[LBStoreMoreInfomationViewController alloc] init];
+            storeVC.storeId = model.jumpid;
+            [self.navigationController pushViewController:storeVC animated:YES];
+            
+        }else{//跳转商品
+            
+            LBStoreProductDetailInfoViewController *storeVC = [[LBStoreProductDetailInfoViewController alloc] init];
+            storeVC.goodId = model.jumpid;
+            [self.navigationController pushViewController:storeVC animated:YES];
+            
+        }
+        
+    }else if([model.type integerValue] == 2){//外部广告
+        
+        GLMine_AdController *adVC = [[GLMine_AdController alloc] init];
+        adVC.url = model.url;
+        [self.navigationController pushViewController:adVC animated:YES];
+        
+    }
+    
     self.hidesBottomBarWhenPushed = NO;
 }
-
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
