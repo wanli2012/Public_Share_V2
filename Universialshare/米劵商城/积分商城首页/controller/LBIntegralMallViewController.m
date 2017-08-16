@@ -172,6 +172,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     }];
 
 }
+
 #pragma mark ----- 点击轮播图查看详情
 -(void)clickScrollViewImage:(NSInteger)index{
 
@@ -184,6 +185,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     self.hidesBottomBarWhenPushed = YES;
     
     if ([model.type integerValue] == 1) {//内部广告
+        
         if([model.jumptype integerValue] == 1){//跳转商户
             
             LBStoreMoreInfomationViewController *storeVC = [[LBStoreMoreInfomationViewController alloc] init];

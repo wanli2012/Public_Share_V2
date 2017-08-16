@@ -2831,6 +2831,7 @@
 		4A1FE72B1EC9424C0000A357 /* 我要推店 */ = {
 			isa = PBXGroup;
 			children = (
+				4AEF77C81ECD3A0B00FBC1DB /* 月份选择器 */,
 				4A1FE72C1EC9424C0000A357 /* Controller */,
 				4A1FE72D1EC9424C0000A357 /* Model */,
 				4A1FE72E1EC9424C0000A357 /* View */,
@@ -2841,7 +2842,6 @@
 		4A1FE72C1EC9424C0000A357 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4AEF77C81ECD3A0B00FBC1DB /* 月份选择器 */,
 				4A1FE72F1EC978FB0000A357 /* GLRecommendStoreController.h */,
 				4A1FE7301EC978FB0000A357 /* GLRecommendStoreController.m */,
 				4A1FE7311EC978FB0000A357 /* GLRecommendStoreController.xib */,
@@ -5066,7 +5066,8 @@
 				4AEF77CB1ECD3A0B00FBC1DB /* JXAlertview.h */,
 				4AEF77CC1ECD3A0B00FBC1DB /* JXAlertview.m */,
 			);
-			path = "月份选择器";
+			name = "月份选择器";
+			path = "Controller/月份选择器";
 			sourceTree = "<group>";
 		};
 		4AFCDC501ED2901A007C1681 /* 商家评论 */ = {
