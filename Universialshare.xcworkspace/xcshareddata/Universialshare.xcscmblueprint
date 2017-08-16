@@ -1,5 +1,5 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C53D82B2F497633C162187A1BA2E94D792326161+++7BF61D4",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C53D82B2F497633C162187A1BA2E94D792326161+++8E20BDA",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
     "4fc9bdf8-104a-be4e-a35a-b556eee68135++9732+++CD8B9D0" : {
 
@@ -8,20 +8,22 @@
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "4882A41F5235555F9FBE2D31238E1C982662B292+++8212BE3" : 9223372036854775807,
     "C53D82B2F497633C162187A1BA2E94D792326161+++BED4B12" : 9223372036854775807,
+    "C53D82B2F497633C162187A1BA2E94D792326161+++8E20BDA" : 9223372036854775807,
     "C53D82B2F497633C162187A1BA2E94D792326161+++7BF61D4" : 9223372036854775807,
     "4fc9bdf8-104a-be4e-a35a-b556eee68135++9732+++CD8B9D0" : 0,
-    "4882A41F5235555F9FBE2D31238E1C982662B292+++FFF464E" : 0,
     "B6B48ADB123873418DD58325C563B349669A4867+++C42A456" : 0,
+    "4882A41F5235555F9FBE2D31238E1C982662B292+++FFF464E" : 0,
     "4882A41F5235555F9FBE2D31238E1C982662B292+++FD2BCB9" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D69FBE5B-1C12-42BD-94B8-1ADD6AE21E79",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "4882A41F5235555F9FBE2D31238E1C982662B292+++8212BE3" : "%E5%A4%A7%E4%BC%97%E5%85%B1%E4%BA%AB\/",
     "C53D82B2F497633C162187A1BA2E94D792326161+++BED4B12" : "%E5%A4%A7%E4%BC%97%E5%85%B1%E4%BA%ABv2.0\/",
+    "C53D82B2F497633C162187A1BA2E94D792326161+++8E20BDA" : "%E5%A4%A7%E4%BC%97%E5%85%B1%E4%BA%ABv2.0%E7%9A%84%E5%89%AF%E6%9C%AC%202\/",
     "C53D82B2F497633C162187A1BA2E94D792326161+++7BF61D4" : "%E5%A4%A7%E4%BC%97%E5%85%B1%E4%BA%AB%E4%BA%8C%E6%9C%9F\/",
     "4fc9bdf8-104a-be4e-a35a-b556eee68135++9732+++CD8B9D0" : "Universialshare\/",
-    "4882A41F5235555F9FBE2D31238E1C982662B292+++FFF464E" : "%E5%A4%A7%E4%BC%97%E5%85%B1%E4%BA%AB\/",
     "B6B48ADB123873418DD58325C563B349669A4867+++C42A456" : "ppp\/",
+    "4882A41F5235555F9FBE2D31238E1C982662B292+++FFF464E" : "%E5%A4%A7%E4%BC%97%E5%85%B1%E4%BA%AB\/",
     "4882A41F5235555F9FBE2D31238E1C982662B292+++FD2BCB9" : "%E5%A4%A7%E4%BC%97%E5%85%B1%E4%BA%AB\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Universialshare",
@@ -57,6 +59,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/gonglei277\/dzgxv2.0.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C53D82B2F497633C162187A1BA2E94D792326161+++7BF61D4"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/wanli2012\/Public_Share_V2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C53D82B2F497633C162187A1BA2E94D792326161+++8E20BDA"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/gonglei277\/dzgxv2.0.git",
