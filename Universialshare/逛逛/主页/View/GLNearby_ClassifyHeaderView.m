@@ -148,7 +148,7 @@
 
 -(void)reloadScorlvoewimages:(NSArray *)dataArr{
     self.imagearr = dataArr;
-
+    self.cycleScrollView.imageURLStringsGroup = self.imagearr;
 }
 
 -(void)pageControlChanged:(UIPageControl*)pageControl{
