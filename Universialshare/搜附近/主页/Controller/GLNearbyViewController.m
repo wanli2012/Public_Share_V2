@@ -210,6 +210,8 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 [self.nearArr removeAllObjects];
                 [self.recomendArr removeAllObjects];
+                [self endRefresh];
+                
                 [GLNearby_Model defaultUser].city_id = responseObject[@"city_id"];
                 for (NSDictionary *dic  in responseObject[@"data"][@"near_shop"]) {
                     GLNearby_NearShopModel *model = [GLNearby_NearShopModel mj_objectWithKeyValues:dic];
@@ -226,7 +228,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         }
      
     } enError:^(NSError *error) {
-      
+       [self endRefresh];
         [MBProgressHUD showError:@"数据加载失败"];
         
     }];

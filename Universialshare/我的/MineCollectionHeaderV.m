@@ -44,6 +44,8 @@
     [self.baseview addSubview:self.headview];
     [self.headview addSubview:self.headimage];
     [self.baseview addSubview:self.namelebel];
+    [self.baseview addSubview:self.identitylebel];
+    [self.baseview addSubview:self.IDlebel];
     [self addSubview:self.cycleScrollView];
     
     [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -54,7 +56,6 @@
         
     }];
 
-    
     [self.baseview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.trailing.equalTo(self).offset(0);
         make.leading.equalTo(self).offset(0);
@@ -63,7 +64,6 @@
         
     }];
 
-    
     [self.backimage mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.trailing.equalTo(self.baseview).offset(0);
@@ -94,6 +94,18 @@
         make.top.equalTo(self.headview.mas_bottom).offset(8);
         //make.height.equalTo(@20);
     }];
+    [self.identitylebel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self.namelebel);
+        make.leading.equalTo(self.namelebel);
+        make.top.equalTo(self.namelebel.mas_bottom).offset(5);
+        //make.height.equalTo(@20);
+    }];
+    [self.IDlebel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self.identitylebel);
+        make.leading.equalTo(self.identitylebel);
+        make.top.equalTo(self.identitylebel.mas_bottom).offset(5);
+        //make.height.equalTo(@20);
+    }];
     
     [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.trailing.equalTo(self.baseview).offset(-10);
@@ -108,13 +120,6 @@
     if (!self.headimage.image) {
         
         self.headimage.image = [UIImage imageNamed:@"dtx_icon"];
-    }
-    
-    self.namelebel.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].name];
-    
-    if (self.namelebel.text.length <= 0) {
-        
-        self.namelebel.text = @"用户名";
     }
     
 }
@@ -233,7 +238,7 @@
         
         _headview = ({
         
-            UIView *view=[[UIView alloc]initWithFrame:CGRectMake(20 , 15 + 64 , 90  , 90 )];
+            UIView *view=[[UIView alloc]initWithFrame:CGRectMake(20 , 10 + 64 , 90  , 90 )];
             view.backgroundColor=YYSRGBColor(253, 180, 165, 1);
             view.layer.cornerRadius = 45;
             view.clipsToBounds = YES;
@@ -285,6 +290,36 @@
         [_namelebel sizeToFit];
     }
     return _namelebel;
+    
+}
+
+-(UILabel*)identitylebel{
+    
+    if (!_identitylebel) {
+        _identitylebel=[[UILabel alloc]init];
+        _identitylebel.backgroundColor=[UIColor clearColor];
+        _identitylebel.textColor=[UIColor whiteColor];
+        _identitylebel.font=[UIFont systemFontOfSize:12];
+        _identitylebel.textAlignment=NSTextAlignmentCenter;
+        _identitylebel.numberOfLines=0;
+        [_identitylebel sizeToFit];
+    }
+    return _identitylebel;
+    
+}
+
+-(UILabel*)IDlebel{
+    
+    if (!_IDlebel) {
+        _IDlebel=[[UILabel alloc]init];
+        _IDlebel.backgroundColor=[UIColor clearColor];
+        _IDlebel.textColor=[UIColor whiteColor];
+        _IDlebel.font=[UIFont systemFontOfSize:12];
+        _IDlebel.textAlignment=NSTextAlignmentCenter;
+        _IDlebel.numberOfLines=0;
+        [_IDlebel sizeToFit];
+    }
+    return _IDlebel;
     
 }
 

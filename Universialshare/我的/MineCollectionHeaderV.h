@@ -18,6 +18,8 @@
 @property(nonatomic , strong) UIImageView *headimage;
 @property(nonatomic , strong) UIImageView *backimage;
 @property(nonatomic , strong) UILabel *namelebel;//用户名
+@property(nonatomic , strong) UILabel *identitylebel;//用户身份
+@property(nonatomic , strong) UILabel *IDlebel;//用户ID
 @property (strong, nonatomic)NSArray *titleArr;
 
 @property (strong, nonatomic)UITableView *tableview;
