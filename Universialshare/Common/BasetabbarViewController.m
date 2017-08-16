@@ -48,12 +48,7 @@
 }
 //完善资料退出跳转登录
 -(void)exitLogin{
-        
-        GLLoginController *loginVC = [[GLLoginController alloc] init];
-        BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
-        nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self presentViewController:nav animated:YES completion:nil];
-    
+    self.selectedIndex = 0;
 }
 
 - (void)addViewControllers {
@@ -103,17 +98,6 @@
     if (viewController == [tabBarController.viewControllers objectAtIndex:3] || viewController == [tabBarController.viewControllers objectAtIndex:2]) {
        
         if ([UserModel defaultUser].loginstatus == YES) {
-//实名认证
-            
-//            if (![[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
-//                if ([[UserModel defaultUser].rzstatus isEqualToString:@"0"] || [[UserModel defaultUser].rzstatus isEqualToString:@"3"]) {
-//                    
-//                    LBImprovePersonalDataViewController *infoVC = [[LBImprovePersonalDataViewController alloc] init];
-//                    infoVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//                    [self presentViewController:infoVC animated:YES completion:nil];
-//                    return NO;
-//                }
-//            }
             
             return YES;
         }
@@ -130,11 +114,8 @@
 //刷新界面
 -(void)refreshInterface{
     
-//    [self.viewControllers reverseObjectEnumerator];
-//    
-//    [self addViewControllers];
-    
-    self.selectedIndex = 0;
+   [self.viewControllers reverseObjectEnumerator];
+    [self addViewControllers];
 
 }
 

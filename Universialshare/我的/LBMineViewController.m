@@ -214,7 +214,7 @@ static CGFloat headViewH = 300;
     if (_headview.namelebel.text.length <= 0 || [_headview.namelebel.text rangeOfString:@"null"].location != NSNotFound) {
         _headview.namelebel.text = @"用户名";
     }
-    
+
     if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
         _headview.identitylebel.text = @"会员";
     }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]){
