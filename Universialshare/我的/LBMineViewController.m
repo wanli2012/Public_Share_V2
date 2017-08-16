@@ -53,8 +53,9 @@
 #import "GLMerchat_CommentController.h"
 
 #import "LBImprovePersonalDataViewController.h"//完善资料  实名认证
-#import "LBCheckMoreHotProductViewController.h"//逛逛 商家详情
-#import "LBStoreProductDetailInfoViewController.h"//逛逛  商品详情
+#import "LBStoreMoreInfomationViewController.h"//逛逛 商家详情
+#import "LBStoreProductDetailInfoViewController.h"//逛逛  逛逛商品详情
+#import "GLHourseDetailController.h"//米劵商品
 
 static CGFloat headViewH = 300;
 
@@ -256,6 +257,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     
     return UIEdgeInsetsMake(0, 0, 0, 0);
+    
 }
 
 #pragma mark --- 不同身份之间的逻辑跳转
@@ -861,15 +863,26 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     if ([model.type integerValue] == 1) {//内部广告
         if([model.jumptype integerValue] == 1){//跳转商户
             
-            LBCheckMoreHotProductViewController *storeVC = [[LBCheckMoreHotProductViewController alloc] init];
+            LBStoreMoreInfomationViewController *storeVC = [[LBStoreMoreInfomationViewController alloc] init];
             storeVC.storeId = model.jumpid;
+            storeVC.lat = [[GLNearby_Model defaultUser].latitude floatValue];
+            storeVC.lng = [[GLNearby_Model defaultUser].longitude floatValue];
             [self.navigationController pushViewController:storeVC animated:YES];
             
         }else{//跳转商品
 
-            LBStoreProductDetailInfoViewController *storeVC = [[LBStoreProductDetailInfoViewController alloc] init];
-            storeVC.goodId = model.jumpid;
-            [self.navigationController pushViewController:storeVC animated:YES];
+            if ([model.goodstype integerValue] == 1) {//逛逛商品
+                
+                LBStoreProductDetailInfoViewController *storeVC = [[LBStoreProductDetailInfoViewController alloc] init];
+                storeVC.goodId = model.jumpid;
+                [self.navigationController pushViewController:storeVC animated:YES];
+                
+            }else{
+                
+                GLHourseDetailController *goodsVC = [[GLHourseDetailController alloc] init];
+                goodsVC.goods_id = model.jumpid;
+                [self.navigationController pushViewController:goodsVC animated:YES];
+            }
             
         }
         

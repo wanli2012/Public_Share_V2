@@ -60,17 +60,19 @@
     
     [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
     
-    
     self.tableview.mj_header = header;
     self.tableview.mj_footer = footer;
     [self updateData:YES];
     
 }
+
 - (void)dealloc{
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
 - (void)updateData:(BOOL)status {
+    
     if (status) {
         
         self.page = 1;

@@ -18,6 +18,7 @@
 @interface GLRecommendStoreController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate,QBImagePickerControllerDelegate,UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
 {
     BOOL      _ishidecotr;//判断是否隐藏弹出控制器
+    NSURLSessionDataTask *_dataTask;
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
@@ -81,7 +82,12 @@
     [self getshoptype];//获取商户类别
 
 }
-
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    [_dataTask cancel];
+    
+}
 -(void)getshoptype{
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
@@ -533,7 +539,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
     // 加上这行代码，https ssl 验证。
     [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
-    [manager POST:[NSString stringWithFormat:@"%@shop/push_store",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    _dataTask = [manager POST:[NSString stringWithFormat:@"%@shop/push_store",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         //将图片以表单形式上传
         
         for (int i = 0; i < self.imagearr.count - 1; i++) {

@@ -188,13 +188,24 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
             
             LBStoreMoreInfomationViewController *storeVC = [[LBStoreMoreInfomationViewController alloc] init];
             storeVC.storeId = model.jumpid;
+            storeVC.lat = [[GLNearby_Model defaultUser].latitude floatValue];
+            storeVC.lng = [[GLNearby_Model defaultUser].longitude floatValue];
             [self.navigationController pushViewController:storeVC animated:YES];
             
         }else{//跳转商品
             
-            LBStoreProductDetailInfoViewController *storeVC = [[LBStoreProductDetailInfoViewController alloc] init];
-            storeVC.goodId = model.jumpid;
-            [self.navigationController pushViewController:storeVC animated:YES];
+            if ([model.goodstype integerValue] == 1) {//逛逛商品
+                
+                LBStoreProductDetailInfoViewController *storeVC = [[LBStoreProductDetailInfoViewController alloc] init];
+                storeVC.goodId = model.jumpid;
+                [self.navigationController pushViewController:storeVC animated:YES];
+                
+            }else{
+                
+                GLHourseDetailController *goodsVC = [[GLHourseDetailController alloc] init];
+                goodsVC.goods_id = model.jumpid;
+                [self.navigationController pushViewController:goodsVC animated:YES];
+            }
             
         }
         

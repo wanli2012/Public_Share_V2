@@ -22,5 +22,6 @@
 
 @property (nonatomic, copy)NSString *jumpid;
 
+@property (nonatomic, copy)NSString *goodstype;
 
 @end
