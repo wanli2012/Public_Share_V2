@@ -46,13 +46,15 @@
 #import "GLAdModel.h"//广告数据模型
 #import "GLMine_AdController.h"
 #import "MineCollectionViewFlowLayout.h"
-//测试 后面请删除
+
 #import "LBHomeIncomeViewController.h"
 #import "LBShowSaleManAndBusinessViewController.h"
 #import "LBBelowTheLineViewController.h"
 #import "GLMerchat_CommentController.h"
 
 #import "LBImprovePersonalDataViewController.h"//完善资料  实名认证
+#import "LBCheckMoreHotProductViewController.h"//逛逛 商家详情
+#import "LBStoreProductDetailInfoViewController.h"//逛逛  商品详情
 
 static CGFloat headViewH = 300;
 
@@ -847,11 +849,38 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_AdController *adVC = [[GLMine_AdController alloc] init];
+    
+    if(self.adModels.count == 0){
+        return;
+    }
+    
     GLAdModel *model = self.adModels[index];
-    adVC.url = model.url;
-    [self.navigationController pushViewController:adVC animated:YES];
+    
+    self.hidesBottomBarWhenPushed = YES;
+    
+    if ([model.type integerValue] == 1) {//内部广告
+        if([model.jumptype integerValue] == 1){//跳转商户
+            
+            LBCheckMoreHotProductViewController *storeVC = [[LBCheckMoreHotProductViewController alloc] init];
+            storeVC.storeId = model.jumpid;
+            [self.navigationController pushViewController:storeVC animated:YES];
+            
+        }else{//跳转商品
+
+            LBStoreProductDetailInfoViewController *storeVC = [[LBStoreProductDetailInfoViewController alloc] init];
+            storeVC.goodId = model.jumpid;
+            [self.navigationController pushViewController:storeVC animated:YES];
+            
+        }
+        
+    }else if([model.type integerValue] == 2){//外部广告
+        
+        GLMine_AdController *adVC = [[GLMine_AdController alloc] init];
+        adVC.url = model.url;
+        [self.navigationController pushViewController:adVC animated:YES];
+        
+    }
+    
     self.hidesBottomBarWhenPushed = NO;
 }
 

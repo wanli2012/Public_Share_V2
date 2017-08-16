@@ -87,13 +87,38 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    NSString *shenfen;
+    
+    if ([self.groupIDArr[indexPath.row] isEqualToString:OrdinaryUser]) {
+        shenfen = @"会员";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:Retailer]){
+        shenfen = @"商家";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:ONESALER]){
+        shenfen = @"大区创客";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:TWOSALER]){
+        shenfen = @"城市创客";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:THREESALER]){
+        shenfen = @"创客";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:PROVINCE]){
+        shenfen = @"省级服务中心";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:CITY]){
+        shenfen = @"市级服务中心";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:DISTRICT]){
+        shenfen = @"区级服务中心";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:PROVINCE_INDUSTRY]){
+        shenfen = @"省级行业服务中心";
+    }else if ([self.groupIDArr[indexPath.row] isEqualToString:CITY_INDUSTRY]){
+        shenfen = @"市级行业服务中心";
+    }
+
     GLSetup_SwitchIDCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLSetup_SwitchIDCell"];
     
     [cell.picImageV sd_setImageWithURL:[NSURL URLWithString:self.headPicArr[indexPath.row]] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     
-    cell.nameLabel.text = self.nameArr[indexPath.row];
-    cell.phoneLabel.text = self.phoneArr[indexPath.row];
- 
+    cell.nameLabel.text = [NSString stringWithFormat:@"%@ (%@)",self.nameArr[indexPath.row],shenfen];
+    
+    cell.phoneLabel.text  = [NSString stringWithFormat:@"%@*****%@",[self.phoneArr[indexPath.row] substringToIndex:3],[self.phoneArr[indexPath.row] substringFromIndex:7]];
+    
     if ([self.nameArr[indexPath.row] isEqualToString:[UserModel defaultUser].name]) {
         
         cell.pointOutImageV.hidden = NO;
@@ -122,7 +147,7 @@
     
     
     NSString *encryptsecret = [RSAEncryptor encryptString:self.pwdArr[indexPath.row] publicKey:public_RSA];
-    NSLog(@"%@",@{@"userphone":self.nameArr[indexPath.row],@"password":encryptsecret,@"groupID":self.groupIDArr[indexPath.row]});
+//    NSLog(@"%@",@{@"userphone":self.nameArr[indexPath.row],@"password":encryptsecret,@"groupID":self.groupIDArr[indexPath.row]});
     
     [NetworkManager requestPOSTWithURLStr:@"user/login" paramDic:@{@"userphone":self.phoneArr[indexPath.row],@"password":encryptsecret,@"groupID":self.groupIDArr[indexPath.row]} finish:^(id responseObject) {
         [_loadV removeloadview];

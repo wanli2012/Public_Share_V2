@@ -15,7 +15,7 @@
 #import "GLAccountModel.h"
 
 //获取ip 所需的头文件 和 宏
-#import "JLExtension.h"
+
 @interface GLLoginController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
@@ -85,60 +85,58 @@
         switch (index) {
             case 0://会员
             {
-                weakSelf.usertype = @"10";
+                weakSelf.usertype = OrdinaryUser;
             }
                 break;
             case 1://商家
             {
-                weakSelf.usertype = @"9";
+                weakSelf.usertype = Retailer;
             }
                 break;
             case 2://创客
             {
-                weakSelf.usertype = @"8";
+                weakSelf.usertype = THREESALER;
             }
                 break;
             case 3://城市创客
             {
-                weakSelf.usertype = @"7";
+                weakSelf.usertype = TWOSALER;
             }
                 break;
             case 4://大区创客
             {
-                weakSelf.usertype = @"13";
+                weakSelf.usertype = ONESALER;
             }
                 break;
             case 5://省级服务中心
             {
-                weakSelf.usertype = @"1";
+                weakSelf.usertype = PROVINCE;
             }
                 break;
             case 6://市级服务中心
             {
-                weakSelf.usertype = @"2";
+                weakSelf.usertype = CITY;
             }
                 break;
             case 7:////区级服务中心
             {
-                weakSelf.usertype = @"3";
+                weakSelf.usertype = DISTRICT;
             }
                 break;
             case 8:////省级行业服务中心
             {
-                weakSelf.usertype = @"4";
+                weakSelf.usertype = PROVINCE_INDUSTRY;
             }
                 break;
             case 9:////市级行业服务中心
             {
-                weakSelf.usertype = @"5";
+                weakSelf.usertype = CITY_INDUSTRY;
             }
                 break;
                 
             default:
                 break;
         }
-        
-        
     };
     
     [self.loginView.cancelBt addTarget:self action:@selector(maskviewgesture) forControlEvents:UIControlEventTouchUpInside];
