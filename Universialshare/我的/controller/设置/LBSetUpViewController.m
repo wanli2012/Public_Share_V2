@@ -78,6 +78,12 @@
             [UserModel defaultUser].usrtype = @"0";
             [usermodelachivar achive];
             
+            CATransition *animation = [CATransition animation];
+            animation.duration = 0.3;
+            animation.timingFunction = UIViewAnimationCurveEaseInOut;
+            animation.type = @"suckEffect";
+            // animation.type = kCATransitionFade;
+            [self.view.window.layer addAnimation:animation forKey:nil];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
             [self.navigationController popViewControllerAnimated:YES];
             

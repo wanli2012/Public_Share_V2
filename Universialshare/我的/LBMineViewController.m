@@ -202,14 +202,39 @@ static CGFloat headViewH = 300;
             _headview.headimage.image = [UIImage imageNamed:@"dtx_icon"];
         }
         
-        _headview.namelebel.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].name];
-        
-        if (_headview.namelebel.text.length <= 0) {
-            
-            _headview.namelebel.text = @"用户名";
-        }
         
     }
+    
+    
+    _headview.namelebel.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].truename];
+    _headview.IDlebel.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].name];
+    
+    if (_headview.namelebel.text.length <= 0 || [_headview.namelebel.text rangeOfString:@"null"].location != NSNotFound) {
+        _headview.namelebel.text = @"用户名";
+    }
+    
+    if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
+        _headview.identitylebel.text = @"会员";
+    }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]){
+        _headview.identitylebel.text  = @"商家";
+    }else if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER]){
+        _headview.identitylebel.text  = @"大区创客";
+    }else if ([[UserModel defaultUser].usrtype isEqualToString:TWOSALER]){
+        _headview.identitylebel.text  = @"城市创客";
+    }else if ([[UserModel defaultUser].usrtype isEqualToString:THREESALER]){
+        _headview.identitylebel.text  = @"创客";
+    }else if ([[UserModel defaultUser].usrtype isEqualToString:PROVINCE]){
+        _headview.identitylebel.text  = @"省级服务中心";
+    }else if ([[UserModel defaultUser].usrtype isEqualToString:CITY]){
+        _headview.identitylebel.text  = @"市级服务中心";
+    }else if ([[UserModel defaultUser].usrtype isEqualToString:DISTRICT]){
+        _headview.identitylebel.text  = @"区级服务中心";
+    }else if ([[UserModel defaultUser].usrtype isEqualToString:PROVINCE_INDUSTRY]){
+        _headview.identitylebel.text  = @"省级行业服务中心";
+    }else if ([[UserModel defaultUser].usrtype isEqualToString:CITY_INDUSTRY]){
+        _headview.identitylebel.text  = @"市级行业服务中心";
+    }
+
     
     return _headview;
 }

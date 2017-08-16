@@ -735,7 +735,7 @@ static NSString *ID = @"GLMine_InfoCell";
         _replaceImagesview.layer.cornerRadius = 5.f;
         _replaceImagesview.clipsToBounds = YES;
         
-        _replaceImagesview.frame = CGRectMake(20, (SCREEN_HEIGHT - 250)/2, SCREEN_WIDTH - 40, 250);
+        _replaceImagesview.frame = CGRectMake(20, (SCREEN_HEIGHT - ((SCREEN_WIDTH - 80)/3 + 85))/2, SCREEN_WIDTH - 40, (SCREEN_WIDTH - 80)/3 + 85);
         
         [_replaceImagesview.cancelBt addTarget:self action:@selector(maskViewTap) forControlEvents:UIControlEventTouchUpInside];
         
