@@ -64,7 +64,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     [self.tableView registerNib:[UINib nibWithNibName:@"GLIntegralMallTopCell" bundle:nil] forCellReuseIdentifier:topCellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"GLIntegralGoodsCell" bundle:nil] forCellReuseIdentifier:goodsCellID];
     
-    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isShow"] isEqualToString:@"YES"]) {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isShow"] isEqualToString:@"YES"]) {
     
         //公告
         [self initInterDataSorceinfomessage];
