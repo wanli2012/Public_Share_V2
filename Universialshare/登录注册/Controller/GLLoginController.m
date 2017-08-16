@@ -14,6 +14,8 @@
 #import "LBViewProtocolViewController.h"
 #import "GLAccountModel.h"
 
+//获取ip 所需的头文件 和 宏
+#import "JLExtension.h"
 @interface GLLoginController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
@@ -330,6 +332,7 @@
     
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
+
 //忘记密码
 - (IBAction)forgetButtonEvent:(UIButton *)sender {
 
@@ -349,10 +352,14 @@
     
 }
 
-
 //确定按
 -(void)surebuttonEvent{
     
+//     NSLog(@"当前设备的网络类型: %@", [JLDeviceInfo netWorkType]);
+//    [JLDeviceInfo IPAdressForNetwork:^(NSString *ipAdress, NSString *cityName, NSString *cityCode) {
+//        NSLog(@"当前设备的公网IP地址(外网IP/公网IP): %@", ipAdress);
+//    }];
+
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
  
