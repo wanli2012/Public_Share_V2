@@ -13,6 +13,7 @@
 #import "projiectmodel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
+
 @interface GLNearby_SearchController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     LoadWaitView *_loadV;
@@ -81,6 +82,7 @@ static NSString *ID = @"GLNearby_classifyCell";
             [self.nearModels removeAllObjects];
         }
     }];
+    
     
 }
 

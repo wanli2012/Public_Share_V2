@@ -188,6 +188,8 @@
         titleArr = [NSArray arrayWithObjects:@"face_pic",@"con_pic", nil];
     }
     
+    self.surebutton.userInteractionEnabled = NO;
+    self.surebutton.backgroundColor = [UIColor grayColor];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
     manager.requestSerializer.timeoutInterval = 20;
@@ -219,22 +221,14 @@
         }
 
     }success:^(NSURLSessionDataTask *task, id responseObject) {
-
-        
+        self.surebutton.userInteractionEnabled = YES;
+        self.surebutton.backgroundColor = TABBARTITLE_COLOR;
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
        
-//        if ([dic[@"status"] integerValue] == 1) {
-//            self.status = @"1";
-//            [self.exitbt setTitle:@"重新登录" forState:UIControlStateNormal];
-//        }
-        
         if ([dic[@"code"]integerValue]==1) {
             
             [MBProgressHUD showError:@"资料认证中..."];
-//            [self dismissViewControllerAnimated:YES completion:nil];
-            
             [self.navigationController  popViewControllerAnimated:YES];
-            
             [UserModel defaultUser].truename = self.nameTf.text;
             [UserModel defaultUser].idcard = self.codeTf.text;
             [UserModel defaultUser].rzstatus = @"1";
@@ -245,6 +239,8 @@
             [MBProgressHUD showError:dic[@"message"]];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        self.surebutton.userInteractionEnabled = YES;
+        self.surebutton.backgroundColor = TABBARTITLE_COLOR;
         [SVProgressHUD dismiss];
         [MBProgressHUD showError:error.localizedDescription];
     }];

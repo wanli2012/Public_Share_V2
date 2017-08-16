@@ -40,9 +40,6 @@
     NSInteger _page;
     
     NSString *_htmlString;
-    GLSet_MaskVeiw *_maskV;
-    GLHomePageNoticeView *_contentView;
-
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -67,12 +64,6 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     [self.tableView registerNib:[UINib nibWithNibName:@"GLIntegralMallTopCell" bundle:nil] forCellReuseIdentifier:topCellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"GLIntegralGoodsCell" bundle:nil] forCellReuseIdentifier:goodsCellID];
     
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isShow"] isEqualToString:@"YES"]) {
-    
-        //公告
-        [self initInterDataSorceinfomessage];
-    }
-
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
@@ -88,8 +79,6 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     [header setTitle:@"服务器正在狂奔..." forState:MJRefreshStateRefreshing];
     
     self.tableView.mj_header = header;
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
     [self postRequest];//求情数据
     
@@ -115,22 +104,6 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     }
     
 }
-
-- (void)dismiss{
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        
-        _maskV.transform = CGAffineTransformMakeScale(0.07, 0.07);
-        
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.5 animations:^{
-            _maskV.center = CGPointMake(SCREEN_WIDTH - 30,30);
-        } completion:^(BOOL finished) {
-            [_maskV removeFromSuperview];
-        }];
-    }];
-}
-
 - (void)endRefresh {
     
     [self.tableView.mj_header endRefreshing];
@@ -242,47 +215,6 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     self.navigationController.navigationBar.hidden = YES;
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
 
-}
-
--(void)initInterDataSorceinfomessage{
-    
-     [[NSUserDefaults standardUserDefaults]setObject:@"NO" forKey:@"isShow"];//展示过就不要展示了，重启App在调
-    
-    CGFloat contentViewH = SCREEN_HEIGHT / 2;
-    CGFloat contentViewW = SCREEN_WIDTH - 40;
-    CGFloat contentViewX = 20;
-    _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    
-    _maskV.bgView.alpha = 0.3;
-    
-    _contentView = [[NSBundle mainBundle] loadNibNamed:@"GLHomePageNoticeView" owner:nil options:nil].lastObject;
-    _contentView.contentViewW.constant = SCREEN_WIDTH - 40;
-    _contentView.contentViewH.constant = SCREEN_HEIGHT / 2 - 30;
-    _contentView.layer.cornerRadius = 5;
-    _contentView.layer.masksToBounds = YES;
-    
-    //设置webView
-    _contentView.webView.scalesPageToFit = YES;
-    _contentView.webView.autoresizesSubviews = NO;
-    _contentView.webView.autoresizingMask=(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
-    _contentView.webView.scrollView.bounces = NO;
-    
-    NSURL *url = [NSURL URLWithString:NOTICE_URL];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-   
-    [_contentView.webView loadRequest:request];
-    [_maskV showViewWithContentView:_contentView];
-    
-    _contentView.frame = CGRectMake(contentViewX, (SCREEN_HEIGHT - contentViewH)/2, contentViewW, contentViewH);
-    //缩放
-    _contentView.transform=CGAffineTransformMakeScale(0.01f, 0.01f);
-    _contentView.alpha = 0;
-    [UIView animateWithDuration:0.2 animations:^{
-        
-        _contentView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-        _contentView.alpha = 1;
-    }];
-    
 }
 
 - (void)tapgestureTag:(UITapGestureRecognizer *)Tag {
