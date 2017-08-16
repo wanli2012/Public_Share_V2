@@ -28,6 +28,9 @@
 #import "LBNearClassfityViewController.h"
 #import "GLHomePageNoticeView.h"
 #import "GLSet_MaskVeiw.h"
+#import "LBStoreProductDetailInfoViewController.h"
+#import "GLHourseDetailController.h"
+#import "GLMine_AdController.h"
 
 @interface GLNearbyViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,ClassifyHeaderViewdelegete>
 {
@@ -49,6 +52,7 @@
 @property (nonatomic, assign)NSInteger page;
 @property (nonatomic, strong)NSMutableArray *nearArr;
 @property (nonatomic, strong)NSMutableArray *recomendArr;
+@property (nonatomic, strong)NSMutableArray *banner;
 @property (weak, nonatomic) IBOutlet UIView *baseSearchV;
 
 @end
@@ -233,6 +237,16 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                     LBRecomendShopModel *model = [LBRecomendShopModel mj_objectWithKeyValues:dic];
                     [self.recomendArr addObject:model];
                 }
+                [self.banner removeAllObjects];
+                [self.banner addObjectsFromArray:responseObject[@"data"][@"advert"]];
+                NSMutableArray  *images = [NSMutableArray array];
+                for (int i = 0; i < self.banner.count; i++) {
+                    [images addObject:self.banner[i][@"thumb"]];
+                }
+                if (images.count > 0) {
+                    [self.classfyHeaderV reloadScorlvoewimages:images];
+                }
+                
                 self.placeHolderView.hidden = YES;
                 [self.tableview reloadData];
                 
@@ -263,7 +277,6 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     }else{
         return self.nearArr.count;
     }
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -432,9 +445,51 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     }
     
 }
-
+//点击图片
 -(void)tapgestureImage:(NSInteger)index{
 
+    if(self.self.banner.count == 0){
+        return;
+    }
+    
+    self.hidesBottomBarWhenPushed = YES;
+    
+    if ([self.banner[index][@"type"] integerValue] == 1) {//内部广告
+        if([self.banner[index][@"jumptype"] integerValue] == 1){//跳转商户
+            
+            LBStoreMoreInfomationViewController *storeVC = [[LBStoreMoreInfomationViewController alloc] init];
+            storeVC.storeId = self.banner[index][@"jumpid"];
+            storeVC.lat = [[GLNearby_Model defaultUser].latitude floatValue];
+            storeVC.lng = [[GLNearby_Model defaultUser].longitude floatValue];
+            [self.navigationController pushViewController:storeVC animated:YES];
+            
+        }else{//跳转商品
+            
+            if ([self.banner[index][@"goodstype"] integerValue] == 1) {//逛逛商品
+                
+                LBStoreProductDetailInfoViewController *storeVC = [[LBStoreProductDetailInfoViewController alloc] init];
+                storeVC.goodId = self.banner[index][@"jumpid"];
+                [self.navigationController pushViewController:storeVC animated:YES];
+                
+            }else{
+                
+                GLHourseDetailController *goodsVC = [[GLHourseDetailController alloc] init];
+                goodsVC.goods_id = self.banner[index][@"jumpid"];
+                [self.navigationController pushViewController:goodsVC animated:YES];
+            }
+            
+        }
+        
+    }else if([self.banner[index][@"type"] integerValue] == 2){//外部广告
+        
+        GLMine_AdController *adVC = [[GLMine_AdController alloc] init];
+        adVC.url = self.banner[index][@"url"];
+        [self.navigationController pushViewController:adVC animated:YES];
+        
+    }
+    
+    self.hidesBottomBarWhenPushed = NO;
+    
 }
 
 -(void)clickSerachevent{
@@ -585,7 +640,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
 -(GLNearby_ClassifyHeaderView*)classfyHeaderV{
 
     if (!_classfyHeaderV) {
-        _classfyHeaderV = [[GLNearby_ClassifyHeaderView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 330 * autoSizeScaleX) withDataArr:self.tradeArr];
+        _classfyHeaderV = [[GLNearby_ClassifyHeaderView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 330 + (90 * autoSizeScaleX - 90) * autoSizeScaleX) withDataArr:self.tradeArr];
         _classfyHeaderV.autoresizingMask = UIViewAutoresizingNone;
         _classfyHeaderV.delegete = self;
     }
@@ -605,6 +660,13 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         _nearArr = [NSMutableArray array];
     }
     return _nearArr;
+}
+
+- (NSMutableArray *)banner{
+    if (!_banner) {
+        _banner = [NSMutableArray array];
+    }
+    return _banner;
 }
 
 - (NSMutableArray *)recomendArr{
