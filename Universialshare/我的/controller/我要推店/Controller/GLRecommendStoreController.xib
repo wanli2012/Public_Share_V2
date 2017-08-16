@@ -91,7 +91,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入电话号码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JAw-a6-0aO">
-                                            <rect key="frame" x="82" y="109" width="269" height="17"/>
+                                            <rect key="frame" x="82" y="97.5" width="269" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="wvB-F3-old"/>
+                                            </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
@@ -113,7 +116,6 @@
                                         <constraint firstItem="xrn-JX-Bme" firstAttribute="trailing" secondItem="6Le-Rf-kZo" secondAttribute="trailing" id="R65-Vy-pZs"/>
                                         <constraint firstItem="xrn-JX-Bme" firstAttribute="centerY" secondItem="XGy-nU-7BP" secondAttribute="centerY" id="XSt-Lh-M1F"/>
                                         <constraint firstItem="6Le-Rf-kZo" firstAttribute="leading" secondItem="vin-UA-94z" secondAttribute="trailing" constant="10" id="crr-x8-Ibx"/>
-                                        <constraint firstItem="JAw-a6-0aO" firstAttribute="height" secondItem="IYz-GQ-PWB" secondAttribute="height" id="d2h-Xg-PqD"/>
                                         <constraint firstItem="xrn-JX-Bme" firstAttribute="leading" secondItem="XGy-nU-7BP" secondAttribute="trailing" constant="10" id="dha-P5-mce"/>
                                         <constraint firstItem="JAw-a6-0aO" firstAttribute="trailing" secondItem="xrn-JX-Bme" secondAttribute="trailing" id="dsc-1z-efz"/>
                                         <constraint firstItem="xrn-JX-Bme" firstAttribute="height" secondItem="XGy-nU-7BP" secondAttribute="height" id="efb-wE-gCH"/>

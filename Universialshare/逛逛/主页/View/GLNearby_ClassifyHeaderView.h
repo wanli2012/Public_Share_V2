@@ -33,4 +33,6 @@
 
 -(void)initdatasorece:(NSArray*)dataArr;
 
+-(void)reloadScorlvoewimages:(NSArray*)dataArr;
+
 @end

@@ -49,6 +49,7 @@
 @property (nonatomic, assign)NSInteger page;
 @property (nonatomic, strong)NSMutableArray *nearArr;
 @property (nonatomic, strong)NSMutableArray *recomendArr;
+@property (nonatomic, strong)NSMutableArray *banner;
 @property (weak, nonatomic) IBOutlet UIView *baseSearchV;
 
 @end
@@ -233,6 +234,15 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
                     LBRecomendShopModel *model = [LBRecomendShopModel mj_objectWithKeyValues:dic];
                     [self.recomendArr addObject:model];
                 }
+                [self.banner addObjectsFromArray:responseObject[@"data"][@"advert"]];
+                NSMutableArray  *images = [NSMutableArray array];
+                for (int i = 0; i < self.banner.count; i++) {
+                    [images addObject:self.banner[i][@"thumb"]];
+                }
+                if (images.count > 0) {
+                    [self.classfyHeaderV reloadScorlvoewimages:images];
+                }
+                
                 self.placeHolderView.hidden = YES;
                 [self.tableview reloadData];
                 
@@ -263,7 +273,6 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     }else{
         return self.nearArr.count;
     }
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -432,9 +441,11 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     }
     
 }
-
+//点击图片
 -(void)tapgestureImage:(NSInteger)index{
 
+    
+    
 }
 
 -(void)clickSerachevent{
@@ -605,6 +616,13 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
         _nearArr = [NSMutableArray array];
     }
     return _nearArr;
+}
+
+- (NSMutableArray *)banner{
+    if (!_banner) {
+        _banner = [NSMutableArray array];
+    }
+    return _banner;
 }
 
 - (NSMutableArray *)recomendArr{

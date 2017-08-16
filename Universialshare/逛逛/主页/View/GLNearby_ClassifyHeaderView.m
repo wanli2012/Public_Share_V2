@@ -146,6 +146,11 @@
     
 }
 
+-(void)reloadScorlvoewimages:(NSArray *)dataArr{
+    self.imagearr = dataArr;
+
+}
+
 -(void)pageControlChanged:(UIPageControl*)pageControl{
 
     NSInteger page = pageControl.currentPage;
