@@ -130,9 +130,11 @@
 //刷新界面
 -(void)refreshInterface{
     
-    [self.viewControllers reverseObjectEnumerator];
+//    [self.viewControllers reverseObjectEnumerator];
+//    
+//    [self addViewControllers];
     
-    [self addViewControllers];
+    self.selectedIndex = 0;
 
 }
 
