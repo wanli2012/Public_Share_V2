@@ -11,20 +11,20 @@
 #import "GLSet_MaskVeiw.h"
 #import "GLClassifyView.h"
 #import "GLHourseDetailController.h"
+#import "GLClassifyModel.h"
 
 @interface GLIntegraClassifyController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
-    GLSet_MaskVeiw *_maskV;
-    GLClassifyView *_contentV;
+
     LoadWaitView * _loadV;
     NSInteger _sortType;//排序方式:1 默认正序  2 倒序
     NSString * _classifyType;//分类id
     
 }
+
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
-
 
 @property (weak, nonatomic) IBOutlet UIButton *defaultSortBtn;
 @property (weak, nonatomic) IBOutlet UIButton *integralBtn;
@@ -35,8 +35,10 @@
 
 @property (nonatomic,strong)NodataView *nodataV;
 
-@property (nonatomic,strong)NSMutableArray *typeArr;
-@property (nonatomic, strong)NSMutableArray *typeIDArr;
+@property (nonatomic, strong)GLSet_MaskVeiw *maskV;
+@property (nonatomic, strong)GLClassifyView *contentV;
+
+@property (nonatomic, strong)NSMutableArray *classifyModels;
 
 @end
 
@@ -84,6 +86,8 @@ static NSString *ID = @"GLClassifyCell";
     self.collectionView.mj_footer = footer;
     [self sortClick:self.defaultSortBtn];
     
+    [self getMarkGoodsType];//获取分类
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -113,7 +117,7 @@ static NSString *ID = @"GLClassifyCell";
     if (status) {
         
         self.page = 1;
-        [self.models removeAllObjects];
+        
         
     }else{
         _page ++;
@@ -129,9 +133,11 @@ static NSString *ID = @"GLClassifyCell";
         
         [_loadV removeloadview];
         [self endRefresh];
-//        NSLog(@"responseObject = %@",responseObject);
-        
+
         if ([responseObject[@"code"] integerValue] == 1){
+            
+            [self.models removeAllObjects];
+            
             if ([[NSString stringWithFormat:@"%@",responseObject[@"data"]] rangeOfString:@"null"].location == NSNotFound ) {
                 
                 for (NSDictionary *dict in responseObject[@"data"]) {
@@ -141,6 +147,7 @@ static NSString *ID = @"GLClassifyCell";
                     [self.models addObject:model];
                 }
             }
+            
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
         }
@@ -152,12 +159,59 @@ static NSString *ID = @"GLClassifyCell";
         [self endRefresh];
         self.nodataV.hidden = NO;
     }];
-    
+
 }
+- (void)getMarkGoodsType {
+    
+    //请求数据
+    [NetworkManager requestPOSTWithURLStr:@"shop/getMarkGoodsType" paramDic:@{} finish:^(id responseObject) {
+        
+        [self endRefresh];
+        if ([responseObject[@"code"] integerValue] == 1){
+            [self.classifyModels removeAllObjects];
+            
+            if ([[NSString stringWithFormat:@"%@",responseObject[@"data"]] rangeOfString:@"null"].location == NSNotFound ) {
+                
+                GLClassifyModel *model = [[GLClassifyModel alloc] init];
+                model.catename = @"全部";
+                model.cate_id = @"";
+                model.isClicked = YES;
+                
+                [self.classifyModels addObject:model];
+                
+                
+                for (NSDictionary *dic in responseObject[@"data"]) {
+                    
+                    GLClassifyModel *model = [GLClassifyModel mj_objectWithKeyValues:dic];
+                    [self.classifyModels addObject:model];
+                    
+                }
+            }
+            
+            self.contentV.classifyModels = self.classifyModels;
+            
+            [self.contentV.collectionView reloadData];
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+        [self.collectionView reloadData];
+        
+    } enError:^(NSError *error) {
+        
+        [self endRefresh];
+        self.nodataV.hidden = NO;
+    }];
+}
+
 - (void)endRefresh {
+    
     [self.collectionView.mj_header endRefreshing];
     [self.collectionView.mj_footer endRefreshing];
+    
 }
+
 -(NodataView*)nodataV{
     
     if (!_nodataV) {
@@ -185,60 +239,23 @@ static NSString *ID = @"GLClassifyCell";
 
 //筛选
 - (IBAction)filterBtn:(id)sender {
-    _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    _maskV.bgView.alpha = 0.3;
-    
-    _contentV = [[NSBundle mainBundle] loadNibNamed:@"GLClassifyView" owner:nil options:nil].lastObject;
+   
     __weak typeof(self)weakSelf = self;
-    _contentV.block = ^(NSString * str){
+    self.contentV.block = ^(NSString * str){
     
         _classifyType = str;
+        
         [weakSelf updateData:YES];
         [weakSelf dismiss];
         
     };
     
-    _contentV.frame = CGRectMake(SCREEN_WIDTH, 64, 0, SCREEN_HEIGHT - 64);
-    [_maskV showViewWithContentView:_contentV];
+    self.contentV.frame = CGRectMake(SCREEN_WIDTH, 64, 0, SCREEN_HEIGHT - 64);
+    [self.maskV showViewWithContentView:self.contentV];
     
     [UIView animateWithDuration:0.3 animations:^{
         _contentV.frame = CGRectMake(64, 64 , SCREEN_WIDTH - 64, SCREEN_HEIGHT - 64);
         
-    }];
-    
-//请求数据
-    _loadV = [LoadWaitView addloadview:_contentV.bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getMarkGoodsType" paramDic:@{} finish:^(id responseObject) {
-        
-        [_loadV removeloadview];
-        [self endRefresh];
-//        NSLog(@"responseObject = %@",responseObject);
-        [self.typeArr removeAllObjects];
-        if ([responseObject[@"code"] integerValue] == 1){
-            
-            if ([[NSString stringWithFormat:@"%@",responseObject[@"data"]] rangeOfString:@"null"].location == NSNotFound ) {
-                for (NSDictionary *dic in responseObject[@"data"]) {
-                    [self.typeArr addObject:dic[@"catename"]];
-                    [self.typeIDArr addObject:dic[@"cate_id"]];
-                }
-                _contentV.dataSource = self.typeArr;
-                _contentV.typeIDArr = self.typeIDArr;
-            }else{
-                _contentV.dataSource = @[];
-                _contentV.typeIDArr = @[];
-            }
-            [_contentV.collectionView reloadData];
-            
-        }else{
-            [MBProgressHUD showError:responseObject[@"message"]];
-        }
-        
-        [self.collectionView reloadData];
-        
-    } enError:^(NSError *error) {
-        [_loadV removeloadview];
-        [self endRefresh];
-        self.nodataV.hidden = NO;
     }];
 
 }
@@ -264,22 +281,35 @@ static NSString *ID = @"GLClassifyCell";
     [self.navigationController pushViewController:detailVC animated:YES];
     
 }
+
+- (GLSet_MaskVeiw *)maskV{
+    
+    if (!_maskV) {
+        _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _maskV.bgView.alpha = 0.3;
+    }
+    
+    return _maskV;
+}
+- (GLClassifyView *)contentV{
+    if (!_contentV) {
+    
+        _contentV = [[NSBundle mainBundle] loadNibNamed:@"GLClassifyView" owner:nil options:nil].lastObject;
+
+    }
+    return _contentV;
+}
 - (NSMutableArray *)models{
     if (!_models) {
         _models = [NSMutableArray array];
     }
     return _models;
 }
-- (NSMutableArray *)typeArr{
-    if (!_typeArr) {
-        _typeArr = [NSMutableArray array];
+- (NSMutableArray *)classifyModels{
+    if (!_classifyModels) {
+        _classifyModels = [NSMutableArray array];
     }
-    return _typeArr;
+    return _classifyModels;
 }
-- (NSMutableArray *)typeIDArr{
-    if (!_typeIDArr) {
-        _typeIDArr = [NSMutableArray array];
-    }
-    return _typeIDArr;
-}
+
 @end

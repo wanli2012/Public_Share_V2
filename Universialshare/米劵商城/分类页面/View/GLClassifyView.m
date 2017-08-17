@@ -12,12 +12,9 @@
 
 @interface GLClassifyView()<UICollectionViewDelegate,UICollectionViewDataSource>
 
-
-
-@property (nonatomic, assign)BOOL isSelectedItem;
+@property (nonatomic, assign)NSInteger selectIndex;
 @property (nonatomic, copy)NSString *chooseStr;
 @property (nonatomic, strong)NSMutableArray *cellArr;
-
 
 @end
 
@@ -40,78 +37,80 @@ static NSString *ID = @"GLClassifyRecommendCell";
     //注册头视图
 
     [self.collectionView registerNib:[UINib nibWithNibName:@"GLClassifyHeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GLClassifyHeaderView"];
-    
+
+    self.selectIndex = 0;
 }
+//确定
 - (IBAction)ensureClick:(id)sender {
-    for(int i = 0 ; i < self.cellArr.count ; i++) {
-        GLClassifyRecommendCell *cell = self.cellArr[i];
-        if (cell.status) {
+    
+    for(int i = 0 ; i < self.classifyModels.count ; i++) {
+        
+        GLClassifyModel *model = self.classifyModels[i];
+        
+        if (model.isClicked) {
+            
             self.block(_chooseStr);
-            _isSelectedItem = YES;
+            
             break;
         }
         
-        if(i == self.cellArr.count - 1){
-            _isSelectedItem = NO;
-            [MBProgressHUD showError:@"请选择分类"];
-        }
-        
     }
+}
+//重置
+- (IBAction)resetClick:(id)sender {
 
+    [self chooseClassify:0];
     
 }
-- (IBAction)resetClick:(id)sender {
-//    [self.chooseArr removeAllObjects];
-    for (GLClassifyRecommendCell *cell in self.cellArr) {
-        
-        cell.status = NO;
-        
-        cell.backgroundColor = YYSRGBColor(235, 235, 235, 1);
-        [cell.titleLabel setTextColor:[UIColor darkGrayColor]];
-        cell.layer.borderWidth = 0;
-    }
-}
 
+- (void)chooseClassify:(NSInteger )index{
+    GLClassifyModel *model = self.classifyModels[index];
+    
+    
+    if (self.selectIndex == -1) {
+        
+        model.isClicked = !model.isClicked;
+        self.selectIndex = index;
+        
+    }else{
+        
+        if (self.selectIndex == index) {
+            return;
+        }
+        
+        model.isClicked = !model.isClicked;
+        
+        GLClassifyModel *model1 = self.classifyModels[self.selectIndex];
+        model1.isClicked = NO;
+        
+        self.selectIndex = index;
+        
+    }
+    
+    self.chooseStr = model.cate_id;
+    [self.collectionView reloadData];
+
+}
 #pragma  UICollectionDelegate UICollectionDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _dataSource.count;
+    return self.classifyModels.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     GLClassifyRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-    cell.titleLabel.text = _dataSource[indexPath.row];
-    [self.cellArr addObject:cell];
-//    NSLog(@"self.cellArr.count = %lu",self.cellArr.count);
+    cell.model = self.classifyModels[indexPath.row];
+
     return  cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    GLClassifyRecommendCell *cell = (GLClassifyRecommendCell *)[collectionView cellForItemAtIndexPath:indexPath];
     
-    if (cell.status) {
-        
-        cell.backgroundColor = YYSRGBColor(235, 235, 235, 1);
-        [cell.titleLabel setTextColor:[UIColor darkGrayColor]];
-        cell.layer.borderWidth = 0;
-        self.chooseStr = @"";
-    }else{
-        cell.backgroundColor = [UIColor whiteColor];
-        [cell.titleLabel setTextColor:[UIColor redColor]];
-        cell.layer.borderWidth = 1;
-        cell.layer.borderColor = [UIColor redColor].CGColor;
-        self.chooseStr = self.typeIDArr[indexPath.row];
-    }
-    cell.status = !cell.status;
+    [self chooseClassify:indexPath.row];
+
 }
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
-    GLClassifyRecommendCell *cell = (GLClassifyRecommendCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor = YYSRGBColor(235, 235, 235, 1);
-    [cell.titleLabel setTextColor:[UIColor darkGrayColor]];
-    cell.layer.borderWidth = 0;
-    cell.status = NO;
-}
+
 //创建头视图
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
            viewForSupplementaryElementOfKind:(NSString *)kind
@@ -128,6 +127,7 @@ static NSString *ID = @"GLClassifyRecommendCell";
 referenceSizeForHeaderInSection:(NSInteger)section {
     
     if (section == 0) {
+        
         return CGSizeMake(self.frame.size.width, 40);
     }
     else {
@@ -135,12 +135,6 @@ referenceSizeForHeaderInSection:(NSInteger)section {
     }
 }
 
-//- (NSMutableArray *)chooseArr{
-//    if (!_chooseArr) {
-//        _chooseArr = [NSMutableArray array];
-//    }
-//    return _chooseArr;
-//}
 - (NSMutableArray *)cellArr{
     if (!_cellArr) {
         _cellArr = [NSMutableArray array];

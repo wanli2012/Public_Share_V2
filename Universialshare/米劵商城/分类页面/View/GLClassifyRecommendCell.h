@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLClassifyModel.h"
 
 @interface GLClassifyRecommendCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
-@property (nonatomic, assign)BOOL status;
+@property (nonatomic, strong)GLClassifyModel *model;
+
 @end
