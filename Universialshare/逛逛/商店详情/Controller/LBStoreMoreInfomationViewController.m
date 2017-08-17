@@ -544,7 +544,7 @@ static const CGFloat headerImageHeight = 180.0f;
         
         CLLocationCoordinate2D destCoordinate;
         // 将数据传到反地址编码模型
-        destCoordinate = CLLocationCoordinate2DMake(lat,lng);
+        destCoordinate = [self getGaoDeCoordinateByBaiDuCoordinate:CLLocationCoordinate2DMake(lat, lng)];
         
         MKMapItem *currentLocation =[MKMapItem mapItemForCurrentLocation];
         
@@ -554,6 +554,12 @@ static const CGFloat headerImageHeight = 180.0f;
                                                                                    MKLaunchOptionsShowsTrafficKey:[NSNumber numberWithBool:YES]}];
     }
 
+}
+
+// 百度地图经纬度转换为高德地图经纬度
+- (CLLocationCoordinate2D)getGaoDeCoordinateByBaiDuCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    return CLLocationCoordinate2DMake(coordinate.latitude - 0.006, coordinate.longitude - 0.0065);
 }
 
 #pragma mark -- LBStoreDetailNameDelegete
