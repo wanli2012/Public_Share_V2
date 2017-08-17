@@ -74,7 +74,7 @@
     ShoppingNav.tabBarItem = [self barTitle:@"购物车" image:@"购物车未点中" selectImage:@"购物车点中"];
     
     
-    self.viewControllers = @[nearbyNav,IntegralMallnav,ShoppingNav, minenav];
+    self.viewControllers = @[IntegralMallnav,nearbyNav,ShoppingNav, minenav];
     
     self.selectedIndex=0;
     
