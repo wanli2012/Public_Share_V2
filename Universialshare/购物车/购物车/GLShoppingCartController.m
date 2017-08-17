@@ -74,31 +74,18 @@ static NSString *ID = @"GLShoppingCell";
     
     self.tableView.mj_header = header;
     
-    [self refreshCart];
+    [self postRequest];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCart) name:@"refreshCartNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postRequest) name:@"refreshCartNotification" object:nil];
 
 }
 
 //刷新界面
-- (void)refreshCart {
-    
-    float  num = 0;
-    for (int i = 0; i < self.models.count; i++) {
-        GLShoppingCartModel *model = self.models[i];
-        
-        if (model.isSelect == YES) {
-            
-            num = num + [model.goods_price floatValue] * [model.num floatValue];
-            
-        }
-    }
-    
-    self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ %.2f",num];
-    
-    [self postRequest];
-    
-}
+//- (void)refreshCart {
+//    
+//    [self postRequest];
+//    
+//}
 
 - (void)postRequest {
     
@@ -122,6 +109,8 @@ static NSString *ID = @"GLShoppingCell";
                     [self.models addObject:model];
                 }
                 
+                self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ 0"];
+
             }else{
                 [MBProgressHUD showError:responseObject[@"message"]];
             }

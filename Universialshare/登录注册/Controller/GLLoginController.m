@@ -274,6 +274,7 @@
     
     return 30 * autoSizeScaleX;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     self.phone.text = self.phoneArr[indexPath.row];
@@ -362,11 +363,6 @@
 
 //确定按
 -(void)surebuttonEvent{
-    
-//     NSLog(@"当前设备的网络类型: %@", [JLDeviceInfo netWorkType]);
-//    [JLDeviceInfo IPAdressForNetwork:^(NSString *ipAdress, NSString *cityName, NSString *cityCode) {
-//        NSLog(@"当前设备的公网IP地址(外网IP/公网IP): %@", ipAdress);
-//    }];
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
@@ -494,10 +490,20 @@
             
             BOOL isSava = YES;//是否保存
             for (int i = 0; i < self.fmdbArr.count; i++) {
-                if ([self.fmdbArr[i][@"name"] isEqualToString:[UserModel defaultUser].name]) {
+                
+                if ([self.fmdbArr[i][@"name"] isEqualToString:[UserModel defaultUser].name] && [self.fmdbArr[i][@"password"] isEqualToString:self.scretTf.text]) {
+                    
                     isSava = NO;
+                    
+                }else if([self.fmdbArr[i][@"name"] isEqualToString:[UserModel defaultUser].name] && ![self.fmdbArr[i][@"password"] isEqualToString:self.scretTf.text]){
+                    
+                    [_projiectmodel deleteAllDataOfFMDB:[UserModel defaultUser].name];
+                    
                 }
+                
             }
+            
+            [self getFmdbDatasoruce];
             
             if (isSava == YES) {//保存记录
                 [_projiectmodel deleteAllDataOfFMDB];

@@ -53,9 +53,9 @@ static NSString *ID = @"GLClassifyRecommendCell";
             
             break;
         }
-        
     }
 }
+
 //重置
 - (IBAction)resetClick:(id)sender {
 

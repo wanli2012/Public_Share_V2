@@ -14,6 +14,7 @@
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 #import <BaiduMapAPI_Search/BMKSearchComponent.h>
+
 #import "LBXScanView.h"
 #import "LBXScanResult.h"
 #import "LBXScanWrapper.h"
@@ -35,10 +36,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *cityBtn;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextF;
+
 @property (nonatomic, assign) CLLocationCoordinate2D coors2; // 纬度
 @property (nonatomic, copy)NSString *latitude;
 @property (nonatomic, copy)NSString *longitude;
 @property (strong , nonatomic)BMKReverseGeoCodeOption *option;//地址
+
 @property (nonatomic, strong)UIView *placeHolderView;
 @property (strong, nonatomic)LoadWaitView *loadV;
 @property (strong, nonatomic)GLNearby_ClassifyHeaderView *classfyHeaderV;
@@ -347,6 +350,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     _locService.delegate = nil;
 }
 - (IBAction)search:(id)sender {
+    
     self.hidesBottomBarWhenPushed = YES;
     GLNearby_SearchController *searchVC = [[GLNearby_SearchController alloc] init];
     [self.navigationController pushViewController:searchVC animated:NO];
@@ -381,37 +385,18 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     self.hidesBottomBarWhenPushed = NO;
     
 }
-#pragma UITextFieldDelegate
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-//    self.hidesBottomBarWhenPushed = YES;
-//    GLNearby_SearchController *searchVC = [[GLNearby_SearchController alloc] init];
-//    [self presentViewController:searchVC animated:NO completion:nil];
-//    
-//    return YES;
-//}
-
 #pragma mark 代理方法返回反地理编码结果
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
 {
     if (result) {
-        
-//        self.address.text = [NSString stringWithFormat:@"%@", result.address];
-//        CLLocationDegrees latitude;
-//        CLLocationDegrees longitude;
-        
-//        NSLog(@"位置结果是：%@ - %@", result.address, result.addressDetail.city);
-//        NSLog(@"经纬度为：%f,%f 的位置结果是：%@", result.location.latitude,result.location.longitude, result.address);
-        
+
         [self.cityBtn setTitle:result.addressDetail.city forState:UIControlStateNormal];
         [self.classfyHeaderV.adressLb setTitle:result.addressDetail.city forState:UIControlStateNormal];
         
         // 定位一次成功后就关闭定位
         [_locService stopUserLocationService];
         
-    }else{
-        //NSLog(@"%@", @"找不到相对应的位置");
     }
-    
 }
 
 #pragma mark -----  ClassifyHeaderViewdelegete
