@@ -61,7 +61,6 @@
                             <rect key="frame" x="192" y="10" width="100" height="30"/>
                             <color key="backgroundColor" red="0.47058823529999999" green="0.63137254899999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="100" id="5pA-mZ-jnF"/>
                                 <constraint firstAttribute="height" constant="30" id="wyV-oR-HA8"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -75,6 +74,7 @@
                         <constraint firstAttribute="trailing" secondItem="fE8-r4-yFw" secondAttribute="trailing" constant="10" id="Ayc-7v-vgY"/>
                         <constraint firstItem="KLJ-FB-eYX" firstAttribute="centerY" secondItem="fE8-r4-yFw" secondAttribute="centerY" id="Hgj-0q-ifu"/>
                         <constraint firstAttribute="height" constant="50" id="QJ0-kF-kSl"/>
+                        <constraint firstItem="KLJ-FB-eYX" firstAttribute="width" secondItem="fE8-r4-yFw" secondAttribute="width" id="S9d-PN-HWg"/>
                         <constraint firstItem="fE8-r4-yFw" firstAttribute="leading" secondItem="KLJ-FB-eYX" secondAttribute="trailing" constant="10" id="UTW-VW-aRc"/>
                         <constraint firstAttribute="bottom" secondItem="fE8-r4-yFw" secondAttribute="bottom" constant="10" id="WO2-pU-TaI"/>
                         <constraint firstAttribute="bottom" secondItem="KLJ-FB-eYX" secondAttribute="bottom" constant="10" id="rOE-5L-HJk"/>
@@ -99,7 +99,9 @@
             <connections>
                 <outlet property="cancelBt" destination="KLJ-FB-eYX" id="Eoe-54-4ex"/>
                 <outlet property="sureBt" destination="fE8-r4-yFw" id="ETg-mm-IAa"/>
+                <outlet property="sureBtnWidth" destination="Zmc-Fg-yZN" id="4UF-U0-Fpu"/>
                 <outlet property="tableView" destination="fVd-9e-aPf" id="861-Hm-v1l"/>
+                <outlet property="titleLabel" destination="mK8-ns-Ko2" id="Skr-xV-uwd"/>
             </connections>
             <point key="canvasLocation" x="19" y="12.5"/>
         </view>

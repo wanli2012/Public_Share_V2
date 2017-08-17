@@ -19,6 +19,10 @@
 
 @property (nonatomic, assign)NSInteger selectIndex;//选中的行 下标
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *sureBtnWidth;//确定按钮宽度
+
 @end
 
 @implementation LoginIdentityView
@@ -33,8 +37,12 @@
     
     self.selectIndex = 0;
     
+    self.titleLabel.font = [UIFont systemFontOfSize:15 * autoSizeScaleX];
+    [self.sureBt.titleLabel setFont:[UIFont systemFontOfSize:14 *autoSizeScaleX]];
+    [self.cancelBt.titleLabel setFont:[UIFont systemFontOfSize:14 * autoSizeScaleX]];
+    self.sureBtnWidth.constant = 100 * autoSizeScaleX;
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"GLLoginIdentityCell" bundle:nil] forCellReuseIdentifier:@"GLLoginIdentityCell"];
-  
 }
 
 #pragma mark UITableViewDelegate UITableViewDataSource

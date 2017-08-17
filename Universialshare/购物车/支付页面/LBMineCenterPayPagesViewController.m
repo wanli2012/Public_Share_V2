@@ -38,7 +38,9 @@
 
 @implementation LBMineCenterPayPagesViewController
 
+
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     self.navigationController.navigationBar.hidden = NO;
@@ -109,6 +111,7 @@
                 if (self.payType == 2){
                     [self.dataarr addObject:@{@"image":@"支付米分",@"title":@"米券支付"}];
                 }
+                
             }
                 
             if ([responseObject[@"data"][@"wechat"] integerValue] == 1) {
@@ -229,10 +232,6 @@
     
     if ((self.payType == 1 || self.payType == 2 || self.payType == 3)  && ([self.dataarr[self.selectIndex][@"title"] isEqualToString:@"米子支付"] || [self.dataarr[self.selectIndex][@"title"] isEqualToString:@"米券支付"])) {
         
-        
-//        if ([self.orderPrice floatValue] < [[UserModel defaultUser].ketiBean floatValue]) {
-//            
-//        }
         
         CGFloat contentViewH = 300;
         CGFloat contentViewW = SCREEN_WIDTH;

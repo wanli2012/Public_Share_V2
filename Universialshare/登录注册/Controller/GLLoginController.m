@@ -264,7 +264,7 @@
     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)",self.phoneArr[indexPath.row],shenfen];
     cell.textLabel.textColor = [UIColor blackColor];
     cell.backgroundColor = [UIColor whiteColor];
-    cell.textLabel.font = [UIFont systemFontOfSize:13];
+    cell.textLabel.font = [UIFont systemFontOfSize:13 * autoSizeScaleX];
     cell.backgroundColor = [UIColor lightGrayColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -272,7 +272,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 30;
+    return 30 * autoSizeScaleX;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
