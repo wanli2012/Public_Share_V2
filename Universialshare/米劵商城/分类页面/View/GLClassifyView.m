@@ -43,8 +43,11 @@ static NSString *ID = @"GLClassifyRecommendCell";
     
 }
 - (IBAction)ensureClick:(id)sender {
+    
     for(int i = 0 ; i < self.cellArr.count ; i++) {
+        
         GLClassifyRecommendCell *cell = self.cellArr[i];
+        
         if (cell.status) {
             self.block(_chooseStr);
             _isSelectedItem = YES;
@@ -52,8 +55,9 @@ static NSString *ID = @"GLClassifyRecommendCell";
         }
         
         if(i == self.cellArr.count - 1){
+            
             _isSelectedItem = NO;
-            [MBProgressHUD showError:@"请选择分类"];
+//            [MBProgressHUD showError:@"请选择分类"];
         }
         
     }

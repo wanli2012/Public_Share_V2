@@ -205,7 +205,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
             storeVC.lng = [[GLNearby_Model defaultUser].longitude floatValue];
             [self.navigationController pushViewController:storeVC animated:YES];
             
-        }else{//跳转商品
+        }else if([model.jumptype integerValue] == 2){//跳转商品
             
             if ([model.goodstype integerValue] == 1) {//逛逛商品
                 
