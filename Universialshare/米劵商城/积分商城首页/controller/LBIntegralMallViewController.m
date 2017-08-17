@@ -33,6 +33,9 @@
 
 #import "LBStoreMoreInfomationViewController.h"//商家详情
 #import "LBStoreProductDetailInfoViewController.h"//商品详情
+#import "GLHomePageNoticeView.h"
+#import "GLSet_MaskVeiw.h"
+
 
 @interface LBIntegralMallViewController ()<UITableViewDelegate,UITableViewDataSource,GLIntegralMallTopCellDelegete,GLIntegralGoodsCellDelegate,LBFrontViewdelegete>
 {
@@ -40,6 +43,8 @@
     NSInteger _page;
     
     NSString *_htmlString;
+    GLHomePageNoticeView *_contentView;
+    GLSet_MaskVeiw *_maskV;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -86,6 +91,12 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
      * 数组tableHeaderView
      */
     self.tableView.tableHeaderView = self.frontView;
+    
+    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isShow"] isEqualToString:@"YES"]) {
+        //公告
+        [self initInterDataSorceinfomessage];
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
 
 }
 
@@ -359,6 +370,65 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     self.hidesBottomBarWhenPushed = NO;
 
 }
+
+#pragma mark ----公告
+
+-(void)initInterDataSorceinfomessage{
+    
+    [[NSUserDefaults standardUserDefaults]setObject:@"NO" forKey:@"isShow"];//展示过就不要展示了，重启App在调
+    
+    CGFloat contentViewH = SCREEN_HEIGHT / 2;
+    CGFloat contentViewW = SCREEN_WIDTH - 40;
+    CGFloat contentViewX = 20;
+    _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    
+    _maskV.bgView.alpha = 0.3;
+    
+    _contentView = [[NSBundle mainBundle] loadNibNamed:@"GLHomePageNoticeView" owner:nil options:nil].lastObject;
+    _contentView.contentViewW.constant = SCREEN_WIDTH - 40;
+    _contentView.contentViewH.constant = SCREEN_HEIGHT / 2 - 30;
+    _contentView.layer.cornerRadius = 5;
+    _contentView.layer.masksToBounds = YES;
+    
+    //设置webView
+    _contentView.webView.scalesPageToFit = YES;
+    _contentView.webView.autoresizesSubviews = NO;
+    _contentView.webView.autoresizingMask=(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth);
+    _contentView.webView.scrollView.bounces = NO;
+    
+    NSURL *url = [NSURL URLWithString:NOTICE_URL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    [_contentView.webView loadRequest:request];
+    [_maskV showViewWithContentView:_contentView];
+    
+    _contentView.frame = CGRectMake(contentViewX, (SCREEN_HEIGHT - contentViewH)/2, contentViewW, contentViewH);
+    //缩放
+    _contentView.transform=CGAffineTransformMakeScale(0.01f, 0.01f);
+    _contentView.alpha = 0;
+    [UIView animateWithDuration:0.2 animations:^{
+        
+        _contentView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+        _contentView.alpha = 1;
+    }];
+    
+}
+
+- (void)dismiss{
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        _maskV.transform = CGAffineTransformMakeScale(0.07, 0.07);
+        
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 animations:^{
+            _maskV.center = CGPointMake(SCREEN_WIDTH - 30,30);
+        } completion:^(BOOL finished) {
+            [_maskV removeFromSuperview];
+        }];
+    }];
+}
+
 
 -(NSMutableAttributedString*)setLabelAttribute:(NSString*)Atrrstr text:(NSString*)str{
 
