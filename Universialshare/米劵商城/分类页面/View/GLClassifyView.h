@@ -18,8 +18,10 @@ typedef void (^ReturnStringBlock)(NSString *str);
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, copy) ReturnStringBlock block;
 
-@property (nonatomic, strong)NSArray *dataSource;
-@property (nonatomic, strong)NSArray *typeIDArr;
+//@property (nonatomic, strong)NSArray *dataSource;
+//@property (nonatomic, strong)NSArray *typeIDArr;
+
+@property (nonatomic, strong)NSMutableArray *classifyModels;
 
 
 @end

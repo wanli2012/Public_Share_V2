@@ -26,6 +26,7 @@
     // Initialization code
     self.imageViewHeight.constant = 142.5 * autoSizeScaleY;
 }
+
 - (void)setModel:(GLintegralGoodsModel *)model {
     _model = model;
     [_imageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
@@ -33,4 +34,5 @@
     _nameLabel.text = model.goods_name;
     _priceLabel.text = [NSString stringWithFormat:@"%@米券",model.goods_price];
 }
+
 @end

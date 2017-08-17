@@ -505,6 +505,7 @@
 		4A5004661EE168EA002D1964 /* GLHomePageNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5004651EE168EA002D1964 /* GLHomePageNoticeView.m */; };
 		4A5004681EE168FD002D1964 /* GLHomePageNoticeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5004671EE168FD002D1964 /* GLHomePageNoticeView.xib */; };
 		4A52F54E1ED911C300075934 /* GLMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A52F54D1ED911C300075934 /* GLMemberModel.m */; };
+		4A5988351F457250009CDF45 /* GLClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5988341F457250009CDF45 /* GLClassifyModel.m */; };
 		4A5C70CB1ED66850001110B6 /* GLMerchat_StoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C70CA1ED66850001110B6 /* GLMerchat_StoreModel.m */; };
 		4A6C15C71F3F477C0046C150 /* GLAdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15C61F3F477C0046C150 /* GLAdModel.m */; };
 		4A6C15CB1F3F4BBE0046C150 /* GLMine_AdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15C91F3F4BBE0046C150 /* GLMine_AdController.m */; };
@@ -1898,6 +1899,8 @@
 		4A5004671EE168FD002D1964 /* GLHomePageNoticeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLHomePageNoticeView.xib; sourceTree = "<group>"; };
 		4A52F54C1ED911C300075934 /* GLMemberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMemberModel.h; sourceTree = "<group>"; };
 		4A52F54D1ED911C300075934 /* GLMemberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMemberModel.m; sourceTree = "<group>"; };
+		4A5988331F457250009CDF45 /* GLClassifyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLClassifyModel.h; sourceTree = "<group>"; };
+		4A5988341F457250009CDF45 /* GLClassifyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLClassifyModel.m; sourceTree = "<group>"; };
 		4A5C70C91ED66850001110B6 /* GLMerchat_StoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMerchat_StoreModel.h; sourceTree = "<group>"; };
 		4A5C70CA1ED66850001110B6 /* GLMerchat_StoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMerchat_StoreModel.m; sourceTree = "<group>"; };
 		4A6C15C51F3F477C0046C150 /* GLAdModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLAdModel.h; sourceTree = "<group>"; };
@@ -3212,6 +3215,8 @@
 			children = (
 				4A3D4CA51F44187C003CAE87 /* GLintegralGoodsModel.h */,
 				4A3D4CA61F44187C003CAE87 /* GLintegralGoodsModel.m */,
+				4A5988331F457250009CDF45 /* GLClassifyModel.h */,
+				4A5988341F457250009CDF45 /* GLClassifyModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7455,6 +7460,7 @@
 				4A4610711E9CC6360045824F /* ZXMathUtils.m in Sources */,
 				4A3D4DD01F4419C9003CAE87 /* GLOrderGoodsCell.m in Sources */,
 				4A4609FC1E9CB78E0045824F /* GLDonationMaskView.m in Sources */,
+				4A5988351F457250009CDF45 /* GLClassifyModel.m in Sources */,
 				4A4610BC1E9CC6370045824F /* ZXRSSExpandedDecodedInformation.m in Sources */,
 				4A4610C91E9CC6370045824F /* ZXRSSPair.m in Sources */,
 				4A4611081E9CC6370045824F /* ZXQRCodeAlignmentPattern.m in Sources */,

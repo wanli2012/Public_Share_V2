@@ -11,11 +11,11 @@
 #import "GLSet_MaskVeiw.h"
 #import "GLClassifyView.h"
 #import "GLHourseDetailController.h"
+#import "GLClassifyModel.h"
 
 @interface GLIntegraClassifyController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
-//    GLSet_MaskVeiw *_maskV;
-//    GLClassifyView *_contentV;
+
     LoadWaitView * _loadV;
     NSInteger _sortType;//排序方式:1 默认正序  2 倒序
     NSString * _classifyType;//分类id
@@ -26,7 +26,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 
-
 @property (weak, nonatomic) IBOutlet UIButton *defaultSortBtn;
 @property (weak, nonatomic) IBOutlet UIButton *integralBtn;
 
@@ -36,11 +35,10 @@
 
 @property (nonatomic,strong)NodataView *nodataV;
 
-@property (nonatomic,strong)NSMutableArray *typeArr;
-@property (nonatomic, strong)NSMutableArray *typeIDArr;
-
 @property (nonatomic, strong)GLSet_MaskVeiw *maskV;
 @property (nonatomic, strong)GLClassifyView *contentV;
+
+@property (nonatomic, strong)NSMutableArray *classifyModels;
 
 @end
 
@@ -136,7 +134,6 @@ static NSString *ID = @"GLClassifyCell";
         [_loadV removeloadview];
         [self endRefresh];
 
-        
         if ([responseObject[@"code"] integerValue] == 1){
             
             [self.models removeAllObjects];
@@ -171,17 +168,29 @@ static NSString *ID = @"GLClassifyCell";
         
         [self endRefresh];
         if ([responseObject[@"code"] integerValue] == 1){
-            [self.typeArr removeAllObjects];
-            [self.typeIDArr removeAllObjects];
+            [self.classifyModels removeAllObjects];
             
             if ([[NSString stringWithFormat:@"%@",responseObject[@"data"]] rangeOfString:@"null"].location == NSNotFound ) {
+                
+                GLClassifyModel *model = [[GLClassifyModel alloc] init];
+                model.catename = @"全部";
+                model.cate_id = @"";
+                model.isClicked = YES;
+                
+                [self.classifyModels addObject:model];
+                
+                
                 for (NSDictionary *dic in responseObject[@"data"]) {
-                    [self.typeArr addObject:dic[@"catename"]];
-                    [self.typeIDArr addObject:dic[@"cate_id"]];
+                    
+                    GLClassifyModel *model = [GLClassifyModel mj_objectWithKeyValues:dic];
+                    [self.classifyModels addObject:model];
+                    
                 }
             }
             
-            [_contentV.collectionView reloadData];
+            self.contentV.classifyModels = self.classifyModels;
+            
+            [self.contentV.collectionView reloadData];
             
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
@@ -238,7 +247,6 @@ static NSString *ID = @"GLClassifyCell";
         
         [weakSelf updateData:YES];
         [weakSelf dismiss];
-        NSLog(@"%@",str);
         
     };
     
@@ -249,11 +257,7 @@ static NSString *ID = @"GLClassifyCell";
         _contentV.frame = CGRectMake(64, 64 , SCREEN_WIDTH - 64, SCREEN_HEIGHT - 64);
         
     }];
-    
-    _contentV.dataSource = self.typeArr;
-    _contentV.typeIDArr = self.typeIDArr;
-    
-   
+
 }
 
 #pragma UICollectionDelegate UICollectionDataSource
@@ -301,16 +305,11 @@ static NSString *ID = @"GLClassifyCell";
     }
     return _models;
 }
-- (NSMutableArray *)typeArr{
-    if (!_typeArr) {
-        _typeArr = [NSMutableArray array];
+- (NSMutableArray *)classifyModels{
+    if (!_classifyModels) {
+        _classifyModels = [NSMutableArray array];
     }
-    return _typeArr;
+    return _classifyModels;
 }
-- (NSMutableArray *)typeIDArr{
-    if (!_typeIDArr) {
-        _typeIDArr = [NSMutableArray array];
-    }
-    return _typeIDArr;
-}
+
 @end

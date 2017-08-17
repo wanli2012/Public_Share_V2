@@ -193,7 +193,8 @@
         }
     }
     
-    [self.tableview reloadData];
+    [self.tableview reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//    [self.tableview reloadData];
     
 }
 

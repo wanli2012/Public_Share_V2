@@ -82,7 +82,20 @@ static NSString *ID = @"GLShoppingCell";
 
 //刷新界面
 - (void)refreshCart {
+    
+    float  num = 0;
+    for (int i = 0; i < self.models.count; i++) {
+        GLShoppingCartModel *model = self.models[i];
         
+        if (model.isSelect == YES) {
+            
+            num = num + [model.goods_price floatValue] * [model.num floatValue];
+            
+        }
+    }
+    
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"总计:¥ %.2f",num];
+    
     [self postRequest];
     
 }
