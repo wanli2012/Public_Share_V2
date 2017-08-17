@@ -68,6 +68,7 @@
      *微信支付成功 回调
      */
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(wxpaysucess) name:@"wxpaysucess" object:nil];
+    
     /**
      *判断是否展示支付
      */
@@ -76,44 +77,6 @@
 }
 
 -(void)isShowPayInterface{
-    
-//    [NetworkManager requestPOSTWithURLStr:@"shop/getPayTypeIsCloseByConfig" paramDic:@{} finish:^(id responseObject) {
-//        
-//        if ([responseObject[@"code"] integerValue] == 1) {
-//            
-//            if ([responseObject[@"data"][@"mq_pay"] integerValue] == 1) {
-//                
-//                [self.dataarr addObject:@{@"image":@"支付米分",@"title":@"米券支付"}];
-//                
-//            }
-//            
-//            
-//            if ([responseObject[@"data"][@"mz_pay"] integerValue] == 1) {
-//                
-//                [self.dataarr addObject:@{@"image":@"余额",@"title":@"米子支付"}];
-//                
-//            }
-//            
-//            if ([responseObject[@"data"][@"wechat"] integerValue] == 1) {
-//                
-//                [self.dataarr addObject:@{@"image":@"微信",@"title":@"微信支付"}];
-//                
-//            }
-//            
-//            if ([responseObject[@"data"][@"alipay"] integerValue] == 1) {
-//                
-//                [self.dataarr addObject:@{@"image":@"支付宝",@"title":@"支付宝支付"}];
-//                
-//            }
-//            
-//            [self setPayType];
-//
-//        }
-//        
-//        [self.tableview reloadData];
-//    } enError:^(NSError *error) {
-//        
-//    }];
     
     [self.dataarr addObject:@{@"image":@"支付米分",@"title":@"米券支付"}];
     [self.dataarr addObject:@{@"image":@"余额",@"title":@"米子支付"}];
@@ -266,7 +229,7 @@
         [_maskV removeFromSuperview];
     }];
 }
-
+//确定支付
 - (IBAction)surebutton:(UIButton *)sender {
     
     //判断选中了几中支付方式
@@ -325,10 +288,28 @@
     }
     
     switch (self.paySituation) {
-        case 1: case 2: case 3: case 4: case 5://米劵支付
+        case 1: case 5://米劵支付 米子支付
         {
             [self popSecretView];//弹出密码输入框
             
+        }
+            break;
+        case 2: case 3: case 4:
+        {
+            NSString *str = [NSString stringWithFormat:@"米券不足的部分将用米子或现金1:1补足,本次需要补足金额为:%.2f",[self.orderPrice floatValue] - [[UserModel defaultUser].mark floatValue]];
+            
+            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:str preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                [self popSecretView];//弹出密码输入框
+                
+            }];
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            
+            [alertVC addAction:ok];
+            [alertVC addAction:cancel];
+            
+            [self presentViewController:alertVC animated:YES completion:nil];
         }
             break;
         case 6://微信支付
