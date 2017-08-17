@@ -64,8 +64,8 @@ static NSString *ID = @"GLClassifyRecommendCell";
 }
 
 - (void)chooseClassify:(NSInteger )index{
-    GLClassifyModel *model = self.classifyModels[index];
     
+    GLClassifyModel *model = self.classifyModels[index];
     
     if (self.selectIndex == -1) {
         
@@ -75,11 +75,11 @@ static NSString *ID = @"GLClassifyRecommendCell";
     }else{
         
         if (self.selectIndex == index) {
+            
             return;
         }
         
         model.isClicked = !model.isClicked;
-        
         GLClassifyModel *model1 = self.classifyModels[self.selectIndex];
         model1.isClicked = NO;
         
