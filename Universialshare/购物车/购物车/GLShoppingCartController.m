@@ -343,8 +343,9 @@ static NSString *ID = @"GLShoppingCell";
                             b = YES;
                             
                         }else{
+                            
                             num = num + [model.goods_price floatValue] * [model.num floatValue];
-                            //            [self.selectArr addObject:model];
+                            
                         }
                     }
                     
