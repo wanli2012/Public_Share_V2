@@ -766,7 +766,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         self.navaView.backgroundColor = YYSRGBColor(120, 161, 255, 0);
     }else{
 
-        self.navaView.backgroundColor = YYSRGBColor(120, 161, 255, (scrollView.contentOffset.y)/200);
+        self.navaView.backgroundColor = YYSRGBColor(120, 161, 255, (scrollView.contentOffset.y)/64);
     
     }
 }

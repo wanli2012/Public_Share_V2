@@ -106,7 +106,7 @@
                 self.pl_count = [responseObject[@"pl_count"]integerValue];
                 self.cycleScrollView.imageURLStringsGroup = self.dataDic[@"goods_data"][@"img_arr"];
                 self.titileLb.text = [NSString stringWithFormat:@"%@",self.dataDic[@"goods_data"][@"name"]];
-                
+                self.storename = self.titileLb.text;
                 if ([self.dataDic[@"goods_data"][@"is_collection"]integerValue] == 0) {
                     self.collectionimage.image = [UIImage imageNamed:@"collect_icon"];
                 }else{
