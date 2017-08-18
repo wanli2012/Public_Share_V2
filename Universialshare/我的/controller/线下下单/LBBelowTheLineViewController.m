@@ -64,40 +64,68 @@
     NSString  *stringRandom =  [[NSUserDefaults standardUserDefaults]objectForKey:@"randomNumber"];
     
     if (stringRandom == nil || [stringRandom isEqualToString:@""]) {
-        
-        int num = (arc4random() % 10000);
-        NSString *randomNumber = [NSString stringWithFormat:@"%.4d", num];
+
+        NSString *randomNumber = [self getRandomStringWithNum:4];
         
         self.yuliuTf.text = randomNumber;
         
-        [[NSUserDefaults standardUserDefaults]setObject:randomNumber forKey:@"randomNumber"];//保存
+        [[NSUserDefaults standardUserDefaults] setObject:randomNumber forKey:@"randomNumber"];//保存
     }else{
+        
         self.yuliuTf.text = stringRandom;
     }
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"记录"] style:UIBarButtonItemStylePlain target:self action:@selector(checkrecorderEvent)];
     item.imageInsets = UIEdgeInsetsMake(5, -5, 0, 5);
-    self.navigationItem.rightBarButtonItem=item;
+    self.navigationItem.rightBarButtonItem = item;
     
 }
 
 -(void)checkrecorderEvent{
     
     self.hidesBottomBarWhenPushed = YES;
-    LBBelowTheLineListViewController *vc=[[LBBelowTheLineListViewController alloc]init];
+    LBBelowTheLineListViewController *vc = [[LBBelowTheLineListViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 
 }
 
 //重新生成生成预留信息
 - (IBAction)getNewCodeEvent:(UIButton *)sender {
-    
-    int num = (arc4random() % 10000);
-    NSString *randomNumber = [NSString stringWithFormat:@"%.4d", num];
+
+    NSString *randomNumber = [self getRandomStringWithNum:4];
     
     self.yuliuTf.text = randomNumber;
+    
 }
 
+- (NSString *)getRandomStringWithNum:(NSInteger)num
+{
+    NSString *string = [[NSString alloc]init];
+    for (int i = 0; i < num; i++) {
+        int number = arc4random() % 62;
+        if (number < 10) {
+            
+            int figure = arc4random() % 10;
+            NSString *tempString = [NSString stringWithFormat:@"%d", figure];
+            string = [string stringByAppendingString:tempString];
+            
+        }else if(number < 36 && number >10) {
+            
+            int figure = (arc4random() % 26) + 97;
+            char character = figure;
+            NSString *tempString = [NSString stringWithFormat:@"%c", character];
+            string = [string stringByAppendingString:tempString];
+            
+        }else{
+            
+            int figure = (arc4random() % 26) + 65;
+            char character = figure;
+            NSString *tempString = [NSString stringWithFormat:@"%c", character];
+            string = [string stringByAppendingString:tempString];
+        }
+    }
+    return string;
+}
 
 //选择激励模式
 - (IBAction)choseJiliModel:(UITapGestureRecognizer *)sender {
@@ -236,7 +264,6 @@
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
-    
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     

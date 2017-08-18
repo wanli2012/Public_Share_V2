@@ -104,7 +104,10 @@
             
         }else if ([responseObject[@"code"] integerValue]==3){
             
-            [MBProgressHUD showError:responseObject[@"message"]];
+            if (self.dataarr.count != 0) {
+                
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
 
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];

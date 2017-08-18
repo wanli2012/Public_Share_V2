@@ -141,6 +141,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                     for (NSDictionary *dic  in responseObject[@"data"]) {
                         GLNearby_MerchatListModel *model = [GLNearby_MerchatListModel mj_objectWithKeyValues:dic];
                         [self.recModels addObject:model];
+                        
                     }
                 }
             }
@@ -504,11 +505,15 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     
     GLNearby_NearShopModel *model;
     
-    if (self.index == 10) {
+//    if (self.index == 10) {
+    
         model = self.recModels[indexPath.row];
-    }else{
-        model = self.nearModels[indexPath.row];
-    }
+    
+//    }else{
+    
+//        model = self.nearModels[indexPath.row];
+    
+//    }
     
     storeVC.lat = [model.lat floatValue];
     storeVC.lng = [model.lng floatValue];

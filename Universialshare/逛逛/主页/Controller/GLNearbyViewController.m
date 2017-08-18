@@ -399,7 +399,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     }
 }
 
-#pragma mark -----  ClassifyHeaderViewdelegete
+#pragma mark ----- ClassifyHeaderViewdelegete
 
 -(void)tapgesture:(NSInteger)tag{
 

@@ -107,7 +107,11 @@
             if (_refreshType == NO) {
                 [self.dataarr removeAllObjects];
             }
-            [MBProgressHUD showError:responseObject[@"message"]];
+            if (self.dataarr.count != 0) {
+                
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
+
              [self.tableview reloadData];
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
