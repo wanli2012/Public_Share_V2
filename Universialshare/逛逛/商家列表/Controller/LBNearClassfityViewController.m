@@ -495,6 +495,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     
     return cell;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     self.hidesBottomBarWhenPushed = YES;
