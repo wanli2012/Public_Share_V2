@@ -132,27 +132,29 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     dict[@"two_trade_id"] = self.two_trade_id;
     dict[@"sort"] = self.sort;
     dict[@"city_id"] = self.city_id;
-        
-        [NetworkManager requestPOSTWithURLStr:@"shop/getShopDataNew" paramDic:dict finish:^(id responseObject) {
-            [self endRefresh];
-            if ([responseObject[@"code"] integerValue] == 1){
-                if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+    dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
+    dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
+    
+    [NetworkManager requestPOSTWithURLStr:@"shop/getShopDataNew" paramDic:dict finish:^(id responseObject) {
+        [self endRefresh];
+        if ([responseObject[@"code"] integerValue] == 1){
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                
+                for (NSDictionary *dic  in responseObject[@"data"]) {
+                    GLNearby_MerchatListModel *model = [GLNearby_MerchatListModel mj_objectWithKeyValues:dic];
+                    [self.recModels addObject:model];
                     
-                    for (NSDictionary *dic  in responseObject[@"data"]) {
-                        GLNearby_MerchatListModel *model = [GLNearby_MerchatListModel mj_objectWithKeyValues:dic];
-                        [self.recModels addObject:model];
-                        
-                    }
                 }
             }
+        }
         
-            [self.tableView reloadData];
-            
-        } enError:^(NSError *error) {
-            [self endRefresh];
-             [self.tableView reloadData];
-            [MBProgressHUD showError:@"数据加载失败"];
-        }];
+        [self.tableView reloadData];
+        
+    } enError:^(NSError *error) {
+        [self endRefresh];
+        [self.tableView reloadData];
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
     
 }
 - (void)endRefresh {

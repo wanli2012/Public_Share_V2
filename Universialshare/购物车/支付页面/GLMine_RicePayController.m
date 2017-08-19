@@ -57,7 +57,6 @@
     self.orderMTitleLb.text = @"订单米券:";
     self.orderType.text = @"米券订单";
     
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postRepuest:paySituation:) name:@"input_PasswordNotification" object:nil];
@@ -336,18 +335,17 @@
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"orderId"] = self.order_id;
-    //    dict[@"order_id"] =[RSAEncryptor encryptString:[NSString stringWithFormat:@"%@_%@_%@",self.order_sh,self.order_id,self.order_sn] publicKey:public_RSA];
+    dict[@"order_id"] =[RSAEncryptor encryptString:[NSString stringWithFormat:@"%@_%@_%@",self.order_sh,self.order_id,self.order_sn] publicKey:public_RSA];
     
-    dict[@"order_id"] = [NSString stringWithFormat:@"%@_%@_%@",self.order_sh,self.order_id,self.order_sn];
+//    dict[@"order_id"] = [NSString stringWithFormat:@"%@_%@_%@",self.order_sh,self.order_id,self.order_sn];
     
     switch (self.paySituation) {
         case 1://米劵支付
         {
-            //    dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
  
             dict[@"is_rmb"] = @0;
             dict[@"is_mark"] = @3;
-            dict[@"password"] = [sender.userInfo objectForKey:@"password"];
+            dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
             
         }
             break;
@@ -356,7 +354,7 @@
 
             dict[@"is_rmb"] = @0;
             dict[@"is_mark"] = @6;
-            dict[@"password"] = [sender.userInfo objectForKey:@"password"];
+            dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
 
         }
             break;
@@ -365,7 +363,7 @@
             dict[@"pay_type"] = @2;
             dict[@"is_rmb"] = @1;
             dict[@"is_mark"] = @3;
-            dict[@"password"] = [sender.userInfo objectForKey:@"password"];
+            dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
             
         }
             break;
@@ -374,7 +372,7 @@
             dict[@"pay_type"] = @1;
             dict[@"is_rmb"] = @1;
             dict[@"is_mark"] = @3;
-            dict[@"password"] = [sender.userInfo objectForKey:@"password"];
+            dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
             
         }
             break;
@@ -382,7 +380,7 @@
         {
             dict[@"is_rmb"] = @0;
             dict[@"is_mark"] = @4;
-            dict[@"password"] = [sender.userInfo objectForKey:@"password"];
+            dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
             
         }
             break;
@@ -418,6 +416,7 @@
                 case 1: case 2: case 5:
                 {
                     [MBProgressHUD showError:responseObject[@"message"]];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
                 }
                     break;
                     

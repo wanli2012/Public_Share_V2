@@ -18,9 +18,8 @@
 
     self = [super initWithFrame:frame];
     
-    if (self != nil) {
+    if (self) {
         NSArray *viewArray = [[NSBundle mainBundle] loadNibNamed:@"LoadWaitView" owner:self options:nil];
-        self.isTap = YES;
         self = viewArray[0];
         self.frame = frame;
         self.backgroundColor=[UIColor clearColor];
@@ -30,14 +29,16 @@
         
         [self initinterface];
         
+        self.isTap = NO;
+        
     }
-    return [super initWithFrame:frame];
+    return self;
 
 }
 
 +(LoadWaitView*)addloadview:(CGRect)rect tagert:(id)tagert{
     
-    LoadWaitView *loadview=[[LoadWaitView alloc]initWithFrame:rect];
+    LoadWaitView *loadview=[[LoadWaitView alloc] initWithFrame:rect];
     [tagert addSubview:loadview];
     
     return loadview;
@@ -53,7 +54,6 @@
 
 -(void)initinterface{
     
-   
     self.loadImage.animationImages = self.imageArr;
     self.loadImage.animationDuration = 1;//设置动画时间
     self.loadImage.animationRepeatCount = 0;//设置动画次数 0 表示无限
@@ -64,14 +64,12 @@
 
 -(void)tapgestrue{
 
-    if (self.isTap == YES) {
+    if (self.isTap == NO) {
         [self removeFromSuperview];
         [self.loadImage stopAnimating];
     }else{
         return;
     }
-   
-
 }
 
 -(NSArray*)imageArr{

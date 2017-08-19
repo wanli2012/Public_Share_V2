@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -32,6 +32,8 @@
                 <outlet property="nameTf" destination="2mA-gV-pjb" id="PwV-nJ-ND7"/>
                 <outlet property="numTf" destination="FMi-gb-Jdh" id="NI1-Xg-54m"/>
                 <outlet property="phoneTf" destination="nM3-ju-Alm" id="pXX-4c-QFj"/>
+                <outlet property="userTypeView" destination="nbD-mb-IpU" id="9bb-ia-2rt"/>
+                <outlet property="usertypeTf" destination="fpA-X7-k6P" id="RQn-c7-DOm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yuliuTf" destination="09c-Zf-OvZ" id="l2s-Ir-8hL"/>
             </connections>
@@ -96,7 +98,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dx6-Do-BUz">
-                                    <rect key="frame" x="0.0" y="55" width="375" height="40"/>
+                                    <rect key="frame" x="0.0" y="105" width="375" height="40"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rDq-cS-ZVz">
                                             <rect key="frame" x="84" y="0.0" width="281" height="40"/>
@@ -154,7 +156,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uVY-GX-8Yp">
-                                    <rect key="frame" x="0.0" y="105" width="375" height="40"/>
+                                    <rect key="frame" x="0.0" y="155" width="375" height="40"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUU-vF-AtC">
                                             <rect key="frame" x="84" y="0.0" width="281" height="40"/>
@@ -202,7 +204,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wc6-Ot-EkX">
-                                    <rect key="frame" x="0.0" y="155" width="375" height="40"/>
+                                    <rect key="frame" x="0.0" y="205" width="375" height="40"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EM4-Mn-CAR">
                                             <rect key="frame" x="84" y="0.0" width="281" height="40"/>
@@ -250,7 +252,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AFX-l1-5yM">
-                                    <rect key="frame" x="0.0" y="205" width="375" height="40"/>
+                                    <rect key="frame" x="0.0" y="255" width="375" height="40"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYH-rd-0yQ">
                                             <rect key="frame" x="84" y="0.0" width="281" height="40"/>
@@ -298,7 +300,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3sx-Kt-wuA">
-                                    <rect key="frame" x="0.0" y="275" width="375" height="40"/>
+                                    <rect key="frame" x="0.0" y="325" width="375" height="40"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MRI-i6-Kxg">
                                             <rect key="frame" x="84" y="0.0" width="281" height="40"/>
@@ -360,7 +362,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="打款凭证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7d-Qk-7sN">
-                                    <rect key="frame" x="10" y="325" width="54" height="20"/>
+                                    <rect key="frame" x="10" y="375" width="54" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="ejc-fw-Gjo"/>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="vl1-oN-Vb6"/>
@@ -370,7 +372,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-9" translatesAutoresizingMaskIntoConstraints="NO" id="cZI-h8-XU3">
-                                    <rect key="frame" x="10" y="355" width="90" height="100"/>
+                                    <rect key="frame" x="10" y="405" width="90" height="100"/>
                                     <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="90" id="Xot-FS-n7d"/>
@@ -381,7 +383,7 @@
                                     </connections>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消费凭证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCh-xp-k8Z">
-                                    <rect key="frame" x="144" y="327" width="60" height="16"/>
+                                    <rect key="frame" x="144" y="377" width="60" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="60" id="4nb-vI-vpT"/>
                                         <constraint firstAttribute="height" constant="16" id="7FF-Ro-WTM"/>
@@ -391,7 +393,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yRS-0C-5KC">
-                                    <rect key="frame" x="0.0" y="475" width="375" height="40"/>
+                                    <rect key="frame" x="0.0" y="525" width="375" height="40"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7e5-82-cCr">
                                             <rect key="frame" x="72" y="0.0" width="193" height="40"/>
@@ -455,7 +457,7 @@
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iik-sQ-X4F">
-                                    <rect key="frame" x="10" y="535" width="355" height="40"/>
+                                    <rect key="frame" x="10" y="585" width="355" height="40"/>
                                     <color key="backgroundColor" red="0.40214681629999999" green="0.59420973060000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="VG5-wC-Vpf"/>
@@ -468,7 +470,7 @@
                                     </connections>
                                 </button>
                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="照片框-拷贝-9" translatesAutoresizingMaskIntoConstraints="NO" id="Mev-IB-l6h">
-                                    <rect key="frame" x="144" y="355" width="90" height="100"/>
+                                    <rect key="frame" x="144" y="405" width="90" height="100"/>
                                     <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="100" id="FBc-DV-JlD"/>
@@ -479,7 +481,7 @@
                                     </connections>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* 预留信息必须与打款凭证所填写预留信息一致" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SuD-r4-bdc">
-                                    <rect key="frame" x="89" y="255" width="212.5" height="10"/>
+                                    <rect key="frame" x="89" y="305" width="213" height="10"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="10" id="EGx-NY-Xu2"/>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="f7i-pP-C0H"/>
@@ -488,10 +490,71 @@
                                     <color key="textColor" red="0.77709561589999998" green="0.19865089650000001" blue="0.056773729619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nbD-mb-IpU">
+                                    <rect key="frame" x="0.0" y="55" width="375" height="40"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f55-5O-j9i">
+                                            <rect key="frame" x="84" y="0.0" width="281" height="40"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fpA-X7-k6P">
+                                                    <rect key="frame" x="5" y="0.0" width="243" height="40"/>
+                                                    <gestureRecognizers/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="XiX-SB-X1K"/>
+                                                    </constraints>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="下选三角形" translatesAutoresizingMaskIntoConstraints="NO" id="J1x-no-oSf">
+                                                    <rect key="frame" x="258" y="15" width="13" height="10"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="10" id="OAg-b5-8W3"/>
+                                                        <constraint firstAttribute="width" constant="13" id="hRv-V5-Czd"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <gestureRecognizers/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="J1x-no-oSf" secondAttribute="trailing" constant="10" id="4U6-yK-ecw"/>
+                                                <constraint firstItem="fpA-X7-k6P" firstAttribute="leading" secondItem="f55-5O-j9i" secondAttribute="leading" constant="5" id="QnU-U2-C3S"/>
+                                                <constraint firstItem="J1x-no-oSf" firstAttribute="leading" secondItem="fpA-X7-k6P" secondAttribute="trailing" constant="10" id="U6Z-Lb-K6y"/>
+                                                <constraint firstItem="fpA-X7-k6P" firstAttribute="centerY" secondItem="f55-5O-j9i" secondAttribute="centerY" id="UNX-8V-KCw"/>
+                                                <constraint firstAttribute="height" constant="40" id="esl-6k-D14"/>
+                                                <constraint firstItem="J1x-no-oSf" firstAttribute="centerY" secondItem="f55-5O-j9i" secondAttribute="centerY" id="wvz-xQ-mVM"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="帐户类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Big-N1-8eY">
+                                            <rect key="frame" x="10" y="10" width="54" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="Lla-Lh-ybm"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="Qc4-JK-VN2"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <gestureRecognizers/>
+                                    <constraints>
+                                        <constraint firstItem="Big-N1-8eY" firstAttribute="centerY" secondItem="nbD-mb-IpU" secondAttribute="centerY" id="2DJ-4p-kkV"/>
+                                        <constraint firstItem="f55-5O-j9i" firstAttribute="centerY" secondItem="Big-N1-8eY" secondAttribute="centerY" id="TcU-gj-Grl"/>
+                                        <constraint firstAttribute="trailing" secondItem="f55-5O-j9i" secondAttribute="trailing" constant="10" id="nGU-oZ-Lzg"/>
+                                        <constraint firstItem="Big-N1-8eY" firstAttribute="leading" secondItem="nbD-mb-IpU" secondAttribute="leading" constant="10" id="oJn-yW-4j0"/>
+                                        <constraint firstAttribute="height" constant="40" id="odQ-Lk-dBz"/>
+                                        <constraint firstItem="f55-5O-j9i" firstAttribute="leading" secondItem="Big-N1-8eY" secondAttribute="trailing" constant="20" id="yr2-Wg-oNN"/>
+                                    </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="d2T-M5-N7x" appends="YES" id="qB1-LG-sj4"/>
+                                    </connections>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <gestureRecognizers/>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="nbD-mb-IpU" secondAttribute="trailing" id="30F-gt-Ysx"/>
                                 <constraint firstAttribute="width" constant="375" id="35N-xN-lbg"/>
                                 <constraint firstItem="uVY-GX-8Yp" firstAttribute="leading" secondItem="3uL-s2-oOp" secondAttribute="leading" id="36u-hq-RwJ"/>
                                 <constraint firstAttribute="height" constant="600" id="53j-xC-GUw"/>
@@ -506,10 +569,11 @@
                                 <constraint firstItem="AFX-l1-5yM" firstAttribute="top" secondItem="wc6-Ot-EkX" secondAttribute="bottom" constant="10" id="KUn-TW-2Ba"/>
                                 <constraint firstItem="dx6-Do-BUz" firstAttribute="leading" secondItem="3uL-s2-oOp" secondAttribute="leading" id="MHc-IA-Epl"/>
                                 <constraint firstAttribute="trailing" secondItem="yRS-0C-5KC" secondAttribute="trailing" id="NZz-rX-EwR"/>
+                                <constraint firstItem="nbD-mb-IpU" firstAttribute="leading" secondItem="3uL-s2-oOp" secondAttribute="leading" id="NxS-SU-5fs"/>
                                 <constraint firstItem="G7d-Qk-7sN" firstAttribute="leading" secondItem="3uL-s2-oOp" secondAttribute="leading" constant="10" id="O9D-CH-hW1"/>
                                 <constraint firstAttribute="trailing" secondItem="XM3-ig-otu" secondAttribute="trailing" id="PQf-FS-paq"/>
                                 <constraint firstItem="uVY-GX-8Yp" firstAttribute="top" secondItem="dx6-Do-BUz" secondAttribute="bottom" constant="10" id="RrX-v4-Rai"/>
-                                <constraint firstItem="dx6-Do-BUz" firstAttribute="top" secondItem="XM3-ig-otu" secondAttribute="bottom" constant="10" id="XMF-oy-bVc"/>
+                                <constraint firstItem="dx6-Do-BUz" firstAttribute="top" secondItem="nbD-mb-IpU" secondAttribute="bottom" constant="10" id="VVp-Ic-Acc"/>
                                 <constraint firstItem="SuD-r4-bdc" firstAttribute="leading" secondItem="FMi-gb-Jdh" secondAttribute="leading" id="Yy3-Sb-Twu"/>
                                 <constraint firstItem="yRS-0C-5KC" firstAttribute="leading" secondItem="3uL-s2-oOp" secondAttribute="leading" id="bGA-CH-ZZr"/>
                                 <constraint firstItem="Mev-IB-l6h" firstAttribute="leading" secondItem="cZI-h8-XU3" secondAttribute="trailing" constant="44" id="bbZ-mX-aku"/>
@@ -521,6 +585,7 @@
                                 <constraint firstItem="UCh-xp-k8Z" firstAttribute="leading" secondItem="G7d-Qk-7sN" secondAttribute="trailing" constant="80" id="kAc-qa-2Y8"/>
                                 <constraint firstItem="AFX-l1-5yM" firstAttribute="leading" secondItem="3uL-s2-oOp" secondAttribute="leading" id="mZB-5y-69c"/>
                                 <constraint firstItem="cZI-h8-XU3" firstAttribute="top" secondItem="G7d-Qk-7sN" secondAttribute="bottom" constant="10" id="mZT-Fm-clK"/>
+                                <constraint firstItem="nbD-mb-IpU" firstAttribute="top" secondItem="XM3-ig-otu" secondAttribute="bottom" constant="10" id="nQV-GW-vWX"/>
                                 <constraint firstItem="XM3-ig-otu" firstAttribute="leading" secondItem="3uL-s2-oOp" secondAttribute="leading" id="riS-wd-A0l"/>
                                 <constraint firstAttribute="trailing" secondItem="dx6-Do-BUz" secondAttribute="trailing" id="v8g-bF-0m6"/>
                                 <constraint firstItem="SuD-r4-bdc" firstAttribute="top" secondItem="AFX-l1-5yM" secondAttribute="bottom" constant="10" id="wQe-qg-Tm1"/>
@@ -570,6 +635,11 @@
         <tapGestureRecognizer id="pTu-A8-oDc">
             <connections>
                 <action selector="endeditEvent:" destination="-1" id="OAk-3c-iLS"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="d2T-M5-N7x" userLabel="帐户类型">
+            <connections>
+                <action selector="accountTypeChoose:" destination="-1" id="Y85-Wb-VVa"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

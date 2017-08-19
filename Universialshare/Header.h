@@ -22,9 +22,9 @@
 
 #define ADAPT(x) SCREEN_WIDTH / 375 *(x)
 
-//#define URL_Base @"https://www.51dztg.com/index.php/app/"
+#define URL_Base @"https://www.51dztg.com/index.php/app/"
 //#define URL_Base @"http://dzgx.joshuaweb.cn/index.php/app/"
-#define URL_Base @"http://192.168.0.191/dztg/index.php/App/"
+//#define URL_Base @"http://192.168.0.191/dztg/index.php/App/"
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1228047806?mt=8"
 //获取appStore上的最新版本号地址

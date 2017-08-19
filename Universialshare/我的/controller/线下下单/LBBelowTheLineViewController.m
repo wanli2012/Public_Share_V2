@@ -9,6 +9,7 @@
 #import "LBBelowTheLineViewController.h"
 #import "IncentiveModel.h"
 #import "LBBelowTheLineListViewController.h"
+#import "SelectUserTypeView.h"
 
 @interface LBBelowTheLineViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
 
@@ -47,6 +48,11 @@
 
 @property (strong, nonatomic)NSString *phoneNum;//保存电话号码
 
+@property (nonatomic, strong)SelectUserTypeView *selectUserTypeView;
+@property (strong, nonatomic)NSString *usertype;
+@property (weak, nonatomic) IBOutlet UITextField *usertypeTf;
+@property (weak, nonatomic) IBOutlet UIView *userTypeView;
+
 @end
 
 @implementation LBBelowTheLineViewController
@@ -79,6 +85,7 @@
     item.imageInsets = UIEdgeInsetsMake(5, -5, 0, 5);
     self.navigationItem.rightBarButtonItem = item;
     
+ 
 }
 
 -(void)checkrecorderEvent{
@@ -88,6 +95,106 @@
     [self.navigationController pushViewController:vc animated:YES];
 
 }
+
+//帐户类型选择
+- (IBAction)accountTypeChoose:(id)sender {
+    __weak typeof(self) weakSelf = self;
+    
+    self.selectUserTypeView.block = ^(NSInteger index){
+        
+        switch (index) {
+            case 0://会员
+            {
+                weakSelf.usertype = OrdinaryUser;
+                weakSelf.usertypeTf.text=@"会员";
+            }
+                break;
+            case 1://商家
+            {
+                weakSelf.usertype = Retailer;
+                weakSelf.usertypeTf.text=@"商家";
+            }
+                break;
+            case 2://创客
+            {
+                weakSelf.usertype = THREESALER;
+                weakSelf.usertypeTf.text=@"创客";
+            }
+                break;
+            case 3://城市创客
+            {
+                weakSelf.usertype = TWOSALER;
+                weakSelf.usertypeTf.text=@"城市创客";
+            }
+                break;
+            case 4://大区创客
+            {
+                weakSelf.usertype = ONESALER;
+                weakSelf.usertypeTf.text=@"大区创客";
+            }
+                break;
+            case 5://省级服务中心
+            {
+                weakSelf.usertype = PROVINCE;
+                weakSelf.usertypeTf.text=@"省级服务中心";
+            }
+                break;
+            case 6://市级服务中心
+            {
+                weakSelf.usertype = CITY;
+                weakSelf.usertypeTf.text=@"市级服务中心";
+            }
+                break;
+            case 7://区级服务中心
+            {
+                weakSelf.usertype = DISTRICT;
+                weakSelf.usertypeTf.text=@"区级服务中心";
+            }
+                break;
+            case 8://省级行业服务中心
+            {
+                weakSelf.usertype = PROVINCE_INDUSTRY;
+                weakSelf.usertypeTf.text=@"省级行业服务中心";
+            }
+                break;
+            case 9://市级行业服务中心
+            {
+                weakSelf.usertype = CITY_INDUSTRY;
+                weakSelf.usertypeTf.text=@"市级行业服务中心";
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+        [weakSelf incentiveModelMaskVtapgestureLb];
+        
+    };
+    
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
+    
+    UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
+    CGRect rect=[self.usertypeTf convertRect:self.usertypeTf.bounds toView:window];
+
+    self.selectUserTypeView.frame = CGRectMake(rect.origin.x, rect.origin.y + 45, rect.size.width, 180);
+
+    self.selectUserTypeView.height = 0;
+    self.selectUserTypeView.layer.anchorPoint=CGPointMake(0.5, 0);
+    [self.view addSubview:self.incentiveModelMaskV];
+    [self.view addSubview:self.selectUserTypeView];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        self.selectUserTypeView.height = 180;
+        
+    } completion:^(BOOL finished) {
+        
+    }];
+
+}
+
 
 //重新生成生成预留信息
 - (IBAction)getNewCodeEvent:(UIButton *)sender {
@@ -238,7 +345,7 @@
     }
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/getTrueName" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"username" :self.phoneTf.text} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"user/getTrueName" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"username" :self.phoneTf.text,@"group_id" :self.usertype} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             
@@ -268,7 +375,7 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     if (buttonIndex==1) {
-        NSDictionary  * dic=@{@"token":[UserModel defaultUser].token , @"uid":[UserModel defaultUser].uid , @"username":self.phoneTf.text , @"yzm":self.codeTf.text,@"rlmodel_type":[NSNumber numberWithInteger:self.userytpe],@"money":self.moneyTf.text,@"shopname":self.nameTf.text,@"shopnum":self.numTf.text,@"code":self.yuliuTf.text,@"version":@"3"};
+        NSDictionary  * dic=@{@"token":[UserModel defaultUser].token , @"uid":[UserModel defaultUser].uid , @"username":self.phoneTf.text , @"yzm":self.codeTf.text,@"rlmodel_type":[NSNumber numberWithInteger:self.userytpe],@"money":self.moneyTf.text,@"shopname":self.nameTf.text,@"shopnum":self.numTf.text,@"code":self.yuliuTf.text,@"version":@"3",@"group_id" :self.usertype};
         self.comitbt.userInteractionEnabled = NO;
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
@@ -299,9 +406,6 @@
 
         }progress:^(NSProgress *uploadProgress){
             [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
-//            [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-//            [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-//            [SVProgressHUD setCornerRadius:8.0];
             
             if (uploadProgress.fractionCompleted == 1.0) {
                  [SVProgressHUD dismiss];
@@ -475,7 +579,18 @@
 //点击maskview
 -(void)incentiveModelMaskVtapgestureLb{
     
-    [self.incentiveModelMaskV removeFromSuperview];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+//        self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
+        self.selectUserTypeView.height = 0;
+    } completion:^(BOOL finished) {
+        
+        [self.incentiveModelMaskV removeFromSuperview];
+        [self.selectUserTypeView removeFromSuperview];
+    }];
+    
+//    [self.incentiveModelMaskV removeFromSuperview];
     [self.incentiveModelV removeFromSuperview];
     self.TriangleImage.transform = CGAffineTransformIdentity;
     
@@ -570,4 +685,19 @@
     
 }
 
+-(SelectUserTypeView*)selectUserTypeView{
+    
+    if (!_selectUserTypeView) {
+        _selectUserTypeView=[[NSBundle mainBundle]loadNibNamed:@"SelectUserTypeView" owner:self options:nil].firstObject;
+        
+        _selectUserTypeView.layer.cornerRadius = 10.f;
+        _selectUserTypeView.clipsToBounds = YES;
+
+        _selectUserTypeView.dataSoure  = @[@"会员",@"商家",@"创客",@"城市创客",@"大区创客",@"省级服务中心",@"市级服务中心",@"区级服务中心",@"省级行业服务中心",@"市级行业服务中心"];
+
+    }
+    
+    return _selectUserTypeView;
+    
+}
 @end

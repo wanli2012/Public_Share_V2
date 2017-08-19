@@ -12,4 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *sixButton;
 @property (weak, nonatomic) IBOutlet UIButton *twenteenButton;
 //@property (weak, nonatomic) IBOutlet UIButton *twentyFBt;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *sixButtonHeight;
+
 @end

@@ -86,7 +86,12 @@
     UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
     CGRect rect=[self.levelView convertRect: self.levelView.bounds toView:window];
     
-    self.incentiveModelV.frame=CGRectMake(SCREEN_WIDTH-130, rect.origin.y+20, 120, 80);
+    if ([[UserModel defaultUser].groupId isEqualToString:TWOSALER]) {
+        self.incentiveModelV.frame=CGRectMake(SCREEN_WIDTH-130, rect.origin.y+20, 120, 60);
+    }else{
+        
+        self.incentiveModelV.frame=CGRectMake(SCREEN_WIDTH-130, rect.origin.y+20, 120, 80);
+    }
     
     [self.view addSubview:self.incentiveModelMaskV];
     [self.incentiveModelMaskV addSubview:self.incentiveModelV];
@@ -267,7 +272,8 @@
         [MBProgressHUD showError:@"两次输入的密码不一致"];
         return;
     }
-     NSString *encryptsecret = [RSAEncryptor encryptString:self.secrestTf.text publicKey:public_RSA];
+    
+    NSString *encryptsecret = [RSAEncryptor encryptString:self.secrestTf.text publicKey:public_RSA];
     
     NSDictionary *dic = @{@"uid":[UserModel defaultUser].uid,
                           @"token":[UserModel defaultUser].token,
@@ -563,8 +569,8 @@
     self.yanzBt.layer.cornerRadius = 4;
     self.yanzBt.clipsToBounds = YES;
 
-
 }
+
 -(UIView*)incentiveModelMaskV{
     
     if (!_incentiveModelMaskV) {
@@ -583,6 +589,11 @@
         _incentiveModelV=[[NSBundle mainBundle]loadNibNamed:@"SelectionOfSalesmanLevelView" owner:self options:nil].firstObject;
         [_incentiveModelV.sixButton addTarget:self action:@selector(sixbuttonE) forControlEvents:UIControlEventTouchUpInside];
         [_incentiveModelV.twenteenButton addTarget:self action:@selector(twenteenButtonE) forControlEvents:UIControlEventTouchUpInside];
+        
+        if([[UserModel defaultUser].groupId isEqualToString:TWOSALER]){
+            _incentiveModelV.sixButtonHeight.constant = 0;
+            _incentiveModelV.sixButton.hidden = YES;
+        }
 //        [_incentiveModelV.twentyFBt addTarget:self action:@selector(twentyFbuttonE) forControlEvents:UIControlEventTouchUpInside];
         
     }
