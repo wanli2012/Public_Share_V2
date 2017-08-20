@@ -11,4 +11,6 @@
 
 @interface LBMineCenterMyOrderViewController : XBScrollPageController
 
+@property (assign, nonatomic)BOOL isSelectindex;//YES 选中待奖励 NO选中已完成
+
 @end

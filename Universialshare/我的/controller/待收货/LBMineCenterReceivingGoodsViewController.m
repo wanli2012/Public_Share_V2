@@ -14,6 +14,7 @@
 #import "LBWaitOrdersHeaderView.h"
 #import "LBWaitOrdersModel.h"
 #import "LBWaitOrdersListModel.h"
+#import "LBMineCenterMyOrderViewController.h"
 
 @interface LBMineCenterReceivingGoodsViewController ()<UITableViewDelegate,UITableViewDataSource,LBMineCenterReceivingGoodsDelegete,UIAlertViewDelegate>
 
@@ -235,7 +236,11 @@
                 [MBProgressHUD showError:responseObject[@"message"]];
                 modelist.is_receipt = @"1";
                 [self.tableview reloadData];
-               
+                self.hidesBottomBarWhenPushed=YES;
+                LBMineCenterMyOrderViewController *vc=[[LBMineCenterMyOrderViewController alloc]init];
+                vc.isSelectindex = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+
             }else{
                 [MBProgressHUD showError:responseObject[@"message"]];
             }

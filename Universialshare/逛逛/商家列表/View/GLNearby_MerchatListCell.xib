@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -42,7 +42,7 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="926-T7-mKM">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="926-T7-mKM">
                         <rect key="frame" x="120" y="40" width="37" height="14.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14.5" id="4kv-K4-syk"/>
@@ -67,12 +67,6 @@
                             <action selector="mapToHere:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="sOf-oz-W3y"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQj-b0-Ds1">
-                        <rect key="frame" x="310" y="49.5" width="0.0" height="0.0"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C9z-Tp-wS0">
                         <rect key="frame" x="10" y="105.5" width="300" height="1"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -87,6 +81,12 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQj-b0-Ds1">
+                        <rect key="frame" x="120" y="49.5" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -112,7 +112,7 @@
                     <constraint firstAttribute="trailing" secondItem="ABP-ey-abD" secondAttribute="trailing" constant="10" id="hhE-Jc-6J0"/>
                     <constraint firstItem="CtF-Bw-XzB" firstAttribute="centerY" secondItem="oO7-Dh-d1s" secondAttribute="centerY" id="lkX-Eo-jd7"/>
                     <constraint firstAttribute="trailing" secondItem="C9z-Tp-wS0" secondAttribute="trailing" constant="10" id="mcS-lM-fn9"/>
-                    <constraint firstAttribute="trailing" secondItem="AQj-b0-Ds1" secondAttribute="trailing" constant="10" id="rNE-z5-OAx"/>
+                    <constraint firstItem="AQj-b0-Ds1" firstAttribute="leading" secondItem="UMO-CQ-WaP" secondAttribute="trailing" constant="10" id="pBl-Hs-qmc"/>
                     <constraint firstItem="C9z-Tp-wS0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="rak-Nu-lvH"/>
                     <constraint firstItem="CtF-Bw-XzB" firstAttribute="leading" secondItem="oO7-Dh-d1s" secondAttribute="trailing" constant="10" id="waE-Gd-SJj"/>
                 </constraints>

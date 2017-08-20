@@ -29,7 +29,7 @@
     [super awakeFromNib];
     
     self.picImageV.layer.cornerRadius = 3.f;
-    self.picImageWidth.constant = 110 ;
+    self.picImageWidth.constant = 100 ;
 
 }
 - (void)setModel:(GLNearby_NearShopModel *)model{

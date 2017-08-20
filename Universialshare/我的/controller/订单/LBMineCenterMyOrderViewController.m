@@ -40,8 +40,15 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
 
      [self addviewcontrol];
-     [self selectTagByIndex:0 animated:YES];
-    
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (self.isSelectindex == YES) {
+                  [self selectTagByIndex:4 animated:NO];
+            }else{
+                 [self selectTagByIndex:0 animated:YES];
+            }
+    });
+   
      self.hidesBottomBarWhenPushed=YES;
     
 }
@@ -75,7 +82,6 @@
     self.normalTitleColor = [UIColor blackColor];
     self.selectedTitleColor = YYSRGBColor(191, 0, 0, 1);
     self.selectedIndicatorColor = YYSRGBColor(191, 0, 0, 1);
-    
     
     [self reloadDataWith:titleArray andSubViewdisplayClasses:classNames withParams:nil];
     
