@@ -622,7 +622,7 @@
     self.getNewCode.clipsToBounds = YES;
     
     self.contentW.constant = SCREEN_WIDTH;
-    self.contentH.constant = 600;
+    self.contentH.constant = 650;
 
 }
 
