@@ -71,7 +71,7 @@
     
     if (stringRandom == nil || [stringRandom isEqualToString:@""]) {
 
-        NSString *randomNumber = [self getRandomStringWithNum:4];
+        NSString *randomNumber = [self getRandomStringWithNum:5];
         
         self.yuliuTf.text = randomNumber;
         
@@ -84,8 +84,6 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"记录"] style:UIBarButtonItemStylePlain target:self action:@selector(checkrecorderEvent)];
     item.imageInsets = UIEdgeInsetsMake(5, -5, 0, 5);
     self.navigationItem.rightBarButtonItem = item;
-    
- 
 }
 
 -(void)checkrecorderEvent{

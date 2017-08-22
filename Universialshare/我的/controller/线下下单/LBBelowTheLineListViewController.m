@@ -152,8 +152,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
-    return 120;
+    if ([self.dataarr[indexPath.row][@"status"] integerValue] == 0) {
+        
+        self.tableview.estimatedRowHeight = 120;
+        self.tableview.rowHeight = UITableViewAutomaticDimension;
+        return UITableViewAutomaticDimension;
+    }else{
+      
+        return 120;
+    }
     
 }
 
@@ -168,10 +175,22 @@
    
     if ([self.dataarr[indexPath.row][@"status"] integerValue] == 0) {
         cell.status.text = @"审核状态: 审核失败";
+        cell.reason.text = [NSString stringWithFormat:@"失败原因: %@",self.dataarr[indexPath.row][@"fail_reason"]];
+        cell.reason.hidden = NO;
+        cell.top.constant = 5;
+        cell.width.constant = 20;
     }else  if ([self.dataarr[indexPath.row][@"status"] integerValue] == 1){
         cell.status.text = @"审核状态: 审核通过";
+         cell.reason.hidden = YES;
+        cell.reason.text =  @"";
+        cell.top.constant = 0;
+        cell.width.constant = 0;
     }else  if ([self.dataarr[indexPath.row][@"status"] integerValue] == 2){
         cell.status.text = @"审核状态: 未审核";
+         cell.reason.hidden = YES;
+         cell.reason.text =  @"";
+        cell.top.constant = 0;
+        cell.width.constant = 0;
     }
     
     return cell;

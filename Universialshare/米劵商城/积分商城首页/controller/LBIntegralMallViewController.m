@@ -92,10 +92,12 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
      */
     self.tableView.tableHeaderView = self.frontView;
     
-    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isShow"] isEqualToString:@"YES"]) {
-        //公告
-        [self initInterDataSorceinfomessage];
-    }
+//    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isShow"] isEqualToString:@"YES"]) {
+//        //公告
+//        [self initInterDataSorceinfomessage];
+//    }
+    
+      [self initInterDataSorceinfomessage];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
 
 }
@@ -389,7 +391,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
     _contentView.contentViewH.constant = SCREEN_HEIGHT / 2 - 30;
     _contentView.layer.cornerRadius = 5;
     _contentView.layer.masksToBounds = YES;
-    
+    [_contentView.cancelBt addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
     //设置webView
     _contentView.webView.scalesPageToFit = YES;
     _contentView.webView.autoresizesSubviews = NO;
