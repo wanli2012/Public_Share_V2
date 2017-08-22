@@ -39,8 +39,12 @@
         
         _iconImageV.image = [UIImage imageNamed:@"CCB"];
         
-    }else {
+    }else if ([model.name isEqualToString:@"中国农业银行"]){
+        
         _iconImageV.image = [UIImage imageNamed:@"ABC"];
+        
+    }else{
+        _iconImageV.image = [UIImage imageNamed:@"bank_nopicture"];
     }
 
 }

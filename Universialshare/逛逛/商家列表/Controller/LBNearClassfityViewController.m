@@ -31,7 +31,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *sortBtn;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (strong, nonatomic)LoadWaitView *loadV;
-@property (nonatomic, strong)NSMutableArray *nearModels;
 @property (nonatomic, strong)NSMutableArray *recModels;
 @property (nonatomic, strong)NSMutableArray *tradeArr;
 @property (nonatomic, assign)NSInteger page;
@@ -506,17 +505,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     LBStoreMoreInfomationViewController *storeVC = [[LBStoreMoreInfomationViewController alloc] init];
     
     GLNearby_NearShopModel *model;
-    
-//    if (self.index == 10) {
-    
-        model = self.recModels[indexPath.row];
-    
-//    }else{
-    
-//        model = self.nearModels[indexPath.row];
-    
-//    }
-    
+
+    model = self.recModels[indexPath.row];
+
     storeVC.lat = [model.lat floatValue];
     storeVC.lng = [model.lng floatValue];
     storeVC.storeId = model.shop_id;
@@ -530,13 +521,6 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     
 }
 
-
-- (NSMutableArray *)nearModels{
-    if (!_nearModels) {
-        _nearModels = [NSMutableArray array];
-    }
-    return _nearModels;
-}
 - (NSMutableArray *)recModels{
     if (!_recModels) {
         _recModels = [NSMutableArray array];

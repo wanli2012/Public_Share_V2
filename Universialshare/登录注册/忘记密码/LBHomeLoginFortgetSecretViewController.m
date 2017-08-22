@@ -268,7 +268,7 @@
     
     [UIView animateWithDuration:0.3 animations:^{
         
-        self.selectUserTypeView.transform=CGAffineTransformIdentity;
+        self.selectUserTypeView.transform = CGAffineTransformIdentity;
         
     } completion:^(BOOL finished) {
         
@@ -284,8 +284,9 @@
         
     } completion:^(BOOL finished) {
         
-        [self.maskView removeFromSuperview];
         [self.selectUserTypeView removeFromSuperview];
+        [self.maskView removeFromSuperview];
+        
     }];
     
 }
@@ -347,7 +348,7 @@
         
         _selectUserTypeView.layer.cornerRadius = 10.f;
         _selectUserTypeView.clipsToBounds = YES;
-        _selectUserTypeView.frame=CGRectMake(10, 25, SCREEN_WIDTH-20, 180);
+        _selectUserTypeView.frame = CGRectMake(10, 25, SCREEN_WIDTH - 20, 180);
         
         _selectUserTypeView.dataSoure  = @[@"会员",@"商家",@"创客",@"城市创客",@"大区创客",@"省级服务中心",@"市级服务中心",@"区级服务中心",@"省级行业服务中心",@"市级行业服务中心"];
         
