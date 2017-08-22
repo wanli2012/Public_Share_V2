@@ -262,7 +262,6 @@
         
     };
     
-    
     self.selectUserTypeView.transform = CGAffineTransformMakeScale(1.0, 0);
     self.selectUserTypeView.layer.anchorPoint=CGPointMake(0.5, 0);
     [self.view addSubview:self.maskView];

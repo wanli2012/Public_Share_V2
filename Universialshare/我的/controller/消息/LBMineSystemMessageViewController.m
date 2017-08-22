@@ -65,7 +65,6 @@
         // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
     }];
     
-    
     // 设置文字
     
     [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
@@ -74,11 +73,11 @@
     
     [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
     
-    
     self.tableview.mj_header = header;
     self.tableview.mj_footer = footer;
     
 }
+
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
@@ -119,6 +118,7 @@
             [self.tableview reloadData];
         
         }
+        
     } enError:^(NSError *error) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
@@ -127,7 +127,7 @@
         
     }];
 
-  
+
     [NetworkManager requestPOSTWithURLStr:@"User/user_msg_read" paramDic:@{ @"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token} finish:^(id responseObject) {
         [_loadV removeloadview];
 
