@@ -85,6 +85,9 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"记录"] style:UIBarButtonItemStylePlain target:self action:@selector(checkrecorderEvent)];
     item.imageInsets = UIEdgeInsetsMake(5, -5, 0, 5);
     self.navigationItem.rightBarButtonItem = item;
+    
+    self.usertype = OrdinaryUser;
+    self.usertypeTf.text=@"会员";
 }
 
 -(void)checkrecorderEvent{

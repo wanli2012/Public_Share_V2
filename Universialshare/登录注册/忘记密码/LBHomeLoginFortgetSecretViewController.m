@@ -53,8 +53,9 @@
     
     UITapGestureRecognizer *incentiveModelMaskVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(incentiveModelMaskVtapgestureLb)];
     [self.maskView addGestureRecognizer:incentiveModelMaskVgesture];
-    
-    self.usertype = 0;
+
+    self.usertype = OrdinaryUser;
+    self.usertypeTf.text=@"会员";
 }
 
 - (IBAction)sureBt:(UIButton *)sender {
