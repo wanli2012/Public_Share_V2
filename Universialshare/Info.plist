@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>YES</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -19,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.4</string>
+	<string>1.2.6</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -141,6 +139,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>亲，我们需要你调用您的摄像头哦,可以吗？</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>YES</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>YES</string>
 	<key>NSPhotoLibraryUsageDescription</key>
