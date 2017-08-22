@@ -7,7 +7,6 @@
 //
 
 #import "BasetabbarViewController.h"
-#import "GLHomePageController.h"
 #import "LBIntegralMallViewController.h"
 #import "LBMineViewController.h"
 #import "BaseNavigationViewController.h"
@@ -68,7 +67,7 @@
     BaseNavigationViewController *nearbyNav = [[BaseNavigationViewController alloc] initWithRootViewController:nearbyVC];
     nearbyNav.tabBarItem = [self barTitle:@"逛逛" image:@"sfj_icon" selectImage:@"sfj_selected_icon"];
     
-    //搜附近
+    //购物车
     GLShoppingCartController *ShoppingVC = [[GLShoppingCartController alloc] init];
     BaseNavigationViewController *ShoppingNav = [[BaseNavigationViewController alloc] initWithRootViewController:ShoppingVC];
     ShoppingNav.tabBarItem = [self barTitle:@"购物车" image:@"购物车未点中" selectImage:@"购物车点中"];

@@ -551,7 +551,6 @@ static const CGFloat headerHeight = 0.0f;
     
 }
 
-
 -(LBApplicationLimitView*)loginView{
     
     if (!_loginView) {
@@ -591,32 +590,35 @@ static const CGFloat headerHeight = 0.0f;
         
         [UIView animateWithDuration:0.3 animations:^{
             weakSelf.selectUserTypeView.height = 0;
+            weakSelf.selectUserTypeView.tableView.height = 0;
+            weakSelf.selectUserTypeView.alpha = 0;
         }];
     };
     
     if (self.selectUserTypeView.height == 0) {
         
         [UIView animateWithDuration:0.3 animations:^{
-            self.selectUserTypeView.height = 80;
+            weakSelf.selectUserTypeView.height = 80;
+            weakSelf.selectUserTypeView.tableView.height = 80;
+            weakSelf.selectUserTypeView.alpha = 1;
         }];
         
     }else{
         
         [UIView animateWithDuration:0.3 animations:^{
-            self.selectUserTypeView.height = 0;
+            weakSelf.selectUserTypeView.height = 0;
+            weakSelf.selectUserTypeView.tableView.height = 0;
+            weakSelf.selectUserTypeView.alpha = 0;
         }];
     }
-    
-
-
-    
+ 
 }
 //限额选择View
 -(SelectUserTypeView*)selectUserTypeView{
     
     if (!_selectUserTypeView) {
         
-        _selectUserTypeView=[[NSBundle mainBundle]loadNibNamed:@"SelectUserTypeView" owner:self options:nil].firstObject;
+        _selectUserTypeView=[[NSBundle mainBundle] loadNibNamed:@"SelectUserTypeView" owner:self options:nil].firstObject;
         
         _selectUserTypeView.layer.cornerRadius = 10.f;
         _selectUserTypeView.clipsToBounds = YES;
@@ -640,7 +642,6 @@ static const CGFloat headerHeight = 0.0f;
     return _maskView;
     
 }
-
 
 -(LBHomeIncomeView*)headview{
     
