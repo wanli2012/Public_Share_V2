@@ -188,8 +188,6 @@
         _selectUserTypeView.alpha = 1;
         _selectUserTypeView.frame = CGRectMake(90, rect.origin.y + 45, rect.size.width, 180);
             
-        NSLog(@"selectUserTypeView.frame = %@,,,selectUserTypeView.frame = %@",NSStringFromCGRect(self.selectUserTypeView.frame),NSStringFromCGRect(rect));
-        
     } completion:^(BOOL finished) {
         
     }];
@@ -305,6 +303,7 @@
 //提交
 - (IBAction)submitInfoEvent:(UIButton *)sender {
     
+    
     if (self.phoneTf.text.length <= 0) {
         [MBProgressHUD showError:@"请填写购买会员"];
         return;
@@ -345,6 +344,8 @@
         return;
     }
     
+    self.comitbt.enabled = NO;
+    self.comitbt.backgroundColor = [UIColor lightGrayColor];
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"user/getTrueName" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"username" :self.phoneTf.text,@"group_id" :self.usertype} finish:^(id responseObject) {
         [_loadV removeloadview];
@@ -368,7 +369,10 @@
             
         }
     } enError:^(NSError *error) {
+        
         [_loadV removeloadview];
+        self.comitbt.enabled = YES;
+        self.comitbt.backgroundColor = TABBARTITLE_COLOR;
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
@@ -430,6 +434,9 @@
             [MBProgressHUD showError:error.localizedDescription];
         }];
                 
+    }else{
+        self.comitbt.enabled = YES;
+        self.comitbt.backgroundColor = TABBARTITLE_COLOR;
     }
     
 }
@@ -673,7 +680,7 @@
                 //设置界面的按钮显示 根据自己需求设置
                 [self.codeBt setTitle:@"重发验证码" forState:UIControlStateNormal];
                 self.codeBt.userInteractionEnabled = YES;
-                self.codeBt.backgroundColor = YYSRGBColor(44, 153, 46, 1);
+                self.codeBt.backgroundColor = TABBARTITLE_COLOR;
                 self.codeBt.titleLabel.font = [UIFont systemFontOfSize:13];
             });
         }else{
