@@ -109,8 +109,10 @@ static NSString *ID = @"GLBankCardCellTableViewCell";
         model.iconName = @"ICBC";
     }else if([model.name isEqualToString:@"中国农业银行"]){
         model.iconName = @"ABC";
-    }else{
+    }else if([model.name isEqualToString:@"中国建设银行"]){
         model.iconName = @"CCB";
+    }else{
+        model.iconName = @"bank_nopicture";
     }
     
     self.returnBlock(model);

@@ -178,7 +178,8 @@
 
     self.selectUserTypeView.frame = CGRectMake(rect.origin.x, rect.origin.y + 45, rect.size.width, 180);
 
-    self.selectUserTypeView.height = 0;
+//    self.selectUserTypeView.height = 0;
+    self.selectUserTypeView.transform = CGAffineTransformMakeScale(1.0, 0);
     self.selectUserTypeView.layer.anchorPoint=CGPointMake(0.5, 0);
     [self.view addSubview:self.incentiveModelMaskV];
     [self.view addSubview:self.selectUserTypeView];
