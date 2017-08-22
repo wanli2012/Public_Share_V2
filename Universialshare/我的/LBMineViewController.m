@@ -11,7 +11,7 @@
 #import "LBMineCenterCollectionViewCell.h"
 #import "UIButton+SetEdgeInsets.h"
 #import "LBSetUpViewController.h"
-#import "LBMineMessageViewController.h"
+
 #import "LBMineCenterReceivingGoodsViewController.h"
 #import "LBMineCenterMyOrderViewController.h"
 
@@ -57,6 +57,8 @@
 #import "LBStoreProductDetailInfoViewController.h"//逛逛  逛逛商品详情
 #import "GLHourseDetailController.h"//米劵商品
 
+#import "LBMineSystemMessageViewController.h"
+
 static CGFloat headViewH = 300;
 
 @interface LBMineViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,SDCycleScrollViewDelegate>{
@@ -79,6 +81,7 @@ static CGFloat headViewH = 300;
 
 @property (nonatomic, strong)NSMutableArray *adModels;
 @property (weak, nonatomic) IBOutlet UIView *navaView;
+@property (weak, nonatomic) IBOutlet UIImageView *signImageV;
 
 @end
 
@@ -690,7 +693,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (IBAction)messagebutton:(UIButton *)sender {
     
     self.hidesBottomBarWhenPushed=YES;
-    LBMineMessageViewController *vc=[[LBMineMessageViewController alloc]init];
+    LBMineSystemMessageViewController *vc=[[LBMineSystemMessageViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed=NO;
     
@@ -810,6 +813,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [UserModel defaultUser].surplusLimit = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"surplusLimit"]];
              [UserModel defaultUser].shop_phone = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_phone"]];
             
+            [UserModel defaultUser].back = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"back"]];
+            
+            [UserModel defaultUser].bonus_log = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"bonus_log"]];
+            [UserModel defaultUser].log = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"log"]];
+            [UserModel defaultUser].order_line = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"order_line"]];
+            [UserModel defaultUser].system_message = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"system_message"]];
+            
             if ([[UserModel defaultUser].idcard rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].idcard = @"";
@@ -839,6 +849,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             
         }else{
             
+        }
+        
+        if ([[UserModel defaultUser].back integerValue] == 0 && [[UserModel defaultUser].bonus_log integerValue] == 0 && [[UserModel defaultUser].log integerValue] == 0 && [[UserModel defaultUser].order_line integerValue] == 0 && [[UserModel defaultUser].system_message integerValue] == 0) {
+            self.signImageV.hidden = YES;
+        }else{
+            self.signImageV.hidden = NO;
         }
         
         [self.headview.tableview reloadData];

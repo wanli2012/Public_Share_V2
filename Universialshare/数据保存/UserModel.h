@@ -47,6 +47,12 @@
 @property (nonatomic ,copy)NSString  *shop_address;//商家地址
 @property (nonatomic ,copy)NSString  *shop_type;//商家类型
 
+@property (nonatomic ,copy)NSString  *back;//商家类型
+@property (nonatomic ,copy)NSString  *bonus_log;//商家类型
+@property (nonatomic ,copy)NSString  *log;//商家类型
+@property (nonatomic ,copy)NSString  *order_line;//商家类型
+@property (nonatomic ,copy)NSString  *system_message;//商家类型
+
 //兑换比例
 @property (nonatomic ,copy)NSString  *t_one;
 @property (nonatomic ,copy)NSString  *t_two;

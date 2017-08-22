@@ -79,7 +79,12 @@
     self.tableview.mj_footer = footer;
     
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+    
+}
 -(void)initdatasource{
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
@@ -122,7 +127,13 @@
         
     }];
 
+  
+    [NetworkManager requestPOSTWithURLStr:@"User/user_msg_read" paramDic:@{ @"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token} finish:^(id responseObject) {
+        [_loadV removeloadview];
 
+    } enError:^(NSError *error) {
+        
+    }];
 }
 
 //下拉刷新
