@@ -11,7 +11,7 @@
 #import "UMSocial.h"
 #import <Social/Social.h>
 
-@interface GLSetup_VersionInfoController ()
+@interface GLSetup_VersionInfoController ()<UIAlertViewDelegate>
 {
     GLShareView *_shareV;
 }
@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageWidth;
+@property (strong, nonatomic)  NSString *app_Version;
 
 @end
 
@@ -41,11 +42,77 @@
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     CFShow((__bridge CFTypeRef)(infoDictionary));
     // app版本
-    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    _app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     
-    self.versionLabel.text = [NSString stringWithFormat:@"当前版本: v%@",app_Version];
+    self.versionLabel.text = [NSString stringWithFormat:@"当前版本: v%@",_app_Version];
+    
+     [self Postpath:GET_VERSION];
+    
+    
+}\
+
+-(void)Postpath:(NSString *)path
+{
+    
+    NSURL *url = [NSURL URLWithString:path];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                       timeoutInterval:10];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    
+    NSOperationQueue *queue = [NSOperationQueue new];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response,NSData *data,NSError *error){
+        NSMutableDictionary *receiveStatusDic=[[NSMutableDictionary alloc]init];
+        if (data) {
+            
+            NSDictionary *receiveDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+            if ([[receiveDic valueForKey:@"resultCount"] intValue]>0) {
+                
+                [receiveStatusDic setValue:@"1" forKey:@"status"];
+                [receiveStatusDic setValue:[[[receiveDic valueForKey:@"results"] objectAtIndex:0] valueForKey:@"version"]   forKey:@"version"];
+            }else{
+                
+                [receiveStatusDic setValue:@"-1" forKey:@"status"];
+            }
+        }else{
+            [receiveStatusDic setValue:@"-1" forKey:@"status"];
+        }
+        
+        [self performSelectorOnMainThread:@selector(receiveData:) withObject:receiveStatusDic waitUntilDone:NO];
+    }];
     
 }
+
+-(void)receiveData:(id)sender
+{
+    NSString  *Newversion = [NSString stringWithFormat:@"%@",sender[@"version"]];
+    
+    if (![_app_Version isEqualToString:Newversion]) {
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"更新提示"
+                                                            message:@"发现新版本,是否更新 ?"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"取消"
+                                                  otherButtonTitles:@"立即更新", nil];
+        
+        [alertView show];
+    }
+    
+}
+
+#pragma mark ----- uialertviewdelegete
+//下载
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:DOWNLOAD_URL]];
+    }
+    
+}
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
     CGFloat shareVH = SCREEN_HEIGHT /5;

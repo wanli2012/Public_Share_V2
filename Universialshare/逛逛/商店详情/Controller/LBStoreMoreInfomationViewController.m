@@ -42,6 +42,8 @@ static const CGFloat headerImageHeight = 180.0f;
 @property (nonatomic, assign)BOOL  HideNavagation;//是否需要恢复自定义导航栏
 @property(assign , nonatomic)CGPoint offset;//记录偏移
 
+@property (nonatomic, assign)BOOL  isREfresh;//是否需要刷新数据
+
 @end
 
 @implementation LBStoreMoreInfomationViewController
@@ -71,9 +73,9 @@ static const CGFloat headerImageHeight = 180.0f;
     
      [self initBarManager];
     
-    if (self.dataDic.count <= 0) {
-        [self initdatasource];//请求数据
-    }
+
+    [self initdatasource];//请求数据
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
 
 }
@@ -180,6 +182,11 @@ static const CGFloat headerImageHeight = 180.0f;
             [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
         }
         //[MXNavigationBarManager changeAlphaWithCurrentOffset:self.offset.y];
+    }
+    
+    if (self.isREfresh == YES) {
+        [self initdatasource];
+        self.isREfresh = NO;
     }
    
 }
@@ -567,6 +574,7 @@ static const CGFloat headerImageHeight = 180.0f;
 -(void)payTheBill{
     self.hidesBottomBarWhenPushed = YES;
     self.HideNavagation = YES;
+    self.isREfresh = YES;
     LBPayTheBillViewController *vc=[[LBPayTheBillViewController alloc]init];
     vc.shop_uid = self.storeId;
      if (![self.dataDic[@"shop_data"][@"pic1"] isEqual:[NSNull null]]) {

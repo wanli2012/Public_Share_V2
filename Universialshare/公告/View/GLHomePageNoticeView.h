@@ -16,5 +16,6 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewH;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewW;
+@property (weak, nonatomic) IBOutlet UIButton *cancelBt;
 
 @end

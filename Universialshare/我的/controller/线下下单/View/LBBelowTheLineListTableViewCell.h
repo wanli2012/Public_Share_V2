@@ -15,5 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *moenyLb;
 @property (weak, nonatomic) IBOutlet UILabel *numLb;
 @property (weak, nonatomic) IBOutlet UILabel *status;
+@property (weak, nonatomic) IBOutlet UILabel *reason;//失败原因
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *width;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *top;
 
 @end

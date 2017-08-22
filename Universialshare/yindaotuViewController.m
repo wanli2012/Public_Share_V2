@@ -24,7 +24,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
         [self.view addSubview:self.scrollView];
-        [self.view addSubview:self.pagecontroll];
+        //[self.view addSubview:self.pagecontroll];
         
         for (int i=0; i<3; i++) {
             UIImageView  *image=[[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*i, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -104,12 +104,12 @@
 -(UIButton*)doneBt{
 
     if (!_doneBt) {
-        _doneBt=[[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-150)/2,SCREEN_HEIGHT-100, 150, 45)];
+        _doneBt=[[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-150)/2,SCREEN_HEIGHT-55, 150, 45)];
         [_doneBt setTitle:@"立即进入" forState:UIControlStateNormal];
-        [_doneBt setTitleColor:YYSRGBColor(50, 204, 155, 1) forState:UIControlStateNormal];
+        [_doneBt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _doneBt.titleLabel.font=[UIFont systemFontOfSize:17];
         _doneBt.backgroundColor=[UIColor clearColor];
-        _doneBt.layer.borderColor = YYSRGBColor(50, 204, 155, 1).CGColor;
+        _doneBt.layer.borderColor = [UIColor whiteColor].CGColor;
         _doneBt.layer.borderWidth = 1;
         _doneBt.layer.cornerRadius = 4;
         _doneBt.clipsToBounds = YES;

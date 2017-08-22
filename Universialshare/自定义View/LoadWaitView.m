@@ -7,8 +7,11 @@
 //
 
 #import "LoadWaitView.h"
+#import <SDWebImage/UIImage+GIF.h>
 
 @interface LoadWaitView  ()
+
+
 
 @end
 
@@ -53,13 +56,13 @@
 }
 
 -(void)initinterface{
-    
+ 
     self.loadImage.animationImages = self.imageArr;
     self.loadImage.animationDuration = 1;//设置动画时间
     self.loadImage.animationRepeatCount = 0;//设置动画次数 0 表示无限
     
     [self.loadImage startAnimating];
-
+    
 }
 
 -(void)tapgestrue{

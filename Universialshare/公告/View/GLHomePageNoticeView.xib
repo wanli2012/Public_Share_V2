@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -50,20 +50,33 @@
                         <constraint firstAttribute="bottom" secondItem="xbG-O6-qag" secondAttribute="bottom" id="vAn-VQ-omC"/>
                     </constraints>
                 </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bTg-tL-q1F">
+                    <rect key="frame" x="272" y="2.5" width="35" height="35"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="JeJ-wY-zh0"/>
+                        <constraint firstAttribute="width" constant="35" id="Z19-VS-em7"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
+                    <state key="normal" image="广告取消"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="FYZ-B0-IR9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="09r-RG-o6X"/>
                 <constraint firstItem="FYZ-B0-IR9" firstAttribute="top" secondItem="2hy-TK-b1h" secondAttribute="bottom" constant="10" id="AKC-kI-HIl"/>
+                <constraint firstItem="bTg-tL-q1F" firstAttribute="centerY" secondItem="2hy-TK-b1h" secondAttribute="centerY" id="JBg-2K-xpW"/>
                 <constraint firstItem="2hy-TK-b1h" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="Niz-g3-vQg"/>
                 <constraint firstAttribute="trailing" secondItem="FYZ-B0-IR9" secondAttribute="trailing" id="bO9-xn-HAU"/>
                 <constraint firstAttribute="bottom" secondItem="FYZ-B0-IR9" secondAttribute="bottom" id="cod-6v-kNi"/>
                 <constraint firstItem="2hy-TK-b1h" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="j7k-Fu-xjf"/>
                 <constraint firstAttribute="trailing" secondItem="2hy-TK-b1h" secondAttribute="trailing" constant="10" id="u6j-IV-b0y"/>
+                <constraint firstAttribute="trailing" secondItem="bTg-tL-q1F" secondAttribute="trailing" constant="10" id="vZO-RK-3Je"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="cancelBt" destination="bTg-tL-q1F" id="bSE-9h-q2z"/>
                 <outlet property="contentView" destination="xbG-O6-qag" id="YLr-Ia-pwG"/>
                 <outlet property="contentViewH" destination="Pjr-fM-3kx" id="7it-H0-Njd"/>
                 <outlet property="contentViewW" destination="Xsh-s2-VmK" id="nro-PW-suL"/>
@@ -74,4 +87,7 @@
             <point key="canvasLocation" x="5.5" y="-145"/>
         </view>
     </objects>
+    <resources>
+        <image name="广告取消" width="25" height="25"/>
+    </resources>
 </document>
