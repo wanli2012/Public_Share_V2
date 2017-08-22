@@ -11,6 +11,8 @@
 
 @interface SelectUserTypeView ()<UITableViewDelegate,UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (nonatomic, strong)NSMutableArray *isSeleArr;//是否选中数组
 
 @property (nonatomic, assign)NSInteger selectIndex;//选中的行 下标

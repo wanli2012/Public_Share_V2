@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *codeTf;
 @property (weak, nonatomic) IBOutlet UIButton *getNewCode;
 
+@property (weak, nonatomic) IBOutlet UIView *contentView;//内容View
 
 @property (strong, nonatomic)IncentiveModel *incentiveModelV;
 @property (strong, nonatomic)UIView *incentiveModelMaskV;
@@ -175,18 +176,19 @@
     
     UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
     CGRect rect=[self.usertypeTf convertRect:self.usertypeTf.bounds toView:window];
-
-    self.selectUserTypeView.frame = CGRectMake(rect.origin.x, rect.origin.y + 45, rect.size.width, 180);
-
-//    self.selectUserTypeView.height = 0;
-    self.selectUserTypeView.transform = CGAffineTransformMakeScale(1.0, 0);
-    self.selectUserTypeView.layer.anchorPoint=CGPointMake(0.5, 0);
+    
     [self.view addSubview:self.incentiveModelMaskV];
+    
     [self.view addSubview:self.selectUserTypeView];
     
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        self.selectUserTypeView.height = 180;
+    _selectUserTypeView.frame = CGRectMake(90, rect.origin.y + 45, rect.size.width, 0);
+    
+        [UIView animateWithDuration:0.3 animations:^{
+
+        _selectUserTypeView.alpha = 1;
+        _selectUserTypeView.frame = CGRectMake(90, rect.origin.y + 45, rect.size.width, 180);
+            
+        NSLog(@"selectUserTypeView.frame = %@,,,selectUserTypeView.frame = %@",NSStringFromCGRect(self.selectUserTypeView.frame),NSStringFromCGRect(rect));
         
     } completion:^(BOOL finished) {
         
@@ -198,7 +200,7 @@
 //重新生成生成预留信息
 - (IBAction)getNewCodeEvent:(UIButton *)sender {
 
-    NSString *randomNumber = [self getRandomStringWithNum:4];
+    NSString *randomNumber = [self getRandomStringWithNum:5];
     
     self.yuliuTf.text = randomNumber;
     
@@ -581,16 +583,22 @@
     
     [UIView animateWithDuration:0.3 animations:^{
         
-//        self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
-        self.selectUserTypeView.height = 0;
+//        self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0f, 0.00001f);
+//        self.selectUserTypeView.height = 0;
+        self.selectUserTypeView.alpha = 0;
+        UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
+        CGRect rect=[self.usertypeTf convertRect:self.usertypeTf.bounds toView:window];
+        
+        _selectUserTypeView.tableView.frame = CGRectMake(0, 0, rect.size.width, 0);
+        
     } completion:^(BOOL finished) {
         
-        [self.incentiveModelMaskV removeFromSuperview];
         [self.selectUserTypeView removeFromSuperview];
+        [self.incentiveModelMaskV removeFromSuperview];
     }];
     
-//    [self.incentiveModelMaskV removeFromSuperview];
     [self.incentiveModelV removeFromSuperview];
+
     self.TriangleImage.transform = CGAffineTransformIdentity;
     
 }

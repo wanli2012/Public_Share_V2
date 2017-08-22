@@ -16,6 +16,4 @@ typedef void(^block)(NSInteger index);
 
 @property (nonatomic, copy)NSArray *dataSoure;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @end

@@ -23,6 +23,7 @@
                 <outlet property="codeTf" destination="RZz-d6-qxa" id="y13-7B-tHQ"/>
                 <outlet property="comitbt" destination="iik-sQ-X4F" id="Kkg-0X-KIn"/>
                 <outlet property="contentH" destination="53j-xC-GUw" id="noa-Vq-wC6"/>
+                <outlet property="contentView" destination="3uL-s2-oOp" id="7ji-sS-7Zy"/>
                 <outlet property="contentW" destination="35N-xN-lbg" id="adC-dc-hKQ"/>
                 <outlet property="getNewCode" destination="dlM-8T-zfN" id="g9N-b0-1gU"/>
                 <outlet property="imageOne" destination="cZI-h8-XU3" id="llN-uG-cGq"/>

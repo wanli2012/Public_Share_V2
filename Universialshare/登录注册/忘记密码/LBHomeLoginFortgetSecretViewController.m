@@ -261,6 +261,7 @@
         
     };
     
+    
     self.selectUserTypeView.transform = CGAffineTransformMakeScale(1.0, 0);
     self.selectUserTypeView.layer.anchorPoint=CGPointMake(0.5, 0);
     [self.view addSubview:self.maskView];
@@ -280,7 +281,7 @@
     
     [UIView animateWithDuration:0.3 animations:^{
         
-        self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
+        self.selectUserTypeView.transform = CGAffineTransformMakeScale(1.0, 0.00001);
         
     } completion:^(BOOL finished) {
         
