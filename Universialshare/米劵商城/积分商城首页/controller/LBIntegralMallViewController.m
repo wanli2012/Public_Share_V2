@@ -41,7 +41,6 @@
 {
     LoadWaitView * _loadV;
     NSInteger _page;
-    
     NSString *_htmlString;
     GLHomePageNoticeView *_contentView;
     GLSet_MaskVeiw *_maskV;
