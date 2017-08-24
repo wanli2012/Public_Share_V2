@@ -571,6 +571,7 @@ static const CGFloat headerHeight = 0.0f;
     return _loginView;
     
 }
+
 //弹出限额类型选择View
 - (void)popTypeView {
     
@@ -581,9 +582,12 @@ static const CGFloat headerHeight = 0.0f;
     self.selectUserTypeView.block = ^(NSInteger index){
         
         if(index == 0){
+            
             weakSelf.type = @"1";
             weakSelf.loginView.typeLabel.text = @"每日限额";
+            
         }else{
+            
             weakSelf.type = @"2";
             weakSelf.loginView.typeLabel.text = @"每单限额";
         }

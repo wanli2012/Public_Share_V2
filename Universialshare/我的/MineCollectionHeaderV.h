@@ -25,4 +25,5 @@
 @property (strong, nonatomic)UITableView *tableview;
 
 @property (nonatomic, strong)SDCycleScrollView *cycleScrollView;
+
 @end

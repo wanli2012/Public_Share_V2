@@ -312,7 +312,6 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                 };
                 self.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:cityVC animated:YES];
-                //                self.hidesBottomBarWhenPushed = NO;
 
         }
             break;
