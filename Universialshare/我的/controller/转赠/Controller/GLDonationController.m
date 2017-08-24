@@ -47,15 +47,15 @@
     self.ensureBtn.layer.cornerRadius = 5.f;
     self.automaticallyAdjustsScrollViewInsets = NO;
     //可转赠善行豆
-    self.useableBeanLabel.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].mark];
-    self.userableBeanStyleLabel.text = @"可转赠米券:";
+    self.useableBeanLabel.text = [NSString stringWithFormat:@"可转赠米子:%@",[UserModel defaultUser].ketiBean];
+    self.userableBeanStyleLabel.text = [NSString stringWithFormat:@"可转赠米券:%@",[UserModel defaultUser].mark];
 //    NSString *userType;
 //    if ([[UserModel defaultUser].groupId isEqualToString:OrdinaryUser]) {
 //        userType = @"米家";
 //    }else{
 //        userType = @"米商";
 //    }
-    self.noticeLabel.text = [NSString stringWithFormat:@"*您可以将您的米券转赠给您的会员朋友,或者需要帮助的会员."];
+    self.noticeLabel.text = [NSString stringWithFormat:@"*米券可互转，针对人群为消费者、商家、创客、城市创客、大区创客；米子可对转，针对人群人运营商，行业代理，消费者、创客、城市创客、大区创客。限定大于等于100的整数才可交易"];
 
     self.contentViewWidth.constant = SCREEN_WIDTH;
     self.contentViewHeight.constant = SCREEN_HEIGHT - 50;

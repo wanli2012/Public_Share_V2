@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -39,7 +39,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="370" height="500"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="获赠人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZj-Hz-6gf">
-                                    <rect key="frame" x="10" y="200" width="44" height="28"/>
+                                    <rect key="frame" x="10" y="240" width="44" height="28"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="mkm-Kf-wko"/>
                                     </constraints>
@@ -48,7 +48,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="转赠米券数目" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFC-Ne-6lj">
-                                    <rect key="frame" x="10" y="249" width="93" height="28"/>
+                                    <rect key="frame" x="10" y="289" width="93" height="28"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="93" id="waf-hy-bdA"/>
                                     </constraints>
@@ -57,7 +57,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="验证码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeZ-cI-Wi1">
-                                    <rect key="frame" x="10" y="298" width="40" height="28"/>
+                                    <rect key="frame" x="10" y="338" width="40" height="28"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="hOl-44-yde"/>
                                     </constraints>
@@ -66,7 +66,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6G-cy-0YF">
-                                    <rect key="frame" x="10" y="346" width="53.5" height="28"/>
+                                    <rect key="frame" x="10" y="386" width="53.5" height="28"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="53.5" id="gfQ-x8-s2j"/>
                                     </constraints>
@@ -75,7 +75,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入或扫描获赠人ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dS4-pp-zPV">
-                                    <rect key="frame" x="103" y="205.5" width="222.5" height="17"/>
+                                    <rect key="frame" x="103" y="245.5" width="222.5" height="17"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="Z1H-Sd-NCf"/>
                                     </constraints>
@@ -84,13 +84,13 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b97-Vb-Bb8">
-                                    <rect key="frame" x="103" y="298" width="167" height="28"/>
+                                    <rect key="frame" x="103" y="338" width="167" height="28"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0V9-Bm-Hbf">
-                                    <rect key="frame" x="280" y="298" width="80" height="28"/>
+                                    <rect key="frame" x="280" y="338" width="80" height="28"/>
                                     <color key="backgroundColor" red="0.40214681629999999" green="0.59420973060000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="WY5-rF-fs4"/>
@@ -104,7 +104,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixS-fr-kiB">
-                                    <rect key="frame" x="335" y="201.5" width="25" height="25"/>
+                                    <rect key="frame" x="335" y="241.5" width="25" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="ixS-fr-kiB" secondAttribute="height" multiplier="1:1" id="jRw-wx-t13"/>
                                         <constraint firstAttribute="height" constant="25" id="wyb-sB-QwR"/>
@@ -115,51 +115,51 @@
                                     </connections>
                                 </button>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入交易密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="69G-PS-49e">
-                                    <rect key="frame" x="103" y="346" width="257" height="28"/>
+                                    <rect key="frame" x="103" y="386" width="257" height="28"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
                                 </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXE-wv-cI9">
-                                    <rect key="frame" x="0.0" y="238" width="370" height="1"/>
+                                    <rect key="frame" x="0.0" y="278" width="370" height="1"/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="8uD-Bv-SHv"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQq-5n-Wp9">
-                                    <rect key="frame" x="0.0" y="287" width="370" height="1"/>
+                                    <rect key="frame" x="0.0" y="327" width="370" height="1"/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="rYN-4y-O76"/>
                                     </constraints>
                                 </view>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入转赠米券数目" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HfY-N5-3dW">
-                                    <rect key="frame" x="103" y="249" width="257" height="28"/>
+                                    <rect key="frame" x="103" y="289" width="257" height="28"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3JV-qO-pKT">
-                                    <rect key="frame" x="0.0" y="336" width="370" height="1"/>
+                                    <rect key="frame" x="0.0" y="376" width="370" height="1"/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="9fd-7x-fct"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8r-8a-Jy1">
-                                    <rect key="frame" x="0.0" y="384" width="370" height="1"/>
+                                    <rect key="frame" x="0.0" y="424" width="370" height="1"/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="rec-ix-cZc"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0hI-Xc-dUh">
-                                    <rect key="frame" x="0.0" y="0.0" width="370" height="190"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="230"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="298899" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eh7-VD-xZu">
-                                            <rect key="frame" x="149" y="122" width="73.5" height="24"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eh7-VD-xZu">
+                                            <rect key="frame" x="185.5" y="186" width="0.0" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -197,14 +197,14 @@
                                                 <action selector="donationRecord:" destination="-1" eventType="touchUpInside" id="Wnz-eV-iyC"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*您可以将您的米券转赠给您的米家朋友,或者需要帮助的米家." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghi-sL-joJ">
-                                            <rect key="frame" x="10" y="166" width="350" height="14"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*米券可互转，针对人群为消费者、商家、创客、城市创客、大区创客；米子可对转，针对人群人运营商，行业代理，消费者、创客、城市创客、大区创客。限定大于等于100的整数才可交易" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghi-sL-joJ">
+                                            <rect key="frame" x="10" y="206" width="350" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HkP-8d-R7d">
-                                            <rect key="frame" x="10" y="100" width="350" height="17"/>
+                                            <rect key="frame" x="10" y="164" width="350" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="IOc-P3-l2t"/>
                                             </constraints>
@@ -228,14 +228,14 @@
                                         <constraint firstAttribute="trailing" secondItem="7Ff-4J-9q2" secondAttribute="trailing" constant="10" id="bNV-Er-jeO"/>
                                         <constraint firstItem="HkP-8d-R7d" firstAttribute="leading" secondItem="0hI-Xc-dUh" secondAttribute="leading" constant="10" id="d3B-0I-yDN"/>
                                         <constraint firstItem="7Ff-4J-9q2" firstAttribute="top" secondItem="O7V-b6-7YF" secondAttribute="top" id="dvv-uT-ARZ"/>
-                                        <constraint firstAttribute="height" constant="190" id="lKA-Dq-qLl"/>
+                                        <constraint firstAttribute="height" constant="230" id="lKA-Dq-qLl"/>
                                         <constraint firstItem="BaH-ZG-rEk" firstAttribute="centerX" secondItem="0hI-Xc-dUh" secondAttribute="centerX" id="rgA-P1-W7t"/>
                                         <constraint firstItem="ghi-sL-joJ" firstAttribute="centerX" secondItem="0hI-Xc-dUh" secondAttribute="centerX" id="w4L-rX-W4j"/>
                                         <constraint firstItem="ghi-sL-joJ" firstAttribute="top" secondItem="eh7-VD-xZu" secondAttribute="bottom" constant="20" id="y7h-Uu-bIV"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SOC-qI-uwn">
-                                    <rect key="frame" x="10" y="415" width="350" height="40"/>
+                                    <rect key="frame" x="10" y="455" width="350" height="40"/>
                                     <color key="backgroundColor" red="0.40214681629999999" green="0.59420973060000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="bbd-fb-0wM"/>

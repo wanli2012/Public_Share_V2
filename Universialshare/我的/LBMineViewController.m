@@ -144,7 +144,11 @@ static CGFloat headViewH = 300;
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return self.titlearr.count;
+    if ([[UserModel defaultUser].usrtype isEqualToString:Retailer] || [[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser] || [[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER] || [[UserModel defaultUser].usrtype isEqualToString:THREESALER]) {
+        return self.titlearr.count ;
+    }else {
+        return self.titlearr.count - 1;
+    }
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -354,6 +358,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             self.hidesBottomBarWhenPushed=NO;
         }
             break;
+        case 9:
+        {
+            self.hidesBottomBarWhenPushed=YES;
+            GLDonationController *vc=[[GLDonationController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+        }
+            break;
       
         default:
             break;
@@ -506,6 +518,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         {
             self.hidesBottomBarWhenPushed=YES;
             GLMyCollectionController *vc=[[GLMyCollectionController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+        }
+            break;
+        case 14://转赠
+        {
+            self.hidesBottomBarWhenPushed=YES;
+            GLDonationController *vc=[[GLDonationController alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
             self.hidesBottomBarWhenPushed=NO;
         }
@@ -664,6 +684,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             self.hidesBottomBarWhenPushed=NO;
         }
             break;
+        case 12:
+        {
+            self.hidesBottomBarWhenPushed=YES;
+            GLDonationController *vc=[[GLDonationController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.hidesBottomBarWhenPushed=NO;
+        }
+            break;
             
         default:
             break;
@@ -727,12 +755,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
     if (!_titlearr) {
         if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
-            _titlearr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"收益管理",@"我的米柜",@"会员管理",@"商品管理",@"门店管理",@"我要下单",@"商品列表",@"推荐",@"兑换",@"收藏", nil];
+            _titlearr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"收益管理",@"我的米柜",@"会员管理",@"商品管理",@"门店管理",@"我要下单",@"商品列表",@"推荐",@"兑换",@"收藏",@"转赠", nil];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
-           _titlearr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"我要推店",@"我的米柜",@"兑换",@"收藏",@"推荐", nil];
+           _titlearr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"我要推店",@"我的米柜",@"兑换",@"收藏",@"推荐",@"转赠", nil];
         }
         else{
-           _titlearr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"收益管理",@"我的米柜",@"开通商家",@"开通创客",@"创客列表",@"兑换",@"收藏",@"推荐", nil];
+           _titlearr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"收益管理",@"我的米柜",@"开通商家",@"开通创客",@"创客列表",@"兑换",@"收藏",@"推荐",@"转赠", nil];
         }
     }
     return _titlearr;
@@ -744,12 +772,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     if (!_imageArr) {
         
         if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
-            _imageArr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"收益管理",@"我的米柜",@"会员管理",@"商品管理",@"门店管理",@"我要下单",@"商品列表",@"推荐",@"兑换",@"收藏", nil];
+            _imageArr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"收益管理",@"我的米柜",@"会员管理",@"商品管理",@"门店管理",@"我要下单",@"商品列表",@"推荐",@"兑换",@"收藏",@"互赠", nil];
         }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
-            _imageArr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"我要推店",@"我的米柜",@"兑换",@"收藏",@"推荐", nil];
+            _imageArr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"我要推店",@"我的米柜",@"兑换",@"收藏",@"推荐", @"互赠",nil];
         }
         else {
-            _imageArr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"收益管理",@"我的米柜",@"开通商家",@"开通创客",@"创客列表",@"兑换",@"收藏",@"推荐", nil];
+            _imageArr=[NSArray arrayWithObjects:@"待收货",@"线上订单",@"线下订单",@"我的米分",@"收益管理",@"我的米柜",@"开通商家",@"开通创客",@"创客列表",@"兑换",@"收藏",@"推荐", @"互赠",nil];
         }
     }
     return _imageArr;
@@ -811,7 +839,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [UserModel defaultUser].allLimit = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"allLimit"]];
             [UserModel defaultUser].isapplication = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isapplication"]];
             [UserModel defaultUser].surplusLimit = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"surplusLimit"]];
-             [UserModel defaultUser].shop_phone = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_phone"]];
+            [UserModel defaultUser].shop_phone = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_phone"]];
             
             [UserModel defaultUser].back = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"back"]];
             
