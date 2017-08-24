@@ -209,6 +209,8 @@
 
 - (NSString *)getRandomStringWithNum:(NSInteger)num
 {
+
+    
     NSString *string = [[NSString alloc]init];
     for (int i = 0; i < num; i++) {
         int number = arc4random() % 62;
