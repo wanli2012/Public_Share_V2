@@ -25,6 +25,7 @@
     GLDirectDnationView *_directV;
     GLSet_MaskVeiw * _maskV;
     LoadWaitView *_loadV;
+    NSString *_cardNumStr;
 }
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewWidth;
@@ -143,7 +144,7 @@
     [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
-//        NSLog(@"responseObject = %@",responseObject);
+
         if ([responseObject[@"code"] integerValue] == 1){
             
             if ([[NSString stringWithFormat:@"%@",responseObject[@"data"][@"banknumber"]] rangeOfString:@"null"].location != NSNotFound) {
@@ -261,22 +262,26 @@
     [NetworkManager requestPOSTWithURLStr:@"user/getbank" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
-//        NSLog(@"responseObject = %@",responseObject);
         
         if ([responseObject[@"code"] integerValue] == 1){
             [self showBankInfo];
             NSArray *arr = responseObject[@"data"];
             if (arr.count != 0) {
                 
-                self.cardNumLabel.text = responseObject[@"data"][0][@"number"];
+                NSString *str = responseObject[@"data"][0][@"number"];
+
+                self.cardNumLabel.text = [NSString stringWithFormat:@"%@*****%@",[str substringToIndex:4],[str substringFromIndex:str.length - 4]];
+                _cardNumStr = str;
                 self.cardStyleLabel.text = responseObject[@"data"][0][@"name"];
                
                 for (NSDictionary *dic in responseObject[@"data"]) {
                     
                     if([dic[@"status"] intValue] == 1){
                         
-                        self.cardNumLabel.text = dic[@"number"];
+                        NSString *numStr = dic[@"number"];
+                        self.cardNumLabel.text = [NSString stringWithFormat:@"%@*****%@",[numStr substringToIndex:4],[numStr substringFromIndex:numStr.length - 4]];
                         self.cardStyleLabel.text = dic[@"name"];
+                        _cardNumStr = numStr;
                     }
                     
                 }
@@ -405,12 +410,7 @@
         }
 
     }
-    
-//    if (self.methodtf.text.length <= 0) {
-//        [MBProgressHUD showError:@"请选择理财方式"];
-//        return;
-//    }
-    
+
 
     if ( [self.buybackNumF.text integerValue] > 50000){
         [MBProgressHUD showError:[NSString stringWithFormat:@"单笔最多兑换50000颗%@",NormalMoney]];
@@ -521,7 +521,7 @@
     dict[@"uid"] = [UserModel defaultUser].uid;
     NSString *num = [NSString stringWithFormat:@"%d",[self.buybackNumF.text intValue]];
     dict[@"num"] = num;
-    dict[@"IDcar"] = self.cardNumLabel.text;
+    dict[@"IDcar"] = _cardNumStr;
     //开户行地址  ???
     dict[@"address"] = self.cardStyleLabel.text;
     
@@ -566,12 +566,6 @@
 //跳转兑换记录
 - (IBAction)buyBackRecord:(id)sender {
     
-//    [self.view addSubview:self.maskView];
-//    self.SelectCustomerTypeView.titileLb.text = @"请选择记录类型";
-//    self.SelectCustomerTypeView.labelOne.text = @"兑换记录";
-//    self.SelectCustomerTypeView.labelTwo.text = @"理财记录";
-//    [self.maskView addSubview:self.SelectCustomerTypeView];
-    
     self.hidesBottomBarWhenPushed = YES;
     GLBuyBackRecordController *recordVC = [[GLBuyBackRecordController alloc] init];
     [self.navigationController pushViewController:recordVC animated:YES];
@@ -587,9 +581,10 @@
         GLBuyBackChooseController *chooseVC = [[GLBuyBackChooseController alloc] init];
         
         [chooseVC returnModel:^(GLBankCardModel *model) {
-            self.cardNumLabel.text = model.number;
+            self.cardNumLabel.text = [NSString stringWithFormat:@"%@*****%@",[model.number substringToIndex:4],[model.number substringFromIndex:model.number.length - 4]];
             self.cardStyleLabel.text = model.name;
             self.bankStyleImageV.image = [UIImage imageNamed:model.iconName];
+            _cardNumStr = model.number;
         }];
         [self.navigationController pushViewController:chooseVC animated:YES];
         
@@ -597,9 +592,7 @@
         
         self.hidesBottomBarWhenPushed = YES;
         GLBuyBackChooseCardController *chooseVC = [[GLBuyBackChooseCardController alloc] init];
-//        chooseVC.block = ^(NSString *cardNum){
-//            [self updateBankInfo];
-//        };
+
         __weak typeof(self) weakself = self;
         chooseVC.returnBlock = ^(NSString *str){
             [weakself updateBankInfo];
@@ -609,29 +602,13 @@
     
 }
 - (void)changeBankNum:(NSNotification *)notification {
-    if ([self.cardNumLabel.text isEqualToString:notification.userInfo[@"banknumber"]]) {
+    if ([_cardNumStr isEqualToString:notification.userInfo[@"banknumber"]]) {
         [self updateBankInfo];
     }
 }
 
 - (IBAction)chooseStyle:(id)sender {
-    
-//    _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//    _maskV.bgView.alpha = 0.1;
-////
-//    _directV = [[NSBundle mainBundle] loadNibNamed:@"GLDirectDnationView" owner:nil options:nil].lastObject;
-//    [_directV.normalBtn addTarget:self action:@selector(chooseValue:) forControlEvents:UIControlEventTouchUpInside];
-//    [_directV.taxBtn addTarget:self action:@selector(chooseValue:) forControlEvents:UIControlEventTouchUpInside];
-//
-//    UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
-//    CGRect rect=[self.chooseBtn convertRect: self.chooseBtn.bounds toView:window];
-//    
-//    _directV.frame = CGRectMake(0,CGRectGetMaxY(rect), SCREEN_WIDTH, 3 * self.chooseBtn.yy_height);
-//    _directV.backgroundColor = [UIColor whiteColor];
-//    _directV.layer.cornerRadius = 4;
-//    _directV.layer.masksToBounds = YES;
-//    
-//    [_maskV showViewWithContentView:_directV];
+
     
 }
 - (void)chooseValue:(UIButton *)sender {
@@ -704,7 +681,6 @@
     }
     
 }
-
 
 -(UIView*)maskView{
     

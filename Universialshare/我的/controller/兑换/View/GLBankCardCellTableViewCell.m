@@ -25,7 +25,8 @@
 - (void)setModel:(GLBankCardModel *)model {
     _model = model;
     _banknameLabel.text = model.name;
-    _bankNumLabel.text = model.number;
+    
+    _bankNumLabel.text = [NSString stringWithFormat:@"%@*****%@",[model.number substringToIndex:4],[model.number substringFromIndex:model.number.length - 4]];
 
     if ([model.name isEqualToString:@"中国银行"]) {
         

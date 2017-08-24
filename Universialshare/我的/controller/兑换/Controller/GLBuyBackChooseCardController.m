@@ -103,7 +103,6 @@
 }
 - (IBAction)ensureClick:(id)sender {
     
-    
     if (self.cardTextF.text == nil||self.cardTextF.text.length == 0) {
         [MBProgressHUD showError:@"请输入银行卡号"];
         return;
@@ -116,7 +115,6 @@
         return;
     }
 
-//    self.block(self.cardTextF.text);
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;

@@ -149,16 +149,16 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    if ([self.nameArr[indexPath.row] isEqualToString:[UserModel defaultUser].name]) {
-        [MBProgressHUD showError:@"当前帐号已登录"];
-        return;
-    }
+//    if ([self.nameArr[indexPath.row] isEqualToString:[UserModel defaultUser].name]) {
+//        [MBProgressHUD showError:@"当前帐号已登录"];
+//        return;
+//    }
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
     
     NSString *encryptsecret = [RSAEncryptor encryptString:self.pwdArr[indexPath.row] publicKey:public_RSA];
-//    NSLog(@"%@",@{@"userphone":self.nameArr[indexPath.row],@"password":encryptsecret,@"groupID":self.groupIDArr[indexPath.row]});
+
     
     [NetworkManager requestPOSTWithURLStr:@"user/login" paramDic:@{@"userphone":self.phoneArr[indexPath.row],@"password":encryptsecret,@"groupID":self.groupIDArr[indexPath.row]} finish:^(id responseObject) {
         [_loadV removeloadview];
