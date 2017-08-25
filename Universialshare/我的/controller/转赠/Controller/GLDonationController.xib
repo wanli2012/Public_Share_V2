@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,11 +33,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="370" height="643"/>
+            <rect key="frame" x="0.0" y="0.0" width="370" height="698"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nox-dB-Rhj">
-                    <rect key="frame" x="0.0" y="0.0" width="370" height="643"/>
+                    <rect key="frame" x="0.0" y="0.0" width="370" height="698"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1RV-Ll-Dsa">
                             <rect key="frame" x="0.0" y="0.0" width="370" height="500"/>
@@ -70,7 +70,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6G-cy-0YF">
-                                    <rect key="frame" x="10" y="517" width="53.5" height="35"/>
+                                    <rect key="frame" x="10" y="517" width="54" height="35"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="53.5" id="gfQ-x8-s2j"/>
                                     </constraints>
@@ -79,7 +79,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号或获赠人ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dS4-pp-zPV">
-                                    <rect key="frame" x="103" y="350" width="222.5" height="35"/>
+                                    <rect key="frame" x="103" y="350" width="222" height="35"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="Z1H-Sd-NCf"/>
                                         <constraint firstAttribute="height" constant="35" id="Zs4-6T-kls"/>
@@ -172,8 +172,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="370" height="230"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eh7-VD-xZu">
-                                            <rect key="frame" x="185.5" y="186" width="0.0" height="0.0"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <rect key="frame" x="185" y="160.5" width="0.0" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -190,7 +190,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="转赠" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BaH-ZG-rEk">
-                                            <rect key="frame" x="156.5" y="30" width="57.5" height="30"/>
+                                            <rect key="frame" x="157" y="30" width="57" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="57.5" id="cde-xH-qm7"/>
                                             </constraints>
@@ -211,14 +211,14 @@
                                                 <action selector="donationRecord:" destination="-1" eventType="touchUpInside" id="Wnz-eV-iyC"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*米券可互转，针对人群为消费者、商家、创客、城市创客、大区创客；米子可对转，针对人群人运营商，行业代理，消费者、创客、城市创客、大区创客。限定大于等于100的整数才可交易" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghi-sL-joJ">
-                                            <rect key="frame" x="10" y="206" width="350" height="14"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*米券可互转，针对人群为消费者、商家、创客、城市创客、大区创客；米子可对转，针对人群人运营商，行业代理，消费者、创客、城市创客、大区创客。限定大于等于100的整数才可交易" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghi-sL-joJ">
+                                            <rect key="frame" x="10" y="180.5" width="350" height="39.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HkP-8d-R7d">
-                                            <rect key="frame" x="10" y="164" width="350" height="17"/>
+                                            <rect key="frame" x="10" y="138.5" width="350" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="IOc-P3-l2t"/>
                                             </constraints>
@@ -266,7 +266,7 @@
                                     <rect key="frame" x="0.0" y="230" width="370" height="55"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择支付类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beW-D1-a5P">
-                                            <rect key="frame" x="10" y="17.5" width="80" height="21"/>
+                                            <rect key="frame" x="10" y="17" width="80" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="AZF-n9-MM0"/>
                                                 <constraint firstAttribute="height" constant="21" id="Omn-me-2Je"/>
@@ -312,7 +312,7 @@
                                     <rect key="frame" x="0.0" y="285" width="370" height="55"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择用户类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iwh-S0-i26">
-                                            <rect key="frame" x="10" y="17.5" width="80" height="21"/>
+                                            <rect key="frame" x="10" y="17" width="80" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="8tk-5P-1Xy"/>
                                                 <constraint firstAttribute="height" constant="21" id="JrX-TV-nvU"/>
@@ -437,7 +437,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-15" y="-135.5"/>
+            <point key="canvasLocation" x="-15" y="-108"/>
         </view>
         <tapGestureRecognizer id="jfq-Kn-0Yl">
             <connections>
