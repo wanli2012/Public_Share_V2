@@ -7,6 +7,7 @@
 //
 
 #import "LBBaiduMapViewController.h"
+#import "SearchViewController.h"
 
 @interface LBBaiduMapViewController ()<UISearchBarDelegate>
 {
@@ -50,7 +51,7 @@
     
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 110, 35)];
     [titleView setBackgroundColor:[UIColor clearColor]];
-    
+
     UISearchBar *searchBar = [[UISearchBar alloc] init];
     searchBar.delegate = self;
     searchBar.barTintColor = [UIColor clearColor];
@@ -73,9 +74,19 @@
             break;
         }
     }
-    
-    
+}
 
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+    self.hidesBottomBarWhenPushed = YES;
+    __weak typeof(self) weakself =self;
+    SearchViewController *vc =[[SearchViewController alloc]init];
+    vc.block = ^(NSString *address, CLLocationCoordinate2D pt) {
+        weakself.coors2 = pt;
+        weakself.locationStr = address;
+        [weakself addPointAnnotation];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+    return NO;
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -274,6 +285,7 @@
     }
    
 }
+
 
 -(BMKMapView*)mapView{
     if (!_mapView) {

@@ -753,6 +753,9 @@
 		F92309921E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F92309181E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.m */; };
 		F92309931E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92309191E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.xib */; };
 		F9251C6B1F15C8CB00522FCB /* https.cer in Resources */ = {isa = PBXBuildFile; fileRef = F9251C6A1F15C8CB00522FCB /* https.cer */; };
+		F92B11D61F5035E1008F6929 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F92B11D41F5035E1008F6929 /* SearchViewController.m */; };
+		F92B11D71F5035E1008F6929 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92B11D51F5035E1008F6929 /* SearchViewController.xib */; };
+		F92B11DA1F5037B9008F6929 /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F92B11D91F5037B9008F6929 /* SearchModel.m */; };
 		F92D9FF11ECD8FBE004CBAA8 /* LCStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F92D9FF01ECD8FBE004CBAA8 /* LCStarRatingView.m */; };
 		F92DA0181ECDA163004CBAA8 /* CommonMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA0131ECDA163004CBAA8 /* CommonMenuView.m */; };
 		F92DA0191ECDA163004CBAA8 /* MenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA0151ECDA163004CBAA8 /* MenuModel.m */; };
@@ -2298,6 +2301,11 @@
 		F92309181E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterMessageTableViewCell.m; sourceTree = "<group>"; };
 		F92309191E9B8BFF00ECDC94 /* LBMineCenterMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterMessageTableViewCell.xib; sourceTree = "<group>"; };
 		F9251C6A1F15C8CB00522FCB /* https.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = https.cer; sourceTree = "<group>"; };
+		F92B11D31F5035E1008F6929 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		F92B11D41F5035E1008F6929 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		F92B11D51F5035E1008F6929 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		F92B11D81F5037B9008F6929 /* SearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
+		F92B11D91F5037B9008F6929 /* SearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
 		F92D9FEF1ECD8FBE004CBAA8 /* LCStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCStarRatingView.h; sourceTree = "<group>"; };
 		F92D9FF01ECD8FBE004CBAA8 /* LCStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCStarRatingView.m; sourceTree = "<group>"; };
 		F92DA0121ECDA163004CBAA8 /* CommonMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonMenuView.h; sourceTree = "<group>"; };
@@ -5370,6 +5378,11 @@
 				F9126EE51EA0599B004785EA /* RouteAnnotation.mm */,
 				F9126EE61EA0599B004785EA /* UIImage+Rotate.h */,
 				F9126EE71EA0599B004785EA /* UIImage+Rotate.m */,
+				F92B11D31F5035E1008F6929 /* SearchViewController.h */,
+				F92B11D41F5035E1008F6929 /* SearchViewController.m */,
+				F92B11D51F5035E1008F6929 /* SearchViewController.xib */,
+				F92B11D81F5037B9008F6929 /* SearchModel.h */,
+				F92B11D91F5037B9008F6929 /* SearchModel.m */,
 			);
 			path = "地图";
 			sourceTree = "<group>";
@@ -6695,6 +6708,7 @@
 				F92309441E9B8BFF00ECDC94 /* LBMineMesageServiceTableViewCell.xib in Resources */,
 				F966B3F31EAC7FBA007260FC /* LBNybusinessListTableViewCell.xib in Resources */,
 				4AAD253C1EC188C90054FD06 /* GLBankCardCellTableViewCell.xib in Resources */,
+				F92B11D71F5035E1008F6929 /* SearchViewController.xib in Resources */,
 				F92309481E9B8BFF00ECDC94 /* LBMineMessageHotPickTableViewCell.xib in Resources */,
 				F92309331E9B8BFF00ECDC94 /* LBMineMessageHotPickViewController.xib in Resources */,
 				4AAD25A81EC189A90054FD06 /* GLMyCollectionController.xib in Resources */,
@@ -7035,6 +7049,7 @@
 				4A4611051E9CC6370045824F /* ZXQRCodeFormatInformation.m in Sources */,
 				4A4610571E9CC6360045824F /* ZXGeoResultParser.m in Sources */,
 				4A4610771E9CC6360045824F /* ZXReedSolomonEncoder.m in Sources */,
+				F92B11D61F5035E1008F6929 /* SearchViewController.m in Sources */,
 				4A3D4D971F441928003CAE87 /* GLNearby_classifyCell.m in Sources */,
 				4AFCDC841ED2F1C4007C1681 /* GLMerchat_CommentGoodsModel.m in Sources */,
 				4A46105C1E9CC6360045824F /* ZXProductResultParser.m in Sources */,
@@ -7335,6 +7350,7 @@
 				4A46104D1E9CC6360045824F /* ZXAddressBookParsedResult.m in Sources */,
 				F92DA01A1ECDA163004CBAA8 /* UIView+AdjustFrame.m in Sources */,
 				F97374711EFE03B200520D03 /* LBXZXCapture.m in Sources */,
+				F92B11DA1F5037B9008F6929 /* SearchModel.m in Sources */,
 				4A4610661E9CC6360045824F /* ZXURIResultParser.m in Sources */,
 				4A4610B81E9CC6370045824F /* ZXAnyAIDecoder.m in Sources */,
 				4A4610821E9CC6360045824F /* ZXGridSampler.m in Sources */,
