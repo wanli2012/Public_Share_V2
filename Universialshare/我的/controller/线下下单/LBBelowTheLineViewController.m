@@ -308,7 +308,6 @@
 //提交
 - (IBAction)submitInfoEvent:(UIButton *)sender {
     
-    
     if (self.phoneTf.text.length <= 0) {
         [MBProgressHUD showError:@"请填写购买会员"];
         return;
@@ -349,12 +348,15 @@
         return;
     }
     
-    self.comitbt.enabled = NO;
+    
     self.comitbt.backgroundColor = [UIColor lightGrayColor];
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"user/getTrueName" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"username" :self.phoneTf.text,@"group_id" :self.usertype} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
+            
+            self.comitbt.enabled = NO;
+            self.comitbt.backgroundColor = [UIColor lightGrayColor];
             
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 NSString *str=[NSString stringWithFormat:@"确定向%@下单吗?",responseObject[@"data"][@"truename"]];
@@ -366,13 +368,20 @@
             
         }else if ([responseObject[@"code"] integerValue]==3){
             
+            self.comitbt.enabled = YES;
+            self.comitbt.backgroundColor = TABBARTITLE_COLOR;
+            
             [MBProgressHUD showError:responseObject[@"message"]];
             
         }else{
+            
+            self.comitbt.enabled = YES;
+            self.comitbt.backgroundColor = TABBARTITLE_COLOR;
+            
             [MBProgressHUD showError:responseObject[@"message"]];
             
-            
         }
+        
     } enError:^(NSError *error) {
         
         [_loadV removeloadview];
@@ -385,6 +394,7 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     if (buttonIndex==1) {
+        
         NSDictionary  * dic=@{@"token":[UserModel defaultUser].token , @"uid":[UserModel defaultUser].uid , @"username":self.phoneTf.text , @"yzm":self.codeTf.text,@"rlmodel_type":[NSNumber numberWithInteger:self.userytpe],@"money":self.moneyTf.text,@"shopname":self.nameTf.text,@"shopnum":self.numTf.text,@"code":self.yuliuTf.text,@"version":@"3",@"group_id" :self.usertype};
         self.comitbt.userInteractionEnabled = NO;
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
