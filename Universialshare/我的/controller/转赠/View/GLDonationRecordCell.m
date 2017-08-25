@@ -60,5 +60,15 @@
         self.beanNumLabel.text = [NSString stringWithFormat:@"%.2f万",num];
         
     }
+    NSMutableAttributedString *textColor ;
+    if ([model.type integerValue]==1) {
+       textColor = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@米券",self.beanNumLabel.text]];
+    }else{
+       textColor = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@米子",self.beanNumLabel.text]];
+    }
+    NSRange rangel = [[textColor string] rangeOfString:self.beanNumLabel.text];
+    [textColor addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:rangel];
+    [textColor addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:rangel];
+    self.beanNumLabel.attributedText = textColor;
 }
 @end

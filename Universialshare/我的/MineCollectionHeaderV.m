@@ -145,33 +145,32 @@
     if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
         
         if (indexPath.row == 0) {
-            cell.infoL.text = [UserModel defaultUser].surplusLimit;
+            cell.infoL.text = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].surplusLimit floatValue]];
             if ([cell.infoL.text isEqualToString:@""] || [cell.infoL.text rangeOfString:@"null"].location != NSNotFound) {
                 cell.infoL.text = @"0";
             }
         }else if (indexPath.row == 1) {
-            cell.infoL.text = [UserModel defaultUser].allLimit;
+            cell.infoL.text = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].allLimit floatValue]];
             if ([cell.infoL.text isEqualToString:@""] || [cell.infoL.text rangeOfString:@"null"].location != NSNotFound) {
                 cell.infoL.text = @"0";
             }
         }else if (indexPath.row == 2) {
-            cell.infoL.text = [UserModel defaultUser].mark;
+            cell.infoL.text =  [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].mark floatValue]];
             if ([cell.infoL.text isEqualToString:@""] || [cell.infoL.text rangeOfString:@"null"].location != NSNotFound) {
                 cell.infoL.text = @"0";
             }
         }else if (indexPath.row == 3){
-            cell.infoL.text = [UserModel defaultUser].loveNum;
+            cell.infoL.text = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].loveNum floatValue]];
             if ([cell.infoL.text isEqualToString:@""] || [cell.infoL.text rangeOfString:@"null"].location != NSNotFound) {
                 cell.infoL.text = @"0";
             }
         }else if (indexPath.row == 4){
-            cell.infoL.text = [UserModel defaultUser].ketiBean;
+            cell.infoL.text =  [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].ketiBean floatValue]];
             if ([cell.infoL.text isEqualToString:@""]) {
                 cell.infoL.text = @"0";
             }
         }else if (indexPath.row == 5){
-            cell.infoL.text = [UserModel defaultUser].recommendMark;
-            
+            cell.infoL.text = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].recommendMark floatValue]];
             if ([cell.infoL.text isEqualToString:@""]) {
                 cell.infoL.text = @"0";
             }
@@ -185,23 +184,22 @@
     }else{
         
         if (indexPath.row == 0) {
-            cell.infoL.text = [UserModel defaultUser].mark;
+            cell.infoL.text = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].mark floatValue]];
             if ([cell.infoL.text isEqualToString:@""]) {
                 cell.infoL.text = @"0";
             }
         }else if (indexPath.row == 1){
-            cell.infoL.text = [UserModel defaultUser].loveNum;
+            cell.infoL.text =  [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].loveNum floatValue]];
             if ([cell.infoL.text isEqualToString:@""] || [cell.infoL.text rangeOfString:@"null"].location != NSNotFound) {
                 cell.infoL.text = @"0";
             }
         }else if (indexPath.row == 2){
-            cell.infoL.text = [UserModel defaultUser].ketiBean;
+            cell.infoL.text = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].ketiBean floatValue]];
             if ([cell.infoL.text isEqualToString:@""]) {
                 cell.infoL.text = @"0";
             }
         }else if (indexPath.row == 3){
-            cell.infoL.text = [UserModel defaultUser].recommendMark;
-            
+            cell.infoL.text = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].recommendMark floatValue]];
             if ([cell.infoL.text isEqualToString:@""]) {
                 cell.infoL.text = @"0";
             }

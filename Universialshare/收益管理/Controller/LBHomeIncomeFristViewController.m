@@ -148,7 +148,7 @@ static const CGFloat headerHeight = 0.0f;
          [self.tableview.mj_footer endRefreshing];
          if ([responseObject[@"code"] integerValue]==1) {
              if ([responseObject[@"total_money"] integerValue] <= 10000) {
-                 self.headview.alllebel.text = [NSString stringWithFormat:@"营业总额: ¥%@",responseObject[@"total_money"]];
+                 self.headview.alllebel.text = [NSString stringWithFormat:@"营业总额: ¥%.2f",[responseObject[@"total_money"] floatValue] ];
              }else{
                  self.headview.alllebel.text = [NSString stringWithFormat:@"营业总额: ¥%.2f万",[responseObject[@"total_money"] floatValue] / 10000];
              }
