@@ -12,7 +12,7 @@
 #import "GLNoticeView.h"
 #import "LBXScanViewStyle.h"
 #import "SubLBXScanViewController.h"
-
+#import "QQPopMenuView.h"
 
 @interface GLDonationController ()<UITextFieldDelegate>
 {
@@ -35,6 +35,13 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
 
+@property (assign, nonatomic)NSInteger stringtype; //转赠类型
+@property (assign, nonatomic)NSInteger userType; //转赠类型
+@property (weak, nonatomic) IBOutlet UITextField *typeF;
+@property (weak, nonatomic) IBOutlet UIView *typeView;
+@property (weak, nonatomic) IBOutlet UITextField *usertypeF;
+@property (weak, nonatomic) IBOutlet UIView *userTypeV;
+
 @end
 
 @implementation GLDonationController
@@ -55,10 +62,10 @@
 //    }else{
 //        userType = @"米商";
 //    }
-    self.noticeLabel.text = [NSString stringWithFormat:@"*米券可互转，针对人群为消费者、商家、创客、城市创客、大区创客；米子可对转，针对人群人运营商，行业代理，消费者、创客、城市创客、大区创客。限定大于等于100的整数才可交易"];
+    self.noticeLabel.text = [NSString stringWithFormat:@"*米券可互转，针对人群为消费者、商家、创客、城市创客、大区创客；米子可对转，针对人群人运营商，行业代理，消费者、创客、城市创客、大区创客。限定大于等于100的整数倍才可交易"];
 
     self.contentViewWidth.constant = SCREEN_WIDTH;
-    self.contentViewHeight.constant = SCREEN_HEIGHT - 50;
+    self.contentViewHeight.constant = SCREEN_HEIGHT +60;
     [self.backBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 0, 5, 20)];
     
     //设置键盘return键
@@ -100,7 +107,6 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"phone"] = [UserModel defaultUser].phone;
 
-//    NSLog(@"%@",dict);
     [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:dict finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == 1) {
@@ -202,6 +208,88 @@
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+//选择转赠类型
+- (IBAction)chooseType:(UITapGestureRecognizer *)sender {
+    
+    UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
+    CGRect rect=[self.typeView convertRect:self.typeView.bounds toView:window];
+    NSArray *dataA = @[@{@"title":@"米券",@"imageName":@""},
+                       @{@"title":@"米子",@"imageName":@""},];
+                       
+    __weak typeof(self) weakself = self;
+    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:dataA
+                              
+                                                           width:80
+                                                triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, rect.origin.y + 20)
+                                                          action:^(NSInteger index) {
+                                                              
+                                                              weakself.stringtype = index + 1;
+                                                              weakself.typeF.text = dataA[index][@"title"];
+                                                          }];
+    
+    popview.isHideImage = YES;
+    
+    [popview show];
+    
+    
+}
+//选择用户类型
+- (IBAction)chooseUertype:(UITapGestureRecognizer *)sender {
+    UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
+    CGRect rect=[self.userTypeV convertRect:self.userTypeV.bounds toView:window];
+    NSArray *dataA = @[@{@"title":@"会员",@"imageName":@""},
+                                      @{@"title":@"商家",@"imageName":@""},
+                                       @{@"title":@"创客",@"imageName":@""},
+                                       @{@"title":@"城市创客",@"imageName":@""},
+                                       @{@"title":@"大区创客",@"imageName":@""},
+                                       @{@"title":@"省级服务中心",@"imageName":@""},
+                                       @{@"title":@"市级服务中心",@"imageName":@""},
+                                       @{@"title":@"区级服务中心",@"imageName":@""},
+                                       @{@"title":@"省级行业服务中心",@"imageName":@""},
+                                       @{@"title":@"市级行业服务中心",@"imageName":@""},
+                       ];
+    
+    __weak typeof(self) weakself = self;
+    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:dataA
+                              
+                                                           width:140
+                                                triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, rect.origin.y + 20)
+                                                          action:^(NSInteger index) {
+                                                              
+                                                              weakself.usertypeF.text = dataA[index][@"title"];
+                                                              
+                                                              if (index ==0 ) {
+                                                                  weakself.userType = [OrdinaryUser integerValue];
+                                                              }else if (index == 1){
+                                                                  weakself.userType = [Retailer integerValue];
+                                                              }else if (index == 2){
+                                                                  weakself.userType = [THREESALER integerValue];
+                                                              }else if (index == 3){
+                                                                  weakself.userType = [TWOSALER integerValue];
+                                                              }else if (index == 4){
+                                                                  weakself.userType = [ONESALER integerValue];
+                                                              }else if (index == 5){
+                                                                  weakself.userType = [PROVINCE integerValue];
+                                                              }else if (index == 6){
+                                                                  weakself.userType = [CITY integerValue];
+                                                              }else if (index == 7){
+                                                                  weakself.userType = [DISTRICT integerValue];
+                                                              }else if (index == 8){
+                                                                  weakself.userType = [PROVINCE_INDUSTRY integerValue];
+                                                              }else if (index == 9){
+                                                                  weakself.userType = [CITY_INDUSTRY integerValue];
+                                                              }
+                                                              
+                                                              
+                                                          }];
+    
+    popview.isHideImage = YES;
+    
+    [popview show];
+
+    
+}
+
 //确定按钮事件
 - (IBAction)ensureBtnClick:(id)sender {
     
@@ -209,6 +297,36 @@
 //    [self.navigationController pushViewController:platVC animated:YES];
     
     //输入判断
+    if (self.stringtype == 1) {
+        if ([[UserModel defaultUser].usrtype isEqualToString:Retailer] || [[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser] || [[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER] || [[UserModel defaultUser].usrtype isEqualToString:THREESALER]) {
+            if (!(self.userType == [Retailer integerValue] || self.userType == [OrdinaryUser integerValue]  || self.userType == [ONESALER integerValue] || self.userType == [TWOSALER integerValue] || self.userType == [THREESALER integerValue])) {
+                [MBProgressHUD showError:@"不能给此用户转赠米券"];
+                return;
+            }
+        }else {
+            [MBProgressHUD showError:@"您没有权限转赠米券"];
+            return;
+        }
+    }else{
+        if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
+            [MBProgressHUD showError:@"您没有权限转赠米子"];
+            return;
+        }else{
+            if (self.userType == [Retailer integerValue]) {
+                [MBProgressHUD showError:@"不能给此用户转赠米子"];
+                return;
+            }
+        }
+    }
+   
+    if (self.typeF.text == nil||self.typeF.text.length == 0) {
+        [MBProgressHUD showError:@"请选择支付类型"];
+        return;
+    }
+    if (self.usertypeF.text == nil||self.usertypeF.text.length == 0) {
+        [MBProgressHUD showError:@"请选择用户类型"];
+        return;
+    }
     if (self.donationIDF.text == nil||self.donationIDF.text.length == 0) {
         [MBProgressHUD showError:@"请输入获赠人ID"];
         return;
@@ -216,14 +334,26 @@
     if (self.beanNumF.text == nil||self.beanNumF.text.length == 0) {
         [MBProgressHUD showError:@"请输入转赠数量"];
         return;
+    }else if(([self.beanNumF.text integerValue] % 100) != 0){
+        [MBProgressHUD showError:@"转赠数量需>=100的整数倍"];
+        return;
     }else if(![self isPureNumandCharacters:self.beanNumF.text]){
         [MBProgressHUD showError:@"转赠数量只能是正整数"];
         return;
     }
-    if ([self.beanNumF.text integerValue] >[[UserModel defaultUser].mark integerValue]) {
-        [MBProgressHUD showError:@"余额不足"];
-        return;
+    
+    if (self.stringtype == 1) {
+        if ([self.beanNumF.text integerValue] >[[UserModel defaultUser].mark integerValue]) {
+            [MBProgressHUD showError:@"余额不足"];
+            return;
+        }
+    }else if (self.stringtype == 2){
+        if ([self.beanNumF.text integerValue] >[[UserModel defaultUser].ketiBean integerValue]) {
+            [MBProgressHUD showError:@"余额不足"];
+            return;
+        }
     }
+    
     if (self.idCodeF.text == nil||self.idCodeF.text.length == 0) {
         [MBProgressHUD showError:@"请输入验证码"];
         return;
@@ -238,9 +368,10 @@
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"uid"] = self.donationIDF.text;
+    dict[@"group_id"] = @(self.userType);
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/get_give_id" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"user/getTrueNameByPhone" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
     
@@ -258,7 +389,7 @@
             contentView.layer.masksToBounds = YES;
             [contentView.cancelBtn addTarget:self action:@selector(cancelDonation) forControlEvents:UIControlEventTouchUpInside];
             [contentView.ensureBtn addTarget:self action:@selector(ensureDonation) forControlEvents:UIControlEventTouchUpInside];
-            contentView.contentLabel.text = [NSString stringWithFormat:@"您是否要将米券转赠给%@",responseObject[@"data"][@"count"]];
+            contentView.contentLabel.text = [NSString stringWithFormat:@"您是否要将转赠给  %@",responseObject[@"data"][@"count"]];
             [_maskView showViewWithContentView:contentView];
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
@@ -287,21 +418,21 @@
 
 -(void)ensureDonation{
  
-    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"number"] = self.beanNumF.text;
-    dict[@"DonationID"] = self.donationIDF.text;
+    dict[@"groupID"] = @(self.userType);
     dict[@"yzm"] = self.idCodeF.text;
+    dict[@"userphone"] = self.donationIDF.text;
+    dict[@"type"] =@(self.stringtype);
     
     NSString *encryptsecret = [RSAEncryptor encryptString:self.secondPwdF.text publicKey:public_RSA];
     dict[@"password"] = encryptsecret;
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/give_to" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"user/give_to_mark" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
-        NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1) {
             
             [UIView animateWithDuration:0.2 animations:^{
@@ -317,11 +448,22 @@
             self.donationIDF.text = nil;
             self.idCodeF.text = nil;
             self.beanNumF.text = nil;
+            self.typeF.text = nil;
+            self.usertypeF.text = nil;
             
-            NSString *useableNum = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].mark floatValue] - [self.beanNumF.text floatValue]];
+            NSString *useableNum = @"";
             
-            self.useableBeanLabel.text = useableNum;
-            self.userableBeanStyleLabel.text = @"可转赠米券:";
+            if (self.stringtype == 1) {
+                 useableNum = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].mark floatValue] - [self.beanNumF.text floatValue]];
+                [UserModel defaultUser].mark = useableNum;
+                self.userableBeanStyleLabel.text = [NSString stringWithFormat:@"可转赠米券:%@",useableNum];
+            }else{
+                 useableNum = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].ketiBean floatValue] - [self.beanNumF.text floatValue]];
+                [UserModel defaultUser].ketiBean = useableNum;
+                self.useableBeanLabel.text = [NSString stringWithFormat:@"可转赠米子:%@",useableNum];
+            }
+            
+            [usermodelachivar achive];
             [MBProgressHUD showSuccess:@"转赠成功"];
 
         }else{

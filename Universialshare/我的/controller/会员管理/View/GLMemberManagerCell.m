@@ -35,14 +35,14 @@
         
         self.allMoenyLb.text = [NSString stringWithFormat:@"%.2f万",[model.totalPrice floatValue] / 10000];
     }else{
-        self.allMoenyLb.text = [NSString stringWithFormat:@"%@",model.totalPrice];
+        self.allMoenyLb.text = [NSString stringWithFormat:@"%.2f",[model.totalPrice floatValue]];
     }
     //奖金
     if ([model.goods_fl floatValue] > 10000) {
         
         self.bonusLb.text = [NSString stringWithFormat:@"%.2f万",[model.goods_fl floatValue] / 10000];
     }else{
-        self.bonusLb.text = [NSString stringWithFormat:@"%@",model.goods_fl];
+        self.bonusLb.text = [NSString stringWithFormat:@"%.2f",[model.goods_fl floatValue]];
     }
     
     self.nameLb.text = model.truename;

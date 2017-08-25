@@ -45,14 +45,22 @@ static CGFloat const kCellHeight = 44;
         tap.delegate = self;
         [self addGestureRecognizer:tap];
         
-        
+        CGFloat heigtV = 0;
+         BOOL SrolB = NO;
+        if (array.count >= 5) {
+            heigtV = kCellHeight * 5;
+            SrolB = YES;
+        }else{
+             heigtV = kCellHeight * array.count;
+            SrolB = NO;
+        }
         // 创建tableView
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - width - 5, point.y + 10, width, kCellHeight * array.count) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - width - 5, point.y + 10, width, heigtV) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.layer.masksToBounds = YES;
         _tableView.layer.cornerRadius = 5;
-        _tableView.scrollEnabled = NO;
+        _tableView.scrollEnabled = SrolB;
         _tableView.rowHeight = kCellHeight;
         [_tableView registerNib:[UINib nibWithNibName:@"PopMenuTableViewCell" bundle:nil] forCellReuseIdentifier:@"PopMenuTableViewCell"];
         [self addSubview:_tableView];

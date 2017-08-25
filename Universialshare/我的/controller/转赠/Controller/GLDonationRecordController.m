@@ -33,17 +33,6 @@
 static NSString *ID = @"GLDonationRecordCell";
 @implementation GLDonationRecordController
 
-//-(UITableView*)tableView {
-//    if (_tableView == nil) {
-//        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//        
-//        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//        self.tableView.delegate = self;
-//        self.tableView.dataSource = self;
-//        self.tableView.showsVerticalScrollIndicator = NO;
-//    }
-//    return _tableView;
-//}
 - (NSMutableArray *)models{
     if (_models == nil) {
         _models = [NSMutableArray array];
@@ -110,7 +99,6 @@ static NSString *ID = @"GLDonationRecordCell";
         [_loadV removeloadview];
         [self endRefresh];
         if ([responseObject[@"code"] integerValue] == 1) {
-//            NSLog(@"%@",responseObject);
             for (NSDictionary *dic in responseObject[@"data"]) {
                 GLDonationRecordModel *model = [GLDonationRecordModel mj_objectWithKeyValues:dic];
                 

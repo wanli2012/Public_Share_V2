@@ -276,7 +276,7 @@ static const CGFloat headerHeight = 0.0f;
             cell.rlbael.text = [NSString stringWithFormat:@"让利额: ¥%.2f万",[self.dataArrUnder[indexPath.row-1][@"rl_money"] floatValue] / 10000];
         }
         if ([self.dataArrUnder[indexPath.row-1][@"total_money"] integerValue] <= 10000) {
-            cell.moneylb.text = [NSString stringWithFormat:@"价格:¥%@",self.dataArrUnder[indexPath.row-1][@"total_money"]];
+            cell.moneylb.text = [NSString stringWithFormat:@"价格:¥%.2f",[self.dataArrUnder[indexPath.row-1][@"total_money"] floatValue] ];
         }else{
             
             cell.moneylb.text = [NSString stringWithFormat:@"价格: ¥%.2f万",[self.dataArrUnder[indexPath.row-1][@"total_money"] floatValue] / 10000];
