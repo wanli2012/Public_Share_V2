@@ -50,7 +50,7 @@
    [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
     //@"885288037507667815"
     NSDictionary  *dic =  @{@"number":self.codestr,@"type":@"auto"};
-    [manager.requestSerializer setValue:@"APPCODE 41a12ca994394857b29398d8796f95ba" forHTTPHeaderField:@"Authorization"];
+    [manager.requestSerializer setValue:@"APPCODE f92896288a5949088c46c166af190b2c" forHTTPHeaderField:@"Authorization"];
     
     [manager GET:logisticsUrl parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
          NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
