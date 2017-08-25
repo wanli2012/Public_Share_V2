@@ -8,7 +8,7 @@
 
 #import "LBBaiduMapViewController.h"
 
-@interface LBBaiduMapViewController ()
+@interface LBBaiduMapViewController ()<UISearchBarDelegate>
 {
     BOOL _isGetLocation;//是否拿到了位置信息
 }
@@ -47,6 +47,35 @@
     
     _isGetLocation = NO;
     [self.view addSubview:self.mapView];
+    
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 110, 35)];
+    [titleView setBackgroundColor:[UIColor clearColor]];
+    
+    UISearchBar *searchBar = [[UISearchBar alloc] init];
+    searchBar.delegate = self;
+    searchBar.barTintColor = [UIColor clearColor];
+    searchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH - 110, 35);
+    searchBar.layer.cornerRadius = 17;
+    searchBar.backgroundColor = [UIColor clearColor];
+    searchBar.layer.masksToBounds = YES;
+    [titleView addSubview:searchBar];
+    self.navigationItem.titleView = titleView;
+    
+    for (UIView *view in searchBar.subviews) {
+        // for before iOS7.0
+        if ([view isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
+            [view removeFromSuperview];
+            break;
+        }
+        // for later iOS7.0(include)
+        if ([view isKindOfClass:NSClassFromString(@"UIView")] && view.subviews.count > 0) {
+            [[view.subviews objectAtIndex:0] removeFromSuperview];
+            break;
+        }
+    }
+    
+    
+
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -332,4 +361,5 @@
         _mapView = nil;
     }
 }
+
 @end
