@@ -200,6 +200,11 @@
             [UserModel defaultUser].t_one = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"t_one"]];
             [UserModel defaultUser].t_two = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"t_two"]];
             [UserModel defaultUser].t_three = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"t_three"]];
+            [UserModel defaultUser].isSetTwoPwd = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isSetTwoPwd"]];
+            [UserModel defaultUser].pre_phone = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"pre_phone"]];
+            [UserModel defaultUser].congig_ads = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"congig_ads"]];
+            [UserModel defaultUser].card_num = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"card_num"]];
+            [UserModel defaultUser].open_bank = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"open_bank"]];
             
             if ([[UserModel defaultUser].banknumber rangeOfString:@"null"].location != NSNotFound) {
                 
@@ -230,6 +235,22 @@
             if ([[UserModel defaultUser].idcard rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].idcard = @"";
+            }
+            if ([[UserModel defaultUser].pre_phone rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].pre_phone = @"";
+            }
+            if ([[UserModel defaultUser].congig_ads rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].congig_ads = @"";
+            }
+            if ([[UserModel defaultUser].card_num rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].card_num = @"";
+            }
+            if ([[UserModel defaultUser].open_bank rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].open_bank = @"";
             }
             
             if ([self.groupIDArr[indexPath.row] isEqualToString:Retailer]) {//零售商

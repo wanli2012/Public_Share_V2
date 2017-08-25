@@ -89,7 +89,7 @@
     
     self.usertype = OrdinaryUser;
     self.usertypeTf.text=@"会员";
-    self.noticeLb.text = [NSString stringWithFormat:@" 公司名称: 云南汇聚天下网络科技有限公司\n 开  户  行: 中信银行\n 账       号:111111111"];
+    self.noticeLb.text = [NSString stringWithFormat:@" 公司名称: %@\n 开  户  行: %@\n 账       号:%@",[UserModel defaultUser].congig_ads,[UserModel defaultUser].open_bank,[UserModel defaultUser].card_num];
 }
 
 -(void)checkrecorderEvent{

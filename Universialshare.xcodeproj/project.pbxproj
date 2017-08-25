@@ -15,6 +15,8 @@
 		4A07A88B1EA0BBF1005A9B67 /* GLNoneOfDonationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A07A8841EA0BBF1005A9B67 /* GLNoneOfDonationModel.m */; };
 		4A07A88C1EA0BBF1005A9B67 /* GLNoneOfDonationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A07A8871EA0BBF1005A9B67 /* GLNoneOfDonationCell.m */; };
 		4A07A88D1EA0BBF1005A9B67 /* GLNoneOfDonationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A07A8881EA0BBF1005A9B67 /* GLNoneOfDonationCell.xib */; };
+		4A15A4E61F502A2B009BCDCC /* MinePhoneAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A15A4E41F502A2B009BCDCC /* MinePhoneAlertView.m */; };
+		4A15A4E71F502A2B009BCDCC /* MinePhoneAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A15A4E51F502A2B009BCDCC /* MinePhoneAlertView.xib */; };
 		4A1D78ED1EADF81900374386 /* GLCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1D78EC1EADF81900374386 /* GLCityModel.m */; };
 		4A1FE7321EC978FB0000A357 /* GLRecommendStoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1FE7301EC978FB0000A357 /* GLRecommendStoreController.m */; };
 		4A1FE7331EC978FB0000A357 /* GLRecommendStoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1FE7311EC978FB0000A357 /* GLRecommendStoreController.xib */; };
@@ -1004,6 +1006,9 @@
 		4A07A8861EA0BBF1005A9B67 /* GLNoneOfDonationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLNoneOfDonationCell.h; sourceTree = "<group>"; };
 		4A07A8871EA0BBF1005A9B67 /* GLNoneOfDonationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLNoneOfDonationCell.m; sourceTree = "<group>"; };
 		4A07A8881EA0BBF1005A9B67 /* GLNoneOfDonationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLNoneOfDonationCell.xib; sourceTree = "<group>"; };
+		4A15A4E31F502A2B009BCDCC /* MinePhoneAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinePhoneAlertView.h; sourceTree = "<group>"; };
+		4A15A4E41F502A2B009BCDCC /* MinePhoneAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinePhoneAlertView.m; sourceTree = "<group>"; };
+		4A15A4E51F502A2B009BCDCC /* MinePhoneAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MinePhoneAlertView.xib; sourceTree = "<group>"; };
 		4A1D78EB1EADF81900374386 /* GLCityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCityModel.h; sourceTree = "<group>"; };
 		4A1D78EC1EADF81900374386 /* GLCityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLCityModel.m; sourceTree = "<group>"; };
 		4A1FE72F1EC978FB0000A357 /* GLRecommendStoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRecommendStoreController.h; sourceTree = "<group>"; };
@@ -2919,6 +2924,9 @@
 		4A337D851F3ED2A900B51A8A /* view */ = {
 			isa = PBXGroup;
 			children = (
+				4A15A4E31F502A2B009BCDCC /* MinePhoneAlertView.h */,
+				4A15A4E41F502A2B009BCDCC /* MinePhoneAlertView.m */,
+				4A15A4E51F502A2B009BCDCC /* MinePhoneAlertView.xib */,
 				4A337D861F3ED2A900B51A8A /* LBMineCentermodifyAdressTableViewCell.h */,
 				4A337D871F3ED2A900B51A8A /* LBMineCentermodifyAdressTableViewCell.m */,
 				4A337D881F3ED2A900B51A8A /* LBMineCentermodifyAdressTableViewCell.xib */,
@@ -6506,6 +6514,7 @@
 				4A3D4D7A1F441928003CAE87 /* LBCheckMoreHotProductViewController.xib in Resources */,
 				4A3D4D8B1F441928003CAE87 /* LBNearClassfityViewController.xib in Resources */,
 				4A3D4C9E1F44186D003CAE87 /* LBIntegralGoodsCollectionViewCell.xib in Resources */,
+				4A15A4E71F502A2B009BCDCC /* MinePhoneAlertView.xib in Resources */,
 				4A3D4D901F441928003CAE87 /* GLNearby_SearchController.xib in Resources */,
 				4A46103C1E9CC6360045824F /* ios-social-sdk-socialbar.html in Resources */,
 				F94D5B251F1F541200BEFA1C /* LBApplicationLimitView.xib in Resources */,
@@ -7351,6 +7360,7 @@
 				4A4610651E9CC6360045824F /* ZXURIParsedResult.m in Sources */,
 				4A4610751E9CC6360045824F /* ZXGenericGFPoly.m in Sources */,
 				F97644D91EA5BAEA00AFA22B /* RSAEncryptor.m in Sources */,
+				4A15A4E61F502A2B009BCDCC /* MinePhoneAlertView.m in Sources */,
 				4A4610FF1E9CC6370045824F /* ZXQRCodeDataBlock.m in Sources */,
 				4A337D611F3ED11900B51A8A /* GLLoginController.m in Sources */,
 				4A46107E1E9CC6360045824F /* ZXDecoderResult.m in Sources */,
