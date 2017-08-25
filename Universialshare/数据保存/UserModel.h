@@ -47,11 +47,12 @@
 @property (nonatomic ,copy)NSString  *shop_address;//商家地址
 @property (nonatomic ,copy)NSString  *shop_type;//商家类型
 
-@property (nonatomic ,copy)NSString  *back;//商家类型
-@property (nonatomic ,copy)NSString  *bonus_log;//商家类型
-@property (nonatomic ,copy)NSString  *log;//商家类型
-@property (nonatomic ,copy)NSString  *order_line;//商家类型
-@property (nonatomic ,copy)NSString  *system_message;//商家类型
+@property (nonatomic ,copy)NSString  *back;//兑换消息
+@property (nonatomic ,copy)NSString  *bonus_log;//奖励消息
+@property (nonatomic ,copy)NSString  *log;//推荐消息
+@property (nonatomic ,copy)NSString  *order_line;//下单消息
+@property (nonatomic ,copy)NSString  *system_message;//其他消息
+@property (nonatomic ,copy)NSString  *give;//转赠消息
 
 //兑换比例
 @property (nonatomic ,copy)NSString  *t_one;

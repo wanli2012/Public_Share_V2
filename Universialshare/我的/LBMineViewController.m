@@ -853,6 +853,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [UserModel defaultUser].log = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"log"]];
             [UserModel defaultUser].order_line = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"order_line"]];
             [UserModel defaultUser].system_message = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"system_message"]];
+            [UserModel defaultUser].give = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"give"]];
             
             if ([[UserModel defaultUser].idcard rangeOfString:@"null"].location != NSNotFound) {
                 
@@ -885,7 +886,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             
         }
         
-        if ([[UserModel defaultUser].back integerValue] == 0 && [[UserModel defaultUser].bonus_log integerValue] == 0 && [[UserModel defaultUser].log integerValue] == 0 && [[UserModel defaultUser].order_line integerValue] == 0 && [[UserModel defaultUser].system_message integerValue] == 0) {
+        if ([[UserModel defaultUser].back integerValue] == 0 && [[UserModel defaultUser].bonus_log integerValue] == 0 && [[UserModel defaultUser].log integerValue] == 0 && [[UserModel defaultUser].order_line integerValue] == 0 && [[UserModel defaultUser].system_message integerValue] == 0 && [[UserModel defaultUser].give integerValue] == 0) {
             self.signImageV.hidden = YES;
         }else{
             self.signImageV.hidden = NO;
@@ -893,7 +894,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         
         [self.headview.tableview reloadData];
     } enError:^(NSError *error) {
-        NSLog(@"%@",error.localizedDescription);
+//        NSLog(@"%@",error.localizedDescription);
     }];
 }
 

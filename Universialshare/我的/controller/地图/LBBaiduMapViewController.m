@@ -84,6 +84,7 @@
         weakself.coors2 = pt;
         weakself.locationStr = address;
         [weakself addPointAnnotation];
+        
     };
     [self.navigationController pushViewController:vc animated:YES];
     return NO;
