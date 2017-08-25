@@ -13,6 +13,7 @@
 #import "LBViewProtocolViewController.h"
 #import "GLSetup_SwitchIDController.h"
 #import "LBMineCenterRegionQueryViewController.h"
+#import "MinePhoneAlertView.h"
 
 #define PATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0]
 
@@ -22,6 +23,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *momeryLb;
 @property (weak, nonatomic) IBOutlet UILabel *verionLb;
 @property (nonatomic , assign)float folderSize;//缓存
+
+@property(nonatomic ,strong)MinePhoneAlertView  *phoneView;
+@property(nonatomic ,strong)NSString  *phonestr;//服务热线
 
 @end
 
@@ -37,6 +41,9 @@
     self.folderSize = [self filePath];
     
     self.momeryLb.text = [NSString stringWithFormat:@"%.2fM",self.folderSize];
+    
+    self.phonestr = [UserModel defaultUser].pre_phone;
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     
@@ -73,7 +80,7 @@
         
         if (alertView.tag == 10) {
             
-            [UserModel defaultUser].loginstatus = NO;
+        [UserModel defaultUser].loginstatus = NO;
             [UserModel defaultUser].headPic = @"";
             [UserModel defaultUser].usrtype = @"0";
             [usermodelachivar achive];
@@ -120,6 +127,27 @@
     self.hidesBottomBarWhenPushed=YES;
     LBMineCenterRegionQueryViewController *vc=[[LBMineCenterRegionQueryViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
+
+}
+//联系客服
+- (IBAction)customerService:(id)sender {
+    self.phoneView.transform=CGAffineTransformMakeScale(0, 0);
+    
+    NSString *str=[NSString stringWithFormat:@"是否拨打电话? %@",self.phonestr];
+    NSMutableAttributedString *textColor = [[NSMutableAttributedString alloc]initWithString:str];
+    NSRange rangel = [[textColor string] rangeOfString:self.phonestr];
+    [textColor addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:76/255.0 green:140/255.0 blue:247/255.0 alpha:1] range:rangel];
+    //[textColor addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:rangel];
+    [_phoneView.titleLb setAttributedText:textColor];
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:self.phoneView];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        _phoneView.transform=CGAffineTransformIdentity;
+        
+    } completion:^(BOOL finished) {
+        
+    }];
 
 }
 
@@ -207,5 +235,35 @@
 
 
 }
+-(MinePhoneAlertView *)phoneView{
+    
+    if (!_phoneView) {
+        _phoneView=[[NSBundle mainBundle]loadNibNamed:@"MinePhoneAlertView" owner:nil options:nil].firstObject;
+        _phoneView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        _phoneView.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
+        [_phoneView.cancelBt addTarget:self action:@selector(cancelbutton) forControlEvents:UIControlEventTouchUpInside];
+        [_phoneView.sureBt addTarget:self action:@selector(surebuttonE) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _phoneView;
+}
 
+-(void)cancelbutton{
+    [UIView animateWithDuration:0.3 animations:^{
+        _phoneView.transform=CGAffineTransformMakeScale(0.000001, 0.000001);
+        
+    } completion:^(BOOL finished) {
+        
+        if (finished) {
+            [_phoneView removeFromSuperview];
+        }
+    }];
+    
+}
+
+-(void)surebuttonE{
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",self.phonestr]]]; //拨号
+    
+}
 @end

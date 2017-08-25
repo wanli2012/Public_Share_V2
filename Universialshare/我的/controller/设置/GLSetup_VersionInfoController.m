@@ -49,7 +49,7 @@
      [self Postpath:GET_VERSION];
     
     
-}\
+}
 
 -(void)Postpath:(NSString *)path
 {
@@ -60,7 +60,6 @@
                                                        timeoutInterval:10];
     
     [request setHTTPMethod:@"POST"];
-    
     
     NSOperationQueue *queue = [NSOperationQueue new];
     
