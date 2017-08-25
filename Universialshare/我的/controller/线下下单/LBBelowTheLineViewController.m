@@ -22,8 +22,6 @@
 @property (weak, nonatomic) IBOutlet UIView *baseView4;
 @property (weak, nonatomic) IBOutlet UIView *baseView5;
 @property (weak, nonatomic) IBOutlet UIView *baseView6;
-@property (weak, nonatomic) IBOutlet UIView *baseView7;
-@property (weak, nonatomic) IBOutlet UIButton *codeBt;
 @property (weak, nonatomic) IBOutlet UIButton *comitbt;
 
 @property (weak, nonatomic) IBOutlet UITextField *phoneTf;
@@ -32,7 +30,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameTf;
 @property (weak, nonatomic) IBOutlet UITextField *numTf;
 @property (weak, nonatomic) IBOutlet UITextField *yuliuTf;
-@property (weak, nonatomic) IBOutlet UITextField *codeTf;
 @property (weak, nonatomic) IBOutlet UIButton *getNewCode;
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;//内容View
@@ -53,6 +50,7 @@
 @property (strong, nonatomic)NSString *usertype;
 @property (weak, nonatomic) IBOutlet UITextField *usertypeTf;
 @property (weak, nonatomic) IBOutlet UIView *userTypeView;
+@property (weak, nonatomic) IBOutlet UILabel *noticeLb;
 
 @end
 
@@ -88,6 +86,7 @@
     
     self.usertype = OrdinaryUser;
     self.usertypeTf.text=@"会员";
+    self.noticeLb.text = [NSString stringWithFormat:@" 公司名称: 云南汇聚天下网络科技有限公司\n 开  户  行: 中信银行\n 账       号:111111111"];
 }
 
 -(void)checkrecorderEvent{
@@ -257,47 +256,6 @@
     UIActionSheet* actionSheet = [[UIActionSheet alloc]initWithTitle:@"请选择图片来源" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"去相册选择",@"用相机拍照", nil];
     [actionSheet showInView:self.view];
 }
-
-
-//获取验证码
-- (IBAction)getcodeEvent:(UIButton *)sender {
-    if (self.phoneTf.text.length <= 0) {
-        [MBProgressHUD showError:@"请输入会员电话号码或ID"];
-        return;
-    }
-    
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/getTrueName" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"username" :self.phoneTf.text} finish:^(id responseObject) {
-        [_loadV removeloadview];
-        if ([responseObject[@"code"] integerValue]==1) {
-            self.phoneNum = responseObject[@"data"][@"phone"];
-            [self startTime];//获取倒计时
-            [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:@{@"phone":self.phoneNum} finish:^(id responseObject) {
-                if ([responseObject[@"code"] integerValue]==1) {
-                    
-                }else{
-                    
-                }
-            } enError:^(NSError *error) {
-                
-            }];
- 
-        }else if ([responseObject[@"code"] integerValue]==3){
-            
-            [MBProgressHUD showError:responseObject[@"message"]];
-            
-        }else{
-            [MBProgressHUD showError:responseObject[@"message"]];
-            
-            
-        }
-    } enError:^(NSError *error) {
-        [_loadV removeloadview];
-        [MBProgressHUD showError:error.localizedDescription];
-        
-    }];
-
-}
 //提交
 - (IBAction)submitInfoEvent:(UIButton *)sender {
     
@@ -327,11 +285,7 @@
         [MBProgressHUD showError:@"请填写商品数量"];
         return;
     }
-    if (self.codeTf.text.length <= 0) {
-        [MBProgressHUD showError:@"验证码不能为空"];
-        return;
-    }
-    
+   
     if (!self.imageOne.image || [UIImagePNGRepresentation(self.imageOne.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"imcc_record_bg"])]) {
         [MBProgressHUD showError:@"请上传打款凭证"];
         return;
@@ -340,7 +294,6 @@
         [MBProgressHUD showError:@"请上传消费凭证"];
         return;
     }
-    
     
     self.comitbt.backgroundColor = [UIColor lightGrayColor];
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
@@ -388,7 +341,7 @@
     
     if (buttonIndex==1) {
         
-        NSDictionary  * dic=@{@"token":[UserModel defaultUser].token , @"uid":[UserModel defaultUser].uid , @"username":self.phoneTf.text , @"yzm":self.codeTf.text,@"rlmodel_type":[NSNumber numberWithInteger:self.userytpe],@"money":self.moneyTf.text,@"shopname":self.nameTf.text,@"shopnum":self.numTf.text,@"code":self.yuliuTf.text,@"version":@"3",@"group_id" :self.usertype};
+        NSDictionary  * dic=@{@"token":[UserModel defaultUser].token , @"uid":[UserModel defaultUser].uid , @"username":self.phoneTf.text , @"rlmodel_type":[NSNumber numberWithInteger:self.userytpe],@"money":self.moneyTf.text,@"shopname":self.nameTf.text,@"shopnum":self.numTf.text,@"code":self.yuliuTf.text,@"version":@"3",@"group_id" :self.usertype};
         self.comitbt.userInteractionEnabled = NO;
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
@@ -541,10 +494,6 @@
         return NO;
     }else if (textField == self.numTf && [string isEqualToString:@"\n"]){
         
-        [self.codeTf becomeFirstResponder];
-        return NO;
-    }else if (textField == self.codeTf && [string isEqualToString:@"\n"]) {
-        
         [self.view endEditing:YES];
         return NO;
     }
@@ -633,11 +582,7 @@
     self.baseView5.clipsToBounds = YES;
     self.baseView6.layer.cornerRadius = 4;
     self.baseView6.clipsToBounds = YES;
-    self.baseView7.layer.cornerRadius = 4;
-    self.baseView7.clipsToBounds = YES;
-
-    self.codeBt.layer.cornerRadius = 4;
-    self.codeBt.clipsToBounds = YES;
+  
     self.comitbt.layer.cornerRadius = 4;
     self.comitbt.clipsToBounds = YES;
     self.getNewCode.layer.cornerRadius = 4;
@@ -671,39 +616,6 @@
     }
     
     return _incentiveModelMaskV;
-    
-}
-
-//获取倒计时
--(void)startTime{
-    
-    __block int timeout=60; //倒计时时间
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
-    dispatch_source_set_event_handler(_timer, ^{
-        if(timeout<=0){ //倒计时结束，关闭
-            dispatch_source_cancel(_timer);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                //设置界面的按钮显示 根据自己需求设置
-                [self.codeBt setTitle:@"重发验证码" forState:UIControlStateNormal];
-                self.codeBt.userInteractionEnabled = YES;
-                self.codeBt.backgroundColor = TABBARTITLE_COLOR;
-                self.codeBt.titleLabel.font = [UIFont systemFontOfSize:13];
-            });
-        }else{
-            int seconds = timeout % 61;
-            NSString *strTime = [NSString stringWithFormat:@"%.2d秒后重新发送", seconds];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.codeBt setTitle:[NSString stringWithFormat:@"%@",strTime] forState:UIControlStateNormal];
-                self.codeBt.userInteractionEnabled = NO;
-                self.codeBt.backgroundColor = YYSRGBColor(184, 184, 184, 1);
-                self.codeBt.titleLabel.font = [UIFont systemFontOfSize:11];
-            });
-            timeout--;
-        }
-    });
-    dispatch_resume(_timer);
     
 }
 
