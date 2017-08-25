@@ -197,7 +197,6 @@
 
 }
 
-
 //重新生成生成预留信息
 - (IBAction)getNewCodeEvent:(UIButton *)sender {
 

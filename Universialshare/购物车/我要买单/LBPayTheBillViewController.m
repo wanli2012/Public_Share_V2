@@ -230,7 +230,7 @@
                     NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
                     if (orderState==9000) {
                         
-                        [MBProgressHUD showError:@"支付成功"];
+                        [MBProgressHUD showSuccess:@"支付成功"];
 
                     }else{
                         NSString *returnStr;
@@ -252,27 +252,31 @@
                                 break;
                         }
                         
-                        [MBProgressHUD showError:returnStr];
+                        [MBProgressHUD showSuccess:returnStr];
                         
                     }
                     
                 }];
                 
             }else if (self.payType == 2){
-            
+                
+                [MBProgressHUD showSuccess:responseObject[@"message"]];
+                
             }else if (self.payType == 4){
-                 [MBProgressHUD showError:@"支付成功"];
+                
+                [MBProgressHUD showSuccess:@"支付成功"];
+                
             }else{
                 
-                [MBProgressHUD showError:responseObject[@"message"]];
+                [MBProgressHUD showSuccess:responseObject[@"message"]];
             }
+            
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });
             
         }
         
-
         [self dismiss];
     } enError:^(NSError *error) {
         [_loadV removeloadview];
@@ -290,6 +294,7 @@
         [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancel handler:^(TYAlertAction *action) {
             
         }]];
+        
         [self presentViewController:alertController animated:YES completion:nil];
         return;
     }
