@@ -777,10 +777,50 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
     return _maskView;
 }
+-(NSString *)convertToJsonData:(NSDictionary *)dict
 
+{
+    
+    NSError *error;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
+    
+    NSString *jsonString;
+    
+    if (!jsonData) {
+        
+        NSLog(@"%@",error);
+        
+    }else{
+        
+        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+    }
+    
+    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
+    
+    NSRange range = {0,jsonString.length};
+    
+    //去掉字符串中的空格
+    
+    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+    
+    NSRange range2 = {0,mutStr.length};
+    
+    //去掉字符串中的换行符
+    
+    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+    
+    return mutStr;
+    
+}
 //刷新数据
 -(void)refreshDataSource{
 
+//    NSDictionary *dicc = @{@"999":@"周永峰你个傻逼"};
+//    NSString *str = [self convertToJsonData:dicc];
+//    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    
     [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:@{@"token":[UserModel defaultUser].token,@"uid":[UserModel defaultUser].uid} finish:^(id responseObject) {
 
         if ([responseObject[@"code"] integerValue] == 1) {
@@ -853,7 +893,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         
         [self.headview.tableview reloadData];
     } enError:^(NSError *error) {
-        
+        NSLog(@"%@",error.localizedDescription);
     }];
 }
 

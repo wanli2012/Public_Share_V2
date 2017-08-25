@@ -49,20 +49,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"转赠";
-//    self.navigationController.navigationBar.hidden = NO;
+
     self.getCodeBtn.layer.cornerRadius = 5.f;
     self.ensureBtn.layer.cornerRadius = 5.f;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    //可转赠善行豆
+    
+    //可转赠善行豆 设置默认值
     self.useableBeanLabel.text = [NSString stringWithFormat:@"可转赠米子:%@",[UserModel defaultUser].ketiBean];
-    self.userableBeanStyleLabel.text = [NSString stringWithFormat:@"可转赠米券:%@",[UserModel defaultUser].mark];
-//    NSString *userType;
-//    if ([[UserModel defaultUser].groupId isEqualToString:OrdinaryUser]) {
-//        userType = @"米家";
-//    }else{
-//        userType = @"米商";
-//    }
-    self.noticeLabel.text = [NSString stringWithFormat:@"*米券可互转，针对人群为消费者、商家、创客、城市创客、大区创客；米子可对转，针对人群人运营商，行业代理，消费者、创客、城市创客、大区创客。限定大于等于100的整数倍才可交易"];
+//    self.userableBeanStyleLabel.text = [NSString stringWithFormat:@"可转赠米券:%@",[UserModel defaultUser].mark];
+    self.stringtype = 2;
+    self.typeF.text = @"米子";
+
+    self.noticeLabel.text = [NSString stringWithFormat:@"*米券可互转，针对人群为消费者、商家、创客、城市创客、大区创客；米子可对转，针对人群:运营商，行业代理，消费者、创客、城市创客、大区创客。限定大于等于100的整数倍才可交易.\n*单笔米子或者米劵转赠最多50000."];
 
     self.contentViewWidth.constant = SCREEN_WIDTH;
     self.contentViewHeight.constant = SCREEN_HEIGHT +60;
@@ -225,6 +223,12 @@
                                                               
                                                               weakself.stringtype = index + 1;
                                                               weakself.typeF.text = dataA[index][@"title"];
+                                                              
+                                                              if(index == 0) {
+                                                                  self.useableBeanLabel.text = [NSString stringWithFormat:@"可转赠米券:%@",[UserModel defaultUser].mark];
+                                                              }else{
+                                                                  self.useableBeanLabel.text = [NSString stringWithFormat:@"可转赠米子:%@",[UserModel defaultUser].ketiBean];
+                                                              }
                                                           }];
     
     popview.isHideImage = YES;
@@ -343,11 +347,14 @@
     }
     
     if (self.stringtype == 1) {
+        
         if ([self.beanNumF.text integerValue] >[[UserModel defaultUser].mark integerValue]) {
             [MBProgressHUD showError:@"余额不足"];
             return;
         }
+        
     }else if (self.stringtype == 2){
+        
         if ([self.beanNumF.text integerValue] >[[UserModel defaultUser].ketiBean integerValue]) {
             [MBProgressHUD showError:@"余额不足"];
             return;
@@ -363,6 +370,10 @@
     }
     if (self.secondPwdF.text == nil||self.secondPwdF.text.length == 0) {
         [MBProgressHUD showError:@"请输入交易密码"];
+        return;
+    }
+    if ([self.beanNumF.text floatValue] > 50000) {
+        [MBProgressHUD showError:@"单次转赠最多50000"];
         return;
     }
     
@@ -391,6 +402,7 @@
             [contentView.ensureBtn addTarget:self action:@selector(ensureDonation) forControlEvents:UIControlEventTouchUpInside];
             contentView.contentLabel.text = [NSString stringWithFormat:@"您是否要将转赠给  %@",responseObject[@"data"][@"count"]];
             [_maskView showViewWithContentView:contentView];
+            
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
         }
@@ -414,8 +426,8 @@
     }];
     
 }
-//确认捐赠
 
+//确认捐赠
 -(void)ensureDonation{
  
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -443,6 +455,21 @@
             }];
     
             [MBProgressHUD showError:responseObject[@"message"]];
+        
+            
+            NSString *useableNum = @"";
+            
+            if (self.stringtype == 1) {
+                 useableNum = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].mark floatValue] - [self.beanNumF.text floatValue]];
+                [UserModel defaultUser].mark = useableNum;
+                 self.useableBeanLabel.text = [NSString stringWithFormat:@"可转赠米券:%@",useableNum];
+            }else{
+                 useableNum = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].ketiBean floatValue] - [self.beanNumF.text floatValue]];
+                [UserModel defaultUser].ketiBean = useableNum;
+                self.useableBeanLabel.text = [NSString stringWithFormat:@"可转赠米子:%@",useableNum];
+            }
+            
+            [usermodelachivar achive];
             
             self.secondPwdF.text = nil;
             self.donationIDF.text = nil;
@@ -451,19 +478,6 @@
             self.typeF.text = nil;
             self.usertypeF.text = nil;
             
-            NSString *useableNum = @"";
-            
-            if (self.stringtype == 1) {
-                 useableNum = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].mark floatValue] - [self.beanNumF.text floatValue]];
-                [UserModel defaultUser].mark = useableNum;
-                self.userableBeanStyleLabel.text = [NSString stringWithFormat:@"可转赠米券:%@",useableNum];
-            }else{
-                 useableNum = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].ketiBean floatValue] - [self.beanNumF.text floatValue]];
-                [UserModel defaultUser].ketiBean = useableNum;
-                self.useableBeanLabel.text = [NSString stringWithFormat:@"可转赠米子:%@",useableNum];
-            }
-            
-            [usermodelachivar achive];
             [MBProgressHUD showSuccess:@"转赠成功"];
 
         }else{

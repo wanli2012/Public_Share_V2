@@ -225,7 +225,7 @@
     NSString *encryptsecret = [RSAEncryptor encryptString:self.secondPwdT.text publicKey:public_RSA];
     dict[@"password"] = encryptsecret;
     NSString *beanStyle = self.beanStyleLabel.text;
-    //0 普通善行豆   1 激励善行豆
+    //0 米劵   1 米子
     
     if ([beanStyle isEqualToString:NormalMoney]) {
         dict[@"donatetype"] = @"1";
