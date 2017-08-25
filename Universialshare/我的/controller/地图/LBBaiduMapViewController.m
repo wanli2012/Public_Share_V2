@@ -23,7 +23,10 @@
 @property (nonatomic, assign) CGFloat latitude; // 纬度
 
 @property (nonatomic, assign) CLLocationCoordinate2D coors2; // 纬度
+@property (nonatomic, assign) CLLocationCoordinate2D pt; // 纬度
 @property (strong , nonatomic)BMKReverseGeoCodeOption *option;//地址
+
+@property (assign , nonatomic)BOOL  isLocation;//是否定位到当前位置
 
 @end
 
@@ -80,23 +83,34 @@
     self.hidesBottomBarWhenPushed = YES;
     __weak typeof(self) weakself =self;
     SearchViewController *vc =[[SearchViewController alloc]init];
+
     vc.block = ^(NSString *address, CLLocationCoordinate2D pt) {
-        weakself.coors2 = pt;
-        weakself.locationStr = address;
-        [weakself addPointAnnotation];
-        
+        weakself.isLocation = YES;
+        weakself.pointAnnotation.title=@"位置";
+        weakself.pointAnnotation.subtitle=address;
+        weakself.pointAnnotation.coordinate = pt;
+         weakself.mapView.centerCoordinate = pt;
+        weakself.pt = pt;
+        [weakself.mapView addAnnotation:weakself.pointAnnotation];
+
     };
     [self.navigationController pushViewController:vc animated:YES];
     return NO;
 }
+
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.mapView viewWillAppear];
      self.mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
     self.locService.delegate = self;
     self.mapView.buildingsEnabled =YES;
-    self.mapView.zoomLevel=20;//地图级别
-    [self.locService startUserLocationService];
+    self.mapView.zoomLevel=17;//地图级别
+//    if (self.isLocation == NO) {
+//            [self.locService startUserLocationService];
+//    }
+    
+       [self.locService startUserLocationService];
+   
     self.mapView.showsUserLocation = NO;//先关闭显示的定位图层
     self.mapView.userTrackingMode = BMKUserTrackingModeNone;//设置定位的状态
     self.mapView.showsUserLocation = YES;//显示定位图层
@@ -148,18 +162,23 @@
 {
     //    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     //[_mapView updateLocationData:userLocation];
-    
-    _mapView.centerCoordinate = userLocation.location.coordinate;
-    
-    self.coors2 = userLocation.location.coordinate;
-
-    // 将数据传到反地址编码模型
-    self.option.reverseGeoPoint = CLLocationCoordinate2DMake( userLocation.location.coordinate.latitude,  userLocation.location.coordinate.longitude);
 
     // 调用反地址编码方法，让其在代理方法中输出
-    [self.geoCode reverseGeoCode:self.option];
     [_locService stopUserLocationService];
-    [self addPointAnnotation];
+    if (self.isLocation == NO) {
+        self.coors2 = userLocation.location.coordinate;
+        // 将数据传到反地址编码模型
+        self.option.reverseGeoPoint = CLLocationCoordinate2DMake( userLocation.location.coordinate.latitude,  userLocation.location.coordinate.longitude);
+         _mapView.centerCoordinate = userLocation.location.coordinate;
+        [self addPointAnnotation];
+    }else{
+        self.coors2 = self.pt;
+        // 将数据传到反地址编码模型
+        self.option.reverseGeoPoint = CLLocationCoordinate2DMake( self.pt.latitude,  self.pt.longitude);
+         _mapView.centerCoordinate = self.pt;
+    }
+    
+     [self.geoCode reverseGeoCode:self.option];
     
 }
 
@@ -238,21 +257,24 @@
 #pragma mark 代理方法返回反地理编码结果
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
 {
+    
     if (result) {
         //        self.address.text = [NSString stringWithFormat:@"%@", result.address];
         //NSLog(@"位置结果是：%@ - %@", result.address, result.addressDetail.city);
         //        NSLog(@"经纬度为：%@ 的位置结果是：%@", locationString, result.address);
+        
         self.locationStr = result.address;
         self.provinceid = result.addressDetail.province;
         self.cityid = result.addressDetail.city;
         self.coutry = result.addressDetail.district;
-        
-        self.pointAnnotation.subtitle = result.address;
+        if (self.isLocation == NO) {
+             self.pointAnnotation.subtitle = result.address;
+        }
         //确定已拿到位置信息
         _isGetLocation = YES;
         
         // 定位一次成功后就关闭定位
-        [_locService stopUserLocationService];
+       // [_locService stopUserLocationService];
         
     }else{
         //NSLog(@"%@", @"找不到相对应的位置");

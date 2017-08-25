@@ -159,6 +159,7 @@
     
     if (self.block) {
         wSelf.block(sModel.address, sModel.pt);
+        
     }
 
 }
