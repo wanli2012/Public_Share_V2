@@ -804,6 +804,9 @@
 		F94E92BA1ED9108200CBEDB8 /* QQPopMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = F94E92B71ED9108200CBEDB8 /* QQPopMenuView.m */; };
 		F94F29571ED6651A00E52573 /* LBImprovePersonalDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94F29551ED6651A00E52573 /* LBImprovePersonalDataViewController.m */; };
 		F94F29581ED6651A00E52573 /* LBImprovePersonalDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94F29561ED6651A00E52573 /* LBImprovePersonalDataViewController.xib */; };
+		F9506CF91F5015B9008A960F /* VerifyCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9506CF81F5015B9008A960F /* VerifyCode.framework */; };
+		F9506CFB1F501617008A960F /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9506CFA1F501617008A960F /* JavaScriptCore.framework */; };
+		F9506CFD1F501623008A960F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9506CFC1F501623008A960F /* WebKit.framework */; };
 		F9516DE51ECAA129009F015D /* MXNavigationBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F9516DE41ECAA129009F015D /* MXNavigationBarManager.m */; };
 		F951C76C1EB02DF10014A71D /* LBWaitOrdersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F951C76B1EB02DF10014A71D /* LBWaitOrdersModel.m */; };
 		F951C76F1EB02E050014A71D /* LBWaitOrdersListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F951C76E1EB02E050014A71D /* LBWaitOrdersListModel.m */; };
@@ -2366,6 +2369,9 @@
 		F94F29541ED6651A00E52573 /* LBImprovePersonalDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBImprovePersonalDataViewController.h; sourceTree = "<group>"; };
 		F94F29551ED6651A00E52573 /* LBImprovePersonalDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBImprovePersonalDataViewController.m; sourceTree = "<group>"; };
 		F94F29561ED6651A00E52573 /* LBImprovePersonalDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBImprovePersonalDataViewController.xib; sourceTree = "<group>"; };
+		F9506CF81F5015B9008A960F /* VerifyCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VerifyCode.framework; sourceTree = "<group>"; };
+		F9506CFA1F501617008A960F /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F9506CFC1F501623008A960F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F9516DE31ECAA129009F015D /* MXNavigationBarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXNavigationBarManager.h; sourceTree = "<group>"; };
 		F9516DE41ECAA129009F015D /* MXNavigationBarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXNavigationBarManager.m; sourceTree = "<group>"; };
 		F951C76A1EB02DF10014A71D /* LBWaitOrdersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBWaitOrdersModel.h; sourceTree = "<group>"; };
@@ -2646,6 +2652,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9506CFD1F501623008A960F /* WebKit.framework in Frameworks */,
+				F9506CFB1F501617008A960F /* JavaScriptCore.framework in Frameworks */,
 				F96CE1CE1EFD128C00D88BB0 /* ImageIO.framework in Frameworks */,
 				F99264A71EF3838E001857A4 /* UserNotifications.framework in Frameworks */,
 				F9479B0B1EEF7E3B00581250 /* CoreMotion.framework in Frameworks */,
@@ -2659,6 +2667,7 @@
 				F9126ED11EA058EE004785EA /* libstdc++.6.0.9.tbd in Frameworks */,
 				F9126ECF1EA058E0004785EA /* CoreTelephony.framework in Frameworks */,
 				F9126EDB1EA0597B004785EA /* BaiduMapAPI_Utils.framework in Frameworks */,
+				F9506CF91F5015B9008A960F /* VerifyCode.framework in Frameworks */,
 				F99264A51EF38367001857A4 /* libUMessage_Sdk_1.5.0a.a in Frameworks */,
 				F9126ECD1EA058D0004785EA /* libsqlite3.0.tbd in Frameworks */,
 				F9126ED91EA0597B004785EA /* BaiduMapAPI_Map.framework in Frameworks */,
@@ -3699,6 +3708,7 @@
 		4A460D9B1E9CC6350045824F /* 三方库 */ = {
 			isa = PBXGroup;
 			children = (
+				F9506CF81F5015B9008A960F /* VerifyCode.framework */,
 				F973743B1EFE03B200520D03 /* CodeScan.bundle */,
 				F973743C1EFE03B200520D03 /* LBXAlertAction */,
 				F97374491EFE03B200520D03 /* LBXScan */,
@@ -5090,6 +5100,8 @@
 		BB2598459FE627C586E51511 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F9506CFC1F501623008A960F /* WebKit.framework */,
+				F9506CFA1F501617008A960F /* JavaScriptCore.framework */,
 				F96CE1CD1EFD128C00D88BB0 /* ImageIO.framework */,
 				F99264A61EF3838E001857A4 /* UserNotifications.framework */,
 				F9479B0A1EEF7E3B00581250 /* CoreMotion.framework */,

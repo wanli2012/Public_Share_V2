@@ -90,5 +90,7 @@
 
 //支付宝appid
 #define AlipayAPPID @"2017060207408516"
+//captchaid的值是每个产品从后台生成的,
+#define CAPTCHAID @"e81c8a046b5e4d08999ef30e01999e35"
 
 #endif /* Header_h */
