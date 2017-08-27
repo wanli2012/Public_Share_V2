@@ -159,6 +159,7 @@
                                                                    @{@"title":@"奖励消息",@"imageName":@""},
                                                                    @{@"title":@"推荐消息",@"imageName":@""},
                                                                    @{@"title":@"下单消息",@"imageName":@""},
+                                                                   @{@"title":@"转赠消息",@"imageName":@""},
                                                                    @{@"title":@"其他消息",@"imageName":@""},
                                                                    ]
                               
