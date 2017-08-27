@@ -540,8 +540,8 @@ static const CGFloat headerImageHeight = 180.0f;
         return;
     }
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phonestr]]]; //拨号
-
 }
+
 //去这里
 -(void)gotheremap{
     
@@ -550,7 +550,7 @@ static const CGFloat headerImageHeight = 180.0f;
     
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]])// -- 使用 canOpenURL 判断需要在info.plist 的 LSApplicationQueriesSchemes 添加 baidumap 。
     {
-        NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=%@&mode=driving&coord_type=gcj02",lat, lng,[NSString stringWithFormat:@"%@",self.dataDic[@"shop_data"][@"address"]]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=目的地&mode=driving&coord_type=bd09ll",lat, lng] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
         
@@ -565,6 +565,7 @@ static const CGFloat headerImageHeight = 180.0f;
         MKMapItem *currentLocation =[MKMapItem mapItemForCurrentLocation];
         
         MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:destCoordinate addressDictionary:nil]];
+        toLocation.name = @"目的地";
         
         [MKMapItem openMapsWithItems:@[currentLocation,toLocation] launchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,MKLaunchOptionsShowsTrafficKey:[NSNumber numberWithBool:YES]}];
     }
