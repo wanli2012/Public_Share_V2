@@ -18,7 +18,7 @@
 #import "GLHomeLiveChooseController.h"
 #import "UIButton+SetEdgeInsets.h"
 #import "MXNavigationBarManager.h"
-
+#import <AMapFoundationKit/AMapFoundationKit.h>
 @interface GLNearby_MerchatListController ()<UITableViewDataSource,UITableViewDelegate,GLNearby_MerchatListCellDelegate>
 {
     GLSet_MaskVeiw *_maskV;
@@ -276,7 +276,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
         
         CLLocationCoordinate2D destCoordinate;
         // 将数据传到反地址编码模型
-         destCoordinate = [self getGaoDeCoordinateByBaiDuCoordinate:CLLocationCoordinate2DMake(lat, lng)];
+
+        
+     destCoordinate = AMapCoordinateConvert(CLLocationCoordinate2DMake(lat,lng), AMapCoordinateTypeBaidu);
         
         MKMapItem *currentLocation =[MKMapItem mapItemForCurrentLocation];
         
@@ -285,12 +287,6 @@ static NSString *ID = @"GLNearby_MerchatListCell";
         [MKMapItem openMapsWithItems:@[currentLocation,toLocation] launchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,
                                                                                    MKLaunchOptionsShowsTrafficKey:[NSNumber numberWithBool:YES]}];
     }
-}
-
-// 百度地图经纬度转换为高德地图经纬度
-- (CLLocationCoordinate2D)getGaoDeCoordinateByBaiDuCoordinate:(CLLocationCoordinate2D)coordinate
-{
-    return CLLocationCoordinate2DMake(coordinate.latitude - 0.006, coordinate.longitude - 0.0065);
 }
 
 //选择

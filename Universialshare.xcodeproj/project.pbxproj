@@ -961,6 +961,7 @@
 		F97F09DE1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09DC1EC9406D000D3B30 /* LBProductManagementTableViewCell.xib */; };
 		F97F09E21EC98AEA000D3B30 /* LBAddMineProductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F09E01EC98AEA000D3B30 /* LBAddMineProductionViewController.m */; };
 		F97F09E31EC98AEA000D3B30 /* LBAddMineProductionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97F09E11EC98AEA000D3B30 /* LBAddMineProductionViewController.xib */; };
+		F987C3B21F52E27E00E44289 /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F987C3B11F52E27E00E44289 /* AMapFoundationKit.framework */; };
 		F99264A51EF38367001857A4 /* libUMessage_Sdk_1.5.0a.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F99264A31EF38367001857A4 /* libUMessage_Sdk_1.5.0a.a */; };
 		F99264A71EF3838E001857A4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F99264A61EF3838E001857A4 /* UserNotifications.framework */; };
 		F9D2C95A1F21FE840004B75C /* LBMeterChangePointsRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D2C9581F21FE840004B75C /* LBMeterChangePointsRecordViewController.m */; };
@@ -2632,6 +2633,7 @@
 		F97F09DF1EC98AEA000D3B30 /* LBAddMineProductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBAddMineProductionViewController.h; sourceTree = "<group>"; };
 		F97F09E01EC98AEA000D3B30 /* LBAddMineProductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBAddMineProductionViewController.m; sourceTree = "<group>"; };
 		F97F09E11EC98AEA000D3B30 /* LBAddMineProductionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBAddMineProductionViewController.xib; sourceTree = "<group>"; };
+		F987C3B11F52E27E00E44289 /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapFoundationKit.framework; sourceTree = "<group>"; };
 		F99264A31EF38367001857A4 /* libUMessage_Sdk_1.5.0a.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.5.0a.a; sourceTree = "<group>"; };
 		F99264A41EF38367001857A4 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		F99264A61EF3838E001857A4 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
@@ -2668,6 +2670,7 @@
 				F9506CFD1F501623008A960F /* WebKit.framework in Frameworks */,
 				F9506CFB1F501617008A960F /* JavaScriptCore.framework in Frameworks */,
 				F96CE1CE1EFD128C00D88BB0 /* ImageIO.framework in Frameworks */,
+				F987C3B21F52E27E00E44289 /* AMapFoundationKit.framework in Frameworks */,
 				F99264A71EF3838E001857A4 /* UserNotifications.framework in Frameworks */,
 				F9479B0B1EEF7E3B00581250 /* CoreMotion.framework in Frameworks */,
 				F9479B091EEF7E2E00581250 /* CFNetwork.framework in Frameworks */,
@@ -3724,6 +3727,7 @@
 		4A460D9B1E9CC6350045824F /* 三方库 */ = {
 			isa = PBXGroup;
 			children = (
+				F987C3B11F52E27E00E44289 /* AMapFoundationKit.framework */,
 				F9506CF81F5015B9008A960F /* VerifyCode.framework */,
 				F973743B1EFE03B200520D03 /* CodeScan.bundle */,
 				F973743C1EFE03B200520D03 /* LBXAlertAction */,
