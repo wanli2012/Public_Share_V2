@@ -555,7 +555,7 @@ static const CGFloat headerImageHeight = 180.0f;
 //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
 //        
 //    }else{
-    
+//    
         //使用自带地图导航
         CLLocationCoordinate2D destCoordinate;
         
@@ -582,6 +582,7 @@ static const CGFloat headerImageHeight = 180.0f;
     double theta = atan2(y, x) - 0.000003 * cos(x * M_PI);
     gcjPt.longitude = z * cos(theta);
     gcjPt.latitude = z * sin(theta);
+    
     return gcjPt;
 }
 
