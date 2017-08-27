@@ -199,21 +199,11 @@
 
 //添加产品
 - (IBAction)addProductEvent:(UIButton *)sender {
-    if ([[UserModel defaultUser].rzstatus isEqualToString:@"2"]) {
-        
-        LBAddMineProductionViewController *vc=[[LBAddMineProductionViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-        self.hidesBottomBarWhenPushed=NO;
-        
-    }else if ([[UserModel defaultUser].rzstatus isEqualToString:@"1"]) {
-        [MBProgressHUD showError:@"审核中"];
-    }else{
-
-        LBImprovePersonalDataViewController *vc=[[LBImprovePersonalDataViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-        self.hidesBottomBarWhenPushed=NO;
-    }
     
+    self.hidesBottomBarWhenPushed = YES;
+    LBAddMineProductionViewController *vc=[[LBAddMineProductionViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+       
 }
 //编辑完成
 -(void)edtingEventbutton:(UIButton*)button{

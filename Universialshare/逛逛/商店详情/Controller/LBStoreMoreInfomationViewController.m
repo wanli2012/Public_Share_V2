@@ -26,9 +26,15 @@
 #import "LBCheckMoreHotProductViewController.h"
 #import "JZAlbumViewController.h"
 
+//地图
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
+#import <BaiduMapAPI_Search/BMKSearchComponent.h>
+
 static const CGFloat headerImageHeight = 180.0f;
 
-@interface LBStoreMoreInfomationViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,LBStoreDetailAdressDelegete,LBStoreDetailNameDelegete,LBStoreDetailHeaderViewDelegete>
+@interface LBStoreMoreInfomationViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,LBStoreDetailAdressDelegete,LBStoreDetailNameDelegete,LBStoreDetailHeaderViewDelegete,BMKGeoCodeSearchDelegate>
 {
     GLShareView *_shareV;
     GLSet_MaskVeiw *_maskV;
@@ -538,18 +544,21 @@ static const CGFloat headerImageHeight = 180.0f;
 }
 //去这里
 -(void)gotheremap{
-    CGFloat lat = [self.dataDic[@"shop_data"][@"lat"] floatValue ];
-    CGFloat lng = [self.dataDic[@"shop_data"][@"lng"] floatValue ];
+    
+    CGFloat lat = [self.dataDic[@"shop_data"][@"lat"] floatValue];
+    CGFloat lng = [self.dataDic[@"shop_data"][@"lng"] floatValue];
     
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]])// -- 使用 canOpenURL 判断需要在info.plist 的 LSApplicationQueriesSchemes 添加 baidumap 。
     {
-        NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=目的地&mode=driving&coord_type=gcj02",lat, lng] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=%@&mode=driving&coord_type=gcj02",lat, lng,[NSString stringWithFormat:@"%@",self.dataDic[@"shop_data"][@"address"]]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
-    }else{
-        //使用自带地图导航
         
+    }else{
+        
+        //使用自带地图导航
         CLLocationCoordinate2D destCoordinate;
+        
         // 将数据传到反地址编码模型
         destCoordinate = [self getGaoDeCoordinateByBaiDuCoordinate:CLLocationCoordinate2DMake(lat, lng)];
         
@@ -557,8 +566,7 @@ static const CGFloat headerImageHeight = 180.0f;
         
         MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:destCoordinate addressDictionary:nil]];
         
-        [MKMapItem openMapsWithItems:@[currentLocation,toLocation] launchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,
-                                                                                   MKLaunchOptionsShowsTrafficKey:[NSNumber numberWithBool:YES]}];
+        [MKMapItem openMapsWithItems:@[currentLocation,toLocation] launchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,MKLaunchOptionsShowsTrafficKey:[NSNumber numberWithBool:YES]}];
     }
 
 }
