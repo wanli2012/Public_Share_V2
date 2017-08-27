@@ -548,14 +548,14 @@ static const CGFloat headerImageHeight = 180.0f;
     CGFloat lat = [self.dataDic[@"shop_data"][@"lat"] floatValue];
     CGFloat lng = [self.dataDic[@"shop_data"][@"lng"] floatValue];
     
-//    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]])// -- 使用 canOpenURL 判断需要在info.plist 的 LSApplicationQueriesSchemes 添加 baidumap 。
-//    {
-//        NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=目的地&mode=driving&coord_type=gcj02",lat, lng] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//        
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
-//        
-//    }else{
-//    
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]])// -- 使用 canOpenURL 判断需要在info.plist 的 LSApplicationQueriesSchemes 添加 baidumap 。
+    {
+        NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=目的地&mode=driving&coord_type=gcj02",lat, lng] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+        
+    }else{
+//
         //使用自带地图导航
         CLLocationCoordinate2D destCoordinate;
         
@@ -568,7 +568,7 @@ static const CGFloat headerImageHeight = 180.0f;
         toLocation.name = @"目的地";
         
         [MKMapItem openMapsWithItems:@[currentLocation,toLocation] launchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,MKLaunchOptionsShowsTrafficKey:[NSNumber numberWithBool:YES]}];
-//    }
+    }
 
 }
 
