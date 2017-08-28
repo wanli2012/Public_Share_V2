@@ -18,6 +18,7 @@
 #import "GLHomeLiveChooseController.h"
 #import "UIButton+SetEdgeInsets.h"
 #import "MXNavigationBarManager.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
 
 @interface LBNearClassfityViewController ()<UITableViewDataSource,UITableViewDelegate,GLNearby_MerchatListCellDelegate>
 {
@@ -234,14 +235,14 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]])// -- 使用 canOpenURL 判断需要在info.plist 的 LSApplicationQueriesSchemes 添加 baidumap 。
     {
-          NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=目的地&mode=driving&coord_type=gcj02",lat, lng] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+          NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=目的地&mode=driving&coord_type=bd0911",lat, lng] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
     }else{
         //使用自带地图导航
         
         CLLocationCoordinate2D destCoordinate;
         // 将数据传到反地址编码模型
-         destCoordinate = [self getGaoDeCoordinateByBaiDuCoordinate:CLLocationCoordinate2DMake(lat, lng)];
+         destCoordinate = AMapCoordinateConvert(CLLocationCoordinate2DMake(lat,lng), AMapCoordinateTypeBaidu);
         
         MKMapItem *currentLocation =[MKMapItem mapItemForCurrentLocation];
         
@@ -252,11 +253,6 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     }
 }
 
-// 百度地图经纬度转换为高德地图经纬度
-- (CLLocationCoordinate2D)getGaoDeCoordinateByBaiDuCoordinate:(CLLocationCoordinate2D)coordinate
-{
-    return CLLocationCoordinate2DMake(coordinate.latitude - 0.006, coordinate.longitude - 0.0065);
-}
 
 //选择
 - (IBAction)choose:(UIButton *)sender {
