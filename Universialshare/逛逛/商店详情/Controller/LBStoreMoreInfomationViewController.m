@@ -31,6 +31,7 @@
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
 #import <BaiduMapAPI_Search/BMKSearchComponent.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
 
 static const CGFloat headerImageHeight = 180.0f;
 
@@ -550,17 +551,16 @@ static const CGFloat headerImageHeight = 180.0f;
     
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]])// -- 使用 canOpenURL 判断需要在info.plist 的 LSApplicationQueriesSchemes 添加 baidumap 。
     {
-        NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=目的地&mode=driving&coord_type=gcj02",lat, lng] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=目的地&mode=driving&coord_type=bd0911",lat, lng] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
         
     }else{
-
+//
         //使用自带地图导航
         CLLocationCoordinate2D destCoordinate;
-        
         // 将数据传到反地址编码模型
-        destCoordinate = [self getGaoDeCoordinateByBaiDuCoordinate:CLLocationCoordinate2DMake(lat, lng)];
+        destCoordinate = AMapCoordinateConvert(CLLocationCoordinate2DMake(lat,lng), AMapCoordinateTypeBaidu);
         
         MKMapItem *currentLocation =[MKMapItem mapItemForCurrentLocation];
         
@@ -568,22 +568,8 @@ static const CGFloat headerImageHeight = 180.0f;
         toLocation.name = @"目的地";
         
         [MKMapItem openMapsWithItems:@[currentLocation,toLocation] launchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,MKLaunchOptionsShowsTrafficKey:[NSNumber numberWithBool:YES]}];
-    }
+      }
 
-}
-
-// 百度地图经纬度转换为高德地图经纬度
-- (CLLocationCoordinate2D)getGaoDeCoordinateByBaiDuCoordinate:(CLLocationCoordinate2D)coordinate
-{
-//    return CLLocationCoordinate2DMake(coordinate.latitude - 0.006, coordinate.longitude - 0.0065);
-    CLLocationCoordinate2D gcjPt;
-    double x = coordinate.longitude - 0.0065, y = coordinate.latitude - 0.006;
-    double z = sqrt(x * x + y * y) - 0.00002 * sin(y * M_PI);
-    double theta = atan2(y, x) - 0.000003 * cos(x * M_PI);
-    gcjPt.longitude = z * cos(theta);
-    gcjPt.latitude = z * sin(theta);
-    
-    return gcjPt;
 }
 
 #pragma mark -- LBStoreDetailNameDelegete
