@@ -817,10 +817,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 //刷新数据
 -(void)refreshDataSource{
 
-//    NSDictionary *dicc = @{@"999":@"周永峰你个傻逼"};
-//    NSString *str = [self convertToJsonData:dicc];
-//    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
-    
     [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:@{@"token":[UserModel defaultUser].token,@"uid":[UserModel defaultUser].uid} finish:^(id responseObject) {
 
         if ([responseObject[@"code"] integerValue] == 1) {
@@ -854,6 +850,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [UserModel defaultUser].order_line = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"order_line"]];
             [UserModel defaultUser].system_message = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"system_message"]];
             [UserModel defaultUser].give = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"give"]];
+            
+            [UserModel defaultUser].pre_phone = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"pre_phone"]];
             
             if ([[UserModel defaultUser].idcard rangeOfString:@"null"].location != NSNotFound) {
                 
