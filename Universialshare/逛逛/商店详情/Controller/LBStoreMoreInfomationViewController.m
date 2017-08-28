@@ -555,7 +555,7 @@ static const CGFloat headerImageHeight = 180.0f;
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
         
     }else{
-//
+
         //使用自带地图导航
         CLLocationCoordinate2D destCoordinate;
         
