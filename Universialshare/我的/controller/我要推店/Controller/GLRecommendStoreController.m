@@ -118,15 +118,17 @@
     if (self.imageview.subviews > 0) {
         [self.imageview.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     }
+    
     int index;
+    
     if (self.imagearr.count>3) {
         index = 3;
     }else{
-        index = self.imagearr.count;
+        index = (int)self.imagearr.count;
     }
+    
     for (int i =0 ; i< index; i++) {
-        
-        //int v = i / 3;
+
         int h = i % 3;
         UIImageView *imagev=[[UIImageView alloc]init];
         UIButton *button=[[UIButton alloc]init];
@@ -159,11 +161,9 @@
                 make.height.equalTo(@20);
                 
             }];
-            
+
         }
-        
     }
-   
 }
 
 // 初始化
@@ -176,7 +176,7 @@
     if (self.imagearrone.count>3) {
         index = 3;
     }else{
-        index = self.imagearrone.count;
+        index = (int)self.imagearrone.count;
     }
     for (int i =0 ; i< index; i++) {
         
@@ -438,7 +438,7 @@
     picker.mediaTypes = @[mediaTypes[0]];
     //5.其他配置
     //allowsEditing是否允许编辑，如果值为no，选择照片之后就不会进入编辑界面
-    picker.allowsEditing = YES;
+    picker.allowsEditing = NO;
     //6.推送
     [self presentViewController:picker animated:YES completion:nil];
 }
@@ -449,24 +449,25 @@
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         // 设置拍照后的图片可以被编辑
-        picker.allowsEditing = YES;
+        picker.allowsEditing = NO;
         picker.sourceType = sourceType;
         [self presentViewController:picker animated:YES completion:nil];
     }else {
         
     }
 }
+
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if ([type isEqualToString:@"public.image"]) {
         // 先把图片转成NSData
-        UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
         NSData *data;
         if (UIImagePNGRepresentation(image) == nil) {
             
             data = UIImageJPEGRepresentation(image, 0.2);
         }else {
-            data=    UIImageJPEGRepresentation(image, 0.2);
+            data = UIImageJPEGRepresentation(image, 0.2);
         }
         if (self.typeimage == 1) {
             //设置图片

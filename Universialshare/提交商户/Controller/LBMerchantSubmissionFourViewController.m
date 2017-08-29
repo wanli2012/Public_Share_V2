@@ -342,6 +342,7 @@
 //    }
 
     
+    
     if (self.storeName.text.length <= 0) {
         [MBProgressHUD showError:@"请输入店名"];
         return;
@@ -426,7 +427,6 @@
         return;
     }
     
-    
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
@@ -468,6 +468,8 @@
     }
     
     self.submit.userInteractionEnabled = NO;
+    self.submit.backgroundColor = [UIColor lightGrayColor];
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
     manager.requestSerializer.timeoutInterval = 20;
@@ -493,7 +495,7 @@
         
         if (uploadProgress.fractionCompleted == 1.0) {
             [SVProgressHUD dismiss];
-            self.submit.userInteractionEnabled = YES;
+//            self.submit.userInteractionEnabled = YES;
         }
         
     }success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -504,11 +506,14 @@
            [self.navigationController popToRootViewControllerAnimated:YES];
         }else{
             [MBProgressHUD showError:dic[@"message"]];
+            self.submit.userInteractionEnabled = YES;
+            self.submit.backgroundColor = TABBARTITLE_COLOR;
         }
         [_loadV removeloadview];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         self.submit.userInteractionEnabled = YES;
+        self.submit.backgroundColor = TABBARTITLE_COLOR;
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
@@ -542,7 +547,7 @@
     picker.mediaTypes = @[mediaTypes[0]];
     //5.其他配置
     //allowsEditing是否允许编辑，如果值为no，选择照片之后就不会进入编辑界面
-    picker.allowsEditing = YES;
+    picker.allowsEditing = NO;
     //6.推送
     [self presentViewController:picker animated:YES completion:nil];
 }
@@ -553,7 +558,7 @@
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         // 设置拍照后的图片可以被编辑
-        picker.allowsEditing = YES;
+        picker.allowsEditing = NO;
         picker.sourceType = sourceType;
         [self presentViewController:picker animated:YES completion:nil];
     }else {
@@ -564,7 +569,7 @@
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if ([type isEqualToString:@"public.image"]) {
         // 先把图片转成NSData
-        UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
         NSData *data;
         if (UIImagePNGRepresentation(image) == nil) {
             

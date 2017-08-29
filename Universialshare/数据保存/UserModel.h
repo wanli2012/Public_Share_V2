@@ -59,6 +59,7 @@
 @property (nonatomic ,copy)NSString  *t_two;
 @property (nonatomic ,copy)NSString  *t_three;
 //商家额度
+@property (nonatomic ,copy)NSString  *single;//每单额度
 @property (nonatomic ,copy)NSString  *surplusLimit;//剩余额度
 @property (nonatomic ,copy)NSString  *allLimit;//总额度
 @property (nonatomic ,copy)NSString  *isapplication;//判断是否正在申请额度 0 为没有申请 1 为正在申请
