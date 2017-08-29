@@ -852,6 +852,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [UserModel defaultUser].give = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"give"]];
             
             [UserModel defaultUser].pre_phone = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"pre_phone"]];
+            [UserModel defaultUser].single = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"single"]];
             
             if ([[UserModel defaultUser].idcard rangeOfString:@"null"].location != NSNotFound) {
                 
@@ -869,6 +870,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 
                 [UserModel defaultUser].truename = @"";
             }
+            if ([[UserModel defaultUser].single rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].single = @"0.00";
+            }
             
             [usermodelachivar achive];
             
@@ -878,7 +883,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 
                 self.headview.headimage.image = [UIImage imageNamed:@"dtx_icon"];
             }
-            
             
         }else{
             

@@ -297,7 +297,7 @@
         return;
     }
     
-    self.manager =  [NTESVerifyCodeManager sharedInstance];
+    self.manager = [NTESVerifyCodeManager sharedInstance];
     if (self.manager) {
         
         // 如果需要了解组件的执行情况,则实现回调
@@ -316,14 +316,17 @@
         // 显示验证码
         [self.manager openVerifyCodeView:nil];
     }
+    
+    self.comitbt.enabled = NO;
+    self.comitbt.backgroundColor = [UIColor lightGrayColor];
    
 }
 
 -(void)sureSubmint{
-
-    self.comitbt.backgroundColor = [UIColor lightGrayColor];
+    
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"user/getTrueName" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"username" :self.phoneTf.text,@"group_id" :self.usertype} finish:^(id responseObject) {
+        
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             

@@ -456,6 +456,7 @@
         
     }
 }
+
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if ([type isEqualToString:@"public.image"]) {
@@ -466,7 +467,7 @@
             
             data = UIImageJPEGRepresentation(image, 0.2);
         }else {
-            data=    UIImageJPEGRepresentation(image, 0.2);
+            data = UIImageJPEGRepresentation(image, 0.2);
         }
         if (self.typeimage == 1) {
             //设置图片

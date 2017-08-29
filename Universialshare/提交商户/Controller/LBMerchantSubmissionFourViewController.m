@@ -342,6 +342,7 @@
 //    }
 
     
+    
     if (self.storeName.text.length <= 0) {
         [MBProgressHUD showError:@"请输入店名"];
         return;
@@ -426,7 +427,6 @@
         return;
     }
     
-    
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
@@ -468,6 +468,8 @@
     }
     
     self.submit.userInteractionEnabled = NO;
+    self.submit.backgroundColor = [UIColor lightGrayColor];
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
     manager.requestSerializer.timeoutInterval = 20;
@@ -493,7 +495,7 @@
         
         if (uploadProgress.fractionCompleted == 1.0) {
             [SVProgressHUD dismiss];
-            self.submit.userInteractionEnabled = YES;
+//            self.submit.userInteractionEnabled = YES;
         }
         
     }success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -504,11 +506,14 @@
            [self.navigationController popToRootViewControllerAnimated:YES];
         }else{
             [MBProgressHUD showError:dic[@"message"]];
+            self.submit.userInteractionEnabled = YES;
+            self.submit.backgroundColor = TABBARTITLE_COLOR;
         }
         [_loadV removeloadview];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         self.submit.userInteractionEnabled = YES;
+        self.submit.backgroundColor = TABBARTITLE_COLOR;
         [MBProgressHUD showError:error.localizedDescription];
         
     }];

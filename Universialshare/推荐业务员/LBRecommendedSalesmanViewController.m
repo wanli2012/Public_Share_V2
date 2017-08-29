@@ -273,6 +273,9 @@
         return;
     }
     
+    self.nextBt.enabled = NO;
+    self.nextBt.backgroundColor = [UIColor lightGrayColor];
+    
     NSString *encryptsecret = [RSAEncryptor encryptString:self.secrestTf.text publicKey:public_RSA];
     
     NSDictionary *dic = @{@"uid":[UserModel defaultUser].uid,
@@ -298,7 +301,7 @@
     [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
     [manager POST:[NSString stringWithFormat:@"%@user/openTjmember",URL_Base] parameters:dic  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         //将图片以表单形式上传
-        //        NSLog(@"dict = %@",dict);
+
         for (int i = 0; i < imageViewArr.count; i ++) {
             
             NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
@@ -313,8 +316,6 @@
     }progress:^(NSProgress *uploadProgress){
         
         [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
-
-       // [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
         
         if (uploadProgress.fractionCompleted == 1.0) {
              [SVProgressHUD dismiss];
@@ -323,17 +324,26 @@
     }success:^(NSURLSessionDataTask *task, id responseObject) {
        
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        
         if ([dic[@"code"]integerValue]==1) {
             
             [MBProgressHUD showError:dic[@"message"]];
           [self.navigationController popToRootViewControllerAnimated:YES];
+            
         }else{
+            
+            self.nextBt.enabled = YES;
+            
+            self.nextBt.backgroundColor = TABBARTITLE_COLOR;
+            
             [MBProgressHUD showError:dic[@"message"]];
             [SVProgressHUD dismiss];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [SVProgressHUD dismiss];
         [MBProgressHUD showError:error.localizedDescription];
+        self.nextBt.enabled = YES;
+        self.nextBt.backgroundColor = TABBARTITLE_COLOR;
     }];
  
 }

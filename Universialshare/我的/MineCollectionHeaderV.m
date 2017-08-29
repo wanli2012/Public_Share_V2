@@ -154,33 +154,38 @@
             if ([cell.infoL.text isEqualToString:@""] || [cell.infoL.text rangeOfString:@"null"].location != NSNotFound) {
                 cell.infoL.text = @"0";
             }
-        }else if (indexPath.row == 2) {
+        }else if(indexPath.row == 2){
+            cell.infoL.text = [UserModel defaultUser].single;
+            if ([cell.infoL.text isEqualToString:@""]) {
+                cell.infoL.text = @"0";
+            }
+        }else if (indexPath.row == 3) {
             cell.infoL.text =  [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].mark floatValue]];
             if ([cell.infoL.text isEqualToString:@""] || [cell.infoL.text rangeOfString:@"null"].location != NSNotFound) {
                 cell.infoL.text = @"0";
             }
-        }else if (indexPath.row == 3){
+        }else if (indexPath.row == 4){
             cell.infoL.text = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].loveNum floatValue]];
             if ([cell.infoL.text isEqualToString:@""] || [cell.infoL.text rangeOfString:@"null"].location != NSNotFound) {
                 cell.infoL.text = @"0";
             }
-        }else if (indexPath.row == 4){
+        }else if (indexPath.row == 5){
             cell.infoL.text =  [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].ketiBean floatValue]];
             if ([cell.infoL.text isEqualToString:@""]) {
                 cell.infoL.text = @"0";
             }
-        }else if (indexPath.row == 5){
+        }else if (indexPath.row == 6){
             cell.infoL.text = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].recommendMark floatValue]];
             if ([cell.infoL.text isEqualToString:@""]) {
                 cell.infoL.text = @"0";
             }
-        }else if (indexPath.row == 6){
+        }else if (indexPath.row == 7){
             cell.infoL.text = [UserModel defaultUser].lastFanLiTime;
             if ([cell.infoL.text isEqualToString:@""]) {
                 cell.infoL.text = @"暂无";
             }
         }
-        
+    
     }else{
         
         if (indexPath.row == 0) {
@@ -341,8 +346,11 @@
     if (!_titleArr) {
         
         if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
-             _titleArr=[NSArray arrayWithObjects:@"剩余额度",@"总额度",@"米券",@"米分",@"米子",@"推荐奖励",@"上个奖励日", nil];
+            
+             _titleArr=[NSArray arrayWithObjects:@"每日剩余额度",@"每日总额度",@"每单额度",@"米券",@"米分",@"米子",@"推荐奖励",@"上个奖励日",nil];
+            
         }else{
+            
             _titleArr=[NSArray arrayWithObjects:@"米券",@"米分",@"米子",@"推荐奖励",@"上个奖励日", nil];
         }
     }
