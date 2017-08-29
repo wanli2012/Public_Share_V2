@@ -351,7 +351,7 @@
         [MBProgressHUD showError:@"请输入营业执照号码"];
         return;
     }
-    if (self.maplb.text.length <= 0) {
+    if (self.maplb.text.length <= 0 || [self.maplb.text isEqualToString:@"选择地图"]) {
         [MBProgressHUD showError:@"还没有地图选点"];
         return;
     }
@@ -655,6 +655,7 @@
         return NO;
     }else if (textField == self.bossNametf && [string isEqualToString:@"\n"]){
         [self.bossPhoneTf becomeFirstResponder];
+        
         return NO;
     }else if (textField == self.bossPhoneTf && [string isEqualToString:@"\n"]){
         
@@ -677,15 +678,13 @@
     }
     
     if (textField == _bossNametf || textField == _connectName) {
-        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NMUBERS] invertedSet];
-        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        
+        NSString *regex = @"[a-zA-Z\u4e00-\u9fa5]+";
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
         if ([string isEqualToString:@""]) {
             return YES;
-        }
-        if ([string isEqualToString:filtered]) {
-            return NO;
         }else{
-            return YES;
+           return [pred evaluateWithObject:string];
         }
     }
     return YES;
