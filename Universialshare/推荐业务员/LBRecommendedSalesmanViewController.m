@@ -236,18 +236,22 @@
         [MBProgressHUD showError:@"请输入验证码"];
         return;
     }
+    
     if (self.trueNameLabel.text.length <=0 ) {
         [MBProgressHUD showError:@"请输入真实姓名"];
         return;
     }
+    
     if (self.levelTf.text.length <=0 ) {
         [MBProgressHUD showError:@"请输入等级"];
         return;
     }
+    
     if (self.proviceTf.text.length <=0 ) {
         [MBProgressHUD showError:@"请输入省份"];
         return;
     }
+    
     if (self.cityTf.text.length <=0 ) {
         [MBProgressHUD showError:@"请输入城市"];
         return;
@@ -255,6 +259,7 @@
 //    if (self.areaTf.text.length <=0 ) {
 //        [MBProgressHUD showError:@"请输入区域"];
 //    }
+    
     if (self.secrestTf.text.length <=0 ) {
         [MBProgressHUD showError:@"请输入密码"];
         return;
@@ -515,20 +520,49 @@
 //        }
 //    }
     
-    if (textField == self.nameTf && ![string isEqualToString:@""] ) {
+    if (textField == self.trueNameLabel && ![string isEqualToString:@""] ) {
         //只能输入英文或中文
-        NSCharacterSet * charact;
-        charact = [[NSCharacterSet characterSetWithCharactersInString:NMUBERS]invertedSet];
-        NSString * filtered = [[string componentsSeparatedByCharactersInSet:charact]componentsJoinedByString:@""];
-        BOOL canChange = [string isEqualToString:filtered];
-        if(canChange) {
-            [MBProgressHUD showError:@"只能输入英文或中文"];
-            return NO;
+
+        for(int i=0; i< [string length];i++){
+            
+            int a = [string characterAtIndex:i];
+            
+            if(a < 0x4e00 || a > 0x9fff){//不是汉字
+                
+                if (([string characterAtIndex:0] >= 'a' && [string characterAtIndex:0] <= 'z') || ([string characterAtIndex:0] >= 'A' && [string characterAtIndex:0] <= 'Z')) {//是字母
+                    
+                }else{//不是汉字 也不是字母
+                    [MBProgressHUD showError:@"只能输入英文或中文"];
+                    return NO;
+                }
+            }
         }
     }
     
     return YES;
     
+}
+//判断是不是小写字母
+- (BOOL)isLetter:(NSString *)str
+{
+    if (([str characterAtIndex:0] >= 'a' && [str characterAtIndex:0] <= 'z') || ([str characterAtIndex:0] >= 'A' && [str characterAtIndex:0] <= 'Z')) {
+        return YES;
+    }
+    return NO;
+}
+
+-(BOOL)isChineseFirst:(NSString *)firstStr
+{
+    //是否以中文开头(unicode中文编码范围是0x4e00~0x9fa5)
+    int utfCode = 0;
+    void *buffer = &utfCode;
+    NSRange range = NSMakeRange(0, 1);
+    //判断是不是中文开头的,buffer->获取字符的字节数据 maxLength->buffer的最大长度 usedLength->实际写入的长度，不需要的话可以传递NULL encoding->字符编码常数，不同编码方式转换后的字节长是不一样的，这里我用了UTF16 Little-Endian，maxLength为2字节，如果使用Unicode，则需要4字节 options->编码转换的选项，有两个值，分别是NSStringEncodingConversionAllowLossy和NSStringEncodingConversionExternalRepresentation range->获取的字符串中的字符范围,这里设置的第一个字符 remainingRange->建议获取的范围，可以传递NULL
+    BOOL b = [firstStr getBytes:buffer maxLength:2 usedLength:NULL encoding:NSUTF16LittleEndianStringEncoding options:NSStringEncodingConversionExternalRepresentation range:range remainingRange:NULL];
+    if (b && (utfCode >= 0x4e00 && utfCode <= 0x9fa5))
+        return YES;
+    else
+        return NO;
 }
 
 //获取倒计时
