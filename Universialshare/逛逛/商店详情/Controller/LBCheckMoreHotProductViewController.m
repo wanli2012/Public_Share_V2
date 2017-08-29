@@ -97,7 +97,6 @@ static NSString *ID = @"LBStoreDetailHotProductTableViewCell";
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
             
-            
         }
         
     } enError:^(NSError *error) {
@@ -105,7 +104,6 @@ static NSString *ID = @"LBStoreDetailHotProductTableViewCell";
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
         [MBProgressHUD showError:error.localizedDescription];
-        
         
     }];
     

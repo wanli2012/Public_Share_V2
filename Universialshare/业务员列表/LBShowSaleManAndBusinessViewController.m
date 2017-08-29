@@ -18,6 +18,7 @@
 #import "LBMySalesmanListFaildViewController.h"
 #import "CommonMenuView.h"
 #import "UIView+AdjustFrame.h"
+#import "LBSavaTypeModel.h"
 
 @interface LBShowSaleManAndBusinessViewController ()
 {
@@ -200,10 +201,12 @@
     self.titleLb.text = str;
     switch (tag) {
         case 1:
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@1}];
+            [LBSavaTypeModel defaultUser].type = @"1";
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"filterExtensionCategories" object:nil userInfo:nil];
             break;
         case 2:
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@2}];
+            [LBSavaTypeModel defaultUser].type = @"2";
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"filterExtensionCategories" object:nil userInfo:nil];
             break;
 //        case 3:
 //            [[NSNotificationCenter defaultCenter]postNotificationName:@"filterExtensionCategories" object:nil userInfo:@{@"indexVc":@3}];
