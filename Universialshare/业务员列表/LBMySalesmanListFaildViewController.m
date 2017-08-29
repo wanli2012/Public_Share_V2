@@ -12,6 +12,7 @@
 #import "LBSaleManPersonInfoViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "LBSavaTypeModel.h"
 
 @interface LBMySalesmanListFaildViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -34,7 +35,6 @@
     self.tableview.tableFooterView = [UIView new];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableview registerNib:[UINib nibWithNibName:@"LBMySalesmanListTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMySalesmanListTableViewCell"];
-    self.type = @"1";
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(filterExtensionCategories:) name:@"filterExtensionCategories" object:nil];
     
     //获取数据
@@ -85,7 +85,7 @@
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"status"] = @3;// 1通过 2审核中 3失败
-    dict[@"type"] = self.type;
+    dict[@"type"] = [LBSavaTypeModel defaultUser].type;
     dict[@"page"] = @(self.page);
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
@@ -132,9 +132,6 @@
 //筛选
 -(void)filterExtensionCategories:(NSNotification*)notification{
     
-    NSDictionary *dic = notification.userInfo;
-    
-    self.type = [NSString stringWithFormat:@"%@",dic[@"indexVc"]];
     [self updateData:YES];
 }
 
@@ -145,7 +142,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if ([self.type isEqualToString:@"1"]) {
+    if ([[LBSavaTypeModel defaultUser].type isEqualToString:@"1"]) {
 
         return 100;
     }
@@ -158,7 +155,7 @@
     LBMySalesmanListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBMySalesmanListTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.index = indexPath.row;
-    cell.typestr = self.type;
+    cell.typestr = [LBSavaTypeModel defaultUser].type;
     cell.model = self.models[indexPath.row];
         
     //    __weak typeof(self) weakself =self;

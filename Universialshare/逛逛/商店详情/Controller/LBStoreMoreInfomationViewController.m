@@ -551,7 +551,7 @@ static const CGFloat headerImageHeight = 180.0f;
     
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"baidumap://"]])// -- 使用 canOpenURL 判断需要在info.plist 的 LSApplicationQueriesSchemes 添加 baidumap 。
     {
-        NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f|name=目的地&mode=driving&coord_type=bd0911",lat, lng] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *urlString = [[NSString stringWithFormat:@"baidumap://map/direction?origin={{我的位置}}&destination=latlng:%f,%f | name:目的地&mode=driving&coord_type=bd0911",lat, lng] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
         
