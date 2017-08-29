@@ -199,6 +199,11 @@
             [UserModel defaultUser].congig_ads = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"congig_ads"]];
             [UserModel defaultUser].card_num = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"card_num"]];
             [UserModel defaultUser].open_bank = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"open_bank"]];
+            [UserModel defaultUser].pre_phone = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"pre_phone"]];
+            [UserModel defaultUser].single = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"single"]];
+            
+            [UserModel defaultUser].rzstatus = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"rzstatus"]];
+            
             
             if ([[UserModel defaultUser].banknumber rangeOfString:@"null"].location != NSNotFound) {
                 
