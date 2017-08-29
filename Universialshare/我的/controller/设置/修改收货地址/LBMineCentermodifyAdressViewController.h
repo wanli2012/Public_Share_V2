@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^returnAddressBlock)(NSString *name,NSString *phoneNum,NSString *address);
+typedef void (^returnAddressBlock)(NSString *name,NSString *phoneNum,NSString *address,NSString *addressid);
 @interface LBMineCentermodifyAdressViewController : UIViewController
 
 @property (nonatomic, copy)returnAddressBlock block;

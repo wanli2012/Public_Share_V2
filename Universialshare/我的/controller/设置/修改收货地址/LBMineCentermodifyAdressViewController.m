@@ -169,7 +169,7 @@
 //    cell.phoneLb.text = [NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"s_phone"]];
     cell.phoneLb.text = [NSString stringWithFormat:@"%@*****%@",[self.dataarr[indexPath.row][@"s_phone"] substringToIndex:3],[self.dataarr[indexPath.row][@"s_phone"] substringFromIndex:7]];
     cell.adressLn.text = [NSString stringWithFormat:@"%@%@",self.dataarr[indexPath.row][@"areas"],self.dataarr[indexPath.row][@"s_address"]];
-    
+    cell.address_id = [NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"address_id"]];
     if ([self.dataarr[indexPath.row][@"is_default"] integerValue] == 1) {
         [cell.setupBt setImage:[UIImage imageNamed:@"支付选中"] forState:UIControlStateNormal];
     }else{
@@ -213,7 +213,7 @@
 
     if([lastVC isKindOfClass:[GLConfirmOrderController class]]){
     
-        self.block(cell.nameLb.text,cell.phoneLb.text,cell.adressLn.text);
+        self.block(cell.nameLb.text,cell.phoneLb.text,cell.adressLn.text,cell.address_id);
          [self.navigationController popViewControllerAnimated:YES];
     }
     

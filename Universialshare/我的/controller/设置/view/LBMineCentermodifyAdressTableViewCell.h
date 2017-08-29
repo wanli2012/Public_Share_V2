@@ -22,6 +22,8 @@
 
 @property (assign, nonatomic)NSInteger index;
 
+@property (strong, nonatomic)NSString *address_id;
+
 //@property (strong, nonatomic) RACSubject *subject;
 
 @property (nonatomic, copy)void(^returnSetUpbt)(NSInteger index);

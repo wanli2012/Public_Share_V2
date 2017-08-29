@@ -152,10 +152,11 @@ static NSString *ID = @"GLOrderGoodsCell";
     
     self.hidesBottomBarWhenPushed = YES;
     LBMineCentermodifyAdressViewController *modifyAD = [[LBMineCentermodifyAdressViewController alloc] init];
-    modifyAD.block = ^(NSString *name,NSString *phone,NSString *address){
+    modifyAD.block = ^(NSString *name,NSString *phone,NSString *address,NSString *addressid){
         self.nameLabel.text = [NSString stringWithFormat:@"收货人:%@",name];
         self.phoneLabel.text = [NSString stringWithFormat:@"电话号码:%@",phone];
         self.addressLabel.text = [NSString stringWithFormat:@"收货地址:%@",address];
+        self.address_id = addressid;
     };
     
     [self.navigationController pushViewController:modifyAD animated:YES];
