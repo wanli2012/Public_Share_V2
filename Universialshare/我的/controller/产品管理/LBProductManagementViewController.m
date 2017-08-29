@@ -10,7 +10,6 @@
 #import "LBProductManagementTableViewCell.h"
 #import "LBAddMineProductionViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "LBImprovePersonalDataViewController.h"
 
 @interface LBProductManagementViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,LBProductManagementDelegete>
 

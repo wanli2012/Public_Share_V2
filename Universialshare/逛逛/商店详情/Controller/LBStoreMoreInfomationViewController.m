@@ -27,15 +27,11 @@
 #import "JZAlbumViewController.h"
 
 //地图
-#import <BaiduMapAPI_Map/BMKMapComponent.h>
-#import <BaiduMapAPI_Location/BMKLocationComponent.h>
-#import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
-#import <BaiduMapAPI_Search/BMKSearchComponent.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 
 static const CGFloat headerImageHeight = 180.0f;
 
-@interface LBStoreMoreInfomationViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,LBStoreDetailAdressDelegete,LBStoreDetailNameDelegete,LBStoreDetailHeaderViewDelegete,BMKGeoCodeSearchDelegate>
+@interface LBStoreMoreInfomationViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,LBStoreDetailAdressDelegete,LBStoreDetailNameDelegete,LBStoreDetailHeaderViewDelegete>
 {
     GLShareView *_shareV;
     GLSet_MaskVeiw *_maskV;
@@ -556,7 +552,6 @@ static const CGFloat headerImageHeight = 180.0f;
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
         
     }else{
-//
         //使用自带地图导航
         CLLocationCoordinate2D destCoordinate;
         // 将数据传到反地址编码模型
