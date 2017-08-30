@@ -343,7 +343,7 @@
                                                     <rect key="frame" x="0.0" y="220" width="355" height="50"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="街道地址:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRN-kb-wRj">
-                                                            <rect key="frame" x="10" y="15" width="65.5" height="20"/>
+                                                            <rect key="frame" x="10" y="15" width="66" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="T3N-nB-N2K"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="Tlh-tK-vIr"/>
@@ -353,7 +353,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入街道名称和门牌号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WX0-Jr-ljt">
-                                                            <rect key="frame" x="85.5" y="5" width="259.5" height="40"/>
+                                                            <rect key="frame" x="86" y="5" width="259" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="Zbf-3a-vcw"/>
                                                             </constraints>

@@ -278,6 +278,18 @@
         return;
     }
     
+    
+    if (!self.IDImageV.image || [UIImagePNGRepresentation(self.IDImageV.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"样板-拷贝"])]) {
+        [MBProgressHUD showError:@"请上传身份证正面照"];
+        return;
+    }
+    
+    if (!self.IDImageV2.image || [UIImagePNGRepresentation(self.IDImageV2.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝"])]) {
+        [MBProgressHUD showError:@"请上传身份证反面照"];
+        return;
+    }
+    
+
     self.nextBt.enabled = NO;
     self.nextBt.backgroundColor = [UIColor lightGrayColor];
     
@@ -483,86 +495,27 @@
                 [toView removeFromSuperview];
                 [transitionContext completeTransition:YES]; //这个必须写,否则程序 认为动画还在执行中,会导致展示完界面后,无法处理用户的点击事件
             }
-            
         }];
-        
     }
-    
 }
-
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
-//    if (textField == self.idenfyCode && [string isEqualToString:@"\n"]) {
-//        [self.nameTf becomeFirstResponder];
-//        return NO;
-//    }else
-//    if (textField == self.nameTf && [string isEqualToString:@"\n"]) {
-//        [self.yanzTf becomeFirstResponder];
-//        return NO;
-//    }
-//   else if (textField == self.secrestTf && [string isEqualToString:@"\n"]) {
-//       
-//        [self.view endEditing:YES];
-//        return NO;
-//
-//    }
-    
-//    if (textField == self.idenfyCode ) {
-//        
-//        for(int i=0; i< [string length];i++){
-//            
-//            int a = [string characterAtIndex:i];
-//            
-//            if( a >= 0x4e00 && a <= 0x9fff)
-//                
-//                return NO;
-//        }
-//    }
-    
-    if (textField == self.trueNameLabel && ![string isEqualToString:@""] ) {
+    if (textField == self.trueNameLabel && ![string isEqualToString:@""]) {
+        
         //只能输入英文或中文
-
-        for(int i=0; i< [string length];i++){
-            
-            int a = [string characterAtIndex:i];
-            
-            if(a < 0x4e00 || a > 0x9fff){//不是汉字
-                
-                if (([string characterAtIndex:0] >= 'a' && [string characterAtIndex:0] <= 'z') || ([string characterAtIndex:0] >= 'A' && [string characterAtIndex:0] <= 'Z')) {//是字母
-                    
-                }else{//不是汉字 也不是字母
-                    [MBProgressHUD showError:@"只能输入英文或中文"];
-                    return NO;
-                }
-            }
+        NSString *regex = @"[a-zA-Z\u4e00-\u9fa5]+";
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+        if ([string isEqualToString:@""]) {
+            return YES;
+        }else{
+            return [pred evaluateWithObject:string];
         }
+
     }
     
     return YES;
     
-}
-//判断是不是小写字母
-- (BOOL)isLetter:(NSString *)str
-{
-    if (([str characterAtIndex:0] >= 'a' && [str characterAtIndex:0] <= 'z') || ([str characterAtIndex:0] >= 'A' && [str characterAtIndex:0] <= 'Z')) {
-        return YES;
-    }
-    return NO;
-}
-
--(BOOL)isChineseFirst:(NSString *)firstStr
-{
-    //是否以中文开头(unicode中文编码范围是0x4e00~0x9fa5)
-    int utfCode = 0;
-    void *buffer = &utfCode;
-    NSRange range = NSMakeRange(0, 1);
-    //判断是不是中文开头的,buffer->获取字符的字节数据 maxLength->buffer的最大长度 usedLength->实际写入的长度，不需要的话可以传递NULL encoding->字符编码常数，不同编码方式转换后的字节长是不一样的，这里我用了UTF16 Little-Endian，maxLength为2字节，如果使用Unicode，则需要4字节 options->编码转换的选项，有两个值，分别是NSStringEncodingConversionAllowLossy和NSStringEncodingConversionExternalRepresentation range->获取的字符串中的字符范围,这里设置的第一个字符 remainingRange->建议获取的范围，可以传递NULL
-    BOOL b = [firstStr getBytes:buffer maxLength:2 usedLength:NULL encoding:NSUTF16LittleEndianStringEncoding options:NSStringEncodingConversionExternalRepresentation range:range remainingRange:NULL];
-    if (b && (utfCode >= 0x4e00 && utfCode <= 0x9fa5))
-        return YES;
-    else
-        return NO;
 }
 
 //获取倒计时

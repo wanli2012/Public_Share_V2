@@ -340,8 +340,6 @@
 //        [MBProgressHUD showError:@"请上传法人手持证件照"];
 //        return;
 //    }
-
-    
     
     if (self.storeName.text.length <= 0) {
         [MBProgressHUD showError:@"请输入店名"];
@@ -452,17 +450,17 @@
     NSMutableArray *imageViewArr = [NSMutableArray arrayWithObjects:self.positiveImage,self.otherSideImage,self.licenseImage,self.undertakingOne,self.doorplateImage,self.undertakingTwo ,nil];
     NSMutableArray *titleArr = [NSMutableArray arrayWithObjects:@"face_pic",@"con_pic",@"license_pic",@"promise_pic",@"store_pic",@"tg_pic", nil];
     
-    if (![UIImagePNGRepresentation(self.InteriorImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-12"])] ) {
+    if (![UIImagePNGRepresentation(self.InteriorImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-12"])]) {
         [imageViewArr addObject:self.InteriorImage];
         [titleArr addObject:@"store_one"];
     }
     
-    if ( ![UIImagePNGRepresentation(self.InteriorOneImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-13"])] ) {
+    if (![UIImagePNGRepresentation(self.InteriorOneImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-13"])] ) {
         [imageViewArr addObject:self.InteriorOneImage];
         [titleArr addObject:@"store_two"];
     }
     
-    if ( ![UIImagePNGRepresentation(self.DoorplateOneimage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"内景2-拷贝"])]) {
+    if (![UIImagePNGRepresentation(self.DoorplateOneimage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"内景2-拷贝"])]) {
         [imageViewArr addObject:self.DoorplateOneimage];
         [titleArr addObject:@"store_three"];
     }
@@ -687,8 +685,8 @@
            return [pred evaluateWithObject:string];
         }
     }
-    return YES;
     
+    return YES;
 }
 
 //只能输入整数
