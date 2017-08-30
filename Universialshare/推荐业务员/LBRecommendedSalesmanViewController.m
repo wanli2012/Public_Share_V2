@@ -194,6 +194,7 @@
         }else{
             
         }
+        
     } enError:^(NSError *error) {
         
     }];
@@ -501,13 +502,12 @@
         
         //只能输入英文或中文
         NSString *regex = @"[a-zA-Z\u4e00-\u9fa5]+";
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
         if ([string isEqualToString:@""]) {
             return YES;
         }else{
             return [pred evaluateWithObject:string];
         }
-
     }
     
     return YES;
