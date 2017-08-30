@@ -89,7 +89,7 @@
 
 //    self.noticeLabel.text = [NSString stringWithFormat:@" 1. 兑换建议优先选择工商银行\n 2. 单笔最多兑换50000颗米子\n 3.T+1:一天后到账,手续费为兑换数量的%.2lf%%\n    T+3:三天后到账,手续费为兑换数量的%.2lf%%\n    T+7:七天后到账,手续费为兑换数量的%.2lf%%\n 4.理财一：50%%兑换为现金, 兑换金额的20%%转换为米分，收取10%%服务费，20%%转化为米券 \n 5.理财二：兑换金额的70%%转换为米分，收取10%%服务费，20%%转化为米券\n 6.理财三：兑换金额的50%%转换为米分，收取10%%服务费，20%%转化为米券，20%%兑换为现金，同时收取对应的手续费\n 7.投资后米子和米分按1:5的比例返还米分\n 8.兑换米子数量至少为1000米子且为500的倍数 ", [[UserModel defaultUser].t_one floatValue]*100, [[UserModel defaultUser].t_two floatValue] *100, [[UserModel defaultUser].t_three floatValue] * 100] ;
     
-     self.noticeLabel.text = [NSString stringWithFormat:@" 1. 兑换建议优先选择工商银行\n 2. 单笔最多兑换50000颗米子\n 3.T+1:一天后到账,手续费为兑换数量的%.2lf%%\n    T+3:三天后到账,手续费为兑换数量的%.2lf%%\n    T+7:七天后到账,手续费为兑换数量的%.2lf%%\n ", [[UserModel defaultUser].t_one floatValue]*100, [[UserModel defaultUser].t_two floatValue] *100, [[UserModel defaultUser].t_three floatValue] * 100] ;
+     self.noticeLabel.text = [NSString stringWithFormat:@" 1. 兑换建议优先选择平安银行\n 2. 单笔最多兑换50000颗米子\n 3.T+1:一天后到账,手续费为兑换数量的%.2lf%%\n    T+3:三天后到账,手续费为兑换数量的%.2lf%%\n    T+7:七天后到账,手续费为兑换数量的%.2lf%%\n ", [[UserModel defaultUser].t_one floatValue]*100, [[UserModel defaultUser].t_two floatValue] *100, [[UserModel defaultUser].t_three floatValue] * 100] ;
 
 //    [UILabel changeLineSpaceForLabel:self.noticeLabel WithSpace:5.0];
 

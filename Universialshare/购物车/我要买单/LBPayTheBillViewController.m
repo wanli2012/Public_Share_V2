@@ -15,6 +15,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"
+#import "LBPaysucessView.h"
 
 @interface LBPayTheBillViewController ()<UITextFieldDelegate>
 {
@@ -23,6 +24,7 @@
     GLSet_MaskVeiw *_maskV;
     GLOrderPayView *_contentView;
 }
+@property (weak, nonatomic) IBOutlet UIScrollView *scrolview;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentW;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentH;
@@ -39,6 +41,7 @@
 @property (nonatomic, assign)NSInteger payType;
 @property (nonatomic, assign)NSInteger modelType;
 @property (nonatomic, strong)NSDictionary *dataDic;
+@property (nonatomic, strong)LBPaysucessView *paysucessView;
 
 @end
 
@@ -71,6 +74,9 @@
     self.moneytf.placeholder = [NSString stringWithFormat:@"最多可消费¥%@",self.surplusLimit];
     
     [self isShowPayInterface];
+    
+    [self.view addSubview:self.paysucessView];
+    self.paysucessView.hidden = YES;
 }
 
 -(void)isShowPayInterface{
@@ -196,6 +202,10 @@
             [MBProgressHUD showError:responseObject[@"message"]];
         }
         
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+        
     } enError:^(NSError *error) {
         [_loadV removeloadview];
         
@@ -261,20 +271,27 @@
             }else if (self.payType == 2){
                 
                 [MBProgressHUD showSuccess:responseObject[@"message"]];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
                 
             }else if (self.payType == 4){
                 
                 [MBProgressHUD showSuccess:@"支付成功"];
+                _paysucessView.hidden = NO;
+                self.scrolview.hidden = YES;
+                _paysucessView.pricelb.text = [NSString stringWithFormat:@"¥ %@",self.moneytf.text];
                 
             }else{
                 
                 [MBProgressHUD showSuccess:responseObject[@"message"]];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
             }
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.navigationController popViewControllerAnimated:YES];
-            });
-            
+        }else{
+          [MBProgressHUD showSuccess:responseObject[@"message"]];
         }
         
         [self dismiss];
@@ -385,5 +402,16 @@
     self.contentH.constant = 510;
     self.contentW.constant = SCREEN_WIDTH;
 
+}
+
+-(LBPaysucessView*)paysucessView{
+
+    if (!_paysucessView) {
+        _paysucessView = [[LBPaysucessView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64 )];
+        _paysucessView.backgroundColor = [UIColor whiteColor];
+        _paysucessView.pricelb.text = @"¥ 0";
+    }
+
+    return _paysucessView;
 }
 @end

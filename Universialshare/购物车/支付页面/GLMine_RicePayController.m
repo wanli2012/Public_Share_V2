@@ -336,6 +336,7 @@
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"orderId"] = self.order_id;
     dict[@"order_id"] =[RSAEncryptor encryptString:[NSString stringWithFormat:@"%@_%@_%@",self.order_sh,self.order_id,self.order_sn] publicKey:public_RSA];
+    dict[@"version"] = @3;
     
 //    dict[@"order_id"] = [NSString stringWithFormat:@"%@_%@_%@",self.order_sh,self.order_id,self.order_sn];
     

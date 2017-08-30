@@ -199,6 +199,7 @@ static NSString *ID = @"GLOrderGoodsCell";
     dict[@"remark"] = self.remarkTextV.text;
     dict[@"cart_id"] = self.cart_id;
     dict[@"goods_spec"] = self.goods_spec;
+    dict[@"version"] = @"3";
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"shop/placeOrderEnd" paramDic:dict finish:^(id responseObject) {
