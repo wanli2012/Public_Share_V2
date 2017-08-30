@@ -197,6 +197,7 @@
     } enError:^(NSError *error) {
         
     }];
+    
 }
 -(void)sixbuttonE{
     self.levelStr= TWOSALER;
@@ -256,9 +257,6 @@
         [MBProgressHUD showError:@"请输入城市"];
         return;
     }
-//    if (self.areaTf.text.length <=0 ) {
-//        [MBProgressHUD showError:@"请输入区域"];
-//    }
     
     if (self.secrestTf.text.length <=0 ) {
         [MBProgressHUD showError:@"请输入密码"];
@@ -288,11 +286,9 @@
         [MBProgressHUD showError:@"请上传身份证反面照"];
         return;
     }
-    
 
     self.nextBt.enabled = NO;
     self.nextBt.backgroundColor = [UIColor lightGrayColor];
-    
     NSString *encryptsecret = [RSAEncryptor encryptString:self.secrestTf.text publicKey:public_RSA];
     
     NSDictionary *dic = @{@"uid":[UserModel defaultUser].uid,
