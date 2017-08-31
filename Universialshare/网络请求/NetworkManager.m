@@ -50,6 +50,7 @@
     }];
     
 }
+
 //没有延迟时间
 + (void)requestPOSTWithURLStrundelay:(NSString *)urlStr paramDic:(NSDictionary *)paramDic finish:(void(^)(id responseObject)) finish enError:(void(^)(NSError *error))enError {
     

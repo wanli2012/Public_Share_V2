@@ -20,6 +20,8 @@
 #import "UMessage.h"
 #import "WXApi.h"
 
+#import "UMMobClick/MobClick.h"
+
 #import <UserNotifications/UserNotifications.h>
 
 @interface AppDelegate ()<UNUserNotificationCenterDelegate,WXApiDelegate,UIAlertViewDelegate>
@@ -83,6 +85,18 @@
     }];
     //打开日志，方便调试
     //[UMessage setLogEnabled:YES];
+    
+    /**
+     *友盟统计
+     */
+    
+    UMConfigInstance.appKey = @"59a772c965b6d60e730002a1";
+    UMConfigInstance.channelId = @"App Store";
+//    UMConfigInstance.eSType = E_UM_GAME; //仅适用于游戏场景，应用统计不用设置
+    
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
+    [MobClick startWithConfigure:UMConfigInstance];//配置以上参数后调用此方法初始化SDK
     
     return YES;
 }

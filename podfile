@@ -12,4 +12,5 @@ pod 'ReactiveCocoa' ,'~>2.5'
 pod 'SDCycleScrollView', '~> 1.64'
 pod 'MJExtension'
 pod 'FMDB'
+pod 'UMengAnalytics-NO-IDFA'
 end
