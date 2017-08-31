@@ -87,7 +87,7 @@ static NSString *ID = @"GLMyCollectionCell";
     dict[@"page"] = [NSString stringWithFormat:@"%d",_page];
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/myCollection_list" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/myCollection_list" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
 
@@ -199,7 +199,7 @@ static NSString *ID = @"GLMyCollectionCell";
                 dict[@"GID"] = model.goodsID;
             }
             _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-            [NetworkManager requestPOSTWithURLStr:@"shop/delMyCollect" paramDic:dict finish:^(id responseObject) {
+            [NetworkManager requestPOSTWithURLStr:@"Shop/delMyCollect" paramDic:dict finish:^(id responseObject) {
                 [_loadV removeloadview];
                 [self endRefresh];
 

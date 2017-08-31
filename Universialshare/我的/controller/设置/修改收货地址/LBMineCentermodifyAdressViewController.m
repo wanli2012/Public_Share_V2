@@ -88,7 +88,7 @@
 -(void)initdatasource{
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/address_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" : [NSNumber numberWithInteger:self.page]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/address_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" : [NSNumber numberWithInteger:self.page]} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
@@ -232,7 +232,7 @@
 -(void)setupDefaultSelect:(NSInteger)index{
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/setDefaultAddress" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"address_id" : self.dataarr[index][@"address_id"]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/setDefaultAddress" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"address_id" : self.dataarr[index][@"address_id"]} finish:^(id responseObject) {
         [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue]==1) {
@@ -262,7 +262,7 @@
     if (buttonIndex == 1) {
         
         _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-        [NetworkManager requestPOSTWithURLStr:@"shop/delAddress" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"address_id" : self.dataarr[self.deleteIndex][@"address_id"]} finish:^(id responseObject) {
+        [NetworkManager requestPOSTWithURLStr:@"Shop/delAddress" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"address_id" : self.dataarr[self.deleteIndex][@"address_id"]} finish:^(id responseObject) {
             [_loadV removeloadview];
             [self.tableview.mj_header endRefreshing];
             [self.tableview.mj_footer endRefreshing];

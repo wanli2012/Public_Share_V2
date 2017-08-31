@@ -90,7 +90,7 @@
     dict[@"uid"] = [UserModel defaultUser].uid;
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/getCityList" paramDic:@{} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/getCityList" paramDic:@{} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             self.dataArr = responseObject[@"data"];
@@ -117,7 +117,7 @@
     }
     
     [self startTime];//获取倒计时
-    [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:@{@"phone":self.phoneTF.text} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/get_yzm" paramDic:@{@"phone":self.phoneTF.text} finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue]==1) {
             
         }else{
@@ -248,7 +248,7 @@
     manager.requestSerializer.timeoutInterval = 20;
     // 加上这行代码，https ssl 验证。
     [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
-    [manager POST:[NSString stringWithFormat:@"%@shop/addSonStore",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:[NSString stringWithFormat:@"%@Shop/addSonStore",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         //将图片以表单形式上传
         NSLog(@"dict = %@",dict);
         for (int i = 0; i < imageViewArr.count; i ++) {

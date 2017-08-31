@@ -80,7 +80,7 @@
 -(void)initdatasource{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/order_list_shop" paramDic:@{@"page":[NSNumber numberWithInteger:_page] , @"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"type":@2} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/order_list_shop" paramDic:@{@"page":[NSNumber numberWithInteger:_page] , @"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"type":@2} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];

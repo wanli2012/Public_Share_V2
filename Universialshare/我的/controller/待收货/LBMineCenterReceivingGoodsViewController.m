@@ -79,7 +79,7 @@
 -(void)initdatasource{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/gain_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/gain_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page]} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
@@ -230,7 +230,7 @@
         LBWaitOrdersModel *model = self.dataarr[_indexpath.section];
         LBWaitOrdersListModel *modelist= model.dataArr[_indexpath.row];
         _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-        [NetworkManager requestPOSTWithURLStr:@"shop/ConfirmReceipt" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"order_goods_id":_good_id,@"order_id":self.order_id } finish:^(id responseObject) {
+        [NetworkManager requestPOSTWithURLStr:@"Shop/ConfirmReceipt" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"order_goods_id":_good_id,@"order_id":self.order_id } finish:^(id responseObject) {
             [_loadV removeloadview];
             if ([responseObject[@"code"] integerValue]==1) {
                 [MBProgressHUD showError:responseObject[@"message"]];

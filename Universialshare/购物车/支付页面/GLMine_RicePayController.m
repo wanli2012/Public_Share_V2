@@ -406,7 +406,7 @@
             break;
     }
     
-    [NetworkManager requestPOSTWithURLStr:@"shop/getPayType" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getPayType" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         [self dismiss];
@@ -527,7 +527,7 @@
     dict[@"order_id"] = self.order_id;
     dict[@"paytype"] = payType;
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/payParam" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/payParam" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         [self dismiss];
@@ -562,7 +562,7 @@
     dict[@"order_id"] = self.order_id;
     dict[@"paytype"] = payType;
     
-    [NetworkManager requestPOSTWithURLStr:@"shop/payParam" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/payParam" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         [self dismiss];

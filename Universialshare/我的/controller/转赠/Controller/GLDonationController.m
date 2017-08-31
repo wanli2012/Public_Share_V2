@@ -105,7 +105,7 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"phone"] = [UserModel defaultUser].phone;
 
-    [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/get_yzm" paramDic:dict finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == 1) {
             [MBProgressHUD showSuccess:@"验证码已发送！"];
@@ -382,7 +382,7 @@
     dict[@"group_id"] = @(self.userType);
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/getTrueNameByPhone" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/getTrueNameByPhone" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
     
@@ -443,7 +443,7 @@
     dict[@"password"] = encryptsecret;
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/give_to_mark" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/give_to_mark" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == 1) {
             

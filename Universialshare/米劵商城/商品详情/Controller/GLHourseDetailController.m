@@ -120,7 +120,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     }
 
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/goodsDetail" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/goodsDetail" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == 1){
@@ -177,7 +177,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         dict[@"type"] = @(self.type);
         
         _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-        [NetworkManager requestPOSTWithURLStr:@"shop/addMyCollect" paramDic:dict finish:^(id responseObject) {
+        [NetworkManager requestPOSTWithURLStr:@"Shop/addMyCollect" paramDic:dict finish:^(id responseObject) {
             
             [_loadV removeloadview];
             if ([responseObject[@"code"] integerValue] == 1){
@@ -205,7 +205,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         dict[@"GID"] = self.goods_id;
         
         _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-        [NetworkManager requestPOSTWithURLStr:@"shop/delMyCollect" paramDic:dict finish:^(id responseObject) {
+        [NetworkManager requestPOSTWithURLStr:@"Shop/delMyCollect" paramDic:dict finish:^(id responseObject) {
             
             [_loadV removeloadview];
             if ([responseObject[@"code"] integerValue] == 1){
@@ -274,7 +274,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     dict[@"count"] = @(_sum);
   
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/addCart" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/addCart" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         
@@ -469,7 +469,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 //请求规格
 -(void)initSpecificationsDataSoruce{
 
-    [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsSpec" paramDic:@{@"goods_id":self.goods_id} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getGoodsSpec" paramDic:@{@"goods_id":self.goods_id} finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == 1){
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
@@ -489,7 +489,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
 //不同规格下的参数
 -(void)setStoreGoods{
     
-    [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsSpecDetail" paramDic:@{@"goods_id":self.goods_id,@"goods_spec":self.goods_spec} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getGoodsSpecDetail" paramDic:@{@"goods_id":self.goods_id,@"goods_spec":self.goods_spec} finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == 1){
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {

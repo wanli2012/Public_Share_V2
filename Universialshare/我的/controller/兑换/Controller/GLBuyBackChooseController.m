@@ -50,7 +50,7 @@ static NSString *ID = @"GLBankCardCellTableViewCell";
     dict[@"uid"] = [UserModel defaultUser].uid;
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/getbank" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/getbank" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         
@@ -153,7 +153,7 @@ static NSString *ID = @"GLBankCardCellTableViewCell";
     dict[@"banknumber"] = banknumber;
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/del_bank" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/del_bank" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
 //        NSLog(@"responseObject = %@",responseObject);

@@ -39,7 +39,7 @@ static NSString *ID = @"GLCityChooseCell";
 }
 - (void)postRequest {
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getCityListByLetter" paramDic:@{} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getCityListByLetter" paramDic:@{} finish:^(id responseObject) {
         
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == 1){

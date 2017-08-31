@@ -74,7 +74,7 @@
     }
     
     [self startTime];//获取倒计时
-    [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:@{@"phone":self.phoneTf.text} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/get_yzm" paramDic:@{@"phone":self.phoneTf.text} finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue]==1) {
             
         }else{
@@ -133,7 +133,7 @@
     }
 
      _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/get_give_id" paramDic:@{@"uid":self.recomendId.text} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/get_give_id" paramDic:@{@"uid":self.recomendId.text} finish:^(id responseObject) {
            [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             
@@ -160,7 +160,7 @@
      NSString *encryptsecret = [RSAEncryptor encryptString:self.secretTf.text publicKey:public_RSA];
     if (buttonIndex == 1) {
         _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-        [NetworkManager requestPOSTWithURLStr:@"user/register" paramDic:@{@"userphone":self.phoneTf.text , @"password":encryptsecret , @"uid":self.recomendId.text , @"yzm":self.verificationTf.text,@"reg_port":@3} finish:^(id responseObject) {
+        [NetworkManager requestPOSTWithURLStr:@"User/register" paramDic:@{@"userphone":self.phoneTf.text , @"password":encryptsecret , @"uid":self.recomendId.text , @"yzm":self.verificationTf.text,@"reg_port":@3} finish:^(id responseObject) {
             [_loadV removeloadview];
             if ([responseObject[@"code"] integerValue]==1) {
                 [MBProgressHUD showError:responseObject[@"message"]];

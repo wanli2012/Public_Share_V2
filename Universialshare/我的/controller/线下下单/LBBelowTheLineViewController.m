@@ -325,7 +325,7 @@
 -(void)sureSubmint{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/getTrueName" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"username" :self.phoneTf.text,@"group_id" :self.usertype} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/getTrueName" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"username" :self.phoneTf.text,@"group_id" :self.usertype} finish:^(id responseObject) {
         
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
@@ -378,7 +378,7 @@
         manager.requestSerializer.timeoutInterval = 20;
         // 加上这行代码，https ssl 验证。
         [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
-        [manager POST:[NSString stringWithFormat:@"%@user/placeOrderLine",URL_Base] parameters:dic  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [manager POST:[NSString stringWithFormat:@"%@User/placeOrderLine",URL_Base] parameters:dic  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             //将图片以表单形式上传
             
             if (self.imageOne.image) {

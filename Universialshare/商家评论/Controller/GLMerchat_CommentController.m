@@ -81,7 +81,7 @@ static NSString *ID = @"GLMerchat_CommentGoodCell";
     dict[@"page"] = [NSString stringWithFormat:@"%zd",_page];
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getArealyCommentGoodsList" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getArealyCommentGoodsList" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
         if ([responseObject[@"code"] integerValue]==1) {

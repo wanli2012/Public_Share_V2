@@ -81,7 +81,7 @@
 
 -(void)isShowPayInterface{
     
-    [NetworkManager requestPOSTWithURLStr:@"shop/getPayTypeIsCloseByConfig" paramDic:@{} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getPayTypeIsCloseByConfig" paramDic:@{} finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == 1) {
             self.dataDic = responseObject[@"data"];
@@ -181,7 +181,7 @@
    // dict[@"pwd"] =  [RSAEncryptor encryptString:@"" publicKey:public_RSA];
 
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/faceToFacePay" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/faceToFacePay" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         [self dismiss];
@@ -227,7 +227,7 @@
     dict[@"pwd"] =  [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/faceToFacePay" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/faceToFacePay" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         

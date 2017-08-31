@@ -69,7 +69,7 @@
 
 -(void)initdatasource{
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getStoreGoodsList" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getStoreGoodsList" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page]} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
@@ -118,7 +118,7 @@
 -(void)setStoreGoods:(NSInteger)index strid:(int)strid  buttonindex:(NSInteger)buttonindex status:(int)status row:(NSInteger)row{
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/setStoreGoods" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"goods_id" :[NSNumber numberWithInteger:strid],@"status" :[NSNumber numberWithInteger:status]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/setStoreGoods" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"goods_id" :[NSNumber numberWithInteger:strid],@"status" :[NSNumber numberWithInteger:status]} finish:^(id responseObject) {
         [_loadV removeloadview];
        
         if ([responseObject[@"code"] integerValue]==1) {

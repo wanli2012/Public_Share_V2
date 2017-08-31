@@ -138,7 +138,7 @@ static NSString *ID = @"GLNearby_classifyCell";
     
    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     _loadV.isTap = NO;
-    [NetworkManager requestPOSTWithURLStr:@"shop/searchNearShopByContent" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/searchNearShopByContent" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
         if ([responseObject[@"code"] integerValue]==1) {

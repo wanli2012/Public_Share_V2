@@ -90,7 +90,7 @@ static NSString *ID = @"GLOrderGoodsCell";
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     //请求地址
-    [NetworkManager requestPOSTWithURLStr:@"shop/address_list" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/address_list" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == 1){
@@ -121,7 +121,7 @@ static NSString *ID = @"GLOrderGoodsCell";
     dict1[@"goods_spec"] = self.goods_spec;
   
     //请求商品信息
-    [NetworkManager requestPOSTWithURLStr:@"shop/placeOrderBefore" paramDic:dict1 finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/placeOrderBefore" paramDic:dict1 finish:^(id responseObject) {
         
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == 1){
@@ -202,7 +202,7 @@ static NSString *ID = @"GLOrderGoodsCell";
     dict[@"version"] = @"3";
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/placeOrderEnd" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/placeOrderEnd" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         

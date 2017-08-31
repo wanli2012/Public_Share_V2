@@ -141,7 +141,7 @@
     dict[@"uid"] = [UserModel defaultUser].uid;
     
 //    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/refresh" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
 
@@ -259,7 +259,7 @@
     dict[@"uid"] = [UserModel defaultUser].uid;
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/getbank" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/getbank" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         
@@ -537,7 +537,7 @@
      dict[@"typer"] = @(self.typeIndex);
 
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/back" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/back" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == 1) {

@@ -105,7 +105,7 @@
     NSString *encryptsecret = [RSAEncryptor encryptString:self.secretTf.text publicKey:public_RSA];
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/forget_pwd" paramDic:@{@"userphone":self.phoneTf.text , @"password":encryptsecret , @"groupID":self.usertype , @"yzm":self.yabzTf.text} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/forget_pwd" paramDic:@{@"userphone":self.phoneTf.text , @"password":encryptsecret , @"groupID":self.usertype , @"yzm":self.yabzTf.text} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             [MBProgressHUD showError:responseObject[@"message"]];
@@ -137,7 +137,7 @@
     }
     
     [self startTime];//获取倒计时
-    [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:@{@"phone":self.phoneTf.text} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/get_yzm" paramDic:@{@"phone":self.phoneTf.text} finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue]==1) {
             
         }else{

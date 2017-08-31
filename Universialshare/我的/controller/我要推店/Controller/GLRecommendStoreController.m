@@ -91,7 +91,7 @@
 -(void)getshoptype{
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/getHylist" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token } finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/getHylist" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token } finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             
@@ -540,7 +540,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
     // 加上这行代码，https ssl 验证。
     [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
-    _dataTask = [manager POST:[NSString stringWithFormat:@"%@shop/push_store",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    _dataTask = [manager POST:[NSString stringWithFormat:@"%@Shop/push_store",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         //将图片以表单形式上传
         
         for (int i = 0; i < self.imagearr.count - 1; i++) {

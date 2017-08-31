@@ -68,7 +68,7 @@
     dict[@"uid"] = [UserModel defaultUser].uid;
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/getCityList" paramDic:@{} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/getCityList" paramDic:@{} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             self.dataArr = responseObject[@"data"];
@@ -197,7 +197,7 @@
     
     if (self.isEdit == YES) {//编辑
         _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-        [NetworkManager requestPOSTWithURLStr:@"shop/updateAddress" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"status" : [NSNumber numberWithInteger:self.isdeualt] , @"takegoodsname" : self.nameTf.text , @"takegoodsphone" : self.phoneTf.text , @"detail_address" : self.adressTf.text, @"s_province" : self.provinceStrId , @"s_city" : self.cityStrId , @"s_area" : self.countryStrId , @"address_id" : self.dataDic[@"address_id"]} finish:^(id responseObject) {
+        [NetworkManager requestPOSTWithURLStr:@"Shop/updateAddress" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"status" : [NSNumber numberWithInteger:self.isdeualt] , @"takegoodsname" : self.nameTf.text , @"takegoodsphone" : self.phoneTf.text , @"detail_address" : self.adressTf.text, @"s_province" : self.provinceStrId , @"s_city" : self.cityStrId , @"s_area" : self.countryStrId , @"address_id" : self.dataDic[@"address_id"]} finish:^(id responseObject) {
             [_loadV removeloadview];
             if ([responseObject[@"code"] integerValue]==1) {
                 
@@ -221,7 +221,7 @@
     }else{//添加
         
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/addAddress" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"status" : [NSNumber numberWithInteger:self.isdeualt] , @"takegoodsname" : self.nameTf.text , @"takegoodsphone" : self.phoneTf.text , @"alladdress" : self.adressID , @"detail_address" : self.adressTf.text} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/addAddress" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"status" : [NSNumber numberWithInteger:self.isdeualt] , @"takegoodsname" : self.nameTf.text , @"takegoodsphone" : self.phoneTf.text , @"alladdress" : self.adressID , @"detail_address" : self.adressTf.text} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             

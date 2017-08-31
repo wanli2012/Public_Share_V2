@@ -76,7 +76,7 @@
     }
     
     [self startTime];//获取倒计时
-    [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:@{@"phone":[UserModel defaultUser].phone} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/get_yzm" paramDic:@{@"phone":[UserModel defaultUser].phone} finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue]==1) {
             
         }else{
@@ -96,7 +96,7 @@
         return;
     }
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/check_yzm" paramDic:@{@"token":@"",@"uid":self.uid,@"yzm":self.base1Tf.text} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/check_yzm" paramDic:@{@"token":@"",@"uid":self.uid,@"yzm":self.base1Tf.text} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             
@@ -153,7 +153,7 @@
      NSString *encryptsecret = [RSAEncryptor encryptString:self.baseTwoSecret.text publicKey:public_RSA];
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/setPass" paramDic:@{@"token":@"",@"uid":self.uid,@"psd":encryptsecret} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/setPass" paramDic:@{@"token":@"",@"uid":self.uid,@"psd":encryptsecret} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             

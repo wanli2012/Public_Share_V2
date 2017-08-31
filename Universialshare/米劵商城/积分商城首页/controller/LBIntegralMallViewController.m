@@ -124,7 +124,7 @@ static NSString *goodsCellID = @"GLIntegralGoodsCell";
 - (void)postRequest{
 
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/main" paramDic:@{} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/main" paramDic:@{} finish:^(id responseObject) {
         
         [_loadV removeloadview];
         [self endRefresh];

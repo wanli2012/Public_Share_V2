@@ -30,7 +30,7 @@
     dict[@"uid"] = [UserModel defaultUser].uid;
     
     _loadV = [LoadWaitView addloadview:self.bounds tagert:self];
-    [NetworkManager requestPOSTWithURLStr:@"user/openBankName" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/openBankName" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         //        NSLog(@"responseObject = %@",responseObject);

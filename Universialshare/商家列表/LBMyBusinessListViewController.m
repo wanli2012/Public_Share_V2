@@ -74,7 +74,7 @@
 -(void)initdatasource{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/dealerList" paramDic:@{@"page":[NSNumber numberWithInteger:_page] , @"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token} finish:^(id responseObject)
+    [NetworkManager requestPOSTWithURLStr:@"User/dealerList" paramDic:@{@"page":[NSNumber numberWithInteger:_page] , @"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token} finish:^(id responseObject)
      {
          
          [_loadV removeloadview];

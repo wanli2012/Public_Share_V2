@@ -22,7 +22,7 @@
 
 #define ADAPT(x) SCREEN_WIDTH / 375 *(x)
 
-//#define URL_Base @"https://www.51dztg.com/index.php/app/"
+//#define URL_Base @"https://www.51dztg.com/index.php/App/"
 #define URL_Base @"http://dzgx.joshuaweb.cn/index.php/app/"
 //#define URL_Base @"http://192.168.0.191/dztg/index.php/App/"
 //下载地址

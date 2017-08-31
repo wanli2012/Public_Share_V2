@@ -129,7 +129,7 @@
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     _loadV.isTap = NO;
-    [NetworkManager requestPOSTWithURLStr:@"user/getHylist" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/getHylist" paramDic:dict finish:^(id responseObject) {
 
         if ([responseObject[@"code"] integerValue]==1) {
             self.industryArr = responseObject[@"data"];
@@ -144,7 +144,7 @@
         
     }];
     
-    [NetworkManager requestPOSTWithURLStr:@"user/getCityList" paramDic:@{} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/getCityList" paramDic:@{} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             self.dataArr = responseObject[@"data"];
@@ -473,7 +473,7 @@
     manager.requestSerializer.timeoutInterval = 20;
     // 加上这行代码，https ssl 验证。
     [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
-    [manager POST:[NSString stringWithFormat:@"%@user/openOne",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:[NSString stringWithFormat:@"%@User/openOne",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         //将图片以表单形式上传
 
         for (int i = 0; i < imageViewArr.count; i ++) {

@@ -109,7 +109,7 @@ static NSString *ID = @"GLBuyBackRecordCell";
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
-    [NetworkManager requestPOSTWithURLStr:@"user/back_list" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/back_list" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         [self endRefresh];

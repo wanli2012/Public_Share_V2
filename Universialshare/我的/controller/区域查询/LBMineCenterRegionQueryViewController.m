@@ -91,7 +91,7 @@
 #pragma mark - get data
 - (void)getPickerData {
     
-    [NetworkManager requestPOSTWithURLStr:@"user/getCityList" paramDic:@{} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/getCityList" paramDic:@{} finish:^(id responseObject) {
 
         if ([responseObject[@"code"] integerValue]==1) {
 
@@ -126,7 +126,7 @@
         }
     }
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/getAreasAgent" paramDic:dic finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/getAreasAgent" paramDic:dic finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];

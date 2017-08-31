@@ -91,7 +91,7 @@ static NSString *ID = @"GLMerchat_CommentCell";
     dict[@"pre_id"] = [NSString stringWithFormat:@"goods_%@",self.model.goods_id];
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getShopOrGoodsCommentList" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getShopOrGoodsCommentList" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
 //        NSLog(@"%@",responseObject);
@@ -303,7 +303,7 @@ static NSString *ID = @"GLMerchat_CommentCell";
     dict[@"content"] = inputText;
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/ShopSetReplyComment" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/ShopSetReplyComment" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
 

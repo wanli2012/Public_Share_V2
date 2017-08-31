@@ -67,7 +67,7 @@
 -(void)initdatasource{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/order_mark_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page] , @"type":@7} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/order_mark_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page] , @"type":@7} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
@@ -225,7 +225,7 @@
     LBMyorderRebateModel  *rebateModel = model.dataArr[indexpath.row];
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/confirmOrderDoing" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"order_id" :model.order_id,@"order_goods_id":rebateModel.order_goods_id} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/confirmOrderDoing" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"order_id" :model.order_id,@"order_goods_id":rebateModel.order_goods_id} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             rebateModel.is_receipt = @"4";

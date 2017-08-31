@@ -50,7 +50,7 @@
     
     
     [self startTime:self.oldbutton];//获取倒计时
-    [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:@{@"phone":[UserModel defaultUser].phone} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/get_yzm" paramDic:@{@"phone":[UserModel defaultUser].phone} finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue]==1) {
             
         }else{
@@ -76,7 +76,7 @@
     }
     
     [self startTime:self.newbutton];//获取倒计时
-    [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:@{@"phone":self.newphone.text} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/get_yzm" paramDic:@{@"phone":self.newphone.text} finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue]==1) {
             
         }else{
@@ -92,7 +92,7 @@
     
     //先验证验证码是否正确
     __weak typeof(self) waekself = self;
-    [NetworkManager requestPOSTWithURLStr:@"user/check_yzm" paramDic:@{@"token":[UserModel defaultUser].token,@"uid":[UserModel defaultUser].uid,@"yzm":self.oldcode.text} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/check_yzm" paramDic:@{@"token":[UserModel defaultUser].token,@"uid":[UserModel defaultUser].uid,@"yzm":self.oldcode.text} finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue]==1) {
             [waekself submitBindPhone];
         }else{
@@ -107,7 +107,7 @@
 -(void)submitBindPhone{
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/setBeforePhone" paramDic:@{@"token":[UserModel defaultUser].token,@"uid":[UserModel defaultUser].uid,@"yzm":self.newcode.text,@"phone":self.newphone.text} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/setBeforePhone" paramDic:@{@"token":[UserModel defaultUser].token,@"uid":[UserModel defaultUser].uid,@"yzm":self.newcode.text,@"phone":self.newphone.text} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             [[NSNotificationCenter defaultCenter]postNotificationName:@"LoveConsumptionVC" object:nil];
