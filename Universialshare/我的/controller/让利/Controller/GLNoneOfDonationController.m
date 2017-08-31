@@ -112,7 +112,7 @@ static NSString *ID = @"GLNoneOfDonationCell";
     dict[@"page"] = [NSString stringWithFormat:@"%d",_page];
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/myRl_list" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/myRl_list" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
 //        NSLog(@"%@",responseObject);

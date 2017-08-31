@@ -817,7 +817,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 //刷新数据
 -(void)refreshDataSource{
 
-    [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:@{@"token":[UserModel defaultUser].token,@"uid":[UserModel defaultUser].uid} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/refresh" paramDic:@{@"token":[UserModel defaultUser].token,@"uid":[UserModel defaultUser].uid} finish:^(id responseObject) {
 
         if ([responseObject[@"code"] integerValue] == 1) {
             
@@ -1046,7 +1046,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     dict[@"twopwd"] = encryptsecret;
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/bqUserInfo" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/bqUserInfo" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue]==1) {

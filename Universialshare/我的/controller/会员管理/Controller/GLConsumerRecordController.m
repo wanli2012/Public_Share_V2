@@ -122,7 +122,7 @@ static NSString *ID = @"GLConsumerRecordCell";
     dict[@"usertype"] = [NSString stringWithFormat:@"%zd",self.usertype];
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getUserConsumptionHistory" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getUserConsumptionHistory" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         [self endRefresh];

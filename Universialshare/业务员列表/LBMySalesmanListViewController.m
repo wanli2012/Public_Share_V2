@@ -89,7 +89,7 @@
     dict[@"page"] = @(self.page);
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/get_tg_list" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/get_tg_list" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         [self endRefresh];

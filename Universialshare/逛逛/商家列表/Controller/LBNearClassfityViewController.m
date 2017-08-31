@@ -100,7 +100,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 -(void)getAallClassify{
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [NetworkManager requestPOSTWithURLStr:@"user/getShopTrade" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/getShopTrade" paramDic:dict finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue] == 1){
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 
@@ -135,7 +135,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
     dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
     
-    [NetworkManager requestPOSTWithURLStr:@"shop/getShopDataNew" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getShopDataNew" paramDic:dict finish:^(id responseObject) {
         [self endRefresh];
         if ([responseObject[@"code"] integerValue] == 1){
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {

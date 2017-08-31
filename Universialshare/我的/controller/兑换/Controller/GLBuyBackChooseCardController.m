@@ -124,7 +124,7 @@
     dict[@"number"] = [NSString stringWithFormat:@"%@",self.cardTextF.text];
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/add_bank_num" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/add_bank_num" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
 
 

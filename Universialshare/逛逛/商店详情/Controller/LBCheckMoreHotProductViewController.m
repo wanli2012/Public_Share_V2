@@ -67,7 +67,7 @@ static NSString *ID = @"LBStoreDetailHotProductTableViewCell";
 - (void)initdatasource{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/UsergetStoreGoodsList" paramDic:@{@"shop_id":self.storeId,@"page":[NSNumber numberWithInteger:_page]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/UsergetStoreGoodsList" paramDic:@{@"shop_id":self.storeId,@"page":[NSNumber numberWithInteger:_page]} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];

@@ -31,7 +31,7 @@ static NSString *ID = @"GLMine_MyHeartCell";
         dict[@"type"] = KThreePersent;
         
         _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-        [NetworkManager requestPOSTWithURLStr:@"user/mylove" paramDic:dict finish:^(id responseObject) {
+        [NetworkManager requestPOSTWithURLStr:@"User/mylove" paramDic:dict finish:^(id responseObject) {
             //            NSLog(@"%@",responseObject);
             [_loadV removeloadview];
             if ([responseObject[@"code"] integerValue] == 1) {

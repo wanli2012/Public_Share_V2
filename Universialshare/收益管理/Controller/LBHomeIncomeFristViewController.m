@@ -137,7 +137,7 @@ static const CGFloat headerHeight = 0.0f;
     }
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/getProfitShopList" paramDic:@{@"page":[NSNumber numberWithInteger:_page] ,
+    [NetworkManager requestPOSTWithURLStr:@"User/getProfitShopList" paramDic:@{@"page":[NSNumber numberWithInteger:_page] ,
                                                                                @"uid":[UserModel defaultUser].uid ,  @"token":[UserModel defaultUser].token,@"starttime":startTime,
                                                                                @"endtime":endTime,
                                                                                @"otype":self.otype} finish:^(id responseObject)
@@ -458,7 +458,7 @@ static const CGFloat headerHeight = 0.0f;
     dict[@"type"] = self.type;
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/applyMoreSaleMoney" paramDic:dict finish:^(id responseObject)
+    [NetworkManager requestPOSTWithURLStr:@"User/applyMoreSaleMoney" paramDic:dict finish:^(id responseObject)
      {
          
          [_loadV removeloadview];
@@ -538,7 +538,7 @@ static const CGFloat headerHeight = 0.0f;
     }
     
     [self startTime];//获取倒计时
-    [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:@{@"phone":self.loginView.phoneTf.text} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/get_yzm" paramDic:@{@"phone":self.loginView.phoneTf.text} finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue]==1) {
             

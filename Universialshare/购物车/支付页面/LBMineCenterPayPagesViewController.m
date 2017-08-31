@@ -86,7 +86,7 @@
 
 -(void)isShowPayInterface{
 
-    [NetworkManager requestPOSTWithURLStr:@"shop/getPayTypeIsCloseByConfig" paramDic:@{} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getPayTypeIsCloseByConfig" paramDic:@{} finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == 1) {
             
@@ -282,7 +282,7 @@
     dict[@"uid"] = [UserModel defaultUser].uid;
 //    dict[@"order_id"] = self.order_id;
     dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
-    [NetworkManager requestPOSTWithURLStr:@"shop/ricePayCoupons" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/ricePayCoupons" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
 
@@ -327,7 +327,7 @@
     dict[@"order_id"] = self.order_id;
     dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
     
-    [NetworkManager requestPOSTWithURLStr:@"shop/markPay" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/markPay" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         
@@ -373,7 +373,7 @@
     dict[@"order_id"] = self.order_id;
     dict[@"paytype"] = payType;
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/payParam" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/payParam" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         [self dismiss];
@@ -408,7 +408,7 @@
     dict[@"order_id"] = self.order_id;
     dict[@"paytype"] = payType;
     
-    [NetworkManager requestPOSTWithURLStr:@"shop/payParam" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/payParam" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         [self dismiss];

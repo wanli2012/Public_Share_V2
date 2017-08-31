@@ -60,7 +60,7 @@
     self.stringtype = 2;
     self.typeF.text = @"米子";
 
-    self.noticeLabel.text = [NSString stringWithFormat:@"*米券可互转，针对人群为消费者、商家、创客、城市创客、大区创客；米子可对转，针对人群:运营商，行业代理，消费者、创客、城市创客、大区创客。限定大于等于100的整数倍才可交易.\n*单笔米子或者米劵转赠最多50000."];
+    self.noticeLabel.text = [NSString stringWithFormat:@"*米券可互转，可操作身份为会员、商家、创客、城市创客、大区创客；\n*米子可对转，除商家身份外，其他身份均可进行米子对转。\n*限定大于等于100的整数倍才可交易,每次最高可转赠50000米子或50000米券"];
 
     self.contentViewWidth.constant = SCREEN_WIDTH;
     self.contentViewHeight.constant = SCREEN_HEIGHT +60;
@@ -105,7 +105,7 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"phone"] = [UserModel defaultUser].phone;
 
-    [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/get_yzm" paramDic:dict finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue] == 1) {
             [MBProgressHUD showSuccess:@"验证码已发送！"];
@@ -382,7 +382,7 @@
     dict[@"group_id"] = @(self.userType);
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/getTrueNameByPhone" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/getTrueNameByPhone" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
     
@@ -443,7 +443,7 @@
     dict[@"password"] = encryptsecret;
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/give_to_mark" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/give_to_mark" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == 1) {
             

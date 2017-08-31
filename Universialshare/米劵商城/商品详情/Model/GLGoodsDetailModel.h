@@ -24,6 +24,8 @@
 
 @property (nonatomic, copy)NSString *sell_count;
 
+@property (nonatomic, copy)NSString *intea_type;
+
 @property (nonatomic, strong)NSArray *attr;
 
 //@property (nonatomic, copy)NSString *thumb;

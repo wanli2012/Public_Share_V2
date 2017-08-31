@@ -77,7 +77,7 @@ static NSString *ID = @"GLRecommendStore_RecordCell";
 
 -(void)initdatasource{
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getPushStoreList" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page] ,@"date_time":self.date_time} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getPushStoreList" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page] ,@"date_time":self.date_time} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];

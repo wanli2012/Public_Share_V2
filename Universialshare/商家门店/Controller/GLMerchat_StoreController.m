@@ -87,7 +87,7 @@ static NSString *ID = @"GLMerchat_StoreCell";
 
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getSonStoreList" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getSonStoreList" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
         NSLog(@"%@",responseObject);
@@ -231,7 +231,7 @@ static NSString *ID = @"GLMerchat_StoreCell";
     dict[@"pwd"] = [RSAEncryptor encryptString:pwd publicKey:public_RSA];
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/setStoreOpenOrClose" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/setStoreOpenOrClose" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         NSLog(@"%@",dict);
         NSLog(@"%@",responseObject);

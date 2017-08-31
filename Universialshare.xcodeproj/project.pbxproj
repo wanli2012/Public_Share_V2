@@ -950,6 +950,7 @@
 		F973747C1EFE049D00520D03 /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F97374771EFE049D00520D03 /* ScanResultViewController.m */; };
 		F973747D1EFE049D00520D03 /* ScanResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97374781EFE049D00520D03 /* ScanResultViewController.xib */; };
 		F973747E1EFE049D00520D03 /* SubLBXScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F973747A1EFE049D00520D03 /* SubLBXScanViewController.m */; };
+		F973A10D1F56C8AB008BFFA8 /* LBPaysucessView.m in Sources */ = {isa = PBXBuildFile; fileRef = F973A10C1F56C8AB008BFFA8 /* LBPaysucessView.m */; };
 		F9748B951F5544920021565D /* LBSavaTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9748B941F5544920021565D /* LBSavaTypeModel.m */; };
 		F974DB9F1F3BEDD3008412F1 /* MSSAutoresizeLabelFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = F974DB981F3BEDD3008412F1 /* MSSAutoresizeLabelFlow.m */; };
 		F974DBA01F3BEDD3008412F1 /* MSSAutoresizeLabelFlowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F974DB9A1F3BEDD3008412F1 /* MSSAutoresizeLabelFlowCell.m */; };
@@ -2615,6 +2616,8 @@
 		F97374781EFE049D00520D03 /* ScanResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScanResultViewController.xib; sourceTree = "<group>"; };
 		F97374791EFE049D00520D03 /* SubLBXScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubLBXScanViewController.h; sourceTree = "<group>"; };
 		F973747A1EFE049D00520D03 /* SubLBXScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubLBXScanViewController.m; sourceTree = "<group>"; };
+		F973A10B1F56C8AB008BFFA8 /* LBPaysucessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPaysucessView.h; sourceTree = "<group>"; };
+		F973A10C1F56C8AB008BFFA8 /* LBPaysucessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPaysucessView.m; sourceTree = "<group>"; };
 		F9748B931F5544920021565D /* LBSavaTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBSavaTypeModel.h; sourceTree = "<group>"; };
 		F9748B941F5544920021565D /* LBSavaTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBSavaTypeModel.m; sourceTree = "<group>"; };
 		F974DB971F3BEDD3008412F1 /* MSSAutoresizeLabelFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSAutoresizeLabelFlow.h; sourceTree = "<group>"; };
@@ -3485,6 +3488,8 @@
 				4A3D4DA61F441930003CAE87 /* LBPayTheBillViewController.h */,
 				4A3D4DA71F441930003CAE87 /* LBPayTheBillViewController.m */,
 				4A3D4DA81F441930003CAE87 /* LBPayTheBillViewController.xib */,
+				F973A10B1F56C8AB008BFFA8 /* LBPaysucessView.h */,
+				F973A10C1F56C8AB008BFFA8 /* LBPaysucessView.m */,
 			);
 			path = "我要买单";
 			sourceTree = "<group>";
@@ -7390,6 +7395,7 @@
 				4A4610FF1E9CC6370045824F /* ZXQRCodeDataBlock.m in Sources */,
 				4A337D611F3ED11900B51A8A /* GLLoginController.m in Sources */,
 				4A46107E1E9CC6360045824F /* ZXDecoderResult.m in Sources */,
+				F973A10D1F56C8AB008BFFA8 /* LBPaysucessView.m in Sources */,
 				4A4610F11E9CC6370045824F /* ZXPDF417ScanningDecoder.m in Sources */,
 				F966B3CF1EAC3D96007260FC /* LBMineCenterOrderDetailSixTableViewCell.m in Sources */,
 				F9F780451ED2E7C900A498D6 /* LBMyOrderlistHeaderFooterView.m in Sources */,

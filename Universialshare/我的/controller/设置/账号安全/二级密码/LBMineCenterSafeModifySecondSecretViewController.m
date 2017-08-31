@@ -117,7 +117,7 @@
     
      NSString *encryptsecret = [RSAEncryptor encryptString:_sixSecret publicKey:public_RSA];
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/checkTwoPass" paramDic:@{@"token":[UserModel defaultUser].token,@"uid":[UserModel defaultUser].uid,@"psd":encryptsecret} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/checkTwoPass" paramDic:@{@"token":[UserModel defaultUser].token,@"uid":[UserModel defaultUser].uid,@"psd":encryptsecret} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"]integerValue]==1) {
             
@@ -163,7 +163,7 @@
     NSString *encryptsecret = [RSAEncryptor encryptString:self.basTRepSecTf.text publicKey:public_RSA];
     
      _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/setTwoPass" paramDic:@{@"token":[UserModel defaultUser].token,@"uid":[UserModel defaultUser].uid,@"psd":encryptsecret} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/setTwoPass" paramDic:@{@"token":[UserModel defaultUser].token,@"uid":[UserModel defaultUser].uid,@"psd":encryptsecret} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             

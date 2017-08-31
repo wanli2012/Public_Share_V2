@@ -67,7 +67,7 @@
 -(void)initdatasorce{
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/twoSaler" paramDic:@{@"page":[NSNumber numberWithInteger:_page] , @"uid":self.dic[@"saleman_id"]} finish:^(id responseObject)
+    [NetworkManager requestPOSTWithURLStr:@"User/twoSaler" paramDic:@{@"page":[NSNumber numberWithInteger:_page] , @"uid":self.dic[@"saleman_id"]} finish:^(id responseObject)
      {
          
          [_loadV removeloadview];

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *monthSellLabel;
 @property (weak, nonatomic) IBOutlet UILabel *yunfeiLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *modelLb;
 
 @end
 
@@ -30,12 +31,12 @@
 
 - (void)setModel:(GLGoodsDetailModel *)model{
     _model = model;
-
     _fanliLabel.text = [NSString stringWithFormat:@"现价:%.2f米券",[model.rebate floatValue]];
 
     _priceLabel.text = [NSString stringWithFormat:@"¥%@米券",model.money];
     _monthSellLabel.text = [NSString stringWithFormat:@"月销%@笔",model.sell_count];
     _yunfeiLabel.text = [NSString stringWithFormat:@"运费:%@元",model.posttage];
+    _modelLb.text = [NSString stringWithFormat:@"奖励模式:%@",model.intea_type];
     
     if ([_priceLabel.text rangeOfString:@"null"].location != NSNotFound) {
         _priceLabel.text = [NSString stringWithFormat:@"¥0.00米券"];
@@ -45,6 +46,9 @@
     }
     if ([_yunfeiLabel.text rangeOfString:@"null"].location != NSNotFound) {
         _yunfeiLabel.text = [NSString stringWithFormat:@"运费:0.00元"];
+    }
+    if ([_modelLb.text rangeOfString:@"null"].location != NSNotFound) {
+        _modelLb.text = [NSString stringWithFormat:@"奖励模式:%%0"];
     }
     
     NSMutableString *attrStr = [NSMutableString string];

@@ -90,7 +90,7 @@ static const CGFloat headerImageHeight = 180.0f;
 -(void)initdatasource{
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/goToShop" paramDic:@{@"shop_id":self.storeId,@"lat":[NSNumber numberWithFloat:self.lat],@"lng":[NSNumber numberWithFloat:self.lng]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/goToShop" paramDic:@{@"shop_id":self.storeId,@"lat":[NSNumber numberWithFloat:self.lat],@"lng":[NSNumber numberWithFloat:self.lng]} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
@@ -437,7 +437,7 @@ static const CGFloat headerImageHeight = 180.0f;
     CGFloat lat = [[GLNearby_Model defaultUser].latitude floatValue];
     CGFloat lng = [[GLNearby_Model defaultUser].longitude floatValue];
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/goToShop" paramDic:@{@"shop_id":self.storeId,@"lat":[NSNumber numberWithFloat:lat],@"lng":[NSNumber numberWithFloat:lng]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/goToShop" paramDic:@{@"shop_id":self.storeId,@"lat":[NSNumber numberWithFloat:lat],@"lng":[NSNumber numberWithFloat:lng]} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {

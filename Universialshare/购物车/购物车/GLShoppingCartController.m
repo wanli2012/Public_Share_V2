@@ -95,7 +95,7 @@ static NSString *ID = @"GLShoppingCell";
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     
-    [NetworkManager requestPOSTWithURLStr:@"shop/myCartList" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/myCartList" paramDic:dict finish:^(id responseObject) {
         
         [self.models removeAllObjects];
         if (![responseObject[@"data"] isEqual:[NSNull null]]) {
@@ -327,7 +327,7 @@ static NSString *ID = @"GLShoppingCell";
             dict[@"cart_id"] = model.cart_id;
             
             _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-            [NetworkManager requestPOSTWithURLStr:@"shop/delCart" paramDic:dict finish:^(id responseObject) {
+            [NetworkManager requestPOSTWithURLStr:@"Shop/delCart" paramDic:dict finish:^(id responseObject) {
                 
                 [_loadV removeloadview];
 

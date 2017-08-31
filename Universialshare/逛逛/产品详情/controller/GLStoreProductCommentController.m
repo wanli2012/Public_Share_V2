@@ -60,7 +60,7 @@ static NSString *ID = @"LBStoreDetailreplaysTableViewCell";
 - (void)initdatasource{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsCommentListAsUser" paramDic:@{@"goods_id":self.goodId,@"page":[NSNumber numberWithInteger:_page]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getGoodsCommentListAsUser" paramDic:@{@"goods_id":self.goodId,@"page":[NSNumber numberWithInteger:_page]} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];

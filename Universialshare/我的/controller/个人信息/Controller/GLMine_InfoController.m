@@ -188,7 +188,7 @@ static NSString *ID = @"GLMine_InfoCell";
         manager.requestSerializer.timeoutInterval = 10;
         // 加上这行代码，https ssl 验证。
         [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
-        [manager POST:[NSString stringWithFormat:@"%@user/userAndShopInfoBq",URL_Base] parameters:dic  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [manager POST:[NSString stringWithFormat:@"%@User/userAndShopInfoBq",URL_Base] parameters:dic  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             //将图片以表单形式上传
             
             if (self.imagehead) {
@@ -796,7 +796,7 @@ static NSString *ID = @"GLMine_InfoCell";
     manager.requestSerializer.timeoutInterval = 20;
     // 加上这行代码，https ssl 验证。
     [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
-    [manager POST:[NSString stringWithFormat:@"%@user/setStorePic",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:[NSString stringWithFormat:@"%@User/setStorePic",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         //将图片以表单形式上传
         //        NSLog(@"dict = %@",dict);
         for (int i = 0; i < imageViewArr.count; i ++) {

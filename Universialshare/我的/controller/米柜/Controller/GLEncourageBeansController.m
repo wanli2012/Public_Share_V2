@@ -116,7 +116,7 @@ static NSString *ID = @"GLEncourageBeansCell";
     dict[@"page"] = [NSString stringWithFormat:@"%ld",(long)_page];
     
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/myfh_list" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/myfh_list" paramDic:dict finish:^(id responseObject) {
  
         [_loadV removeloadview];
         [self endRefresh];

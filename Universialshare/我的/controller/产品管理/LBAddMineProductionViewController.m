@@ -92,7 +92,7 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsCate" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getGoodsCate" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             self.industryArr = responseObject[@"data"];
@@ -109,7 +109,7 @@
     //属性列表
     NSMutableDictionary *dict1 = [NSMutableDictionary dictionary];
  
-    [NetworkManager requestPOSTWithURLStr:@"shop/getGoodsAttr" paramDic:dict1 finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getGoodsAttr" paramDic:dict1 finish:^(id responseObject) {
 //        [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]== 1) {
             
@@ -338,7 +338,7 @@
     manager.requestSerializer.timeoutInterval = 20;
     // 加上这行代码，https ssl 验证。
     [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
-    [manager POST:[NSString stringWithFormat:@"%@shop/addShopGoods",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:[NSString stringWithFormat:@"%@Shop/addShopGoods",URL_Base] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         //将图片以表单形式上传
         
         for (int i = 0; i < self.imageArr.count - 1; i ++) {

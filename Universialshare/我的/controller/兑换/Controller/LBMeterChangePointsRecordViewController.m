@@ -66,7 +66,7 @@ static NSString *ID = @"GLBuyBackRecordCell";
 -(void)initdatasource{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"user/getLcLog" paramDic:@{@"uid":[UserModel defaultUser].uid  ,@"token":[UserModel defaultUser].token ,@"page":[NSNumber numberWithInteger:_page]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/getLcLog" paramDic:@{@"uid":[UserModel defaultUser].uid  ,@"token":[UserModel defaultUser].token ,@"page":[NSNumber numberWithInteger:_page]} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];

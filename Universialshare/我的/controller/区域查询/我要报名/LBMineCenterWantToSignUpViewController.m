@@ -56,7 +56,7 @@
 #pragma mark - get data
 - (void)getPickerData {
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/getCityList" paramDic:@{} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/getCityList" paramDic:@{} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             
@@ -169,7 +169,7 @@
     }
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/enrollDl" paramDic:@{@"provinceID":_provinceArr[_ischosePro][@"province_code"],@"cityID":_provinceArr[_ischosePro][@"city"][_ischoseCity][@"city_code"],@"areaID":_provinceArr[_ischosePro][@"city"][_ischoseCity][@"country"][_ischoseArea][@"country_code"],@"truename":_nameft.text , @"phone":_phonetf.text , @"uid":[UserModel defaultUser].uid , @"type":[NSNumber numberWithInteger:_selecteAgence] , @"token":[UserModel defaultUser].token} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/enrollDl" paramDic:@{@"provinceID":_provinceArr[_ischosePro][@"province_code"],@"cityID":_provinceArr[_ischosePro][@"city"][_ischoseCity][@"city_code"],@"areaID":_provinceArr[_ischosePro][@"city"][_ischoseCity][@"country"][_ischoseArea][@"country_code"],@"truename":_nameft.text , @"phone":_phonetf.text , @"uid":[UserModel defaultUser].uid , @"type":[NSNumber numberWithInteger:_selecteAgence] , @"token":[UserModel defaultUser].token} finish:^(id responseObject) {
         [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue]==1) {

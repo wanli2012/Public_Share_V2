@@ -129,7 +129,7 @@ static NSString *ID = @"GLClassifyCell";
     dict[@"page"] = [NSString stringWithFormat:@"%zd",_page];
 
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/getMarkGoods" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getMarkGoods" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         [self endRefresh];
@@ -164,7 +164,7 @@ static NSString *ID = @"GLClassifyCell";
 - (void)getMarkGoodsType {
     
     //请求数据
-    [NetworkManager requestPOSTWithURLStr:@"shop/getMarkGoodsType" paramDic:@{} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"Shop/getMarkGoodsType" paramDic:@{} finish:^(id responseObject) {
         
         [self endRefresh];
         if ([responseObject[@"code"] integerValue] == 1){
