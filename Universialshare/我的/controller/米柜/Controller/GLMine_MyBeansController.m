@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *receiveBtn;
 @property (nonatomic, strong)UIButton *currentButton;
 @property (weak, nonatomic) IBOutlet UILabel *beanRemainLabel;
+
 @end
 
 @implementation GLMine_MyBeansController

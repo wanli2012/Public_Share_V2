@@ -30,7 +30,7 @@ static NSString *ID = @"GLReceiveBeansCell";
 
 -(UITableView*)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-154)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 154)];
         
           }
     return _tableView;
@@ -39,7 +39,7 @@ static NSString *ID = @"GLReceiveBeansCell";
     
     if (!_nodataV) {
         _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
-        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-114);
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 114);
     }
     return _nodataV;
     
@@ -118,7 +118,7 @@ static NSString *ID = @"GLReceiveBeansCell";
         
         [_loadV removeloadview];
         [self endRefresh];
-//        NSLog(@"%@",responseObject);
+
         if ([responseObject[@"code"] integerValue] == 1) {
             
             for (NSDictionary *dict in responseObject[@"data"]) {

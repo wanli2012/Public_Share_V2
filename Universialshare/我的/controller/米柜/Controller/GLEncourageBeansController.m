@@ -101,14 +101,11 @@ static NSString *ID = @"GLEncourageBeansCell";
 - (void)updateData:(BOOL)status {
     
     if (status) {
-        
         _page = 1;
-        [self.models removeAllObjects];
         
     }else{
         _page ++;
     }
-    
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
@@ -122,6 +119,8 @@ static NSString *ID = @"GLEncourageBeansCell";
         [self endRefresh];
         
         if ([responseObject[@"code"] integerValue] == 1) {
+            
+            [self.models removeAllObjects];
             
             for (NSDictionary *dict in responseObject[@"data"]) {
                 
