@@ -44,33 +44,28 @@
     
     self.navigationController.navigationBar.hidden = NO;
     self.view.backgroundColor=[UIColor whiteColor];
-    
-    _threePersentVC = [[GLThreePersentController alloc] init];
-    _sixPersentVC = [[GLSixPersentController alloc]init];
-    _twelvePercentVC = [[GLTwelevePersentController alloc]init];
-    _twentyfourPercentVC = [[GLTweleveFourController alloc]init];
-    
-    _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT-114)];
-    [self.view addSubview:_contentView];
-    
-    [self addChildViewController:_threePersentVC];
-    [self addChildViewController:_sixPersentVC];
-    [self addChildViewController:_twelvePercentVC];
-    [self addChildViewController:_twentyfourPercentVC];
-    
-    self.currentViewController = _sixPersentVC;
-    [self fitFrameForChildViewController:_sixPersentVC];
-    [self.contentView addSubview:_sixPersentVC.view];
 
-    [self buttonEvent:_sixBtn];
+    self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 114, SCREEN_WIDTH, SCREEN_HEIGHT-114)];
+    [self.view addSubview:self.contentView];
+    
+    [self addChildViewController:self.threePersentVC];
+    [self addChildViewController:self.sixPersentVC];
+    [self addChildViewController:self.twelvePercentVC];
+    [self addChildViewController:self.twentyfourPercentVC];
+    
+//    self.currentViewController = _sixPersentVC;
+//    [self fitFrameForChildViewController:_sixPersentVC];
+//    [self.contentView addSubview:_sixPersentVC.view];
+
+    [self buttonEvent:self.sixBtn];
     
        
 }
-- (void)fitFrameForChildViewController:(UIViewController *)childViewController{
-    CGRect frame = self.contentView.frame;
-    frame.origin.y = 0;
-    childViewController.view.frame = frame;
-}
+//- (void)fitFrameForChildViewController:(UIViewController *)childViewController{
+//    CGRect frame = self.contentView.frame;
+//    frame.origin.y = 0;
+//    childViewController.view.frame = frame;
+//}
 
 //百分之六激励
 - (IBAction)buttonEvent:(UIButton *)sender {
@@ -82,39 +77,68 @@
     
     [sender setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
 
-    
     if (sender == self.sixBtn) {
 
-        [self transitionFromVC:self.currentViewController toviewController:_sixPersentVC];
-        [self fitFrameForChildViewController:_sixPersentVC];
+        [self.contentView addSubview:self.sixPersentVC.view];
+//        [self transitionFromVC:self.currentViewController toviewController:_sixPersentVC];
+//        [self fitFrameForChildViewController:_sixPersentVC];
+        
     }else if (sender == self.twelveBtn){
 
-        [self transitionFromVC:self.currentViewController toviewController:_twelvePercentVC];
-        [self fitFrameForChildViewController:_twelvePercentVC];
+        [self.contentView addSubview:self.twelvePercentVC.view];
+//        [self transitionFromVC:self.currentViewController toviewController:_twelvePercentVC];
+//        [self fitFrameForChildViewController:_twelvePercentVC];
         
     }else if(sender == self.twelveFourBtn){
 
-        [self transitionFromVC:self.currentViewController toviewController:_twentyfourPercentVC];
-        [self fitFrameForChildViewController:_twentyfourPercentVC];
+        [self.contentView addSubview:self.twentyfourPercentVC.view];
+//        [self transitionFromVC:self.currentViewController toviewController:_twentyfourPercentVC];
+//        [self fitFrameForChildViewController:_twentyfourPercentVC];
+        
     }else{
         
-        [self transitionFromVC:self.currentViewController toviewController:_threePersentVC];
-        [self fitFrameForChildViewController:_threePersentVC];
+        [self.contentView addSubview:self.threePersentVC.view];
+//        [self transitionFromVC:self.currentViewController toviewController:_threePersentVC];
+//        [self fitFrameForChildViewController:_threePersentVC];
+        
     }
 }
 
 
-- (void)transitionFromVC:(UIViewController *)viewController toviewController:(UIViewController *)toViewController {
-    
-    if ([toViewController isEqual:self.currentViewController]) {
-        return;
+//- (void)transitionFromVC:(UIViewController *)viewController toviewController:(UIViewController *)toViewController {
+//    
+//    if ([toViewController isEqual:self.currentViewController]) {
+//        return;
+//    }
+//    [self transitionFromViewController:viewController toViewController:toViewController duration:0.5 options:UIViewAnimationOptionCurveLinear animations:nil completion:^(BOOL finished) {
+//        [viewController willMoveToParentViewController:nil];
+//        [toViewController willMoveToParentViewController:self];
+//        self.currentViewController = toViewController;
+//    }];
+//}
+
+- (GLThreePersentController*)threePersentVC{
+    if (!_threePersentVC) {
+        _threePersentVC = [[GLThreePersentController alloc] init];
     }
-    [self transitionFromViewController:viewController toViewController:toViewController duration:0.5 options:UIViewAnimationOptionCurveEaseIn animations:nil completion:^(BOOL finished) {
-        [viewController willMoveToParentViewController:nil];
-        [toViewController willMoveToParentViewController:self];
-        self.currentViewController = toViewController;
-    }];
+    return _threePersentVC;
 }
-
-
+- (GLSixPersentController *)sixPersentVC{
+    if (!_sixPersentVC) {
+        _sixPersentVC = [[GLSixPersentController alloc] init];
+    }
+    return _sixPersentVC;
+}
+- (GLTwelevePersentController *)twelvePercentVC{
+    if (!_twelvePercentVC) {
+        _twelvePercentVC = [[GLTwelevePersentController alloc] init];
+    }
+    return _twelvePercentVC;
+}
+- (GLTweleveFourController *)twentyfourPercentVC{
+    if (!_twentyfourPercentVC) {
+        _twentyfourPercentVC = [[GLTweleveFourController alloc] init];
+    }
+    return _twentyfourPercentVC;
+}
 @end

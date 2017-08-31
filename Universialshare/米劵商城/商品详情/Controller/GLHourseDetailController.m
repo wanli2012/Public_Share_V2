@@ -110,6 +110,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
    [self initSpecificationsDataSoruce];
     
 }
+
 - (void)postRequest{
 
     NSDictionary *dict;
@@ -123,21 +124,24 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     [NetworkManager requestPOSTWithURLStr:@"Shop/goodsDetail" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
+        
         if ([responseObject[@"code"] integerValue] == 1){
-             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-           self.model = [GLGoodsDetailModel mj_objectWithKeyValues:responseObject[@"data"]];
-            
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                
+                self.model = [GLGoodsDetailModel mj_objectWithKeyValues:responseObject[@"data"]];
+                
+                self.cycleScrollView.imageURLStringsGroup = responseObject[@"data"][@"details_banner"];
+                
+                if([self.model.is_collection integerValue] == 0){
+                    
+                    [self.collectionBtn setImage:[UIImage imageNamed:@"collect_icon"] forState:UIControlStateNormal];
+                }else{
+                    
+                    [self.collectionBtn setImage:[UIImage imageNamed:@"collect_select_icon"] forState:UIControlStateNormal];
+                }
+            }
         }
-        self.cycleScrollView.imageURLStringsGroup = responseObject[@"data"][@"details_banner"];
-            
-        if ([responseObject[@"data"][@"is_collection"]integerValue] == 0) {
-            [self.collectionBtn setImage:[UIImage imageNamed:@"collect_icon"] forState:UIControlStateNormal];
-        }else{
-            [self.collectionBtn setImage:[UIImage imageNamed:@"collect_select_icon"] forState:UIControlStateNormal];
-                    }
-        self.is_collection = [responseObject[@"data"][@"is_collection"] integerValue];
-
-        }
+        
         [self.tableView reloadData];
         
     } enError:^(NSError *error) {
@@ -153,7 +157,6 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
         [MBProgressHUD showError:@"请先登录"];
         return;
     }
-    
     
     self.hidesBottomBarWhenPushed = YES;
     GLShoppingCartController *cartVC = [[GLShoppingCartController alloc] init];
@@ -336,6 +339,7 @@ static NSString *changeNumCell = @"GLHourseChangeNumCell";
     }
     return _cellArr;
 }
+
 #pragma mark -- SDCycleScrollViewDelegate 点击看大图
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{

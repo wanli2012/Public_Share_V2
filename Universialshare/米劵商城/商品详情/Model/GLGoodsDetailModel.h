@@ -12,7 +12,7 @@
 
 @property (nonatomic, copy)NSString *thumb;
 
-@property (nonatomic, copy)NSString *details_banner;
+@property (nonatomic, copy)NSArray *details_banner;
 
 @property (nonatomic, copy)NSString *money;
 
@@ -27,6 +27,8 @@
 @property (nonatomic, copy)NSString *intea_type;
 
 @property (nonatomic, strong)NSArray *attr;
+
+@property (nonatomic, strong)NSString *is_collection;
 
 //@property (nonatomic, copy)NSString *thumb;
 

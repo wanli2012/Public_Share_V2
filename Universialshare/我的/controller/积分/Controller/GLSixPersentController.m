@@ -31,7 +31,7 @@ static NSString *ID = @"GLMine_MyHeartCell";
         dict[@"uid"] = [UserModel defaultUser].uid;
         dict[@"type"] = @"1";
         
-        _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+        _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
         [NetworkManager requestPOSTWithURLStr:@"User/mylove" paramDic:dict finish:^(id responseObject) {
 //            NSLog(@"%@",responseObject);
             [_loadV removeloadview];
@@ -57,7 +57,7 @@ static NSString *ID = @"GLMine_MyHeartCell";
 }
 -(UITableView*)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT -114)];
     }
     return _tableView;
 }
