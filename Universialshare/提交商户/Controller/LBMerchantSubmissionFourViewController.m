@@ -85,6 +85,17 @@
 
 @property (nonatomic, strong)NSMutableArray *dataArr;
 @property (strong, nonatomic)UIButton *buttonedt;
+//用来判断是否选了图片
+@property (assign, nonatomic)NSInteger oneIndex;
+@property (assign, nonatomic)NSInteger twoIndex;
+@property (assign, nonatomic)NSInteger threeIndex;
+@property (assign, nonatomic)NSInteger fourIndex;
+@property (assign, nonatomic)NSInteger fiveIndex;
+@property (assign, nonatomic)NSInteger sixIndex;
+@property (assign, nonatomic)NSInteger sevenIndex;
+@property (assign, nonatomic)NSInteger eightIndex;
+@property (assign, nonatomic)NSInteger nineIndex;
+@property (assign, nonatomic)NSInteger tenIndex;
 
 @end
 
@@ -391,41 +402,37 @@
         [MBProgressHUD showError:@"请选择店铺具体类别"];
         return;
     }
-    if (!self.positiveImage.image || [UIImagePNGRepresentation(self.positiveImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"样板-拷贝"])]) {
-        [MBProgressHUD showError:@"请上传身份证正面照"];
+    
+    if (self.twoIndex != 1 || self.threeIndex != 1) {
+        [MBProgressHUD showError:@"请上传身份证正反面照"];
         return;
     }
     
-    if (!self.otherSideImage.image || [UIImagePNGRepresentation(self.otherSideImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝"])]) {
-         [MBProgressHUD showError:@"请上传身份证反面照"];
-        return;
-    }
-    
-    if (!self.licenseImage.image || [UIImagePNGRepresentation(self.licenseImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-2"])]) {
+    if (self.fourIndex != 1) {
         [MBProgressHUD showError:@"请上传营业执照"];
         return;
     }
-   
-    if (!self.undertakingOne.image || [UIImagePNGRepresentation(self.undertakingOne.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-4"])]) {
+    if (self.fiveIndex != 1) {
         [MBProgressHUD showError:@"请上传商家承诺书"];
         return;
     }
-    if (!self.undertakingTwo.image || [UIImagePNGRepresentation(self.undertakingTwo.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-9"])]) {
+    if (self.sixIndex != 1) {
         [MBProgressHUD showError:@"请上传创客承诺书"];
         return;
     }
-    
-    if (!self.doorplateImage.image || [UIImagePNGRepresentation(self.doorplateImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-10"])]) {
+    if (self.sevenIndex != 1) {
         [MBProgressHUD showError:@"请上传店铺招牌"];
         return;
     }
     
-    if ([UIImagePNGRepresentation(self.InteriorImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-12"])] && [UIImagePNGRepresentation(self.InteriorOneImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-13"])]  &&     [UIImagePNGRepresentation(self.DoorplateOneimage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"内景2-拷贝"])]) {
+    if (self.eightIndex != 1 && self.nineIndex != 1 && self.tenIndex != 1) {
         [MBProgressHUD showError:@"请上传店铺环境照"];
         return;
     }
     
-
+    self.submit.userInteractionEnabled = NO;
+    self.submit.backgroundColor = [UIColor lightGrayColor];
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
@@ -446,27 +453,26 @@
 
     dict[@"lat"] = self.latStr;//纬度
     dict[@"lng"] = self.longStr;//经度
-
-    NSMutableArray *imageViewArr = [NSMutableArray arrayWithObjects:self.positiveImage,self.otherSideImage,self.licenseImage,self.undertakingOne,self.doorplateImage,self.undertakingTwo ,nil];
+    NSLog(@"%@",dict);
+     NSMutableArray *imageViewArr = [NSMutableArray arrayWithObjects:UIImagePNGRepresentation(self.positiveImage.image),UIImagePNGRepresentation(self.otherSideImage.image),UIImagePNGRepresentation(self.licenseImage.image),UIImagePNGRepresentation(self.undertakingOne.image),UIImagePNGRepresentation(self.doorplateImage.image),UIImagePNGRepresentation(self.undertakingTwo.image) ,nil];
+    
     NSMutableArray *titleArr = [NSMutableArray arrayWithObjects:@"face_pic",@"con_pic",@"license_pic",@"promise_pic",@"store_pic",@"tg_pic", nil];
     
-    if (![UIImagePNGRepresentation(self.InteriorImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-12"])]) {
-        [imageViewArr addObject:self.InteriorImage];
+    if (self.nineIndex == 1) {
+        [imageViewArr addObject:UIImagePNGRepresentation(self.InteriorImage.image)];
         [titleArr addObject:@"store_one"];
     }
     
-    if (![UIImagePNGRepresentation(self.InteriorOneImage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"照片框-拷贝-13"])] ) {
-        [imageViewArr addObject:self.InteriorOneImage];
+    if (self.tenIndex == 1) {
+        [imageViewArr addObject:UIImagePNGRepresentation(self.InteriorOneImage.image)];
         [titleArr addObject:@"store_two"];
     }
     
-    if (![UIImagePNGRepresentation(self.DoorplateOneimage.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"内景2-拷贝"])]) {
-        [imageViewArr addObject:self.DoorplateOneimage];
+    if (self.eightIndex == 1) {
+        [imageViewArr addObject:UIImagePNGRepresentation(self.DoorplateOneimage.image)];
         [titleArr addObject:@"store_three"];
     }
     
-    self.submit.userInteractionEnabled = NO;
-    self.submit.backgroundColor = [UIColor lightGrayColor];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
@@ -482,9 +488,7 @@
             formatter.dateFormat=@"yyyyMMddHHmmss";
             NSString *str=[formatter stringFromDate:[NSDate date]];
             NSString *fileName=[NSString stringWithFormat:@"%@%d.png",str,i];
-            UIImageView *imaev = (UIImageView*)imageViewArr[i];
-            NSData *data = UIImagePNGRepresentation(imaev.image);
-            [formData appendPartWithFileData:data name:titleArr[i] fileName:fileName mimeType:@"image/png"];
+            [formData appendPartWithFileData:imageViewArr[i] name:titleArr[i] fileName:fileName mimeType:@"image/png"];
         }
         
     }progress:^(NSProgress *uploadProgress){
@@ -498,6 +502,7 @@
         
     }success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"%@",dic);
         if ([dic[@"code"]integerValue]==1) {
             
             [MBProgressHUD showError:dic[@"message"]];
@@ -507,13 +512,14 @@
             self.submit.userInteractionEnabled = YES;
             self.submit.backgroundColor = TABBARTITLE_COLOR;
         }
+        
         [_loadV removeloadview];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         self.submit.userInteractionEnabled = YES;
         self.submit.backgroundColor = TABBARTITLE_COLOR;
         [MBProgressHUD showError:error.localizedDescription];
-        
+
     }];
     
 }
@@ -545,7 +551,7 @@
     picker.mediaTypes = @[mediaTypes[0]];
     //5.其他配置
     //allowsEditing是否允许编辑，如果值为no，选择照片之后就不会进入编辑界面
-    picker.allowsEditing = NO;
+    picker.allowsEditing = YES;
     //6.推送
     [self presentViewController:picker animated:YES completion:nil];
 }
@@ -556,7 +562,7 @@
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         // 设置拍照后的图片可以被编辑
-        picker.allowsEditing = NO;
+        picker.allowsEditing = YES;
         picker.sourceType = sourceType;
         [self presentViewController:picker animated:YES completion:nil];
     }else {
@@ -567,7 +573,7 @@
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if ([type isEqualToString:@"public.image"]) {
         // 先把图片转成NSData
-        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
         NSData *data;
         if (UIImagePNGRepresentation(image) == nil) {
             
@@ -581,51 +587,61 @@
             case 1:
             {
                 self.handImage.image = [UIImage imageWithData:data];
+                self.oneIndex = 1;
             }
                 break;
             case 2:
             {
                 self.positiveImage.image = [UIImage imageWithData:data];
+                self.twoIndex = 1;
             }
                 break;
             case 3:
             {
                 self.otherSideImage.image = [UIImage imageWithData:data];
+                 self.threeIndex = 1;
             }
                 break;
             case 4:
             {
                 self.licenseImage.image = [UIImage imageWithData:data];
+                 self.fourIndex = 1;
             }
                 break;
             case 5:
             {
                 self.undertakingOne.image = [UIImage imageWithData:data];
+                 self.fiveIndex = 1;
             }
                 break;
             case 6:
             {
                 self.undertakingTwo.image = [UIImage imageWithData:data];
+                 self.sixIndex = 1;
             }
                 break;
             case 7:
             {
                 self.doorplateImage.image = [UIImage imageWithData:data];
+                 self.sevenIndex = 1;
             }
                 break;
             case 8:
             {
                 self.DoorplateOneimage.image = [UIImage imageWithData:data];
+                 self.eightIndex = 1;
             }
                 break;
             case 9:
             {
                 self.InteriorImage.image = [UIImage imageWithData:data];
+                 self.nineIndex = 1;
             }
                 break;
             case 10:
             {
                 self.InteriorOneImage.image = [UIImage imageWithData:data];
+                self.tenIndex = 1;
             }
                 break;
                 

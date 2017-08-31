@@ -281,7 +281,7 @@
     picker.mediaTypes = @[mediaTypes[0]];
     //5.其他配置
     //allowsEditing是否允许编辑，如果值为no，选择照片之后就不会进入编辑界面
-    picker.allowsEditing = NO;
+    picker.allowsEditing = YES;
     //6.推送
     [self presentViewController:picker animated:YES completion:nil];
 }
@@ -292,7 +292,7 @@
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         // 设置拍照后的图片可以被编辑
-        picker.allowsEditing = NO;
+        picker.allowsEditing = YES;
         picker.sourceType = sourceType;
         [self presentViewController:picker animated:YES completion:nil];
     }else {
@@ -303,7 +303,7 @@
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if ([type isEqualToString:@"public.image"]) {
         // 先把图片转成NSData
-        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
         NSData *data;
         if (UIImagePNGRepresentation(image) == nil) {
             
