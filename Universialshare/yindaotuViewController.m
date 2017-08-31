@@ -11,9 +11,11 @@
 #import "BasetabbarViewController.h"
 
 @interface yindaotuViewController ()<UIScrollViewDelegate>
+
 @property (strong , nonatomic)UIScrollView *scrollView;
 @property (nonatomic , strong)UIPageControl *pagecontroll;
 @property (nonatomic , strong)UIButton  *doneBt;
+
 @end
 
 @implementation yindaotuViewController

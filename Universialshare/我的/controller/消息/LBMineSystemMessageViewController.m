@@ -156,7 +156,7 @@
 
     __weak typeof(self) weakself = self;
     QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"兑换消息",@"imageName":@""},
-                                                                   @{@"title":@"奖励消息",@"imageName":@""},
+                                                                   @{@"title":@"奖金消息",@"imageName":@""},
                                                                    @{@"title":@"推荐消息",@"imageName":@""},
                                                                    @{@"title":@"下单消息",@"imageName":@""},
                                                                    @{@"title":@"转赠消息",@"imageName":@""},
