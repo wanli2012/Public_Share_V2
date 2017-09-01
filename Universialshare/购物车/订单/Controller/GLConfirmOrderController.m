@@ -18,7 +18,7 @@
 #import "GLConfirmOrderModel.h"
 #import "GLMine_RicePayController.h"
 
-@interface GLConfirmOrderController ()<UITableViewDelegate,UITableViewDataSource>
+@interface GLConfirmOrderController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 {
     int _sumNum;
     LoadWaitView * _loadV;
@@ -271,6 +271,25 @@ static NSString *ID = @"GLOrderGoodsCell";
 //    self.tableView.rowHeight = UITableViewAutomaticDimension;
 //    return self.tableView.rowHeight;
     
+}
+
+#pragma mark uitextviewdelegete
+
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+
+    if ([textView.text isEqualToString:@"这个买家什么也没留下!"]) {
+        textView.text = @"";
+    }
+
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView{
+
+    NSString *string= [textView.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if (string.length <= 0) {
+        textView.text = @"这个买家什么也没留下!";
+    }
+
 }
 
 #pragma 懒加载
