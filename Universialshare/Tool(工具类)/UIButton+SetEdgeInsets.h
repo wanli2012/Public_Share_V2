@@ -16,7 +16,8 @@
 
 //左右居中，文字在左，图片在右
 - (void)horizontalCenterTitleAndImage:(CGFloat)spacing;
-
+- (void)horizontalCenterTitleAndImage:(CGFloat)spacing andButtonWidth:(CGFloat)buttonWidth;
+- (void)layoutButtonImageTitleSpace:(CGFloat)space;
 //左右居中，图片在左，文字在右
 - (void)horizontalCenterImageAndTitle:(CGFloat)spacing;
 
