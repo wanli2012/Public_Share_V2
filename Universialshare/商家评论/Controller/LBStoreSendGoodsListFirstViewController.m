@@ -207,7 +207,7 @@ static NSString *LeavingID = @"LBStoreSendGoodsLeavingTableViewCell";
         headerview = [[LBWaitOrdersHeaderView alloc] initWithReuseIdentifier:@"LBWaitOrdersHeaderView"];
         
     }
-    __weak typeof(self) weakself = self;
+//    __weak typeof(self) weakself = self;
     LBWaitOrdersModel *sectionModel = self.dataarr[section];
     headerview.sectionModel = sectionModel;
     headerview.wuliuBt.hidden = YES;
@@ -221,17 +221,23 @@ static NSString *LeavingID = @"LBStoreSendGoodsLeavingTableViewCell";
 }
 #pragma mark -- UITextfieldDelegate
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
     if (textField.tag == 999) {
         NSString *regex = @"[a-zA-Z0-9]";
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-        if ([string isEqualToString:@""]) {
-            return YES;
-        }else{
-            return [pred evaluateWithObject:string];
+        NSRange range;
+        for(int i=0; i<string.length; i+=range.length){
+            
+            range = [string rangeOfComposedCharacterSequenceAtIndex:i];
+            NSString *y = [string substringWithRange:range];
+            
+            if(![pred evaluateWithObject:y]) {
+                
+                return NO;
+            }
         }
-
     }
-    return YES;
+        return YES;
 }
 
 #pragma mark --- LBStoreSendGoodsDelegete

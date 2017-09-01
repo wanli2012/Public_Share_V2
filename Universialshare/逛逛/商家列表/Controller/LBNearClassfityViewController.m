@@ -454,15 +454,15 @@ static NSString *ID = @"GLNearby_MerchatListCell";
             weakSelf.two_trade_id = @"";
             [weakSelf updateData:YES];
             [weakSelf dismiss];
-            return ;
+            return;
         }
         
         weakSelf.trade_id = weakSelf.typeArr[index][@"trade_id"];
         [weakSelf updateData:YES];
         [weakSelf dismiss];
     };
-
 }
+
 #pragma UITableviewDelegate UITableviewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -474,7 +474,6 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     }
    
     return self.recModels.count;
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -182,6 +182,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     }];
 
 }
+
 //获取行业分类
 - (void)postRequest {
     
@@ -206,6 +207,7 @@ static NSString *ID2 = @"GLNearby_RecommendMerchatCell";
     }];
     
 }
+
 //加载数据
 - (void)updateData:(BOOL)status {
     

@@ -408,7 +408,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                         [weakSelf updateData:YES];
                         [weakSelf dismiss];
                          [weakSelf.classifyBtn setTitle:value forState:UIControlStateNormal];
-                        return ;
+                        return;
                     }
                     [weakSelf.classifyBtn setTitle:value2 forState:UIControlStateNormal];
                      [weakSelf.classifyBtn horizontalCenterTitleAndImage:5];
