@@ -37,6 +37,15 @@
 @property (nonatomic, assign)NSInteger page;
 @property (nonatomic,strong)NodataView *nodataV;
 
+
+@property (weak, nonatomic) IBOutlet UILabel *cityLabel;//城市label
+@property (weak, nonatomic) IBOutlet UILabel *classifyLabel;//类别Label
+@property (weak, nonatomic) IBOutlet UILabel *sortLabel;//排序Label
+
+@property (weak, nonatomic) IBOutlet UIImageView *firstImageV;
+@property (weak, nonatomic) IBOutlet UIImageView *secondImageV;
+@property (weak, nonatomic) IBOutlet UIImageView *thirdImageV;
+
 @property (nonatomic, strong)UIView  *maskV;//遮罩
 @property (nonatomic, strong)GLHomeLiveChooseController *chooseVC2;//选择控制器
 @property (nonatomic, strong)GLHomeLiveChooseController *chooseVC;//选择控制器
@@ -54,19 +63,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     [self.tableView registerNib:[UINib nibWithNibName:ID bundle:nil] forCellReuseIdentifier:ID];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
-    [self.sortBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 30)];
-    [self.sortBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 70, 0, 0)];
-    
-    [self.classifyBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 30)];
-    [self.classifyBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 70, 0, 0)];
-    
-    [self.cityBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 30)];
-    [self.cityBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 70, 0, 0)];
-    
     self.sort = @"1";
 
-        [self.cityBtn setTitle:@"城市" forState:UIControlStateNormal];
-   
+   self.cityLabel.text = @"城市";
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
@@ -89,7 +88,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     
     self.tableView.mj_header = header;
     self.tableView.mj_footer = footer;
-    [self updateData:YES];
+//    [self updateData:YES];
     if (self.index == 10) {
             [self getAallClassify];//获取全部分类
     }
@@ -134,12 +133,17 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     dict[@"city_id"] = self.city_id;
     dict[@"lng"] = [GLNearby_Model defaultUser].longitude;
     dict[@"lat"] = [GLNearby_Model defaultUser].latitude;
-    
+
+
     [NetworkManager requestPOSTWithURLStr:@"Shop/getShopDataNew" paramDic:dict finish:^(id responseObject) {
         [self endRefresh];
+
         if ([responseObject[@"code"] integerValue] == 1){
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 
+                if (_page == 1) {
+                     [self.recModels removeAllObjects];
+                }
                 for (NSDictionary *dic  in responseObject[@"data"]) {
                     GLNearby_MerchatListModel *model = [GLNearby_MerchatListModel mj_objectWithKeyValues:dic];
                     [self.recModels addObject:model];
@@ -152,6 +156,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
         
     } enError:^(NSError *error) {
         [self endRefresh];
+
         [self.tableView reloadData];
         [MBProgressHUD showError:error.localizedDescription];
     }];
@@ -177,6 +182,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    
+    self.firstImageV.transform = CGAffineTransformMakeRotation(0);
+    
     [MXNavigationBarManager reStoreToCustomNavigationBar:self];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1 green:1 blue:1 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
     
@@ -198,7 +206,6 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     [_maskV showViewWithContentView:_contentView];
     _maskV.alpha = 0;
     
-    //    self.tabBarController.tabBar.hidden = YES;
     if ([GLNearby_Model defaultUser].city != nil) {
         
         [self.cityBtn setTitle:[GLNearby_Model defaultUser].city forState:UIControlStateNormal];
@@ -213,16 +220,20 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     [UIView animateWithDuration:0.3 animations:^{
         self.chooseVC.view.height = 0;
         self.chooseVC2.view.height = 0;
+        
     } completion:^(BOOL finished) {
         _maskV.alpha = 0;
         
     }];
-    [self.cityBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [self.classifyBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [self.sortBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    self.cityBtn.imageView.transform = CGAffineTransformMakeRotation(0);
-    self.classifyBtn.imageView.transform = CGAffineTransformMakeRotation(0);
-    self.sortBtn.imageView.transform = CGAffineTransformMakeRotation(0);
+    
+    self.firstImageV.transform = CGAffineTransformMakeRotation(0);
+    self.secondImageV.transform = CGAffineTransformMakeRotation(0);
+    self.thirdImageV.transform = CGAffineTransformMakeRotation(0);
+    
+    self.cityLabel.textColor = [UIColor darkGrayColor];
+    self.classifyLabel.textColor = [UIColor darkGrayColor];
+    self.sortLabel.textColor = [UIColor darkGrayColor];
+
     
 }
 //点击地图导航
@@ -263,22 +274,37 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     
     _maskV.alpha = 1;
     
-    [self.cityBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [self.classifyBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [self.sortBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    
-    [sender setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
+    self.firstImageV.transform = CGAffineTransformMakeRotation(0);
+    self.secondImageV.transform = CGAffineTransformMakeRotation(0);
+    self.thirdImageV.transform = CGAffineTransformMakeRotation(0);
     
     self.cityBtn.selected = NO;
     self.classifyBtn.selected = NO;
     self.sortBtn.selected = NO;
     sender.selected = YES;
     
-    self.cityBtn.imageView.transform = CGAffineTransformMakeRotation(0);
-    self.classifyBtn.imageView.transform = CGAffineTransformMakeRotation(0);
-    self.sortBtn.imageView.transform = CGAffineTransformMakeRotation(0);
-    sender.imageView.transform = CGAffineTransformMakeRotation(M_PI);
-    
+    if (sender == self.cityBtn) {
+        
+        self.cityLabel.textColor = TABBARTITLE_COLOR;
+        self.classifyLabel.textColor = [UIColor darkGrayColor];
+        self.sortLabel.textColor = [UIColor darkGrayColor];
+        self.firstImageV.transform = CGAffineTransformMakeRotation(M_PI);
+        
+    }else if(sender == self.classifyBtn){
+        
+        self.cityLabel.textColor = [UIColor darkGrayColor];
+        self.classifyLabel.textColor = TABBARTITLE_COLOR;
+        self.sortLabel.textColor = [UIColor darkGrayColor];
+        self.secondImageV.transform = CGAffineTransformMakeRotation(M_PI);
+        
+    }else if(sender == self.sortBtn){
+        
+        self.cityLabel.textColor = [UIColor darkGrayColor];
+        self.classifyLabel.textColor = [UIColor darkGrayColor];
+        self.sortLabel.textColor = TABBARTITLE_COLOR;
+        self.thirdImageV.transform = CGAffineTransformMakeRotation(M_PI);
+    }
+
     __weak __typeof(self)weakSelf = self;
     
     switch (sender.tag) {
@@ -291,19 +317,11 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                 GLCityChooseController *cityVC = [[GLCityChooseController alloc] init];
                 
                 cityVC.block = ^(NSString *city,NSString *city_id){
-                    
-                    [weakSelf.cityBtn setTitle:city forState:UIControlStateNormal];
-                     [weakSelf.cityBtn horizontalCenterTitleAndImage:5];
-                    if ([weakSelf.cityBtn.titleLabel.text isEqualToString:@"城市"]) {
-                        
-                        weakSelf.cityBtn.imageView.image = [UIImage imageNamed:@"下选三角形"];
-                    }else{
-                        weakSelf.cityBtn.imageView.image = [UIImage imageNamed:@""];
-                    }
+ 
+                    weakSelf.cityLabel.text = city;
                     
                     weakSelf.city_id = city_id;
-                    
-                    [weakSelf updateData:YES];
+                    [weakSelf.tableView.mj_header beginRefreshing];
                     [weakSelf dismiss];
                 };
                 self.hidesBottomBarWhenPushed = YES;
@@ -328,26 +346,20 @@ static NSString *ID = @"GLNearby_MerchatListCell";
             _chooseVC.view.width = SCREEN_WIDTH;
             _chooseVC2.view.height = 0;
 
-          _chooseVC.dataSource = @[@"智能排序",@"好评优先"];
+            _chooseVC.dataSource = @[@"智能排序",@"好评优先"];
         
             _chooseVC.block = ^(NSString *value,NSInteger index){
-                [weakSelf.sortBtn setTitle:value forState:UIControlStateNormal];
-                 [weakSelf.sortBtn horizontalCenterTitleAndImage:5];
+                
+                weakSelf.sortLabel.text = value;
+
                 if ([value isEqualToString:@"智能排序"]) {
                     
                     weakSelf.sort = @"1";
                 }else if ([value isEqualToString:@"好评优先"]){
                     weakSelf.sort = @"2";
                 }
-                
-                if ([weakSelf.sortBtn.titleLabel.text isEqualToString:@"排序"]) {
-                    
-                    weakSelf.sortBtn.imageView.image = [UIImage imageNamed:@"下选三角形"];
-                }else{
-                    weakSelf.sortBtn.imageView.image = [UIImage imageNamed:@""];
-                }
-                
-                [weakSelf updateData:YES];
+                [weakSelf.tableView.mj_header beginRefreshing];
+     
                 [weakSelf dismiss];
             };
         }
@@ -372,6 +384,8 @@ static NSString *ID = @"GLNearby_MerchatListCell";
             
             _chooseVC.view.yy_height = 0;
             
+            
+            
         } completion:^(BOOL finished) {
             
             _maskV.alpha = 0;
@@ -394,7 +408,8 @@ static NSString *ID = @"GLNearby_MerchatListCell";
             weakSelf.two_trade_id = @"";
             [weakSelf updateData:YES];
             [weakSelf dismiss];
-            [weakSelf.classifyBtn setTitle:@"全部" forState:UIControlStateNormal];
+
+            weakSelf.classifyLabel.text = value;
             return ;
         }
         weakSelf.trade_id = weakSelf.tradeArr[indexF][@"trade_id"];
@@ -410,16 +425,17 @@ static NSString *ID = @"GLNearby_MerchatListCell";
         weakSelf.chooseVC2.block = ^(NSString *value2,NSInteger index){
             if (index == 0) {
                 weakSelf.two_trade_id = @"";
-                [weakSelf updateData:YES];
+                [weakSelf.tableView.mj_header beginRefreshing];
                 [weakSelf dismiss];
-                 [weakSelf.classifyBtn setTitle:value forState:UIControlStateNormal];
+                weakSelf.classifyLabel.text = value;
+
                 return ;
             }
-            [weakSelf.classifyBtn setTitle:value2 forState:UIControlStateNormal];
-             [weakSelf.classifyBtn horizontalCenterTitleAndImage:5];
+            weakSelf.classifyLabel.text = value;
+
             weakSelf.two_trade_id = weakSelf.tradeArr[indexF][@"son"][index -1][@"trade_id"];
+            [weakSelf.tableView.mj_header beginRefreshing];
             [weakSelf dismiss];
-            [weakSelf updateData:YES];
         };
         
         [UIView animateWithDuration:0.3 animations:^{
@@ -448,18 +464,21 @@ static NSString *ID = @"GLNearby_MerchatListCell";
     _chooseVC.dataSource = arr;
     
     _chooseVC.block = ^(NSString *value,NSInteger index){
-        [weakSelf.classifyBtn setTitle:value forState:UIControlStateNormal];
-         [weakSelf.classifyBtn horizontalCenterTitleAndImage:5];
+        
+        weakSelf.classifyLabel.text = value;
+        
         if (index == 0) {
             weakSelf.two_trade_id = @"";
-            [weakSelf updateData:YES];
+            [weakSelf.tableView.mj_header beginRefreshing];
+
             [weakSelf dismiss];
             return;
         }
         
         weakSelf.trade_id = weakSelf.typeArr[index][@"trade_id"];
-        [weakSelf updateData:YES];
+        [weakSelf.tableView.mj_header beginRefreshing];
         [weakSelf dismiss];
+
     };
 }
 
