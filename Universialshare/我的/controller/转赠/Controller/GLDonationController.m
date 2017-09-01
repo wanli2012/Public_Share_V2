@@ -13,8 +13,9 @@
 #import "LBXScanViewStyle.h"
 #import "SubLBXScanViewController.h"
 #import "QQPopMenuView.h"
+#import <VerifyCode/NTESVerifyCodeManager.h>
 
-@interface GLDonationController ()<UITextFieldDelegate>
+@interface GLDonationController ()<UITextFieldDelegate,NTESVerifyCodeManagerDelegate>
 {
     GLSet_MaskVeiw *_maskView;
     LoadWaitView *_loadV;
@@ -39,6 +40,8 @@
 @property (weak, nonatomic) IBOutlet UIView *typeView;
 @property (weak, nonatomic) IBOutlet UITextField *usertypeF;
 @property (weak, nonatomic) IBOutlet UIView *userTypeV;
+@property(nonatomic,strong)NTESVerifyCodeManager *manager;
+@property (strong, nonatomic)NSString *validate;
 
 @end
 
@@ -370,7 +373,31 @@
 
 //确认捐赠
 -(void)ensureDonation{
- 
+    [self cancelDonation];
+    self.manager = [NTESVerifyCodeManager sharedInstance];
+    if (self.manager) {
+        
+        // 如果需要了解组件的执行情况,则实现回调
+        self.manager.delegate = self;
+        
+        // captchaid的值是每个产品从后台生成的,比如 @"a05f036b70ab447b87cc788af9a60974"
+        NSString *captchaid = CAPTCHAID;
+        [self.manager configureVerifyCode:captchaid timeout:10.0];
+        
+        // 设置透明度
+        self.manager.alpha = 0.7;
+        
+        // 设置frame
+        self.manager.frame = CGRectNull;
+        
+        // 显示验证码
+        [self.manager openVerifyCodeView:nil];
+    }
+
+}
+
+-(void)sureSubmint{
+
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
@@ -378,10 +405,10 @@
     dict[@"groupID"] = @(self.userType);
     dict[@"userphone"] = self.donationIDF.text;
     dict[@"type"] =@(self.stringtype);
-    
+    dict[@"validate"] =self.validate;
+
     NSString *encryptsecret = [RSAEncryptor encryptString:self.secondPwdF.text publicKey:public_RSA];
     dict[@"password"] = encryptsecret;
-    
     _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"User/give_to_mark" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
@@ -393,18 +420,18 @@
                 
                 [_maskView removeFromSuperview];
             }];
-    
+            
             [MBProgressHUD showError:responseObject[@"message"]];
-        
+            
             
             NSString *useableNum = @"";
             
             if (self.stringtype == 1) {
-                 useableNum = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].mark floatValue] - [self.beanNumF.text floatValue]];
+                useableNum = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].mark floatValue] - [self.beanNumF.text floatValue]];
                 [UserModel defaultUser].mark = useableNum;
-                 self.useableBeanLabel.text = [NSString stringWithFormat:@"可转赠米券:%@",useableNum];
+                self.useableBeanLabel.text = [NSString stringWithFormat:@"可转赠米券:%@",useableNum];
             }else{
-                 useableNum = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].ketiBean floatValue] - [self.beanNumF.text floatValue]];
+                useableNum = [NSString stringWithFormat:@"%.2f",[[UserModel defaultUser].ketiBean floatValue] - [self.beanNumF.text floatValue]];
                 [UserModel defaultUser].ketiBean = useableNum;
                 self.useableBeanLabel.text = [NSString stringWithFormat:@"可转赠米子:%@",useableNum];
             }
@@ -418,7 +445,7 @@
             self.usertypeF.text = nil;
             
             [MBProgressHUD showSuccess:@"转赠成功"];
-
+            
         }else{
             [_loadV removeloadview];
             [MBProgressHUD showError:responseObject[@"message"]];
@@ -467,4 +494,57 @@
     }
     return res;
 }
+
+#pragma mark - NTESVerifyCodeManagerDelegate
+/**
+ * 验证码组件初始化完成
+ */
+- (void)verifyCodeInitFinish{
+    
+}
+
+/**
+ * 验证码组件初始化出错
+ *
+ * @param message 错误信息
+ */
+- (void)verifyCodeInitFailed:(NSString *)message{
+    [MBProgressHUD showError:message];
+}
+
+/**
+ * 完成验证之后的回调
+ *
+ * @param result 验证结果 BOOL:YES/NO
+ * @param validate 二次校验数据，如果验证结果为false，validate返回空
+ * @param message 结果描述信息
+ *
+ */
+- (void)verifyCodeValidateFinish:(BOOL)result validate:(NSString *)validate message:(NSString *)message{
+    
+    if (result == YES) {
+        self.validate = validate;
+        [self sureSubmint];
+    }
+    
+}
+
+/**
+ * 关闭验证码窗口后的回调
+ */
+- (void)verifyCodeCloseWindow{
+    //用户关闭验证后执行的方法
+    
+}
+
+/**
+ * 网络错误
+ *
+ * @param error 网络错误信息
+ */
+- (void)verifyCodeNetError:(NSError *)error{
+    //用户关闭验证后执行的方法
+    [MBProgressHUD showError:error.localizedDescription];
+}
+
 @end
