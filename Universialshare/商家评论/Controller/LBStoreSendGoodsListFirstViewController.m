@@ -15,7 +15,7 @@
 #import "LBSendGoodsProductModel.h"
 #import "LBStoreSendGoodsLeavingTableViewCell.h"
 
-@interface LBStoreSendGoodsListFirstViewController ()<LBStoreSendGoodsDelegete>
+@interface LBStoreSendGoodsListFirstViewController ()<LBStoreSendGoodsDelegete,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic)NSMutableArray *dataarr;
@@ -219,7 +219,20 @@ static NSString *LeavingID = @"LBStoreSendGoodsLeavingTableViewCell";
     return headerview;
 
 }
+#pragma mark -- UITextfieldDelegate
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (textField.tag == 999) {
+        NSString *regex = @"[a-zA-Z0-9]";
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+        if ([string isEqualToString:@""]) {
+            return YES;
+        }else{
+            return [pred evaluateWithObject:string];
+        }
 
+    }
+    return YES;
+}
 
 #pragma mark --- LBStoreSendGoodsDelegete
 
@@ -247,6 +260,8 @@ static NSString *LeavingID = @"LBStoreSendGoodsLeavingTableViewCell";
     
     [alertView addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"请输入物流单号(选填)";
+        textField.delegate = self;
+        textField.tag = 999;
     }];
     
     // first way to show
