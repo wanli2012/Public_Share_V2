@@ -411,8 +411,8 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                         return;
                     }
                     [weakSelf.classifyBtn setTitle:value2 forState:UIControlStateNormal];
-                     [weakSelf.classifyBtn horizontalCenterTitleAndImage:5];
-                    weakSelf.two_trade_id = weakSelf.tradeArr[indexF][@"son"][index][@"trade_id"];
+                    [weakSelf.classifyBtn horizontalCenterTitleAndImage:5];
+                    weakSelf.two_trade_id = weakSelf.tradeArr[indexF][@"son"][index - 1][@"trade_id"];
                     [weakSelf dismiss];
                     [weakSelf updateData:YES];
                 };
