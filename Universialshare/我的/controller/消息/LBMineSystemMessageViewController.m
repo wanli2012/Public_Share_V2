@@ -23,6 +23,7 @@
 @property (strong, nonatomic)NSMutableArray *messageArr;
 @property (strong, nonatomic)UIButton *buttonedt;
 @property (strong, nonatomic)NodataView *nodataV;
+@property (strong, nonatomic)NSMutableArray *typeArr;
 
 @end
 
@@ -31,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    self.navigationItem.title = @"系统消息";
+     self.navigationItem.title = self.typeArr[0][@"title"];
     self.view.backgroundColor=[UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.messageType = 1;
@@ -155,13 +156,7 @@
 -(void)edtingInfo{
 
     __weak typeof(self) weakself = self;
-    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"兑换消息",@"imageName":@""},
-                                                                   @{@"title":@"奖金消息",@"imageName":@""},
-                                                                   @{@"title":@"推荐消息",@"imageName":@""},
-                                                                   @{@"title":@"下单消息",@"imageName":@""},
-                                                                   @{@"title":@"转赠消息",@"imageName":@""},
-                                                                   @{@"title":@"其他消息",@"imageName":@""},
-                                                                   ]
+    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:self.typeArr
                               
                                                            width:100
                                                 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, 64+5)
@@ -170,6 +165,7 @@
                                                               _refreshType = NO;
                                                               _page=1;
                                                               _messageType = index + 1;
+                                                              weakself.navigationItem.title = _typeArr[index][@"title"];
                                                               [weakself initdatasource];
                                                           }];
     
@@ -231,5 +227,21 @@
     }
     return _nodataV;
     
+}
+
+-(NSMutableArray*)typeArr{
+
+    if (!_typeArr) {
+        _typeArr = [NSMutableArray arrayWithArray:@[@{@"title":@"兑换消息",@"imageName":@""},
+                                                    @{@"title":@"奖金消息",@"imageName":@""},
+                                                    @{@"title":@"推荐消息",@"imageName":@""},
+                                                    @{@"title":@"下单消息",@"imageName":@""},
+                                                    @{@"title":@"转赠消息",@"imageName":@""},
+                                                    @{@"title":@"其他消息",@"imageName":@""},
+                                                    @{@"title":@"团队消息",@"imageName":@""},
+                                                    ]];
+    }
+
+    return _typeArr;
 }
 @end
