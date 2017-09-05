@@ -427,7 +427,6 @@ static const CGFloat headerHeight = 0.0f;
    
 }
 
-
 //确认申请
 -(void)sureapplication{
     
@@ -444,7 +443,7 @@ static const CGFloat headerHeight = 0.0f;
         return;
     }
     
-    if ([self.loginView.moneyTF.text  floatValue] >= [[UserModel defaultUser].allLimit floatValue]) {
+    if ([self.loginView.moneyTF.text  floatValue] <= [[UserModel defaultUser].allLimit floatValue]) {
         [MBProgressHUD showError:@"输入大于当前额度"];
         return;
     }
