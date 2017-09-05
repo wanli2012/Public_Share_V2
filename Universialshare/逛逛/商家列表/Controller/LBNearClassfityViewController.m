@@ -428,11 +428,9 @@ static NSString *ID = @"GLNearby_MerchatListCell";
                 [weakSelf.tableView.mj_header beginRefreshing];
                 [weakSelf dismiss];
                 weakSelf.classifyLabel.text = value;
-
                 return ;
             }
-            weakSelf.classifyLabel.text = value;
-
+            weakSelf.classifyLabel.text = value2;
             weakSelf.two_trade_id = weakSelf.tradeArr[indexF][@"son"][index -1][@"trade_id"];
             [weakSelf.tableView.mj_header beginRefreshing];
             [weakSelf dismiss];
@@ -475,7 +473,7 @@ static NSString *ID = @"GLNearby_MerchatListCell";
             return;
         }
         
-        weakSelf.trade_id = weakSelf.typeArr[index][@"trade_id"];
+        weakSelf.two_trade_id = weakSelf.typeArr[index-1][@"trade_id"];
         [weakSelf.tableView.mj_header beginRefreshing];
         [weakSelf dismiss];
 
