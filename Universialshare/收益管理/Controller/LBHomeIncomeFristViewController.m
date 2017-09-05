@@ -455,6 +455,7 @@ static const CGFloat headerHeight = 0.0f;
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"userphone"] = self.loginView.phoneTf.text;
     dict[@"money"] = self.loginView.moneyTF.text;
+
     dict[@"type"] = self.type;
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
@@ -472,13 +473,13 @@ static const CGFloat headerHeight = 0.0f;
              [MBProgressHUD showError:responseObject[@"message"]];
     
          }else{
+             
              [MBProgressHUD showError:responseObject[@"message"]];
          }
          
      } enError:^(NSError *error) {
          [_loadV removeloadview];
          [MBProgressHUD showError:error.localizedDescription];
-         
      }];
     
 }
@@ -548,15 +549,14 @@ static const CGFloat headerHeight = 0.0f;
     } enError:^(NSError *error) {
         
     }];
-    
 }
 
 -(LBApplicationLimitView*)loginView{
     
     if (!_loginView) {
-        _loginView=[[NSBundle mainBundle]loadNibNamed:@"LBApplicationLimitView" owner:self options:nil].firstObject;
-        _loginView.frame=CGRectMake(20, (SCREEN_HEIGHT - 64 - 280)/2, SCREEN_WIDTH-40, 280);
-        _loginView.alpha=1;
+        _loginView = [[NSBundle mainBundle]loadNibNamed:@"LBApplicationLimitView" owner:self options:nil].firstObject;
+        _loginView.frame = CGRectMake(20, (SCREEN_HEIGHT - 64 - 280)/2, SCREEN_WIDTH-40, 280);
+        _loginView.alpha = 1;
         _loginView.layer.cornerRadius = 4;
         _loginView.clipsToBounds = YES;
         [_loginView.yzmbt addTarget:self action:@selector(getcode:) forControlEvents:UIControlEventTouchUpInside];
@@ -615,8 +615,8 @@ static const CGFloat headerHeight = 0.0f;
             weakSelf.selectUserTypeView.alpha = 0;
         }];
     }
- 
 }
+
 //限额选择View
 -(SelectUserTypeView*)selectUserTypeView{
     
@@ -627,7 +627,6 @@ static const CGFloat headerHeight = 0.0f;
         _selectUserTypeView.layer.cornerRadius = 10.f;
         _selectUserTypeView.clipsToBounds = YES;
         _selectUserTypeView.frame=CGRectMake(100, 150, SCREEN_WIDTH - 40 - 110, 0);
-        
         _selectUserTypeView.dataSoure  = @[@"每日限额",@"每单限额"];
         
     }
