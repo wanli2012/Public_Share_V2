@@ -403,12 +403,6 @@ static const CGFloat headerHeight = 0.0f;
     return 0;
 }
 
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
-
-}
-
 -(void)showSearchView:(NSNotification*)noti{
 
     NSDictionary *dic = noti.userInfo;

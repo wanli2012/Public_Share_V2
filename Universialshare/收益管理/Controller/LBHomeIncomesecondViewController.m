@@ -405,15 +405,6 @@ static const CGFloat headerHeight = 0.0f;
 }
 
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
-    if (scrollView.contentOffset.y > 300) {
-        self.backbutton.hidden = NO;
-    }else{
-        self.backbutton.hidden = YES;
-    }
-    
-}
 
 -(void)showSearchView:(NSNotification*)noti{
     

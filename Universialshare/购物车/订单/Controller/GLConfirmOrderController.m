@@ -75,7 +75,6 @@ static NSString *ID = @"GLOrderGoodsCell";
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
     self.navigationController.navigationBar.hidden = NO;
 
 }
@@ -101,7 +100,7 @@ static NSString *ID = @"GLOrderGoodsCell";
                     if ([dic[@"is_default"] intValue] == 1) {
                         self.nameLabel.text = [NSString stringWithFormat:@"收货人:%@",dic[@"collect_name"]];
                         self.phoneLabel.text = [NSString stringWithFormat:@"tel:%@",dic[@"s_phone"]];
-                        self.addressLabel.text = [NSString stringWithFormat:@"收货地址:%@",dic[@"s_address"]];
+                        self.addressLabel.text = [NSString stringWithFormat:@"%@",dic[@"s_address"]];
                         self.address_id = [NSString stringWithFormat:@"%@",dic[@"address_id"]];
                     }
                 }
@@ -155,7 +154,7 @@ static NSString *ID = @"GLOrderGoodsCell";
     modifyAD.block = ^(NSString *name,NSString *phone,NSString *address,NSString *addressid){
         self.nameLabel.text = [NSString stringWithFormat:@"收货人:%@",name];
         self.phoneLabel.text = [NSString stringWithFormat:@"电话号码:%@",phone];
-        self.addressLabel.text = [NSString stringWithFormat:@"收货地址:%@",address];
+        self.addressLabel.text = [NSString stringWithFormat:@"%@",address];
         self.address_id = addressid;
     };
     
@@ -185,7 +184,7 @@ static NSString *ID = @"GLOrderGoodsCell";
 //订单提交
 - (IBAction)submitOrder:(UIButton *)sender {
 
-    if (self.nameLabel.text.length == 4) {
+    if (self.nameLabel.text.length <=0 ) {
         [MBProgressHUD showError:@"请填写收货信息"];
         return;
     }
@@ -242,6 +241,7 @@ static NSString *ID = @"GLOrderGoodsCell";
         
     } enError:^(NSError *error) {
         [_loadV removeloadview];
+        [MBProgressHUD showError:@"请求失败"];
     }];
     
 }
