@@ -68,7 +68,7 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [_loadV removeloadview];
-        [MBProgressHUD showError:error.localizedDescription];
+         [MBProgressHUD showError:@"订单单号异常,联系商家"];
     }];
 
 }
