@@ -83,6 +83,10 @@ static NSString *ID = @"GLMine_InfoCell";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:_buttonedt];
     
+    if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
+        self.doorImageBt.hidden = NO;
+    }
+    
     [self updateInfo];
 }
 - (void)viewWillAppear:(BOOL)animated{
