@@ -238,7 +238,11 @@
                 [self.tableview reloadData];
                 self.hidesBottomBarWhenPushed=YES;
                 LBMineCenterMyOrderViewController *vc=[[LBMineCenterMyOrderViewController alloc]init];
-                vc.isSelectindex = YES;
+                if ([model.order_type isEqualToString:@"1"]) {
+                    vc.isSelectindex = YES;
+                }else{
+                    vc.isSelectindex = NO;
+                }
                 [self.navigationController pushViewController:vc animated:YES];
 
             }else{
