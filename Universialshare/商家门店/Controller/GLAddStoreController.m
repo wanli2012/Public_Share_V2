@@ -275,7 +275,7 @@
         if ([dic[@"code"]integerValue]==1) {
             
             [MBProgressHUD showError:dic[@"message"]];
-            //            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }else{
             [MBProgressHUD showError:dic[@"message"]];
         }
