@@ -77,7 +77,7 @@
 
 -(void)isShowPayInterface{
     
-    [self.dataarr addObject:@{@"image":@"支付米分",@"title":@"米券支付"}];
+    [self.dataarr addObject:@{@"image":@"支付积分",@"title":@"米券支付"}];
     [self.dataarr addObject:@{@"image":@"余额",@"title":@"米子支付"}];
     [self.dataarr addObject:@{@"image":@"微信",@"title":@"微信支付"}];
     [self.dataarr addObject:@{@"image":@"支付宝",@"title":@"支付宝支付"}];
