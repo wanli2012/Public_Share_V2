@@ -25,6 +25,9 @@
 @property (strong, nonatomic)NodataView *nodataV;
 @property (strong, nonatomic)NSMutableArray *typeArr;
 
+//@property (nonatomic, strong)NSDictionary *msgDic;//未读消息
+@property (nonatomic, strong)NSMutableArray *hongDianArr;//小红点数组
+
 @end
 
 @implementation LBMineSystemMessageViewController
@@ -32,11 +35,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    [self setRedPoint];
      self.navigationItem.title = self.typeArr[0][@"title"];
     self.view.backgroundColor=[UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.messageType = 1;
-//    self.messageArr = [NSMutableArray arrayWithObjects:@"兑换消息",@"奖励消息",@"推荐消息",@"下单消息",@"直捐消息",@"其他消息", nil];
     self.tableview.tableFooterView = [UIView new];
     self.tableview.estimatedRowHeight = 70;
     self.tableview.rowHeight = UITableViewAutomaticDimension;
@@ -67,7 +70,6 @@
     }];
     
     // 设置文字
-    
     [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
     
     [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
@@ -76,6 +78,39 @@
     
     self.tableview.mj_header = header;
     self.tableview.mj_footer = footer;
+    
+    
+}
+
+- (void)setRedPoint{
+    
+    self.hongDianArr = [NSMutableArray array];
+    
+    for (int i = 0; i < 7; i ++) {
+        [self.hongDianArr addObject:@""];
+    }
+
+    if ([self.msgDic[@"back"] integerValue] != 0) {
+        [self.hongDianArr replaceObjectAtIndex:0 withObject:@"小红点"];
+        
+    }else if([self.msgDic[@"bonus_log"] integerValue] != 0){
+        [self.hongDianArr replaceObjectAtIndex:1 withObject:@"小红点"];
+        
+    }else if([self.msgDic[@"log"] integerValue] != 0){
+        [self.hongDianArr replaceObjectAtIndex:2 withObject:@"小红点"];
+        
+    }else if([self.msgDic[@"order_line"] integerValue] != 0){
+        [self.hongDianArr replaceObjectAtIndex:3 withObject:@"小红点"];
+        
+    }else if([self.msgDic[@"give"] integerValue] != 0){
+        [self.hongDianArr replaceObjectAtIndex:4 withObject:@"小红点"];
+        
+    }else if([self.msgDic[@"system_message"] integerValue] != 0){
+        [self.hongDianArr replaceObjectAtIndex:5 withObject:@"小红点"];
+        
+    }else if([self.msgDic[@"logtd"] integerValue] != 0){
+        [self.hongDianArr replaceObjectAtIndex:6 withObject:@"小红点"];
+    }
     
 }
 
@@ -98,14 +133,11 @@
                 [self.dataarr removeAllObjects];
                 
                 [self.dataarr addObjectsFromArray:responseObject[@"data"]];
-                
                 [self.tableview reloadData];
             }else{
                 
                 [self.dataarr addObjectsFromArray:responseObject[@"data"]];
-                
                 [self.tableview reloadData];
-                
             }
             
         }else if ([responseObject[@"code"] integerValue]==3){
@@ -125,18 +157,25 @@
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
         [MBProgressHUD showError:error.localizedDescription];
-        
-    }];
-
-
-    [NetworkManager requestPOSTWithURLStr:@"User/user_msg_read" paramDic:@{ @"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token} finish:^(id responseObject) {
-        [_loadV removeloadview];
-
-    } enError:^(NSError *error) {
-        
     }];
 }
 
+//消息变为已读
+- (void)readMsg{
+    
+    for (int i = 0; i < 7; i ++) {
+        [self.hongDianArr replaceObjectAtIndex:i withObject:@""];
+    }
+
+    
+    [NetworkManager requestPOSTWithURLStr:@"User/user_msg_read" paramDic:@{ @"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token} finish:^(id responseObject) {
+        [_loadV removeloadview];
+        
+    } enError:^(NSError *error) {
+        
+    }];
+    
+}
 //下拉刷新
 -(void)loadNewData{
     
@@ -156,20 +195,28 @@
 -(void)edtingInfo{
 
     __weak typeof(self) weakself = self;
-    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:self.typeArr
+    
+    QQPopMenuView *popview = [[QQPopMenuView alloc] initWithItems:self.typeArr
                               
-                                                           width:100
+                                                           width:130
                                                 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, 64+5)
                                                           action:^(NSInteger index) {
                                                               
-                                                              _refreshType = NO;
-                                                              _page=1;
-                                                              _messageType = index + 1;
-                                                              weakself.navigationItem.title = _typeArr[index][@"title"];
+                                                              weakself.refreshType = NO;
+                                                              weakself.page=1;
+                                                              weakself.messageType = index + 1;
+                                                              weakself.navigationItem.title = weakself.typeArr[index][@"title"];
+                                                              if ([weakself.hongDianArr[index] isEqualToString:@"小红点"]) {
+                                                                  weakself.typeArr = nil;
+                                                                  [weakself readMsg];
+                                                                  popview.tableData = self.typeArr;
+                                                                  [popview.tableView reloadData];
+                                                              }
                                                               [weakself initdatasource];
+                                                              
                                                           }];
     
-    popview.isHideImage = YES;
+    popview.isHideImage = NO;
     
     [popview show];
 
@@ -232,13 +279,13 @@
 -(NSMutableArray*)typeArr{
 
     if (!_typeArr) {
-        _typeArr = [NSMutableArray arrayWithArray:@[@{@"title":@"兑换消息",@"imageName":@""},
-                                                    @{@"title":@"奖金消息",@"imageName":@""},
-                                                    @{@"title":@"推荐消息",@"imageName":@""},
-                                                    @{@"title":@"下单消息",@"imageName":@""},
-                                                    @{@"title":@"转赠消息",@"imageName":@""},
-                                                    @{@"title":@"其他消息",@"imageName":@""},
-                                                    @{@"title":@"团队消息",@"imageName":@""},
+        _typeArr = [NSMutableArray arrayWithArray:@[@{@"title":@"兑换消息",@"imageName":self.hongDianArr[0]},
+                                                    @{@"title":@"奖金消息",@"imageName":self.hongDianArr[1]},
+                                                    @{@"title":@"推荐消息",@"imageName":self.hongDianArr[2]},
+                                                    @{@"title":@"下单消息",@"imageName":self.hongDianArr[3]},
+                                                    @{@"title":@"转赠消息",@"imageName":self.hongDianArr[4]},
+                                                    @{@"title":@"其他消息",@"imageName":self.hongDianArr[5]},
+                                                    @{@"title":@"团队消息",@"imageName":self.hongDianArr[6]},
                                                     ]];
     }
 

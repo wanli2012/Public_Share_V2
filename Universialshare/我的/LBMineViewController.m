@@ -83,6 +83,8 @@ static CGFloat headViewH = 300;
 @property (weak, nonatomic) IBOutlet UIView *navaView;
 @property (weak, nonatomic) IBOutlet UIImageView *signImageV;
 
+@property (nonatomic, strong)NSDictionary *msgDic;//未读消息 条数(7种消息)
+
 @end
 
 @implementation LBMineViewController
@@ -689,6 +691,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     
     self.hidesBottomBarWhenPushed=YES;
     LBMineSystemMessageViewController *vc=[[LBMineSystemMessageViewController alloc]init];
+    vc.msgDic = self.msgDic;
     [self.navigationController pushViewController:vc animated:YES];
     self.hidesBottomBarWhenPushed=NO;
     
@@ -850,6 +853,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [UserModel defaultUser].order_line = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"order_line"]];
             [UserModel defaultUser].system_message = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"system_message"]];
             [UserModel defaultUser].give = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"msg_no"][@"give"]];
+        
             
             [UserModel defaultUser].pre_phone = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"pre_phone"]];
             [UserModel defaultUser].single = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"single"]];
@@ -876,7 +880,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 
                 [UserModel defaultUser].single = @"0.00";
             }
-            
+            self.msgDic = responseObject[@"data"][@"msg_no"];
             [usermodelachivar achive];
             
             [self.headview.headimage sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].headPic]];

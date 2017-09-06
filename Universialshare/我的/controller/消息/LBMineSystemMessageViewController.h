@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LBMineSystemMessageViewController : UIViewController
-
+@property (nonatomic, strong)NSDictionary *msgDic;//未读消息
 @end

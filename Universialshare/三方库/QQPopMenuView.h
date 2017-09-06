@@ -14,6 +14,10 @@
 
 @interface QQPopMenuView : UIView
 
+@property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) NSArray *tableData;
+
 @property (nonatomic, copy) void (^hideHandle)();
 
 @property (nonatomic, assign) BOOL isHideImage;//是否隐藏左边的图片 YES隐藏
@@ -46,4 +50,5 @@
 
 - (void)show;
 - (void)hide;
+
 @end

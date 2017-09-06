@@ -24,5 +24,9 @@
 
 @property (nonatomic, copy)NSString *uid;
 
+@property (nonatomic, copy)NSString *total_money;//总销售额
+
+@property (nonatomic, copy)NSString *today_money;//今日销售额
+
 
 @end

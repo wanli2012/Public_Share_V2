@@ -62,6 +62,7 @@ static const CGFloat headerHeight = 0.0f;
     self.endStrUnder = @"";
     self.otype = @"2";
     self.pageUnder = 1;
+    self.type = @"1";
     self.underlineMoney = @"营业总额: ¥0";
     [self.tableview addSubview:self.headview];
     [self.tableview addSubview:self.nodataV];
@@ -447,12 +448,15 @@ static const CGFloat headerHeight = 0.0f;
     }
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"User/applyMoreSaleMoney" paramDic:@{@"yzm":self.loginView.yzmTf.text,
-                                                                                @"uid":[UserModel defaultUser].uid ,
-                                                                                @"token":[UserModel defaultUser].token,
-                                                                                @"userphone":self.loginView.phoneTf.text,
-                                                                                @"money":self.loginView.moneyTF.text,
-                                                                                @"type":self.type} finish:^(id responseObject)
+    
+    [NetworkManager requestPOSTWithURLStr:@"User/applyMoreSaleMoney"
+                                 paramDic:@{@"yzm":self.loginView.yzmTf.text,
+                                            @"uid":[UserModel defaultUser].uid,
+                                            @"token":[UserModel defaultUser].token,
+                                            @"userphone":self.loginView.phoneTf.text,
+                                            @"money":self.loginView.moneyTF.text,
+                                            @"type":self.type}
+                                   finish:^(id responseObject)
      {
          
          [_loadV removeloadview];

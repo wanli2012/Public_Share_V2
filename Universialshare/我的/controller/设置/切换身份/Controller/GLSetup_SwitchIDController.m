@@ -203,6 +203,7 @@
             [UserModel defaultUser].single = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"single"]];
             
             [UserModel defaultUser].rzstatus = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"rzstatus"]];
+            [UserModel defaultUser].isapplication = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isapplication"]];
             
             
             if ([[UserModel defaultUser].banknumber rangeOfString:@"null"].location != NSNotFound) {

@@ -14,8 +14,7 @@
 static CGFloat const kCellHeight = 44;
 
 @interface QQPopMenuView ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
-@property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSArray *tableData;
+
 @property (nonatomic, assign) CGPoint trianglePoint;
 @property (nonatomic, copy) void(^action)(NSInteger index);
 @end
@@ -149,6 +148,7 @@ static CGFloat const kCellHeight = 44;
     PopMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PopMenuTableViewCell" forIndexPath:indexPath];
     NSDictionary *dic = _tableData[indexPath.row];
     cell.leftImageView.image = [UIImage imageNamed:dic[@"imageName"]];
+
     cell.titleLabel.text = dic[@"title"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.layoutMargins = UIEdgeInsetsZero;
@@ -161,8 +161,8 @@ static CGFloat const kCellHeight = 44;
     }else{
     
         cell.leftImageView.hidden = NO;
-        cell.leftconstart.constant = 15;
-        cell.widethconstart.constant = 20;
+        cell.leftconstart.constant = 7;
+        cell.widethconstart.constant = 8;
     
     }
     

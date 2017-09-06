@@ -97,12 +97,10 @@ static NSString *ID = @"GLMerchat_StoreCell";
                     GLMerchat_StoreModel *model = [GLMerchat_StoreModel mj_objectWithKeyValues:dic];
                     [_models addObject:model];
                 }
-
             }
-            
         }else{
-            [MBProgressHUD showError:responseObject[@"message"]];
             
+            [MBProgressHUD showError:responseObject[@"message"]];
         }
         
         if (self.models.count <= 0 ) {

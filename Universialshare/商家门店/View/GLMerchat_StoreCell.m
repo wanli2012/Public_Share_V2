@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalMoneyLabel;//总销售额
+@property (weak, nonatomic) IBOutlet UILabel *todayMoneyLabel;//今日销售额
 
 @property (weak, nonatomic) IBOutlet UIButton *statusBtn;//显示状态
 
@@ -52,6 +54,8 @@
     self.nameLabel.text = model.shop_name;
     self.phoneLabel.text = model.phone;
     self.addressLabel.text = model.shop_address;
+    self.totalMoneyLabel.text = model.total_money;
+    self.todayMoneyLabel.text = model.today_money;
     
     switch ([model.status integerValue]) {
         case 0:
