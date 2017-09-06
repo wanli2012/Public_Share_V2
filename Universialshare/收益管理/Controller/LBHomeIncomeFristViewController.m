@@ -425,7 +425,7 @@ static const CGFloat headerHeight = 0.0f;
 -(void)sureapplication{
     
     if (self.loginView.phoneTf.text .length <= 0) {
-        [MBProgressHUD showError:@"请输入手机号"];
+        [MBProgressHUD showError:@"手机号异常"];
         return;
     }
     if (self.loginView.yzmTf.text .length <= 0) {
@@ -446,7 +446,7 @@ static const CGFloat headerHeight = 0.0f;
     dict[@"yzm"] = self.loginView.yzmTf.text;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"userphone"] = self.loginView.phoneTf.text;
+    dict[@"userphone"] = [UserModel defaultUser].phone;
     dict[@"money"] = self.loginView.moneyTF.text;
 
     dict[@"type"] = self.type;
@@ -500,7 +500,7 @@ static const CGFloat headerHeight = 0.0f;
                 //设置界面的按钮显示 根据自己需求设置
                 [self.loginView.yzmbt setTitle:@"重发验证码" forState:UIControlStateNormal];
                 self.loginView.yzmbt.userInteractionEnabled = YES;
-                self.loginView.yzmbt.backgroundColor = YYSRGBColor(44, 153, 46, 1);
+                self.loginView.yzmbt.backgroundColor = TABBARTITLE_COLOR;
                 self.loginView.yzmbt.titleLabel.font = [UIFont systemFontOfSize:13];
             });
         }else{
@@ -521,18 +521,13 @@ static const CGFloat headerHeight = 0.0f;
 
 - (void)getcode:(UIButton *)sender {
     
-    if (self.loginView.phoneTf.text.length <=0 ) {
-        [MBProgressHUD showError:@"请输入手机号码"];
+    if (![predicateModel valiMobile:[UserModel defaultUser].phone]) {
+        [MBProgressHUD showError:@"手机号格式不对"];
         return;
-    }else{
-        if (![predicateModel valiMobile:self.loginView.phoneTf.text]) {
-            [MBProgressHUD showError:@"手机号格式不对"];
-            return;
-        }
     }
     
     [self startTime];//获取倒计时
-    [NetworkManager requestPOSTWithURLStr:@"User/get_yzm" paramDic:@{@"phone":self.loginView.phoneTf.text} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"User/get_yzm" paramDic:@{@"phone":[UserModel defaultUser].phone} finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue]==1) {
             
@@ -559,7 +554,7 @@ static const CGFloat headerHeight = 0.0f;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(popTypeView)];
         [_loginView.typeView addGestureRecognizer:tap];
         _loginView.typeLabel.text = @"每日限额";
-        
+        _loginView.phoneTf.text = [NSString stringWithFormat:@"%@*****%@",[[UserModel defaultUser].phone substringToIndex:3],[[UserModel defaultUser].phone substringFromIndex:7]];
     }
     return _loginView;
     
@@ -651,7 +646,7 @@ static const CGFloat headerHeight = 0.0f;
     
     if (!_backbutton) {
         _backbutton=[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 80, SCREEN_HEIGHT - 150, 60, 60)];
-        _backbutton.backgroundColor=YYSRGBColor(120,161,255, 0.5);
+        _backbutton.backgroundColor=YYSRGBColor(120,161,255, 0.8);
         _backbutton.titleLabel.font=[UIFont systemFontOfSize:13];
         [_backbutton addTarget:self action:@selector(backHomeBtbtton) forControlEvents:UIControlEventTouchUpInside];
         [_backbutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

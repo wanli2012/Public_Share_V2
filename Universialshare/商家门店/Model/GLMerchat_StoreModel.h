@@ -28,5 +28,7 @@
 
 @property (nonatomic, copy)NSString *today_money;//今日销售额
 
+@property (nonatomic, copy)NSString *store_pic ;//今日销售额
+
 
 @end

@@ -49,7 +49,7 @@
     [self.tableview addSubview:self.nodataV];
     
     _buttonedt=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 60)];
-    [_buttonedt setTitle:@"筛选" forState:UIControlStateNormal];
+    [_buttonedt setTitle:@"分类" forState:UIControlStateNormal];
     [_buttonedt setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -10)];
     _buttonedt.titleLabel.font = [UIFont systemFontOfSize:14];
     [_buttonedt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

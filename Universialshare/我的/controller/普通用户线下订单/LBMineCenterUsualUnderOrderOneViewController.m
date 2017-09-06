@@ -89,16 +89,14 @@
                 [self.dataarr removeAllObjects];
     
             }
-                
-                if (![responseObject[@"data"] isEqual:[NSNull null]]) {
-                    [self.dataarr addObjectsFromArray:responseObject[@"data"]];
-                    [self.tableview reloadData];
-                }
-            
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                [self.dataarr addObjectsFromArray:responseObject[@"data"]];
+                [self.tableview reloadData];
+            }
             
         }else if ([responseObject[@"code"] integerValue]==3){
             
-            [MBProgressHUD showError:responseObject[@"message"]];
+            [MBProgressHUD showError:@"没有更多数据"];
             
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];

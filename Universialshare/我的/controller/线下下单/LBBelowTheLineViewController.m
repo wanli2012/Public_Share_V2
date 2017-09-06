@@ -316,9 +316,6 @@
         // 显示验证码
         [self.manager openVerifyCodeView:nil];
     }
-    
-    self.comitbt.enabled = NO;
-    self.comitbt.backgroundColor = [UIColor lightGrayColor];
    
 }
 
@@ -330,29 +327,22 @@
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             
-            self.comitbt.enabled = NO;
-            self.comitbt.backgroundColor = [UIColor lightGrayColor];
-            
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 NSString *str=[NSString stringWithFormat:@"确定向%@下单吗?",responseObject[@"data"][@"truename"]];
                 UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:str delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                 [alert show];
+                
             }else{
                 [MBProgressHUD showError:responseObject[@"message"]];
             }
             
         }else if ([responseObject[@"code"] integerValue]==3){
-            
-            self.comitbt.enabled = YES;
-            self.comitbt.backgroundColor = TABBARTITLE_COLOR;
+
             
             [MBProgressHUD showError:responseObject[@"message"]];
             
         }else{
-            
-            self.comitbt.enabled = YES;
-            self.comitbt.backgroundColor = TABBARTITLE_COLOR;
-            
+
             [MBProgressHUD showError:responseObject[@"message"]];
             
         }
@@ -360,8 +350,7 @@
     } enError:^(NSError *error) {
         
         [_loadV removeloadview];
-        self.comitbt.enabled = YES;
-        self.comitbt.backgroundColor = TABBARTITLE_COLOR;
+
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
@@ -370,6 +359,8 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     if (buttonIndex==1) {
+        self.comitbt.enabled = NO;
+        self.comitbt.backgroundColor = [UIColor lightGrayColor];
         
         NSDictionary  * dic=@{@"token":[UserModel defaultUser].token , @"uid":[UserModel defaultUser].uid , @"username":self.phoneTf.text , @"rlmodel_type":[NSNumber numberWithInteger:self.userytpe],@"money":self.moneyTf.text,@"shopname":self.nameTf.text,@"shopnum":self.numTf.text,@"code":self.yuliuTf.text,@"version":@"3",@"group_id" :self.usertype,@"validate":self.validate};
         self.comitbt.userInteractionEnabled = NO;
@@ -411,6 +402,8 @@
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
            
             if ([dic[@"code"]integerValue]==1) {
+                self.comitbt.enabled = YES;
+                self.comitbt.backgroundColor = TABBARTITLE_COLOR;
                 
                 [MBProgressHUD showError:dic[@"message"]];
                 [self.navigationController popViewControllerAnimated:YES];
@@ -419,9 +412,10 @@
             }else{
                 [MBProgressHUD showError:dic[@"message"]];
             }
-           self.comitbt.userInteractionEnabled = YES;
+            
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            self.comitbt.userInteractionEnabled = YES;
+            self.comitbt.enabled = YES;
+            self.comitbt.backgroundColor = TABBARTITLE_COLOR;
             [MBProgressHUD showError:error.localizedDescription];
         }];
                 
@@ -583,6 +577,8 @@
  */
 - (void)verifyCodeCloseWindow{
     //用户关闭验证后执行的方法
+    self.comitbt.enabled = YES;
+    self.comitbt.backgroundColor = TABBARTITLE_COLOR;
 
 }
 
@@ -594,6 +590,9 @@
 - (void)verifyCodeNetError:(NSError *)error{
     //用户关闭验证后执行的方法
     [MBProgressHUD showError:error.localizedDescription];
+    self.comitbt.enabled = YES;
+    self.comitbt.backgroundColor = TABBARTITLE_COLOR;
+
 }
 
 

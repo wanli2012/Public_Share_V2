@@ -29,7 +29,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Quo-BN-vrW">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Quo-BN-vrW">
                             <rect key="frame" x="53" y="0.0" width="322" height="45"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -96,7 +96,7 @@
                     <rect key="frame" x="10" y="160" width="385" height="45"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="申请额度(元)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VkA-eq-6Sn">
-                            <rect key="frame" x="0.0" y="13" width="81.5" height="20"/>
+                            <rect key="frame" x="0.0" y="13" width="82" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="LQf-Ts-Cla"/>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="YfE-v7-w3N"/>
@@ -106,7 +106,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入金额" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R5f-OF-UfL">
-                            <rect key="frame" x="91.5" y="0.0" width="283.5" height="45"/>
+                            <rect key="frame" x="92" y="0.0" width="283" height="45"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -124,7 +124,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIc-CA-oYs">
-                    <rect key="frame" x="10" y="225" width="192.5" height="40"/>
+                    <rect key="frame" x="10" y="225" width="193" height="40"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="t15-KL-bS4"/>
@@ -135,7 +135,7 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhE-Ad-PPg">
-                    <rect key="frame" x="202.5" y="225" width="192.5" height="40"/>
+                    <rect key="frame" x="203" y="225" width="192" height="40"/>
                     <color key="backgroundColor" red="0.47058823529999999" green="0.63137254899999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="dpY-i7-1TJ"/>
@@ -149,7 +149,7 @@
                     <rect key="frame" x="0.0" y="110" width="405" height="45"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="限额类别" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17i-WV-CBS">
-                            <rect key="frame" x="10" y="12.5" width="81.5" height="20"/>
+                            <rect key="frame" x="10" y="13" width="82" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="nvJ-Ts-Tkg"/>
                             </constraints>
@@ -158,10 +158,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdG-b8-ivr">
-                            <rect key="frame" x="101.5" y="3" width="293.5" height="39"/>
+                            <rect key="frame" x="102" y="3" width="293" height="39"/>
                             <subviews>
                                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Atf-Zi-k3o">
-                                    <rect key="frame" x="258.5" y="7" width="25" height="25"/>
+                                    <rect key="frame" x="258" y="7" width="25" height="25"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="MeP-xl-NKN"/>
@@ -170,7 +170,7 @@
                                     <state key="normal" image="下选三角形"/>
                                 </button>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="选择身份" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="og1-2M-eta">
-                                    <rect key="frame" x="0.0" y="0.0" width="253.5" height="39"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="253" height="39"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>

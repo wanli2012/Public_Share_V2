@@ -43,7 +43,6 @@
         // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
     }];
     
-    
     // 设置文字
     
     [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
@@ -81,9 +80,11 @@
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"User/order_list_shop" paramDic:@{@"page":[NSNumber numberWithInteger:_page] , @"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"type":@2} finish:^(id responseObject) {
+        
         [_loadV removeloadview];
         [self.tableview.mj_header endRefreshing];
         [self.tableview.mj_footer endRefreshing];
+        
         if ([responseObject[@"code"] integerValue]==1) {
             
             if (_refreshType == NO) {
@@ -92,6 +93,7 @@
                     [self.dataarr addObjectsFromArray:responseObject[@"data"]];
                     [self.tableview reloadData];
                 }
+                
             }else{
                 
                 if (![responseObject[@"data"] isEqual:[NSNull null]]) {
@@ -102,11 +104,11 @@
             
         }else if ([responseObject[@"code"] integerValue]==3){
             
-            [MBProgressHUD showError:responseObject[@"message"]];
+            [MBProgressHUD showError:@"没有更多数据"];
             
         }else{
-            [MBProgressHUD showError:responseObject[@"message"]];
             
+            [MBProgressHUD showError:responseObject[@"message"]];
             
         }
     } enError:^(NSError *error) {

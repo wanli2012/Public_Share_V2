@@ -90,7 +90,7 @@ static NSString *ID = @"GLMerchat_StoreCell";
     [NetworkManager requestPOSTWithURLStr:@"Shop/getSonStoreList" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         [self endRefresh];
-        NSLog(@"%@",responseObject);
+
         if ([responseObject[@"code"] integerValue] == 1) {
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 for (NSDictionary *dic in responseObject[@"data"]) {
@@ -142,23 +142,21 @@ static NSString *ID = @"GLMerchat_StoreCell";
         [MBProgressHUD showError:@"分店不能开通门店"];
         return;
     }
+    
     self.hidesBottomBarWhenPushed = YES;
     GLAddStoreController *addVC = [[GLAddStoreController alloc] init];
     [self.navigationController pushViewController:addVC animated:YES];
 
-    
 }
 #pragma UITableviewDelegate UITableviewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.models.count;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     GLMerchat_StoreCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
-//
-//    //    cell.nameLabel.text = _model.name;
-//    //    cell.addressLabel.text = _model.address;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
     cell.indexPath = indexPath;

@@ -263,15 +263,16 @@
             return;
         }
     }else{
-        if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
-            [MBProgressHUD showError:@"您没有权限转赠米子"];
-            return;
-        }else{
-            if (self.userType == [Retailer integerValue]) {
-                [MBProgressHUD showError:@"不能给此用户转赠米子"];
-                return;
-            }
-        }
+//        if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]) {
+//            [MBProgressHUD showError:@"您没有权限转赠米子"];
+//            return;
+//        }
+//        
+//        if (self.userType == [Retailer integerValue]) {
+//            [MBProgressHUD showError:@"不能给此用户转赠米子"];
+//            return;
+//        }
+        
     }
    
     if (self.typeF.text == nil||self.typeF.text.length == 0) {
