@@ -34,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *orderMoney;
 @property (weak, nonatomic) IBOutlet UILabel *orderMTitleLb;
 
+@property (nonatomic, strong)NSString *selectecTypeStr;//选中的支付方式
+
 @end
 
 @implementation LBMineCenterPayPagesViewController
@@ -90,12 +92,7 @@
         
         if ([responseObject[@"code"] integerValue] == 1) {
             
-            if ([responseObject[@"data"][@"alipay"] integerValue] == 1) {
-                if (self.payType == 1 || self.payType == 3) {
-                
-                    [self.dataarr addObject:@{@"image":@"支付宝",@"title":@"支付宝支付"}];
-                }
-            }
+            
             
             if ([responseObject[@"data"][@"mz_pay"] integerValue] == 1) {
                 
@@ -105,7 +102,14 @@
                 }
             
             }
-                
+            
+            if ([responseObject[@"data"][@"alipay"] integerValue] == 1) {
+                if (self.payType == 1 || self.payType == 3) {
+                    
+                    [self.dataarr addObject:@{@"image":@"支付宝",@"title":@"支付宝支付"}];
+                }
+            }
+            
             if ([responseObject[@"data"][@"mq_pay"] integerValue] == 1) {
                 
                 if (self.payType == 2){
@@ -207,6 +211,10 @@
         [self.selectB replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:!a]];
         [self.selectB replaceObjectAtIndex:self.selectIndex withObject:[NSNumber numberWithBool:NO]];
         self.selectIndex = indexPath.row;
+        
+        LBMineCenterPayPagesTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        self.selectecTypeStr = cell.paytitile.text;
     
     }
     
@@ -488,7 +496,7 @@
         
     }else{
         
-        if (self.selectIndex == 0) {
+        if ([self.dataarr[self.selectIndex][@"title"] isEqualToString:@"米子支付"]) {
             
             //米子支付
             [self ricePay:sender];
